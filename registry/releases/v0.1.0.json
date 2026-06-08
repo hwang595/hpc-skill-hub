@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/release-manifest.schema.json",
-  "file_count": 573,
+  "file_count": 568,
   "files": [
     {
       "bytes": 489,
@@ -2708,31 +2708,6 @@
       "sha256": "a995cfdbf3a088c43e9b57e6c85d991c8f36c6475b2a097e193aa4fa5a46900b"
     },
     {
-      "bytes": 5774,
-      "path": "src/hpc_skill_hub.egg-info/PKG-INFO",
-      "sha256": "ea85edb5920c0b9f95d176e78d64129d78f4d364e28f0899348c542fd7956ebe"
-    },
-    {
-      "bytes": 357,
-      "path": "src/hpc_skill_hub.egg-info/SOURCES.txt",
-      "sha256": "35008b035478d8c3781ba13c45f2d307cc2a81416b5ed8516b0f30d36caf1be8"
-    },
-    {
-      "bytes": 1,
-      "path": "src/hpc_skill_hub.egg-info/dependency_links.txt",
-      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
-    },
-    {
-      "bytes": 53,
-      "path": "src/hpc_skill_hub.egg-info/entry_points.txt",
-      "sha256": "d972b521b2a23fb23bc0228555e8fd5214a50cddd1f0f8cacac41843de1987c2"
-    },
-    {
-      "bytes": 14,
-      "path": "src/hpc_skill_hub.egg-info/top_level.txt",
-      "sha256": "6694687e8e93fb6cda972132c023a5a581f5e76cc14aa1d93a4a9f43c40924ef"
-    },
-    {
       "bytes": 1802,
       "path": "tests/test_docs_links.py",
       "sha256": "37335bc4470c6acce6babee3957dadbcfe7bc0b1bf38140f9cee3d233581e515"
@@ -2778,9 +2753,9 @@
       "sha256": "1d166ec38e617ec2a8ee28d4dcd755c14545f8ae57412bbe54a5e748d0623a84"
     },
     {
-      "bytes": 5315,
+      "bytes": 5403,
       "path": "tools/build_release_manifest.py",
-      "sha256": "22b56d29164650c5977d40bcbd7a5cc891af9327c1c085b15c9e084024bb20ac"
+      "sha256": "c245ddb5002eb9777147aa528c3eaf26a01d112ec43020209c13d0309c7160c8"
     },
     {
       "bytes": 16285,
@@ -2890,6 +2865,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1892847,
+  "total_bytes": 1886736,
   "version": "v0.1.0"
 }

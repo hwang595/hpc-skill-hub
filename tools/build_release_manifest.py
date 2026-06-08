@@ -76,6 +76,8 @@ def should_include(path: Path, output_path: Path) -> bool:
         return False
     if any(part in EXCLUDED_PARTS for part in relative.parts):
         return False
+    if any(part.endswith(".egg-info") for part in relative.parts):
+        return False
     if relative.parts[:2] == ("registry", "releases"):
         return False
     if path.name == ".DS_Store" or path.suffix == ".pyc":
