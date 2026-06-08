@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a Slurm QOS and account limit triage seed skill for read-only
+  association, QOS, fairshare, and pending reason evidence.
 - Add a Slurm preemption and requeue seed skill for signal-aware jobs,
   restart-safe checkpoint state, and operator-reviewed manual requeue decisions.
 - Add an MPI fabric diagnostics seed skill for collecting MPI, UCX,
@@ -151,9 +153,9 @@ Initial public seed release.
 
 ### Added
 
-- 81 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 82 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, dependency chains, pending reason triage, monitoring, resource
-  estimation, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
+  estimation, QOS/account limit evidence, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
   preemption and requeue-safe restart behavior,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,

@@ -1,0 +1,139 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-qos-account-limit-triage",
+  "name": "Slurm QOS Account Limit Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect read-only evidence for Slurm account, QOS, and fairshare limits.",
+  "description": "This skill helps users and support teams investigate pending jobs caused by Slurm association limits, QOS limits, invalid accounts, invalid QOS values, fairshare pressure, and TRES-minute policy without modifying scheduler state.",
+  "categories": ["scheduler", "debugging", "admin"],
+  "tags": ["slurm", "qos", "account", "association", "fairshare", "limits", "sacctmgr", "sshare"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "squeue",
+      "required": true
+    },
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": false
+    },
+    {
+      "name": "sacctmgr",
+      "required": false,
+      "notes": "Visibility into associations and QOS records depends on site policy."
+    },
+    {
+      "name": "sshare",
+      "required": false,
+      "notes": "Useful when fairshare information is exposed by the site."
+    },
+    {
+      "name": "sprio",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "job_id",
+      "type": "string",
+      "required": false,
+      "description": "Optional pending Slurm job id to inspect for QOS, account, and association-related reasons."
+    },
+    {
+      "name": "user",
+      "type": "string",
+      "required": false,
+      "description": "User whose visible associations, fairshare, and pending jobs should be inspected."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": false,
+      "description": "Local directory where the read-only evidence bundle should be written."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "limit_triage_report",
+      "description": "Local text report directory with queue, job, association, QOS, fairshare, and priority evidence."
+    },
+    {
+      "name": "review_prompts",
+      "description": "Public-safe prompts for interpreting association and QOS limit reason strings."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/qos-account-limit-triage.sh",
+    "examples/pending-limit-reasons.md"
+  ],
+  "examples": [
+    {
+      "title": "Collect Slurm QOS and account limit evidence",
+      "path": "examples/qos-account-limit-triage.sh"
+    },
+    {
+      "title": "Pending limit reason reference",
+      "path": "examples/pending-limit-reasons.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-qos-account-limit-triage",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/slurm-qos-account-limit-triage/examples/qos-account-limit-triage.sh",
+      "description": "Check shell syntax without contacting Slurm."
+    },
+    {
+      "type": "manual",
+      "description": "Run on a Slurm site with a pending job and confirm the report only reads scheduler and accounting state."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm squeue documentation",
+      "url": "https://slurm.schedmd.com/squeue.html"
+    },
+    {
+      "title": "Slurm sacctmgr documentation",
+      "url": "https://slurm.schedmd.com/sacctmgr.html"
+    },
+    {
+      "title": "Slurm sshare documentation",
+      "url": "https://slurm.schedmd.com/sshare.html"
+    },
+    {
+      "title": "Slurm resource limits documentation",
+      "url": "https://slurm.schedmd.com/resource_limits.html"
+    },
+    {
+      "title": "Slurm QOS documentation",
+      "url": "https://slurm.schedmd.com/qos.html"
+    }
+  ]
+}

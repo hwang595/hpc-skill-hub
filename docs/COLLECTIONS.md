@@ -10,7 +10,8 @@ research software engineer building software stacks may start with
 ## Seed Collections
 
 - `core-hpc`: Slurm submission, arrays, dependency chains, pending reason
-  triage, monitoring, resource estimation, efficiency review,
+  triage, QOS/account limit evidence, monitoring, resource estimation,
+  efficiency review,
   license-aware jobs, checkpoint/restart, preemption/requeue handling, failure
   triage, storage triage, OpenMP placement, notebooks, RStudio, IDE tunnels,
   and interactive sessions.
@@ -62,8 +63,8 @@ research software engineer building software stacks may start with
   planning, storage smoke evidence, and reproducible run capture for simulation
   teams.
 - `facility-ops`: read-only usage reporting, pending reason triage, node
-  triage, and module tree health checks for HPC support teams and facility
-  maintainers.
+  triage, QOS/account limit evidence, and module tree health checks for HPC
+  support teams and facility maintainers.
 
 ## Contribution Guidance
 

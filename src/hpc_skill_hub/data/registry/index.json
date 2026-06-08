@@ -1,16 +1,16 @@
 {
   "$schema": "../schemas/registry-index.schema.json",
   "categories": {
-    "admin": 4,
+    "admin": 5,
     "containers": 3,
     "data": 14,
-    "debugging": 24,
+    "debugging": 25,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 15,
     "performance": 17,
-    "scheduler": 63,
+    "scheduler": 64,
     "software": 25,
     "workflow": 11
   },
@@ -105,6 +105,7 @@
         "slurm-job-array-patterns",
         "slurm-job-dependency-chain",
         "slurm-pending-reason-triage",
+        "slurm-qos-account-limit-triage",
         "slurm-monitor-job",
         "slurm-resource-estimator",
         "slurm-efficiency-report",
@@ -121,7 +122,7 @@
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, QOS/account limit evidence, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage."
     },
     {
       "audience": [
@@ -158,11 +159,12 @@
       "skill_ids": [
         "cluster-usage-report-readonly",
         "slurm-pending-reason-triage",
+        "slurm-qos-account-limit-triage",
         "node-health-readonly-triage",
         "module-tree-health-check"
       ],
       "status": "draft",
-      "summary": "Read-only operational skills for usage reporting, pending reason triage, node triage, and module tree health."
+      "summary": "Read-only operational skills for usage reporting, pending reason triage, QOS/account limit evidence, node triage, and module tree health."
     },
     {
       "audience": [
@@ -358,7 +360,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 60,
+    "slurm": 61,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -411,7 +413,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 81,
+  "skill_count": 82,
   "skills": [
     {
       "categories": [
@@ -4637,6 +4639,78 @@
     {
       "categories": [
         "scheduler",
+        "debugging",
+        "admin"
+      ],
+      "description": "This skill helps users and support teams investigate pending jobs caused by Slurm association limits, QOS limits, invalid accounts, invalid QOS values, fairshare pressure, and TRES-minute policy without modifying scheduler state.",
+      "examples": [
+        {
+          "path": "skills/slurm-qos-account-limit-triage/examples/qos-account-limit-triage.sh",
+          "title": "Collect Slurm QOS and account limit evidence"
+        },
+        {
+          "path": "skills/slurm-qos-account-limit-triage/examples/pending-limit-reasons.md",
+          "title": "Pending limit reason reference"
+        }
+      ],
+      "id": "slurm-qos-account-limit-triage",
+      "maturity": "seed",
+      "name": "Slurm QOS Account Limit Triage",
+      "path": "skills/slurm-qos-account-limit-triage",
+      "readme": "skills/slurm-qos-account-limit-triage/README.md",
+      "references": [
+        {
+          "title": "Slurm squeue documentation",
+          "url": "https://slurm.schedmd.com/squeue.html"
+        },
+        {
+          "title": "Slurm sacctmgr documentation",
+          "url": "https://slurm.schedmd.com/sacctmgr.html"
+        },
+        {
+          "title": "Slurm sshare documentation",
+          "url": "https://slurm.schedmd.com/sshare.html"
+        },
+        {
+          "title": "Slurm resource limits documentation",
+          "url": "https://slurm.schedmd.com/resource_limits.html"
+        },
+        {
+          "title": "Slurm QOS documentation",
+          "url": "https://slurm.schedmd.com/qos.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect read-only evidence for Slurm account, QOS, and fairshare limits.",
+      "tags": [
+        "slurm",
+        "qos",
+        "account",
+        "association",
+        "fairshare",
+        "limits",
+        "sacctmgr",
+        "sshare"
+      ],
+      "tools": [
+        "squeue",
+        "bash",
+        "scontrol",
+        "sacctmgr",
+        "sshare",
+        "sprio",
+        "mkdir",
+        "date"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
         "performance"
       ],
       "description": "This skill uses sacct output to help users choose safer memory, CPU, and wall-time requests for similar Slurm jobs.",
@@ -5314,6 +5388,7 @@
   ],
   "tags": {
     "accelerate": 1,
+    "account": 1,
     "affinity": 2,
     "afterany": 1,
     "afterok": 1,
@@ -5323,6 +5398,7 @@
     "apptainer": 3,
     "archive": 2,
     "array": 3,
+    "association": 1,
     "aws": 1,
     "batch": 3,
     "batch-connect": 1,
@@ -5379,7 +5455,7 @@
     "environment-modules": 1,
     "erb": 1,
     "failure": 1,
-    "fairshare": 1,
+    "fairshare": 2,
     "fasta": 1,
     "filesystem": 4,
     "gatk": 1,
@@ -5415,6 +5491,7 @@
     "license": 1,
     "licensed-software": 1,
     "licenses": 1,
+    "limits": 1,
     "lmod": 3,
     "lmutil": 1,
     "logs": 5,
@@ -5491,6 +5568,7 @@
     "python": 7,
     "pytorch": 5,
     "qe": 1,
+    "qos": 1,
     "qstat": 2,
     "qsub": 2,
     "quantum-chemistry": 1,
@@ -5519,6 +5597,7 @@
     "rsync": 2,
     "s3": 1,
     "sacct": 5,
+    "sacctmgr": 1,
     "salloc": 1,
     "samplesheet": 1,
     "sbatch": 3,
@@ -5532,7 +5611,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 58,
+    "slurm": 59,
     "slurmprovider": 1,
     "snakemake": 1,
     "software": 2,
@@ -5542,6 +5621,7 @@
     "squeue": 4,
     "sreport": 1,
     "srun": 6,
+    "sshare": 1,
     "staging": 3,
     "state": 1,
     "storage": 3,
@@ -5592,7 +5672,7 @@
     "awk": 3,
     "aws": 1,
     "basename": 1,
-    "bash": 8,
+    "bash": 9,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -5612,7 +5692,7 @@
     "cwltool": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 29,
+    "date": 30,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -5649,7 +5729,7 @@
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 32,
+    "mkdir": 33,
     "module": 25,
     "mpi4py": 1,
     "mpicc": 5,
@@ -5685,10 +5765,11 @@
     "rserver": 1,
     "rsync": 2,
     "sacct": 7,
+    "sacctmgr": 1,
     "salloc": 1,
     "sbatch": 47,
     "scancel": 1,
-    "scontrol": 11,
+    "scontrol": 12,
     "sed": 4,
     "seff": 1,
     "sha256sum": 2,
@@ -5699,11 +5780,12 @@
     "snakemake": 1,
     "sort": 8,
     "spack": 1,
-    "sprio": 1,
-    "squeue": 9,
+    "sprio": 2,
+    "squeue": 10,
     "sreport": 1,
     "srun": 25,
     "ssh": 5,
+    "sshare": 1,
     "streamlit": 1,
     "tail": 5,
     "tar": 1,

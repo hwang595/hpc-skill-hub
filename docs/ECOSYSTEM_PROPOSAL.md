@@ -38,8 +38,9 @@ owner handoffs, and ecosystem sponsor discussions.
 
 ## Current And Proposed Community Collections
 
-- `core-hpc`: Slurm, license-aware jobs, preemption/requeue handling, modules,
-  shell, storage, interactive sessions, RStudio, and IDE tunnels.
+- `core-hpc`: Slurm, QOS/account limit evidence, license-aware jobs,
+  preemption/requeue handling, modules, shell, storage, interactive sessions,
+  RStudio, and IDE tunnels.
 - `containers`: Apptainer-compatible image builds, runtime execution,
   containerized MPI, GPU checks, data staging, checksums, and reproducible run
   capture.
@@ -63,8 +64,9 @@ owner handoffs, and ecosystem sponsor discussions.
 - `simulation-workflows`: LAMMPS, GROMACS, Quantum ESPRESSO, NAMD, OpenFOAM,
   WRF, MPI fabric diagnostics, MPI rank binding diagnostics, hybrid
   MPI/OpenMP layouts, restart planning, profiling, and storage smoke evidence.
-- `facility-ops`: read-only usage reporting, node triage, module tree health
-  checks, support handoffs, and public operational patterns.
+- `facility-ops`: read-only usage reporting, QOS/account limit evidence, node
+  triage, module tree health checks, support handoffs, and public operational
+  patterns.
 
 ## Governance Direction
 

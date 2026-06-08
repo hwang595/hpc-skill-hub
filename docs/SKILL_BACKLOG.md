@@ -17,6 +17,7 @@ new collections.
 | `slurm-job-array-patterns` | scheduler | medium | Seed skill added to `core-hpc`. |
 | `slurm-job-dependency-chain` | scheduler | medium | Seed skill added to `core-hpc` and `workflow-engines`. |
 | `slurm-pending-reason-triage` | scheduler | low | Seed skill added to `core-hpc` and `facility-ops`. |
+| `slurm-qos-account-limit-triage` | scheduler | low | Seed skill added to `core-hpc` and `facility-ops`. |
 | `slurm-efficiency-report` | scheduler | low | Seed skill added to `core-hpc` and `gpu-mpi-performance`. |
 | `license-aware-slurm-job` | scheduler | medium | Seed skill added to `core-hpc`, `software-stacks`, and `training-onboarding`. |
 | `checkpoint-restart-workflow` | scheduler | medium | Seed skill added to `core-hpc`. |

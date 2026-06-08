@@ -41,6 +41,7 @@ tools.
 | `slurm-job-array-patterns` | Run parameter sweeps and independent tasks with bounded Slurm arrays. |
 | `slurm-job-dependency-chain` | Chain multi-stage Slurm jobs with explicit dependencies. |
 | `slurm-pending-reason-triage` | Explain why Slurm jobs are pending using read-only scheduler signals. |
+| `slurm-qos-account-limit-triage` | Collect read-only evidence for Slurm account, QOS, and fairshare limits. |
 | `slurm-monitor-job` | Inspect queued, running, completed, and failed Slurm jobs. |
 | `slurm-resource-estimator` | Estimate memory, wall time, and CPU needs from accounting history. |
 | `slurm-efficiency-report` | Summarize completed Slurm job efficiency from accounting data. |

@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 81 seed skills.
+- 82 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -119,8 +119,8 @@ Status: skill coverage exists; deeper integrations are future work.
 Priority integration tracks:
 
 - Slurm: batch scripts, accounting, queue inspection, dependency chains,
-  license-aware jobs, preemption/requeue handling, and optional REST
-  integration.
+  QOS/account limit evidence, license-aware jobs, preemption/requeue handling,
+  and optional REST integration.
 - Open OnDemand: Batch Connect app templates and user-facing interactive
   workflows.
 - Apptainer: image execution, bind mounts, GPU pass-through, MPI launch, and
@@ -129,10 +129,10 @@ Priority integration tracks:
 - Globus and data lifecycle tools: reliable transfer, checksums, staging,
   archival, and publication handoff.
 - Workflow engines: Nextflow, Snakemake, CWL, WDL, Dask, Parsl, and Ray.
-- Observability: failure triage, efficiency review, profiling, storage smoke
-  evidence, preemption/requeue evidence, GPU binding diagnostics, MPI fabric
-  diagnostics, MPI rank binding diagnostics, hybrid MPI/OpenMP layout checks,
-  utilization reports, and training reset checks.
+- Observability: failure triage, QOS/account limit evidence, efficiency review,
+  profiling, storage smoke evidence, preemption/requeue evidence, GPU binding
+  diagnostics, MPI fabric diagnostics, MPI rank binding diagnostics, hybrid
+  MPI/OpenMP layout checks, utilization reports, and training reset checks.
 
 Exit evidence:
 
