@@ -1,0 +1,137 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "object-storage-transfer",
+  "name": "Object Storage Transfer",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Plan object-storage transfers between HPC filesystems and cloud remotes.",
+  "description": "This skill helps users plan and run conservative transfers between HPC filesystems and S3-compatible or cloud object storage remotes using rclone, with dry-run defaults, copy-first behavior, optional sync controls, bounded transfer settings, log capture, and post-transfer validation hooks.",
+  "categories": ["data"],
+  "tags": ["object-storage", "s3", "rclone", "aws", "cloud", "transfer", "checksum"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "tools": [
+    {
+      "name": "rclone",
+      "required": true
+    },
+    {
+      "name": "aws",
+      "required": false,
+      "notes": "Optional AWS CLI fallback for sites that standardize on aws s3 sync."
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "source_uri",
+      "type": "string",
+      "required": true,
+      "description": "Local path, rclone remote path, or S3 URI to transfer from."
+    },
+    {
+      "name": "destination_uri",
+      "type": "string",
+      "required": true,
+      "description": "Local path, rclone remote path, or S3 URI to transfer to."
+    },
+    {
+      "name": "transfer_mode",
+      "type": "string",
+      "required": false,
+      "description": "Transfer mode, normally copy for non-destructive transfers or sync only after delete behavior is reviewed."
+    },
+    {
+      "name": "run_transfer",
+      "type": "boolean",
+      "required": false,
+      "description": "Opt-in flag that changes the examples from dry-run planning to actual transfer."
+    },
+    {
+      "name": "bandwidth_limit",
+      "type": "string",
+      "required": false,
+      "description": "Optional bandwidth limit for shared login nodes, data transfer nodes, or object-storage egress policy."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "transfer_plan",
+      "description": "Dry-run or executed command with selected mode, source, destination, transfer bounds, and log paths."
+    },
+    {
+      "name": "transfer_log",
+      "description": "rclone or AWS CLI output suitable for review and support handoff."
+    },
+    {
+      "name": "validation_report",
+      "description": "Optional rclone check output or AWS dry-run review notes for confirming expected object movement."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/rclone-object-transfer.sh",
+    "examples/aws-s3-sync-plan.sh"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run an rclone object-storage transfer",
+      "path": "examples/rclone-object-transfer.sh"
+    },
+    {
+      "title": "Plan or run an AWS CLI S3 sync",
+      "path": "examples/aws-s3-sync-plan.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill object-storage-transfer",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/object-storage-transfer/examples/rclone-object-transfer.sh && bash -n skills/object-storage-transfer/examples/aws-s3-sync-plan.sh",
+      "description": "Check example shell syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Run the rclone example in dry-run mode against a small user-owned test prefix, review the log and combined report, then set RUN_OBJECT_TRANSFER=1 only after destination and bandwidth policy are confirmed."
+    }
+  ],
+  "references": [
+    {
+      "title": "rclone copy command",
+      "url": "https://rclone.org/commands/rclone_copy/"
+    },
+    {
+      "title": "rclone sync command",
+      "url": "https://rclone.org/commands/rclone_sync/"
+    },
+    {
+      "title": "rclone check command",
+      "url": "https://rclone.org/commands/rclone_check/"
+    },
+    {
+      "title": "AWS CLI s3 sync command",
+      "url": "https://docs.aws.amazon.com/cli/latest/reference/s3/sync.html"
+    }
+  ]
+}

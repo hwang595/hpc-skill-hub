@@ -3,7 +3,7 @@
   "categories": {
     "admin": 4,
     "containers": 3,
-    "data": 13,
+    "data": 14,
     "debugging": 18,
     "education": 2,
     "gpu": 12,
@@ -132,6 +132,7 @@
       "skill_ids": [
         "globus-transfer-dataset",
         "rsync-data-transfer",
+        "object-storage-transfer",
         "checksum-manifest-create",
         "dataset-staging-to-scratch",
         "ior-mdtest-storage-smoke",
@@ -140,7 +141,7 @@
         "quota-and-filesystem-triage"
       ],
       "status": "draft",
-      "summary": "Skills for staging, transferring, validating, benchmarking, and managing research data on HPC storage."
+      "summary": "Skills for staging, transferring, validating, benchmarking, and managing research data across HPC filesystems and object storage."
     },
     {
       "audience": [
@@ -395,7 +396,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 73,
+  "skill_count": 74,
   "skills": [
     {
       "categories": [
@@ -2921,6 +2922,66 @@
     },
     {
       "categories": [
+        "data"
+      ],
+      "description": "This skill helps users plan and run conservative transfers between HPC filesystems and S3-compatible or cloud object storage remotes using rclone, with dry-run defaults, copy-first behavior, optional sync controls, bounded transfer settings, log capture, and post-transfer validation hooks.",
+      "examples": [
+        {
+          "path": "skills/object-storage-transfer/examples/rclone-object-transfer.sh",
+          "title": "Plan or run an rclone object-storage transfer"
+        },
+        {
+          "path": "skills/object-storage-transfer/examples/aws-s3-sync-plan.sh",
+          "title": "Plan or run an AWS CLI S3 sync"
+        }
+      ],
+      "id": "object-storage-transfer",
+      "maturity": "seed",
+      "name": "Object Storage Transfer",
+      "path": "skills/object-storage-transfer",
+      "readme": "skills/object-storage-transfer/README.md",
+      "references": [
+        {
+          "title": "rclone copy command",
+          "url": "https://rclone.org/commands/rclone_copy/"
+        },
+        {
+          "title": "rclone sync command",
+          "url": "https://rclone.org/commands/rclone_sync/"
+        },
+        {
+          "title": "rclone check command",
+          "url": "https://rclone.org/commands/rclone_check/"
+        },
+        {
+          "title": "AWS CLI s3 sync command",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/s3/sync.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Plan object-storage transfers between HPC filesystems and cloud remotes.",
+      "tags": [
+        "object-storage",
+        "s3",
+        "rclone",
+        "aws",
+        "cloud",
+        "transfer",
+        "checksum"
+      ],
+      "tools": [
+        "rclone",
+        "aws",
+        "mkdir",
+        "date",
+        "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "interactive",
         "scheduler",
         "software",
@@ -4766,6 +4827,7 @@
     "apptainer": 3,
     "archive": 2,
     "array": 3,
+    "aws": 1,
     "batch": 3,
     "batch-connect": 1,
     "benchmark": 2,
@@ -4779,9 +4841,10 @@
     "charm++": 1,
     "checklist": 1,
     "checkpoint": 3,
-    "checksum": 4,
+    "checksum": 5,
     "cleanup": 1,
     "climate": 1,
+    "cloud": 1,
     "code-cli": 1,
     "compatibility": 1,
     "compiler": 3,
@@ -4877,6 +4940,7 @@
     "node-health": 1,
     "notebook": 1,
     "nvidia": 1,
+    "object-storage": 1,
     "oci": 1,
     "omp-num-threads": 1,
     "onboarding": 1,
@@ -4921,6 +4985,7 @@
     "quota": 2,
     "r": 2,
     "ray": 1,
+    "rclone": 1,
     "reason": 1,
     "reconstruction": 1,
     "remote-tunnels": 1,
@@ -4935,6 +5000,7 @@
     "rscript": 1,
     "rstudio": 1,
     "rsync": 2,
+    "s3": 1,
     "sacct": 5,
     "salloc": 1,
     "samplesheet": 1,
@@ -4971,7 +5037,7 @@
     "time": 1,
     "timeout": 2,
     "training": 2,
-    "transfer": 3,
+    "transfer": 4,
     "transformers": 1,
     "triage": 4,
     "tunnel": 4,
@@ -5003,6 +5069,7 @@
     "all_reduce_perf": 1,
     "apptainer": 3,
     "awk": 3,
+    "aws": 1,
     "basename": 1,
     "bash": 6,
     "bjobs": 1,
@@ -5024,7 +5091,7 @@
     "cwltool": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 27,
+    "date": 28,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -5057,7 +5124,7 @@
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 30,
+    "mkdir": 31,
     "module": 19,
     "mpi4py": 1,
     "mpicc": 2,
@@ -5082,6 +5149,7 @@
     "qsub": 2,
     "quota": 1,
     "ray": 1,
+    "rclone": 1,
     "real.exe": 1,
     "reconstructPar": 1,
     "rm": 1,
@@ -5110,7 +5178,7 @@
     "streamlit": 1,
     "tail": 4,
     "tar": 1,
-    "tee": 21,
+    "tee": 22,
     "tensorboard": 1,
     "test": 8,
     "time": 1,

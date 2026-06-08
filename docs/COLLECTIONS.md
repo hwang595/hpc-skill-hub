@@ -35,9 +35,9 @@ research software engineer building software stacks may start with
   apps, RStudio, IDE tunnels, Python/Conda environments, Rscript batch jobs,
   Julia batch jobs, MATLAB batch jobs, module debugging, data staging, and
   failure triage for new users.
-- `data-movement`: Globus and rsync transfers, checksum manifests, scratch
-  staging, archive preparation, IOR/MDTest storage smoke benchmarks, scratch
-  inventory, and filesystem quota triage.
+- `data-movement`: Globus, rsync, and object-storage transfers, checksum
+  manifests, scratch staging, archive preparation, IOR/MDTest storage smoke
+  benchmarks, scratch inventory, and filesystem quota triage.
 - `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke
   tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,

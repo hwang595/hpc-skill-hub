@@ -43,6 +43,7 @@ new collections.
 | `apptainer-mpi-on-slurm` | containers | medium | Seed skill added to `containers`, `software-stacks`, and `gpu-mpi-performance`. |
 | `checksum-manifest-create` | data | low | Seed skill added to `data-movement`. |
 | `rsync-data-transfer` | data | medium | Seed skill added to `data-movement`. |
+| `object-storage-transfer` | data | medium | Seed skill added to `data-movement`. |
 | `dataset-staging-to-scratch` | data | medium | Seed skill added to `data-movement`. |
 | `ior-mdtest-storage-smoke` | performance | medium | Seed skill added to `data-movement`, `gpu-mpi-performance`, and `simulation-workflows`. |
 | `large-file-archive-prepare` | data | medium | Seed skill added to `data-movement`. |

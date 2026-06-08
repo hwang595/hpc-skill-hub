@@ -37,8 +37,8 @@ The project is not only a documentation site. It combines:
 - `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices,
   Open OnDemand templates, TensorBoard, Streamlit, RStudio, and IDE tunnels.
 - `workflow-engines`: CWL, WDL, Nextflow, and Snakemake.
-- `data-movement`: Globus, rsync, checksums, scratch staging, IOR/MDTest
-  storage smoke evidence, archive preparation, and quota triage.
+- `data-movement`: Globus, rsync, object storage, checksums, scratch staging,
+  IOR/MDTest storage smoke evidence, archive preparation, and quota triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, Open OnDemand
   templates, notebooks, TensorBoard, Streamlit, RStudio, IDE tunnels, Python
   environments, and common learner failure modes.

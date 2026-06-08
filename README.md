@@ -77,6 +77,7 @@ tools.
 | `easybuild-install-software` | Install scientific software with EasyBuild recipes and module output. |
 | `globus-transfer-dataset` | Stage and verify large research datasets with Globus transfers. |
 | `rsync-data-transfer` | Transfer datasets with rsync dry-runs, resumable options, and validation hooks. |
+| `object-storage-transfer` | Plan object-storage transfers between HPC filesystems and cloud remotes. |
 | `checksum-manifest-create` | Create checksum manifests for transfer validation and reproducibility. |
 | `dataset-staging-to-scratch` | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
 | `large-file-archive-prepare` | Prepare large HPC datasets for archival, publication, or handoff. |

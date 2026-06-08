@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 73 skills.
+Current registry size: 74 skills.
 
 ## Categories
 
@@ -10,7 +10,7 @@ Current registry size: 73 skills.
 | --- | ---: |
 | `admin` | 4 |
 | `containers` | 3 |
-| `data` | 13 |
+| `data` | 14 |
 | `debugging` | 18 |
 | `education` | 2 |
 | `gpu` | 12 |
@@ -53,6 +53,7 @@ Current registry size: 73 skills.
 | [`ior-mdtest-storage-smoke`](../skills/ior-mdtest-storage-smoke/README.md) | medium | seed | Collect small IOR and MDTest storage benchmark evidence on Slurm. |
 | [`large-file-archive-prepare`](../skills/large-file-archive-prepare/README.md) | medium | seed | Prepare large HPC datasets for archival, publication, or handoff. |
 | [`nf-core-on-slurm`](../skills/nf-core-on-slurm/README.md) | medium | seed | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
+| [`object-storage-transfer`](../skills/object-storage-transfer/README.md) | medium | seed | Plan object-storage transfers between HPC filesystems and cloud remotes. |
 | [`quota-and-filesystem-triage`](../skills/quota-and-filesystem-triage/README.md) | low | seed | Diagnose quota, inode, and filesystem-space failures from user-visible evidence. |
 | [`rsync-data-transfer`](../skills/rsync-data-transfer/README.md) | medium | seed | Transfer datasets with rsync dry-runs, resumable options, and validation hooks. |
 | [`scratch-storage-management`](../skills/scratch-storage-management/README.md) | low | seed | Inspect scratch, project, and working-directory usage before HPC jobs. |
@@ -264,7 +265,7 @@ Current registry size: 73 skills.
 | [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | draft | 7 | bioinformatics teams, core facilities, genomics platform engineers | Domain skills for running reviewed nf-core, GATK, and BLAST bioinformatics workflows on Slurm-backed HPC systems. |
 | [`containers`](../collections/containers.json) | draft | 7 | research software engineers, container users, HPC support teams | Skills for building, validating, running MPI containers, and staging data for containerized HPC workloads. |
 | [`core-hpc`](../collections/core-hpc.json) | draft | 16 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage. |
-| [`data-movement`](../collections/data-movement.json) | draft | 8 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, benchmarking, and managing research data on HPC storage. |
+| [`data-movement`](../collections/data-movement.json) | draft | 9 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, benchmarking, and managing research data across HPC filesystems and object storage. |
 | [`facility-ops`](../collections/facility-ops.json) | draft | 4 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, pending reason triage, node triage, and module tree health. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 18 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence. |
 | [`scheduler-basics`](../collections/scheduler-basics.json) | draft | 7 | new HPC users, training instructors, support teams, sites with mixed schedulers | Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers. |

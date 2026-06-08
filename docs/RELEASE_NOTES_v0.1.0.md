@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 73.
+- Skills: 74.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -47,9 +47,9 @@ request missing workflows, or contribute public site adapters.
   workflows, Open OnDemand templates, notebooks, TensorBoard monitors,
   Streamlit apps, RStudio, VS Code tunnels, Python/Conda environments, Rscript,
   Julia, and MATLAB batch jobs, and common learner triage.
-- Data movement: Globus, rsync, checksum manifests, scratch staging, archive
-  preparation, IOR/MDTest storage smoke benchmarks, scratch inventory, and
-  filesystem quota triage.
+- Data movement: Globus, rsync, object-storage transfers, checksum manifests,
+  scratch staging, archive preparation, IOR/MDTest storage smoke benchmarks,
+  scratch inventory, and filesystem quota triage.
 - GPU/MPI performance: MPI sanity checks, containerized MPI, mpi4py launch
   checks, GPU sanity checks, Ray cluster smoke tests, JAX distributed smoke
   tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke tests,

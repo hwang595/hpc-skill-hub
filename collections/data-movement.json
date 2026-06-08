@@ -3,11 +3,12 @@
   "id": "data-movement",
   "name": "Data Movement",
   "status": "draft",
-  "summary": "Skills for staging, transferring, validating, benchmarking, and managing research data on HPC storage.",
+  "summary": "Skills for staging, transferring, validating, benchmarking, and managing research data across HPC filesystems and object storage.",
   "audience": ["data stewards", "research groups", "facility support teams"],
   "skill_ids": [
     "globus-transfer-dataset",
     "rsync-data-transfer",
+    "object-storage-transfer",
     "checksum-manifest-create",
     "dataset-staging-to-scratch",
     "ior-mdtest-storage-smoke",
