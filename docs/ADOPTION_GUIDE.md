@@ -4,7 +4,9 @@ This guide helps HPC centers, research software teams, and training programs
 adopt HPC Skill Hub without turning it into a site-specific fork.
 
 For a time-boxed pilot plan, contribution tracks, adoption reports, and success
-metrics, see [Adopter Playbook](ADOPTER_PLAYBOOK.md).
+metrics, see [Adopter Playbook](ADOPTER_PLAYBOOK.md). Use the
+[Adoption Pilot Worksheet](ADOPTION_WORKSHEET.md) to record public-safe
+evidence before opening issues or pull requests.
 
 ## For HPC Centers
 

@@ -188,6 +188,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Integration guide](docs/INTEGRATION_GUIDE.md)
 - [Adoption guide](docs/ADOPTION_GUIDE.md)
 - [Adopter playbook](docs/ADOPTER_PLAYBOOK.md)
+- [Adoption pilot worksheet](docs/ADOPTION_WORKSHEET.md)
 - [Safety model](docs/SAFETY_MODEL.md)
 - [Governance](docs/GOVERNANCE.md)
 - [Review routing](docs/REVIEW_ROUTING.md)

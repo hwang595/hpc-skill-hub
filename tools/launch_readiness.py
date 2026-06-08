@@ -69,6 +69,7 @@ def required_files_check() -> Check:
         "docs/GITHUB_REPOSITORY_SETUP.md",
         "docs/INTEGRATION_GUIDE.md",
         "docs/COMMUNITY_LAUNCH.md",
+        "docs/ADOPTION_WORKSHEET.md",
         "docs/COMPATIBILITY.md",
         "docs/RELEASE_PROCESS.md",
         "docs/RELEASE_NOTES_v0.1.0.md",

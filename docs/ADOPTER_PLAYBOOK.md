@@ -7,6 +7,10 @@ The safest first adoption is a small public pilot: use existing seed skills,
 record what worked, contribute one public site adapter or skill request, and
 avoid moving private cluster policy into the core registry.
 
+Use the [Adoption Pilot Worksheet](ADOPTION_WORKSHEET.md) while piloting. It
+gives reviewers a structured place to separate public-safe evidence from private
+site notes before filing issues.
+
 ## Adoption Tracks
 
 Choose one primary track for the first pilot.

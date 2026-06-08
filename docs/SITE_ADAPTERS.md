@@ -44,6 +44,9 @@ python3 tools/hpc_skill.py scaffold site-adapter my-campus-cluster --name "My Ca
   service endpoints.
 - Prefer policy summaries over long local documentation copies.
 - Link to public site documentation when available.
+- If you are unsure what can be public, start with the
+  [Adoption Pilot Worksheet](ADOPTION_WORKSHEET.md) and move only public-safe
+  policy into a site adapter request.
 
 ## How Skills Use Adapters
 

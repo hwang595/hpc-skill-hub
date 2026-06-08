@@ -64,12 +64,23 @@ class GovernanceDocsTests(unittest.TestCase):
         playbook = (ROOT / "docs" / "ADOPTER_PLAYBOOK.md").read_text(
             encoding="utf-8"
         )
+        worksheet = (ROOT / "docs" / "ADOPTION_WORKSHEET.md").read_text(
+            encoding="utf-8"
+        )
 
         self.assertIn("labels: [\"adoption\"]", template)
         self.assertIn("adoption", labels)
         for heading in ["## 30 Day Pilot", "## 60 Day Pilot", "## 90 Day Pilot"]:
             self.assertIn(heading, playbook)
         self.assertIn("Public-Safe Evidence", playbook)
+        for heading in [
+            "## Pilot Metadata",
+            "## Public-Safe Checklist",
+            "## 30 Day Checkpoint",
+            "## 60 Day Checkpoint",
+            "## 90 Day Checkpoint",
+        ]:
+            self.assertIn(heading, worksheet)
 
     def test_review_routing_doc_and_codeowners_placeholder(self):
         routing = (ROOT / "docs" / "REVIEW_ROUTING.md").read_text(
