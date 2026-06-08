@@ -30,6 +30,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   review, field testing, maintenance, and deprecation.
 - Add ecosystem entry points to the generated static site for adopters,
   contributors, site adapters, integrations, safety review, and RFCs.
+- Add GitHub Discussion category forms and setup guidance for adoption, skill
+  coverage, site adapters, review process, and integrations.
 - Add integration guide, integration request template, and starter label for
   downstream registry consumers.
 - Add a read-only Slurm efficiency report skill for completed job resource

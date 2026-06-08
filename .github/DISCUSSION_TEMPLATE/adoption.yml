@@ -1,0 +1,42 @@
+title: "[Adoption] "
+labels: ["adoption"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share public-safe feedback from trying HPC Skill Hub in a center, lab,
+        training program, tool project, or workflow pilot.
+  - type: dropdown
+    id: adopter-type
+    attributes:
+      label: Adopter type
+      options:
+        - HPC center
+        - Research group
+        - Tool maintainer
+        - Instructor or training program
+        - Workflow or portal team
+    validations:
+      required: true
+  - type: input
+    id: scope
+    attributes:
+      label: Skill, collection, or adapter
+      description: Name the registry surface you tried.
+      placeholder: core-hpc, ai-hpc, slurm-submit-job, or example-campus-cluster
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: What worked and what needed adaptation?
+      description: Describe public-safe outcomes, blockers, and follow-up requests.
+    validations:
+      required: true
+  - type: checkboxes
+    id: public-safe
+    attributes:
+      label: Public-safe check
+      options:
+        - label: This discussion avoids private hostnames, usernames, allocation names, tokens, private paths, and unpublished cluster policy.
+          required: true

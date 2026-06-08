@@ -14,6 +14,23 @@ from github_rulesets import command_for_ruleset, iter_ruleset_paths, load_rulese
 from launch_readiness import launch_checks
 
 
+DISCUSSION_FORMS = [
+    ("Adoption", "adoption", ".github/DISCUSSION_TEMPLATE/adoption.yml"),
+    (
+        "Skill coverage",
+        "skill-coverage",
+        ".github/DISCUSSION_TEMPLATE/skill-coverage.yml",
+    ),
+    ("Site adapters", "site-adapters", ".github/DISCUSSION_TEMPLATE/site-adapters.yml"),
+    (
+        "Review process",
+        "review-process",
+        ".github/DISCUSSION_TEMPLATE/review-process.yml",
+    ),
+    ("Integrations", "integrations", ".github/DISCUSSION_TEMPLATE/integrations.yml"),
+]
+
+
 def print_section(title: str) -> None:
     print()
     print(f"## {title}")
@@ -79,20 +96,25 @@ def main() -> int:
     print_section("3. Configure labels")
     print_commands(command_for_label(label, repo) for label in load_labels())
 
-    print_section("4. Open starter issues")
+    print_section("4. Configure discussion categories")
+    print("# Create GitHub Discussions categories matching these template slugs:")
+    for name, slug, path in DISCUSSION_FORMS:
+        print(f"# - {name}: slug `{slug}`, form {path}")
+
+    print_section("5. Open starter issues")
     for issue in load_seed_issues():
         print(shell_join(command_for_issue(issue, repo)))
         if issue.get("pin"):
             print(f"# Pin the issue created from {issue['body']}.")
 
     print_section(
-        "5. Apply branch rulesets after first green Validate and Package workflows"
+        "6. Apply branch rulesets after first green Validate and Package workflows"
     )
     for path in iter_ruleset_paths():
         load_ruleset(path)
         print(shell_join(command_for_ruleset(path, repo)))
 
-    print_section("6. Publish first release after CI and Pages are green")
+    print_section("7. Publish first release after CI and Pages are green")
     print_commands(release_commands(args.version, repo))
 
     return 0

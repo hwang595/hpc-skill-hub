@@ -48,6 +48,34 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertTrue(referenced_labels)
         self.assertTrue(referenced_labels.issubset(label_names))
 
+    def test_discussion_templates_are_publishable(self):
+        label_names = {label["name"] for label in self.load_labels()}
+        template_dir = ROOT / ".github" / "DISCUSSION_TEMPLATE"
+        expected = {
+            "adoption.yml",
+            "integrations.yml",
+            "review-process.yml",
+            "site-adapters.yml",
+            "skill-coverage.yml",
+        }
+        paths = {path.name for path in template_dir.glob("*.yml")}
+        self.assertEqual(paths, expected)
+
+        label_pattern = re.compile(r'^labels:\s*\[(.*?)\]\s*$', re.MULTILINE)
+        referenced_labels = set()
+        for template_path in template_dir.glob("*.yml"):
+            text = template_path.read_text(encoding="utf-8")
+            self.assertIn("title:", text, template_path.name)
+            self.assertIn("body:", text, template_path.name)
+            self.assertIn("validations:", text, template_path.name)
+            match = label_pattern.search(text)
+            self.assertIsNotNone(match, template_path.name)
+            labels = [item.strip().strip("\"'") for item in match.group(1).split(",")]
+            referenced_labels.update(label for label in labels if label)
+
+        self.assertTrue(referenced_labels)
+        self.assertTrue(referenced_labels.issubset(label_names))
+
     def test_seed_issues_are_publishable(self):
         label_names = {label["name"] for label in self.load_labels()}
         issues = self.load_seed_issues()
@@ -272,6 +300,9 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("python3 tools/launch_readiness.py", result.stdout)
         self.assertIn("gh repo create example/hpc-skill-hub", result.stdout)
         self.assertIn("gh label create safety-review", result.stdout)
+        self.assertIn("Configure discussion categories", result.stdout)
+        self.assertIn(".github/DISCUSSION_TEMPLATE/adoption.yml", result.stdout)
+        self.assertIn("skill-coverage", result.stdout)
         self.assertIn("gh issue create", result.stdout)
         self.assertIn(
             "Apply branch rulesets after first green Validate and Package workflows",

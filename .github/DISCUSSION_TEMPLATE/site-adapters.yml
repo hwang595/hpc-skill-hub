@@ -1,0 +1,37 @@
+title: "[Site adapter] "
+labels: ["site-adapter"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Discuss public local policy that could become a site adapter. Do not
+        include private hostnames, allocation names, internal project ids, or
+        unpublished operational procedures.
+  - type: input
+    id: site-type
+    attributes:
+      label: Site or environment type
+      placeholder: Campus Slurm cluster, training cluster, cloud HPC, or national facility
+    validations:
+      required: true
+  - type: textarea
+    id: public-policy
+    attributes:
+      label: Public policy notes
+      description: Link public documentation and describe scheduler, storage, module, container, or login-node policy.
+    validations:
+      required: true
+  - type: textarea
+    id: skills
+    attributes:
+      label: Skills that need local notes
+      description: List skill ids or collections that would benefit from this adapter.
+    validations:
+      required: false
+  - type: checkboxes
+    id: public-safe
+    attributes:
+      label: Public-safe check
+      options:
+        - label: This discussion uses public documentation or placeholders only.
+          required: true

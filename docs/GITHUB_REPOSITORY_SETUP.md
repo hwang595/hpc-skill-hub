@@ -49,6 +49,15 @@ before applying it.
 - Link the generated site from the repository homepage when the URL is
   available.
 
+## GitHub Discussions
+
+- Confirm Discussions are enabled from `.github/repository.json`.
+- Create the categories in [GitHub Discussions](GITHUB_DISCUSSIONS.md).
+- Confirm the category forms under `.github/DISCUSSION_TEMPLATE/` load for the
+  matching category slugs.
+- Keep open-ended ecosystem conversations in Discussions and move concrete work
+  into issues when the next action is clear.
+
 ## Security Features
 
 - Enable private vulnerability reporting.

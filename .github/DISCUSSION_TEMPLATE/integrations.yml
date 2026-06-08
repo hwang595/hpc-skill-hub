@@ -1,0 +1,40 @@
+title: "[Integration] "
+labels: ["integration"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this category for portals, assistants, workflow tools, package
+        managers, and other downstream consumers of the registry.
+  - type: input
+    id: downstream
+    attributes:
+      label: Downstream tool or project
+      placeholder: Portal, assistant, workflow engine, package, or service name
+    validations:
+      required: true
+  - type: checkboxes
+    id: registry-surface
+    attributes:
+      label: Registry surface
+      options:
+        - label: registry/index.json
+        - label: schemas/*.schema.json
+        - label: hpc-skill CLI JSON output
+        - label: skill README or examples
+        - label: collections
+        - label: site adapters
+  - type: textarea
+    id: safety-model
+    attributes:
+      label: Safety and user intent model
+      description: Explain how risk, maturity, site assumptions, and explicit user intent will be shown.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility needs
+      description: Note any schema, CLI, generated index, or governance changes you may need.
+    validations:
+      required: false

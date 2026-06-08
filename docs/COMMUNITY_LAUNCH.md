@@ -71,6 +71,9 @@ help-wanted, good-first-issue, governance
 
 ## First Discussion Prompts
 
+Use [GitHub Discussions](GITHUB_DISCUSSIONS.md) to create categories matching
+the discussion forms under `.github/DISCUSSION_TEMPLATE/`.
+
 - Adoption: "What would your center need before recommending HPC Skill Hub to
   users?"
 - Skill coverage: "Which repeated support tasks are missing from the first
@@ -94,6 +97,7 @@ help-wanted, good-first-issue, governance
 - Apply labels from `.github/labels.json`.
 - Create starter issues from `.github/seed_issues.json`.
 - Pin the first community issue.
+- Create the recommended Discussion categories and confirm their forms load.
 - Run the first weekly triage loop from [Triage Runbook](TRIAGE_RUNBOOK.md).
 - Link the generated Pages site in the repository homepage.
 - Invite the first three to five domain reviewers using

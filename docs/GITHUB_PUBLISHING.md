@@ -74,6 +74,8 @@ git push -u origin main
 - Repository topics and description are set.
 - Repository metadata matches `.github/repository.json`.
 - Labels are created from `.github/labels.json`.
+- GitHub Discussions categories match `.github/DISCUSSION_TEMPLATE/` and
+  [GitHub Discussions](GITHUB_DISCUSSIONS.md).
 - `python3 tools/launch_readiness.py` reports no local `FAIL` entries.
 - `python3 tools/github_repo.py --owner <owner>` prints the expected repository
   creation and metadata commands.
@@ -91,6 +93,8 @@ git push -u origin main
   expected end-to-end publication plan.
 - Branch protection requires the validation and package workflows.
 - GitHub Pages is enabled with the `Publish Pages` workflow.
+- GitHub Discussions is enabled and seeded with adoption, skill coverage, site
+  adapter, review process, and integration categories.
 - Dependabot, issue templates, and pull request templates are present.
 - A pinned issue invites external HPC centers to propose skills and adapters.
 - A triage owner knows how to apply `needs-triage` and

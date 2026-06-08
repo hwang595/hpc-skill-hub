@@ -1,0 +1,35 @@
+title: "[Review] "
+labels: ["governance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this category to discuss risk, maturity, domain review, reviewer
+        coverage, and how the project should govern skill promotion.
+  - type: dropdown
+    id: review-area
+    attributes:
+      label: Review area
+      options:
+        - Risk model
+        - Maturity model
+        - Domain reviewer coverage
+        - Site adapter boundaries
+        - Release or governance process
+        - Contributor workflow
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Question or proposal
+      description: Describe what should change or what needs maintainer agreement.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Affected skills, docs, or users
+      description: Name any registry surface, collection, contributor group, or downstream consumer affected.
+    validations:
+      required: false

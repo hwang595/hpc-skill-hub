@@ -81,6 +81,8 @@ request missing workflows, or contribute public site adapters.
 - Dependabot configuration for GitHub Actions and Python packaging.
 - Issue templates for bugs, docs, skill requests, site adapters, and safety
   review.
+- Discussion category forms and setup guidance for adoption, skill coverage,
+  site adapters, review process, and integrations.
 - Maturity review template and guidance for promoting skills beyond seed.
 - Adoption report template and adopter playbook for public pilot feedback.
 - Pull request template with validation, risk, privacy, and reviewer prompts.

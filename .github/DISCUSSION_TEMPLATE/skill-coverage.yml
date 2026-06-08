@@ -1,0 +1,40 @@
+title: "[Skill coverage] "
+labels: ["skill-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this category for broad discussion of missing HPC workflows before
+        opening a focused skill request issue.
+  - type: input
+    id: workflow
+    attributes:
+      label: Workflow or task area
+      placeholder: Slurm, storage, AI/HPC, bioinformatics, simulation, containers, training
+    validations:
+      required: true
+  - type: textarea
+    id: repeated-task
+    attributes:
+      label: Repeated support task
+      description: What do users repeatedly ask for, debug, or copy between clusters?
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Public references
+      description: Link upstream docs, public center guidance, tutorials, papers, or tool docs.
+    validations:
+      required: false
+  - type: dropdown
+    id: likely-risk
+    attributes:
+      label: Likely risk
+      options:
+        - low
+        - medium
+        - high
+        - unsure
+    validations:
+      required: true

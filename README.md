@@ -203,6 +203,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Open ecosystem proposal](docs/ECOSYSTEM_PROPOSAL.md)
 - [Open source proposal](docs/OPEN_SOURCE_PROPOSAL.md)
 - [Community launch](docs/COMMUNITY_LAUNCH.md)
+- [GitHub Discussions](docs/GITHUB_DISCUSSIONS.md)
 - [Release process](docs/RELEASE_PROCESS.md)
 - [v0.1.0 release notes](docs/RELEASE_NOTES_v0.1.0.md)
 - [Changelog](CHANGELOG.md)
