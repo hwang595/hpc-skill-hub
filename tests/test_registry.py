@@ -97,7 +97,7 @@ class RegistryTests(unittest.TestCase):
     def test_cli_health_json(self):
         result = run_cmd("python3", "tools/hpc_skill.py", "health", "--json")
         payload = json.loads(result.stdout)
-        self.assertEqual(payload["skill_count"], 30)
+        self.assertEqual(payload["skill_count"], 31)
         self.assertEqual(payload["collection_count"], 5)
         self.assertIn("risk_counts", payload)
 

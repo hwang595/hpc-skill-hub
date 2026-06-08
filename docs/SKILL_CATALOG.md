@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 30 skills.
+Current registry size: 31 skills.
 
 ## Categories
 
@@ -11,11 +11,11 @@ Current registry size: 30 skills.
 | `containers` | 2 |
 | `data` | 7 |
 | `debugging` | 11 |
-| `gpu` | 1 |
+| `gpu` | 2 |
 | `interactive` | 2 |
 | `mpi` | 2 |
 | `performance` | 3 |
-| `scheduler` | 15 |
+| `scheduler` | 16 |
 | `software` | 8 |
 | `workflow` | 2 |
 
@@ -61,6 +61,7 @@ Current registry size: 30 skills.
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
+| [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md) | medium | seed | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
 
 ### Interactive
 
@@ -98,6 +99,7 @@ Current registry size: 30 skills.
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
 | [`openmp-thread-affinity`](../skills/openmp-thread-affinity/README.md) | medium | seed | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
+| [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md) | medium | seed | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
 | [`slurm-job-array-patterns`](../skills/slurm-job-array-patterns/README.md) | medium | seed | Run parameter sweeps and many independent tasks with Slurm job arrays. |
 | [`slurm-monitor-job`](../skills/slurm-monitor-job/README.md) | low | seed | Inspect Slurm job state, accounting records, and output paths. |
 | [`slurm-resource-estimator`](../skills/slurm-resource-estimator/README.md) | low | seed | Estimate future Slurm resource requests from accounting history. |
@@ -130,7 +132,7 @@ Current registry size: 30 skills.
 | --- | --- | ---: | --- | --- |
 | [`core-hpc`](../collections/core-hpc.json) | draft | 11 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
-| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 5 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, compiler/MPI compatibility, MPI launches, OpenMP placement, and first-pass performance evidence. |
+| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 6 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, compiler/MPI compatibility, PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 9 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 2 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines on Slurm-backed HPC clusters. |
 
@@ -143,7 +145,6 @@ Current registry size: 30 skills.
 ## Next Candidates
 
 - Open OnDemand app templates.
-- PyTorch distributed training on Slurm.
 - NCCL multi-node diagnostics.
 - Transfer verification across storage tiers.
 - WRF, GROMACS, LAMMPS, OpenFOAM, and Quantum ESPRESSO starter skills.

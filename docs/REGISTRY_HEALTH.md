@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 30
+- Skills: 31
 - Site adapters: 1
 - Collections: 5
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 11 |
-| `medium` | 19 |
+| `medium` | 20 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 30 |
+| `seed` | 31 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 30 |
+| `draft` | 31 |
 
 ## Collection Coverage
 
@@ -34,7 +34,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | --- | ---: |
 | `core-hpc` | 11 |
 | `data-movement` | 7 |
-| `gpu-mpi-performance` | 5 |
+| `gpu-mpi-performance` | 6 |
 | `software-stacks` | 9 |
 | `workflow-engines` | 2 |
 
@@ -66,6 +66,7 @@ All skills are included in at least one collection.
 | `openmp-thread-affinity` | medium |
 | `performance-profile-basic` | low |
 | `python-virtualenv-on-hpc` | low |
+| `pytorch-ddp-on-slurm` | medium |
 | `quota-and-filesystem-triage` | low |
 | `reproducible-run-capture` | low |
 | `rsync-data-transfer` | medium |

@@ -225,7 +225,6 @@ def build_catalog(index: Dict[str, Any]) -> str:
             "## Next Candidates",
             "",
             "- Open OnDemand app templates.",
-            "- PyTorch distributed training on Slurm.",
             "- NCCL multi-node diagnostics.",
             "- Transfer verification across storage tiers.",
             "- WRF, GROMACS, LAMMPS, OpenFOAM, and Quantum ESPRESSO starter skills.",

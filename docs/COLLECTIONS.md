@@ -19,7 +19,8 @@ research software engineer building software stacks may start with
 - `data-movement`: Globus and rsync transfers, checksum manifests, scratch
   staging, archive preparation, scratch inventory, and filesystem quota triage.
 - `gpu-mpi-performance`: MPI launch checks, compiler/MPI compatibility, GPU
-  sanity checks, OpenMP placement, and basic profiling.
+  sanity checks, PyTorch DDP smoke tests, OpenMP placement, and basic
+  profiling.
 
 ## Contribution Guidance
 

@@ -3,11 +3,11 @@
     "containers": 2,
     "data": 7,
     "debugging": 11,
-    "gpu": 1,
+    "gpu": 2,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
-    "scheduler": 15,
+    "scheduler": 16,
     "software": 8,
     "workflow": 2
   },
@@ -45,11 +45,12 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 5,
+      "skill_count": 6,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
         "gpu-sanity-check",
+        "pytorch-ddp-on-slurm",
         "openmp-thread-affinity",
         "performance-profile-basic"
       ]
@@ -80,7 +81,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 30
+    "seed": 31
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -103,6 +104,7 @@
     "openmp-thread-affinity": "medium",
     "performance-profile-basic": "low",
     "python-virtualenv-on-hpc": "low",
+    "pytorch-ddp-on-slurm": "medium",
     "quota-and-filesystem-triage": "low",
     "reproducible-run-capture": "low",
     "rsync-data-transfer": "medium",
@@ -116,13 +118,13 @@
   },
   "risk_counts": {
     "low": 11,
-    "medium": 19
+    "medium": 20
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 30,
+  "skill_count": 31,
   "status_counts": {
-    "draft": 30
+    "draft": 31
   },
   "uncollected_skill_ids": []
 }

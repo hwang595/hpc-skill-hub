@@ -23,6 +23,7 @@ new collections.
 | `rsync-data-transfer` | data | medium | Seed skill added to `data-movement`. |
 | `dataset-staging-to-scratch` | data | medium | Seed skill added to `data-movement`. |
 | `large-file-archive-prepare` | data | medium | Seed skill added to `data-movement`. |
+| `pytorch-ddp-on-slurm` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
 
 ## Priority 1: Core User Workflows
 
@@ -44,7 +45,6 @@ request issues.
 
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
-| `pytorch-ddp-on-slurm` | gpu | medium | Distributed training needs launcher, environment, and rank sanity checks. |
 | `nccl-diagnostics` | gpu | medium | Multi-GPU and multi-node jobs often fail in communication setup. |
 | `deepspeed-on-slurm` | gpu | medium | Large model training needs conservative Slurm and storage patterns. |
 | `gpu-memory-triage` | debugging | low | Users need to distinguish allocation, framework, and model memory failures. |

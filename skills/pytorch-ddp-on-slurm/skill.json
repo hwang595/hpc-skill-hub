@@ -1,0 +1,126 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "pytorch-ddp-on-slurm",
+  "name": "PyTorch DDP On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Launch and verify PyTorch distributed data parallel jobs on Slurm.",
+  "description": "This skill provides a conservative Slurm smoke test for PyTorch DistributedDataParallel environments, including rank variables, GPU visibility, process group initialization, and a small all-reduce check.",
+  "categories": ["gpu", "scheduler"],
+  "tags": ["pytorch", "ddp", "distributed", "slurm", "gpu", "nccl"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": true
+    },
+    {
+      "name": "python3",
+      "required": true
+    },
+    {
+      "name": "nvidia-smi",
+      "required": false
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "head",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "gpu_partition",
+      "type": "string",
+      "required": true,
+      "description": "Slurm partition or queue that provides GPU nodes."
+    },
+    {
+      "name": "nodes",
+      "type": "integer",
+      "required": false,
+      "description": "Number of nodes to use for the smoke test."
+    },
+    {
+      "name": "gpus_per_node",
+      "type": "integer",
+      "required": false,
+      "description": "Number of GPUs requested per node."
+    },
+    {
+      "name": "pytorch_environment",
+      "type": "string",
+      "required": true,
+      "description": "Module, virtual environment, Conda environment, or container that provides PyTorch."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "ddp_smoke_report",
+      "description": "Rank, device, backend, and all-reduce output captured from the Slurm job."
+    },
+    {
+      "name": "environment_report",
+      "description": "Python, PyTorch, CUDA availability, and selected Slurm variables."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/ddp-smoke.sbatch",
+    "examples/ddp_smoke.py"
+  ],
+  "examples": [
+    {
+      "title": "Submit a PyTorch DDP smoke test",
+      "path": "examples/ddp-smoke.sbatch"
+    },
+    {
+      "title": "PyTorch distributed smoke script",
+      "path": "examples/ddp_smoke.py"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill pytorch-ddp-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Submit to a short GPU partition with a known PyTorch environment and confirm every rank reports the expected world size and all-reduce value."
+    }
+  ],
+  "references": [
+    {
+      "title": "PyTorch Distributed overview",
+      "url": "https://pytorch.org/docs/stable/distributed.html"
+    },
+    {
+      "title": "Slurm srun documentation",
+      "url": "https://slurm.schedmd.com/srun.html"
+    }
+  ]
+}

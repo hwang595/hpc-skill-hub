@@ -3,11 +3,11 @@
     "containers": 2,
     "data": 7,
     "debugging": 11,
-    "gpu": 1,
+    "gpu": 2,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
-    "scheduler": 15,
+    "scheduler": 16,
     "software": 8,
     "workflow": 2
   },
@@ -72,11 +72,12 @@
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
         "gpu-sanity-check",
+        "pytorch-ddp-on-slurm",
         "openmp-thread-affinity",
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, compiler/MPI compatibility, MPI launches, OpenMP placement, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, compiler/MPI compatibility, PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -120,7 +121,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 15
+    "slurm": 16
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -146,7 +147,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 30,
+  "skill_count": 31,
   "skills": [
     {
       "categories": [
@@ -1172,6 +1173,63 @@
     },
     {
       "categories": [
+        "gpu",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative Slurm smoke test for PyTorch DistributedDataParallel environments, including rank variables, GPU visibility, process group initialization, and a small all-reduce check.",
+      "examples": [
+        {
+          "path": "skills/pytorch-ddp-on-slurm/examples/ddp-smoke.sbatch",
+          "title": "Submit a PyTorch DDP smoke test"
+        },
+        {
+          "path": "skills/pytorch-ddp-on-slurm/examples/ddp_smoke.py",
+          "title": "PyTorch distributed smoke script"
+        }
+      ],
+      "id": "pytorch-ddp-on-slurm",
+      "maturity": "seed",
+      "name": "PyTorch DDP On Slurm",
+      "path": "skills/pytorch-ddp-on-slurm",
+      "readme": "skills/pytorch-ddp-on-slurm/README.md",
+      "references": [
+        {
+          "title": "PyTorch Distributed overview",
+          "url": "https://pytorch.org/docs/stable/distributed.html"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Launch and verify PyTorch distributed data parallel jobs on Slurm.",
+      "tags": [
+        "pytorch",
+        "ddp",
+        "distributed",
+        "slurm",
+        "gpu",
+        "nccl"
+      ],
+      "tools": [
+        "sbatch",
+        "srun",
+        "scontrol",
+        "python3",
+        "nvidia-smi",
+        "hostname",
+        "date",
+        "head"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "debugging",
         "data"
       ],
@@ -1687,8 +1745,10 @@
     "cuda": 1,
     "data": 1,
     "dataset": 2,
+    "ddp": 1,
     "debugging": 1,
     "definition": 1,
+    "distributed": 1,
     "easybuild": 1,
     "easyconfig": 1,
     "enospc": 1,
@@ -1697,7 +1757,7 @@
     "filesystem": 3,
     "git": 1,
     "globus": 1,
-    "gpu": 4,
+    "gpu": 5,
     "inode": 1,
     "interactive": 1,
     "io": 1,
@@ -1714,6 +1774,7 @@
     "modules": 5,
     "mpi": 4,
     "mpicc": 2,
+    "nccl": 1,
     "nextflow": 1,
     "nf-core": 1,
     "notebook": 1,
@@ -1733,6 +1794,7 @@
     "provenance": 1,
     "publication": 1,
     "python": 1,
+    "pytorch": 1,
     "quota": 2,
     "reproducibility": 4,
     "rerun": 1,
@@ -1749,7 +1811,7 @@
     "sha256": 1,
     "sif": 1,
     "singularity": 2,
-    "slurm": 15,
+    "slurm": 16,
     "snakemake": 1,
     "software": 2,
     "spack": 1,
@@ -1783,7 +1845,7 @@
     "clang": 1,
     "command": 2,
     "conda": 1,
-    "date": 8,
+    "date": 9,
     "df": 2,
     "dirname": 3,
     "du": 2,
@@ -1794,8 +1856,8 @@
     "git": 1,
     "globus": 1,
     "grep": 5,
-    "head": 2,
-    "hostname": 6,
+    "head": 3,
+    "hostname": 7,
     "jupyter": 1,
     "ldd": 2,
     "lscpu": 1,
@@ -1808,18 +1870,18 @@
     "mpifort": 1,
     "nextflow": 1,
     "nproc": 1,
-    "nvidia-smi": 2,
+    "nvidia-smi": 3,
     "perf": 1,
     "pip": 1,
     "pwd": 2,
-    "python3": 2,
+    "python3": 3,
     "quota": 1,
     "rocm-smi": 1,
     "rsync": 2,
     "sacct": 3,
     "salloc": 1,
-    "sbatch": 10,
-    "scontrol": 1,
+    "sbatch": 11,
+    "scontrol": 2,
     "sed": 1,
     "sha256sum": 2,
     "shasum": 2,
@@ -1829,7 +1891,7 @@
     "sort": 6,
     "spack": 1,
     "squeue": 1,
-    "srun": 4,
+    "srun": 5,
     "ssh": 2,
     "tail": 3,
     "tar": 1,

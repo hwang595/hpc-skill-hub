@@ -62,6 +62,7 @@ tools.
 | `snakemake-on-slurm` | Configure Snakemake workflows for Slurm profiles. |
 | `mpi-hello-and-benchmark` | Compile and run MPI sanity checks and simple communication benchmarks. |
 | `gpu-sanity-check` | Verify GPU allocation, CUDA/ROCm visibility, and multi-GPU communication. |
+| `pytorch-ddp-on-slurm` | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
 | `performance-profile-basic` | Collect first-pass CPU, memory, I/O, and GPU profiling evidence. |
 
 ## Quick Start
