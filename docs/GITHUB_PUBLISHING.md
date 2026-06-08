@@ -6,6 +6,9 @@ After the first push, use [GitHub Repository Setup](GITHUB_REPOSITORY_SETUP.md)
 to configure branch protection, Pages, security features, labels, and
 maintainer ownership.
 
+Use [Community Launch](COMMUNITY_LAUNCH.md) for the first pinned issue,
+discussion prompts, and public adopter invitation.
+
 ## Recommended Repository Settings
 
 - Visibility: public.
@@ -50,6 +53,10 @@ git push -u origin main
 - Every skill has a manifest, README, and at least one example artifact.
 - Registry index, registry health, and generated catalog docs are current.
 - Repository topics and description are set.
+- Repository metadata matches `.github/repository.json`.
+- Labels are created from `.github/labels.json`.
+- `python3 tools/github_labels.py --repo <owner>/hpc-skill-hub` prints the
+  expected label commands.
 - Branch protection requires the validation workflow.
 - GitHub Pages is enabled with the `Publish Pages` workflow.
 - Dependabot, issue templates, and pull request templates are present.

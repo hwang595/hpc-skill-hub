@@ -1,0 +1,77 @@
+[
+  {
+    "name": "skill-request",
+    "color": "0E8A16",
+    "description": "Proposal for a new reusable HPC skill."
+  },
+  {
+    "name": "site-adapter",
+    "color": "1D76DB",
+    "description": "Public local policy adapter for an HPC site or training environment."
+  },
+  {
+    "name": "bug",
+    "color": "D73A4A",
+    "description": "Problem with a skill, schema, CLI command, generated file, or documentation."
+  },
+  {
+    "name": "documentation",
+    "color": "0075CA",
+    "description": "Documentation, examples, onboarding, or maintainer guidance."
+  },
+  {
+    "name": "schema-change",
+    "color": "5319E7",
+    "description": "Change to registry schemas, generated metadata, or compatibility rules."
+  },
+  {
+    "name": "safety-review",
+    "color": "B60205",
+    "description": "Needs review for risk, privacy, shared-system impact, or high-risk behavior."
+  },
+  {
+    "name": "high-risk-skill",
+    "color": "B60205",
+    "description": "Skill may affect shared systems, admin state, security, or facility operations."
+  },
+  {
+    "name": "governance",
+    "color": "5319E7",
+    "description": "Maintainer roles, review policy, maturity, releases, or community process."
+  },
+  {
+    "name": "good-first-issue",
+    "color": "7057FF",
+    "description": "Scoped contribution suitable for a first-time contributor."
+  },
+  {
+    "name": "help-wanted",
+    "color": "008672",
+    "description": "Maintainers would welcome external contribution or domain review."
+  },
+  {
+    "name": "dependencies",
+    "color": "0366D6",
+    "description": "Dependency update or dependency maintenance."
+  },
+  {
+    "name": "ci",
+    "color": "FBCA04",
+    "description": "Continuous integration, GitHub Actions, Pages, or generated checks."
+  },
+  {
+    "name": "python",
+    "color": "3572A5",
+    "description": "Python CLI, validation, tests, or packaging."
+  },
+  {
+    "name": "release",
+    "color": "0052CC",
+    "description": "Release planning, notes, tags, or versioned registry publication."
+  },
+  {
+    "name": "question",
+    "color": "D876E3",
+    "description": "Question about usage, adoption, design, or contribution process."
+  }
+]

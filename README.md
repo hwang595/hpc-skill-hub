@@ -168,6 +168,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Maintainer handoff](docs/MAINTAINER_HANDOFF.md)
 - [Open ecosystem proposal](docs/ECOSYSTEM_PROPOSAL.md)
 - [Open source proposal](docs/OPEN_SOURCE_PROPOSAL.md)
+- [Community launch](docs/COMMUNITY_LAUNCH.md)
 - [Release process](docs/RELEASE_PROCESS.md)
 - [GitHub publishing guide](docs/GITHUB_PUBLISHING.md)
 - [GitHub repository setup](docs/GITHUB_REPOSITORY_SETUP.md)

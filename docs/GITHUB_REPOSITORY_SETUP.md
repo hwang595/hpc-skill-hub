@@ -5,16 +5,8 @@ repository. It turns the seed project into a maintainable open-source registry.
 
 ## Repository Basics
 
-- Name: `hpc-skill-hub`.
-- Visibility: public.
-- Default branch: `main`.
-- Description: Open registry of validated, reusable skills for HPC workflows.
-- Topics: `hpc`, `slurm`, `apptainer`, `spack`, `easybuild`, `globus`,
-  `nextflow`, `snakemake`, `mpi`, `gpu`, `research-computing`.
-- Issues: enabled.
-- Discussions: enabled once external users start asking design or adoption
-  questions.
-- Wiki: disabled; keep documentation versioned in this repository.
+Use `.github/repository.json` as the source of truth for repository name,
+visibility, default branch, description, topics, and feature settings.
 
 ## Branch Protection
 
@@ -47,21 +39,16 @@ Create a branch protection rule or ruleset for `main`:
 
 ## Labels
 
-Create these starter labels:
+Create or update labels from `.github/labels.json`. The test suite checks that
+issue templates only reference labels defined there.
 
-- `skill-request`
-- `site-adapter`
-- `bug`
-- `documentation`
-- `schema-change`
-- `safety-review`
-- `high-risk-skill`
-- `governance`
-- `good-first-issue`
-- `help-wanted`
-- `dependencies`
-- `ci`
-- `python`
+After installing and authenticating GitHub CLI, inspect the label commands:
+
+```bash
+python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
+```
+
+Run the printed commands when they look correct.
 
 ## CODEOWNERS
 
@@ -75,12 +62,8 @@ teams once the repository has maintainers. At minimum:
 
 ## First Public Issue
 
-Pin an issue that invites the community to propose:
-
-- Missing first-batch skills.
-- Public site adapters for campus, national lab, cloud, or training clusters.
-- Compatibility gaps in the skill schema.
-- Safety or review requirements that should become policy.
+Use [Community Launch](COMMUNITY_LAUNCH.md) for a ready-to-pin first issue and
+starter discussion prompts.
 
 ## First Release
 

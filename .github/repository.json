@@ -1,0 +1,26 @@
+{
+  "name": "hpc-skill-hub",
+  "visibility": "public",
+  "default_branch": "main",
+  "description": "Open registry of validated, reusable skills for HPC workflows.",
+  "homepage": "",
+  "topics": [
+    "hpc",
+    "slurm",
+    "apptainer",
+    "spack",
+    "easybuild",
+    "globus",
+    "nextflow",
+    "snakemake",
+    "mpi",
+    "gpu",
+    "research-computing"
+  ],
+  "features": {
+    "issues": true,
+    "discussions": true,
+    "wiki": false,
+    "projects": true
+  }
+}
