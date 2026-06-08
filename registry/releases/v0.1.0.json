@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/release-manifest.schema.json",
-  "file_count": 364,
+  "file_count": 365,
   "files": [
     {
       "bytes": 489,
@@ -128,9 +128,9 @@
       "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
     },
     {
-      "bytes": 5094,
+      "bytes": 5224,
       "path": "CHANGELOG.md",
-      "sha256": "472dba17fe38e1368aeb8356d0975e93cabb8aff148a42988a09504d3eee1de1"
+      "sha256": "1d80624c40444c1590dd96e5358be52da17be02b244e0a0506e7cc88e4785d27"
     },
     {
       "bytes": 426,
@@ -143,9 +143,9 @@
       "sha256": "06ef7d2e4154ba907891bbac1f79040dd94f911d87cb78613543034efa60f794"
     },
     {
-      "bytes": 3239,
+      "bytes": 3389,
       "path": "CONTRIBUTING.md",
-      "sha256": "3cf26ade4b1d0317fd18c085c36b36ddab0c73b461876d77e7abf8543a552802"
+      "sha256": "740d42998a0e48c96cdd65a644f7270203af447f29beda86b32cffe574c2c80f"
     },
     {
       "bytes": 1083,
@@ -158,9 +158,9 @@
       "sha256": "dea798cae34c09327203664ff6b3e488ce7eb4ceff5e6d0f89bc31462fea8825"
     },
     {
-      "bytes": 10615,
+      "bytes": 10660,
       "path": "README.md",
-      "sha256": "30887cb8d7387be2f801660fb5754719c6a94cd4a34156806287b9a9233c6fcc"
+      "sha256": "a44fb244c76b379750c53666513cc3c63f9d9698b0b9a53d3e518c3a2b84bc8a"
     },
     {
       "bytes": 2982,
@@ -288,9 +288,9 @@
       "sha256": "fbec1082f795aa4ee58d42e2a156886a2020ff1c010fd6da7b721c2327e62059"
     },
     {
-      "bytes": 3034,
+      "bytes": 3201,
       "path": "docs/ECOSYSTEM_PROPOSAL.md",
-      "sha256": "ae5a90891f5cb32fcc1c6bebd46117d4cc86a6e3159257e4e509e89db129f83a"
+      "sha256": "be404531cdcba6438488bc960bd55ee4a95e6a2f4fe4837a2bb38b6275f179c4"
     },
     {
       "bytes": 4348,
@@ -318,9 +318,9 @@
       "sha256": "3550cffa2f768adce039082b352fbd35904cd3e1f7a960da83230572a58a5d6a"
     },
     {
-      "bytes": 2392,
+      "bytes": 2826,
       "path": "docs/MAINTAINER_GUIDE.md",
-      "sha256": "db7f6b1784e4c490a5383cddccca2622119227f7bc4c37971fdbd59dc554384a"
+      "sha256": "4ef5216571802046895e74ebb267f4b6a022bd7d8465f5fd8f4df7115d5bbc37"
     },
     {
       "bytes": 2977,
@@ -343,9 +343,9 @@
       "sha256": "ac484cf1253a7b77d4d28921288eb543fd815d32b0402fe768b006b171d65839"
     },
     {
-      "bytes": 5876,
+      "bytes": 5992,
       "path": "docs/RELEASE_NOTES_v0.1.0.md",
-      "sha256": "bb25de672aaac94f9c6b22736478acf3a2390da68dec1f7303cbacca69403217"
+      "sha256": "7bccdb6c67cecb21b7572a15860d21243e5d9121d835190bc5d960482bfc59c2"
     },
     {
       "bytes": 2778,
@@ -378,14 +378,19 @@
       "sha256": "ead7fbd8016afb1fc046535d8fff55790f087ce973315be7a11b5145892d2b83"
     },
     {
-      "bytes": 6199,
+      "bytes": 6365,
       "path": "docs/SKILL_BACKLOG.md",
-      "sha256": "c84780268cb62aafb8c971d6db330c411feac269301f66afa41ef896f477ecd7"
+      "sha256": "a14f876f54975c317cec88258ce21558aaf165d27a190b44fa491b0d8d49c549"
     },
     {
       "bytes": 25146,
       "path": "docs/SKILL_CATALOG.md",
       "sha256": "aa7d2c2302693e5a0e9032afc4c54e36b3b24df88bbaffb0272e38ab73b47b58"
+    },
+    {
+      "bytes": 5949,
+      "path": "docs/SKILL_LIFECYCLE.md",
+      "sha256": "bb0dade0cc4beb5527339171f5a94b7e731e80c71356d38839cf62b135596694"
     },
     {
       "bytes": 2033,
@@ -1808,9 +1813,9 @@
       "sha256": "f40297733b779b3c8f2ff8ab62fdc6af5e5e63da495c096c93940dda6fb8a01e"
     },
     {
-      "bytes": 8820,
+      "bytes": 8855,
       "path": "tools/launch_readiness.py",
-      "sha256": "4e969262a2ff4c28cbede82ac1dc6ba3b611fae65320523de0dd677351d217a9"
+      "sha256": "00e88e4f4990e503a232a74d7f80eeaa90097349b7c5c006cc36a2708fc50384"
     },
     {
       "bytes": 10689,
@@ -1845,6 +1850,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1041654,
+  "total_bytes": 1048846,
   "version": "v0.1.0"
 }

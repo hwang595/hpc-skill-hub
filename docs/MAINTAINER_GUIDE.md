@@ -5,7 +5,9 @@ For maintainer rotation, role ownership, and operational continuity, see
 domain ownership, and maturity promotion, see [Governance](GOVERNANCE.md) and
 [Maturity Review](MATURITY_REVIEW.md). For routing pull requests and issues to
 the right maintainers, see [Review Routing](REVIEW_ROUTING.md). For day-to-day
-issue and pull request intake, see [Triage Runbook](TRIAGE_RUNBOOK.md).
+issue and pull request intake, see [Triage Runbook](TRIAGE_RUNBOOK.md). For the
+path from request to seed, reviewed, field-tested, maintained, or deprecated
+skills, see [Skill Lifecycle](SKILL_LIFECYCLE.md).
 
 ## Review Checklist
 
@@ -57,3 +59,10 @@ Use the maturity review issue template before changing a skill from `seed` to a
 higher maturity level. Promotion pull requests should update the manifest,
 refresh generated registry files, link public evidence, and keep private site
 details out of the repository.
+
+## Deprecation
+
+Use [Skill Lifecycle](SKILL_LIFECYCLE.md) before deprecating a skill. A
+deprecation pull request should explain the reason, link a replacement when one
+exists, update collections and generated registry artifacts, and preserve
+public-safe examples long enough for users to migrate.

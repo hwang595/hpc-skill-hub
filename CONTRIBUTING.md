@@ -15,7 +15,9 @@ A skill should be:
 ## Add A Skill
 
 See [Skill Authoring Guide](docs/SKILL_AUTHORING_GUIDE.md) for the full
-authoring workflow, review rubric, risk guidance, and common anti-patterns.
+authoring workflow, review rubric, risk guidance, and common anti-patterns. See
+[Skill Lifecycle](docs/SKILL_LIFECYCLE.md) for the path from request to seed
+skill, maturity review, field testing, maintenance, and deprecation.
 
 1. Create a directory under `skills/` using a lowercase kebab-case id.
 2. Add `skill.json`.

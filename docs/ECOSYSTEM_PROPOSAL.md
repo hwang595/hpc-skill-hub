@@ -64,3 +64,6 @@ Use [Adopter Playbook](ADOPTER_PLAYBOOK.md) to turn those first contributions
 into public-safe pilot reports, maturity reviews, and follow-up requests.
 Use [Integration Guide](INTEGRATION_GUIDE.md) when a downstream tool wants to
 consume the registry directly.
+Use [Skill Lifecycle](SKILL_LIFECYCLE.md) to move community requests from issue
+intake into seed skills, maturity review, field testing, maintenance, and
+deprecation.

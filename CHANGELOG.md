@@ -26,6 +26,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   assignment.
 - Add triage runbook and starter labels for public issue and pull request
   intake.
+- Add skill lifecycle guidance for moving community requests through seed,
+  review, field testing, maintenance, and deprecation.
 - Add integration guide, integration request template, and starter label for
   downstream registry consumers.
 - Add a read-only Slurm efficiency report skill for completed job resource

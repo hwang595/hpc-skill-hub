@@ -107,3 +107,7 @@ review.
 3. State target users and expected environment.
 4. Create the scaffold with `tools/hpc_skill.py`.
 5. Open a draft pull request early so maintainers can shape scope and risk.
+
+Use [Skill Lifecycle](SKILL_LIFECYCLE.md) to decide when a backlog request is
+ready for implementation, maturity review, field testing, maintenance, or
+deprecation.
