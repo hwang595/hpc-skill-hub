@@ -132,6 +132,35 @@ class GovernanceDocsTests(unittest.TestCase):
         for linked_text in [readme, routing, launch, seed_issue]:
             self.assertIn("DOMAIN_REVIEWERS.md", linked_text)
 
+    def test_contributor_ladder_is_linked_and_actionable(self):
+        ladder = (ROOT / "docs" / "CONTRIBUTOR_LADDER.md").read_text(
+            encoding="utf-8"
+        )
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        contributing = (ROOT / "CONTRIBUTING.md").read_text(encoding="utf-8")
+        governance = (ROOT / "docs" / "GOVERNANCE.md").read_text(
+            encoding="utf-8"
+        )
+
+        for heading in [
+            "## Principles",
+            "## Roles",
+            "## Progression",
+            "## Reviewer Onboarding",
+            "## Maintainer Onboarding",
+            "## Rotation And Stepping Back",
+        ]:
+            self.assertIn(heading, ladder)
+        for role in [
+            "First-time contributor",
+            "Domain reviewer",
+            "Registry maintainer",
+            "Release owner",
+        ]:
+            self.assertIn(role, ladder)
+        for linked_text in [readme, contributing, governance]:
+            self.assertIn("CONTRIBUTOR_LADDER.md", linked_text)
+
     def test_triage_runbook_and_labels(self):
         labels_path = ROOT / ".github" / "labels.json"
         labels = {label["name"] for label in json.loads(labels_path.read_text())}

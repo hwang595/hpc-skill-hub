@@ -43,6 +43,9 @@ python3 tools/hpc_skill.py scaffold skill your-skill-id --category education --t
 For high-value topics that still need owners, see
 [Skill Backlog](docs/SKILL_BACKLOG.md).
 
+For the path from first contribution to domain review or maintainer roles, see
+[Contributor Ladder](docs/CONTRIBUTOR_LADDER.md).
+
 ## Add A Site Adapter
 
 Site adapters live under `site-adapters/<adapter-id>/` and describe public,

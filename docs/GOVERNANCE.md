@@ -17,6 +17,13 @@ turning the core registry into a collection of private cluster policies.
 
 One person may hold more than one role during the seed stage.
 
+## Contributor Growth
+
+Use [Contributor Ladder](CONTRIBUTOR_LADDER.md) for the path from first issue or
+pull request to recurring contributor, domain reviewer, maintainer, or release
+owner. Role changes should be based on public-safe evidence and documented
+scope, not private context.
+
 ## Review Expectations
 
 - Low-risk changes can be reviewed by any registry maintainer.

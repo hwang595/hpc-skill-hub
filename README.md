@@ -191,6 +191,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Adoption pilot worksheet](docs/ADOPTION_WORKSHEET.md)
 - [Safety model](docs/SAFETY_MODEL.md)
 - [Governance](docs/GOVERNANCE.md)
+- [Contributor ladder](docs/CONTRIBUTOR_LADDER.md)
 - [Review routing](docs/REVIEW_ROUTING.md)
 - [Domain reviewers](docs/DOMAIN_REVIEWERS.md)
 - [Triage runbook](docs/TRIAGE_RUNBOOK.md)

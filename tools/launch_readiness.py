@@ -76,6 +76,7 @@ def required_files_check() -> Check:
         "registry/releases/v0.1.0.json",
         "docs/REVIEW_ROUTING.md",
         "docs/DOMAIN_REVIEWERS.md",
+        "docs/CONTRIBUTOR_LADDER.md",
         "docs/TRIAGE_RUNBOOK.md",
         ".github/CODEOWNERS",
         ".github/repository.json",
