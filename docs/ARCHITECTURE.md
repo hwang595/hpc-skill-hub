@@ -44,6 +44,12 @@ discovery commands for users and maintainers. It deliberately uses only the
 Python standard library so it can run on login nodes, laptops, CI systems, and
 minimal container images.
 
+## Static Site
+
+`tools/build_site.py` reads `registry/index.json` and emits a single-file HTML
+registry explorer. The `Publish Pages` workflow builds and deploys that output
+through GitHub Pages when the repository is hosted on GitHub.
+
 ## Validation Flow
 
 ```text

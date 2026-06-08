@@ -29,3 +29,5 @@ jobs:
           python3 tools/hpc_skill.py scaffold site-adapter ci-test-cluster --name "CI Test Cluster" --root /tmp/hpc-skill-hub-scaffold --force
           test -f /tmp/hpc-skill-hub-scaffold/skills/ci-test-skill/skill.json
           test -f /tmp/hpc-skill-hub-scaffold/site-adapters/ci-test-cluster/site.json
+      - name: Build static site
+        run: python3 tools/build_site.py --output /tmp/hpc-skill-hub-site/index.html

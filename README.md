@@ -114,6 +114,8 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Adoption guide](docs/ADOPTION_GUIDE.md)
 - [Maintainer guide](docs/MAINTAINER_GUIDE.md)
 - [Open ecosystem proposal](docs/ECOSYSTEM_PROPOSAL.md)
+- [Open source proposal](docs/OPEN_SOURCE_PROPOSAL.md)
+- [Release process](docs/RELEASE_PROCESS.md)
 - [GitHub publishing guide](docs/GITHUB_PUBLISHING.md)
 
 ## License
