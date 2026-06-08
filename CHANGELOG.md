@@ -9,7 +9,7 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 - Prepare the seed registry for public GitHub launch, including repository
   metadata, labels, rulesets, issue templates, pull request templates, Pages
-  publishing, and governance docs.
+  publishing, seed community issues, and governance docs.
 - Add the first `facility-ops` collection and a read-only Slurm usage reporting
   skill for support teams.
 
@@ -37,6 +37,8 @@ Initial public seed release.
 - GitHub Actions validation, Pages publishing, Dependabot, issue templates,
   pull request templates, starter labels, repository metadata, and starter
   `main` branch ruleset configuration.
+- Seed community issues and command generators for launching the public
+  contribution queue.
 - Governance, safety, release, maintainer handoff, authoring, publishing, and
   community launch documentation.
 

@@ -63,6 +63,17 @@ python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
 
 Run the printed commands when they look correct.
 
+## Starter Issues
+
+Create launch issues from `.github/seed_issues.json` after labels exist:
+
+```bash
+python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
+```
+
+Run the printed commands when they look correct, then pin the issue identified
+by the printed note.
+
 ## CODEOWNERS
 
 Replace the placeholder `.github/CODEOWNERS` file with real GitHub usernames or

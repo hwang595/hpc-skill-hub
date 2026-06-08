@@ -1,0 +1,30 @@
+[
+  {
+    "id": "community-call",
+    "title": "Community call: skills, site adapters, and domain reviewers wanted",
+    "labels": ["help-wanted", "good-first-issue", "governance"],
+    "body": ".github/seed-issues/community-call.md",
+    "pin": true
+  },
+  {
+    "id": "public-site-adapters",
+    "title": "Wanted: public site adapters for campus, training, and cloud HPC",
+    "labels": ["site-adapter", "help-wanted", "good-first-issue"],
+    "body": ".github/seed-issues/public-site-adapters.md",
+    "pin": false
+  },
+  {
+    "id": "domain-reviewers",
+    "title": "Wanted: domain reviewers for seed skills and collections",
+    "labels": ["help-wanted", "governance"],
+    "body": ".github/seed-issues/domain-reviewers.md",
+    "pin": false
+  },
+  {
+    "id": "next-wave-skill-requests",
+    "title": "Next wave skill requests: facility ops, workflow engines, and domains",
+    "labels": ["skill-request", "help-wanted", "good-first-issue"],
+    "body": ".github/seed-issues/next-wave-skill-requests.md",
+    "pin": false
+  }
+]

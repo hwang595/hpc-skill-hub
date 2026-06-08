@@ -17,6 +17,10 @@ class GitHubMetadataTests(unittest.TestCase):
         with (ROOT / ".github" / "repository.json").open(encoding="utf-8") as handle:
             return json.load(handle)
 
+    def load_seed_issues(self):
+        with (ROOT / ".github" / "seed_issues.json").open(encoding="utf-8") as handle:
+            return json.load(handle)
+
     def test_labels_are_unique_and_complete(self):
         labels = self.load_labels()
         names = [label["name"] for label in labels]
@@ -43,6 +47,23 @@ class GitHubMetadataTests(unittest.TestCase):
 
         self.assertTrue(referenced_labels)
         self.assertTrue(referenced_labels.issubset(label_names))
+
+    def test_seed_issues_are_publishable(self):
+        label_names = {label["name"] for label in self.load_labels()}
+        issues = self.load_seed_issues()
+        ids = [issue["id"] for issue in issues]
+        self.assertEqual(len(ids), len(set(ids)))
+
+        pinned = [issue for issue in issues if issue["pin"]]
+        self.assertEqual(len(pinned), 1)
+
+        for issue in issues:
+            self.assertRegex(issue["id"], r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+            self.assertGreaterEqual(len(issue["title"]), 12)
+            self.assertTrue(set(issue["labels"]).issubset(label_names))
+            body_path = ROOT / issue["body"]
+            self.assertTrue(body_path.exists(), issue["body"])
+            self.assertGreaterEqual(len(body_path.read_text(encoding="utf-8")), 200)
 
     def test_repository_metadata_is_publishable(self):
         repository = self.load_repository()
@@ -154,6 +175,30 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("gh release create v0.1.0", result.stdout)
         self.assertIn("--notes-file docs/RELEASE_NOTES_v0.1.0.md", result.stdout)
         self.assertIn("--repo example/hpc-skill-hub", result.stdout)
+
+    def test_seed_issue_command_generator(self):
+        result = subprocess.run(
+            [
+                "python3",
+                "tools/github_issues.py",
+                "--repo",
+                "example/hpc-skill-hub",
+                "--include-pin-notes",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        self.assertIn("gh issue create", result.stdout)
+        self.assertIn("--body-file .github/seed-issues/community-call.md", result.stdout)
+        self.assertIn("--label help-wanted", result.stdout)
+        self.assertIn("--repo example/hpc-skill-hub", result.stdout)
+        self.assertIn(
+            "# Pin the issue created from .github/seed-issues/community-call.md.",
+            result.stdout,
+        )
 
 
 if __name__ == "__main__":

@@ -21,6 +21,7 @@ Install and authenticate `gh`, then run from the repository root:
 ```bash
 python3 tools/github_repo.py --owner <owner>
 python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
+python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
 ```
 
 Review the printed commands before running them. They are generated from the
@@ -53,6 +54,8 @@ git push -u origin main
   creation and metadata commands.
 - `python3 tools/github_labels.py --repo <owner>/hpc-skill-hub` prints the
   expected label commands.
+- `python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes`
+  prints the expected starter issue commands.
 - `python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub` prints the
   expected branch ruleset command after the first `Validate` workflow run.
 - `python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub` prints

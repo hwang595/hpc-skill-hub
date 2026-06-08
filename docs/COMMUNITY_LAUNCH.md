@@ -13,6 +13,18 @@ Use `.github/labels.json` as the source of truth for starter labels. Create or
 update these labels before inviting external contributors so issue templates and
 triage labels line up.
 
+## Starter Issues
+
+Use `.github/seed_issues.json` and `.github/seed-issues/*.md` as the source of
+truth for launch issues. After labels are created, inspect the commands:
+
+```bash
+python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
+```
+
+Run the printed `gh issue create` commands, then pin the issue marked in the
+printed note.
+
 ## First Pinned Issue
 
 Title:
@@ -27,7 +39,7 @@ Body:
 HPC Skill Hub is a seed registry of reusable, reviewable skills for common HPC
 workflows. The first batch covers Slurm, storage, software stacks, containers,
 workflow engines, data movement, MPI/GPU diagnostics, AI/HPC, bioinformatics,
-and simulation workloads.
+simulation workloads, and read-only facility operations.
 
 We are looking for:
 
@@ -69,6 +81,7 @@ help-wanted, good-first-issue, governance
 - Apply repository description, topics, and feature settings from
   `.github/repository.json`.
 - Apply labels from `.github/labels.json`.
+- Create starter issues from `.github/seed_issues.json`.
 - Pin the first community issue.
 - Link the generated Pages site in the repository homepage.
 - Invite the first three to five domain reviewers.

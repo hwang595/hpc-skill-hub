@@ -1,0 +1,17 @@
+The seed registry needs domain reviewers before skills can move from `seed` to
+`reviewed` or `field-tested`.
+
+Reviewer areas we would like to cover:
+
+- Slurm scheduling and accounting.
+- Containers and Apptainer/Singularity usage.
+- Spack, EasyBuild, modules, compilers, and MPI stacks.
+- Data movement, Globus, rsync, checksums, and archive preparation.
+- Workflow engines: Nextflow, Snakemake, CWL, and WDL.
+- AI/HPC: PyTorch DDP, NCCL, DeepSpeed, and accelerator diagnostics.
+- Bioinformatics workflows.
+- Simulation workflows: molecular dynamics, CFD, climate, and weather.
+- Read-only facility operations and support handoff workflows.
+
+Reviewers can help by checking portability, risk labels, examples, references,
+and whether a skill needs a site adapter note instead of a core registry change.
