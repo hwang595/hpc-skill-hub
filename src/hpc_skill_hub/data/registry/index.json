@@ -4,14 +4,14 @@
     "admin": 4,
     "containers": 3,
     "data": 12,
-    "debugging": 17,
+    "debugging": 18,
     "education": 1,
     "gpu": 9,
-    "interactive": 5,
+    "interactive": 6,
     "mpi": 11,
     "performance": 12,
-    "scheduler": 50,
-    "software": 18,
+    "scheduler": 51,
+    "software": 19,
     "workflow": 10
   },
   "collection_count": 12,
@@ -34,6 +34,7 @@
         "deepspeed-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
+        "tensorboard-on-slurm",
         "streamlit-on-slurm",
         "apptainer-run-container",
         "dataset-staging-to-scratch",
@@ -42,7 +43,7 @@
         "slurm-efficiency-report"
       ],
       "status": "draft",
-      "summary": "Skills for launching, validating, demoing, and troubleshooting distributed AI workloads on Slurm-backed HPC systems."
+      "summary": "Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -174,13 +175,14 @@
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
+        "tensorboard-on-slurm",
         "deepspeed-on-slurm",
         "openmp-thread-affinity",
         "slurm-efficiency-report",
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -245,6 +247,7 @@
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "tensorboard-on-slurm",
         "streamlit-on-slurm",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
@@ -262,7 +265,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Streamlit, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -281,6 +284,7 @@
         "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
         "python-virtualenv-on-hpc",
+        "tensorboard-on-slurm",
         "streamlit-on-slurm",
         "rscript-on-slurm",
         "julia-on-slurm",
@@ -291,7 +295,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -324,7 +328,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 47,
+    "slurm": 48,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -351,7 +355,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 67,
+  "skill_count": 68,
   "skills": [
     {
       "categories": [
@@ -4005,6 +4009,78 @@
     },
     {
       "categories": [
+        "interactive",
+        "scheduler",
+        "software",
+        "debugging"
+      ],
+      "description": "This skill provides a conservative pattern for serving TensorBoard from Slurm-backed HPC systems, including logdir checks, plan-only defaults, explicit port handling, optional tunnel guidance, and cleanup notes for training monitors.",
+      "examples": [
+        {
+          "path": "skills/tensorboard-on-slurm/examples/tensorboard-server.sbatch",
+          "title": "Plan or launch TensorBoard on Slurm"
+        },
+        {
+          "path": "skills/tensorboard-on-slurm/examples/tensorboard-preflight.sh",
+          "title": "Check TensorBoard, Slurm, and logdir prerequisites"
+        },
+        {
+          "path": "skills/tensorboard-on-slurm/examples/logdir-check.py",
+          "title": "Summarize a TensorBoard log directory"
+        },
+        {
+          "path": "skills/tensorboard-on-slurm/examples/tunnel-template.sh",
+          "title": "Build an SSH tunnel command when required by the site"
+        },
+        {
+          "path": "skills/tensorboard-on-slurm/examples/site-policy-checklist.md",
+          "title": "Review site policy before starting TensorBoard"
+        }
+      ],
+      "id": "tensorboard-on-slurm",
+      "maturity": "seed",
+      "name": "TensorBoard On Slurm",
+      "path": "skills/tensorboard-on-slurm",
+      "readme": "skills/tensorboard-on-slurm/README.md",
+      "references": [
+        {
+          "title": "TensorBoard getting started",
+          "url": "https://www.tensorflow.org/tensorboard/get_started"
+        },
+        {
+          "title": "TensorBoard scalars and Keras",
+          "url": "https://www.tensorflow.org/tensorboard/scalars_and_keras"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run policy-aware TensorBoard monitors from short Slurm allocations.",
+      "tags": [
+        "tensorboard",
+        "tensorflow",
+        "pytorch",
+        "training",
+        "slurm",
+        "monitoring",
+        "tunnel"
+      ],
+      "tools": [
+        "sbatch",
+        "python3",
+        "tensorboard",
+        "ssh"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "education",
         "admin",
         "scheduler"
@@ -4379,6 +4455,7 @@
     "modulepath": 1,
     "modules": 7,
     "molecular-dynamics": 4,
+    "monitoring": 1,
     "mpi": 16,
     "mpi4py": 1,
     "mpicc": 2,
@@ -4425,7 +4502,7 @@
     "pw.x": 1,
     "pwscf": 1,
     "python": 5,
-    "pytorch": 3,
+    "pytorch": 4,
     "qe": 1,
     "qstat": 2,
     "qsub": 2,
@@ -4462,7 +4539,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 45,
+    "slurm": 46,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -4476,14 +4553,16 @@
     "storage": 2,
     "streamlit": 1,
     "tar": 1,
+    "tensorboard": 1,
+    "tensorflow": 1,
     "threads": 2,
     "throughput": 1,
     "time": 1,
     "timeout": 2,
-    "training": 1,
+    "training": 2,
     "transfer": 3,
     "triage": 4,
-    "tunnel": 3,
+    "tunnel": 4,
     "uge": 1,
     "usage": 1,
     "validation": 1,
@@ -4579,7 +4658,7 @@
     "pw.x": 1,
     "pwd": 7,
     "python": 3,
-    "python3": 6,
+    "python3": 7,
     "qdel": 1,
     "qstat": 2,
     "qsub": 2,
@@ -4592,7 +4671,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 37,
+    "sbatch": 38,
     "scontrol": 6,
     "sed": 3,
     "seff": 1,
@@ -4608,11 +4687,12 @@
     "squeue": 7,
     "sreport": 1,
     "srun": 17,
-    "ssh": 4,
+    "ssh": 5,
     "streamlit": 1,
     "tail": 4,
     "tar": 1,
     "tee": 17,
+    "tensorboard": 1,
     "test": 8,
     "time": 1,
     "tr": 1,

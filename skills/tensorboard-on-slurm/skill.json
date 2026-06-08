@@ -1,0 +1,143 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "tensorboard-on-slurm",
+  "name": "TensorBoard On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run policy-aware TensorBoard monitors from short Slurm allocations.",
+  "description": "This skill provides a conservative pattern for serving TensorBoard from Slurm-backed HPC systems, including logdir checks, plan-only defaults, explicit port handling, optional tunnel guidance, and cleanup notes for training monitors.",
+  "categories": ["interactive", "scheduler", "software", "debugging"],
+  "tags": ["tensorboard", "tensorflow", "pytorch", "training", "slurm", "monitoring", "tunnel"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true,
+      "notes": "Used to run TensorBoard inside a scheduled allocation."
+    },
+    {
+      "name": "python3",
+      "required": true,
+      "notes": "Used for log directory checks and optional environment inspection."
+    },
+    {
+      "name": "tensorboard",
+      "required": true,
+      "notes": "TensorBoard CLI must be available in the selected Python environment."
+    },
+    {
+      "name": "ssh",
+      "required": false,
+      "notes": "Used only when the site requires SSH port forwarding to reach compute-node web services."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "logdir",
+      "type": "path",
+      "required": true,
+      "description": "Directory containing TensorBoard event files or framework training logs."
+    },
+    {
+      "name": "port",
+      "type": "integer",
+      "required": false,
+      "description": "Port where TensorBoard should listen inside the Slurm allocation."
+    },
+    {
+      "name": "host",
+      "type": "string",
+      "required": false,
+      "description": "Bind address for TensorBoard, defaulting to localhost-style access."
+    },
+    {
+      "name": "site_policy",
+      "type": "string",
+      "required": true,
+      "description": "Local policy confirming whether user-started web monitors and tunnels are allowed on compute nodes."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "tensorboard_log",
+      "description": "Slurm output showing compute host, logdir, selected port, and TensorBoard startup output."
+    },
+    {
+      "name": "connection_notes",
+      "description": "SSH tunnel or site portal notes for reaching the scheduled TensorBoard monitor."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/tensorboard-server.sbatch",
+    "examples/tensorboard-preflight.sh",
+    "examples/logdir-check.py",
+    "examples/tunnel-template.sh",
+    "examples/site-policy-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Plan or launch TensorBoard on Slurm",
+      "path": "examples/tensorboard-server.sbatch"
+    },
+    {
+      "title": "Check TensorBoard, Slurm, and logdir prerequisites",
+      "path": "examples/tensorboard-preflight.sh"
+    },
+    {
+      "title": "Summarize a TensorBoard log directory",
+      "path": "examples/logdir-check.py"
+    },
+    {
+      "title": "Build an SSH tunnel command when required by the site",
+      "path": "examples/tunnel-template.sh"
+    },
+    {
+      "title": "Review site policy before starting TensorBoard",
+      "path": "examples/site-policy-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill tensorboard-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/tensorboard-on-slurm/examples/tensorboard-server.sbatch skills/tensorboard-on-slurm/examples/tensorboard-preflight.sh skills/tensorboard-on-slurm/examples/tunnel-template.sh",
+      "description": "Check that shell examples parse."
+    },
+    {
+      "type": "static",
+      "command": "python3 -m py_compile skills/tensorboard-on-slurm/examples/logdir-check.py",
+      "description": "Check that the logdir helper parses."
+    },
+    {
+      "type": "manual",
+      "description": "After site approval, run the preflight, submit the plan-only job, then set RUN_TENSORBOARD=1 in a short allocation and cancel it when finished."
+    }
+  ],
+  "references": [
+    {
+      "title": "TensorBoard getting started",
+      "url": "https://www.tensorflow.org/tensorboard/get_started"
+    },
+    {
+      "title": "TensorBoard scalars and Keras",
+      "url": "https://www.tensorflow.org/tensorboard/scalars_and_keras"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

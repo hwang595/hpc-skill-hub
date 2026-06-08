@@ -4,21 +4,21 @@
     "admin": 4,
     "containers": 3,
     "data": 12,
-    "debugging": 17,
+    "debugging": 18,
     "education": 1,
     "gpu": 9,
-    "interactive": 5,
+    "interactive": 6,
     "mpi": 11,
     "performance": 12,
-    "scheduler": 50,
-    "software": 18,
+    "scheduler": 51,
+    "software": 19,
     "workflow": 10
   },
   "collection_count": 12,
   "collection_coverage": [
     {
       "id": "ai-hpc",
-      "skill_count": 13,
+      "skill_count": 14,
       "skill_ids": [
         "gpu-sanity-check",
         "ray-on-slurm",
@@ -27,6 +27,7 @@
         "deepspeed-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
+        "tensorboard-on-slurm",
         "streamlit-on-slurm",
         "apptainer-run-container",
         "dataset-staging-to-scratch",
@@ -108,7 +109,7 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 13,
+      "skill_count": 14,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
@@ -119,6 +120,7 @@
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
+        "tensorboard-on-slurm",
         "deepspeed-on-slurm",
         "openmp-thread-affinity",
         "slurm-efficiency-report",
@@ -158,13 +160,14 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 20,
+      "skill_count": 21,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "tensorboard-on-slurm",
         "streamlit-on-slurm",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
@@ -184,7 +187,7 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 15,
+      "skill_count": 16,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
@@ -193,6 +196,7 @@
         "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
         "python-virtualenv-on-hpc",
+        "tensorboard-on-slurm",
         "streamlit-on-slurm",
         "rscript-on-slurm",
         "julia-on-slurm",
@@ -219,7 +223,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 67
+    "seed": 68
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -285,6 +289,7 @@
     "snakemake-on-slurm": "medium",
     "spack-environment-create": "medium",
     "streamlit-on-slurm": "medium",
+    "tensorboard-on-slurm": "medium",
     "training-cluster-reset-checklist": "medium",
     "vscode-tunnel-on-slurm": "medium",
     "wdl-on-slurm": "medium",
@@ -292,13 +297,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 50
+    "medium": 51
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 67,
+  "skill_count": 68,
   "status_counts": {
-    "draft": 67
+    "draft": 68
   },
   "uncollected_skill_ids": []
 }

@@ -59,6 +59,7 @@ tools.
 | `compiler-mpi-matrix` | Check compiler, MPI wrapper, and module compatibility before building HPC codes. |
 | `reproducible-run-capture` | Capture command, environment, provenance, and logs for reproducible HPC runs. |
 | `python-virtualenv-on-hpc` | Create lightweight Python virtual environments with explicit HPC module assumptions. |
+| `tensorboard-on-slurm` | Run policy-aware TensorBoard monitors from short Slurm allocations. |
 | `streamlit-on-slurm` | Run policy-aware Streamlit apps from short Slurm compute allocations. |
 | `ray-on-slurm` | Launch resource-bounded Ray clusters inside Slurm allocations. |
 | `dask-jobqueue-on-slurm` | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |

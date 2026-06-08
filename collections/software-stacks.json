@@ -3,7 +3,7 @@
   "id": "software-stacks",
   "name": "Software Stacks",
   "status": "draft",
-  "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Streamlit, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks.",
+  "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks.",
   "audience": ["research software engineers", "HPC support teams", "tool maintainers"],
   "skill_ids": [
     "module-environment-debug",
@@ -11,6 +11,7 @@
     "compiler-mpi-matrix",
     "reproducible-run-capture",
     "python-virtualenv-on-hpc",
+    "tensorboard-on-slurm",
     "streamlit-on-slurm",
     "ray-on-slurm",
     "dask-jobqueue-on-slurm",

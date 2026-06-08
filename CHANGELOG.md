@@ -58,6 +58,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   scheduled compute allocations.
 - Add a Streamlit on Slurm skill for policy-aware Python data apps and AI demos
   on scheduled compute allocations.
+- Add a TensorBoard on Slurm skill for policy-aware training monitors on short
+  compute allocations.
 - Add a NAMD on Slurm skill for molecular dynamics jobs with CPU/GPU layout and
   restart planning.
 - Add a CP2K on Slurm skill for MPI/OpenMP electronic-structure and molecular
@@ -93,12 +95,12 @@ Initial public seed release.
 
 ### Added
 
-- 67 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 68 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, dependency chains, pending reason triage, monitoring, resource
   estimation, efficiency review, failure triage, checkpoint/restart,
   interactive sessions, notebooks, RStudio, IDE tunnels, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
-  Streamlit, Ray, Dask Jobqueue, mpi4py, containers, containerized MPI, Spack, EasyBuild, data movement,
+  TensorBoard, Streamlit, Ray, Dask Jobqueue, mpi4py, containers, containerized MPI, Spack, EasyBuild, data movement,
   CWL/WDL, workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
   workflows including local BLAST+, molecular dynamics including NAMD,
   electronic-structure and quantum chemistry including CP2K, CFD, weather

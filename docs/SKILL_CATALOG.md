@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 67 skills.
+Current registry size: 68 skills.
 
 ## Categories
 
@@ -11,14 +11,14 @@ Current registry size: 67 skills.
 | `admin` | 4 |
 | `containers` | 3 |
 | `data` | 12 |
-| `debugging` | 17 |
+| `debugging` | 18 |
 | `education` | 1 |
 | `gpu` | 9 |
-| `interactive` | 5 |
+| `interactive` | 6 |
 | `mpi` | 11 |
 | `performance` | 12 |
-| `scheduler` | 50 |
-| `software` | 18 |
+| `scheduler` | 51 |
+| `software` | 19 |
 | `workflow` | 10 |
 
 ## Skills By Category
@@ -78,6 +78,7 @@ Current registry size: 67 skills.
 | [`slurm-efficiency-report`](../skills/slurm-efficiency-report/README.md) | low | seed | Summarize completed Slurm job efficiency from accounting data. |
 | [`slurm-monitor-job`](../skills/slurm-monitor-job/README.md) | low | seed | Inspect Slurm job state, accounting records, and output paths. |
 | [`slurm-pending-reason-triage`](../skills/slurm-pending-reason-triage/README.md) | low | seed | Explain why Slurm jobs are pending using read-only scheduler signals. |
+| [`tensorboard-on-slurm`](../skills/tensorboard-on-slurm/README.md) | medium | seed | Run policy-aware TensorBoard monitors from short Slurm allocations. |
 
 ### Education
 
@@ -107,6 +108,7 @@ Current registry size: 67 skills.
 | [`jupyter-on-slurm`](../skills/jupyter-on-slurm/README.md) | medium | seed | Launch Jupyter notebooks inside short Slurm compute allocations. |
 | [`rstudio-on-slurm`](../skills/rstudio-on-slurm/README.md) | medium | seed | Launch policy-aware RStudio or Posit sessions from Slurm allocations. |
 | [`streamlit-on-slurm`](../skills/streamlit-on-slurm/README.md) | medium | seed | Run policy-aware Streamlit apps from short Slurm compute allocations. |
+| [`tensorboard-on-slurm`](../skills/tensorboard-on-slurm/README.md) | medium | seed | Run policy-aware TensorBoard monitors from short Slurm allocations. |
 | [`vscode-tunnel-on-slurm`](../skills/vscode-tunnel-on-slurm/README.md) | medium | seed | Run VS Code Remote Tunnels from short Slurm compute allocations. |
 
 ### MPI
@@ -192,6 +194,7 @@ Current registry size: 67 skills.
 | [`slurm-submit-job`](../skills/slurm-submit-job/README.md) | medium | seed | Generate safe Slurm batch scripts for common HPC job shapes. |
 | [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
 | [`streamlit-on-slurm`](../skills/streamlit-on-slurm/README.md) | medium | seed | Run policy-aware Streamlit apps from short Slurm compute allocations. |
+| [`tensorboard-on-slurm`](../skills/tensorboard-on-slurm/README.md) | medium | seed | Run policy-aware TensorBoard monitors from short Slurm allocations. |
 | [`training-cluster-reset-checklist`](../skills/training-cluster-reset-checklist/README.md) | medium | seed | Prepare and review HPC training environments before and after workshops. |
 | [`vscode-tunnel-on-slurm`](../skills/vscode-tunnel-on-slurm/README.md) | medium | seed | Run VS Code Remote Tunnels from short Slurm compute allocations. |
 | [`wdl-on-slurm`](../skills/wdl-on-slurm/README.md) | medium | seed | Run small WDL workflows inside Slurm allocations with miniwdl. |
@@ -218,6 +221,7 @@ Current registry size: 67 skills.
 | [`rstudio-on-slurm`](../skills/rstudio-on-slurm/README.md) | medium | seed | Launch policy-aware RStudio or Posit sessions from Slurm allocations. |
 | [`spack-environment-create`](../skills/spack-environment-create/README.md) | medium | seed | Create reproducible Spack environments for HPC software stacks. |
 | [`streamlit-on-slurm`](../skills/streamlit-on-slurm/README.md) | medium | seed | Run policy-aware Streamlit apps from short Slurm compute allocations. |
+| [`tensorboard-on-slurm`](../skills/tensorboard-on-slurm/README.md) | medium | seed | Run policy-aware TensorBoard monitors from short Slurm allocations. |
 | [`vscode-tunnel-on-slurm`](../skills/vscode-tunnel-on-slurm/README.md) | medium | seed | Run VS Code Remote Tunnels from short Slurm compute allocations. |
 
 ### Workflow
@@ -239,17 +243,17 @@ Current registry size: 67 skills.
 
 | Collection | Status | Skills | Audience | Description |
 | --- | --- | ---: | --- | --- |
-| [`ai-hpc`](../collections/ai-hpc.json) | draft | 13 | AI/HPC users, machine learning researchers, research software engineers, HPC support teams | Skills for launching, validating, demoing, and troubleshooting distributed AI workloads on Slurm-backed HPC systems. |
+| [`ai-hpc`](../collections/ai-hpc.json) | draft | 14 | AI/HPC users, machine learning researchers, research software engineers, HPC support teams | Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads on Slurm-backed HPC systems. |
 | [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | draft | 7 | bioinformatics teams, core facilities, genomics platform engineers | Domain skills for running reviewed nf-core, GATK, and BLAST bioinformatics workflows on Slurm-backed HPC systems. |
 | [`containers`](../collections/containers.json) | draft | 7 | research software engineers, container users, HPC support teams | Skills for building, validating, running MPI containers, and staging data for containerized HPC workloads. |
 | [`core-hpc`](../collections/core-hpc.json) | draft | 16 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
 | [`facility-ops`](../collections/facility-ops.json) | draft | 4 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, pending reason triage, node triage, and module tree health. |
-| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 13 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence. |
+| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 14 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence. |
 | [`scheduler-basics`](../collections/scheduler-basics.json) | draft | 7 | new HPC users, training instructors, support teams, sites with mixed schedulers | Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers. |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 12 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, and weather workloads on Slurm-backed HPC systems. |
-| [`software-stacks`](../collections/software-stacks.json) | draft | 20 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Streamlit, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks. |
-| [`training-onboarding`](../collections/training-onboarding.json) | draft | 15 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments. |
+| [`software-stacks`](../collections/software-stacks.json) | draft | 21 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks. |
+| [`training-onboarding`](../collections/training-onboarding.json) | draft | 16 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 7 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL/WDL runs, Dask worker clusters, and lightweight Slurm dependency chains. |
 
 ## Site Adapters
