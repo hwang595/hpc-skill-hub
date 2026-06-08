@@ -21,6 +21,7 @@ cli:
 	$(PYTHON) tools/hpc_skill.py list
 	PYTHONPATH=src $(PYTHON) -m hpc_skill_hub collections
 	$(PYTHON) tools/hpc_skill.py health
+	$(PYTHON) tools/hpc_skill.py validate --skill slurm-submit-job
 	$(PYTHON) tools/hpc_skill.py search slurm
 	$(PYTHON) tools/hpc_skill.py show slurm-submit-job --examples
 	$(PYTHON) tools/hpc_skill.py collections

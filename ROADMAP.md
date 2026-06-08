@@ -23,9 +23,10 @@
 ## Phase 2: CLI And Developer Experience
 
 - Keep expanding the installable `hpc-skill` CLI that already supports
-  discovery, health reporting, collections, site adapters, and scaffolding.
-- Add an `hpc-skill validate` command that wraps registry validation,
-  generated artifact checks, and safety audits.
+  discovery, health reporting, validation, collections, site adapters, and
+  scaffolding.
+- Extend `hpc-skill validate` with optional test, site-build, and
+  machine-readable reporting modes.
 - Add template rendering for common HPC scripts and config files.
 - Add local dry-run checks for commands that may be dangerous on shared systems.
 - Add optional adapters for agentic tools that can read skill metadata.

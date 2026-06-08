@@ -101,6 +101,17 @@ class RegistryTests(unittest.TestCase):
         self.assertEqual(payload["collection_count"], 5)
         self.assertIn("risk_counts", payload)
 
+    def test_cli_validate_one_skill(self):
+        result = run_cmd(
+            "python3",
+            "tools/hpc_skill.py",
+            "validate",
+            "--skill",
+            "slurm-submit-job",
+        )
+        self.assertIn("Validated 1 skill(s).", result.stdout)
+        self.assertIn("Validation completed successfully.", result.stdout)
+
     def test_package_module_entrypoint(self):
         result = run_cmd_with_env(
             "python3",
@@ -113,6 +124,18 @@ class RegistryTests(unittest.TestCase):
         )
         payload = json.loads(result.stdout)
         self.assertEqual(payload["id"], "core-hpc")
+
+    def test_package_validate_entrypoint(self):
+        result = run_cmd_with_env(
+            "python3",
+            "-m",
+            "hpc_skill_hub",
+            "validate",
+            "--skill",
+            "slurm-submit-job",
+            env={"PYTHONPATH": "src"},
+        )
+        self.assertIn("Validation completed successfully.", result.stdout)
 
     def test_cli_adapter_json(self):
         result = run_cmd(

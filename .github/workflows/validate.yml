@@ -33,6 +33,7 @@ jobs:
           hpc-skill collections
           hpc-skill collection core-hpc
           hpc-skill health
+          hpc-skill validate --skill slurm-submit-job
           python3 tools/hpc_skill.py search slurm
           python3 tools/hpc_skill.py show slurm-submit-job --examples
           python3 tools/hpc_skill.py collections

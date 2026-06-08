@@ -12,6 +12,7 @@ python3 tools/hpc_skill.py show slurm-submit-job --examples
 python3 tools/hpc_skill.py collections
 python3 tools/hpc_skill.py collection core-hpc
 python3 tools/hpc_skill.py health
+python3 tools/hpc_skill.py validate
 python3 tools/hpc_skill.py adapters
 python3 tools/hpc_skill.py adapter example-campus-cluster
 ```
@@ -58,11 +59,30 @@ python3 tools/hpc_skill.py scaffold skill ci-test-skill --root /tmp/hpc-skill-hu
 After editing scaffolded files, run:
 
 ```bash
-python3 tools/validate_skills.py
+python3 tools/hpc_skill.py validate --skill my-new-skill
 python3 tools/build_index.py
 python3 tools/build_health.py
+python3 tools/hpc_skill.py validate
 make check
 ```
+
+## Validating Contributions
+
+Validate one skill while iterating:
+
+```bash
+python3 tools/hpc_skill.py validate --skill slurm-submit-job
+```
+
+Validate the full registry before opening a pull request:
+
+```bash
+python3 tools/hpc_skill.py validate
+```
+
+The full command checks manifest metadata, generated registry index freshness,
+registry health freshness, and the safety audit. Single-skill validation skips
+generated registry checks and audits only that skill directory.
 
 ## Filtering Skills
 
@@ -75,7 +95,7 @@ python3 tools/hpc_skill.py list --tag gpu
 
 ## JSON Output
 
-Every command supports JSON output for automation:
+Discovery commands support JSON output for automation:
 
 ```bash
 python3 tools/hpc_skill.py show gpu-sanity-check --json
@@ -99,5 +119,5 @@ python3 tools/build_health.py --check
 ## Future Direction
 
 The CLI is intentionally small and already installable as `hpc-skill`. Next
-steps include a first-class validate command, richer template rendering, and
-site-aware generation for common scheduler and workflow files.
+steps include richer template rendering and site-aware generation for common
+scheduler and workflow files.

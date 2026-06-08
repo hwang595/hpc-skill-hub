@@ -24,8 +24,10 @@ authoring workflow, review rubric, risk guidance, and common anti-patterns.
 5. Run:
 
    ```bash
-   python3 tools/validate_skills.py --skill your-skill-id
-   python3 tools/audit_safety.py
+   python3 tools/hpc_skill.py validate --skill your-skill-id
+   python3 tools/build_index.py
+   python3 tools/build_health.py
+   python3 tools/hpc_skill.py validate
    make check
    ```
 
@@ -53,8 +55,7 @@ non-sensitive local policy for one HPC site or training environment.
 4. Run:
 
    ```bash
-   python3 tools/validate_skills.py
-   python3 tools/audit_safety.py
+   python3 tools/hpc_skill.py validate
    make check
    ```
 

@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 import re
+import subprocess
 import sys
 import textwrap
 from pathlib import Path
@@ -311,6 +312,71 @@ def cmd_health(args: argparse.Namespace) -> int:
     return 0
 
 
+def run_step(label: str, command: List[str], root: Path) -> int:
+    print(f"==> {label}", flush=True)
+    result = subprocess.run(command, cwd=str(root))
+    if result.returncode != 0:
+        print(f"FAILED: {label}", file=sys.stderr, flush=True)
+        return result.returncode
+    print(f"OK: {label}", flush=True)
+    return 0
+
+
+def cmd_validate(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve() if args.root else get_root()
+    if args.skill:
+        ensure_id(args.skill)
+
+    tools_dir = root / "tools"
+    validate_cmd = [sys.executable, str(tools_dir / "validate_skills.py")]
+    if args.skill:
+        validate_cmd.extend(["--skill", args.skill])
+
+    steps = [("Validate registry metadata", validate_cmd)]
+
+    if args.skill:
+        if not args.skip_safety:
+            steps.append(
+                (
+                    "Run safety audit for skill",
+                    [
+                        sys.executable,
+                        str(tools_dir / "audit_safety.py"),
+                        str(root / "skills" / args.skill),
+                    ],
+                )
+            )
+    else:
+        if not args.skip_generated:
+            steps.extend(
+                [
+                    (
+                        "Check generated registry index",
+                        [sys.executable, str(tools_dir / "build_index.py"), "--check"],
+                    ),
+                    (
+                        "Check generated registry health",
+                        [sys.executable, str(tools_dir / "build_health.py"), "--check"],
+                    ),
+                ]
+            )
+        if not args.skip_safety:
+            steps.append(
+                (
+                    "Run safety audit",
+                    [sys.executable, str(tools_dir / "audit_safety.py")],
+                )
+            )
+
+    for label, command in steps:
+        return_code = run_step(label, command, root)
+        if return_code:
+            return return_code
+
+    print("Validation completed successfully.")
+    return 0
+
+
 def ensure_id(value: str) -> None:
     if not ID_RE.match(value):
         raise SystemExit(f"Invalid id '{value}'; use lowercase kebab-case")
@@ -548,6 +614,26 @@ def build_parser() -> argparse.ArgumentParser:
     health_parser = subparsers.add_parser("health", help="Show registry health summary")
     health_parser.add_argument("--json", action="store_true", help="Emit JSON")
     health_parser.set_defaults(func=cmd_health)
+
+    validate_parser = subparsers.add_parser(
+        "validate", help="Run registry validation checks"
+    )
+    validate_parser.add_argument(
+        "--skill",
+        help="Validate one skill id and skip generated registry checks",
+    )
+    validate_parser.add_argument(
+        "--skip-generated",
+        action="store_true",
+        help="Skip generated index and health freshness checks",
+    )
+    validate_parser.add_argument(
+        "--skip-safety",
+        action="store_true",
+        help="Skip safety audit checks",
+    )
+    validate_parser.add_argument("--root", help="Repository root to validate")
+    validate_parser.set_defaults(func=cmd_validate)
 
     scaffold_parser = subparsers.add_parser("scaffold", help="Create new registry entries")
     scaffold_subparsers = scaffold_parser.add_subparsers(dest="scaffold_type", required=True)

@@ -17,7 +17,7 @@ new HPC skills.
 4. Validate one skill while iterating:
 
    ```bash
-   python3 tools/validate_skills.py --skill my-new-skill
+   python3 tools/hpc_skill.py validate --skill my-new-skill
    ```
 
 5. Rebuild generated registry artifacts:
@@ -30,6 +30,7 @@ new HPC skills.
 6. Run the full local gate:
 
    ```bash
+   python3 tools/hpc_skill.py validate
    make check
    ```
 

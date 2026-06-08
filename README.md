@@ -54,11 +54,8 @@ tools.
 Validate the registry:
 
 ```bash
-python3 tools/validate_skills.py
-python3 tools/build_index.py --check
-python3 tools/build_health.py --check
-python3 tools/audit_safety.py
-python3 -m unittest discover -s tests
+python3 tools/hpc_skill.py validate
+make check
 ```
 
 Explore the registry:
@@ -104,7 +101,10 @@ Then update the manifest, add `README.md`, add examples, and run the validator.
 Rebuild the registry index after adding or editing skills:
 
 ```bash
+python3 tools/hpc_skill.py validate --skill my-new-skill
 python3 tools/build_index.py
+python3 tools/build_health.py
+python3 tools/hpc_skill.py validate
 ```
 
 Run the standard local checks:
