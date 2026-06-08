@@ -36,8 +36,8 @@ research software engineer building software stacks may start with
   compiler/MPI compatibility, GPU sanity checks, Ray cluster smoke tests, GPU
   memory triage, PyTorch DDP smoke tests, NCCL diagnostics, DeepSpeed launch
   checks, OpenMP placement, Slurm efficiency review, and basic profiling.
-- `bioinformatics-workflows`: nf-core, GATK, Nextflow, Snakemake, data staging,
-  and checksum practices for genomics and core-facility workflows.
+- `bioinformatics-workflows`: nf-core, GATK, BLAST, Nextflow, Snakemake, data
+  staging, and checksum practices for genomics and core-facility workflows.
 - `simulation-workflows`: GROMACS, LAMMPS, OpenFOAM, WRF, MPI launch checks,
   OpenMP placement, profiling, restart planning, and reproducible run capture
   for simulation teams.

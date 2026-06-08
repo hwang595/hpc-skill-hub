@@ -48,6 +48,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   checks, data staging, checksums, and reproducible run capture.
 - Add an `ai-hpc` collection for distributed AI launch, validation,
   troubleshooting, data staging, and reproducibility workflows.
+- Add a BLAST on Slurm skill with local database creation, bounded output
+  controls, and a tiny FASTA smoke test.
 
 ## v0.1.0 - Planned
 
@@ -55,14 +57,14 @@ Initial public seed release.
 
 ### Added
 
-- 53 seed HPC skills covering Slurm, job arrays, dependency chains, pending
+- 54 seed HPC skills covering Slurm, job arrays, dependency chains, pending
   reason triage, monitoring, resource estimation, efficiency review, failure
   triage, checkpoint/restart, interactive sessions, notebooks, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
   Ray, Dask Jobqueue, mpi4py, containers, Spack, EasyBuild, data movement,
   workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
-  workflows, molecular dynamics, CFD, weather workloads, read-only facility
-  operations, and training onboarding.
+  workflows including local BLAST+, molecular dynamics, CFD, weather workloads,
+  read-only facility operations, and training onboarding.
 - 11 curated collections: `core-hpc`, `software-stacks`, `containers`,
   `workflow-engines`, `data-movement`, `ai-hpc`, `gpu-mpi-performance`,
   `bioinformatics-workflows`, `simulation-workflows`, `facility-ops`, and

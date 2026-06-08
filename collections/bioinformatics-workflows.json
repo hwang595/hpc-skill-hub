@@ -3,11 +3,12 @@
   "id": "bioinformatics-workflows",
   "name": "Bioinformatics Workflows",
   "status": "draft",
-  "summary": "Domain skills for running reviewed nf-core and GATK bioinformatics workflows on Slurm-backed HPC systems.",
+  "summary": "Domain skills for running reviewed nf-core, GATK, and BLAST bioinformatics workflows on Slurm-backed HPC systems.",
   "audience": ["bioinformatics teams", "core facilities", "genomics platform engineers"],
   "skill_ids": [
     "nf-core-on-slurm",
     "gatk-workflow-on-hpc",
+    "blast-on-slurm",
     "nextflow-on-slurm",
     "snakemake-on-slurm",
     "dataset-staging-to-scratch",

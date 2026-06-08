@@ -73,6 +73,7 @@ tools.
 | `snakemake-on-slurm` | Configure Snakemake workflows for Slurm profiles. |
 | `nf-core-on-slurm` | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
 | `gatk-workflow-on-hpc` | Plan and run GATK variant-calling workflows on shared HPC systems. |
+| `blast-on-slurm` | Run local BLAST+ searches on Slurm with bounded smoke-test defaults. |
 | `gromacs-on-slurm` | Run GROMACS molecular dynamics jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | `lammps-on-slurm` | Run LAMMPS molecular dynamics jobs on Slurm with MPI, GPU, and restart planning. |
 | `openfoam-on-slurm` | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |

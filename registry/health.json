@@ -2,16 +2,16 @@
   "category_counts": {
     "admin": 4,
     "containers": 2,
-    "data": 9,
+    "data": 10,
     "debugging": 17,
     "education": 1,
     "gpu": 7,
     "interactive": 2,
     "mpi": 7,
     "performance": 8,
-    "scheduler": 36,
+    "scheduler": 37,
     "software": 15,
-    "workflow": 6
+    "workflow": 7
   },
   "collection_count": 11,
   "collection_coverage": [
@@ -35,10 +35,11 @@
     },
     {
       "id": "bioinformatics-workflows",
-      "skill_count": 6,
+      "skill_count": 7,
       "skill_ids": [
         "nf-core-on-slurm",
         "gatk-workflow-on-hpc",
+        "blast-on-slurm",
         "nextflow-on-slurm",
         "snakemake-on-slurm",
         "dataset-staging-to-scratch",
@@ -187,10 +188,11 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 53
+    "seed": 54
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
+    "blast-on-slurm": "medium",
     "checkpoint-restart-workflow": "medium",
     "checksum-manifest-create": "low",
     "cluster-usage-report-readonly": "low",
@@ -246,13 +248,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 36
+    "medium": 37
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 53,
+  "skill_count": 54,
   "status_counts": {
-    "draft": 53
+    "draft": 54
   },
   "uncollected_skill_ids": []
 }

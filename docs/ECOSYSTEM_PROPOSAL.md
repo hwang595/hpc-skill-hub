@@ -40,8 +40,8 @@ The project is not only a documentation site. It combines:
   DeepSpeed, NCCL diagnostics, GPU memory triage, container runtime execution,
   data staging, checkpoint/restart planning, reproducible run capture, and
   Slurm efficiency review.
-- `bioinformatics-workflows`: nf-core, GATK, BLAST, AlphaFold, single-cell
-  workflows, and genomics data staging.
+- `bioinformatics-workflows`: nf-core, GATK, local BLAST+, AlphaFold,
+  single-cell workflows, and genomics data staging.
 - `simulation-workflows`: LAMMPS, GROMACS, NAMD, OpenFOAM, WRF.
 - `facility-ops`: read-only usage reporting, node triage, module tree health
   checks, support handoffs, and public operational patterns.

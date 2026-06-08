@@ -2,16 +2,16 @@
   "categories": {
     "admin": 4,
     "containers": 2,
-    "data": 9,
+    "data": 10,
     "debugging": 17,
     "education": 1,
     "gpu": 7,
     "interactive": 2,
     "mpi": 7,
     "performance": 8,
-    "scheduler": 36,
+    "scheduler": 37,
     "software": 15,
-    "workflow": 6
+    "workflow": 7
   },
   "collection_count": 11,
   "collections": [
@@ -54,13 +54,14 @@
       "skill_ids": [
         "nf-core-on-slurm",
         "gatk-workflow-on-hpc",
+        "blast-on-slurm",
         "nextflow-on-slurm",
         "snakemake-on-slurm",
         "dataset-staging-to-scratch",
         "checksum-manifest-create"
       ],
       "status": "draft",
-      "summary": "Domain skills for running reviewed nf-core and GATK bioinformatics workflows on Slurm-backed HPC systems."
+      "summary": "Domain skills for running reviewed nf-core, GATK, and BLAST bioinformatics workflows on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -276,7 +277,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 37
+    "slurm": 38
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -302,7 +303,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 53,
+  "skill_count": 54,
   "skills": [
     {
       "categories": [
@@ -351,6 +352,73 @@
       "tools": [
         "apptainer",
         "sbatch"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler",
+        "data"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for local BLAST+ searches, including a tiny FASTA smoke test, local database creation with makeblastdb, explicit CPU and output bounds, and dry-run-first launch records.",
+      "examples": [
+        {
+          "path": "skills/blast-on-slurm/examples/blast-smoke.sbatch",
+          "title": "Plan or run a local BLAST+ smoke test on Slurm"
+        },
+        {
+          "path": "skills/blast-on-slurm/examples/query.fasta",
+          "title": "Tiny nucleotide query FASTA"
+        },
+        {
+          "path": "skills/blast-on-slurm/examples/reference.fasta",
+          "title": "Tiny nucleotide reference FASTA"
+        }
+      ],
+      "id": "blast-on-slurm",
+      "maturity": "seed",
+      "name": "BLAST On Slurm",
+      "path": "skills/blast-on-slurm",
+      "readme": "skills/blast-on-slurm/README.md",
+      "references": [
+        {
+          "title": "BLAST Command Line Applications User Manual",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK279690/"
+        },
+        {
+          "title": "NCBI BLAST+ executables and databases",
+          "url": "https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run local BLAST+ searches on Slurm with bounded smoke-test defaults.",
+      "tags": [
+        "blast",
+        "blastn",
+        "blastp",
+        "makeblastdb",
+        "fasta",
+        "bioinformatics",
+        "slurm"
+      ],
+      "tools": [
+        "blastn",
+        "makeblastdb",
+        "sbatch",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "module"
       ],
       "version": "0.1.0"
     },
@@ -3295,7 +3363,10 @@
     "array": 2,
     "batch": 3,
     "benchmark": 1,
-    "bioinformatics": 1,
+    "bioinformatics": 2,
+    "blast": 1,
+    "blastn": 1,
+    "blastp": 1,
     "cfd": 1,
     "checklist": 1,
     "checkpoint": 3,
@@ -3330,6 +3401,7 @@
     "environment-modules": 1,
     "failure": 1,
     "fairshare": 1,
+    "fasta": 1,
     "filesystem": 3,
     "gatk": 1,
     "genomics": 1,
@@ -3351,6 +3423,7 @@
     "lmod": 3,
     "logs": 5,
     "m-files": 1,
+    "makeblastdb": 1,
     "mamba": 1,
     "manifest": 3,
     "matlab": 1,
@@ -3423,7 +3496,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 35,
+    "slurm": 36,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -3465,6 +3538,7 @@
     "awk": 3,
     "basename": 1,
     "bash": 5,
+    "blastn": 1,
     "blockMesh": 1,
     "cat": 2,
     "cksum": 2,
@@ -3474,7 +3548,7 @@
     "cp": 2,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 18,
+    "date": 19,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -3492,7 +3566,7 @@
     "gmx_mpi": 1,
     "grep": 8,
     "head": 4,
-    "hostname": 15,
+    "hostname": 16,
     "icoFoam": 1,
     "julia": 1,
     "jupyter": 1,
@@ -3500,11 +3574,12 @@
     "lmp": 1,
     "ln": 1,
     "lscpu": 1,
+    "makeblastdb": 1,
     "mamba": 1,
     "matlab": 1,
     "micromamba": 1,
-    "mkdir": 23,
-    "module": 14,
+    "mkdir": 24,
+    "module": 15,
     "mpi4py": 1,
     "mpicc": 2,
     "mpicxx": 1,
@@ -3528,7 +3603,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 27,
+    "sbatch": 28,
     "scontrol": 6,
     "sed": 1,
     "seff": 1,
@@ -3547,7 +3622,7 @@
     "ssh": 2,
     "tail": 4,
     "tar": 1,
-    "tee": 11,
+    "tee": 12,
     "test": 5,
     "time": 1,
     "tr": 1,

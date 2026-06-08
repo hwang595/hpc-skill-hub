@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 53.
+- Skills: 54.
 - Collections: 11.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -48,8 +48,8 @@ request missing workflows, or contribute public site adapters.
   DeepSpeed, NCCL diagnostics, GPU memory triage, container runtime execution,
   data staging, checkpoint/restart planning, reproducible run capture, and
   Slurm efficiency review.
-- Bioinformatics: nf-core and GATK workflow patterns with data staging and
-  checksum practices.
+- Bioinformatics: nf-core, GATK, and local BLAST+ workflow patterns with data
+  staging and checksum practices.
 - Simulation: LAMMPS, GROMACS, OpenFOAM, WRF, MPI launch checks, OpenMP
   placement, restart planning, profiling, and reproducibility.
 - Facility operations: read-only Slurm usage reporting, pending reason triage,

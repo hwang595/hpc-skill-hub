@@ -38,6 +38,7 @@ new collections.
 | `deepspeed-on-slurm` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
 | `nf-core-on-slurm` | workflow | medium | Seed skill added to `workflow-engines` and `bioinformatics-workflows`. |
 | `gatk-workflow-on-hpc` | workflow | medium | Seed skill added to `bioinformatics-workflows`. |
+| `blast-on-slurm` | workflow | medium | Seed skill added to `bioinformatics-workflows`. |
 | `lammps-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `gromacs-on-slurm` | gpu | medium | Seed skill added to `simulation-workflows`. |
 | `openfoam-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |

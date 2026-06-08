@@ -1,0 +1,144 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "blast-on-slurm",
+  "name": "BLAST On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run local BLAST+ searches on Slurm with bounded smoke-test defaults.",
+  "description": "This skill provides a conservative Slurm pattern for local BLAST+ searches, including a tiny FASTA smoke test, local database creation with makeblastdb, explicit CPU and output bounds, and dry-run-first launch records.",
+  "categories": ["workflow", "scheduler", "data"],
+  "tags": ["blast", "blastn", "blastp", "makeblastdb", "fasta", "bioinformatics", "slurm"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "blastn",
+      "required": true
+    },
+    {
+      "name": "makeblastdb",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "query_fasta",
+      "type": "path",
+      "required": true,
+      "description": "FASTA query file for blastn, blastp, or another BLAST+ search program."
+    },
+    {
+      "name": "reference_fasta",
+      "type": "path",
+      "required": true,
+      "description": "FASTA file used to build a local BLAST database for the smoke test or production search."
+    },
+    {
+      "name": "blast_program",
+      "type": "string",
+      "required": false,
+      "description": "BLAST+ search executable such as blastn or blastp."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": true,
+      "description": "Directory for BLAST result files, launch records, and generated database files."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "blast_launch_plan",
+      "description": "Reviewable command, input paths, database path, CPU count, result path, and output controls."
+    },
+    {
+      "name": "blast_database",
+      "description": "Local makeblastdb output files under the record directory or configured database directory."
+    },
+    {
+      "name": "blast_results",
+      "description": "Tabular BLAST result file when RUN_BLAST=1."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/blast-smoke.sbatch",
+    "examples/query.fasta",
+    "examples/reference.fasta"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run a local BLAST+ smoke test on Slurm",
+      "path": "examples/blast-smoke.sbatch"
+    },
+    {
+      "title": "Tiny nucleotide query FASTA",
+      "path": "examples/query.fasta"
+    },
+    {
+      "title": "Tiny nucleotide reference FASTA",
+      "path": "examples/reference.fasta"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill blast-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/blast-on-slurm/examples/blast-smoke.sbatch",
+      "description": "Check the Slurm wrapper shell syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Submit the wrapper in default dry-run mode, then set RUN_BLAST=1 on a short test allocation after confirming the BLAST+ module, query, reference, and output paths."
+    }
+  ],
+  "references": [
+    {
+      "title": "BLAST Command Line Applications User Manual",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK279690/"
+    },
+    {
+      "title": "NCBI BLAST+ executables and databases",
+      "url": "https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

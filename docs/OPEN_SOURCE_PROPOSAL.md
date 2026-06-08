@@ -28,7 +28,7 @@ HPC Skill Hub turns those recurring tasks into portable skill packages with:
 
 ## Initial Scope
 
-The seed registry includes 53 skills covering Slurm, modules, Apptainer, Spack,
+The seed registry includes 54 skills covering Slurm, modules, Apptainer, Spack,
 EasyBuild, Globus, Nextflow, Snakemake, MPI, GPU sanity checks, and basic
 profiling, plus storage, quota, arrays, dependency chains, pending reason
 triage, job efficiency review, checkpoint/restart workflows, OpenMP placement,
@@ -37,9 +37,10 @@ Rscript, Julia, and MATLAB batch jobs, compiler/MPI compatibility,
 reproducible run capture, container builds, checksum manifests, rsync transfer,
 scratch staging, archive preparation, PyTorch DDP smoke testing, NCCL
 diagnostics, GPU memory triage, and DeepSpeed launch checks. It also includes
-nf-core, GATK, LAMMPS, GROMACS, OpenFOAM, and WRF on Slurm, read-only facility
-usage reporting, node triage, module tree health checks, workshop preflight and
-reset guidance, eleven curated collections, and one example site adapter.
+nf-core, GATK, local BLAST+, LAMMPS, GROMACS, OpenFOAM, and WRF on Slurm,
+read-only facility usage reporting, node triage, module tree health checks,
+workshop preflight and reset guidance, eleven curated collections, and one
+example site adapter.
 
 ## Community Model
 

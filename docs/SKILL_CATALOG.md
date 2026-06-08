@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 53 skills.
+Current registry size: 54 skills.
 
 ## Categories
 
@@ -10,16 +10,16 @@ Current registry size: 53 skills.
 | --- | ---: |
 | `admin` | 4 |
 | `containers` | 2 |
-| `data` | 9 |
+| `data` | 10 |
 | `debugging` | 17 |
 | `education` | 1 |
 | `gpu` | 7 |
 | `interactive` | 2 |
 | `mpi` | 7 |
 | `performance` | 8 |
-| `scheduler` | 36 |
+| `scheduler` | 37 |
 | `software` | 15 |
-| `workflow` | 6 |
+| `workflow` | 7 |
 
 ## Skills By Category
 
@@ -43,6 +43,7 @@ Current registry size: 53 skills.
 
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
+| [`blast-on-slurm`](../skills/blast-on-slurm/README.md) | medium | seed | Run local BLAST+ searches on Slurm with bounded smoke-test defaults. |
 | [`checksum-manifest-create`](../skills/checksum-manifest-create/README.md) | low | seed | Create checksum manifests for transfer validation and reproducibility. |
 | [`dataset-staging-to-scratch`](../skills/dataset-staging-to-scratch/README.md) | medium | seed | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
 | [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
@@ -130,6 +131,7 @@ Current registry size: 53 skills.
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
 | [`apptainer-run-container`](../skills/apptainer-run-container/README.md) | medium | seed | Run Apptainer containers safely on shared HPC systems. |
+| [`blast-on-slurm`](../skills/blast-on-slurm/README.md) | medium | seed | Run local BLAST+ searches on Slurm with bounded smoke-test defaults. |
 | [`checkpoint-restart-workflow`](../skills/checkpoint-restart-workflow/README.md) | medium | seed | Structure long HPC jobs so they can resume after time limits or preemption. |
 | [`cluster-usage-report-readonly`](../skills/cluster-usage-report-readonly/README.md) | low | seed | Collect read-only Slurm usage evidence for facility support reports. |
 | [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md) | medium | seed | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |
@@ -190,6 +192,7 @@ Current registry size: 53 skills.
 
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
+| [`blast-on-slurm`](../skills/blast-on-slurm/README.md) | medium | seed | Run local BLAST+ searches on Slurm with bounded smoke-test defaults. |
 | [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md) | medium | seed | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |
 | [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
@@ -202,7 +205,7 @@ Current registry size: 53 skills.
 | Collection | Status | Skills | Audience | Description |
 | --- | --- | ---: | --- | --- |
 | [`ai-hpc`](../collections/ai-hpc.json) | draft | 12 | AI/HPC users, machine learning researchers, research software engineers, HPC support teams | Skills for launching, validating, and troubleshooting distributed AI workloads on Slurm-backed HPC systems. |
-| [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | draft | 6 | bioinformatics teams, core facilities, genomics platform engineers | Domain skills for running reviewed nf-core and GATK bioinformatics workflows on Slurm-backed HPC systems. |
+| [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | draft | 7 | bioinformatics teams, core facilities, genomics platform engineers | Domain skills for running reviewed nf-core, GATK, and BLAST bioinformatics workflows on Slurm-backed HPC systems. |
 | [`containers`](../collections/containers.json) | draft | 6 | research software engineers, container users, HPC support teams | Skills for building, validating, running, and staging data for containerized HPC workloads. |
 | [`core-hpc`](../collections/core-hpc.json) | draft | 14 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
@@ -224,5 +227,5 @@ Current registry size: 53 skills.
 - Open OnDemand app templates.
 - Transfer verification across storage tiers.
 - Quantum ESPRESSO starter skills.
-- Bioinformatics workflows for BLAST, AlphaFold, and single-cell analysis.
+- Bioinformatics workflows for AlphaFold and single-cell analysis.
 - Facility read-only reports for fairshare, partitions, and node health.
