@@ -10,11 +10,11 @@
     "interactive": 2,
     "mpi": 10,
     "performance": 11,
-    "scheduler": 42,
+    "scheduler": 43,
     "software": 15,
     "workflow": 9
   },
-  "collection_count": 11,
+  "collection_count": 12,
   "collections": [
     {
       "audience": [
@@ -179,6 +179,25 @@
     },
     {
       "audience": [
+        "new HPC users",
+        "training instructors",
+        "support teams",
+        "sites with mixed schedulers"
+      ],
+      "id": "scheduler-basics",
+      "name": "Scheduler Basics",
+      "path": "collections/scheduler-basics.json",
+      "skill_ids": [
+        "slurm-submit-job",
+        "pbs-submit-job",
+        "job-failure-triage",
+        "reproducible-run-capture"
+      ],
+      "status": "draft",
+      "summary": "Starter skills for submitting and comparing basic jobs across Slurm and PBS-style schedulers."
+    },
+    {
+      "audience": [
         "simulation teams",
         "computational scientists",
         "performance engineers"
@@ -283,6 +302,9 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
+    "openpbs": 1,
+    "pbs": 1,
+    "pbs-pro": 1,
     "slurm": 43
   },
   "schema_version": "0.1.0",
@@ -309,7 +331,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 59,
+  "skill_count": 60,
   "skills": [
     {
       "categories": [
@@ -2502,6 +2524,69 @@
     },
     {
       "categories": [
+        "scheduler"
+      ],
+      "description": "This skill helps users create PBS, OpenPBS, or PBS Pro qsub scripts for CPU, MPI, GPU, and short smoke-test workloads with conservative defaults, clear placeholders, and notes about site-specific resource syntax.",
+      "examples": [
+        {
+          "path": "skills/pbs-submit-job/examples/cpu.pbs",
+          "title": "CPU batch job"
+        },
+        {
+          "path": "skills/pbs-submit-job/examples/mpi.pbs",
+          "title": "MPI batch job"
+        },
+        {
+          "path": "skills/pbs-submit-job/examples/gpu.pbs",
+          "title": "GPU batch job"
+        }
+      ],
+      "id": "pbs-submit-job",
+      "maturity": "seed",
+      "name": "PBS Submit Job",
+      "path": "skills/pbs-submit-job",
+      "readme": "skills/pbs-submit-job/README.md",
+      "references": [
+        {
+          "title": "OpenPBS project",
+          "url": "https://www.openpbs.org/"
+        },
+        {
+          "title": "POSIX qsub utility",
+          "url": "https://pubs.opengroup.org/onlinepubs/9699919799/utilities/qsub.html"
+        },
+        {
+          "title": "NASA HECC commonly used qsub options",
+          "url": "https://www.nas.nasa.gov/hecc/support/kb/Commonly-Used-QSUB-Options-in-PBS-Scripts-or-in-the-QSUB-Command-Line_175.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "pbs",
+        "openpbs",
+        "pbs-pro"
+      ],
+      "status": "draft",
+      "summary": "Generate safe PBS or OpenPBS batch scripts for common HPC job shapes.",
+      "tags": [
+        "pbs",
+        "openpbs",
+        "pbs-pro",
+        "qsub",
+        "qstat",
+        "cpu",
+        "gpu",
+        "mpi"
+      ],
+      "tools": [
+        "qsub",
+        "qstat",
+        "mpirun"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "performance",
         "debugging"
       ],
@@ -3757,7 +3842,7 @@
     "conda": 1,
     "container": 2,
     "cp2k": 1,
-    "cpu": 2,
+    "cpu": 3,
     "cpu-bind": 1,
     "cran": 1,
     "cuda": 2,
@@ -3790,7 +3875,7 @@
     "genomics": 1,
     "git": 1,
     "globus": 1,
-    "gpu": 12,
+    "gpu": 13,
     "gromacs": 1,
     "haplotypecaller": 1,
     "inode": 1,
@@ -3817,7 +3902,7 @@
     "modulepath": 1,
     "modules": 7,
     "molecular-dynamics": 4,
-    "mpi": 12,
+    "mpi": 13,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
@@ -3836,9 +3921,12 @@
     "oom": 2,
     "openfoam": 1,
     "openmp": 3,
+    "openpbs": 1,
     "outputs": 1,
     "packages": 2,
     "parameter-sweep": 1,
+    "pbs": 1,
+    "pbs-pro": 1,
     "pending": 1,
     "perf": 1,
     "permission": 1,
@@ -3858,6 +3946,8 @@
     "python": 4,
     "pytorch": 3,
     "qe": 1,
+    "qstat": 1,
+    "qsub": 1,
     "quantum-chemistry": 1,
     "quantum-espresso": 1,
     "quota": 2,
@@ -3981,6 +4071,7 @@
     "mpicxx": 1,
     "mpiexec": 1,
     "mpifort": 1,
+    "mpirun": 1,
     "namd2": 1,
     "ncdump": 1,
     "nextflow": 2,
@@ -3993,6 +4084,8 @@
     "pwd": 7,
     "python": 3,
     "python3": 5,
+    "qstat": 1,
+    "qsub": 1,
     "quota": 1,
     "ray": 1,
     "real.exe": 1,

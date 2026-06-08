@@ -4,9 +4,9 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 59
+- Skills: 60
 - Site adapters: 1
-- Collections: 11
+- Collections: 12
 - Uncollected skills: 0
 
 ## Risk Distribution
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 42 |
+| `medium` | 43 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 59 |
+| `seed` | 60 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 59 |
+| `draft` | 60 |
 
 ## Collection Coverage
 
@@ -39,6 +39,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `data-movement` | 7 |
 | `facility-ops` | 4 |
 | `gpu-mpi-performance` | 12 |
+| `scheduler-basics` | 4 |
 | `simulation-workflows` | 12 |
 | `software-stacks` | 16 |
 | `training-onboarding` | 12 |
@@ -89,6 +90,7 @@ All skills are included in at least one collection.
 | `node-health-readonly-triage` | low |
 | `openfoam-on-slurm` | medium |
 | `openmp-thread-affinity` | medium |
+| `pbs-submit-job` | medium |
 | `performance-profile-basic` | low |
 | `python-virtualenv-on-hpc` | low |
 | `pytorch-ddp-on-slurm` | medium |

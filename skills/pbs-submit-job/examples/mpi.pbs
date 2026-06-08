@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#PBS -N pbs-mpi-smoke
+#PBS -A <project>
+#PBS -q <queue>
+#PBS -l select=2:ncpus=4:mpiprocs=4:mem=4gb
+#PBS -l walltime=00:10:00
+#PBS -j oe
+#PBS -o pbs-mpi-smoke.out
+
+set -euo pipefail
+
+cd "${PBS_O_WORKDIR:-$PWD}"
+
+echo "started_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "host=$(hostname)"
+echo "PBS_JOBID=${PBS_JOBID:-}"
+echo "PBS_NODEFILE=${PBS_NODEFILE:-}"
+echo "PBS_NP=${PBS_NP:-}"
+
+if [ -n "${PBS_NODEFILE:-}" ] && [ -f "${PBS_NODEFILE}" ]; then
+  echo "nodefile_entries=$(wc -l < "${PBS_NODEFILE}")"
+  sort "${PBS_NODEFILE}" | uniq -c
+fi
+
+mpi_ranks="${PBS_NP:-8}"
+echo "launch_plan=mpirun -np ${mpi_ranks} hostname"
+
+if [ "${RUN_MPI:-0}" = "1" ]; then
+  mpirun -np "${mpi_ranks}" hostname
+else
+  echo "dry_run=true"
+  echo "Set RUN_MPI=1 only after loading the correct MPI module and reviewing site launch policy."
+fi
+
+echo "finished_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"

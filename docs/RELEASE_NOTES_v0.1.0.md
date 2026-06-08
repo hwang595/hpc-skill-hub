@@ -14,18 +14,18 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 59.
-- Collections: 11.
+- Skills: 60.
+- Collections: 12.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
 - Risk labels: low and medium only in the seed registry.
 
 ## Skill Coverage
 
-- Core HPC: Slurm submission, arrays, dependency chains, pending reason triage,
-  monitoring, resource estimation, efficiency review, checkpoint/restart,
-  failure triage, interactive sessions, Jupyter, OpenMP placement, quota
-  triage, and scratch management.
+- Core HPC and schedulers: Slurm and PBS/OpenPBS submission, Slurm arrays,
+  dependency chains, pending reason triage, monitoring, resource estimation,
+  efficiency review, checkpoint/restart, failure triage, interactive sessions,
+  Jupyter, OpenMP placement, quota triage, and scratch management.
 - Software stacks: module debugging, module tree health, compiler/MPI
   compatibility, reproducible run capture, Python virtualenv, Ray on Slurm,
   Dask Jobqueue, mpi4py on Slurm, Rscript on Slurm, Julia on Slurm, MATLAB

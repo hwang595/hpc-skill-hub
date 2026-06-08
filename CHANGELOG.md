@@ -42,6 +42,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   review.
 - Add a Slurm job dependency chain skill for small multi-stage workflows.
 - Add a read-only Slurm pending reason triage skill for queue wait diagnosis.
+- Add a PBS submit job skill and scheduler basics collection for OpenPBS/PBS Pro
+  starter workloads.
 - Add a NAMD on Slurm skill for molecular dynamics jobs with CPU/GPU layout and
   restart planning.
 - Add a CP2K on Slurm skill for MPI/OpenMP electronic-structure and molecular
@@ -77,19 +79,20 @@ Initial public seed release.
 
 ### Added
 
-- 59 seed HPC skills covering Slurm, job arrays, dependency chains, pending
-  reason triage, monitoring, resource estimation, efficiency review, failure
-  triage, checkpoint/restart, interactive sessions, notebooks, OpenMP
+- 60 seed HPC skills covering Slurm, PBS/OpenPBS, job arrays, dependency
+  chains, pending reason triage, monitoring, resource estimation, efficiency
+  review, failure triage, checkpoint/restart, interactive sessions, notebooks,
+  OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
   Ray, Dask Jobqueue, mpi4py, containers, Spack, EasyBuild, data movement,
   CWL/WDL, workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
   workflows including local BLAST+, molecular dynamics including NAMD,
   electronic-structure and quantum chemistry including CP2K, CFD, weather
   workloads, read-only facility operations, and training onboarding.
-- 11 curated collections: `core-hpc`, `software-stacks`, `containers`,
-  `workflow-engines`, `data-movement`, `ai-hpc`, `gpu-mpi-performance`,
-  `bioinformatics-workflows`, `simulation-workflows`, `facility-ops`, and
-  `training-onboarding`.
+- 12 curated collections: `core-hpc`, `scheduler-basics`, `software-stacks`,
+  `containers`, `workflow-engines`, `data-movement`, `ai-hpc`,
+  `gpu-mpi-performance`, `bioinformatics-workflows`, `simulation-workflows`,
+  `facility-ops`, and `training-onboarding`.
 - 1 example public site adapter: `example-campus-cluster`.
 - Machine-readable registry index and health reports.
 - Installable `hpc-skill` CLI for discovery, validation, scaffolding,

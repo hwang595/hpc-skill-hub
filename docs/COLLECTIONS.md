@@ -13,6 +13,9 @@ research software engineer building software stacks may start with
   triage, monitoring, resource estimation, efficiency review,
   checkpoint/restart, failure triage, storage triage, OpenMP placement,
   notebooks, and interactive sessions.
+- `scheduler-basics`: Slurm and PBS/OpenPBS starter submission patterns plus
+  failure triage and reproducible run capture for sites comparing or teaching
+  scheduler basics.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
   reproducible run capture, Python virtual environments, Ray clusters, Dask
   Jobqueue, mpi4py jobs, Rscript jobs, Julia jobs, MATLAB batch jobs, Conda/Mamba,
@@ -39,9 +42,9 @@ research software engineer building software stacks may start with
   checks, OpenMP placement, Slurm efficiency review, and basic profiling.
 - `bioinformatics-workflows`: nf-core, GATK, BLAST, Nextflow, Snakemake, data
   staging, and checksum practices for genomics and core-facility workflows.
-- `simulation-workflows`: GROMACS, LAMMPS, Quantum ESPRESSO, OpenFOAM, WRF,
-  MPI launch checks, OpenMP placement, profiling, restart planning, and
-  reproducible run capture for simulation teams.
+- `simulation-workflows`: GROMACS, LAMMPS, NAMD, Quantum ESPRESSO, CP2K,
+  OpenFOAM, WRF, MPI launch checks, OpenMP placement, profiling, restart
+  planning, and reproducible run capture for simulation teams.
 - `facility-ops`: read-only usage reporting, pending reason triage, node
   triage, and module tree health checks for HPC support teams and facility
   maintainers.

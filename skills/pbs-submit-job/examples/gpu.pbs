@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+#PBS -N pbs-gpu-smoke
+#PBS -A <project>
+#PBS -q <gpu-queue>
+#PBS -l select=1:ncpus=4:ngpus=1:mem=8gb
+#PBS -l walltime=00:10:00
+#PBS -j oe
+#PBS -o pbs-gpu-smoke.out
+
+set -euo pipefail
+
+cd "${PBS_O_WORKDIR:-$PWD}"
+
+echo "started_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "host=$(hostname)"
+echo "PBS_JOBID=${PBS_JOBID:-}"
+echo "PBS_QUEUE=${PBS_QUEUE:-}"
+echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-}"
+echo "ROCR_VISIBLE_DEVICES=${ROCR_VISIBLE_DEVICES:-}"
+echo "GPU resource syntax varies by PBS site; confirm select chunk names before submitting."
+
+if command -v nvidia-smi >/dev/null 2>&1; then
+  nvidia-smi -L || true
+else
+  echo "nvidia_smi=not_found"
+fi
+
+echo "finished_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
