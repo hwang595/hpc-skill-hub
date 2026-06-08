@@ -1,15 +1,15 @@
 {
   "category_counts": {
-    "admin": 2,
+    "admin": 3,
     "containers": 2,
     "data": 9,
-    "debugging": 14,
+    "debugging": 15,
     "gpu": 6,
     "interactive": 2,
     "mpi": 6,
     "performance": 7,
     "scheduler": 26,
-    "software": 8,
+    "software": 9,
     "workflow": 4
   },
   "collection_count": 8,
@@ -58,10 +58,11 @@
     },
     {
       "id": "facility-ops",
-      "skill_count": 2,
+      "skill_count": 3,
       "skill_ids": [
         "cluster-usage-report-readonly",
-        "node-health-readonly-triage"
+        "node-health-readonly-triage",
+        "module-tree-health-check"
       ]
     },
     {
@@ -96,9 +97,10 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 9,
+      "skill_count": 10,
       "skill_ids": [
         "module-environment-debug",
+        "module-tree-health-check",
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
@@ -121,7 +123,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 42
+    "seed": 43
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -145,6 +147,7 @@
     "lammps-on-slurm": "medium",
     "large-file-archive-prepare": "medium",
     "module-environment-debug": "low",
+    "module-tree-health-check": "low",
     "mpi-hello-and-benchmark": "medium",
     "nccl-diagnostics": "medium",
     "nextflow-on-slurm": "medium",
@@ -168,14 +171,14 @@
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
-    "low": 14,
+    "low": 15,
     "medium": 28
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 42,
+  "skill_count": 43,
   "status_counts": {
-    "draft": 42
+    "draft": 43
   },
   "uncollected_skill_ids": []
 }

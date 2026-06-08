@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 42.
+- Skills: 43.
 - Collections: 8.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -25,9 +25,9 @@ request missing workflows, or contribute public site adapters.
 - Core HPC: Slurm submission, arrays, monitoring, resource estimation,
   checkpoint/restart, failure triage, interactive sessions, Jupyter, OpenMP
   placement, quota triage, and scratch management.
-- Software stacks: module debugging, compiler/MPI compatibility, reproducible
-  run capture, Python virtualenv, Conda/Mamba, Apptainer builds and runtime,
-  Spack, and EasyBuild.
+- Software stacks: module debugging, module tree health, compiler/MPI
+  compatibility, reproducible run capture, Python virtualenv, Conda/Mamba,
+  Apptainer builds and runtime, Spack, and EasyBuild.
 - Workflow engines: Nextflow, Snakemake, and nf-core on Slurm.
 - Data movement: Globus, rsync, checksum manifests, scratch staging, archive
   preparation, scratch inventory, and filesystem quota triage.
@@ -38,8 +38,8 @@ request missing workflows, or contribute public site adapters.
   checksum practices.
 - Simulation: LAMMPS, GROMACS, OpenFOAM, WRF, MPI launch checks, OpenMP
   placement, restart planning, profiling, and reproducibility.
-- Facility operations: read-only Slurm usage reporting and node-health triage
-  for support teams and facility maintainers.
+- Facility operations: read-only Slurm usage reporting, node-health triage, and
+  module tree health checks for support teams and facility maintainers.
 
 ## Tooling
 

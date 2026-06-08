@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 42
+- Skills: 43
 - Site adapters: 1
 - Collections: 8
 - Uncollected skills: 0
@@ -13,20 +13,20 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 14 |
+| `low` | 15 |
 | `medium` | 28 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 42 |
+| `seed` | 43 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 42 |
+| `draft` | 43 |
 
 ## Collection Coverage
 
@@ -35,10 +35,10 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `bioinformatics-workflows` | 6 |
 | `core-hpc` | 11 |
 | `data-movement` | 7 |
-| `facility-ops` | 2 |
+| `facility-ops` | 3 |
 | `gpu-mpi-performance` | 9 |
 | `simulation-workflows` | 9 |
-| `software-stacks` | 9 |
+| `software-stacks` | 10 |
 | `workflow-engines` | 3 |
 
 ## Uncollected Skills
@@ -70,6 +70,7 @@ All skills are included in at least one collection.
 | `lammps-on-slurm` | medium |
 | `large-file-archive-prepare` | medium |
 | `module-environment-debug` | low |
+| `module-tree-health-check` | low |
 | `mpi-hello-and-benchmark` | medium |
 | `nccl-diagnostics` | medium |
 | `nextflow-on-slurm` | medium |

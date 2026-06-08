@@ -45,6 +45,7 @@ tools.
 | `quota-and-filesystem-triage` | Diagnose quota, inode, capacity, and permission failures. |
 | `scratch-storage-management` | Inventory user-owned scratch, project, and workflow storage usage. |
 | `module-environment-debug` | Debug module, compiler, MPI, and library path conflicts. |
+| `module-tree-health-check` | Collect read-only evidence about visible HPC module tree health. |
 | `compiler-mpi-matrix` | Check compiler, MPI wrapper, and module compatibility before building HPC codes. |
 | `reproducible-run-capture` | Capture command, environment, provenance, and logs for reproducible HPC runs. |
 | `python-virtualenv-on-hpc` | Create lightweight Python virtual environments with explicit HPC module assumptions. |

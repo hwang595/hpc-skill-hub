@@ -1,0 +1,91 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "module-tree-health-check",
+  "name": "Module Tree Health Check",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect read-only evidence about visible HPC module tree health.",
+  "description": "This skill helps HPC support teams and software-stack maintainers collect read-only evidence about MODULEPATH, visible modules, module metadata, and common compiler or MPI command paths without loading, unloading, or modifying user environments.",
+  "categories": ["software", "debugging", "admin"],
+  "tags": ["modules", "lmod", "environment-modules", "modulepath", "compiler", "mpi", "software-stack"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "module",
+      "required": true,
+      "notes": "Usually provided as a shell function by Lmod or Environment Modules."
+    },
+    {
+      "name": "which",
+      "required": false
+    },
+    {
+      "name": "printenv",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "module_name",
+      "type": "string",
+      "required": false,
+      "description": "Optional module name or pattern to inspect with module spider or module whatis."
+    },
+    {
+      "name": "output_dir",
+      "type": "string",
+      "required": false,
+      "description": "Directory where the module health report should be written."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "module_tree_report",
+      "description": "A local directory containing read-only module tree, MODULEPATH, metadata, and common tool path snapshots."
+    },
+    {
+      "name": "summary",
+      "description": "A summary file describing report scope and review guidance."
+    }
+  ],
+  "artifacts": ["README.md", "examples/module-tree-health.sh"],
+  "examples": [
+    {
+      "title": "Collect module tree health evidence",
+      "path": "examples/module-tree-health.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill module-tree-health-check",
+      "description": "Validate the manifest and report script reference."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/module-tree-health-check/examples/module-tree-health.sh",
+      "description": "Check shell syntax without requiring a module system."
+    },
+    {
+      "type": "manual",
+      "description": "Run on a login node with Lmod or Environment Modules and confirm it does not load, unload, purge, or modify modules."
+    }
+  ],
+  "references": [
+    {
+      "title": "Lmod documentation",
+      "url": "https://lmod.readthedocs.io/"
+    },
+    {
+      "title": "Environment Modules documentation",
+      "url": "https://modules.readthedocs.io/"
+    }
+  ]
+}

@@ -2,22 +2,22 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 42 skills.
+Current registry size: 43 skills.
 
 ## Categories
 
 | Category | Skills |
 | --- | ---: |
-| `admin` | 2 |
+| `admin` | 3 |
 | `containers` | 2 |
 | `data` | 9 |
-| `debugging` | 14 |
+| `debugging` | 15 |
 | `gpu` | 6 |
 | `interactive` | 2 |
 | `mpi` | 6 |
 | `performance` | 7 |
 | `scheduler` | 26 |
-| `software` | 8 |
+| `software` | 9 |
 | `workflow` | 4 |
 
 ## Skills By Category
@@ -27,6 +27,7 @@ Current registry size: 42 skills.
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
 | [`cluster-usage-report-readonly`](../skills/cluster-usage-report-readonly/README.md) | low | seed | Collect read-only Slurm usage evidence for facility support reports. |
+| [`module-tree-health-check`](../skills/module-tree-health-check/README.md) | low | seed | Collect read-only evidence about visible HPC module tree health. |
 | [`node-health-readonly-triage`](../skills/node-health-readonly-triage/README.md) | low | seed | Collect read-only Slurm node evidence for support triage. |
 
 ### Containers
@@ -60,6 +61,7 @@ Current registry size: 42 skills.
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
 | [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
 | [`module-environment-debug`](../skills/module-environment-debug/README.md) | low | seed | Diagnose module, compiler, MPI, and library path conflicts. |
+| [`module-tree-health-check`](../skills/module-tree-health-check/README.md) | low | seed | Collect read-only evidence about visible HPC module tree health. |
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
 | [`nccl-diagnostics`](../skills/nccl-diagnostics/README.md) | medium | seed | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
 | [`node-health-readonly-triage`](../skills/node-health-readonly-triage/README.md) | low | seed | Collect read-only Slurm node evidence for support triage. |
@@ -150,6 +152,7 @@ Current registry size: 42 skills.
 | [`container-build-for-hpc`](../skills/container-build-for-hpc/README.md) | medium | seed | Plan and build Apptainer-compatible images for shared HPC systems. |
 | [`easybuild-install-software`](../skills/easybuild-install-software/README.md) | medium | seed | Install scientific software with EasyBuild and generated modules. |
 | [`module-environment-debug`](../skills/module-environment-debug/README.md) | low | seed | Diagnose module, compiler, MPI, and library path conflicts. |
+| [`module-tree-health-check`](../skills/module-tree-health-check/README.md) | low | seed | Collect read-only evidence about visible HPC module tree health. |
 | [`python-virtualenv-on-hpc`](../skills/python-virtualenv-on-hpc/README.md) | low | seed | Create lightweight Python virtual environments with explicit HPC module assumptions. |
 | [`reproducible-run-capture`](../skills/reproducible-run-capture/README.md) | low | seed | Capture command, environment, provenance, and logs for reproducible HPC runs. |
 | [`spack-environment-create`](../skills/spack-environment-create/README.md) | medium | seed | Create reproducible Spack environments for HPC software stacks. |
@@ -170,10 +173,10 @@ Current registry size: 42 skills.
 | [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | draft | 6 | bioinformatics teams, core facilities, genomics platform engineers | Domain skills for running reviewed nf-core and GATK bioinformatics workflows on Slurm-backed HPC systems. |
 | [`core-hpc`](../collections/core-hpc.json) | draft | 11 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
-| [`facility-ops`](../collections/facility-ops.json) | draft | 2 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for HPC support teams and facility maintainers. |
+| [`facility-ops`](../collections/facility-ops.json) | draft | 3 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, node triage, and module tree health. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 9 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence. |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 9 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, CFD, and weather workloads on Slurm-backed HPC systems. |
-| [`software-stacks`](../collections/software-stacks.json) | draft | 9 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks. |
+| [`software-stacks`](../collections/software-stacks.json) | draft | 10 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 3 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines on Slurm-backed HPC clusters. |
 
 ## Site Adapters

@@ -13,6 +13,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Add the first `facility-ops` collection and a read-only Slurm usage reporting
   skill for support teams.
 - Add a read-only Slurm node-health triage skill for facility operations.
+- Add a read-only module-tree health check skill for software-stack and
+  facility operations support.
 
 ## v0.1.0 - Planned
 
@@ -20,7 +22,7 @@ Initial public seed release.
 
 ### Added
 
-- 42 seed HPC skills covering Slurm, job arrays, monitoring, resource
+- 43 seed HPC skills covering Slurm, job arrays, monitoring, resource
   estimation, failure triage, checkpoint/restart, interactive sessions,
   notebooks, OpenMP placement, storage triage, software environments,
   containers, Spack, EasyBuild, data movement, workflow engines, MPI/GPU

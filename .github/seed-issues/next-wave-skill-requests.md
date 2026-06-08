@@ -11,8 +11,6 @@ Good next-wave skills should be:
 
 Candidate areas:
 
-- `module-tree-health-check`: inspect broken modules, missing dependencies, and
-  stale compiler/MPI combinations.
 - `training-cluster-reset-checklist`: repeatable public preflight and cleanup
   guidance for workshops.
 - `cwl-on-slurm`: conservative CWL execution patterns for Slurm-backed HPC.
