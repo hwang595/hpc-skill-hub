@@ -33,6 +33,9 @@ python3 tools/hpc_skill.py health
 PYTHONPATH=src python3 -m hpc_skill_hub collection core-hpc
 python3 -m pip install .
 hpc-skill collection core-hpc
+python3 -m pip install --upgrade build twine
+python3 -m build --sdist --wheel
+python3 -m twine check dist/*
 python3 -m unittest discover -s tests
 make check
 ```
@@ -49,12 +52,14 @@ Review:
   pass `tools/validate_registry_artifacts.py`.
 - `registry/releases/v<version>.json` is current and attached to the GitHub
   release.
+- Built source and wheel distributions pass `twine check`, and the `Package`
+  workflow smoke tests the installed `hpc-skill` CLI outside the checkout.
 - New skills have README files, examples, tests, and references.
 - Medium and high-risk entries explain impact and safety notes.
 - Site adapters contain only public, non-sensitive information.
 - Any maturity promotions link a maturity review issue or public review
   evidence.
-- GitHub Actions are green on `main`.
+- `Validate` and `Package` GitHub Actions are green on `main`.
 
 ## Release Notes Template
 

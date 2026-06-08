@@ -87,6 +87,7 @@ def required_files_check() -> Check:
         ".github/seed_issues.json",
         ".github/rulesets/main.json",
         ".github/workflows/validate.yml",
+        ".github/workflows/package.yml",
         ".github/workflows/pages.yml",
         ".github/pull_request_template.md",
         "tools/github_publish_plan.py",

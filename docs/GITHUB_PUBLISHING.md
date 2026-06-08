@@ -58,7 +58,10 @@ git push -u origin main
 
 ## First Release Checklist
 
-- `make check` passes locally and in GitHub Actions.
+- `make check` passes locally and the `Validate` workflow passes in GitHub
+  Actions.
+- The `Package` workflow builds source and wheel distributions, checks package
+  metadata, and smoke tests the installed CLI outside the checkout.
 - README, roadmap, contribution guide, security policy, and governance docs are
   present.
 - Generated skill catalog, registry health, and compatibility tables are
@@ -79,13 +82,14 @@ git push -u origin main
 - `python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes`
   prints the expected starter issue commands.
 - `python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub` prints the
-  expected branch ruleset command after the first `Validate` workflow run.
+  expected branch ruleset command after the first `Validate` and `Package`
+  workflow runs.
 - `python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub` prints
   the expected release commands and manifest attachment after Pages and Actions
   are green.
 - `python3 tools/github_publish_plan.py --owner <owner> --run-check` prints the
   expected end-to-end publication plan.
-- Branch protection requires the validation workflow.
+- Branch protection requires the validation and package workflows.
 - GitHub Pages is enabled with the `Publish Pages` workflow.
 - Dependabot, issue templates, and pull request templates are present.
 - A pinned issue invites external HPC centers to propose skills and adapters.

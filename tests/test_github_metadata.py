@@ -144,6 +144,10 @@ class GitHubMetadataTests(unittest.TestCase):
             {"context": "skills"},
             required_checks["required_status_checks"],
         )
+        self.assertIn(
+            {"context": "wheel"},
+            required_checks["required_status_checks"],
+        )
 
     def test_validate_workflow_covers_release_artifacts(self):
         workflow = (ROOT / ".github" / "workflows" / "validate.yml").read_text(
@@ -165,6 +169,26 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("cd /tmp", workflow)
         self.assertIn("hpc-skill health --json", workflow)
         self.assertIn("python3 -m hpc_skill_hub show slurm-submit-job --json", workflow)
+
+    def test_package_workflow_builds_and_smoke_tests_wheel(self):
+        workflow = (ROOT / ".github" / "workflows" / "package.yml").read_text(
+            encoding="utf-8"
+        )
+
+        for text in [
+            "name: Package",
+            "wheel:",
+            "python3 -m pip install --upgrade pip build twine",
+            "python3 tools/build_package_data.py --check",
+            "python3 tools/validate_registry_artifacts.py",
+            "python3 -m build --sdist --wheel",
+            "python3 -m twine check dist/*",
+            "python3 -m venv /tmp/hpc-skill-hub-wheel",
+            "--no-index --find-links",
+            "hpc-skill health --json",
+            "python -m hpc_skill_hub show slurm-submit-job --json",
+        ]:
+            self.assertIn(text, workflow)
 
     def test_ruleset_command_generator(self):
         result = subprocess.run(

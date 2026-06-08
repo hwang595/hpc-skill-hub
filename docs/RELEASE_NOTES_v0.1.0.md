@@ -73,6 +73,8 @@ request missing workflows, or contribute public site adapters.
 ## GitHub Launch Readiness
 
 - Validation workflow for every pull request and push to `main`.
+- Package workflow for source distribution, wheel, metadata, and installed CLI
+  smoke checks.
 - GitHub Pages publishing workflow for the generated static registry.
 - Dependabot configuration for GitHub Actions and Python packaging.
 - Issue templates for bugs, docs, skill requests, site adapters, and safety
@@ -109,7 +111,9 @@ request missing workflows, or contribute public site adapters.
 
 Before tagging `v0.1.0`, maintainers should confirm:
 
-- `make check` passes locally and in GitHub Actions.
+- `make check` passes locally, `Validate` passes in GitHub Actions, and
+  `Package` passes source distribution, wheel, metadata, and installed CLI
+  smoke checks.
 - `registry/index.json`, `registry/health.json`, `docs/SKILL_CATALOG.md`, and
   `docs/REGISTRY_HEALTH.md` are current.
 - `docs/COMPATIBILITY.md` and `registry/releases/v0.1.0.json` are current.

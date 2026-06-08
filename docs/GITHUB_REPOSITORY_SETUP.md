@@ -28,10 +28,11 @@ Run the printed commands when they look correct.
 
 Use `.github/rulesets/main.json` as the source of truth for the starter `main`
 branch ruleset. It requires pull requests, one approving review, the `skills`
-CI check, up-to-date checks, and blocks branch deletion and force pushes.
+and `wheel` CI checks, up-to-date checks, and blocks branch deletion and force
+pushes.
 
-After the first push and one successful `Validate` workflow run, inspect the
-ruleset command:
+After the first push and successful `Validate` and `Package` workflow runs,
+inspect the ruleset command:
 
 ```bash
 python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub
@@ -101,7 +102,7 @@ starter discussion prompts.
 
 Cut `v0.1.0` after:
 
-- `make check` passes on GitHub Actions.
+- `Validate` and `Package` pass on GitHub Actions.
 - The generated registry site is published.
 - At least one external contributor can validate a skill locally.
 - Maintainers agree the skill schema is stable enough for early adopters.

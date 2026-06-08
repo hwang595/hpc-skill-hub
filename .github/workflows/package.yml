@@ -1,0 +1,39 @@
+name: Package
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wheel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install package build tooling
+        run: python3 -m pip install --upgrade pip build twine
+      - name: Check packaged registry data
+        run: |
+          python3 tools/build_package_data.py --check
+          python3 tools/validate_registry_artifacts.py
+      - name: Build distributions
+        run: python3 -m build --sdist --wheel
+      - name: Check distribution metadata
+        run: python3 -m twine check dist/*
+      - name: Smoke test wheel outside checkout
+        run: |
+          python3 -m venv /tmp/hpc-skill-hub-wheel
+          /tmp/hpc-skill-hub-wheel/bin/python -m pip install --no-index --find-links "${GITHUB_WORKSPACE}/dist" hpc-skill-hub
+          cd /tmp
+          /tmp/hpc-skill-hub-wheel/bin/hpc-skill health --json
+          /tmp/hpc-skill-hub-wheel/bin/hpc-skill collection core-hpc --json
+          /tmp/hpc-skill-hub-wheel/bin/python -m hpc_skill_hub show slurm-submit-job --json

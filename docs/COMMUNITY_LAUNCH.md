@@ -1,8 +1,8 @@
 # Community Launch
 
-Use this guide after the repository is pushed to GitHub and the validation
-workflow is green. It gives maintainers ready-to-use text and a small launch
-sequence for opening the project as an ecosystem.
+Use this guide after the repository is pushed to GitHub and the validation and
+package workflows are green. It gives maintainers ready-to-use text and a small
+launch sequence for opening the project as an ecosystem.
 
 ## Repository Metadata
 
@@ -87,7 +87,7 @@ help-wanted, good-first-issue, governance
 ## Launch Checklist
 
 - Push `main` to a public GitHub repository.
-- Confirm the `Validate` workflow passes.
+- Confirm the `Validate` and `Package` workflows pass.
 - Enable GitHub Pages from Actions and confirm `Publish Pages` succeeds.
 - Apply repository description, topics, and feature settings from
   `.github/repository.json`.

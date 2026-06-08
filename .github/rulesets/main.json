@@ -39,6 +39,9 @@
         "required_status_checks": [
           {
             "context": "skills"
+          },
+          {
+            "context": "wheel"
           }
         ]
       }
