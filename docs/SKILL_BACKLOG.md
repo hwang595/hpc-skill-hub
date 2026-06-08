@@ -21,6 +21,7 @@ new collections.
 | `checkpoint-restart-workflow` | scheduler | medium | Seed skill added to `core-hpc`. |
 | `openmp-thread-affinity` | performance | medium | Seed skill added to `core-hpc` and `gpu-mpi-performance`. |
 | `jupyter-on-slurm` | interactive | medium | Seed skill added to `core-hpc`. |
+| `rstudio-on-slurm` | interactive | medium | Seed skill added to `core-hpc`, `software-stacks`, and `training-onboarding`. |
 | `vscode-tunnel-on-slurm` | interactive | medium | Seed skill added to `core-hpc`, `software-stacks`, and `training-onboarding`. |
 | `python-virtualenv-on-hpc` | software | low | Seed skill added to `software-stacks`. |
 | `ray-on-slurm` | gpu | medium | Seed skill added to `software-stacks` and `gpu-mpi-performance`. |

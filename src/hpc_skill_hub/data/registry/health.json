@@ -7,11 +7,11 @@
     "debugging": 17,
     "education": 1,
     "gpu": 9,
-    "interactive": 3,
+    "interactive": 4,
     "mpi": 11,
     "performance": 12,
-    "scheduler": 48,
-    "software": 16,
+    "scheduler": 49,
+    "software": 17,
     "workflow": 10
   },
   "collection_count": 12,
@@ -62,7 +62,7 @@
     },
     {
       "id": "core-hpc",
-      "skill_count": 15,
+      "skill_count": 16,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
@@ -75,6 +75,7 @@
         "job-failure-triage",
         "interactive-session",
         "jupyter-on-slurm",
+        "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
         "openmp-thread-affinity",
         "quota-and-filesystem-triage",
@@ -156,7 +157,7 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 18,
+      "skill_count": 19,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
@@ -167,6 +168,7 @@
         "dask-jobqueue-on-slurm",
         "mpi4py-on-slurm",
         "rscript-on-slurm",
+        "rstudio-on-slurm",
         "julia-on-slurm",
         "matlab-batch-on-slurm",
         "vscode-tunnel-on-slurm",
@@ -180,12 +182,13 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 13,
+      "skill_count": 14,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
         "interactive-session",
         "jupyter-on-slurm",
+        "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
         "python-virtualenv-on-hpc",
         "rscript-on-slurm",
@@ -213,7 +216,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 65
+    "seed": 66
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -266,6 +269,7 @@
     "ray-on-slurm": "medium",
     "reproducible-run-capture": "low",
     "rscript-on-slurm": "medium",
+    "rstudio-on-slurm": "medium",
     "rsync-data-transfer": "medium",
     "scratch-storage-management": "low",
     "slurm-efficiency-report": "low",
@@ -284,13 +288,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 48
+    "medium": 49
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 65,
+  "skill_count": 66,
   "status_counts": {
-    "draft": 65
+    "draft": 66
   },
   "uncollected_skill_ids": []
 }

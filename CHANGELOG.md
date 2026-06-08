@@ -54,6 +54,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   MPI launch patterns.
 - Add a VS Code Tunnel on Slurm skill for policy-aware IDE sessions on compute
   allocations.
+- Add an RStudio on Slurm skill for policy-aware Posit or RStudio sessions on
+  scheduled compute allocations.
 - Add a NAMD on Slurm skill for molecular dynamics jobs with CPU/GPU layout and
   restart planning.
 - Add a CP2K on Slurm skill for MPI/OpenMP electronic-structure and molecular
@@ -89,10 +91,10 @@ Initial public seed release.
 
 ### Added
 
-- 65 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 66 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, dependency chains, pending reason triage, monitoring, resource
   estimation, efficiency review, failure triage, checkpoint/restart,
-  interactive sessions, notebooks, IDE tunnels, OpenMP
+  interactive sessions, notebooks, RStudio, IDE tunnels, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
   Ray, Dask Jobqueue, mpi4py, containers, containerized MPI, Spack, EasyBuild, data movement,
   CWL/WDL, workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics

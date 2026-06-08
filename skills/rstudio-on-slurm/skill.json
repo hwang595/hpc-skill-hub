@@ -1,0 +1,133 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "rstudio-on-slurm",
+  "name": "RStudio On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Launch policy-aware RStudio or Posit sessions from Slurm allocations.",
+  "description": "This skill provides a conservative pattern for RStudio or Posit IDE sessions on Slurm-backed HPC systems, including policy checks, project-directory review, optional tunnel guidance, and plan-only defaults before launching a site-approved wrapper.",
+  "categories": ["interactive", "scheduler", "software"],
+  "tags": ["rstudio", "posit", "r", "slurm", "interactive", "tunnel"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true,
+      "notes": "Used by the example batch wrapper for short interactive IDE allocations."
+    },
+    {
+      "name": "R",
+      "required": true,
+      "notes": "R must be available in the session environment selected by the site."
+    },
+    {
+      "name": "rserver",
+      "required": false,
+      "notes": "Some sites expose a user-safe RStudio Server wrapper; many production sites use Posit Workbench Launcher instead."
+    },
+    {
+      "name": "ssh",
+      "required": false,
+      "notes": "Used only for sites that require an SSH tunnel to reach the compute-node web session."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "project_dir",
+      "type": "path",
+      "required": true,
+      "description": "R project or working directory to open inside the scheduled session."
+    },
+    {
+      "name": "port",
+      "type": "integer",
+      "required": false,
+      "description": "Local web port used by a site-approved RStudio wrapper when direct Workbench access is not available."
+    },
+    {
+      "name": "launch_command",
+      "type": "string",
+      "required": true,
+      "description": "Site-approved RStudio, Posit Workbench, Open OnDemand, or wrapper command for starting the IDE session."
+    },
+    {
+      "name": "site_policy",
+      "type": "string",
+      "required": true,
+      "description": "Local policy confirming whether user-started RStudio sessions and tunnels are allowed on compute nodes."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "rstudio_session_log",
+      "description": "Slurm output showing compute host, project directory, selected port, and wrapper command review."
+    },
+    {
+      "name": "connection_notes",
+      "description": "SSH tunnel or Workbench connection notes for reaching the scheduled IDE session."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/rstudio-session.sbatch",
+    "examples/rstudio-preflight.sh",
+    "examples/tunnel-template.sh",
+    "examples/site-policy-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Plan or launch a site-approved RStudio session on Slurm",
+      "path": "examples/rstudio-session.sbatch"
+    },
+    {
+      "title": "Check RStudio, R, Slurm, and project prerequisites",
+      "path": "examples/rstudio-preflight.sh"
+    },
+    {
+      "title": "Build an SSH tunnel command when required by the site",
+      "path": "examples/tunnel-template.sh"
+    },
+    {
+      "title": "Review site policy before starting an RStudio session",
+      "path": "examples/site-policy-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill rstudio-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/rstudio-on-slurm/examples/rstudio-session.sbatch skills/rstudio-on-slurm/examples/rstudio-preflight.sh skills/rstudio-on-slurm/examples/tunnel-template.sh",
+      "description": "Check that shell examples parse."
+    },
+    {
+      "type": "manual",
+      "description": "After site approval, run the preflight, submit a short plan-only job, then set RUN_RSTUDIO_SESSION=1 with a site-approved launch command and cancel the job when finished."
+    }
+  ],
+  "references": [
+    {
+      "title": "Posit Workbench integration with Slurm",
+      "url": "https://docs.posit.co/ide/server-pro/integration/launcher-slurm.html"
+    },
+    {
+      "title": "RStudio IDE terminal process model",
+      "url": "https://support.posit.co/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

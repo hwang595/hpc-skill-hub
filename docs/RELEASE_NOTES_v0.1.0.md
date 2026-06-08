@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 63.
+- Skills: 66.
 - Collections: 12.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -25,27 +25,28 @@ request missing workflows, or contribute public site adapters.
 - Core HPC and schedulers: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
   submission, Slurm and Grid Engine arrays, dependency chains, pending reason
   triage, monitoring, resource estimation, efficiency review,
-  checkpoint/restart, failure triage, interactive sessions, Jupyter, OpenMP
-  placement, quota triage, and scratch management.
+  checkpoint/restart, failure triage, interactive sessions, Jupyter, RStudio,
+  VS Code tunnels, OpenMP placement, quota triage, and scratch management.
 - Software stacks: module debugging, module tree health, compiler/MPI
   compatibility, reproducible run capture, Python virtualenv, Ray on Slurm,
-  Dask Jobqueue, mpi4py on Slurm, Rscript on Slurm, Julia on Slurm, MATLAB
-  batch jobs, Conda/Mamba, Apptainer builds and runtime, Spack, and EasyBuild.
+  Dask Jobqueue, mpi4py on Slurm, Rscript and RStudio on Slurm, Julia on Slurm,
+  MATLAB batch jobs, VS Code tunnels, Conda/Mamba, Apptainer builds and runtime,
+  containerized MPI, Spack, and EasyBuild.
 - Containers: Apptainer-compatible image build planning, container runtime
-  execution, GPU visibility checks, scratch staging, checksum manifests, and
-  reproducible run capture.
+  execution, containerized MPI launch checks, GPU visibility checks, scratch
+  staging, checksum manifests, and reproducible run capture.
 - Workflow engines: lightweight Slurm dependency chains, CWL and WDL runs
   inside Slurm allocations, Dask worker clusters, Nextflow, Snakemake, and
   nf-core on Slurm.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm
-  workflows, notebooks, Python/Conda environments, Rscript, Julia, and MATLAB
-  batch jobs, and common learner triage.
+  workflows, notebooks, RStudio, VS Code tunnels, Python/Conda environments,
+  Rscript, Julia, and MATLAB batch jobs, and common learner triage.
 - Data movement: Globus, rsync, checksum manifests, scratch staging, archive
   preparation, scratch inventory, and filesystem quota triage.
-- GPU/MPI performance: MPI sanity checks, mpi4py launch checks, GPU sanity
-  checks, Ray cluster smoke tests, PyTorch DDP, NCCL diagnostics, GPU memory
-  triage, DeepSpeed, OpenMP placement, Slurm efficiency review, and basic
-  profiling.
+- GPU/MPI performance: MPI sanity checks, containerized MPI, mpi4py launch
+  checks, GPU sanity checks, Ray cluster smoke tests, PyTorch DDP, NCCL
+  diagnostics, GPU memory triage, DeepSpeed, OpenMP placement, Slurm efficiency
+  review, and basic profiling.
 - AI/HPC: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
   DeepSpeed, NCCL diagnostics, GPU memory triage, container runtime execution,
   data staging, checkpoint/restart planning, reproducible run capture, and

@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 65
+- Skills: 66
 - Site adapters: 1
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 48 |
+| `medium` | 49 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 65 |
+| `seed` | 66 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 65 |
+| `draft` | 66 |
 
 ## Collection Coverage
 
@@ -35,14 +35,14 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `ai-hpc` | 12 |
 | `bioinformatics-workflows` | 7 |
 | `containers` | 7 |
-| `core-hpc` | 15 |
+| `core-hpc` | 16 |
 | `data-movement` | 7 |
 | `facility-ops` | 4 |
 | `gpu-mpi-performance` | 13 |
 | `scheduler-basics` | 7 |
 | `simulation-workflows` | 12 |
-| `software-stacks` | 18 |
-| `training-onboarding` | 13 |
+| `software-stacks` | 19 |
+| `training-onboarding` | 14 |
 | `workflow-engines` | 7 |
 
 ## Uncollected Skills
@@ -103,6 +103,7 @@ All skills are included in at least one collection.
 | `ray-on-slurm` | medium |
 | `reproducible-run-capture` | low |
 | `rscript-on-slurm` | medium |
+| `rstudio-on-slurm` | medium |
 | `rsync-data-transfer` | medium |
 | `scratch-storage-management` | low |
 | `slurm-efficiency-report` | low |

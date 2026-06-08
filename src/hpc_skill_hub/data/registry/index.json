@@ -7,11 +7,11 @@
     "debugging": 17,
     "education": 1,
     "gpu": 9,
-    "interactive": 3,
+    "interactive": 4,
     "mpi": 11,
     "performance": 12,
-    "scheduler": 48,
-    "software": 16,
+    "scheduler": 49,
+    "software": 17,
     "workflow": 10
   },
   "collection_count": 12,
@@ -106,13 +106,14 @@
         "job-failure-triage",
         "interactive-session",
         "jupyter-on-slurm",
+        "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
         "openmp-thread-affinity",
         "quota-and-filesystem-triage",
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, IDE tunnels, OpenMP placement, debugging, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage."
     },
     {
       "audience": [
@@ -247,6 +248,7 @@
         "dask-jobqueue-on-slurm",
         "mpi4py-on-slurm",
         "rscript-on-slurm",
+        "rstudio-on-slurm",
         "julia-on-slurm",
         "matlab-batch-on-slurm",
         "vscode-tunnel-on-slurm",
@@ -258,7 +260,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -274,6 +276,7 @@
         "slurm-submit-job",
         "interactive-session",
         "jupyter-on-slurm",
+        "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
         "python-virtualenv-on-hpc",
         "rscript-on-slurm",
@@ -285,7 +288,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -318,7 +321,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 45,
+    "slurm": 46,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -345,7 +348,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 65,
+  "skill_count": 66,
   "skills": [
     {
       "categories": [
@@ -3319,6 +3322,72 @@
     },
     {
       "categories": [
+        "interactive",
+        "scheduler",
+        "software"
+      ],
+      "description": "This skill provides a conservative pattern for RStudio or Posit IDE sessions on Slurm-backed HPC systems, including policy checks, project-directory review, optional tunnel guidance, and plan-only defaults before launching a site-approved wrapper.",
+      "examples": [
+        {
+          "path": "skills/rstudio-on-slurm/examples/rstudio-session.sbatch",
+          "title": "Plan or launch a site-approved RStudio session on Slurm"
+        },
+        {
+          "path": "skills/rstudio-on-slurm/examples/rstudio-preflight.sh",
+          "title": "Check RStudio, R, Slurm, and project prerequisites"
+        },
+        {
+          "path": "skills/rstudio-on-slurm/examples/tunnel-template.sh",
+          "title": "Build an SSH tunnel command when required by the site"
+        },
+        {
+          "path": "skills/rstudio-on-slurm/examples/site-policy-checklist.md",
+          "title": "Review site policy before starting an RStudio session"
+        }
+      ],
+      "id": "rstudio-on-slurm",
+      "maturity": "seed",
+      "name": "RStudio On Slurm",
+      "path": "skills/rstudio-on-slurm",
+      "readme": "skills/rstudio-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Posit Workbench integration with Slurm",
+          "url": "https://docs.posit.co/ide/server-pro/integration/launcher-slurm.html"
+        },
+        {
+          "title": "RStudio IDE terminal process model",
+          "url": "https://support.posit.co/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Launch policy-aware RStudio or Posit sessions from Slurm allocations.",
+      "tags": [
+        "rstudio",
+        "posit",
+        "r",
+        "slurm",
+        "interactive",
+        "tunnel"
+      ],
+      "tools": [
+        "sbatch",
+        "R",
+        "rserver",
+        "ssh"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "data"
       ],
       "description": "This skill helps users plan and run rsync transfers with conservative defaults, dry-run review, log capture, checksum-aware options, and a post-transfer validation checklist.",
@@ -4213,7 +4282,7 @@
     "htcondor": 1,
     "ide": 1,
     "inode": 1,
-    "interactive": 2,
+    "interactive": 3,
     "io": 1,
     "java": 1,
     "julia": 1,
@@ -4271,6 +4340,7 @@
     "pipeline": 1,
     "pmix": 1,
     "ports": 1,
+    "posit": 1,
     "preemption": 1,
     "preflight": 1,
     "priority": 1,
@@ -4290,7 +4360,7 @@
     "quantum-espresso": 1,
     "queue": 2,
     "quota": 2,
-    "r": 1,
+    "r": 2,
     "ray": 1,
     "reason": 1,
     "reconstruction": 1,
@@ -4304,6 +4374,7 @@
     "rlibs": 1,
     "rocm": 2,
     "rscript": 1,
+    "rstudio": 1,
     "rsync": 2,
     "sacct": 5,
     "salloc": 1,
@@ -4318,7 +4389,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 43,
+    "slurm": 44,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -4338,7 +4409,7 @@
     "training": 1,
     "transfer": 3,
     "triage": 4,
-    "tunnel": 1,
+    "tunnel": 2,
     "uge": 1,
     "usage": 1,
     "validation": 1,
@@ -4357,6 +4428,7 @@
     "zero": 1
   },
   "tools": {
+    "R": 1,
     "Rscript": 1,
     "all_reduce_perf": 1,
     "apptainer": 3,
@@ -4441,10 +4513,11 @@
     "real.exe": 1,
     "reconstructPar": 1,
     "rocm-smi": 2,
+    "rserver": 1,
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 35,
+    "sbatch": 36,
     "scontrol": 6,
     "sed": 3,
     "seff": 1,
@@ -4460,7 +4533,7 @@
     "squeue": 7,
     "sreport": 1,
     "srun": 17,
-    "ssh": 2,
+    "ssh": 3,
     "tail": 4,
     "tar": 1,
     "tee": 17,
