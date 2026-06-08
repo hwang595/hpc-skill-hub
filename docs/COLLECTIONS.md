@@ -19,8 +19,9 @@ research software engineer building software stacks may start with
   starter submission patterns plus failure triage and reproducible run capture
   for sites comparing or teaching scheduler basics.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
-  parallel HDF5/NetCDF preflight, license-aware jobs, reproducible run capture,
-  Python virtual environments, Open OnDemand templates, TensorBoard monitors,
+  CMake build preflight, parallel HDF5/NetCDF preflight, license-aware jobs,
+  reproducible run capture, Python virtual environments, Open OnDemand
+  templates, TensorBoard monitors,
   Streamlit apps, Ray clusters, Dask Jobqueue,
   Parsl worker blocks, JAX distributed smoke tests, Hugging Face Accelerate
   launches, TensorFlow multi-worker smoke tests, mpi4py jobs, Rscript jobs,
@@ -51,8 +52,9 @@ research software engineer building software stacks may start with
   distributed AI workloads.
 - `gpu-mpi-performance`: MPI launch checks, containerized MPI checks, mpi4py
   launch checks, MPI fabric diagnostics, MPI rank binding diagnostics, hybrid
-  MPI/OpenMP layout checks, parallel HDF5/NetCDF preflight, Darshan I/O
-  profile analysis, Lustre striping layout planning, GPU binding diagnostics,
+  MPI/OpenMP layout checks, CMake build preflight, parallel HDF5/NetCDF
+  preflight, Darshan I/O profile analysis, Lustre striping layout planning,
+  GPU binding diagnostics,
   compiler/MPI
   compatibility, GPU sanity checks, Ray cluster smoke tests, JAX distributed smoke tests,
   Hugging Face Accelerate launches, TensorFlow multi-worker smoke tests,
@@ -63,9 +65,10 @@ research software engineer building software stacks may start with
   staging, and checksum practices for genomics and core-facility workflows.
 - `simulation-workflows`: GROMACS, LAMMPS, NAMD, Quantum ESPRESSO, CP2K,
   OpenFOAM, WRF, MPI launch checks, MPI fabric diagnostics, rank binding
-  diagnostics, hybrid MPI/OpenMP layouts, parallel HDF5/NetCDF preflight,
-  Darshan I/O profile analysis, Lustre striping layout planning, OpenMP
-  placement, profiling, restart planning, storage smoke evidence, and
+  diagnostics, hybrid MPI/OpenMP layouts, CMake build preflight,
+  parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre
+  striping layout planning, OpenMP placement, profiling, restart planning,
+  storage smoke evidence, and
   reproducible run capture for simulation teams.
 - `facility-ops`: read-only usage reporting, pending reason triage, node
   triage, QOS/account limit evidence, and module tree health checks for HPC

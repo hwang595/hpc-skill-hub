@@ -40,6 +40,7 @@ new collections.
 | `mpi-fabric-diagnostics` | mpi | medium | Seed skill added to `gpu-mpi-performance` and `simulation-workflows`. |
 | `mpi-rank-binding-diagnostics` | mpi | medium | Seed skill added to `gpu-mpi-performance` and `simulation-workflows`. |
 | `hybrid-mpi-openmp-slurm` | mpi | medium | Seed skill added to `gpu-mpi-performance` and `simulation-workflows`. |
+| `cmake-hpc-build-preflight` | software | medium | Seed skill added to `software-stacks`, `gpu-mpi-performance`, and `simulation-workflows`. |
 | `parallel-hdf5-netcdf-preflight` | software | medium | Seed skill added to `software-stacks`, `gpu-mpi-performance`, and `simulation-workflows`. |
 | `darshan-io-profile-analysis` | performance | low | Seed skill added to `data-movement`, `gpu-mpi-performance`, and `simulation-workflows`. |
 | `lustre-striping-layout-planning` | performance | medium | Seed skill added to `data-movement`, `gpu-mpi-performance`, and `simulation-workflows`. |

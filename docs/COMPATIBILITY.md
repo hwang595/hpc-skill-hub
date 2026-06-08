@@ -7,12 +7,12 @@ This document is generated from `registry/index.json` by
 
 | Signal | Count |
 | --- | ---: |
-| Skills | 85 |
+| Skills | 86 |
 | Collections | 12 |
 | Site adapters | 2 |
 | Schedulers | 9 |
 | Categories | 12 |
-| Tools | 147 |
+| Tools | 151 |
 
 ## Scheduler Coverage
 
@@ -24,7 +24,7 @@ This document is generated from `registry/index.json` by
 | `openpbs` | 1 | `scheduler` | `scheduler-basics` |
 | `pbs` | 1 | `scheduler` | `scheduler-basics` |
 | `pbs-pro` | 1 | `scheduler` | `scheduler-basics` |
-| `scheduler-agnostic` | 19 | `admin`, `containers`, `data`, `debugging`, `mpi`, `performance`, `software` | `ai-hpc`, `bioinformatics-workflows`, `containers`, `core-hpc`, `data-movement`, `facility-ops`, `gpu-mpi-performance`, `scheduler-basics`, `simulation-workflows`, `software-stacks`, `training-onboarding` |
+| `scheduler-agnostic` | 20 | `admin`, `containers`, `data`, `debugging`, `mpi`, `performance`, `software` | `ai-hpc`, `bioinformatics-workflows`, `containers`, `core-hpc`, `data-movement`, `facility-ops`, `gpu-mpi-performance`, `scheduler-basics`, `simulation-workflows`, `software-stacks`, `training-onboarding` |
 | `sge` | 1 | `scheduler` | `scheduler-basics` |
 | `slurm` | 62 | `admin`, `containers`, `data`, `debugging`, `education`, `gpu`, `interactive`, `mpi`, `performance`, `scheduler`, `software`, `workflow` | `ai-hpc`, `bioinformatics-workflows`, `containers`, `core-hpc`, `data-movement`, `facility-ops`, `gpu-mpi-performance`, `scheduler-basics`, `simulation-workflows`, `software-stacks`, `training-onboarding`, `workflow-engines` |
 | `uge` | 1 | `scheduler` | `scheduler-basics` |
@@ -41,10 +41,10 @@ Counts show how many skills in each collection include each category.
 | [`core-hpc`](../collections/core-hpc.json) | 19 | 1 | 0 | 2 | 10 | 0 | 0 | 4 | 0 | 3 | 17 | 3 | 1 |
 | [`data-movement`](../collections/data-movement.json) | 11 | 0 | 0 | 11 | 4 | 0 | 0 | 0 | 2 | 3 | 2 | 0 | 0 |
 | [`facility-ops`](../collections/facility-ops.json) | 5 | 4 | 0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 4 | 1 | 0 |
-| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | 25 | 0 | 1 | 4 | 14 | 0 | 10 | 1 | 10 | 12 | 19 | 8 | 0 |
+| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | 26 | 0 | 1 | 4 | 15 | 0 | 10 | 1 | 11 | 12 | 19 | 9 | 0 |
 | [`scheduler-basics`](../collections/scheduler-basics.json) | 7 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 6 | 1 | 1 |
-| [`simulation-workflows`](../collections/simulation-workflows.json) | 19 | 0 | 0 | 4 | 9 | 0 | 3 | 0 | 14 | 16 | 14 | 2 | 0 |
-| [`software-stacks`](../collections/software-stacks.json) | 28 | 1 | 3 | 1 | 6 | 1 | 4 | 5 | 4 | 2 | 18 | 26 | 2 |
+| [`simulation-workflows`](../collections/simulation-workflows.json) | 20 | 0 | 0 | 4 | 10 | 0 | 3 | 0 | 15 | 16 | 14 | 3 | 0 |
+| [`software-stacks`](../collections/software-stacks.json) | 29 | 1 | 3 | 1 | 7 | 1 | 4 | 5 | 5 | 2 | 18 | 27 | 2 |
 | [`training-onboarding`](../collections/training-onboarding.json) | 19 | 1 | 0 | 1 | 5 | 2 | 0 | 7 | 0 | 0 | 16 | 12 | 0 |
 | [`workflow-engines`](../collections/workflow-engines.json) | 8 | 0 | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | 2 | 8 |
 
@@ -70,7 +70,7 @@ Counts show how many skills in each collection include each category.
 | Conda and Mamba | [`conda-mamba-on-hpc`](../skills/conda-mamba-on-hpc/README.md) |
 | Python | [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md), [`deepspeed-on-slurm`](../skills/deepspeed-on-slurm/README.md), [`gpu-memory-triage`](../skills/gpu-memory-triage/README.md), [`huggingface-accelerate-on-slurm`](../skills/huggingface-accelerate-on-slurm/README.md), [`ior-mdtest-storage-smoke`](../skills/ior-mdtest-storage-smoke/README.md), [`jax-distributed-on-slurm`](../skills/jax-distributed-on-slurm/README.md), [`jupyter-on-slurm`](../skills/jupyter-on-slurm/README.md), [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md), [`parsl-on-slurm`](../skills/parsl-on-slurm/README.md), [`python-virtualenv-on-hpc`](../skills/python-virtualenv-on-hpc/README.md), [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md), [`ray-on-slurm`](../skills/ray-on-slurm/README.md), [`slurm-gpu-binding-diagnostics`](../skills/slurm-gpu-binding-diagnostics/README.md), [`streamlit-on-slurm`](../skills/streamlit-on-slurm/README.md), [`tensorboard-on-slurm`](../skills/tensorboard-on-slurm/README.md), [`tensorflow-multiworker-on-slurm`](../skills/tensorflow-multiworker-on-slurm/README.md) |
 | R, Julia, and MATLAB | [`julia-on-slurm`](../skills/julia-on-slurm/README.md), [`matlab-batch-on-slurm`](../skills/matlab-batch-on-slurm/README.md), [`rscript-on-slurm`](../skills/rscript-on-slurm/README.md) |
-| Compiler and MPI stacks | [`apptainer-mpi-on-slurm`](../skills/apptainer-mpi-on-slurm/README.md), [`compiler-mpi-matrix`](../skills/compiler-mpi-matrix/README.md), [`cp2k-on-slurm`](../skills/cp2k-on-slurm/README.md), [`darshan-io-profile-analysis`](../skills/darshan-io-profile-analysis/README.md), [`grid-engine-submit-job`](../skills/grid-engine-submit-job/README.md), [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md), [`hybrid-mpi-openmp-slurm`](../skills/hybrid-mpi-openmp-slurm/README.md), [`ior-mdtest-storage-smoke`](../skills/ior-mdtest-storage-smoke/README.md), [`lammps-on-slurm`](../skills/lammps-on-slurm/README.md), [`lsf-submit-job`](../skills/lsf-submit-job/README.md), [`module-environment-debug`](../skills/module-environment-debug/README.md), [`module-tree-health-check`](../skills/module-tree-health-check/README.md), [`mpi-fabric-diagnostics`](../skills/mpi-fabric-diagnostics/README.md), [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md), [`mpi-rank-binding-diagnostics`](../skills/mpi-rank-binding-diagnostics/README.md), [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md), [`namd-on-slurm`](../skills/namd-on-slurm/README.md), [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md), [`parallel-hdf5-netcdf-preflight`](../skills/parallel-hdf5-netcdf-preflight/README.md), [`pbs-submit-job`](../skills/pbs-submit-job/README.md), [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md), [`slurm-submit-job`](../skills/slurm-submit-job/README.md), [`wrf-on-slurm`](../skills/wrf-on-slurm/README.md) |
+| Compiler and MPI stacks | [`apptainer-mpi-on-slurm`](../skills/apptainer-mpi-on-slurm/README.md), [`cmake-hpc-build-preflight`](../skills/cmake-hpc-build-preflight/README.md), [`compiler-mpi-matrix`](../skills/compiler-mpi-matrix/README.md), [`cp2k-on-slurm`](../skills/cp2k-on-slurm/README.md), [`darshan-io-profile-analysis`](../skills/darshan-io-profile-analysis/README.md), [`grid-engine-submit-job`](../skills/grid-engine-submit-job/README.md), [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md), [`hybrid-mpi-openmp-slurm`](../skills/hybrid-mpi-openmp-slurm/README.md), [`ior-mdtest-storage-smoke`](../skills/ior-mdtest-storage-smoke/README.md), [`lammps-on-slurm`](../skills/lammps-on-slurm/README.md), [`lsf-submit-job`](../skills/lsf-submit-job/README.md), [`module-environment-debug`](../skills/module-environment-debug/README.md), [`module-tree-health-check`](../skills/module-tree-health-check/README.md), [`mpi-fabric-diagnostics`](../skills/mpi-fabric-diagnostics/README.md), [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md), [`mpi-rank-binding-diagnostics`](../skills/mpi-rank-binding-diagnostics/README.md), [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md), [`namd-on-slurm`](../skills/namd-on-slurm/README.md), [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md), [`parallel-hdf5-netcdf-preflight`](../skills/parallel-hdf5-netcdf-preflight/README.md), [`pbs-submit-job`](../skills/pbs-submit-job/README.md), [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md), [`slurm-submit-job`](../skills/slurm-submit-job/README.md), [`wrf-on-slurm`](../skills/wrf-on-slurm/README.md) |
 
 ## Domain And Adoption Collections
 
@@ -78,7 +78,7 @@ Counts show how many skills in each collection include each category.
 | --- | ---: | --- | --- |
 | [`ai-hpc`](../collections/ai-hpc.json) | 18 | `scheduler` (16), `gpu` (10), `debugging` (8), `software` (8) | AI/HPC users, machine learning researchers, research software engineers, HPC support teams |
 | [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | 7 | `scheduler` (6), `data` (5), `workflow` (5) | bioinformatics teams, core facilities, genomics platform engineers |
-| [`simulation-workflows`](../collections/simulation-workflows.json) | 19 | `performance` (16), `mpi` (14), `scheduler` (14), `debugging` (9) | simulation teams, computational scientists, performance engineers |
+| [`simulation-workflows`](../collections/simulation-workflows.json) | 20 | `performance` (16), `mpi` (15), `scheduler` (14), `debugging` (10) | simulation teams, computational scientists, performance engineers |
 | [`data-movement`](../collections/data-movement.json) | 11 | `data` (11), `debugging` (4), `performance` (3), `mpi` (2) | data stewards, research groups, facility support teams |
 | [`facility-ops`](../collections/facility-ops.json) | 5 | `admin` (4), `debugging` (4), `scheduler` (4), `software` (1) | HPC support teams, facility maintainers, research computing operators |
 | [`training-onboarding`](../collections/training-onboarding.json) | 19 | `scheduler` (16), `software` (12), `interactive` (7), `debugging` (5) | instructors, new HPC users, training cluster maintainers |
@@ -93,13 +93,13 @@ they show where examples and wrappers expect a command or library.
 | Tool | Skills |
 | --- | ---: |
 | `sbatch` | 47 |
-| `mkdir` | 36 |
-| `date` | 33 |
+| `mkdir` | 37 |
+| `date` | 34 |
 | `srun` | 26 |
 | `module` | 25 |
 | `hostname` | 24 |
-| `tee` | 22 |
-| `bash` | 12 |
+| `tee` | 23 |
+| `bash` | 13 |
 | `python3` | 12 |
 | `scontrol` | 12 |
 | `nvidia-smi` | 10 |
@@ -107,11 +107,11 @@ they show where examples and wrappers expect a command or library.
 | `grep` | 9 |
 | `sort` | 8 |
 | `test` | 8 |
+| `mpicc` | 7 |
 | `pwd` | 7 |
 | `sacct` | 7 |
 | `env` | 6 |
 | `find` | 6 |
-| `mpicc` | 6 |
 | `head` | 5 |
 | `ssh` | 5 |
 | `tail` | 5 |
@@ -131,6 +131,8 @@ they show where examples and wrappers expect a command or library.
 | `cp` | 2 |
 | `du` | 2 |
 | `ldd` | 2 |
+| `mpicxx` | 2 |
+| `mpifort` | 2 |
 | `ncdump` | 2 |
 | `nextflow` | 2 |
 | `qstat` | 2 |
@@ -144,4 +146,4 @@ they show where examples and wrappers expect a command or library.
 
 ### Specialized Single-Skill Tools
 
-`accelerate`, `all_reduce_perf`, `aws`, `basename`, `bjobs`, `blastn`, `blockMesh`, `bsub`, `charmrun`, `clang`, `code`, `conda`, `condor_q`, `condor_rm`, `condor_submit`, `cp2k.psmp`, `cwltool`, `darshan-config`, `darshan-dxt-parser`, `darshan-job-summary.pl`, `darshan-parser`, `darshan-summary-per-file.sh`, `dask`, `dask_jobqueue`, `decomposePar`, `deepspeed`, `distributed`, `eb`, `fi_info`, `gatk`, `gcc`, `git`, `globus`, `gmx`, `gmx_mpi`, `h5cc`, `h5dump`, `h5pcc`, `hwloc-ls`, `ibv_devinfo`, `icoFoam`, `ior`, `julia`, `jupyter`, `lfs`, `lmp`, `lmutil`, `ln`, `makeblastdb`, `mamba`, `matlab`, `mdtest`, `micromamba`, `miniwdl`, `mpi4py`, `mpicxx`, `mpiexec`, `mpifort`, `namd2`, `nc-config`, `nproc`, `numactl`, `ompi_info`, `Open OnDemand`, `parsl`, `perf`, `pip`, `printenv`, `pw.x`, `qdel`, `quota`, `R`, `ray`, `rclone`, `real.exe`, `reconstructPar`, `rm`, `Rscript`, `rserver`, `sacctmgr`, `salloc`, `scancel`, `seff`, `singularity`, `snakemake`, `spack`, `sreport`, `sshare`, `stat`, `streamlit`, `tar`, `tensorboard`, `time`, `tr`, `ucx_info`, `uname`, `wc`, `wrf.exe`.
+`accelerate`, `all_reduce_perf`, `aws`, `basename`, `bjobs`, `blastn`, `blockMesh`, `bsub`, `charmrun`, `clang`, `cmake`, `code`, `conda`, `condor_q`, `condor_rm`, `condor_submit`, `cp2k.psmp`, `ctest`, `cwltool`, `darshan-config`, `darshan-dxt-parser`, `darshan-job-summary.pl`, `darshan-parser`, `darshan-summary-per-file.sh`, `dask`, `dask_jobqueue`, `decomposePar`, `deepspeed`, `distributed`, `eb`, `fi_info`, `gatk`, `gcc`, `git`, `globus`, `gmx`, `gmx_mpi`, `h5cc`, `h5dump`, `h5pcc`, `hwloc-ls`, `ibv_devinfo`, `icoFoam`, `ior`, `julia`, `jupyter`, `lfs`, `lmp`, `lmutil`, `ln`, `make`, `makeblastdb`, `mamba`, `matlab`, `mdtest`, `micromamba`, `miniwdl`, `mpi4py`, `mpiexec`, `namd2`, `nc-config`, `ninja`, `nproc`, `numactl`, `ompi_info`, `Open OnDemand`, `parsl`, `perf`, `pip`, `printenv`, `pw.x`, `qdel`, `quota`, `R`, `ray`, `rclone`, `real.exe`, `reconstructPar`, `rm`, `Rscript`, `rserver`, `sacctmgr`, `salloc`, `scancel`, `seff`, `singularity`, `snakemake`, `spack`, `sreport`, `sshare`, `stat`, `streamlit`, `tar`, `tensorboard`, `time`, `tr`, `ucx_info`, `uname`, `wc`, `wrf.exe`.

@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 85 seed skills.
+- 86 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -125,7 +125,8 @@ Priority integration tracks:
   workflows.
 - Apptainer: image execution, bind mounts, GPU pass-through, MPI launch, and
   reproducibility.
-- Spack and EasyBuild: scientific software stack creation and module generation.
+- CMake, Spack, and EasyBuild: scientific software build preflight,
+  user-owned install prefixes, stack creation, and module generation.
 - HDF5 and NetCDF: parallel I/O build preflight, wrapper evidence, and tiny
   MPI-IO smoke tests.
 - Globus and data lifecycle tools: reliable transfer, checksums, staging,
@@ -174,9 +175,9 @@ The first wave emphasizes recurring support and onboarding workflows:
 - Storage and data movement: scratch, quota, staging, checksums, rsync, Globus,
   object storage, archive preparation, Darshan I/O profile analysis, Lustre
   striping layout planning, and IOR/MDTest smoke evidence.
-- Software stacks: modules, compiler/MPI matrices, Conda, virtualenv, Spack,
-  EasyBuild, parallel HDF5/NetCDF preflight, containers, and reproducible run
-  capture.
+- Software stacks: modules, compiler/MPI matrices, CMake build preflight,
+  Conda, virtualenv, Spack, EasyBuild, parallel HDF5/NetCDF preflight,
+  containers, and reproducible run capture.
 - Interactive and teaching workflows: Open OnDemand Batch Connect templates,
   Jupyter, TensorBoard, Streamlit, RStudio, VS Code tunnels, workshop reset
   checks, and language-specific batch jobs.
@@ -184,8 +185,9 @@ The first wave emphasizes recurring support and onboarding workflows:
   Hugging Face Accelerate, TensorFlow, and monitoring.
 - Domain workflows: bioinformatics, molecular dynamics, electronic structure,
   CFD, weather, workflow engines including Parsl, MPI, OpenMP, and performance
-  evidence, including parallel HDF5/NetCDF preflight, Darshan I/O profile
-  analysis, and Lustre striping layout planning for data-heavy codes.
+  evidence, including CMake build preflight, parallel HDF5/NetCDF preflight,
+  Darshan I/O profile analysis, and Lustre striping layout planning for
+  data-heavy codes.
 - Facility support: read-only usage, node, module tree, pending reason, and
   efficiency triage.
 

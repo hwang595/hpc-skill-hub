@@ -1,0 +1,64 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "hpc-release",
+      "displayName": "HPC Release",
+      "description": "Example user-owned HPC release build using site-visible compilers and prefixes.",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/hpc-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_INSTALL_PREFIX": "$env{HOME}/apps/example-project",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      },
+      "environment": {
+        "CMAKE_BUILD_PARALLEL_LEVEL": "4"
+      }
+    },
+    {
+      "name": "hpc-mpi-release",
+      "displayName": "HPC MPI Release",
+      "inherits": "hpc-release",
+      "description": "Example MPI build that records compiler wrapper intent.",
+      "binaryDir": "${sourceDir}/build/hpc-mpi-release",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "mpicc",
+        "CMAKE_CXX_COMPILER": "mpicxx",
+        "CMAKE_Fortran_COMPILER": "mpifort",
+        "ENABLE_MPI": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "hpc-release",
+      "configurePreset": "hpc-release"
+    },
+    {
+      "name": "hpc-mpi-release",
+      "configurePreset": "hpc-mpi-release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "hpc-release",
+      "configurePreset": "hpc-release",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "hpc-mpi-release",
+      "configurePreset": "hpc-mpi-release",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

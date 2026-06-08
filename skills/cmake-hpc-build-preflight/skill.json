@@ -1,0 +1,173 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "cmake-hpc-build-preflight",
+  "name": "CMake HPC Build Preflight",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Plan reproducible CMake configure, build, test, and install steps on HPC systems.",
+  "description": "This skill helps users and support teams capture compiler, MPI, module, prefix, and build-directory assumptions before building CMake-based scientific software on shared HPC systems, with optional guarded configure, build, ctest, and install phases.",
+  "categories": ["software", "debugging", "mpi"],
+  "tags": ["cmake", "build", "compiler", "mpi", "ctest", "install-prefix", "modules", "reproducibility"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "cmake",
+      "required": true,
+      "notes": "Used to inspect CMake version and optionally run configure, build, test, and install phases."
+    },
+    {
+      "name": "ctest",
+      "required": false,
+      "notes": "Used only when RUN_CTEST=1."
+    },
+    {
+      "name": "ninja",
+      "required": false,
+      "notes": "Optional build backend when the Ninja generator is selected."
+    },
+    {
+      "name": "make",
+      "required": false,
+      "notes": "Optional build backend when Makefiles are selected."
+    },
+    {
+      "name": "mpicc",
+      "required": false,
+      "notes": "MPI C wrapper evidence when building MPI-enabled codes."
+    },
+    {
+      "name": "mpicxx",
+      "required": false,
+      "notes": "MPI C++ wrapper evidence when building MPI-enabled codes."
+    },
+    {
+      "name": "mpifort",
+      "required": false,
+      "notes": "MPI Fortran wrapper evidence when building Fortran or mixed-language codes."
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "source_dir",
+      "type": "path",
+      "required": true,
+      "description": "CMake project source directory containing CMakeLists.txt."
+    },
+    {
+      "name": "build_dir",
+      "type": "path",
+      "required": false,
+      "description": "Out-of-source build directory, preferably on scratch or a project filesystem appropriate for build artifacts."
+    },
+    {
+      "name": "install_prefix",
+      "type": "path",
+      "required": true,
+      "description": "User-owned install prefix that will not overwrite system or shared software paths."
+    },
+    {
+      "name": "generator",
+      "type": "string",
+      "required": false,
+      "description": "CMake generator such as Ninja or Unix Makefiles."
+    },
+    {
+      "name": "cmake_cache_options",
+      "type": "string",
+      "required": false,
+      "description": "Reviewed -D cache options such as MPI, HDF5, CUDA, ROCm, BLAS, or install layout settings."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "build_preflight_report",
+      "description": "Environment, module, compiler, MPI wrapper, CMake, generator, and prefix evidence."
+    },
+    {
+      "name": "reviewable_build_plan",
+      "description": "Exact configure, build, ctest, and install commands with guarded execution controls."
+    },
+    {
+      "name": "cmake_presets_example",
+      "description": "Portable CMakePresets example for user-owned HPC build directories and install prefixes."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/cmake-hpc-build-plan.sh",
+    "examples/CMakePresets.hpc.example.json",
+    "examples/site-policy-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Prepare or run a guarded CMake build workflow",
+      "path": "examples/cmake-hpc-build-plan.sh"
+    },
+    {
+      "title": "Example CMake presets for HPC builds",
+      "path": "examples/CMakePresets.hpc.example.json"
+    },
+    {
+      "title": "Review local build policy before compiling or installing",
+      "path": "examples/site-policy-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill cmake-hpc-build-preflight",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/cmake-hpc-build-preflight/examples/cmake-hpc-build-plan.sh",
+      "description": "Check shell syntax without running CMake."
+    },
+    {
+      "type": "static",
+      "command": "python3 -m json.tool skills/cmake-hpc-build-preflight/examples/CMakePresets.hpc.example.json",
+      "description": "Check that the presets example is valid JSON."
+    },
+    {
+      "type": "manual",
+      "description": "Run the script in plan-only mode against a small CMake project, then enable configure/build/test/install phases one at a time in a suitable allocation or build node."
+    }
+  ],
+  "references": [
+    {
+      "title": "CMake user interaction guide",
+      "url": "https://cmake.org/cmake/help/latest/guide/user-interaction/index.html"
+    },
+    {
+      "title": "CMake presets manual",
+      "url": "https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html"
+    },
+    {
+      "title": "CMAKE_INSTALL_PREFIX documentation",
+      "url": "https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_PREFIX.html"
+    }
+  ]
+}

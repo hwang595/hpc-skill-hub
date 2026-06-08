@@ -4,14 +4,14 @@
     "admin": 5,
     "containers": 3,
     "data": 17,
-    "debugging": 27,
+    "debugging": 28,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
-    "mpi": 17,
+    "mpi": 18,
     "performance": 20,
     "scheduler": 64,
-    "software": 26,
+    "software": 27,
     "workflow": 11
   },
   "collection_count": 12,
@@ -180,6 +180,7 @@
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
+        "cmake-hpc-build-preflight",
         "mpi4py-on-slurm",
         "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
@@ -205,7 +206,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -250,6 +251,7 @@
         "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
+        "cmake-hpc-build-preflight",
         "parallel-hdf5-netcdf-preflight",
         "darshan-io-profile-analysis",
         "lustre-striping-layout-planning",
@@ -260,7 +262,7 @@
         "checkpoint-restart-workflow"
       ],
       "status": "draft",
-      "summary": "Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
+      "summary": "Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -275,6 +277,7 @@
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
+        "cmake-hpc-build-preflight",
         "parallel-hdf5-netcdf-preflight",
         "license-aware-slurm-job",
         "reproducible-run-capture",
@@ -302,7 +305,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, parallel HDF5/NetCDF preflight, licensed software jobs, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, CMake build preflight, parallel HDF5/NetCDF preflight, licensed software jobs, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -422,7 +425,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 85,
+  "skill_count": 86,
   "skills": [
     {
       "categories": [
@@ -768,6 +771,75 @@
         "sreport",
         "squeue",
         "sinfo"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "debugging",
+        "mpi"
+      ],
+      "description": "This skill helps users and support teams capture compiler, MPI, module, prefix, and build-directory assumptions before building CMake-based scientific software on shared HPC systems, with optional guarded configure, build, ctest, and install phases.",
+      "examples": [
+        {
+          "path": "skills/cmake-hpc-build-preflight/examples/cmake-hpc-build-plan.sh",
+          "title": "Prepare or run a guarded CMake build workflow"
+        },
+        {
+          "path": "skills/cmake-hpc-build-preflight/examples/CMakePresets.hpc.example.json",
+          "title": "Example CMake presets for HPC builds"
+        },
+        {
+          "path": "skills/cmake-hpc-build-preflight/examples/site-policy-checklist.md",
+          "title": "Review local build policy before compiling or installing"
+        }
+      ],
+      "id": "cmake-hpc-build-preflight",
+      "maturity": "seed",
+      "name": "CMake HPC Build Preflight",
+      "path": "skills/cmake-hpc-build-preflight",
+      "readme": "skills/cmake-hpc-build-preflight/README.md",
+      "references": [
+        {
+          "title": "CMake user interaction guide",
+          "url": "https://cmake.org/cmake/help/latest/guide/user-interaction/index.html"
+        },
+        {
+          "title": "CMake presets manual",
+          "url": "https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html"
+        },
+        {
+          "title": "CMAKE_INSTALL_PREFIX documentation",
+          "url": "https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_PREFIX.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Plan reproducible CMake configure, build, test, and install steps on HPC systems.",
+      "tags": [
+        "cmake",
+        "build",
+        "compiler",
+        "mpi",
+        "ctest",
+        "install-prefix",
+        "modules",
+        "reproducibility"
+      ],
+      "tools": [
+        "bash",
+        "cmake",
+        "ctest",
+        "ninja",
+        "make",
+        "mpicc",
+        "mpicxx",
+        "mpifort",
+        "mkdir",
+        "date",
+        "tee"
       ],
       "version": "0.1.0"
     },
@@ -5613,6 +5685,7 @@
     "blastn": 1,
     "blastp": 1,
     "bsub": 1,
+    "build": 1,
     "cfd": 1,
     "charm++": 1,
     "checklist": 1,
@@ -5621,9 +5694,10 @@
     "cleanup": 1,
     "climate": 1,
     "cloud": 1,
+    "cmake": 1,
     "code-cli": 1,
     "compatibility": 1,
-    "compiler": 3,
+    "compiler": 4,
     "conda": 1,
     "condor-q": 1,
     "condor-submit": 1,
@@ -5633,6 +5707,7 @@
     "cpu-bind": 3,
     "cpus-per-task": 1,
     "cran": 1,
+    "ctest": 1,
     "cuda": 2,
     "cuda-visible-devices": 1,
     "cwl": 1,
@@ -5681,6 +5756,7 @@
     "hybrid-parallel": 1,
     "ide": 1,
     "inode": 1,
+    "install-prefix": 1,
     "interactive": 5,
     "interconnect": 1,
     "io": 4,
@@ -5716,10 +5792,10 @@
     "micromamba": 1,
     "miniwdl": 1,
     "modulepath": 1,
-    "modules": 7,
+    "modules": 8,
     "molecular-dynamics": 4,
     "monitoring": 1,
-    "mpi": 21,
+    "mpi": 22,
     "mpi-io": 2,
     "mpi4py": 1,
     "mpicc": 2,
@@ -5797,7 +5873,7 @@
     "reconstruction": 1,
     "remote-tunnels": 1,
     "reporting": 1,
-    "reproducibility": 10,
+    "reproducibility": 11,
     "requeue": 1,
     "rerun": 1,
     "resources": 1,
@@ -5888,7 +5964,7 @@
     "awk": 3,
     "aws": 1,
     "basename": 1,
-    "bash": 12,
+    "bash": 13,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -5897,6 +5973,7 @@
     "charmrun": 1,
     "cksum": 2,
     "clang": 1,
+    "cmake": 1,
     "code": 1,
     "command": 2,
     "conda": 1,
@@ -5905,6 +5982,7 @@
     "condor_submit": 1,
     "cp": 2,
     "cp2k.psmp": 1,
+    "ctest": 1,
     "cwltool": 1,
     "darshan-config": 1,
     "darshan-dxt-parser": 1,
@@ -5913,7 +5991,7 @@
     "darshan-summary-per-file.sh": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 33,
+    "date": 34,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 4,
@@ -5948,24 +6026,26 @@
     "lmutil": 1,
     "ln": 1,
     "lscpu": 3,
+    "make": 1,
     "makeblastdb": 1,
     "mamba": 1,
     "matlab": 1,
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 36,
+    "mkdir": 37,
     "module": 25,
     "mpi4py": 1,
-    "mpicc": 6,
-    "mpicxx": 1,
+    "mpicc": 7,
+    "mpicxx": 2,
     "mpiexec": 1,
-    "mpifort": 1,
+    "mpifort": 2,
     "mpirun": 4,
     "namd2": 1,
     "nc-config": 1,
     "ncdump": 2,
     "nextflow": 2,
+    "ninja": 1,
     "nproc": 1,
     "numactl": 1,
     "nvidia-smi": 10,
@@ -6016,7 +6096,7 @@
     "streamlit": 1,
     "tail": 5,
     "tar": 1,
-    "tee": 22,
+    "tee": 23,
     "tensorboard": 1,
     "test": 8,
     "time": 1,

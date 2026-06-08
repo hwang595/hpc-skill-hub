@@ -7,6 +7,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a CMake HPC build preflight seed skill for capturing compiler, MPI,
+  module, build-directory, test, and install-prefix assumptions before guarded
+  CMake configure/build/test/install phases.
 - Add a Lustre striping layout planning seed skill for read-only `lfs`
   evidence, review-only `setstripe` planning, and site policy checks before
   changing data-intensive workflow layouts.
@@ -161,14 +164,14 @@ Initial public seed release.
 
 ### Added
 
-- 85 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 86 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, dependency chains, pending reason triage, monitoring, resource
   estimation, QOS/account limit evidence, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
   preemption and requeue-safe restart behavior,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
-  parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre
-  striping layout planning,
+  CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile
+  analysis, Lustre striping layout planning,
   TensorBoard, Streamlit, Ray, Dask Jobqueue, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, containers, containerized MPI, Spack, EasyBuild, object storage, data movement,
   storage smoke benchmarks, CWL/WDL, workflow engines, GPU binding diagnostics, MPI fabric diagnostics, MPI/GPU diagnostics,
   MPI rank binding diagnostics, hybrid MPI/OpenMP layouts,

@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 85
+- Skills: 86
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 19 |
-| `medium` | 66 |
+| `medium` | 67 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 85 |
+| `seed` | 86 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 85 |
+| `draft` | 86 |
 
 ## Collection Coverage
 
@@ -38,10 +38,10 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `core-hpc` | 19 |
 | `data-movement` | 11 |
 | `facility-ops` | 5 |
-| `gpu-mpi-performance` | 25 |
+| `gpu-mpi-performance` | 26 |
 | `scheduler-basics` | 7 |
-| `simulation-workflows` | 19 |
-| `software-stacks` | 28 |
+| `simulation-workflows` | 20 |
+| `software-stacks` | 29 |
 | `training-onboarding` | 19 |
 | `workflow-engines` | 8 |
 
@@ -59,6 +59,7 @@ All skills are included in at least one collection.
 | `checkpoint-restart-workflow` | medium |
 | `checksum-manifest-create` | low |
 | `cluster-usage-report-readonly` | low |
+| `cmake-hpc-build-preflight` | medium |
 | `compiler-mpi-matrix` | low |
 | `conda-mamba-on-hpc` | medium |
 | `container-build-for-hpc` | medium |

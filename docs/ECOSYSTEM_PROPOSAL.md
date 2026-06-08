@@ -44,7 +44,7 @@ owner handoffs, and ecosystem sponsor discussions.
 - `containers`: Apptainer-compatible image builds, runtime execution,
   containerized MPI, GPU checks, data staging, checksums, and reproducible run
   capture.
-- `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices,
+- `software-stacks`: CMake, Spack, EasyBuild, Lmod, compiler and MPI matrices,
   parallel HDF5/NetCDF preflight, licensed software jobs, Open OnDemand
   templates, TensorBoard, Streamlit, RStudio, and IDE tunnels.
 - `workflow-engines`: CWL, WDL, Nextflow, Snakemake, Dask, and Parsl.
@@ -64,9 +64,9 @@ owner handoffs, and ecosystem sponsor discussions.
   single-cell workflows, and genomics data staging.
 - `simulation-workflows`: LAMMPS, GROMACS, Quantum ESPRESSO, NAMD, OpenFOAM,
   WRF, MPI fabric diagnostics, MPI rank binding diagnostics, hybrid
-  MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, Darshan I/O profile
-  analysis, Lustre striping layout planning, restart planning, profiling, and
-  storage smoke evidence.
+  MPI/OpenMP layouts, CMake build preflight, parallel HDF5/NetCDF preflight,
+  Darshan I/O profile analysis, Lustre striping layout planning, restart
+  planning, profiling, and storage smoke evidence.
 - `facility-ops`: read-only usage reporting, QOS/account limit evidence, node
   triage, module tree health checks, support handoffs, and public operational
   patterns.
