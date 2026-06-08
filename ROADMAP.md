@@ -48,6 +48,8 @@
 - Publish a website for discovery and documentation.
 - Add maintainership areas by domain: scheduler, containers, bioinformatics,
   AI/HPC, molecular dynamics, CFD, climate, and facility operations.
+- Grow the `facility-ops` collection with read-only support workflows before
+  considering any high-risk operational automation.
 - Add signed releases and provenance for reviewed skills.
 - Add a lightweight review board for high-risk or site-admin skills.
 - Encourage HPC centers to contribute site adapters instead of private forks.

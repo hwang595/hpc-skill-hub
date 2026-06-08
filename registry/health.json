@@ -1,5 +1,6 @@
 {
   "category_counts": {
+    "admin": 1,
     "containers": 2,
     "data": 9,
     "debugging": 13,
@@ -7,11 +8,11 @@
     "interactive": 2,
     "mpi": 6,
     "performance": 7,
-    "scheduler": 24,
+    "scheduler": 25,
     "software": 8,
     "workflow": 4
   },
-  "collection_count": 7,
+  "collection_count": 8,
   "collection_coverage": [
     {
       "id": "bioinformatics-workflows",
@@ -53,6 +54,13 @@
         "large-file-archive-prepare",
         "scratch-storage-management",
         "quota-and-filesystem-triage"
+      ]
+    },
+    {
+      "id": "facility-ops",
+      "skill_count": 1,
+      "skill_ids": [
+        "cluster-usage-report-readonly"
       ]
     },
     {
@@ -112,12 +120,13 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 40
+    "seed": 41
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
     "checkpoint-restart-workflow": "medium",
     "checksum-manifest-create": "low",
+    "cluster-usage-report-readonly": "low",
     "compiler-mpi-matrix": "low",
     "conda-mamba-on-hpc": "medium",
     "container-build-for-hpc": "medium",
@@ -157,14 +166,14 @@
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
-    "low": 12,
+    "low": 13,
     "medium": 28
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 40,
+  "skill_count": 41,
   "status_counts": {
-    "draft": 40
+    "draft": 41
   },
   "uncollected_skill_ids": []
 }

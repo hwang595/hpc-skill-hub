@@ -1,0 +1,111 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "cluster-usage-report-readonly",
+  "name": "Cluster Usage Report Readonly",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect read-only Slurm usage evidence for facility support reports.",
+  "description": "This skill helps HPC support teams collect portable, read-only Slurm accounting, queue, and partition evidence for usage reviews without changing scheduler or cluster state.",
+  "categories": ["admin", "scheduler"],
+  "tags": ["slurm", "sacct", "sreport", "squeue", "sinfo", "usage", "reporting"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sacct",
+      "required": true,
+      "notes": "Accounting visibility depends on site Slurm policy."
+    },
+    {
+      "name": "sreport",
+      "required": false,
+      "notes": "Useful for utilization summaries when enabled by the site."
+    },
+    {
+      "name": "squeue",
+      "required": false
+    },
+    {
+      "name": "sinfo",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "days",
+      "type": "integer",
+      "required": false,
+      "description": "Number of recent days to include in accounting reports."
+    },
+    {
+      "name": "account",
+      "type": "string",
+      "required": false,
+      "description": "Optional Slurm account filter for sites that expose account-scoped accounting."
+    },
+    {
+      "name": "output_dir",
+      "type": "string",
+      "required": false,
+      "description": "Directory where text reports should be written."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "usage_report_dir",
+      "description": "A directory containing read-only Slurm accounting, utilization, queue, and partition snapshots."
+    },
+    {
+      "name": "summary",
+      "description": "A summary file describing report scope, generated files, and review reminders."
+    }
+  ],
+  "artifacts": ["README.md", "examples/cluster-usage-report.sh"],
+  "examples": [
+    {
+      "title": "Collect a read-only Slurm usage report",
+      "path": "examples/cluster-usage-report.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill cluster-usage-report-readonly",
+      "description": "Validate the manifest and report script reference."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/cluster-usage-report-readonly/examples/cluster-usage-report.sh",
+      "description": "Check shell syntax without contacting a scheduler."
+    },
+    {
+      "type": "manual",
+      "description": "Run on a Slurm site with accounting access and confirm the generated report contains only public or approved operational data before sharing."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sacct documentation",
+      "url": "https://slurm.schedmd.com/sacct.html"
+    },
+    {
+      "title": "Slurm sreport documentation",
+      "url": "https://slurm.schedmd.com/sreport.html"
+    },
+    {
+      "title": "Slurm squeue documentation",
+      "url": "https://slurm.schedmd.com/squeue.html"
+    },
+    {
+      "title": "Slurm sinfo documentation",
+      "url": "https://slurm.schedmd.com/sinfo.html"
+    }
+  ]
+}

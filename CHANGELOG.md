@@ -10,6 +10,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Prepare the seed registry for public GitHub launch, including repository
   metadata, labels, rulesets, issue templates, pull request templates, Pages
   publishing, and governance docs.
+- Add the first `facility-ops` collection and a read-only Slurm usage reporting
+  skill for support teams.
 
 ## v0.1.0 - Planned
 
@@ -17,15 +19,15 @@ Initial public seed release.
 
 ### Added
 
-- 40 seed HPC skills covering Slurm, job arrays, monitoring, resource
+- 41 seed HPC skills covering Slurm, job arrays, monitoring, resource
   estimation, failure triage, checkpoint/restart, interactive sessions,
   notebooks, OpenMP placement, storage triage, software environments,
   containers, Spack, EasyBuild, data movement, workflow engines, MPI/GPU
   diagnostics, AI/HPC launches, bioinformatics workflows, molecular dynamics,
-  CFD, and weather workloads.
-- 7 curated collections: `core-hpc`, `software-stacks`, `workflow-engines`,
+  CFD, weather workloads, and read-only facility operations.
+- 8 curated collections: `core-hpc`, `software-stacks`, `workflow-engines`,
   `data-movement`, `gpu-mpi-performance`, `bioinformatics-workflows`, and
-  `simulation-workflows`.
+  `simulation-workflows`, and `facility-ops`.
 - 1 example public site adapter: `example-campus-cluster`.
 - Machine-readable registry index and health reports.
 - Installable `hpc-skill` CLI for discovery, validation, scaffolding,

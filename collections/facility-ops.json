@@ -1,0 +1,16 @@
+{
+  "$schema": "../schemas/collection.schema.json",
+  "id": "facility-ops",
+  "name": "Facility Operations",
+  "status": "draft",
+  "summary": "Read-only operational skills for HPC support teams and facility maintainers.",
+  "audience": ["HPC support teams", "facility maintainers", "research computing operators"],
+  "skill_ids": [
+    "cluster-usage-report-readonly"
+  ],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ]
+}

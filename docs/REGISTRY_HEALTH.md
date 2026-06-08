@@ -4,29 +4,29 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 40
+- Skills: 41
 - Site adapters: 1
-- Collections: 7
+- Collections: 8
 - Uncollected skills: 0
 
 ## Risk Distribution
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 12 |
+| `low` | 13 |
 | `medium` | 28 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 40 |
+| `seed` | 41 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 40 |
+| `draft` | 41 |
 
 ## Collection Coverage
 
@@ -35,6 +35,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `bioinformatics-workflows` | 6 |
 | `core-hpc` | 11 |
 | `data-movement` | 7 |
+| `facility-ops` | 1 |
 | `gpu-mpi-performance` | 9 |
 | `simulation-workflows` | 9 |
 | `software-stacks` | 9 |
@@ -51,6 +52,7 @@ All skills are included in at least one collection.
 | `apptainer-run-container` | medium |
 | `checkpoint-restart-workflow` | medium |
 | `checksum-manifest-create` | low |
+| `cluster-usage-report-readonly` | low |
 | `compiler-mpi-matrix` | low |
 | `conda-mamba-on-hpc` | medium |
 | `container-build-for-hpc` | medium |

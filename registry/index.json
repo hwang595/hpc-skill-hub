@@ -1,5 +1,6 @@
 {
   "categories": {
+    "admin": 1,
     "containers": 2,
     "data": 9,
     "debugging": 13,
@@ -7,11 +8,11 @@
     "interactive": 2,
     "mpi": 6,
     "performance": 7,
-    "scheduler": 24,
+    "scheduler": 25,
     "software": 8,
     "workflow": 4
   },
-  "collection_count": 7,
+  "collection_count": 8,
   "collections": [
     {
       "audience": [
@@ -78,6 +79,21 @@
       ],
       "status": "draft",
       "summary": "Skills for staging, transferring, validating, and managing research data on HPC storage."
+    },
+    {
+      "audience": [
+        "HPC support teams",
+        "facility maintainers",
+        "research computing operators"
+      ],
+      "id": "facility-ops",
+      "name": "Facility Operations",
+      "path": "collections/facility-ops.json",
+      "skill_ids": [
+        "cluster-usage-report-readonly"
+      ],
+      "status": "draft",
+      "summary": "Read-only operational skills for HPC support teams and facility maintainers."
     },
     {
       "audience": [
@@ -168,7 +184,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 25
+    "slurm": 26
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -194,7 +210,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 40,
+  "skill_count": 41,
   "skills": [
     {
       "categories": [
@@ -350,6 +366,64 @@
         "mkdir",
         "dirname",
         "date"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "admin",
+        "scheduler"
+      ],
+      "description": "This skill helps HPC support teams collect portable, read-only Slurm accounting, queue, and partition evidence for usage reviews without changing scheduler or cluster state.",
+      "examples": [
+        {
+          "path": "skills/cluster-usage-report-readonly/examples/cluster-usage-report.sh",
+          "title": "Collect a read-only Slurm usage report"
+        }
+      ],
+      "id": "cluster-usage-report-readonly",
+      "maturity": "seed",
+      "name": "Cluster Usage Report Readonly",
+      "path": "skills/cluster-usage-report-readonly",
+      "readme": "skills/cluster-usage-report-readonly/README.md",
+      "references": [
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        },
+        {
+          "title": "Slurm sreport documentation",
+          "url": "https://slurm.schedmd.com/sreport.html"
+        },
+        {
+          "title": "Slurm squeue documentation",
+          "url": "https://slurm.schedmd.com/squeue.html"
+        },
+        {
+          "title": "Slurm sinfo documentation",
+          "url": "https://slurm.schedmd.com/sinfo.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect read-only Slurm usage evidence for facility support reports.",
+      "tags": [
+        "slurm",
+        "sacct",
+        "sreport",
+        "squeue",
+        "sinfo",
+        "usage",
+        "reporting"
+      ],
+      "tools": [
+        "sacct",
+        "sreport",
+        "squeue",
+        "sinfo"
       ],
       "version": "0.1.0"
     },
@@ -2491,6 +2565,7 @@
     "pytorch": 3,
     "quota": 2,
     "reconstruction": 1,
+    "reporting": 1,
     "reproducibility": 4,
     "rerun": 1,
     "resources": 1,
@@ -2498,7 +2573,7 @@
     "resume": 1,
     "rocm": 2,
     "rsync": 2,
-    "sacct": 2,
+    "sacct": 3,
     "salloc": 1,
     "samplesheet": 1,
     "sbatch": 1,
@@ -2506,12 +2581,14 @@
     "scratch": 2,
     "sha256": 1,
     "sif": 1,
+    "sinfo": 1,
     "singularity": 3,
-    "slurm": 23,
+    "slurm": 24,
     "snakemake": 1,
     "software": 2,
     "spack": 1,
-    "squeue": 1,
+    "squeue": 2,
+    "sreport": 1,
     "srun": 2,
     "staging": 3,
     "state": 1,
@@ -2524,6 +2601,7 @@
     "transfer": 3,
     "triage": 3,
     "tunnel": 1,
+    "usage": 1,
     "validation": 1,
     "variant-calling": 1,
     "venv": 1,
@@ -2592,19 +2670,21 @@
     "reconstructPar": 1,
     "rocm-smi": 2,
     "rsync": 2,
-    "sacct": 3,
+    "sacct": 4,
     "salloc": 1,
     "sbatch": 20,
     "scontrol": 3,
     "sed": 1,
     "sha256sum": 2,
     "shasum": 2,
+    "sinfo": 1,
     "singularity": 1,
     "sleep": 1,
     "snakemake": 1,
     "sort": 8,
     "spack": 1,
-    "squeue": 1,
+    "squeue": 2,
+    "sreport": 1,
     "srun": 11,
     "ssh": 2,
     "tail": 4,
