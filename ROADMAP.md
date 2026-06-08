@@ -22,12 +22,14 @@
 
 ## Phase 2: CLI And Developer Experience
 
-- Add `hpc-skill list`, `hpc-skill show`, `hpc-skill validate`, and
-  `hpc-skill scaffold`.
-- Grow the seed `tools/hpc_skill.py` script into an installable package.
+- Keep expanding the installable `hpc-skill` CLI that already supports
+  discovery, health reporting, collections, site adapters, and scaffolding.
+- Add an `hpc-skill validate` command that wraps registry validation,
+  generated artifact checks, and safety audits.
 - Add template rendering for common HPC scripts and config files.
 - Add local dry-run checks for commands that may be dangerous on shared systems.
 - Add optional adapters for agentic tools that can read skill metadata.
+- Maintain a public skill backlog so contributors can claim focused work.
 
 ## Phase 3: Integrations
 

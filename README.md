@@ -132,6 +132,8 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Registry health](docs/REGISTRY_HEALTH.md)
 - [CLI](docs/CLI.md)
 - [Skill specification](docs/SKILL_SPEC.md)
+- [Skill authoring guide](docs/SKILL_AUTHORING_GUIDE.md)
+- [Skill backlog](docs/SKILL_BACKLOG.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Site adapters](docs/SITE_ADAPTERS.md)
 - [Adoption guide](docs/ADOPTION_GUIDE.md)

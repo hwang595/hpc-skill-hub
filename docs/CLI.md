@@ -1,7 +1,7 @@
 # CLI
 
 `tools/hpc_skill.py` is a zero-dependency command-line interface for exploring
-the generated registry index.
+the generated registry index and scaffolding new contributions.
 
 Run it from the repository root:
 
@@ -98,5 +98,6 @@ python3 tools/build_health.py --check
 
 ## Future Direction
 
-This script is intentionally small. It can become the base for a packaged
-`hpc-skill` command with scaffold, render, and site-aware template workflows.
+The CLI is intentionally small and already installable as `hpc-skill`. Next
+steps include a first-class validate command, richer template rendering, and
+site-aware generation for common scheduler and workflow files.

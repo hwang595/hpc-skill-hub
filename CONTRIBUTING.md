@@ -14,6 +14,9 @@ A skill should be:
 
 ## Add A Skill
 
+See [Skill Authoring Guide](docs/SKILL_AUTHORING_GUIDE.md) for the full
+authoring workflow, review rubric, risk guidance, and common anti-patterns.
+
 1. Create a directory under `skills/` using a lowercase kebab-case id.
 2. Add `skill.json`.
 3. Add `README.md`.
@@ -34,6 +37,9 @@ You can generate the starter files with:
 ```bash
 python3 tools/hpc_skill.py scaffold skill your-skill-id --category education --tool bash
 ```
+
+For high-value topics that still need owners, see
+[Skill Backlog](docs/SKILL_BACKLOG.md).
 
 ## Add A Site Adapter
 
