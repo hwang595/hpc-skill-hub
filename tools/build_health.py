@@ -51,6 +51,7 @@ def build_health(index: Dict[str, Any]) -> Dict[str, Any]:
     ]
 
     return {
+        "$schema": "../schemas/registry-health.schema.json",
         "schema_version": "0.1.0",
         "generated_by": "tools/build_health.py",
         "skill_count": index["skill_count"],

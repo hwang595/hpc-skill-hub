@@ -73,6 +73,9 @@ def required_files_check() -> Check:
         "docs/COMPATIBILITY.md",
         "docs/RELEASE_PROCESS.md",
         "docs/RELEASE_NOTES_v0.1.0.md",
+        "schemas/registry-index.schema.json",
+        "schemas/registry-health.schema.json",
+        "schemas/release-manifest.schema.json",
         "registry/releases/v0.1.0.json",
         "docs/REVIEW_ROUTING.md",
         "docs/DOMAIN_REVIEWERS.md",
@@ -90,6 +93,7 @@ def required_files_check() -> Check:
         "tools/build_compatibility.py",
         "tools/build_package_data.py",
         "tools/build_release_manifest.py",
+        "tools/validate_registry_artifacts.py",
     ]
     missing = [path for path in required if not (ROOT / path).exists()]
     if missing:
@@ -123,6 +127,10 @@ def generated_artifacts_check() -> List[Check]:
         (
             "release-manifest-current",
             ["python3", "tools/build_release_manifest.py", "v0.1.0", "--check"],
+        ),
+        (
+            "registry-artifact-contracts",
+            ["python3", "tools/validate_registry_artifacts.py"],
         ),
     ]:
         result = run_command(command)

@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/release-manifest.schema.json",
+  "title": "HPC Skill Hub Release Manifest",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "generated_by",
+    "version",
+    "registry",
+    "files",
+    "file_count",
+    "total_bytes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "../../schemas/release-manifest.schema.json"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "generated_by": {
+      "const": "tools/build_release_manifest.py"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "registry": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "skill_count",
+        "collection_count",
+        "site_adapter_count",
+        "category_count",
+        "scheduler_count",
+        "tool_count",
+        "risk_counts",
+        "maturity_counts",
+        "status_counts",
+        "uncollected_skill_count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "collection_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "site_adapter_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "category_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "scheduler_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tool_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "risk_counts": {
+          "$ref": "#/$defs/counts"
+        },
+        "maturity_counts": {
+          "$ref": "#/$defs/counts"
+        },
+        "status_counts": {
+          "$ref": "#/$defs/counts"
+        },
+        "uncollected_skill_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/file"
+      }
+    },
+    "file_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "total_bytes": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "$defs": {
+    "counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "file": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}

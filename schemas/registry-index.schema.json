@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/registry-index.schema.json",
+  "title": "HPC Skill Hub Registry Index",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "generated_by",
+    "skill_count",
+    "site_adapter_count",
+    "collection_count",
+    "categories",
+    "tags",
+    "schedulers",
+    "tools",
+    "skills",
+    "site_adapters",
+    "collections"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "../schemas/registry-index.schema.json"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "generated_by": {
+      "const": "tools/build_index.py"
+    },
+    "skill_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "site_adapter_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "collection_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "categories": {
+      "$ref": "#/$defs/counts"
+    },
+    "tags": {
+      "$ref": "#/$defs/counts"
+    },
+    "schedulers": {
+      "$ref": "#/$defs/counts"
+    },
+    "tools": {
+      "$ref": "#/$defs/counts"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/skill"
+      }
+    },
+    "site_adapters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/site_adapter"
+      }
+    },
+    "collections": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/collection"
+      }
+    }
+  },
+  "$defs": {
+    "counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "example": {
+      "type": "object",
+      "required": ["title", "path"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "path": {
+          "$ref": "#/$defs/path"
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "required": ["title", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "summary",
+        "description",
+        "version",
+        "status",
+        "maturity",
+        "risk_level",
+        "categories",
+        "tags",
+        "schedulers",
+        "tools",
+        "path",
+        "readme",
+        "examples",
+        "references"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "maturity": {
+          "type": "string"
+        },
+        "risk_level": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schedulers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "readme": {
+          "$ref": "#/$defs/path"
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/example"
+          }
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reference"
+          }
+        }
+      }
+    },
+    "site_adapter": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "summary",
+        "status",
+        "institution_type",
+        "scheduler",
+        "partitions",
+        "skill_overrides",
+        "path",
+        "readme"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "institution_type": {
+          "type": "string"
+        },
+        "scheduler": {
+          "type": ["string", "null"]
+        },
+        "partitions": {
+          "type": "array",
+          "items": {
+            "type": ["string", "null"]
+          }
+        },
+        "skill_overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "readme": {
+          "$ref": "#/$defs/path"
+        }
+      }
+    },
+    "collection": {
+      "type": "object",
+      "required": ["id", "name", "summary", "status", "audience", "skill_ids", "path"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "audience": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "skill_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "path": {
+          "$ref": "#/$defs/path"
+        }
+      }
+    }
+  }
+}

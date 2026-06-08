@@ -115,6 +115,7 @@ def build_manifest(version: str) -> Dict[str, Any]:
     files = [file_entry(path) for path in sorted(iter_release_files(output_path))]
 
     return {
+        "$schema": "../../schemas/release-manifest.schema.json",
         "schema_version": "0.1.0",
         "generated_by": "tools/build_release_manifest.py",
         "version": normalized,

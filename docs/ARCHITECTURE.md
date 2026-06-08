@@ -52,6 +52,10 @@ with deterministic file sizes and SHA-256 checksums for release provenance.
 `registry/health.json` into `src/hpc_skill_hub/data/registry/` so installed CLI
 users can run read-only discovery commands without a repository checkout.
 
+`tools/validate_registry_artifacts.py` checks the generated registry index,
+health report, packaged registry snapshot, release manifest, and public JSON
+Schema pointers used by downstream integrations.
+
 ## Collections
 
 Collections under `collections/*.json` group skills into adoption paths such as

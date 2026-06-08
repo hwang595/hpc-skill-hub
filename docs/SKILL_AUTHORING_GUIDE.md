@@ -27,6 +27,7 @@ new HPC skills.
    python3 tools/build_health.py
    python3 tools/build_compatibility.py
    python3 tools/build_package_data.py
+   python3 tools/validate_registry_artifacts.py
    ```
 
 6. Run the full local gate:

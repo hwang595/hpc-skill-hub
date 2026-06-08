@@ -1,4 +1,5 @@
 {
+  "$schema": "../schemas/registry-index.schema.json",
   "categories": {
     "admin": 4,
     "containers": 2,

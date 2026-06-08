@@ -121,6 +121,7 @@ python3 tools/build_compatibility.py
 python3 tools/build_compatibility.py --check
 python3 tools/build_package_data.py
 python3 tools/build_package_data.py --check
+python3 tools/validate_registry_artifacts.py
 ```
 
 ## Future Direction

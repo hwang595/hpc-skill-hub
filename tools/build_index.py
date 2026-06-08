@@ -125,6 +125,7 @@ def build_index(
             tool_counts[tool] += 1
 
     return {
+        "$schema": "../schemas/registry-index.schema.json",
         "schema_version": "0.1.0",
         "generated_by": "tools/build_index.py",
         "skill_count": len(skills),

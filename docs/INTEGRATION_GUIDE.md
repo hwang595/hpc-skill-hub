@@ -14,7 +14,7 @@ The stable seed-stage surfaces are:
 | --- | --- |
 | `registry/index.json` | Machine-readable registry summary for skills, collections, site adapters, categories, risk, maturity, and paths. |
 | `docs/COMPATIBILITY.md` | Generated compatibility view for schedulers, collections, workflow engines, containers, domains, and tool signals. |
-| `schemas/*.schema.json` | Validation contracts for skill manifests, collections, and site adapters. |
+| `schemas/*.schema.json` | Validation contracts for skill manifests, collections, site adapters, registry index, registry health, and release manifests. |
 | `skills/*/README.md` | Human-readable operating notes, assumptions, safety notes, and examples. |
 | `skills/*/examples/` | Reviewable example scripts, batch files, configs, and checklists. |
 | `collections/*.json` | Curated adoption paths for users, domains, or roles. |
@@ -55,6 +55,12 @@ manifests only when you need full metadata beyond the compact index.
    and example paths before suggesting commands.
 6. Rebuild or refresh your cache only when the repository commit, release tag,
    or `schema_version` changes.
+
+For stricter artifact validation, run:
+
+```bash
+python3 tools/validate_registry_artifacts.py
+```
 
 If your integration only needs read-only discovery, the Python package can be
 used as a pinned registry snapshot. The installed `hpc-skill` command supports

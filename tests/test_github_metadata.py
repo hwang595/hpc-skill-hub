@@ -156,6 +156,7 @@ class GitHubMetadataTests(unittest.TestCase):
             "python3 tools/build_compatibility.py --check",
             "python3 tools/build_package_data.py --check",
             "python3 tools/build_release_manifest.py v0.1.0 --check",
+            "python3 tools/validate_registry_artifacts.py",
             "python3 tools/audit_safety.py",
             "python3 -m unittest discover -s tests",
         ]:
@@ -270,6 +271,7 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertEqual(by_name["github-metadata"]["status"], "OK")
         self.assertEqual(by_name["registry-index-current"]["status"], "OK")
         self.assertEqual(by_name["registry-health-current"]["status"], "OK")
+        self.assertEqual(by_name["registry-artifact-contracts"]["status"], "OK")
         self.assertIn(by_name["git-remote"]["status"], {"OK", "WARN"})
         self.assertIn(by_name["gh-cli"]["status"], {"OK", "WARN"})
 

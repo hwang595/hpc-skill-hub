@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/registry-health.schema.json",
+  "title": "HPC Skill Hub Registry Health",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "generated_by",
+    "skill_count",
+    "site_adapter_count",
+    "collection_count",
+    "risk_counts",
+    "maturity_counts",
+    "status_counts",
+    "category_counts",
+    "collection_coverage",
+    "uncollected_skill_ids",
+    "risk_by_skill"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "../schemas/registry-health.schema.json"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "generated_by": {
+      "const": "tools/build_health.py"
+    },
+    "skill_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "site_adapter_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "collection_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "risk_counts": {
+      "$ref": "#/$defs/counts"
+    },
+    "maturity_counts": {
+      "$ref": "#/$defs/counts"
+    },
+    "status_counts": {
+      "$ref": "#/$defs/counts"
+    },
+    "category_counts": {
+      "$ref": "#/$defs/counts"
+    },
+    "collection_coverage": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/collection_coverage"
+      }
+    },
+    "uncollected_skill_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    },
+    "risk_by_skill": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["low", "medium", "high"]
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "collection_coverage": {
+      "type": "object",
+      "required": ["id", "skill_count", "skill_ids"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "skill_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skill_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    }
+  }
+}

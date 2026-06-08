@@ -48,6 +48,7 @@ The readiness audit complements the command generators:
 python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/build_package_data.py --check
 python3 tools/build_release_manifest.py v0.1.0 --check
+python3 tools/validate_registry_artifacts.py
 python3 tools/github_repo.py --owner <owner>
 python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
 python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes

@@ -92,6 +92,8 @@ request missing workflows, or contribute public site adapters.
 - Command generators for repository setup, labels, starter issues, rulesets,
   and release publication.
 - Deterministic release manifest with file checksums for the seed snapshot.
+- Registry index, health, and release manifest schemas plus artifact contract
+  validation for downstream consumers.
 
 ## Known Limitations
 

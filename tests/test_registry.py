@@ -77,6 +77,10 @@ class RegistryTests(unittest.TestCase):
         result = run_cmd("python3", "tools/build_package_data.py", "--check")
         self.assertIn("Package registry data is current", result.stdout)
 
+    def test_registry_artifact_contracts_pass(self):
+        result = run_cmd("python3", "tools/validate_registry_artifacts.py")
+        self.assertIn("Validated registry artifacts", result.stdout)
+
     def test_generated_release_manifest_is_current(self):
         result = run_cmd(
             "python3",
@@ -103,6 +107,9 @@ class RegistryTests(unittest.TestCase):
         self.assertIn("registry/index.json", paths)
         self.assertIn("docs/COMPATIBILITY.md", paths)
         self.assertIn("skills/slurm-submit-job/skill.json", paths)
+        self.assertIn("schemas/registry-index.schema.json", paths)
+        self.assertIn("schemas/registry-health.schema.json", paths)
+        self.assertIn("schemas/release-manifest.schema.json", paths)
 
     def test_safety_audit_passes(self):
         result = run_cmd("python3", "tools/audit_safety.py")
