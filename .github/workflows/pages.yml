@@ -35,7 +35,7 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Build static registry site
         run: python3 tools/build_site.py --output site/index.html
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
