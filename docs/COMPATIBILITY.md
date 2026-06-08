@@ -9,7 +9,7 @@ This document is generated from `registry/index.json` by
 | --- | ---: |
 | Skills | 70 |
 | Collections | 12 |
-| Site adapters | 1 |
+| Site adapters | 2 |
 | Schedulers | 9 |
 | Categories | 12 |
 | Tools | 122 |

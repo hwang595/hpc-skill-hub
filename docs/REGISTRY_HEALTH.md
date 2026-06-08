@@ -5,7 +5,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 ## Summary
 
 - Skills: 70
-- Site adapters: 1
+- Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
 

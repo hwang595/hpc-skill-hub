@@ -9,7 +9,7 @@ The seed repository currently includes:
 
 - 70 seed skills.
 - 12 curated collections.
-- 1 example public site adapter.
+- 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
   release manifests.
 - An installable `hpc-skill` CLI for discovery, validation, scaffolding,
@@ -85,8 +85,8 @@ Technical gates:
 Exit evidence:
 
 - At least three external adoption reports are filed.
-- At least one public site adapter is contributed by a real site or training
-  environment.
+- At least one public site adapter is reviewed or contributed by a real site or
+  training environment.
 - At least five skills complete maturity review and move to `reviewed`.
 
 ## Phase 3: CLI And Developer Experience

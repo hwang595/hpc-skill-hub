@@ -18,6 +18,9 @@ site-adapters/
   example-campus-cluster/
     site.json
     README.md
+  nersc-perlmutter-public/
+    site.json
+    README.md
 ```
 
 `site.json` is machine-readable metadata. `README.md` explains local assumptions
@@ -35,6 +38,13 @@ python3 tools/hpc_skill.py scaffold site-adapter my-campus-cluster --name "My Ca
 - `draft`: Proposed by a site or user group.
 - `reviewed`: Reviewed by maintainers for structure and safe public content.
 - `deprecated`: Kept for history, but no longer recommended.
+
+## Current Adapters
+
+| Adapter | Status | Purpose |
+| --- | --- | --- |
+| `example-campus-cluster` | `example` | Non-production adapter showing the format. |
+| `nersc-perlmutter-public` | `draft` | Public-doc-backed draft mapping portable skills to NERSC Perlmutter conventions. |
 
 ## Contribution Guidance
 

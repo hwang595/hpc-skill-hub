@@ -269,6 +269,7 @@ Current registry size: 70 skills.
 | Adapter | Status | Scheduler | Description |
 | --- | --- | --- | --- |
 | [`example-campus-cluster`](../site-adapters/example-campus-cluster/README.md) | example | slurm | A non-production adapter showing how a site can map generic skills to local HPC policy. |
+| [`nersc-perlmutter-public`](../site-adapters/nersc-perlmutter-public/README.md) | draft | slurm | A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions. |
 
 ## Next Candidates
 

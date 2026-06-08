@@ -7,6 +7,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a public-doc-backed draft NERSC Perlmutter site adapter, covering Slurm
+  constraints, QOS notes, Lmod, scratch storage, Globus/DTN transfer guidance,
+  and container adaptation notes from public NERSC documentation.
 - Add an Open OnDemand Batch Connect skill for reviewable Slurm-backed portal
   app skeletons, and extend safety auditing to cover `.erb` templates.
 - Prepare the seed registry for public GitHub launch, including repository
@@ -115,7 +118,8 @@ Initial public seed release.
   `containers`, `workflow-engines`, `data-movement`, `ai-hpc`,
   `gpu-mpi-performance`, `bioinformatics-workflows`, `simulation-workflows`,
   `facility-ops`, and `training-onboarding`.
-- 1 example public site adapter: `example-campus-cluster`.
+- 2 site adapters: `example-campus-cluster` and the public-doc-backed draft
+  `nersc-perlmutter-public`.
 - Machine-readable registry index and health reports.
 - Installable `hpc-skill` CLI for discovery, validation, scaffolding,
   collections, site adapters, and registry health.

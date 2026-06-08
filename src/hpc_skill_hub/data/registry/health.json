@@ -307,7 +307,7 @@
     "medium": 53
   },
   "schema_version": "0.1.0",
-  "site_adapter_count": 1,
+  "site_adapter_count": 2,
   "skill_count": 70,
   "status_counts": {
     "draft": 70

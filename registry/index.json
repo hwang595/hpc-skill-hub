@@ -337,7 +337,7 @@
     "uge": 1
   },
   "schema_version": "0.1.0",
-  "site_adapter_count": 1,
+  "site_adapter_count": 2,
   "site_adapters": [
     {
       "id": "example-campus-cluster",
@@ -358,6 +358,32 @@
       ],
       "status": "example",
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
+    },
+    {
+      "id": "nersc-perlmutter-public",
+      "institution_type": "national-lab",
+      "name": "NERSC Perlmutter Public",
+      "partitions": [
+        "regular",
+        "debug",
+        "interactive",
+        "preempt",
+        "shared"
+      ],
+      "path": "site-adapters/nersc-perlmutter-public",
+      "readme": "site-adapters/nersc-perlmutter-public/README.md",
+      "scheduler": "slurm",
+      "skill_overrides": [
+        "slurm-submit-job",
+        "interactive-session",
+        "gpu-sanity-check",
+        "globus-transfer-dataset",
+        "dataset-staging-to-scratch",
+        "apptainer-run-container",
+        "ior-mdtest-storage-smoke"
+      ],
+      "status": "draft",
+      "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
   "skill_count": 70,

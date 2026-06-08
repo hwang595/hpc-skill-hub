@@ -40,7 +40,8 @@ PyTorch DDP smoke testing, NCCL diagnostics, GPU memory triage, and DeepSpeed la
 nf-core, GATK, local BLAST+, LAMMPS, GROMACS, NAMD, Quantum ESPRESSO, CP2K,
 OpenFOAM, and WRF on Slurm, read-only facility usage reporting, node triage,
 module tree health checks, workshop preflight and reset guidance, twelve curated
-collections, and one example site adapter.
+collections, one example site adapter, and one public-doc-backed NERSC
+Perlmutter draft adapter.
 
 ## Community Model
 
@@ -56,7 +57,7 @@ collections, and one example site adapter.
 2. Publish GitHub Pages from the generated registry site.
 3. Invite three to five HPC centers or research software teams to review the
    seed skills.
-4. Add the first real site adapter from public documentation.
+4. Review and refine the first public-doc-backed site adapter.
 5. Promote reviewed skills from `seed` to `reviewed`.
 6. Cut a `v0.1.0` release once schema and contribution workflows are stable.
 

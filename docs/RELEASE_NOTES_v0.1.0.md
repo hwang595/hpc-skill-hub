@@ -16,7 +16,8 @@ request missing workflows, or contribute public site adapters.
 
 - Skills: 70.
 - Collections: 12.
-- Site adapters: 1 example adapter.
+- Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
+  adapter.
 - Skill maturity: all seed.
 - Risk labels: low and medium only in the seed registry.
 
@@ -120,7 +121,9 @@ request missing workflows, or contribute public site adapters.
 
 - Skills are seed maturity and should be reviewed by domain maintainers before
   being treated as field-tested.
-- The example site adapter is intentionally non-production.
+- The example site adapter is intentionally non-production, and the NERSC
+  Perlmutter adapter is a draft derived from public documentation pending site
+  review.
 - GitHub remote creation, label application, ruleset application, and Pages
   activation must be performed in an authenticated GitHub environment.
 - No private cluster policy, credentials, allocation names, hostnames, or
