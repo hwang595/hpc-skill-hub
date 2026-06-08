@@ -56,6 +56,7 @@ Validate the registry:
 ```bash
 python3 tools/validate_skills.py
 python3 tools/build_index.py --check
+python3 tools/build_health.py --check
 python3 tools/audit_safety.py
 python3 -m unittest discover -s tests
 ```
@@ -68,6 +69,7 @@ python3 tools/hpc_skill.py search slurm
 python3 tools/hpc_skill.py show slurm-submit-job --examples
 python3 tools/hpc_skill.py collections
 python3 tools/hpc_skill.py collection core-hpc
+python3 tools/hpc_skill.py health
 ```
 
 Install the CLI during development:
@@ -127,6 +129,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Skill catalog](docs/SKILL_CATALOG.md)
 - [Collections](docs/COLLECTIONS.md)
 - [Machine-readable registry index](registry/index.json)
+- [Registry health](docs/REGISTRY_HEALTH.md)
 - [CLI](docs/CLI.md)
 - [Skill specification](docs/SKILL_SPEC.md)
 - [Architecture](docs/ARCHITECTURE.md)

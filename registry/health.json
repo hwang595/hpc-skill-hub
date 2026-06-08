@@ -1,0 +1,94 @@
+{
+  "category_counts": {
+    "containers": 1,
+    "data": 1,
+    "debugging": 6,
+    "gpu": 1,
+    "interactive": 1,
+    "mpi": 1,
+    "performance": 2,
+    "scheduler": 10,
+    "software": 3,
+    "workflow": 2
+  },
+  "collection_count": 5,
+  "collection_coverage": [
+    {
+      "id": "core-hpc",
+      "skill_count": 5,
+      "skill_ids": [
+        "slurm-submit-job",
+        "slurm-monitor-job",
+        "slurm-resource-estimator",
+        "job-failure-triage",
+        "interactive-session"
+      ]
+    },
+    {
+      "id": "data-movement",
+      "skill_count": 1,
+      "skill_ids": [
+        "globus-transfer-dataset"
+      ]
+    },
+    {
+      "id": "gpu-mpi-performance",
+      "skill_count": 3,
+      "skill_ids": [
+        "mpi-hello-and-benchmark",
+        "gpu-sanity-check",
+        "performance-profile-basic"
+      ]
+    },
+    {
+      "id": "software-stacks",
+      "skill_count": 4,
+      "skill_ids": [
+        "module-environment-debug",
+        "apptainer-run-container",
+        "spack-environment-create",
+        "easybuild-install-software"
+      ]
+    },
+    {
+      "id": "workflow-engines",
+      "skill_count": 2,
+      "skill_ids": [
+        "nextflow-on-slurm",
+        "snakemake-on-slurm"
+      ]
+    }
+  ],
+  "generated_by": "tools/build_health.py",
+  "maturity_counts": {
+    "seed": 15
+  },
+  "risk_by_skill": {
+    "apptainer-run-container": "medium",
+    "easybuild-install-software": "medium",
+    "globus-transfer-dataset": "medium",
+    "gpu-sanity-check": "medium",
+    "interactive-session": "medium",
+    "job-failure-triage": "low",
+    "module-environment-debug": "low",
+    "mpi-hello-and-benchmark": "medium",
+    "nextflow-on-slurm": "medium",
+    "performance-profile-basic": "low",
+    "slurm-monitor-job": "low",
+    "slurm-resource-estimator": "low",
+    "slurm-submit-job": "medium",
+    "snakemake-on-slurm": "medium",
+    "spack-environment-create": "medium"
+  },
+  "risk_counts": {
+    "low": 5,
+    "medium": 10
+  },
+  "schema_version": "0.1.0",
+  "site_adapter_count": 1,
+  "skill_count": 15,
+  "status_counts": {
+    "draft": 15
+  },
+  "uncollected_skill_ids": []
+}

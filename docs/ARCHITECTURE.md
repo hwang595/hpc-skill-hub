@@ -37,6 +37,10 @@ storage conventions, and policy notes without editing or forking generic skills.
 Both generated artifacts are checked in CI so documentation and machine-readable
 metadata stay aligned with the skill manifests.
 
+`tools/build_health.py` generates `registry/health.json` and
+`docs/REGISTRY_HEALTH.md` for maintainer-facing coverage, risk, maturity, and
+collection health.
+
 ## Collections
 
 Collections under `collections/*.json` group skills into adoption paths such as

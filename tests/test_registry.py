@@ -53,6 +53,10 @@ class RegistryTests(unittest.TestCase):
         result = run_cmd("python3", "tools/build_index.py", "--check")
         self.assertIn("Registry index is current", result.stdout)
 
+    def test_generated_health_is_current(self):
+        result = run_cmd("python3", "tools/build_health.py", "--check")
+        self.assertIn("Registry health is current", result.stdout)
+
     def test_safety_audit_passes(self):
         result = run_cmd("python3", "tools/audit_safety.py")
         self.assertIn("Safety audit passed", result.stdout)
@@ -89,6 +93,13 @@ class RegistryTests(unittest.TestCase):
         payload = json.loads(result.stdout)
         self.assertEqual(payload["id"], "core-hpc")
         self.assertIn("slurm-submit-job", payload["skill_ids"])
+
+    def test_cli_health_json(self):
+        result = run_cmd("python3", "tools/hpc_skill.py", "health", "--json")
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["skill_count"], 15)
+        self.assertEqual(payload["collection_count"], 5)
+        self.assertIn("risk_counts", payload)
 
     def test_package_module_entrypoint(self):
         result = run_cmd_with_env(
@@ -157,6 +168,7 @@ class RegistryTests(unittest.TestCase):
             self.assertTrue((Path(tmpdir) / "collections/core-hpc.json").exists())
             self.assertTrue((Path(tmpdir) / "skills/slurm-submit-job/README.md").exists())
             self.assertTrue((Path(tmpdir) / "registry/index.json").exists())
+            self.assertTrue((Path(tmpdir) / "registry/health.json").exists())
 
 
 if __name__ == "__main__":

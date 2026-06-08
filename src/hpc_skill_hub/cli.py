@@ -52,6 +52,14 @@ def load_index() -> Dict[str, Any]:
         return json.load(handle)
 
 
+def load_health() -> Dict[str, Any]:
+    health_path = get_root() / "registry" / "health.json"
+    if not health_path.exists():
+        raise SystemExit("registry/health.json is missing; run tools/build_health.py")
+    with health_path.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
 def emit_json(data: Any) -> None:
     print(json.dumps(data, indent=2, sort_keys=True))
 
@@ -272,6 +280,34 @@ def cmd_collection(args: argparse.Namespace) -> int:
             print(f"- {skill_id}: {skill['summary']}")
         else:
             print(f"- {skill_id}: missing from registry")
+    return 0
+
+
+def cmd_health(args: argparse.Namespace) -> int:
+    health = load_health()
+    if args.json:
+        emit_json(health)
+        return 0
+
+    print("Registry Health")
+    print("===============")
+    print(f"Skills: {health['skill_count']}")
+    print(f"Site adapters: {health['site_adapter_count']}")
+    print(f"Collections: {health['collection_count']}")
+    print(f"Uncollected skills: {len(health['uncollected_skill_ids'])}")
+    print()
+    print("Risk:")
+    for risk, count in health["risk_counts"].items():
+        print(f"- {risk}: {count}")
+    print()
+    print("Maturity:")
+    for maturity, count in health["maturity_counts"].items():
+        print(f"- {maturity}: {count}")
+    if health["uncollected_skill_ids"]:
+        print()
+        print("Uncollected skills:")
+        for skill_id in health["uncollected_skill_ids"]:
+            print(f"- {skill_id}")
     return 0
 
 
@@ -508,6 +544,10 @@ def build_parser() -> argparse.ArgumentParser:
     collection_parser.add_argument("collection_id", help="Collection id")
     collection_parser.add_argument("--json", action="store_true", help="Emit JSON")
     collection_parser.set_defaults(func=cmd_collection)
+
+    health_parser = subparsers.add_parser("health", help="Show registry health summary")
+    health_parser.add_argument("--json", action="store_true", help="Emit JSON")
+    health_parser.set_defaults(func=cmd_health)
 
     scaffold_parser = subparsers.add_parser("scaffold", help="Create new registry entries")
     scaffold_subparsers = scaffold_parser.add_subparsers(dest="scaffold_type", required=True)

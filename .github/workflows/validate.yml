@@ -19,6 +19,8 @@ jobs:
         run: python3 tools/validate_skills.py
       - name: Check generated registry index
         run: python3 tools/build_index.py --check
+      - name: Check generated registry health
+        run: python3 tools/build_health.py --check
       - name: Run safety audit
         run: python3 tools/audit_safety.py
       - name: Run test suite
@@ -30,6 +32,7 @@ jobs:
           python3 tools/hpc_skill.py list
           hpc-skill collections
           hpc-skill collection core-hpc
+          hpc-skill health
           python3 tools/hpc_skill.py search slurm
           python3 tools/hpc_skill.py show slurm-submit-job --examples
           python3 tools/hpc_skill.py collections

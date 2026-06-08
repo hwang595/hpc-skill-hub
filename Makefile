@@ -1,4 +1,4 @@
-.PHONY: audit check test validate index site cli clean
+.PHONY: audit check health test validate index site cli clean
 
 PYTHON ?= python3
 
@@ -7,6 +7,9 @@ validate:
 
 index:
 	$(PYTHON) tools/build_index.py --check
+
+health:
+	$(PYTHON) tools/build_health.py --check
 
 audit:
 	$(PYTHON) tools/audit_safety.py
@@ -17,6 +20,7 @@ site:
 cli:
 	$(PYTHON) tools/hpc_skill.py list
 	PYTHONPATH=src $(PYTHON) -m hpc_skill_hub collections
+	$(PYTHON) tools/hpc_skill.py health
 	$(PYTHON) tools/hpc_skill.py search slurm
 	$(PYTHON) tools/hpc_skill.py show slurm-submit-job --examples
 	$(PYTHON) tools/hpc_skill.py collections
@@ -26,7 +30,7 @@ cli:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index audit test site cli
+check: validate index health audit test site cli
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

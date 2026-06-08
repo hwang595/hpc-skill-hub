@@ -11,6 +11,7 @@ python3 tools/hpc_skill.py search slurm
 python3 tools/hpc_skill.py show slurm-submit-job --examples
 python3 tools/hpc_skill.py collections
 python3 tools/hpc_skill.py collection core-hpc
+python3 tools/hpc_skill.py health
 python3 tools/hpc_skill.py adapters
 python3 tools/hpc_skill.py adapter example-campus-cluster
 ```
@@ -59,6 +60,7 @@ After editing scaffolded files, run:
 ```bash
 python3 tools/validate_skills.py
 python3 tools/build_index.py
+python3 tools/build_health.py
 make check
 ```
 
@@ -78,6 +80,7 @@ Every command supports JSON output for automation:
 ```bash
 python3 tools/hpc_skill.py show gpu-sanity-check --json
 python3 tools/hpc_skill.py collection core-hpc --json
+python3 tools/hpc_skill.py health --json
 python3 tools/hpc_skill.py adapters --json
 ```
 
@@ -89,6 +92,8 @@ site adapters:
 ```bash
 python3 tools/build_index.py
 python3 tools/build_index.py --check
+python3 tools/build_health.py
+python3 tools/build_health.py --check
 ```
 
 ## Future Direction
