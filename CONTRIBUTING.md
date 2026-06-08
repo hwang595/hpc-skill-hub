@@ -22,6 +22,7 @@ A skill should be:
 
    ```bash
    python3 tools/validate_skills.py --skill your-skill-id
+   make check
    ```
 
 6. Open a pull request with a short explanation of the target users, expected
@@ -46,6 +47,7 @@ non-sensitive local policy for one HPC site or training environment.
 
    ```bash
    python3 tools/validate_skills.py
+   make check
    ```
 
 Adapters should clarify local usage without changing the portable meaning of a

@@ -19,6 +19,8 @@ jobs:
         run: python3 tools/validate_skills.py
       - name: Check generated registry index
         run: python3 tools/build_index.py --check
+      - name: Run test suite
+        run: python3 -m unittest discover -s tests
       - name: Smoke test registry CLI
         run: |
           python3 tools/hpc_skill.py list

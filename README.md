@@ -55,6 +55,7 @@ Validate the registry:
 ```bash
 python3 tools/validate_skills.py
 python3 tools/build_index.py --check
+python3 -m unittest discover -s tests
 ```
 
 Explore the registry:
@@ -90,6 +91,12 @@ Rebuild the registry index after adding or editing skills:
 
 ```bash
 python3 tools/build_index.py
+```
+
+Run the standard local checks:
+
+```bash
+make check
 ```
 
 ## Project Status

@@ -39,6 +39,7 @@ After editing scaffolded files, run:
 ```bash
 python3 tools/validate_skills.py
 python3 tools/build_index.py
+make check
 ```
 
 ## Filtering Skills
