@@ -1,0 +1,4 @@
+name = "HPCSkillHubJuliaDemo"
+uuid = "23d4f672-7e24-4a57-a87a-0f0778c5014c"
+authors = ["HPC Skill Hub Maintainers"]
+version = "0.1.0"

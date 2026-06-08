@@ -1,0 +1,132 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "julia-on-slurm",
+  "name": "Julia On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run Julia scripts on Slurm with explicit depot, project, and thread settings.",
+  "description": "This skill helps users run Julia batch workloads through Slurm while keeping package depots, project environments, thread counts, logs, and output paths explicit on shared HPC systems.",
+  "categories": ["software", "scheduler"],
+  "tags": ["julia", "slurm", "depot", "packages", "threads", "batch", "reproducibility"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "julia",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "julia_script",
+      "type": "path",
+      "required": true,
+      "description": "Julia script to run as the batch workload."
+    },
+    {
+      "name": "julia_project",
+      "type": "path",
+      "required": false,
+      "description": "Julia project directory containing Project.toml for package resolution."
+    },
+    {
+      "name": "julia_depot_path",
+      "type": "path",
+      "required": false,
+      "description": "User-owned Julia depot path for packages, registries, artifacts, and compiled caches."
+    },
+    {
+      "name": "threads",
+      "type": "integer",
+      "required": false,
+      "description": "Julia execution threads, usually aligned with SLURM_CPUS_PER_TASK."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "slurm_log",
+      "description": "Slurm stdout/stderr log for the Julia job."
+    },
+    {
+      "name": "julia_environment_record",
+      "description": "Julia version, DEPOT_PATH, LOAD_PATH, project, and thread information captured in the log."
+    },
+    {
+      "name": "analysis_output",
+      "description": "User-defined Julia outputs written under the configured output directory."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/julia-slurm.sbatch",
+    "examples/analysis.jl",
+    "examples/Project.toml"
+  ],
+  "examples": [
+    {
+      "title": "Submit a small Julia batch job",
+      "path": "examples/julia-slurm.sbatch"
+    },
+    {
+      "title": "Base Julia analysis script with reproducibility output",
+      "path": "examples/analysis.jl"
+    },
+    {
+      "title": "Minimal Julia project file",
+      "path": "examples/Project.toml"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill julia-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/julia-on-slurm/examples/julia-slurm.sbatch",
+      "description": "Check the Slurm wrapper shell syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Replace account, partition, and module placeholders, then submit to a short test partition and confirm the log records Julia version, DEPOT_PATH, LOAD_PATH, project, and thread count."
+    }
+  ],
+  "references": [
+    {
+      "title": "Julia command-line interface",
+      "url": "https://docs.julialang.org/en/v1/manual/command-line-interface/"
+    },
+    {
+      "title": "Julia environment variables",
+      "url": "https://docs.julialang.org/en/v1/manual/environment-variables/"
+    },
+    {
+      "title": "Julia multi-threading",
+      "url": "https://docs.julialang.org/en/v1/manual/multi-threading/"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

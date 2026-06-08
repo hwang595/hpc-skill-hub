@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 48
+- Skills: 49
 - Site adapters: 1
 - Collections: 9
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 31 |
+| `medium` | 32 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 48 |
+| `seed` | 49 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 48 |
+| `draft` | 49 |
 
 ## Collection Coverage
 
@@ -38,8 +38,8 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `facility-ops` | 4 |
 | `gpu-mpi-performance` | 10 |
 | `simulation-workflows` | 9 |
-| `software-stacks` | 11 |
-| `training-onboarding` | 10 |
+| `software-stacks` | 12 |
+| `training-onboarding` | 11 |
 | `workflow-engines` | 4 |
 
 ## Uncollected Skills
@@ -67,6 +67,7 @@ All skills are included in at least one collection.
 | `gromacs-on-slurm` | medium |
 | `interactive-session` | medium |
 | `job-failure-triage` | low |
+| `julia-on-slurm` | medium |
 | `jupyter-on-slurm` | medium |
 | `lammps-on-slurm` | medium |
 | `large-file-archive-prepare` | medium |

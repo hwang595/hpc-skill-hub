@@ -34,6 +34,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Add a read-only Slurm pending reason triage skill for queue wait diagnosis.
 - Add an Rscript on Slurm skill for batch R workloads with explicit package
   library and output controls.
+- Add a Julia on Slurm skill for batch Julia workloads with explicit depot,
+  project, and thread settings.
 
 ## v0.1.0 - Planned
 
@@ -41,13 +43,14 @@ Initial public seed release.
 
 ### Added
 
-- 48 seed HPC skills covering Slurm, job arrays, dependency chains, pending
+- 49 seed HPC skills covering Slurm, job arrays, dependency chains, pending
   reason triage, monitoring, resource estimation, efficiency review, failure
   triage, checkpoint/restart, interactive sessions, notebooks, OpenMP
-  placement, storage triage, Python/R software environments, containers,
-  Spack, EasyBuild, data movement, workflow engines, MPI/GPU diagnostics,
-  AI/HPC launches, bioinformatics workflows, molecular dynamics, CFD, weather
-  workloads, read-only facility operations, and training onboarding.
+  placement, storage triage, Python/R/Julia software environments,
+  containers, Spack, EasyBuild, data movement, workflow engines, MPI/GPU
+  diagnostics, AI/HPC launches, bioinformatics workflows, molecular dynamics,
+  CFD, weather workloads, read-only facility operations, and training
+  onboarding.
 - 9 curated collections: `core-hpc`, `software-stacks`, `workflow-engines`,
   `data-movement`, `gpu-mpi-performance`, `bioinformatics-workflows`, and
   `simulation-workflows`, `facility-ops`, and `training-onboarding`.

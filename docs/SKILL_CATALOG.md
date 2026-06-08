@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 48 skills.
+Current registry size: 49 skills.
 
 ## Categories
 
@@ -17,8 +17,8 @@ Current registry size: 48 skills.
 | `interactive` | 2 |
 | `mpi` | 6 |
 | `performance` | 8 |
-| `scheduler` | 31 |
-| `software` | 10 |
+| `scheduler` | 32 |
+| `software` | 11 |
 | `workflow` | 5 |
 
 ## Skills By Category
@@ -137,6 +137,7 @@ Current registry size: 48 skills.
 | [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | [`interactive-session`](../skills/interactive-session/README.md) | medium | seed | Start short interactive compute sessions for debugging and notebooks. |
 | [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
+| [`julia-on-slurm`](../skills/julia-on-slurm/README.md) | medium | seed | Run Julia scripts on Slurm with explicit depot, project, and thread settings. |
 | [`jupyter-on-slurm`](../skills/jupyter-on-slurm/README.md) | medium | seed | Launch Jupyter notebooks inside short Slurm compute allocations. |
 | [`lammps-on-slurm`](../skills/lammps-on-slurm/README.md) | medium | seed | Run LAMMPS molecular dynamics jobs on Slurm with MPI, GPU, and restart planning. |
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
@@ -167,6 +168,7 @@ Current registry size: 48 skills.
 | [`conda-mamba-on-hpc`](../skills/conda-mamba-on-hpc/README.md) | medium | seed | Create Conda or Mamba environments while protecting shared HPC filesystems. |
 | [`container-build-for-hpc`](../skills/container-build-for-hpc/README.md) | medium | seed | Plan and build Apptainer-compatible images for shared HPC systems. |
 | [`easybuild-install-software`](../skills/easybuild-install-software/README.md) | medium | seed | Install scientific software with EasyBuild and generated modules. |
+| [`julia-on-slurm`](../skills/julia-on-slurm/README.md) | medium | seed | Run Julia scripts on Slurm with explicit depot, project, and thread settings. |
 | [`module-environment-debug`](../skills/module-environment-debug/README.md) | low | seed | Diagnose module, compiler, MPI, and library path conflicts. |
 | [`module-tree-health-check`](../skills/module-tree-health-check/README.md) | low | seed | Collect read-only evidence about visible HPC module tree health. |
 | [`python-virtualenv-on-hpc`](../skills/python-virtualenv-on-hpc/README.md) | low | seed | Create lightweight Python virtual environments with explicit HPC module assumptions. |
@@ -194,8 +196,8 @@ Current registry size: 48 skills.
 | [`facility-ops`](../collections/facility-ops.json) | draft | 4 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, pending reason triage, node triage, and module tree health. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 10 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence. |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 9 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, CFD, and weather workloads on Slurm-backed HPC systems. |
-| [`software-stacks`](../collections/software-stacks.json) | draft | 11 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, R, and Conda environments, containers, and reproducible HPC software stacks. |
-| [`training-onboarding`](../collections/training-onboarding.json) | draft | 10 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, Python and R workloads, and workshop environments. |
+| [`software-stacks`](../collections/software-stacks.json) | draft | 12 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, R, Julia, and Conda environments, containers, and reproducible HPC software stacks. |
+| [`training-onboarding`](../collections/training-onboarding.json) | draft | 11 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, Python, R, and Julia workloads, and workshop environments. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 4 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines and lightweight Slurm dependency chains. |
 
 ## Site Adapters
