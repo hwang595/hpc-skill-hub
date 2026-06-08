@@ -1,0 +1,83 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "apptainer-run-container",
+  "name": "Apptainer Run Container",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run Apptainer containers safely on shared HPC systems.",
+  "description": "This skill provides templates for executing Apptainer or Singularity images under Slurm with explicit bind mounts, working directories, and optional GPU support.",
+  "categories": ["containers", "scheduler"],
+  "tags": ["apptainer", "singularity", "container", "slurm", "gpu"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "apptainer",
+      "required": true,
+      "notes": "Singularity can be substituted on sites that have not migrated."
+    },
+    {
+      "name": "sbatch",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "image",
+      "type": "path",
+      "required": true,
+      "description": "SIF image or OCI URI supported by the site."
+    },
+    {
+      "name": "binds",
+      "type": "array",
+      "required": false,
+      "description": "Host paths to bind into the container."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "container_job",
+      "description": "A Slurm job or command line that runs the containerized workload."
+    }
+  ],
+  "artifacts": ["README.md", "examples/run-container.sbatch", "examples/inspect-image.sh"],
+  "examples": [
+    {
+      "title": "Run a container job under Slurm",
+      "path": "examples/run-container.sbatch"
+    },
+    {
+      "title": "Inspect a container image",
+      "path": "examples/inspect-image.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill apptainer-run-container",
+      "description": "Validate the manifest and example scripts."
+    },
+    {
+      "type": "manual",
+      "description": "Run apptainer exec against a known SIF image and verify user id, working directory, and bind mounts."
+    }
+  ],
+  "references": [
+    {
+      "title": "Apptainer documentation",
+      "url": "https://apptainer.org/documentation/"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

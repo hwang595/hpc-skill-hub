@@ -1,0 +1,76 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-monitor-job",
+  "name": "Slurm Monitor Job",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Inspect Slurm job state, accounting records, and output paths.",
+  "description": "This skill provides read-only commands for checking queued, running, completed, and failed Slurm jobs using squeue, sacct, scontrol, and log files.",
+  "categories": ["scheduler", "debugging"],
+  "tags": ["slurm", "squeue", "sacct", "scontrol", "logs"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "squeue",
+      "required": true
+    },
+    {
+      "name": "sacct",
+      "required": false
+    },
+    {
+      "name": "scontrol",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "job_id",
+      "type": "string",
+      "required": true,
+      "description": "Slurm job id to inspect."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "job_state_report",
+      "description": "Queue, accounting, and output path details for a job."
+    }
+  ],
+  "artifacts": ["README.md", "examples/monitor-job.sh"],
+  "examples": [
+    {
+      "title": "Monitor one Slurm job",
+      "path": "examples/monitor-job.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-monitor-job",
+      "description": "Validate the manifest and script reference."
+    },
+    {
+      "type": "manual",
+      "description": "Run the script with a known job id and confirm it reports queue and accounting information without modifying state."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm squeue documentation",
+      "url": "https://slurm.schedmd.com/squeue.html"
+    },
+    {
+      "title": "Slurm sacct documentation",
+      "url": "https://slurm.schedmd.com/sacct.html"
+    }
+  ]
+}

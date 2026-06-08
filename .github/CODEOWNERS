@@ -1,0 +1,7 @@
+# Add real GitHub users or teams after the repository owner is known.
+#
+# Example:
+# * @your-org/maintainers
+# /schemas/ @your-org/maintainers
+# /tools/ @your-org/maintainers
+# /skills/gpu-sanity-check/ @your-org/gpu-maintainers

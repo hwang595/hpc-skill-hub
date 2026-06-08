@@ -1,0 +1,71 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "module-environment-debug",
+  "name": "Module Environment Debug",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Diagnose module, compiler, MPI, and library path conflicts.",
+  "description": "This skill gathers read-only environment evidence to debug broken software stacks, conflicting modules, missing libraries, and compiler or MPI mismatches.",
+  "categories": ["software", "debugging"],
+  "tags": ["modules", "lmod", "environment", "compiler", "mpi", "ld_library_path"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "module",
+      "required": false
+    },
+    {
+      "name": "which",
+      "required": true
+    },
+    {
+      "name": "ldd",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "executable",
+      "type": "path",
+      "required": false,
+      "description": "Optional executable or shared library to inspect."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "environment_report",
+      "description": "A text report of loaded modules, compiler paths, MPI paths, and library search paths."
+    }
+  ],
+  "artifacts": ["README.md", "examples/env-report.sh"],
+  "examples": [
+    {
+      "title": "Collect environment report",
+      "path": "examples/env-report.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill module-environment-debug",
+      "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "manual",
+      "description": "Run on a login node and confirm it does not modify the active module environment."
+    }
+  ],
+  "references": [
+    {
+      "title": "Lmod documentation",
+      "url": "https://lmod.readthedocs.io/"
+    }
+  ]
+}

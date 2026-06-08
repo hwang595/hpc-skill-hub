@@ -1,0 +1,82 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "snakemake-on-slurm",
+  "name": "Snakemake On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Configure Snakemake workflows to submit jobs through Slurm.",
+  "description": "This skill provides a starter Snakemake Slurm profile and launch wrapper for cluster execution with conservative default resources.",
+  "categories": ["workflow", "scheduler"],
+  "tags": ["snakemake", "slurm", "workflow", "profile"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "snakemake",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "snakefile",
+      "type": "path",
+      "required": true,
+      "description": "Snakefile or workflow directory."
+    },
+    {
+      "name": "profile",
+      "type": "path",
+      "required": true,
+      "description": "Snakemake profile directory for Slurm settings."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "slurm_profile",
+      "description": "A profile config that maps Snakemake rules to Slurm jobs."
+    }
+  ],
+  "artifacts": ["README.md", "examples/slurm-profile/config.yaml", "examples/run-snakemake.sh"],
+  "examples": [
+    {
+      "title": "Snakemake Slurm profile",
+      "path": "examples/slurm-profile/config.yaml"
+    },
+    {
+      "title": "Launch Snakemake with profile",
+      "path": "examples/run-snakemake.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill snakemake-on-slurm",
+      "description": "Validate the manifest and example files."
+    },
+    {
+      "type": "manual",
+      "description": "Run snakemake --dry-run first, then run a tiny workflow through the Slurm profile."
+    }
+  ],
+  "references": [
+    {
+      "title": "Snakemake documentation",
+      "url": "https://snakemake.readthedocs.io/"
+    },
+    {
+      "title": "Snakemake executor plugin slurm",
+      "url": "https://snakemake.github.io/snakemake-plugin-catalog/plugins/executor/slurm.html"
+    }
+  ]
+}

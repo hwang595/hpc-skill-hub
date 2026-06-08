@@ -1,0 +1,81 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "performance-profile-basic",
+  "name": "Performance Profile Basic",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect first-pass performance evidence for an HPC workload.",
+  "description": "This skill wraps a command with basic timing, resource, I/O, and optional GPU telemetry so users can decide what to profile more deeply next.",
+  "categories": ["performance", "debugging"],
+  "tags": ["profiling", "time", "memory", "io", "gpu", "perf"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "time",
+      "required": true
+    },
+    {
+      "name": "nvidia-smi",
+      "required": false
+    },
+    {
+      "name": "perf",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "command",
+      "type": "string",
+      "required": true,
+      "description": "Workload command to profile."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": false,
+      "description": "Directory for profiling logs."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "profile_logs",
+      "description": "Timing, environment, and optional GPU telemetry logs."
+    }
+  ],
+  "artifacts": ["README.md", "examples/profile-command.sh"],
+  "examples": [
+    {
+      "title": "Profile one command",
+      "path": "examples/profile-command.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill performance-profile-basic",
+      "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "manual",
+      "description": "Run with a short command such as sleep 2 and confirm profile logs are created."
+    }
+  ],
+  "references": [
+    {
+      "title": "GNU time manual",
+      "url": "https://www.gnu.org/software/time/"
+    },
+    {
+      "title": "Linux perf wiki",
+      "url": "https://perf.wiki.kernel.org/"
+    }
+  ]
+}

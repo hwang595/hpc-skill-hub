@@ -1,0 +1,77 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "spack-environment-create",
+  "name": "Spack Environment Create",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Create reproducible Spack environments for HPC software stacks.",
+  "description": "This skill provides a starter spack.yaml and commands for concretizing, installing, and loading a user-owned scientific software environment.",
+  "categories": ["software"],
+  "tags": ["spack", "environment", "modules", "software", "reproducibility"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "tools": [
+    {
+      "name": "spack",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "specs",
+      "type": "array",
+      "required": true,
+      "description": "Spack package specs to include in the environment."
+    },
+    {
+      "name": "compiler",
+      "type": "string",
+      "required": false,
+      "description": "Compiler family and version to target."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "spack_environment",
+      "description": "A spack.yaml and optional spack.lock for reproducible builds."
+    }
+  ],
+  "artifacts": ["README.md", "examples/spack.yaml", "examples/create-env.sh"],
+  "examples": [
+    {
+      "title": "Starter Spack environment",
+      "path": "examples/spack.yaml"
+    },
+    {
+      "title": "Create and concretize environment",
+      "path": "examples/create-env.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill spack-environment-create",
+      "description": "Validate the manifest and examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run spack env create and spack concretize on a system with Spack configured."
+    }
+  ],
+  "references": [
+    {
+      "title": "Spack environments documentation",
+      "url": "https://spack.readthedocs.io/en/latest/environments.html"
+    },
+    {
+      "title": "Spack project",
+      "url": "https://spack.io/"
+    }
+  ]
+}

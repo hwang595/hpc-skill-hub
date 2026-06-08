@@ -1,0 +1,77 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "easybuild-install-software",
+  "name": "EasyBuild Install Software",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Install scientific software with EasyBuild and generated modules.",
+  "description": "This skill provides a cautious EasyBuild workflow for searching easyconfigs, dry-running dependency resolution, and installing software into a user-controlled prefix.",
+  "categories": ["software"],
+  "tags": ["easybuild", "modules", "software", "easyconfig", "lmod"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "tools": [
+    {
+      "name": "eb",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "easyconfig",
+      "type": "string",
+      "required": true,
+      "description": "EasyConfig file name or path."
+    },
+    {
+      "name": "install_prefix",
+      "type": "path",
+      "required": false,
+      "description": "User-controlled EasyBuild installation prefix."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "installed_software",
+      "description": "Installed software and generated module files."
+    }
+  ],
+  "artifacts": ["README.md", "examples/easybuild-dry-run.sh"],
+  "examples": [
+    {
+      "title": "Dry-run an EasyBuild install",
+      "path": "examples/easybuild-dry-run.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill easybuild-install-software",
+      "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "manual",
+      "description": "Run eb --dry-run against a known easyconfig and review dependency plan before installing."
+    }
+  ],
+  "references": [
+    {
+      "title": "EasyBuild documentation",
+      "url": "https://docs.easybuild.io/"
+    },
+    {
+      "title": "EasyBuild project",
+      "url": "https://easybuild.io/"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+spack:
+  specs:
+    - hdf5 +mpi
+    - openmpi
+    - cmake
+  view: ./view
+  concretizer:
+    unify: true
+  packages:
+    all:
+      target: [x86_64_v3]

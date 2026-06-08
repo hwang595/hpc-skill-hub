@@ -1,0 +1,86 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "nextflow-on-slurm",
+  "name": "Nextflow On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Configure Nextflow pipelines to run through the Slurm executor.",
+  "description": "This skill provides a Nextflow profile and launch wrapper for running portable workflows on Slurm-backed HPC clusters.",
+  "categories": ["workflow", "scheduler"],
+  "tags": ["nextflow", "slurm", "workflow", "nf-core"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "nextflow",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "pipeline",
+      "type": "string",
+      "required": true,
+      "description": "Nextflow pipeline path, Git URL, or nf-core pipeline name."
+    },
+    {
+      "name": "work_dir",
+      "type": "path",
+      "required": true,
+      "description": "Scratch or project work directory for Nextflow task execution."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "nextflow_config",
+      "description": "A Slurm-aware Nextflow config profile."
+    },
+    {
+      "name": "pipeline_run",
+      "description": "A launched workflow with trace and report outputs."
+    }
+  ],
+  "artifacts": ["README.md", "examples/nextflow.config", "examples/run-nextflow.sh"],
+  "examples": [
+    {
+      "title": "Slurm Nextflow profile",
+      "path": "examples/nextflow.config"
+    },
+    {
+      "title": "Launch Nextflow with profile",
+      "path": "examples/run-nextflow.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill nextflow-on-slurm",
+      "description": "Validate the manifest and example files."
+    },
+    {
+      "type": "manual",
+      "description": "Run nextflow run hello -profile slurm on a test partition and confirm Slurm jobs are created."
+    }
+  ],
+  "references": [
+    {
+      "title": "Nextflow executor documentation",
+      "url": "https://nextflow.io/docs/latest/executor.html"
+    },
+    {
+      "title": "Nextflow configuration documentation",
+      "url": "https://nextflow.io/docs/latest/config.html"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "interactive-session",
+  "name": "Interactive Session",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Start short interactive compute sessions for debugging and notebooks.",
+  "description": "This skill provides conservative Slurm interactive session recipes for shell debugging, Jupyter, RStudio, and IDE tunnels.",
+  "categories": ["interactive", "scheduler"],
+  "tags": ["slurm", "salloc", "srun", "jupyter", "debugging"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "salloc",
+      "required": false
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "ssh",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "partition",
+      "type": "string",
+      "required": false,
+      "description": "Interactive or debug partition."
+    },
+    {
+      "name": "time",
+      "type": "string",
+      "required": false,
+      "description": "Short wall time for the interactive allocation."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "interactive_shell",
+      "description": "A shell running on an allocated compute node."
+    },
+    {
+      "name": "connection_notes",
+      "description": "Port forwarding notes for notebook or IDE access."
+    }
+  ],
+  "artifacts": ["README.md", "examples/slurm-shell.sh", "examples/jupyter-on-node.sh"],
+  "examples": [
+    {
+      "title": "Start an interactive shell",
+      "path": "examples/slurm-shell.sh"
+    },
+    {
+      "title": "Start Jupyter on a compute node",
+      "path": "examples/jupyter-on-node.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill interactive-session",
+      "description": "Validate the manifest and example scripts."
+    },
+    {
+      "type": "manual",
+      "description": "Request a short debug allocation and confirm the shell runs on a compute node."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm salloc documentation",
+      "url": "https://slurm.schedmd.com/salloc.html"
+    },
+    {
+      "title": "Open OnDemand",
+      "url": "https://www.openondemand.org/"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "mpi-hello-and-benchmark",
+  "name": "MPI Hello And Benchmark",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Compile and run MPI sanity checks across allocated nodes.",
+  "description": "This skill provides a minimal MPI hello-world program and Slurm batch script to verify compiler, launcher, and node-to-node execution.",
+  "categories": ["mpi", "scheduler", "debugging"],
+  "tags": ["mpi", "slurm", "srun", "mpicc", "benchmark"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "mpicc",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "mpi_module",
+      "type": "string",
+      "required": false,
+      "description": "MPI module to load before compiling."
+    },
+    {
+      "name": "nodes",
+      "type": "integer",
+      "required": false,
+      "description": "Number of nodes for the sanity check."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "mpi_binary",
+      "description": "Compiled MPI hello-world executable."
+    },
+    {
+      "name": "rank_report",
+      "description": "Rank, size, and hostname output from each MPI process."
+    }
+  ],
+  "artifacts": ["README.md", "examples/hello_mpi.c", "examples/run-mpi.sbatch"],
+  "examples": [
+    {
+      "title": "MPI hello-world source",
+      "path": "examples/hello_mpi.c"
+    },
+    {
+      "title": "Run MPI under Slurm",
+      "path": "examples/run-mpi.sbatch"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill mpi-hello-and-benchmark",
+      "description": "Validate the manifest and example files."
+    },
+    {
+      "type": "manual",
+      "description": "Submit the batch script on a test partition and confirm ranks run across the requested nodes."
+    }
+  ],
+  "references": [
+    {
+      "title": "MPI Forum",
+      "url": "https://www.mpi-forum.org/"
+    },
+    {
+      "title": "Slurm MPI guide",
+      "url": "https://slurm.schedmd.com/mpi_guide.html"
+    }
+  ]
+}

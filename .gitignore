@@ -1,0 +1,11 @@
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+*.pyc
+*.log
+*.tmp
+dist/
+build/
+site/

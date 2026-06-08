@@ -1,0 +1,83 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "globus-transfer-dataset",
+  "name": "Globus Transfer Dataset",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Stage large datasets with Globus transfer and verification steps.",
+  "description": "This skill provides a Globus CLI workflow for checking endpoints, submitting recursive transfers, and recording task ids for reliable HPC data movement.",
+  "categories": ["data"],
+  "tags": ["globus", "transfer", "dataset", "checksum", "staging"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "tools": [
+    {
+      "name": "globus",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "source_collection",
+      "type": "string",
+      "required": true,
+      "description": "Globus source collection id or name."
+    },
+    {
+      "name": "destination_collection",
+      "type": "string",
+      "required": true,
+      "description": "Globus destination collection id or name."
+    },
+    {
+      "name": "paths",
+      "type": "array",
+      "required": true,
+      "description": "Source and destination paths to transfer."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "transfer_task_id",
+      "description": "Globus task id for tracking transfer status."
+    },
+    {
+      "name": "transfer_report",
+      "description": "Task status and verification notes."
+    }
+  ],
+  "artifacts": ["README.md", "examples/transfer-and-watch.sh"],
+  "examples": [
+    {
+      "title": "Submit and watch a Globus transfer",
+      "path": "examples/transfer-and-watch.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill globus-transfer-dataset",
+      "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "manual",
+      "description": "Run globus endpoint local-id or globus collection show, then submit a small test transfer."
+    }
+  ],
+  "references": [
+    {
+      "title": "Globus Transfer API documentation",
+      "url": "https://docs.globus.org/api/transfer/"
+    },
+    {
+      "title": "Globus CLI documentation",
+      "url": "https://docs.globus.org/cli/"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "gpu-sanity-check",
+  "name": "GPU Sanity Check",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Verify GPU allocation, runtime visibility, and basic framework access.",
+  "description": "This skill provides a Slurm GPU smoke test for NVIDIA or AMD GPU nodes, including device visibility, scheduler allocation variables, and optional Python framework checks.",
+  "categories": ["gpu", "scheduler", "debugging"],
+  "tags": ["gpu", "cuda", "rocm", "nvidia", "amd", "slurm"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "nvidia-smi",
+      "required": false
+    },
+    {
+      "name": "rocm-smi",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "gpu_partition",
+      "type": "string",
+      "required": true,
+      "description": "Partition or queue that provides GPU nodes."
+    },
+    {
+      "name": "gpu_count",
+      "type": "integer",
+      "required": false,
+      "description": "Number of GPUs to request for the test."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "gpu_report",
+      "description": "Device visibility and framework availability report."
+    }
+  ],
+  "artifacts": ["README.md", "examples/gpu-sanity.sbatch"],
+  "examples": [
+    {
+      "title": "Submit a GPU sanity job",
+      "path": "examples/gpu-sanity.sbatch"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill gpu-sanity-check",
+      "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "manual",
+      "description": "Submit to a GPU test partition and confirm at least one GPU is visible inside the allocation."
+    }
+  ],
+  "references": [
+    {
+      "title": "NVIDIA System Management Interface",
+      "url": "https://developer.nvidia.com/nvidia-system-management-interface"
+    },
+    {
+      "title": "ROCm SMI documentation",
+      "url": "https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/"
+    }
+  ]
+}

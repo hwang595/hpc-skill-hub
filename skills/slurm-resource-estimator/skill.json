@@ -1,0 +1,78 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-resource-estimator",
+  "name": "Slurm Resource Estimator",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Estimate future Slurm resource requests from accounting history.",
+  "description": "This skill uses sacct output to help users choose safer memory, CPU, and wall-time requests for similar Slurm jobs.",
+  "categories": ["scheduler", "performance"],
+  "tags": ["slurm", "sacct", "resources", "memory", "walltime"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sacct",
+      "required": true
+    },
+    {
+      "name": "awk",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "job_name",
+      "type": "string",
+      "required": false,
+      "description": "Optional job name pattern to filter accounting history."
+    },
+    {
+      "name": "days",
+      "type": "integer",
+      "required": false,
+      "description": "Number of days of history to inspect."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "resource_history",
+      "description": "Tabular sacct report for previous jobs."
+    },
+    {
+      "name": "request_recommendation",
+      "description": "Human-reviewed recommendation for memory and wall time."
+    }
+  ],
+  "artifacts": ["README.md", "examples/resource-history.sh"],
+  "examples": [
+    {
+      "title": "Collect recent accounting records",
+      "path": "examples/resource-history.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-resource-estimator",
+      "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "manual",
+      "description": "Run against a user with sacct access and compare MaxRSS and Elapsed against submitted resources."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sacct documentation",
+      "url": "https://slurm.schedmd.com/sacct.html"
+    }
+  ]
+}

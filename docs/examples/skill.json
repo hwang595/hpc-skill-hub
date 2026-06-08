@@ -1,0 +1,59 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "my-new-skill",
+  "name": "My New Skill",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "A short summary of the HPC task this skill supports.",
+  "description": "Explain the task, target users, cluster assumptions, and expected outcome.",
+  "categories": ["education"],
+  "tags": ["example"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "input",
+      "type": "string",
+      "required": false,
+      "description": "Describe user-provided input."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "output",
+      "description": "Describe produced output."
+    }
+  ],
+  "artifacts": ["README.md", "examples/example.sh"],
+  "examples": [
+    {
+      "title": "Example command",
+      "path": "examples/example.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill my-new-skill",
+      "description": "Validate the manifest and referenced artifacts."
+    }
+  ],
+  "references": [
+    {
+      "title": "HPC Skill Hub skill specification",
+      "url": "https://github.com/hpc-skill-hub/hpc-skill-hub"
+    }
+  ]
+}
