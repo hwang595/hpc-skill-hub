@@ -126,6 +126,7 @@ def build_evidence(
         "next_actions": [
             "Create the public GitHub repository and push main.",
             "Confirm Validate, Package, and Pages workflows are green.",
+            "Link the generated Pages URL from the repository homepage.",
             "Open starter issues, including the reviewed-skill pilot issue.",
             "Recruit domain reviewers and site-adapter reviewers.",
             "Use public evidence to promote the first seed skills to reviewed.",

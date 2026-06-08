@@ -200,6 +200,73 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("--push", result.stdout)
         self.assertIn("has_discussions=true", result.stdout)
 
+    def test_homepage_command_generator(self):
+        result = subprocess.run(
+            [
+                "python3",
+                "tools/github_homepage.py",
+                "--repo",
+                "example/hpc-skill-hub",
+                "--pages-url",
+                "https://example.github.io/hpc-skill-hub/",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        self.assertIn("# HPC Skill Hub Repository Homepage Commands", result.stdout)
+        self.assertIn(
+            "gh repo edit example/hpc-skill-hub --homepage https://example.github.io/hpc-skill-hub/",
+            result.stdout,
+        )
+
+        inspect_result = subprocess.run(
+            [
+                "python3",
+                "tools/github_homepage.py",
+                "--repo",
+                "example/hpc-skill-hub",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        self.assertIn(
+            "gh api repos/example/hpc-skill-hub/pages --jq .html_url",
+            inspect_result.stdout,
+        )
+        self.assertIn(
+            "gh repo edit example/hpc-skill-hub --homepage '<pages-url>'",
+            inspect_result.stdout,
+        )
+
+    def test_homepage_command_generator_json(self):
+        result = subprocess.run(
+            [
+                "python3",
+                "tools/github_homepage.py",
+                "--repo",
+                "example/hpc-skill-hub",
+                "--json",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["repo"], "example/hpc-skill-hub")
+        purposes = [command["purpose"] for command in payload["commands"]]
+        self.assertEqual(
+            purposes,
+            ["inspect_pages_url", "set_repository_homepage"],
+        )
+
     def test_main_ruleset_is_review_oriented(self):
         with (ROOT / ".github" / "rulesets" / "main.json").open(encoding="utf-8") as handle:
             ruleset = json.load(handle)
@@ -372,6 +439,8 @@ class GitHubMetadataTests(unittest.TestCase):
         )
         self.assertIn("repos/example/hpc-skill-hub/rulesets", result.stdout)
         self.assertIn("gh release create v0.1.0", result.stdout)
+        self.assertIn("Link Pages URL from repository homepage", result.stdout)
+        self.assertIn("python3 tools/github_homepage.py", result.stdout)
         self.assertIn("Verify published repository state", result.stdout)
         self.assertIn("python3 tools/github_post_launch_check.py", result.stdout)
 
@@ -392,8 +461,14 @@ class GitHubMetadataTests(unittest.TestCase):
         )
         self.assertIn("# HPC Skill Hub Post-Launch Check Commands", result.stdout)
         self.assertIn("gh api repos/example/hpc-skill-hub", result.stdout)
+        self.assertIn("gh api repos/example/hpc-skill-hub --jq .homepage", result.stdout)
         self.assertIn("gh label list --repo example/hpc-skill-hub", result.stdout)
         self.assertIn("gh api repos/example/hpc-skill-hub/actions/workflows", result.stdout)
+        self.assertIn(
+            "gh api repos/example/hpc-skill-hub/pages --jq .html_url",
+            result.stdout,
+        )
+        self.assertIn("python3 tools/github_homepage.py --repo example/hpc-skill-hub", result.stdout)
         self.assertIn("gh release view v0.1.0", result.stdout)
 
     def test_proposal_evidence_generator(self):
@@ -497,6 +572,10 @@ class GitHubMetadataTests(unittest.TestCase):
         )
         self.assertIn(
             "tools/github_post_launch_check.py",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "tools/github_homepage.py",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
 

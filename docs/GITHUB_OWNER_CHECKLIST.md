@@ -65,6 +65,8 @@ before running networked commands. Include:
 - Launch maintainer and backup contact.
 - First release owner.
 - Whether Discussions and Pages will be enabled at launch.
+- Whether the generated Pages URL will be linked from the repository homepage
+  before the first release.
 - Whether branch rulesets will be applied immediately after the first green
   `Validate` and `Package` workflows.
 - Any known public-scope limitations or deferred governance decisions.
@@ -78,6 +80,7 @@ python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/launch_evidence.py --owner <owner> --run-check
 python3 tools/proposal_evidence.py --owner <owner> --run-check
 python3 tools/review_candidates.py --limit 12
+python3 tools/github_homepage.py --repo <owner>/hpc-skill-hub
 python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --dry-run
 ```
 

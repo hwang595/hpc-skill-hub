@@ -114,6 +114,8 @@ the discussion forms under `.github/DISCUSSION_TEMPLATE/`.
 - Pin the first community issue.
 - Create the recommended Discussion categories and confirm their forms load.
 - Run the first weekly triage loop from [Triage Runbook](TRIAGE_RUNBOOK.md).
-- Link the generated Pages site in the repository homepage.
+- Run `python3 tools/github_homepage.py --repo <owner>/hpc-skill-hub` and use
+  the printed command to link the generated Pages site in the repository
+  homepage.
 - Invite the first three to five domain reviewers using
   [Domain Reviewers](DOMAIN_REVIEWERS.md).

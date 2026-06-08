@@ -99,6 +99,7 @@ def command_plan(repo: str, version: str) -> List[List[str]]:
     return [
         ["git", "remote", "get-url", "origin"],
         ["gh", "api", f"repos/{repo}"],
+        ["gh", "api", f"repos/{repo}", "--jq", ".homepage"],
         ["gh", "label", "list", "--repo", repo, "--limit", "200", "--json", "name"],
         ["gh", "api", f"repos/{repo}/milestones", "-f", "state=all"],
         [
@@ -116,6 +117,8 @@ def command_plan(repo: str, version: str) -> List[List[str]]:
         ],
         ["gh", "api", f"repos/{repo}/actions/workflows"],
         ["gh", "api", f"repos/{repo}/pages"],
+        ["gh", "api", f"repos/{repo}/pages", "--jq", ".html_url"],
+        ["python3", "tools/github_homepage.py", "--repo", repo],
         ["gh", "api", f"repos/{repo}/rulesets"],
         ["gh", "release", "view", version, "--repo", repo, "--json", "tagName,isDraft,isPrerelease,url"],
     ]
@@ -269,6 +272,36 @@ def pages_check(repo: str) -> Check:
     return ok("github-pages", f"Pages configured at {html_url}")
 
 
+def normalize_url(url: str) -> str:
+    return url.rstrip("/")
+
+
+def homepage_check(repo: str) -> Check:
+    repo_payload, repo_error = run_json(["gh", "api", f"repos/{repo}"])
+    if repo_error:
+        return fail("github-homepage", repo_error)
+
+    pages_payload, pages_error = run_json(["gh", "api", f"repos/{repo}/pages"])
+    if pages_error:
+        return warn("github-homepage", f"Pages URL unavailable: {pages_error}")
+
+    homepage = (repo_payload.get("homepage") or "").strip()
+    pages_url = (pages_payload.get("html_url") or pages_payload.get("url") or "").strip()
+    if not pages_url:
+        return warn("github-homepage", "Pages URL is unavailable")
+    if not homepage:
+        return fail(
+            "github-homepage",
+            "repository homepage is not set; run tools/github_homepage.py",
+        )
+    if normalize_url(homepage) != normalize_url(pages_url):
+        return fail(
+            "github-homepage",
+            f"homepage {homepage!r} does not match Pages URL {pages_url!r}",
+        )
+    return ok("github-homepage", f"repository homepage points at {pages_url}")
+
+
 def ruleset_check(repo: str) -> Check:
     expected = load_json(RULESET_JSON)
     payload, error = run_json(["gh", "api", f"repos/{repo}/rulesets"])
@@ -319,6 +352,7 @@ def run_checks(repo: str | None, version: str) -> List[Check]:
             starter_issues_check(repo),
             workflows_check(repo),
             pages_check(repo),
+            homepage_check(repo),
             ruleset_check(repo),
             release_check(repo, version),
         ]
@@ -362,7 +396,7 @@ def markdown(repo: str | None, version: str, checks: List[Check]) -> str:
 
 def print_dry_run(repo: str, version: str) -> None:
     print("# HPC Skill Hub Post-Launch Check Commands")
-    print("# Review these read-only commands in an authenticated GitHub environment.")
+    print("# Review these checks and helper command generators in an authenticated GitHub environment.")
     for command in command_plan(repo, version):
         print(shell_join(command))
 

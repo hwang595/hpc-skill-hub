@@ -133,10 +133,22 @@ def main() -> int:
         load_ruleset(path)
         print(shell_join(command_for_ruleset(path, repo)))
 
-    print_section("9. Publish first release after CI and Pages are green")
+    print_section("9. Link Pages URL from repository homepage")
+    print(
+        shell_join(
+            [
+                "python3",
+                "tools/github_homepage.py",
+                "--repo",
+                repo,
+            ]
+        )
+    )
+
+    print_section("10. Publish first release after CI and Pages are green")
     print_commands(release_commands(args.version, repo))
 
-    print_section("10. Verify published repository state")
+    print_section("11. Verify published repository state")
     print(
         shell_join(
             [

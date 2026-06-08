@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/release-manifest.schema.json",
-  "file_count": 477,
+  "file_count": 478,
   "files": [
     {
       "bytes": 489,
@@ -163,9 +163,9 @@
       "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
     },
     {
-      "bytes": 9798,
+      "bytes": 9952,
       "path": "CHANGELOG.md",
-      "sha256": "0009afbc0756c7ca467b048d592cb46fddbea218032607386cbf7cb6bd3d5b5e"
+      "sha256": "e2a76e7a85b55a4632874d543143e6c32bd2e5390de5cf1c7f40b3e371cf37c5"
     },
     {
       "bytes": 426,
@@ -193,9 +193,9 @@
       "sha256": "dea798cae34c09327203664ff6b3e488ce7eb4ceff5e6d0f89bc31462fea8825"
     },
     {
-      "bytes": 12997,
+      "bytes": 13059,
       "path": "README.md",
-      "sha256": "102dbd1c37e5251cc86776d569649bd8c8634dec75b7156e2170ad1e496db639"
+      "sha256": "62f86b6ec25a93655926e3cb292288ab81b1e473b6ad0824590b62175401e3b3"
     },
     {
       "bytes": 7900,
@@ -308,9 +308,9 @@
       "sha256": "eaff3487800def88b98aa3d937b5f51a3d182896e41c4449fd0f34565776cd50"
     },
     {
-      "bytes": 4765,
+      "bytes": 4868,
       "path": "docs/COMMUNITY_LAUNCH.md",
-      "sha256": "4f9b333a82b8c59cef318dd3dcd5173df0edf9d18c9eb7c2af082c3ffe35fdca"
+      "sha256": "e79805cee0d52ca864948f25de91fa9a0ea1c2781fca36a36714cb3f244b79ca"
     },
     {
       "bytes": 10087,
@@ -343,19 +343,19 @@
       "sha256": "3d92200abef1f7562e52f157c573be8ba27981c07ef8ef17e7ab08bb90deeeda"
     },
     {
-      "bytes": 3527,
+      "bytes": 3695,
       "path": "docs/GITHUB_OWNER_CHECKLIST.md",
-      "sha256": "a21373052441e05c458f4e5f5f1fac4a7301526da4043ec2c4f47880565ee3ba"
+      "sha256": "f69f3c0ac1c8755d1f7116052c4a108dbe9592fbbe4c5abba9a5af730a7282cf"
     },
     {
-      "bytes": 6985,
+      "bytes": 7397,
       "path": "docs/GITHUB_PUBLISHING.md",
-      "sha256": "00d2827c050e674ac56b1e40b48acf4855ffd53df8eb6f5f6b2261ce155df085"
+      "sha256": "71431d4accbf47d1b6fce42a56c8c5bcae5958b0f739f2366d51d03aa47664c4"
     },
     {
-      "bytes": 4658,
+      "bytes": 4878,
       "path": "docs/GITHUB_REPOSITORY_SETUP.md",
-      "sha256": "632612e144fcc027e33c280733ef47ecf4d5fade72c6b753ff9854a9e387599f"
+      "sha256": "bd2648263143a2d9e2f1c0039fe6bd099db6d0fda9086252ab46a914442fb527"
     },
     {
       "bytes": 3797,
@@ -368,9 +368,9 @@
       "sha256": "8bee4236edb8a66d249de8fc05aa65f8057f75ada5cc3d37bf413ec470aef17d"
     },
     {
-      "bytes": 3545,
+      "bytes": 3607,
       "path": "docs/LAUNCH_READINESS.md",
-      "sha256": "910fa10b3d1b04e9e82b5c6654c60de8f1a1c3e908a81977f29698fd6551c470"
+      "sha256": "d7ba8a9c79de05fad015aaacdb863192d7b8b8335cc60ab67d6c867a340a8120"
     },
     {
       "bytes": 2826,
@@ -393,14 +393,14 @@
       "sha256": "582d6fc1d503c26efca6f3afa8d4dad9c39208e9c8ab7155c4b46ba313bb7bc3"
     },
     {
-      "bytes": 2455,
+      "bytes": 2716,
       "path": "docs/POST_LAUNCH_VERIFICATION.md",
-      "sha256": "e841949b1c54c7121dcf3a1193337a90766b68dc71a0c22b234f97663a017aa4"
+      "sha256": "2daa82def8313c38bf5995af97c10ca612c214adb1ee3eefe511e43d64b88512"
     },
     {
-      "bytes": 5740,
+      "bytes": 5865,
       "path": "docs/PUBLIC_LAUNCH_PACKET.md",
-      "sha256": "4dc8dec237fefa47a402e5de7d7d6879655699f87fe74ad09e0c40f5c4abdb5c"
+      "sha256": "214f82f6bdfd8a5f68496eeb3aef9b6698ddf873df4ed7845d464636380e5d2c"
     },
     {
       "bytes": 3597,
@@ -408,14 +408,14 @@
       "sha256": "501db4a640c89d1889a851d2c749905d1117744861e8fc5b9b42c2e2e55671ed"
     },
     {
-      "bytes": 8755,
+      "bytes": 8921,
       "path": "docs/RELEASE_NOTES_v0.1.0.md",
-      "sha256": "4b2b71c7b11507bc4a79db6a173e43ae8ff3515d998757affcf9945fa55d225a"
+      "sha256": "ddab602f7afcca5563349029324b4dc3be6dec3480460faa68db8eb318bb196a"
     },
     {
-      "bytes": 2778,
+      "bytes": 2827,
       "path": "docs/RELEASE_PROCESS.md",
-      "sha256": "41b45e8f082281547a97a5f811b9f5c34a75c24301e223c7b6d98b1d23f305b1"
+      "sha256": "c6d0c9f09088c0d49c1f8ebadfb82b086601b7be7a531f78461fa4795ea827ec"
     },
     {
       "bytes": 5495,
@@ -2263,9 +2263,9 @@
       "sha256": "37335bc4470c6acce6babee3957dadbcfe7bc0b1bf38140f9cee3d233581e515"
     },
     {
-      "bytes": 21303,
+      "bytes": 24034,
       "path": "tests/test_github_metadata.py",
-      "sha256": "083d629df7b153aa00cae77da16bab7e0afbef52a5c0b19cb6d5cc0a38567810"
+      "sha256": "42ef15f6e92df7d501ddea389132a71da4b1a2113383059aa01e62cfa3c68a7a"
     },
     {
       "bytes": 8714,
@@ -2313,6 +2313,11 @@
       "sha256": "6a8d18a630fbf69f3bb90bc8ceac8d180541cb0760490604c4080e0852e45d74"
     },
     {
+      "bytes": 2692,
+      "path": "tools/github_homepage.py",
+      "sha256": "3edd752083bff27e7fd9e2423bedf514a5f779a25c4aee4eed552a79d53a1aa5"
+    },
+    {
       "bytes": 3455,
       "path": "tools/github_issues.py",
       "sha256": "9781efc6ef1fee2ecba1fc01bc0eef0e2311e75fe5d13476d19f8e852d7af0fe"
@@ -2328,14 +2333,14 @@
       "sha256": "5465fe37c4e0fb810d16518935819e087b118f4b055d1698a4f56d979e231ad4"
     },
     {
-      "bytes": 13699,
+      "bytes": 15051,
       "path": "tools/github_post_launch_check.py",
-      "sha256": "897310f2487fc34fcc8fda22c1d0f43f45a718454dc25d4a9afd70d8f718fb98"
+      "sha256": "3556683acd5e0b2ccbfb119209287a24ec89cf55ac958cb12fcddd77efa1a6cd"
     },
     {
-      "bytes": 5411,
+      "bytes": 5671,
       "path": "tools/github_publish_plan.py",
-      "sha256": "aa8d473d7121b7ce4c2654f94f6cc1ff75ea85bc0ad057ee7840a08036603438"
+      "sha256": "783dd26a330f4ee753d32285828c1f11ec508ee7235c2d9f1af6a94552eaad14"
     },
     {
       "bytes": 2226,
@@ -2363,14 +2368,14 @@
       "sha256": "395bcf55b6b7c6e2a4294dd518d5dc11d1bc17fbb0bbdae7e360d1e5a9ad69de"
     },
     {
-      "bytes": 13169,
+      "bytes": 13201,
       "path": "tools/launch_readiness.py",
-      "sha256": "95b79919367187bf08c46d66e64f7093e80537014275e42196f8d4da872fc979"
+      "sha256": "d4b30e713a2742e2e6354e7c5e8521497ae41e50a1dab23724fb884d6aa43404"
     },
     {
-      "bytes": 10189,
+      "bytes": 10263,
       "path": "tools/proposal_evidence.py",
-      "sha256": "f7a494ff2e1d5114f03c125cadc02ec578005eac5c49644cba4aea6880293297"
+      "sha256": "f69f7da054e8a0cb498dfe2fbdab2348132e920c0a57d94bbfcf84b31dcf7dfe"
     },
     {
       "bytes": 12389,
@@ -2410,6 +2415,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1451880,
+  "total_bytes": 1460803,
   "version": "v0.1.0"
 }

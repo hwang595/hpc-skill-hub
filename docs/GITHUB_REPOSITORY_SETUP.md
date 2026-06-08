@@ -53,6 +53,12 @@ before applying it.
 - Link the generated site from the repository homepage when the URL is
   available.
 
+Inspect the Pages URL and print the repository homepage update command:
+
+```bash
+python3 tools/github_homepage.py --repo <owner>/hpc-skill-hub
+```
+
 ## GitHub Discussions
 
 - Confirm Discussions are enabled from `.github/repository.json`.
@@ -130,13 +136,14 @@ Cut `v0.1.0` after:
 
 - `Validate` and `Package` pass on GitHub Actions.
 - The generated registry site is published.
+- The repository homepage points at the generated Pages site.
 - At least one external contributor can validate a skill locally.
 - Maintainers agree the skill schema is stable enough for early adopters.
 
 ## Post-Launch Verification
 
-After repository settings, labels, milestones, starter issues, Pages, rulesets,
-and the release are live, run:
+After repository settings, labels, milestones, starter issues, Pages, homepage,
+rulesets, and the release are live, run:
 
 ```bash
 python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --version v0.1.0

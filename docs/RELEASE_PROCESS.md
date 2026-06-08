@@ -82,8 +82,9 @@ Review:
 Use [v0.1.0 Release Notes](RELEASE_NOTES_v0.1.0.md) as the starting point for
 the first public GitHub release body.
 
-After `main` is pushed, GitHub Actions are green, and the Pages site is
-published, inspect the release commands:
+After `main` is pushed, GitHub Actions are green, the Pages site is published,
+and the repository homepage points at the Pages URL, inspect the release
+commands:
 
 ```bash
 python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub

@@ -2,7 +2,8 @@
 
 Use this checklist after `main` is pushed to the public GitHub repository,
 labels and milestones are applied, starter issues are opened, Pages is enabled,
-rulesets are applied, and the first release is published.
+the Pages URL is linked from the repository homepage, rulesets are applied, and
+the first release is published.
 
 The verification tool is read-only. It checks the public GitHub repository with
 `gh` and does not create repositories, edit settings, open issues, apply
@@ -41,6 +42,7 @@ verification gate.
 - Starter issues from `.github/seed_issues.json` exist.
 - Workflows under `.github/workflows/` exist on GitHub.
 - GitHub Pages is configured.
+- The repository homepage points at the GitHub Pages URL.
 - The starter `Protect main` ruleset exists and is active.
 - The release tag, such as `v0.1.0`, exists as a GitHub release.
 
@@ -50,7 +52,7 @@ verification gate.
 - `WARN`: the check needs human follow-up, or local state is not yet wired to
   the published repository.
 - `FAIL`: a published repository setting, issue, ruleset, workflow, Pages
-  setup, label, milestone, or release is missing or inconsistent.
+  setup, homepage URL, label, milestone, or release is missing or inconsistent.
 
 Expected warnings before the repository is fully published include missing
 `origin` or missing `gh`. After launch, those warnings should be resolved or
@@ -62,9 +64,11 @@ Run this check after:
 
 1. `gh repo create` or manual repository creation.
 2. `Validate`, `Package`, and `Publish Pages` workflows are green.
-3. Labels, milestones, starter issues, and discussion categories are created.
-4. The `Protect main` ruleset is applied.
-5. The `v0.1.0` release is published.
+3. `python3 tools/github_homepage.py --repo <owner>/hpc-skill-hub` has been
+   reviewed and its printed homepage command has been run.
+4. Labels, milestones, starter issues, and discussion categories are created.
+5. The `Protect main` ruleset is applied.
+6. The `v0.1.0` release is published.
 
 Attach the verification report to the launch issue or release handoff so the
 first public state is reviewable later.

@@ -84,6 +84,7 @@ request missing workflows, or contribute public site adapters.
 - `python3 tools/hpc_skill.py health`
 - `python3 tools/review_candidates.py --limit 12`
 - `python3 tools/proposal_evidence.py --owner <owner> --run-check`
+- `python3 tools/github_homepage.py --repo <owner>/hpc-skill-hub`
 - `python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub`
 
 ## GitHub Launch Readiness
@@ -112,7 +113,7 @@ request missing workflows, or contribute public site adapters.
 - GitHub milestone metadata and command generator for launch, reviewed-skill
   pilot, integration, adapter, and ecosystem backlog planning.
 - Post-launch verification for repository metadata, labels, milestones,
-  starter issues, workflows, Pages, rulesets, and releases.
+  starter issues, workflows, Pages, homepage URL, rulesets, and releases.
 - Launch readiness checks for Discussion forms and milestone metadata.
 - Launch evidence report generation for maintainer handoff, owner checklists,
   and public launch issue evidence.
@@ -133,8 +134,8 @@ request missing workflows, or contribute public site adapters.
   public-safety review, and launch decision record before networked
   publication.
 - Local launch readiness audit for GitHub publishing.
-- Command generators for repository setup, labels, starter issues, rulesets,
-  and release publication.
+- Command generators for repository setup, labels, starter issues, Pages
+  homepage linking, rulesets, and release publication.
 - Deterministic release manifest with file checksums for the seed snapshot.
 - Registry index, health, and release manifest schemas plus artifact contract
   validation for downstream consumers.
@@ -163,4 +164,5 @@ Before tagging `v0.1.0`, maintainers should confirm:
 - `docs/COMPATIBILITY.md` and `registry/releases/v0.1.0.json` are current.
 - GitHub repository metadata, labels, and rulesets match `.github/`.
 - The generated Pages site is published.
+- The repository homepage points at the generated Pages site.
 - The first community issue is pinned.

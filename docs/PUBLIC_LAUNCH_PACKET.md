@@ -60,6 +60,7 @@ python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/launch_evidence.py --owner <owner> --run-check
 python3 tools/proposal_evidence.py --owner <owner> --run-check
 python3 tools/review_candidates.py --limit 12
+python3 tools/github_homepage.py --repo <owner>/hpc-skill-hub
 python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --dry-run
 ```
 
@@ -84,14 +85,15 @@ steps.
 2. Confirm `Validate` and `Package` workflows pass.
 3. Apply repository metadata, topics, labels, and milestones from `.github/`.
 4. Enable GitHub Pages from Actions and confirm `Publish Pages` succeeds.
-5. Enable Discussions and create the documented discussion categories.
-6. Open starter community issues and pin the community call issue.
-7. Apply the `main` branch ruleset after workflow status checks are visible.
-8. Generate the review candidate report and invite initial domain reviewers and
+5. Link the generated Pages URL from the repository homepage.
+6. Enable Discussions and create the documented discussion categories.
+7. Open starter community issues and pin the community call issue.
+8. Apply the `main` branch ruleset after workflow status checks are visible.
+9. Generate the review candidate report and invite initial domain reviewers and
    site-adapter reviewers through the reviewed-skill pilot and domain reviewer
    starter issues.
-9. Tag and publish `v0.1.0` with `registry/releases/v0.1.0.json` attached.
-10. Run post-launch verification and attach the report to the launch issue.
+10. Tag and publish `v0.1.0` with `registry/releases/v0.1.0.json` attached.
+11. Run post-launch verification and attach the report to the launch issue.
 
 ## First Outreach Targets
 
