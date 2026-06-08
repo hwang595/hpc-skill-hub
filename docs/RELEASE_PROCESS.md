@@ -34,6 +34,8 @@ make check
 
 Review:
 
+- `CHANGELOG.md` includes the release.
+- `docs/RELEASE_NOTES_v<version>.md` is ready for GitHub release notes.
 - `registry/index.json` is current.
 - `docs/SKILL_CATALOG.md` is current.
 - New skills have README files, examples, tests, and references.
@@ -56,3 +58,8 @@ Review:
 
 ## Safety Notes
 ```
+
+## First Seed Release
+
+Use [v0.1.0 Release Notes](RELEASE_NOTES_v0.1.0.md) as the starting point for
+the first public GitHub release body.

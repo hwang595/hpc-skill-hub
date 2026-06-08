@@ -170,6 +170,8 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Open source proposal](docs/OPEN_SOURCE_PROPOSAL.md)
 - [Community launch](docs/COMMUNITY_LAUNCH.md)
 - [Release process](docs/RELEASE_PROCESS.md)
+- [v0.1.0 release notes](docs/RELEASE_NOTES_v0.1.0.md)
+- [Changelog](CHANGELOG.md)
 - [GitHub publishing guide](docs/GITHUB_PUBLISHING.md)
 - [GitHub repository setup](docs/GITHUB_REPOSITORY_SETUP.md)
 
