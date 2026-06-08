@@ -6,12 +6,12 @@
     "data": 13,
     "debugging": 18,
     "education": 2,
-    "gpu": 11,
+    "gpu": 12,
     "interactive": 7,
     "mpi": 12,
     "performance": 13,
-    "scheduler": 55,
-    "software": 22,
+    "scheduler": 56,
+    "software": 23,
     "workflow": 10
   },
   "collection_count": 12,
@@ -32,6 +32,7 @@
         "dask-jobqueue-on-slurm",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
+        "tensorflow-multiworker-on-slurm",
         "pytorch-ddp-on-slurm",
         "deepspeed-on-slurm",
         "nccl-diagnostics",
@@ -177,6 +178,7 @@
         "ray-on-slurm",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
+        "tensorflow-multiworker-on-slurm",
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
@@ -188,7 +190,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -261,6 +263,7 @@
         "dask-jobqueue-on-slurm",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
+        "tensorflow-multiworker-on-slurm",
         "mpi4py-on-slurm",
         "rscript-on-slurm",
         "rstudio-on-slurm",
@@ -275,7 +278,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, JAX, Hugging Face Accelerate, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -339,7 +342,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 52,
+    "slurm": 53,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -392,7 +395,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 72,
+  "skill_count": 73,
   "skills": [
     {
       "categories": [
@@ -4413,6 +4416,69 @@
     },
     {
       "categories": [
+        "software",
+        "gpu",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for reviewing TensorFlow multi-worker launch settings, including TF_CONFIG generation, worker addresses, task indexes, GPU visibility, strategy initialization, and a tiny distributed tensor reduction before running real training.",
+      "examples": [
+        {
+          "path": "skills/tensorflow-multiworker-on-slurm/examples/tensorflow-multiworker.sbatch",
+          "title": "Plan or run a TensorFlow multi-worker Slurm smoke test"
+        },
+        {
+          "path": "skills/tensorflow-multiworker-on-slurm/examples/tensorflow_smoke.py",
+          "title": "TensorFlow distributed strategy smoke script"
+        }
+      ],
+      "id": "tensorflow-multiworker-on-slurm",
+      "maturity": "seed",
+      "name": "TensorFlow Multiworker On Slurm",
+      "path": "skills/tensorflow-multiworker-on-slurm",
+      "readme": "skills/tensorflow-multiworker-on-slurm/README.md",
+      "references": [
+        {
+          "title": "TensorFlow multi-worker training with Keras",
+          "url": "https://www.tensorflow.org/tutorials/distribute/multi_worker_with_keras"
+        },
+        {
+          "title": "TensorFlow distributed training guide",
+          "url": "https://www.tensorflow.org/guide/distributed_training"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Plan and smoke test TensorFlow MultiWorkerMirroredStrategy jobs on Slurm.",
+      "tags": [
+        "tensorflow",
+        "tfconfig",
+        "multiworker",
+        "keras",
+        "slurm",
+        "gpu",
+        "ai"
+      ],
+      "tools": [
+        "sbatch",
+        "srun",
+        "scontrol",
+        "python3",
+        "nvidia-smi",
+        "hostname",
+        "date",
+        "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "education",
         "admin",
         "scheduler"
@@ -4694,7 +4760,7 @@
     "affinity": 1,
     "afterany": 1,
     "afterok": 1,
-    "ai": 3,
+    "ai": 4,
     "all-reduce": 1,
     "amd": 1,
     "apptainer": 3,
@@ -4758,7 +4824,7 @@
     "genomics": 1,
     "git": 1,
     "globus": 1,
-    "gpu": 17,
+    "gpu": 18,
     "grid-engine": 1,
     "gromacs": 1,
     "haplotypecaller": 1,
@@ -4774,6 +4840,7 @@
     "jax": 1,
     "julia": 1,
     "jupyter": 2,
+    "keras": 1,
     "lab": 1,
     "lammps": 1,
     "ld_library_path": 1,
@@ -4800,6 +4867,7 @@
     "mpicc": 2,
     "mpiexec": 1,
     "mpirun": 1,
+    "multiworker": 1,
     "namd": 1,
     "nccl": 2,
     "netcdf": 1,
@@ -4880,7 +4948,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 50,
+    "slurm": 51,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -4896,7 +4964,8 @@
     "tar": 1,
     "template": 1,
     "tensorboard": 1,
-    "tensorflow": 1,
+    "tensorflow": 2,
+    "tfconfig": 1,
     "threads": 2,
     "throughput": 1,
     "time": 1,
@@ -4955,7 +5024,7 @@
     "cwltool": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 26,
+    "date": 27,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -4973,7 +5042,7 @@
     "gmx_mpi": 1,
     "grep": 9,
     "head": 4,
-    "hostname": 23,
+    "hostname": 24,
     "icoFoam": 1,
     "ior": 1,
     "julia": 1,
@@ -5000,14 +5069,14 @@
     "ncdump": 1,
     "nextflow": 2,
     "nproc": 1,
-    "nvidia-smi": 8,
+    "nvidia-smi": 9,
     "perf": 1,
     "pip": 1,
     "printenv": 1,
     "pw.x": 1,
     "pwd": 7,
     "python": 3,
-    "python3": 10,
+    "python3": 11,
     "qdel": 1,
     "qstat": 2,
     "qsub": 2,
@@ -5021,8 +5090,8 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 42,
-    "scontrol": 8,
+    "sbatch": 43,
+    "scontrol": 9,
     "sed": 3,
     "seff": 1,
     "sha256sum": 2,
@@ -5036,12 +5105,12 @@
     "sprio": 1,
     "squeue": 7,
     "sreport": 1,
-    "srun": 20,
+    "srun": 21,
     "ssh": 5,
     "streamlit": 1,
     "tail": 4,
     "tar": 1,
-    "tee": 20,
+    "tee": 21,
     "tensorboard": 1,
     "test": 8,
     "time": 1,

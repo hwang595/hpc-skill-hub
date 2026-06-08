@@ -1,0 +1,140 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "tensorflow-multiworker-on-slurm",
+  "name": "TensorFlow Multiworker On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Plan and smoke test TensorFlow MultiWorkerMirroredStrategy jobs on Slurm.",
+  "description": "This skill provides a conservative Slurm pattern for reviewing TensorFlow multi-worker launch settings, including TF_CONFIG generation, worker addresses, task indexes, GPU visibility, strategy initialization, and a tiny distributed tensor reduction before running real training.",
+  "categories": ["software", "gpu", "scheduler"],
+  "tags": ["tensorflow", "tfconfig", "multiworker", "keras", "slurm", "gpu", "ai"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": true
+    },
+    {
+      "name": "python3",
+      "required": true
+    },
+    {
+      "name": "nvidia-smi",
+      "required": false
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "gpu_partition",
+      "type": "string",
+      "required": true,
+      "description": "Slurm partition or queue that provides GPU nodes."
+    },
+    {
+      "name": "tensorflow_environment",
+      "type": "string",
+      "required": true,
+      "description": "Module, virtual environment, Conda environment, or container that provides TensorFlow for the target CPU or GPU backend."
+    },
+    {
+      "name": "resources",
+      "type": "object",
+      "required": true,
+      "description": "Slurm nodes, tasks per node, GPUs per node, CPUs, memory, and wall time requested for the TensorFlow smoke test."
+    },
+    {
+      "name": "worker_port",
+      "type": "integer",
+      "required": false,
+      "description": "TCP port used in each TensorFlow worker address inside TF_CONFIG."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "tensorflow_smoke_log",
+      "description": "Slurm log containing TensorFlow version, TF_CONFIG, device visibility, strategy metadata, and smoke-test status."
+    },
+    {
+      "name": "launch_record",
+      "description": "Reviewable launch plan with selected worker addresses, task count, worker port, and dry-run or execution mode."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/tensorflow-multiworker.sbatch",
+    "examples/tensorflow_smoke.py"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run a TensorFlow multi-worker Slurm smoke test",
+      "path": "examples/tensorflow-multiworker.sbatch"
+    },
+    {
+      "title": "TensorFlow distributed strategy smoke script",
+      "path": "examples/tensorflow_smoke.py"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill tensorflow-multiworker-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/tensorflow-multiworker-on-slurm/examples/tensorflow-multiworker.sbatch",
+      "description": "Check the Slurm wrapper shell syntax."
+    },
+    {
+      "type": "static",
+      "command": "python3 -m py_compile skills/tensorflow-multiworker-on-slurm/examples/tensorflow_smoke.py",
+      "description": "Check the Python smoke script syntax without requiring TensorFlow to be installed."
+    },
+    {
+      "type": "manual",
+      "description": "Replace account, partition, and environment placeholders, submit with RUN_TENSORFLOW_SMOKE=0 to review the launch plan, then submit with RUN_TENSORFLOW_SMOKE=1 on a short GPU allocation and confirm every worker reports status=ok."
+    }
+  ],
+  "references": [
+    {
+      "title": "TensorFlow multi-worker training with Keras",
+      "url": "https://www.tensorflow.org/tutorials/distribute/multi_worker_with_keras"
+    },
+    {
+      "title": "TensorFlow distributed training guide",
+      "url": "https://www.tensorflow.org/guide/distributed_training"
+    },
+    {
+      "title": "Slurm srun documentation",
+      "url": "https://slurm.schedmd.com/srun.html"
+    }
+  ]
+}

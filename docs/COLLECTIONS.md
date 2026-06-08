@@ -19,7 +19,8 @@ research software engineer building software stacks may start with
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
   reproducible run capture, Python virtual environments, Open OnDemand
   templates, TensorBoard monitors, Streamlit apps, Ray clusters, Dask Jobqueue,
-  JAX distributed smoke tests, Hugging Face Accelerate launches, mpi4py jobs,
+  JAX distributed smoke tests, Hugging Face Accelerate launches, TensorFlow
+  multi-worker smoke tests, mpi4py jobs,
   Rscript jobs, RStudio sessions, Julia jobs, MATLAB batch jobs, IDE tunnels,
   Conda/Mamba, container builds and runtime, Spack, and EasyBuild.
 - `containers`: Apptainer-compatible image build planning, container runtime
@@ -38,14 +39,15 @@ research software engineer building software stacks may start with
   staging, archive preparation, IOR/MDTest storage smoke benchmarks, scratch
   inventory, and filesystem quota triage.
 - `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, JAX distributed
-  smoke tests, Hugging Face Accelerate launches, PyTorch DDP, DeepSpeed, NCCL
-  diagnostics, GPU memory triage, TensorBoard monitors,
+  smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke
+  tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
   Streamlit demos, container runtime execution, data staging, checkpoint/restart
   planning, reproducible run capture, and Slurm efficiency review for
   distributed AI workloads.
 - `gpu-mpi-performance`: MPI launch checks, containerized MPI checks, mpi4py
   launch checks, compiler/MPI compatibility, GPU sanity checks, Ray cluster
   smoke tests, JAX distributed smoke tests, Hugging Face Accelerate launches,
+  TensorFlow multi-worker smoke tests,
   GPU memory triage, TensorBoard monitors, PyTorch DDP smoke tests, NCCL
   diagnostics, DeepSpeed launch checks, OpenMP placement, Slurm efficiency
   review, storage smoke benchmarks, and basic profiling.

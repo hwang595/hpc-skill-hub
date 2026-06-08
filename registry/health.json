@@ -6,25 +6,26 @@
     "data": 13,
     "debugging": 18,
     "education": 2,
-    "gpu": 11,
+    "gpu": 12,
     "interactive": 7,
     "mpi": 12,
     "performance": 13,
-    "scheduler": 55,
-    "software": 22,
+    "scheduler": 56,
+    "software": 23,
     "workflow": 10
   },
   "collection_count": 12,
   "collection_coverage": [
     {
       "id": "ai-hpc",
-      "skill_count": 16,
+      "skill_count": 17,
       "skill_ids": [
         "gpu-sanity-check",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
+        "tensorflow-multiworker-on-slurm",
         "pytorch-ddp-on-slurm",
         "deepspeed-on-slurm",
         "nccl-diagnostics",
@@ -112,7 +113,7 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 17,
+      "skill_count": 18,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
@@ -122,6 +123,7 @@
         "ray-on-slurm",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
+        "tensorflow-multiworker-on-slurm",
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
@@ -167,7 +169,7 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 24,
+      "skill_count": 25,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
@@ -181,6 +183,7 @@
         "dask-jobqueue-on-slurm",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
+        "tensorflow-multiworker-on-slurm",
         "mpi4py-on-slurm",
         "rscript-on-slurm",
         "rstudio-on-slurm",
@@ -234,7 +237,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 72
+    "seed": 73
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -305,6 +308,7 @@
     "spack-environment-create": "medium",
     "streamlit-on-slurm": "medium",
     "tensorboard-on-slurm": "medium",
+    "tensorflow-multiworker-on-slurm": "medium",
     "training-cluster-reset-checklist": "medium",
     "vscode-tunnel-on-slurm": "medium",
     "wdl-on-slurm": "medium",
@@ -312,13 +316,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 55
+    "medium": 56
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 72,
+  "skill_count": 73,
   "status_counts": {
-    "draft": 72
+    "draft": 73
   },
   "uncollected_skill_ids": []
 }

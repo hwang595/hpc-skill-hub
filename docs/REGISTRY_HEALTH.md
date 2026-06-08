@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 72
+- Skills: 73
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -14,34 +14,34 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 55 |
+| `medium` | 56 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 72 |
+| `seed` | 73 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 72 |
+| `draft` | 73 |
 
 ## Collection Coverage
 
 | Collection | Skills |
 | --- | ---: |
-| `ai-hpc` | 16 |
+| `ai-hpc` | 17 |
 | `bioinformatics-workflows` | 7 |
 | `containers` | 7 |
 | `core-hpc` | 16 |
 | `data-movement` | 8 |
 | `facility-ops` | 4 |
-| `gpu-mpi-performance` | 17 |
+| `gpu-mpi-performance` | 18 |
 | `scheduler-basics` | 7 |
 | `simulation-workflows` | 13 |
-| `software-stacks` | 24 |
+| `software-stacks` | 25 |
 | `training-onboarding` | 17 |
 | `workflow-engines` | 7 |
 
@@ -121,6 +121,7 @@ All skills are included in at least one collection.
 | `spack-environment-create` | medium |
 | `streamlit-on-slurm` | medium |
 | `tensorboard-on-slurm` | medium |
+| `tensorflow-multiworker-on-slurm` | medium |
 | `training-cluster-reset-checklist` | medium |
 | `vscode-tunnel-on-slurm` | medium |
 | `wdl-on-slurm` | medium |
