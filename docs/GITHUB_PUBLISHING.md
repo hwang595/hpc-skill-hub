@@ -23,7 +23,7 @@ Install and authenticate `gh`, then run from the repository root:
 
 ```bash
 python3 tools/github_publish_plan.py --owner <owner>
-python3 tools/launch_readiness.py
+python3 tools/launch_readiness.py --owner <owner>
 python3 tools/github_repo.py --owner <owner>
 python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
 python3 tools/github_milestones.py --repo <owner>/hpc-skill-hub

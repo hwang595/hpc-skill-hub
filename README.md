@@ -160,6 +160,7 @@ make check
 Prepare GitHub publication commands without taking networked action:
 
 ```bash
+python3 tools/launch_readiness.py --owner <owner> --run-check
 python3 tools/github_publish_plan.py --owner <owner> --run-check
 ```
 

@@ -354,6 +354,8 @@ class GitHubMetadataTests(unittest.TestCase):
             [
                 "python3",
                 "tools/launch_readiness.py",
+                "--owner",
+                "example",
                 "--json",
             ],
             cwd=str(ROOT),
@@ -373,6 +375,10 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertEqual(by_name["registry-artifact-contracts"]["status"], "OK")
         self.assertIn(by_name["git-remote"]["status"], {"OK", "WARN"})
         self.assertIn(by_name["gh-cli"]["status"], {"OK", "WARN"})
+        if by_name["git-remote"]["status"] == "WARN":
+            self.assertIn("example/hpc-skill-hub", by_name["git-remote"]["detail"])
+        if by_name["gh-cli"]["status"] == "WARN":
+            self.assertIn("--owner example", by_name["gh-cli"]["detail"])
 
 
 if __name__ == "__main__":

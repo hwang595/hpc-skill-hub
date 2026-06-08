@@ -272,17 +272,34 @@ def git_status_check() -> Check:
     return ok("git-status", "working tree clean")
 
 
-def git_remote_check() -> Check:
+def git_remote_check(owner: str | None = None) -> Check:
     result = run_command(["git", "remote", "get-url", "origin"])
     if result.returncode != 0:
+        if owner:
+            return warn(
+                "git-remote",
+                "origin remote is not configured; expected "
+                f"git@github.com:{owner}/hpc-skill-hub.git after repository creation",
+            )
         return warn("git-remote", "origin remote is not configured")
     return ok("git-remote", result.stdout.strip())
 
 
-def gh_cli_check() -> Check:
+def gh_cli_check(owner: str | None = None, run_make_check: bool = False) -> Check:
     if shutil.which("gh"):
         return ok("gh-cli", "GitHub CLI found")
-    return warn("gh-cli", "GitHub CLI not found; run generated commands in an authenticated environment")
+    command = "python3 tools/github_publish_plan.py"
+    if owner:
+        command += f" --owner {owner}"
+    else:
+        command += " --owner <owner>"
+    if run_make_check:
+        command += " --run-check"
+    return warn(
+        "gh-cli",
+        "GitHub CLI not found; install and authenticate gh, then review "
+        f"`{command}` in that environment",
+    )
 
 
 def make_check(run_check: bool) -> Check:
@@ -297,7 +314,7 @@ def make_check(run_check: bool) -> Check:
     return fail("make-check", detail)
 
 
-def launch_checks(run_make_check: bool) -> List[Check]:
+def launch_checks(run_make_check: bool, owner: str | None = None) -> List[Check]:
     checks = [
         required_files_check(),
         registry_health_check(),
@@ -306,8 +323,8 @@ def launch_checks(run_make_check: bool) -> List[Check]:
         discussion_templates_check(),
         milestones_check(),
         git_status_check(),
-        git_remote_check(),
-        gh_cli_check(),
+        git_remote_check(owner),
+        gh_cli_check(owner, run_make_check),
     ]
     checks.extend(generated_artifacts_check())
     checks.append(make_check(run_make_check))
@@ -336,10 +353,14 @@ def main() -> int:
         action="store_true",
         help="Run make check as part of the readiness audit.",
     )
+    parser.add_argument(
+        "--owner",
+        help="Optional GitHub owner or organization used to print concrete follow-up hints.",
+    )
     parser.add_argument("--json", action="store_true", help="Print JSON output.")
     args = parser.parse_args()
 
-    checks = launch_checks(args.run_check)
+    checks = launch_checks(args.run_check, args.owner)
     if args.json:
         print_json(checks)
     else:

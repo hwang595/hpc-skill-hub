@@ -188,9 +188,9 @@
       "sha256": "dea798cae34c09327203664ff6b3e488ce7eb4ceff5e6d0f89bc31462fea8825"
     },
     {
-      "bytes": 10957,
+      "bytes": 11019,
       "path": "README.md",
-      "sha256": "f14bdce1d826317ea3cd29b3a35bb45597714190706ff363df5a63f6d3f7b7d7"
+      "sha256": "6008d23632c79608b4732343326c1f62fe972f6161f68dd7eaae2ea02e3a4913"
     },
     {
       "bytes": 2982,
@@ -333,9 +333,9 @@
       "sha256": "9ac1621cbec756a8cdd95971a8abe128219c6b4ac2353548e1e30593152ee18a"
     },
     {
-      "bytes": 4845,
+      "bytes": 4861,
       "path": "docs/GITHUB_PUBLISHING.md",
-      "sha256": "d75a08d4e73f9bc4af80373d9f3006dbe12a8cd516ed4eadeabbf2fc2d98bd11"
+      "sha256": "afa75e675da9a005670c785212fa749315d3203014c7d6f256a0b05b300899db"
     },
     {
       "bytes": 4105,
@@ -353,9 +353,9 @@
       "sha256": "8bee4236edb8a66d249de8fc05aa65f8057f75ada5cc3d37bf413ec470aef17d"
     },
     {
-      "bytes": 2394,
+      "bytes": 2562,
       "path": "docs/LAUNCH_READINESS.md",
-      "sha256": "0fc9a02cd72c618d9593c5524aa2b9301170d0390a3b094f617d2b7ee0845627"
+      "sha256": "424625430441b3867270021e3926d942da530912a8be937e6d3076600c7ae554"
     },
     {
       "bytes": 2826,
@@ -1818,9 +1818,9 @@
       "sha256": "37335bc4470c6acce6babee3957dadbcfe7bc0b1bf38140f9cee3d233581e515"
     },
     {
-      "bytes": 15335,
+      "bytes": 15651,
       "path": "tests/test_github_metadata.py",
-      "sha256": "9d17e650ba5fb1052f753691cff5e1ffe2d15b43ded6e54b1a05c8754190a645"
+      "sha256": "364d942a81ec5a8e6d75e83b4a31cbde7d38eda7fba7c54b5c8337121402d4d7"
     },
     {
       "bytes": 7822,
@@ -1883,9 +1883,9 @@
       "sha256": "5465fe37c4e0fb810d16518935819e087b118f4b055d1698a4f56d979e231ad4"
     },
     {
-      "bytes": 4338,
+      "bytes": 4373,
       "path": "tools/github_publish_plan.py",
-      "sha256": "dd457979e54404cdf8a2c9ef5037170521d72b5c4a537e2fd58d34c7c5f5da43"
+      "sha256": "a074a6d20c5a720b28cb57d6a0bf3875e7cf173b2df4f66064500abd839fe842"
     },
     {
       "bytes": 2226,
@@ -1908,9 +1908,9 @@
       "sha256": "f40297733b779b3c8f2ff8ab62fdc6af5e5e63da495c096c93940dda6fb8a01e"
     },
     {
-      "bytes": 12293,
+      "bytes": 13078,
       "path": "tools/launch_readiness.py",
-      "sha256": "6d311698f9a5c2b990226ee40bf6d1fc04c13a989683a9c35ef501d53de32d5b"
+      "sha256": "0119681a3967739c801c75888c2bda3bea0210e9b308833233d3f2d0e687f249"
     },
     {
       "bytes": 10689,
@@ -1945,6 +1945,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1110171,
+  "total_bytes": 1111553,
   "version": "v0.1.0"
 }

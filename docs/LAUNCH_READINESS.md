@@ -14,16 +14,23 @@ which GitHub actions still need an authenticated environment.
 python3 tools/launch_readiness.py
 ```
 
+Pass the intended GitHub owner or organization to make external follow-up hints
+concrete:
+
+```bash
+python3 tools/launch_readiness.py --owner <owner>
+```
+
 For machine-readable output:
 
 ```bash
-python3 tools/launch_readiness.py --json
+python3 tools/launch_readiness.py --owner <owner> --json
 ```
 
 To include the full local gate:
 
 ```bash
-python3 tools/launch_readiness.py --run-check
+python3 tools/launch_readiness.py --owner <owner> --run-check
 ```
 
 ## Interpreting Results
@@ -38,7 +45,6 @@ Expected warnings before the first push include:
 - `git-remote`: no `origin` remote has been configured yet.
 - `gh-cli`: GitHub CLI is not available in the current environment.
 - `make-check`: omitted unless `--run-check` is passed.
-- `git-remote`: remains a warning until the public GitHub remote is configured.
 
 ## Related Commands
 
@@ -46,6 +52,7 @@ The readiness audit complements the command generators:
 
 ```bash
 python3 tools/github_publish_plan.py --owner <owner> --run-check
+python3 tools/launch_readiness.py --owner <owner> --run-check
 python3 tools/build_package_data.py --check
 python3 tools/build_release_manifest.py v0.1.0 --check
 python3 tools/validate_registry_artifacts.py

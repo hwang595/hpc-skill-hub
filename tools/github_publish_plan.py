@@ -81,12 +81,12 @@ def main() -> int:
     print("# Review commands before running them in an authenticated GitHub environment.")
 
     print_section("1. Local readiness")
-    readiness_command = ["python3", "tools/launch_readiness.py"]
+    readiness_command = ["python3", "tools/launch_readiness.py", "--owner", args.owner]
     if args.run_check:
         readiness_command.append("--run-check")
     print(shell_join(readiness_command))
     print()
-    for check in launch_checks(args.run_check):
+    for check in launch_checks(args.run_check, args.owner):
         print(f"# {check.status:4} {check.name}: {check.detail}")
 
     print_section("2. Create repository and push seed branch")
