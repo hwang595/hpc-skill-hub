@@ -2,15 +2,15 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 15 skills.
+Current registry size: 17 skills.
 
 ## Categories
 
 | Category | Skills |
 | --- | ---: |
 | `containers` | 1 |
-| `data` | 1 |
-| `debugging` | 6 |
+| `data` | 3 |
+| `debugging` | 8 |
 | `gpu` | 1 |
 | `interactive` | 1 |
 | `mpi` | 1 |
@@ -32,6 +32,8 @@ Current registry size: 15 skills.
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
 | [`globus-transfer-dataset`](../skills/globus-transfer-dataset/README.md) | medium | seed | Stage large datasets with Globus transfer and verification steps. |
+| [`quota-and-filesystem-triage`](../skills/quota-and-filesystem-triage/README.md) | low | seed | Diagnose quota, inode, and filesystem-space failures from user-visible evidence. |
+| [`scratch-storage-management`](../skills/scratch-storage-management/README.md) | low | seed | Inspect scratch, project, and working-directory usage before HPC jobs. |
 
 ### Debugging
 
@@ -42,6 +44,8 @@ Current registry size: 15 skills.
 | [`module-environment-debug`](../skills/module-environment-debug/README.md) | low | seed | Diagnose module, compiler, MPI, and library path conflicts. |
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
 | [`performance-profile-basic`](../skills/performance-profile-basic/README.md) | low | seed | Collect first-pass performance evidence for an HPC workload. |
+| [`quota-and-filesystem-triage`](../skills/quota-and-filesystem-triage/README.md) | low | seed | Diagnose quota, inode, and filesystem-space failures from user-visible evidence. |
+| [`scratch-storage-management`](../skills/scratch-storage-management/README.md) | low | seed | Inspect scratch, project, and working-directory usage before HPC jobs. |
 | [`slurm-monitor-job`](../skills/slurm-monitor-job/README.md) | low | seed | Inspect Slurm job state, accounting records, and output paths. |
 
 ### GPU
@@ -103,8 +107,8 @@ Current registry size: 15 skills.
 
 | Collection | Status | Skills | Audience | Description |
 | --- | --- | ---: | --- | --- |
-| [`core-hpc`](../collections/core-hpc.json) | draft | 5 | new HPC users, research software engineers, support teams | Starter skills for submitting, monitoring, estimating, debugging, and using interactive Slurm jobs. |
-| [`data-movement`](../collections/data-movement.json) | draft | 1 | data stewards, research groups, facility support teams | Skills for staging, transferring, and tracking large research datasets. |
+| [`core-hpc`](../collections/core-hpc.json) | draft | 7 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, debugging, storage triage, and interactive HPC sessions. |
+| [`data-movement`](../collections/data-movement.json) | draft | 3 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 3 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, MPI launches, and first-pass performance evidence. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 4 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, running containers, and creating reproducible HPC software environments. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 2 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines on Slurm-backed HPC clusters. |
@@ -120,7 +124,8 @@ Current registry size: 15 skills.
 - Open OnDemand app templates.
 - PyTorch distributed training on Slurm.
 - NCCL multi-node diagnostics.
-- Filesystem quota and metadata pressure checks.
+- Slurm job array patterns.
+- Checkpoint and restart workflows.
 - WRF, GROMACS, LAMMPS, OpenFOAM, and Quantum ESPRESSO starter skills.
 - Bioinformatics workflows for nf-core, GATK, BLAST, and AlphaFold.
 - Facility read-only reports for fairshare, partitions, and node health.

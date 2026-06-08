@@ -3,14 +3,16 @@
   "id": "core-hpc",
   "name": "Core HPC",
   "status": "draft",
-  "summary": "Starter skills for submitting, monitoring, estimating, debugging, and using interactive Slurm jobs.",
+  "summary": "Starter skills for Slurm jobs, debugging, storage triage, and interactive HPC sessions.",
   "audience": ["new HPC users", "research software engineers", "support teams"],
   "skill_ids": [
     "slurm-submit-job",
     "slurm-monitor-job",
     "slurm-resource-estimator",
     "job-failure-triage",
-    "interactive-session"
+    "interactive-session",
+    "quota-and-filesystem-triage",
+    "scratch-storage-management"
   ],
   "maintainers": [
     {

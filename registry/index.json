@@ -1,8 +1,8 @@
 {
   "categories": {
     "containers": 1,
-    "data": 1,
-    "debugging": 6,
+    "data": 3,
+    "debugging": 8,
     "gpu": 1,
     "interactive": 1,
     "mpi": 1,
@@ -27,10 +27,12 @@
         "slurm-monitor-job",
         "slurm-resource-estimator",
         "job-failure-triage",
-        "interactive-session"
+        "interactive-session",
+        "quota-and-filesystem-triage",
+        "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for submitting, monitoring, estimating, debugging, and using interactive Slurm jobs."
+      "summary": "Starter skills for Slurm jobs, debugging, storage triage, and interactive HPC sessions."
     },
     {
       "audience": [
@@ -42,10 +44,12 @@
       "name": "Data Movement",
       "path": "collections/data-movement.json",
       "skill_ids": [
-        "globus-transfer-dataset"
+        "globus-transfer-dataset",
+        "scratch-storage-management",
+        "quota-and-filesystem-triage"
       ],
       "status": "draft",
-      "summary": "Skills for staging, transferring, and tracking large research datasets."
+      "summary": "Skills for staging, transferring, validating, and managing research data on HPC storage."
     },
     {
       "audience": [
@@ -127,7 +131,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 15,
+  "skill_count": 17,
   "skills": [
     {
       "categories": [
@@ -598,6 +602,105 @@
     },
     {
       "categories": [
+        "debugging",
+        "data"
+      ],
+      "description": "This skill gives users and support teams a read-only checklist for storage-related failures such as full filesystems, quota limits, inode exhaustion, and path permission errors.",
+      "examples": [
+        {
+          "path": "skills/quota-and-filesystem-triage/examples/filesystem-triage.sh",
+          "title": "Triage filesystem and quota signals"
+        }
+      ],
+      "id": "quota-and-filesystem-triage",
+      "maturity": "seed",
+      "name": "Quota And Filesystem Triage",
+      "path": "skills/quota-and-filesystem-triage",
+      "readme": "skills/quota-and-filesystem-triage/README.md",
+      "references": [
+        {
+          "title": "GNU coreutils df invocation",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/df-invocation.html"
+        },
+        {
+          "title": "Linux quota tools project",
+          "url": "https://sourceforge.net/projects/linuxquota/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Diagnose quota, inode, and filesystem-space failures from user-visible evidence.",
+      "tags": [
+        "quota",
+        "inode",
+        "filesystem",
+        "storage",
+        "enospc",
+        "permission",
+        "triage"
+      ],
+      "tools": [
+        "df",
+        "quota",
+        "find",
+        "grep",
+        "tail",
+        "dirname"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "data",
+        "debugging"
+      ],
+      "description": "This skill helps users inventory user-owned storage, identify large files and directories, and prepare a safe cleanup or staging plan before running storage-sensitive HPC workloads.",
+      "examples": [
+        {
+          "path": "skills/scratch-storage-management/examples/storage-inventory.sh",
+          "title": "Inventory a user-owned storage path"
+        }
+      ],
+      "id": "scratch-storage-management",
+      "maturity": "seed",
+      "name": "Scratch Storage Management",
+      "path": "skills/scratch-storage-management",
+      "readme": "skills/scratch-storage-management/README.md",
+      "references": [
+        {
+          "title": "GNU coreutils du invocation",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/du-invocation.html"
+        },
+        {
+          "title": "GNU find manual",
+          "url": "https://www.gnu.org/software/findutils/manual/html_mono/find.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Inspect scratch, project, and working-directory usage before HPC jobs.",
+      "tags": [
+        "scratch",
+        "storage",
+        "quota",
+        "filesystem",
+        "cleanup",
+        "staging"
+      ],
+      "tools": [
+        "df",
+        "du",
+        "find",
+        "sort",
+        "head",
+        "tail"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "scheduler",
         "debugging"
       ],
@@ -845,6 +948,7 @@
     "array": 1,
     "benchmark": 1,
     "checksum": 1,
+    "cleanup": 1,
     "compiler": 1,
     "container": 1,
     "cpu": 1,
@@ -853,10 +957,13 @@
     "debugging": 1,
     "easybuild": 1,
     "easyconfig": 1,
+    "enospc": 1,
     "environment": 2,
     "failure": 1,
+    "filesystem": 2,
     "globus": 1,
     "gpu": 4,
+    "inode": 1,
     "io": 1,
     "jupyter": 1,
     "ld_library_path": 1,
@@ -871,8 +978,10 @@
     "nvidia": 1,
     "oom": 1,
     "perf": 1,
+    "permission": 1,
     "profile": 1,
     "profiling": 1,
+    "quota": 2,
     "reproducibility": 1,
     "resources": 1,
     "rocm": 1,
@@ -880,6 +989,7 @@
     "salloc": 1,
     "sbatch": 1,
     "scontrol": 1,
+    "scratch": 1,
     "singularity": 1,
     "slurm": 10,
     "snakemake": 1,
@@ -887,37 +997,45 @@
     "spack": 1,
     "squeue": 1,
     "srun": 2,
-    "staging": 1,
+    "staging": 2,
+    "storage": 2,
     "time": 1,
     "timeout": 1,
     "transfer": 1,
-    "triage": 1,
+    "triage": 2,
     "walltime": 1,
     "workflow": 2
   },
   "tools": {
     "apptainer": 1,
     "awk": 1,
+    "df": 2,
+    "dirname": 1,
+    "du": 1,
     "eb": 1,
+    "find": 2,
     "globus": 1,
-    "grep": 1,
+    "grep": 2,
+    "head": 1,
     "ldd": 1,
     "module": 2,
     "mpicc": 1,
     "nextflow": 1,
     "nvidia-smi": 2,
     "perf": 1,
+    "quota": 1,
     "rocm-smi": 1,
     "sacct": 3,
     "salloc": 1,
     "sbatch": 5,
     "scontrol": 1,
     "snakemake": 1,
+    "sort": 1,
     "spack": 1,
     "squeue": 1,
     "srun": 3,
     "ssh": 1,
-    "tail": 1,
+    "tail": 3,
     "time": 1,
     "which": 1
   }

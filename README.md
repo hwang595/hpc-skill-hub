@@ -38,6 +38,8 @@ tools.
 | `slurm-resource-estimator` | Estimate memory, wall time, and CPU needs from accounting history. |
 | `job-failure-triage` | Diagnose common job failures such as OOM, time limits, and missing modules. |
 | `interactive-session` | Start interactive compute sessions for shells, notebooks, and IDE tunnels. |
+| `quota-and-filesystem-triage` | Diagnose quota, inode, capacity, and permission failures. |
+| `scratch-storage-management` | Inventory user-owned scratch, project, and workflow storage usage. |
 | `module-environment-debug` | Debug module, compiler, MPI, and library path conflicts. |
 | `apptainer-run-container` | Run Apptainer/Singularity containers safely on shared HPC systems. |
 | `spack-environment-create` | Create reproducible Spack environments for scientific software stacks. |

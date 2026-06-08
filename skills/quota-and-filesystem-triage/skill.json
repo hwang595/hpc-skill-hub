@@ -1,0 +1,93 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "quota-and-filesystem-triage",
+  "name": "Quota And Filesystem Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Diagnose quota, inode, and filesystem-space failures from user-visible evidence.",
+  "description": "This skill gives users and support teams a read-only checklist for storage-related failures such as full filesystems, quota limits, inode exhaustion, and path permission errors.",
+  "categories": ["debugging", "data"],
+  "tags": ["quota", "inode", "filesystem", "storage", "enospc", "permission", "triage"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "df",
+      "required": true
+    },
+    {
+      "name": "quota",
+      "required": false
+    },
+    {
+      "name": "find",
+      "required": true
+    },
+    {
+      "name": "grep",
+      "required": true
+    },
+    {
+      "name": "tail",
+      "required": true
+    },
+    {
+      "name": "dirname",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "target_path",
+      "type": "path",
+      "required": false,
+      "description": "Directory whose filesystem, inode usage, and permissions should be inspected."
+    },
+    {
+      "name": "log_file",
+      "type": "path",
+      "required": false,
+      "description": "Optional job or application log with storage-related error messages."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "filesystem_triage_report",
+      "description": "Read-only evidence about capacity, inode usage, quota command availability, path permissions, and log clues."
+    }
+  ],
+  "artifacts": ["README.md", "examples/filesystem-triage.sh"],
+  "examples": [
+    {
+      "title": "Triage filesystem and quota signals",
+      "path": "examples/filesystem-triage.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill quota-and-filesystem-triage",
+      "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "manual",
+      "description": "Run against a user-owned directory and sample log, then confirm no filesystem state is changed."
+    }
+  ],
+  "references": [
+    {
+      "title": "GNU coreutils df invocation",
+      "url": "https://www.gnu.org/software/coreutils/manual/html_node/df-invocation.html"
+    },
+    {
+      "title": "Linux quota tools project",
+      "url": "https://sourceforge.net/projects/linuxquota/"
+    }
+  ]
+}

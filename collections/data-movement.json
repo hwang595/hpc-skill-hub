@@ -3,10 +3,12 @@
   "id": "data-movement",
   "name": "Data Movement",
   "status": "draft",
-  "summary": "Skills for staging, transferring, and tracking large research datasets.",
+  "summary": "Skills for staging, transferring, validating, and managing research data on HPC storage.",
   "audience": ["data stewards", "research groups", "facility support teams"],
   "skill_ids": [
-    "globus-transfer-dataset"
+    "globus-transfer-dataset",
+    "scratch-storage-management",
+    "quota-and-filesystem-triage"
   ],
   "maintainers": [
     {

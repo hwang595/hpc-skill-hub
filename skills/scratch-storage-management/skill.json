@@ -1,0 +1,91 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "scratch-storage-management",
+  "name": "Scratch Storage Management",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Inspect scratch, project, and working-directory usage before HPC jobs.",
+  "description": "This skill helps users inventory user-owned storage, identify large files and directories, and prepare a safe cleanup or staging plan before running storage-sensitive HPC workloads.",
+  "categories": ["data", "debugging"],
+  "tags": ["scratch", "storage", "quota", "filesystem", "cleanup", "staging"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "df",
+      "required": true
+    },
+    {
+      "name": "du",
+      "required": true
+    },
+    {
+      "name": "find",
+      "required": true
+    },
+    {
+      "name": "sort",
+      "required": true
+    },
+    {
+      "name": "head",
+      "required": true
+    },
+    {
+      "name": "tail",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "target_path",
+      "type": "path",
+      "required": false,
+      "description": "Directory to inspect, such as a scratch, project, or workflow working directory."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "storage_inventory",
+      "description": "Read-only report of filesystem capacity, largest top-level entries, and large-file candidates."
+    },
+    {
+      "name": "cleanup_plan",
+      "description": "Human-reviewed list of files or directories to archive, move, regenerate, or delete outside the script."
+    }
+  ],
+  "artifacts": ["README.md", "examples/storage-inventory.sh"],
+  "examples": [
+    {
+      "title": "Inventory a user-owned storage path",
+      "path": "examples/storage-inventory.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill scratch-storage-management",
+      "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "manual",
+      "description": "Run against a small test directory and confirm the report is read-only and identifies top-level usage."
+    }
+  ],
+  "references": [
+    {
+      "title": "GNU coreutils du invocation",
+      "url": "https://www.gnu.org/software/coreutils/manual/html_node/du-invocation.html"
+    },
+    {
+      "title": "GNU find manual",
+      "url": "https://www.gnu.org/software/findutils/manual/html_mono/find.html"
+    }
+  ]
+}

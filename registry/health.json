@@ -1,8 +1,8 @@
 {
   "category_counts": {
     "containers": 1,
-    "data": 1,
-    "debugging": 6,
+    "data": 3,
+    "debugging": 8,
     "gpu": 1,
     "interactive": 1,
     "mpi": 1,
@@ -15,20 +15,24 @@
   "collection_coverage": [
     {
       "id": "core-hpc",
-      "skill_count": 5,
+      "skill_count": 7,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-monitor-job",
         "slurm-resource-estimator",
         "job-failure-triage",
-        "interactive-session"
+        "interactive-session",
+        "quota-and-filesystem-triage",
+        "scratch-storage-management"
       ]
     },
     {
       "id": "data-movement",
-      "skill_count": 1,
+      "skill_count": 3,
       "skill_ids": [
-        "globus-transfer-dataset"
+        "globus-transfer-dataset",
+        "scratch-storage-management",
+        "quota-and-filesystem-triage"
       ]
     },
     {
@@ -61,7 +65,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 15
+    "seed": 17
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -74,6 +78,8 @@
     "mpi-hello-and-benchmark": "medium",
     "nextflow-on-slurm": "medium",
     "performance-profile-basic": "low",
+    "quota-and-filesystem-triage": "low",
+    "scratch-storage-management": "low",
     "slurm-monitor-job": "low",
     "slurm-resource-estimator": "low",
     "slurm-submit-job": "medium",
@@ -81,14 +87,14 @@
     "spack-environment-create": "medium"
   },
   "risk_counts": {
-    "low": 5,
+    "low": 7,
     "medium": 10
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 15,
+  "skill_count": 17,
   "status_counts": {
-    "draft": 15
+    "draft": 17
   },
   "uncollected_skill_ids": []
 }

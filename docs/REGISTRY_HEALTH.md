@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 15
+- Skills: 17
 - Site adapters: 1
 - Collections: 5
 - Uncollected skills: 0
@@ -13,27 +13,27 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 5 |
+| `low` | 7 |
 | `medium` | 10 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 15 |
+| `seed` | 17 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 15 |
+| `draft` | 17 |
 
 ## Collection Coverage
 
 | Collection | Skills |
 | --- | ---: |
-| `core-hpc` | 5 |
-| `data-movement` | 1 |
+| `core-hpc` | 7 |
+| `data-movement` | 3 |
 | `gpu-mpi-performance` | 3 |
 | `software-stacks` | 4 |
 | `workflow-engines` | 2 |
@@ -56,6 +56,8 @@ All skills are included in at least one collection.
 | `mpi-hello-and-benchmark` | medium |
 | `nextflow-on-slurm` | medium |
 | `performance-profile-basic` | low |
+| `quota-and-filesystem-triage` | low |
+| `scratch-storage-management` | low |
 | `slurm-monitor-job` | low |
 | `slurm-resource-estimator` | low |
 | `slurm-submit-job` | medium |

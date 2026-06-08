@@ -4,12 +4,17 @@ This backlog lists high-value HPC skills to develop after the seed registry.
 It is intentionally public so contributors can claim focused tasks and propose
 new collections.
 
+## Recently Implemented From This Backlog
+
+| Skill id | Category | Risk | Status |
+| --- | --- | --- | --- |
+| `scratch-storage-management` | data | low | Seed skill added to `core-hpc` and `data-movement`. |
+| `quota-and-filesystem-triage` | debugging | low | Seed skill added to `core-hpc` and `data-movement`. |
+
 ## Priority 1: Core User Workflows
 
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
-| `scratch-storage-management` | data | low | Users need safe patterns for scratch, project, and home storage usage. |
-| `quota-and-filesystem-triage` | debugging | low | Many failed jobs come from full quotas, inode limits, or slow metadata access. |
 | `slurm-job-array-patterns` | scheduler | medium | Arrays are essential for parameter sweeps and embarrassingly parallel work. |
 | `checkpoint-restart-workflow` | scheduler | medium | Long jobs need restartable patterns to survive limits and preemption. |
 | `openmp-thread-affinity` | performance | medium | Thread placement mistakes waste CPU allocations and distort benchmarks. |
