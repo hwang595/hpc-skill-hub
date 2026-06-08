@@ -7,10 +7,10 @@
     "education": 1,
     "gpu": 6,
     "interactive": 2,
-    "mpi": 6,
+    "mpi": 7,
     "performance": 8,
-    "scheduler": 33,
-    "software": 12,
+    "scheduler": 34,
+    "software": 13,
     "workflow": 5
   },
   "collection_count": 9,
@@ -114,6 +114,7 @@
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
+        "mpi4py-on-slurm",
         "gpu-sanity-check",
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
@@ -124,7 +125,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -164,6 +165,7 @@
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "mpi4py-on-slurm",
         "rscript-on-slurm",
         "julia-on-slurm",
         "matlab-batch-on-slurm",
@@ -174,7 +176,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -223,7 +225,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 34
+    "slurm": 35
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -249,7 +251,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 50,
+  "skill_count": 51,
   "skills": [
     {
       "categories": [
@@ -1644,6 +1646,76 @@
       "tools": [
         "mpicc",
         "srun"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "mpi",
+        "scheduler"
+      ],
+      "description": "This skill helps users run mpi4py workloads through Slurm while checking that the Python environment, MPI module, launcher, logs, and output paths are aligned on shared HPC systems.",
+      "examples": [
+        {
+          "path": "skills/mpi4py-on-slurm/examples/mpi4py-slurm.sbatch",
+          "title": "Submit a small mpi4py job"
+        },
+        {
+          "path": "skills/mpi4py-on-slurm/examples/hello_mpi4py.py",
+          "title": "mpi4py hello-world and rank report"
+        },
+        {
+          "path": "skills/mpi4py-on-slurm/examples/requirements.txt",
+          "title": "Minimal Python dependency list"
+        }
+      ],
+      "id": "mpi4py-on-slurm",
+      "maturity": "seed",
+      "name": "mpi4py On Slurm",
+      "path": "skills/mpi4py-on-slurm",
+      "readme": "skills/mpi4py-on-slurm/README.md",
+      "references": [
+        {
+          "title": "mpi4py installation documentation",
+          "url": "https://mpi4py.github.io/mpi4py/stable/html/install.html"
+        },
+        {
+          "title": "mpi4py overview",
+          "url": "https://mpi4py.github.io/mpi4py/stable/html/overview.html"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run mpi4py Python programs on Slurm with matching MPI and Python environments.",
+      "tags": [
+        "python",
+        "mpi4py",
+        "mpi",
+        "slurm",
+        "srun",
+        "mpiexec",
+        "modules",
+        "reproducibility"
+      ],
+      "tools": [
+        "python",
+        "mpi4py",
+        "srun",
+        "sbatch",
+        "module",
+        "mpiexec"
       ],
       "version": "0.1.0"
     },
@@ -3093,10 +3165,12 @@
     "metadata": 1,
     "micromamba": 1,
     "modulepath": 1,
-    "modules": 6,
+    "modules": 7,
     "molecular-dynamics": 2,
-    "mpi": 9,
+    "mpi": 10,
+    "mpi4py": 1,
     "mpicc": 2,
+    "mpiexec": 1,
     "nccl": 2,
     "netcdf": 1,
     "network": 1,
@@ -3126,14 +3200,14 @@
     "profiling": 1,
     "provenance": 1,
     "publication": 1,
-    "python": 1,
+    "python": 2,
     "pytorch": 3,
     "quota": 2,
     "r": 1,
     "reason": 1,
     "reconstruction": 1,
     "reporting": 1,
-    "reproducibility": 7,
+    "reproducibility": 8,
     "rerun": 1,
     "resources": 1,
     "restart": 3,
@@ -3154,7 +3228,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 32,
+    "slurm": 33,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -3162,7 +3236,7 @@
     "sprio": 1,
     "squeue": 4,
     "sreport": 1,
-    "srun": 2,
+    "srun": 3,
     "staging": 3,
     "state": 1,
     "storage": 2,
@@ -3231,9 +3305,11 @@
     "matlab": 1,
     "micromamba": 1,
     "mkdir": 23,
-    "module": 11,
+    "module": 12,
+    "mpi4py": 1,
     "mpicc": 2,
     "mpicxx": 1,
+    "mpiexec": 1,
     "mpifort": 1,
     "ncdump": 1,
     "nextflow": 2,
@@ -3243,6 +3319,7 @@
     "pip": 1,
     "printenv": 1,
     "pwd": 7,
+    "python": 1,
     "python3": 5,
     "quota": 1,
     "real.exe": 1,
@@ -3251,7 +3328,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 24,
+    "sbatch": 25,
     "scontrol": 5,
     "sed": 1,
     "seff": 1,
@@ -3266,7 +3343,7 @@
     "sprio": 1,
     "squeue": 6,
     "sreport": 1,
-    "srun": 11,
+    "srun": 12,
     "ssh": 2,
     "tail": 4,
     "tar": 1,

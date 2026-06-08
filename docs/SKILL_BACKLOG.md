@@ -18,6 +18,7 @@ new collections.
 | `openmp-thread-affinity` | performance | medium | Seed skill added to `core-hpc` and `gpu-mpi-performance`. |
 | `jupyter-on-slurm` | interactive | medium | Seed skill added to `core-hpc`. |
 | `python-virtualenv-on-hpc` | software | low | Seed skill added to `software-stacks`. |
+| `mpi4py-on-slurm` | software | medium | Seed skill added to `software-stacks` and `gpu-mpi-performance`. |
 | `rscript-on-slurm` | software | medium | Seed skill added to `software-stacks` and `training-onboarding`. |
 | `julia-on-slurm` | software | medium | Seed skill added to `software-stacks` and `training-onboarding`. |
 | `matlab-batch-on-slurm` | software | medium | Seed skill added to `software-stacks` and `training-onboarding`. |

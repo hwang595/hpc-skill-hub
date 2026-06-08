@@ -38,6 +38,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   project, and thread settings.
 - Add a MATLAB batch on Slurm skill for non-interactive MATLAB workloads with
   explicit logging and license notes.
+- Add a mpi4py on Slurm skill for Python MPI workloads with matching MPI module
+  and Python environment checks.
 
 ## v0.1.0 - Planned
 
@@ -45,13 +47,13 @@ Initial public seed release.
 
 ### Added
 
-- 50 seed HPC skills covering Slurm, job arrays, dependency chains, pending
+- 51 seed HPC skills covering Slurm, job arrays, dependency chains, pending
   reason triage, monitoring, resource estimation, efficiency review, failure
   triage, checkpoint/restart, interactive sessions, notebooks, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
-  containers, Spack, EasyBuild, data movement, workflow engines, MPI/GPU
-  diagnostics, AI/HPC launches, bioinformatics workflows, molecular dynamics,
-  CFD, weather workloads, read-only facility operations, and training
+  mpi4py, containers, Spack, EasyBuild, data movement, workflow engines,
+  MPI/GPU diagnostics, AI/HPC launches, bioinformatics workflows, molecular
+  dynamics, CFD, weather workloads, read-only facility operations, and training
   onboarding.
 - 9 curated collections: `core-hpc`, `software-stacks`, `workflow-engines`,
   `data-movement`, `gpu-mpi-performance`, `bioinformatics-workflows`, and

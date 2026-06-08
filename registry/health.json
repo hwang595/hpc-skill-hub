@@ -7,10 +7,10 @@
     "education": 1,
     "gpu": 6,
     "interactive": 2,
-    "mpi": 6,
+    "mpi": 7,
     "performance": 8,
-    "scheduler": 33,
-    "software": 12,
+    "scheduler": 34,
+    "software": 13,
     "workflow": 5
   },
   "collection_count": 9,
@@ -72,10 +72,11 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 10,
+      "skill_count": 11,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
+        "mpi4py-on-slurm",
         "gpu-sanity-check",
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
@@ -103,13 +104,14 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 13,
+      "skill_count": 14,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "mpi4py-on-slurm",
         "rscript-on-slurm",
         "julia-on-slurm",
         "matlab-batch-on-slurm",
@@ -151,7 +153,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 50
+    "seed": 51
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -179,6 +181,7 @@
     "module-environment-debug": "low",
     "module-tree-health-check": "low",
     "mpi-hello-and-benchmark": "medium",
+    "mpi4py-on-slurm": "medium",
     "nccl-diagnostics": "medium",
     "nextflow-on-slurm": "medium",
     "nf-core-on-slurm": "medium",
@@ -207,13 +210,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 33
+    "medium": 34
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 50,
+  "skill_count": 51,
   "status_counts": {
-    "draft": 50
+    "draft": 51
   },
   "uncollected_skill_ids": []
 }

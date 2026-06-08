@@ -1,0 +1,140 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "mpi4py-on-slurm",
+  "name": "mpi4py On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run mpi4py Python programs on Slurm with matching MPI and Python environments.",
+  "description": "This skill helps users run mpi4py workloads through Slurm while checking that the Python environment, MPI module, launcher, logs, and output paths are aligned on shared HPC systems.",
+  "categories": ["software", "mpi", "scheduler"],
+  "tags": ["python", "mpi4py", "mpi", "slurm", "srun", "mpiexec", "modules", "reproducibility"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "python",
+      "required": true
+    },
+    {
+      "name": "mpi4py",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    },
+    {
+      "name": "mpiexec",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "python_script",
+      "type": "path",
+      "required": true,
+      "description": "mpi4py Python script to run across Slurm tasks."
+    },
+    {
+      "name": "mpi_module",
+      "type": "string",
+      "required": false,
+      "description": "Site MPI module that matches the mpi4py build or Python package."
+    },
+    {
+      "name": "python_environment",
+      "type": "path",
+      "required": false,
+      "description": "Optional virtualenv or Conda/Mamba environment containing mpi4py."
+    },
+    {
+      "name": "launcher",
+      "type": "string",
+      "required": false,
+      "description": "MPI launcher to use inside the Slurm allocation, usually srun or a site-recommended mpiexec."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "slurm_log",
+      "description": "Slurm stdout/stderr log for the mpi4py job."
+    },
+    {
+      "name": "mpi_environment_record",
+      "description": "Python, mpi4py, MPI library, rank layout, and launcher evidence captured in the log."
+    },
+    {
+      "name": "rank_report",
+      "description": "CSV and text outputs describing rank, size, host, and MPI version observations."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/mpi4py-slurm.sbatch",
+    "examples/hello_mpi4py.py",
+    "examples/requirements.txt"
+  ],
+  "examples": [
+    {
+      "title": "Submit a small mpi4py job",
+      "path": "examples/mpi4py-slurm.sbatch"
+    },
+    {
+      "title": "mpi4py hello-world and rank report",
+      "path": "examples/hello_mpi4py.py"
+    },
+    {
+      "title": "Minimal Python dependency list",
+      "path": "examples/requirements.txt"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill mpi4py-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/mpi4py-on-slurm/examples/mpi4py-slurm.sbatch",
+      "description": "Check the Slurm wrapper shell syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Replace account, partition, MPI module, and optional Python environment placeholders, then submit to a short test partition and confirm all ranks report the same MPI library and expected world size."
+    }
+  ],
+  "references": [
+    {
+      "title": "mpi4py installation documentation",
+      "url": "https://mpi4py.github.io/mpi4py/stable/html/install.html"
+    },
+    {
+      "title": "mpi4py overview",
+      "url": "https://mpi4py.github.io/mpi4py/stable/html/overview.html"
+    },
+    {
+      "title": "Slurm srun documentation",
+      "url": "https://slurm.schedmd.com/srun.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

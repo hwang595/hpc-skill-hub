@@ -53,6 +53,7 @@ tools.
 | `compiler-mpi-matrix` | Check compiler, MPI wrapper, and module compatibility before building HPC codes. |
 | `reproducible-run-capture` | Capture command, environment, provenance, and logs for reproducible HPC runs. |
 | `python-virtualenv-on-hpc` | Create lightweight Python virtual environments with explicit HPC module assumptions. |
+| `mpi4py-on-slurm` | Run mpi4py Python programs on Slurm with matching MPI and Python environments. |
 | `rscript-on-slurm` | Run R scripts on Slurm with explicit package-library and output controls. |
 | `julia-on-slurm` | Run Julia scripts on Slurm with explicit depot, project, and thread settings. |
 | `matlab-batch-on-slurm` | Run non-interactive MATLAB workloads on Slurm with explicit logs and license notes. |
