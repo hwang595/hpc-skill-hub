@@ -95,6 +95,45 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("--push", result.stdout)
         self.assertIn("has_discussions=true", result.stdout)
 
+    def test_main_ruleset_is_review_oriented(self):
+        with (ROOT / ".github" / "rulesets" / "main.json").open(encoding="utf-8") as handle:
+            ruleset = json.load(handle)
+
+        self.assertEqual(ruleset["target"], "branch")
+        self.assertEqual(ruleset["enforcement"], "active")
+        self.assertIn("refs/heads/main", ruleset["conditions"]["ref_name"]["include"])
+
+        rules_by_type = {rule["type"]: rule for rule in ruleset["rules"]}
+        self.assertIn("deletion", rules_by_type)
+        self.assertIn("non_fast_forward", rules_by_type)
+        self.assertEqual(
+            rules_by_type["pull_request"]["parameters"]["required_approving_review_count"],
+            1,
+        )
+        required_checks = rules_by_type["required_status_checks"]["parameters"]
+        self.assertTrue(required_checks["strict_required_status_checks_policy"])
+        self.assertIn(
+            {"context": "skills"},
+            required_checks["required_status_checks"],
+        )
+
+    def test_ruleset_command_generator(self):
+        result = subprocess.run(
+            [
+                "python3",
+                "tools/github_rulesets.py",
+                "--repo",
+                "example/hpc-skill-hub",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        self.assertIn("gh api -X POST repos/example/hpc-skill-hub/rulesets", result.stdout)
+        self.assertIn("--input .github/rulesets/main.json", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

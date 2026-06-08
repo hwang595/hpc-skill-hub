@@ -19,16 +19,20 @@ Run the printed commands when they look correct.
 
 ## Branch Protection
 
-Create a branch protection rule or ruleset for `main`:
+Use `.github/rulesets/main.json` as the source of truth for the starter `main`
+branch ruleset. It requires pull requests, one approving review, the `skills`
+CI check, up-to-date checks, and blocks branch deletion and force pushes.
 
-- Require pull requests before merging.
-- Require the validation workflow to pass.
-- Require branches to be up to date before merging when possible.
-- Block force pushes.
-- Block branch deletion.
-- Require at least one review for normal changes.
-- Require a domain maintainer review for high-risk skills, facility operations
-  guidance, or shared-system behavior.
+After the first push and one successful `Validate` workflow run, inspect the
+ruleset command:
+
+```bash
+python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub
+```
+
+Run the printed command when it looks correct. If GitHub shows the required
+status check under a different context name, update `.github/rulesets/main.json`
+before applying it.
 
 ## GitHub Pages
 
