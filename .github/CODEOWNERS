@@ -1,7 +1,12 @@
 # Add real GitHub users or teams after the repository owner is known.
+# See docs/REVIEW_ROUTING.md for the review routing policy that these
+# CODEOWNERS entries should implement.
 #
 # Example:
 # * @your-org/maintainers
 # /schemas/ @your-org/maintainers
 # /tools/ @your-org/maintainers
+# /.github/ @your-org/release-maintainers
+# /site-adapters/ @your-org/registry-maintainers
 # /skills/gpu-sanity-check/ @your-org/gpu-maintainers
+# /skills/slurm-submit-job/ @your-org/scheduler-maintainers

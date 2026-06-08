@@ -77,7 +77,8 @@ by the printed note.
 ## CODEOWNERS
 
 Replace the placeholder `.github/CODEOWNERS` file with real GitHub usernames or
-teams once the repository has maintainers. At minimum:
+teams once the repository has maintainers. Use
+[Review Routing](REVIEW_ROUTING.md) as the policy source. At minimum:
 
 - Route all changes to a small maintainer group.
 - Route `skills/` changes to registry maintainers.

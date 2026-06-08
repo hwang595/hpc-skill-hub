@@ -169,6 +169,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Adopter playbook](docs/ADOPTER_PLAYBOOK.md)
 - [Safety model](docs/SAFETY_MODEL.md)
 - [Governance](docs/GOVERNANCE.md)
+- [Review routing](docs/REVIEW_ROUTING.md)
 - [Maturity review](docs/MATURITY_REVIEW.md)
 - [RFC process](docs/RFC_PROCESS.md)
 - [Maintainer guide](docs/MAINTAINER_GUIDE.md)

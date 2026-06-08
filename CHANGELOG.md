@@ -22,6 +22,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   feedback.
 - Add local launch readiness audit for GitHub publishing preparation.
 - Add support and citation metadata for public project use.
+- Add review routing guidance and CODEOWNERS launch checklist for maintainer
+  assignment.
 
 ## v0.1.0 - Planned
 

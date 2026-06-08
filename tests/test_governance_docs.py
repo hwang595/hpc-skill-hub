@@ -71,6 +71,26 @@ class GovernanceDocsTests(unittest.TestCase):
             self.assertIn(heading, playbook)
         self.assertIn("Public-Safe Evidence", playbook)
 
+    def test_review_routing_doc_and_codeowners_placeholder(self):
+        routing = (ROOT / "docs" / "REVIEW_ROUTING.md").read_text(
+            encoding="utf-8"
+        )
+        codeowners = (ROOT / ".github" / "CODEOWNERS").read_text(
+            encoding="utf-8"
+        )
+
+        for heading in [
+            "## Path Routing",
+            "## Domain Routing",
+            "## Risk Routing",
+            "## Label Routing",
+            "## CODEOWNERS Update Checklist",
+        ]:
+            self.assertIn(heading, routing)
+        self.assertIn("safety-review", routing)
+        self.assertIn("maturity-review", routing)
+        self.assertIn("docs/REVIEW_ROUTING.md", codeowners)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -66,6 +66,8 @@ request missing workflows, or contribute public site adapters.
 - Maturity review template and guidance for promoting skills beyond seed.
 - Adoption report template and adopter playbook for public pilot feedback.
 - Pull request template with validation, risk, privacy, and reviewer prompts.
+- Review routing guidance and CODEOWNERS placeholder for maintainers and domain
+  reviewers.
 - Repository metadata, labels, and starter ruleset files.
 - Seed community issues for launch coordination.
 - Support and citation metadata for public project use.

@@ -42,5 +42,6 @@ assumptions that may not hold on other clusters.
 
 ## Reviewer Notes
 
-Call out domain expertise needed, upstream references used, and any follow-up
-issues that should be opened after merge.
+Use `docs/REVIEW_ROUTING.md` to list domain expertise needed, requested
+reviewers, upstream references used, and any follow-up issues that should be
+opened after merge.
