@@ -1,0 +1,128 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-maintenance-reservation-triage",
+  "name": "Slurm Maintenance Reservation Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect read-only Slurm evidence for maintenance windows and reservations.",
+  "description": "This skill helps users and support teams distinguish planned maintenance, advanced reservations, drained nodes, down partitions, and unavailable resources from job-script or application failures using read-only Slurm commands.",
+  "categories": ["scheduler", "debugging", "admin"],
+  "tags": ["slurm", "maintenance", "reservation", "squeue", "sinfo", "scontrol", "drain", "pending"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "squeue",
+      "required": true
+    },
+    {
+      "name": "sinfo",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": false,
+      "notes": "Reservation and node detail visibility varies by site."
+    },
+    {
+      "name": "grep",
+      "required": false
+    },
+    {
+      "name": "bash",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "job_id",
+      "type": "string",
+      "required": false,
+      "description": "Optional Slurm job id or array task id whose pending reason should be inspected."
+    },
+    {
+      "name": "partition",
+      "type": "string",
+      "required": false,
+      "description": "Optional Slurm partition to scope sinfo output."
+    },
+    {
+      "name": "node_name",
+      "type": "string",
+      "required": false,
+      "description": "Optional Slurm node name to inspect with scontrol when available."
+    },
+    {
+      "name": "reservation_name",
+      "type": "string",
+      "required": false,
+      "description": "Optional Slurm reservation name to inspect with scontrol when available."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "maintenance_reservation_report",
+      "description": "Read-only Slurm queue, node state, unavailable-node reason, and reservation evidence for support review."
+    },
+    {
+      "name": "handoff_checklist",
+      "description": "A checklist for deciding whether the evidence points to planned maintenance, reservation policy, drained nodes, partition state, or a user request mismatch."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/maintenance-reservation-triage.sh",
+    "examples/support-handoff-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Collect maintenance and reservation evidence",
+      "path": "examples/maintenance-reservation-triage.sh"
+    },
+    {
+      "title": "Review maintenance and reservation evidence",
+      "path": "examples/support-handoff-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-maintenance-reservation-triage",
+      "description": "Validate the manifest and example artifacts."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/slurm-maintenance-reservation-triage/examples/maintenance-reservation-triage.sh",
+      "description": "Check shell syntax without contacting a scheduler."
+    },
+    {
+      "type": "manual",
+      "description": "Run on a Slurm site during a known maintenance or reservation window and confirm it only reads scheduler state."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm squeue documentation",
+      "url": "https://slurm.schedmd.com/squeue.html"
+    },
+    {
+      "title": "Slurm sinfo documentation",
+      "url": "https://slurm.schedmd.com/sinfo.html"
+    },
+    {
+      "title": "Slurm scontrol documentation",
+      "url": "https://slurm.schedmd.com/scontrol.html"
+    },
+    {
+      "title": "Slurm advanced reservation guide",
+      "url": "https://slurm.schedmd.com/reservations.html"
+    }
+  ]
+}

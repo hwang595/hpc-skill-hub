@@ -7,7 +7,7 @@ This document is generated from `registry/index.json` by
 
 | Signal | Count |
 | --- | ---: |
-| Skills | 90 |
+| Skills | 91 |
 | Collections | 12 |
 | Site adapters | 2 |
 | Schedulers | 9 |
@@ -26,7 +26,7 @@ This document is generated from `registry/index.json` by
 | `pbs-pro` | 1 | `scheduler` | `scheduler-basics` |
 | `scheduler-agnostic` | 21 | `admin`, `containers`, `data`, `debugging`, `mpi`, `performance`, `software` | `ai-hpc`, `bioinformatics-workflows`, `containers`, `core-hpc`, `data-movement`, `facility-ops`, `gpu-mpi-performance`, `scheduler-basics`, `simulation-workflows`, `software-stacks`, `training-onboarding` |
 | `sge` | 1 | `scheduler` | `scheduler-basics` |
-| `slurm` | 65 | `admin`, `containers`, `data`, `debugging`, `education`, `gpu`, `interactive`, `mpi`, `performance`, `scheduler`, `software`, `workflow` | `ai-hpc`, `bioinformatics-workflows`, `containers`, `core-hpc`, `data-movement`, `facility-ops`, `gpu-mpi-performance`, `scheduler-basics`, `simulation-workflows`, `software-stacks`, `training-onboarding`, `workflow-engines` |
+| `slurm` | 66 | `admin`, `containers`, `data`, `debugging`, `education`, `gpu`, `interactive`, `mpi`, `performance`, `scheduler`, `software`, `workflow` | `ai-hpc`, `bioinformatics-workflows`, `containers`, `core-hpc`, `data-movement`, `facility-ops`, `gpu-mpi-performance`, `scheduler-basics`, `simulation-workflows`, `software-stacks`, `training-onboarding`, `workflow-engines` |
 | `uge` | 1 | `scheduler` | `scheduler-basics` |
 
 ## Collection And Category Matrix
@@ -38,14 +38,14 @@ Counts show how many skills in each collection include each category.
 | [`ai-hpc`](../collections/ai-hpc.json) | 18 | 0 | 1 | 1 | 8 | 0 | 10 | 2 | 0 | 2 | 16 | 8 | 1 |
 | [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | 7 | 0 | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 5 |
 | [`containers`](../collections/containers.json) | 7 | 0 | 3 | 2 | 2 | 0 | 1 | 0 | 1 | 1 | 4 | 2 | 0 |
-| [`core-hpc`](../collections/core-hpc.json) | 23 | 2 | 0 | 4 | 14 | 0 | 0 | 4 | 0 | 4 | 20 | 3 | 2 |
+| [`core-hpc`](../collections/core-hpc.json) | 24 | 3 | 0 | 4 | 15 | 0 | 0 | 4 | 0 | 4 | 21 | 3 | 2 |
 | [`data-movement`](../collections/data-movement.json) | 13 | 1 | 0 | 13 | 6 | 0 | 0 | 0 | 2 | 3 | 3 | 0 | 0 |
-| [`facility-ops`](../collections/facility-ops.json) | 7 | 5 | 0 | 1 | 6 | 0 | 0 | 0 | 0 | 1 | 5 | 1 | 0 |
+| [`facility-ops`](../collections/facility-ops.json) | 8 | 6 | 0 | 1 | 7 | 0 | 0 | 0 | 0 | 1 | 6 | 1 | 0 |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | 26 | 0 | 1 | 4 | 15 | 0 | 10 | 1 | 11 | 12 | 19 | 9 | 0 |
 | [`scheduler-basics`](../collections/scheduler-basics.json) | 9 | 0 | 0 | 0 | 4 | 0 | 0 | 0 | 0 | 1 | 8 | 1 | 2 |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | 20 | 0 | 0 | 4 | 10 | 0 | 3 | 0 | 15 | 16 | 14 | 3 | 0 |
 | [`software-stacks`](../collections/software-stacks.json) | 29 | 1 | 3 | 1 | 7 | 1 | 4 | 5 | 5 | 2 | 18 | 27 | 2 |
-| [`training-onboarding`](../collections/training-onboarding.json) | 23 | 2 | 0 | 3 | 9 | 2 | 0 | 7 | 0 | 1 | 19 | 12 | 1 |
+| [`training-onboarding`](../collections/training-onboarding.json) | 24 | 3 | 0 | 3 | 10 | 2 | 0 | 7 | 0 | 1 | 20 | 12 | 1 |
 | [`workflow-engines`](../collections/workflow-engines.json) | 9 | 0 | 0 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 9 | 2 | 9 |
 
 ## Workflow Engine Coverage
@@ -80,8 +80,8 @@ Counts show how many skills in each collection include each category.
 | [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | 7 | `scheduler` (6), `data` (5), `workflow` (5) | bioinformatics teams, core facilities, genomics platform engineers |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | 20 | `performance` (16), `mpi` (15), `scheduler` (14), `debugging` (10) | simulation teams, computational scientists, performance engineers |
 | [`data-movement`](../collections/data-movement.json) | 13 | `data` (13), `debugging` (6), `performance` (3), `scheduler` (3) | data stewards, research groups, facility support teams |
-| [`facility-ops`](../collections/facility-ops.json) | 7 | `debugging` (6), `admin` (5), `scheduler` (5), `data` (1) | HPC support teams, facility maintainers, research computing operators |
-| [`training-onboarding`](../collections/training-onboarding.json) | 23 | `scheduler` (19), `software` (12), `debugging` (9), `interactive` (7) | instructors, new HPC users, training cluster maintainers |
+| [`facility-ops`](../collections/facility-ops.json) | 8 | `debugging` (7), `admin` (6), `scheduler` (6), `data` (1) | HPC support teams, facility maintainers, research computing operators |
+| [`training-onboarding`](../collections/training-onboarding.json) | 24 | `scheduler` (20), `software` (12), `debugging` (10), `interactive` (7) | instructors, new HPC users, training cluster maintainers |
 
 ## Tool Signals
 
@@ -99,13 +99,13 @@ they show where examples and wrappers expect a command or library.
 | `hostname` | 25 |
 | `module` | 25 |
 | `tee` | 24 |
-| `bash` | 16 |
-| `scontrol` | 13 |
+| `bash` | 17 |
+| `scontrol` | 14 |
+| `grep` | 12 |
 | `python3` | 12 |
-| `grep` | 11 |
+| `squeue` | 11 |
 | `nvidia-smi` | 10 |
 | `sort` | 10 |
-| `squeue` | 10 |
 | `sacct` | 9 |
 | `test` | 9 |
 | `find` | 7 |
@@ -121,13 +121,13 @@ they show where examples and wrappers expect a command or library.
 | `mpirun` | 4 |
 | `python` | 4 |
 | `sed` | 4 |
+| `sinfo` | 4 |
 | `apptainer` | 3 |
 | `cat` | 3 |
 | `cp` | 3 |
 | `lscpu` | 3 |
 | `rocm-smi` | 3 |
 | `rsync` | 3 |
-| `sinfo` | 3 |
 | `cksum` | 2 |
 | `command` | 2 |
 | `du` | 2 |

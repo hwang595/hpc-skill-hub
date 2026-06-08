@@ -1,16 +1,16 @@
 {
   "$schema": "../schemas/registry-index.schema.json",
   "categories": {
-    "admin": 6,
+    "admin": 7,
     "containers": 3,
     "data": 19,
-    "debugging": 32,
+    "debugging": 33,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
     "performance": 21,
-    "scheduler": 67,
+    "scheduler": 68,
     "software": 27,
     "workflow": 12
   },
@@ -106,6 +106,7 @@
         "slurm-array-retry-plan",
         "slurm-job-dependency-chain",
         "slurm-pending-reason-triage",
+        "slurm-maintenance-reservation-triage",
         "slurm-qos-account-limit-triage",
         "slurm-monitor-job",
         "slurm-resource-estimator",
@@ -126,7 +127,7 @@
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, shared project permissions, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason and maintenance triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, shared project permissions, and storage triage."
     },
     {
       "audience": [
@@ -167,6 +168,7 @@
       "skill_ids": [
         "cluster-usage-report-readonly",
         "slurm-pending-reason-triage",
+        "slurm-maintenance-reservation-triage",
         "slurm-qos-account-limit-triage",
         "slurm-oom-memory-triage",
         "node-health-readonly-triage",
@@ -174,7 +176,7 @@
         "module-tree-health-check"
       ],
       "status": "draft",
-      "summary": "Read-only operational skills for usage reporting, pending reason triage, QOS/account limit evidence, OOM memory triage, node triage, shared project permissions, and module tree health."
+      "summary": "Read-only operational skills for usage reporting, pending reason and maintenance triage, QOS/account limit evidence, OOM memory triage, node triage, shared project permissions, and module tree health."
     },
     {
       "audience": [
@@ -329,6 +331,7 @@
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
+        "slurm-maintenance-reservation-triage",
         "slurm-array-retry-plan",
         "license-aware-slurm-job",
         "slurm-preemption-requeue",
@@ -352,7 +355,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, array retry planning, OOM memory triage, node-local scratch staging, shared project permissions, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, maintenance and reservation triage, array retry planning, OOM memory triage, node-local scratch staging, shared project permissions, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -387,7 +390,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 65,
+    "slurm": 66,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -440,7 +443,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 90,
+  "skill_count": 91,
   "skills": [
     {
       "categories": [
@@ -4973,6 +4976,71 @@
     {
       "categories": [
         "scheduler",
+        "debugging",
+        "admin"
+      ],
+      "description": "This skill helps users and support teams distinguish planned maintenance, advanced reservations, drained nodes, down partitions, and unavailable resources from job-script or application failures using read-only Slurm commands.",
+      "examples": [
+        {
+          "path": "skills/slurm-maintenance-reservation-triage/examples/maintenance-reservation-triage.sh",
+          "title": "Collect maintenance and reservation evidence"
+        },
+        {
+          "path": "skills/slurm-maintenance-reservation-triage/examples/support-handoff-checklist.md",
+          "title": "Review maintenance and reservation evidence"
+        }
+      ],
+      "id": "slurm-maintenance-reservation-triage",
+      "maturity": "seed",
+      "name": "Slurm Maintenance Reservation Triage",
+      "path": "skills/slurm-maintenance-reservation-triage",
+      "readme": "skills/slurm-maintenance-reservation-triage/README.md",
+      "references": [
+        {
+          "title": "Slurm squeue documentation",
+          "url": "https://slurm.schedmd.com/squeue.html"
+        },
+        {
+          "title": "Slurm sinfo documentation",
+          "url": "https://slurm.schedmd.com/sinfo.html"
+        },
+        {
+          "title": "Slurm scontrol documentation",
+          "url": "https://slurm.schedmd.com/scontrol.html"
+        },
+        {
+          "title": "Slurm advanced reservation guide",
+          "url": "https://slurm.schedmd.com/reservations.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect read-only Slurm evidence for maintenance windows and reservations.",
+      "tags": [
+        "slurm",
+        "maintenance",
+        "reservation",
+        "squeue",
+        "sinfo",
+        "scontrol",
+        "drain",
+        "pending"
+      ],
+      "tools": [
+        "squeue",
+        "sinfo",
+        "scontrol",
+        "grep",
+        "bash"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
         "debugging"
       ],
       "description": "This skill provides read-only commands for checking queued, running, completed, and failed Slurm jobs using squeue, sacct, scontrol, and log files.",
@@ -6022,6 +6090,7 @@
     "depot": 1,
     "dft": 2,
     "distributed": 5,
+    "drain": 1,
     "dry-run": 1,
     "easybuild": 1,
     "easyconfig": 1,
@@ -6080,6 +6149,7 @@
     "lsf": 1,
     "lustre": 1,
     "m-files": 1,
+    "maintenance": 1,
     "makeblastdb": 1,
     "mamba": 1,
     "manifest": 3,
@@ -6133,7 +6203,7 @@
     "parsl": 1,
     "pbs": 1,
     "pbs-pro": 1,
-    "pending": 1,
+    "pending": 2,
     "perf": 1,
     "permission": 1,
     "permissions": 1,
@@ -6179,6 +6249,7 @@
     "reqmem": 1,
     "requeue": 1,
     "rerun": 2,
+    "reservation": 1,
     "resources": 1,
     "restart": 7,
     "resume": 1,
@@ -6195,7 +6266,7 @@
     "salloc": 1,
     "samplesheet": 1,
     "sbatch": 4,
-    "scontrol": 4,
+    "scontrol": 5,
     "scratch": 4,
     "seff": 1,
     "setgid": 1,
@@ -6203,10 +6274,10 @@
     "sha256": 1,
     "sif": 1,
     "signal": 1,
-    "sinfo": 2,
+    "sinfo": 3,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 62,
+    "slurm": 63,
     "slurmprovider": 1,
     "smoke-test": 1,
     "snakemake": 1,
@@ -6214,7 +6285,7 @@
     "software-stack": 1,
     "spack": 1,
     "sprio": 1,
-    "squeue": 4,
+    "squeue": 5,
     "sreport": 1,
     "srun": 6,
     "sshare": 1,
@@ -6270,7 +6341,7 @@
     "awk": 4,
     "aws": 1,
     "basename": 1,
-    "bash": 16,
+    "bash": 17,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -6315,7 +6386,7 @@
     "globus": 1,
     "gmx": 1,
     "gmx_mpi": 1,
-    "grep": 11,
+    "grep": 12,
     "h5cc": 1,
     "h5dump": 1,
     "h5pcc": 1,
@@ -6386,19 +6457,19 @@
     "salloc": 1,
     "sbatch": 49,
     "scancel": 1,
-    "scontrol": 13,
+    "scontrol": 14,
     "sed": 4,
     "seff": 2,
     "sha256sum": 2,
     "shasum": 2,
-    "sinfo": 3,
+    "sinfo": 4,
     "singularity": 1,
     "sleep": 2,
     "snakemake": 1,
     "sort": 10,
     "spack": 1,
     "sprio": 2,
-    "squeue": 10,
+    "squeue": 11,
     "sreport": 1,
     "srun": 26,
     "ssh": 5,

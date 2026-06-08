@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 90 seed skills.
+- 91 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -119,7 +119,7 @@ Status: skill coverage exists; deeper integrations are future work.
 Priority integration tracks:
 
 - Slurm: batch scripts, accounting, queue inspection, array retry planning,
-  dependency chains,
+  dependency chains, maintenance and reservation triage,
   QOS/account limit evidence, OOM memory triage, license-aware jobs,
   preemption/requeue handling, and optional REST integration.
 - Open OnDemand: Batch Connect app templates and user-facing interactive
@@ -194,8 +194,9 @@ The first wave emphasizes recurring support and onboarding workflows:
   evidence, including CMake build preflight, parallel HDF5/NetCDF preflight,
   Darshan I/O profile analysis, and Lustre striping layout planning for
   data-heavy codes.
-- Facility support: read-only usage, node, module tree, pending reason, OOM
-  memory, shared directory permissions, and efficiency triage.
+- Facility support: read-only usage, node, module tree, pending reason,
+  maintenance/reservation, OOM memory, shared directory permissions, and
+  efficiency triage.
 
 Future skills should be prioritized when they reduce repeated support tickets,
 have public references, can be validated without private cluster access, and

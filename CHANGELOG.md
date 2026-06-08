@@ -7,6 +7,10 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a Slurm maintenance reservation triage seed skill for read-only `squeue`,
+  `sinfo`, optional `scontrol`, and review guidance around maintenance windows,
+  advanced reservations, drained nodes, down partitions, and unavailable
+  resources.
 - Add a shared project permissions triage seed skill for read-only user/group,
   path traversal, `stat`, optional `namei`, optional `getfacl`, and log evidence
   around shared directory access and ACL failures.
@@ -176,8 +180,8 @@ Initial public seed release.
 
 ### Added
 
-- 90 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
-  job arrays, array retry planning, dependency chains, pending reason triage, monitoring, resource
+- 91 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+  job arrays, array retry planning, dependency chains, pending reason and maintenance reservation triage, monitoring, resource
   estimation, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
   preemption and requeue-safe restart behavior,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP

@@ -42,6 +42,7 @@ tools.
 | `slurm-array-retry-plan` | Plan safe retries for failed Slurm array tasks. |
 | `slurm-job-dependency-chain` | Chain multi-stage Slurm jobs with explicit dependencies. |
 | `slurm-pending-reason-triage` | Explain why Slurm jobs are pending using read-only scheduler signals. |
+| `slurm-maintenance-reservation-triage` | Collect read-only Slurm evidence for maintenance windows and reservations. |
 | `slurm-qos-account-limit-triage` | Collect read-only evidence for Slurm account, QOS, and fairshare limits. |
 | `slurm-monitor-job` | Inspect queued, running, completed, and failed Slurm jobs. |
 | `slurm-resource-estimator` | Estimate memory, wall time, and CPU needs from accounting history. |
