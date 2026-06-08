@@ -88,5 +88,10 @@
     "name": "question",
     "color": "D876E3",
     "description": "Question about usage, adoption, design, or contribution process."
+  },
+  {
+    "name": "adoption",
+    "color": "0E8A16",
+    "description": "Public-safe report from trying the registry in a center, lab, tool project, or training program."
   }
 ]

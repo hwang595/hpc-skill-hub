@@ -3,6 +3,9 @@
 This guide helps HPC centers, research software teams, and training programs
 adopt HPC Skill Hub without turning it into a site-specific fork.
 
+For a time-boxed pilot plan, contribution tracks, adoption reports, and success
+metrics, see [Adopter Playbook](ADOPTER_PLAYBOOK.md).
+
 ## For HPC Centers
 
 Start by contributing a site adapter rather than editing core skills. The

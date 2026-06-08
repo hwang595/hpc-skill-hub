@@ -55,6 +55,22 @@ class GovernanceDocsTests(unittest.TestCase):
             self.assertIn(maturity, guide)
         self.assertIn("make check", guide)
 
+    def test_adoption_report_template_and_playbook(self):
+        labels_path = ROOT / ".github" / "labels.json"
+        labels = {label["name"] for label in json.loads(labels_path.read_text())}
+        template = (
+            ROOT / ".github" / "ISSUE_TEMPLATE" / "adoption_report.md"
+        ).read_text(encoding="utf-8")
+        playbook = (ROOT / "docs" / "ADOPTER_PLAYBOOK.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("labels: [\"adoption\"]", template)
+        self.assertIn("adoption", labels)
+        for heading in ["## 30 Day Pilot", "## 60 Day Pilot", "## 90 Day Pilot"]:
+            self.assertIn(heading, playbook)
+        self.assertIn("Public-Safe Evidence", playbook)
+
 
 if __name__ == "__main__":
     unittest.main()

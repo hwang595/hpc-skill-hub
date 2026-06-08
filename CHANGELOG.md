@@ -18,6 +18,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Add a training and onboarding collection with a workshop preflight and reset
   checklist skill.
 - Add maturity review guidance and issue template for promoting seed skills.
+- Add adopter playbook and adoption report issue template for public pilot
+  feedback.
 
 ## v0.1.0 - Planned
 

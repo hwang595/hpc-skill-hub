@@ -54,3 +54,5 @@ The easiest first contribution from an HPC center is a public site adapter. The
 easiest first contribution from a research group is a domain skill with a small
 smoke test. The easiest first contribution from a tool maintainer is an
 integration skill that shows safe scheduler, container, and workflow usage.
+Use [Adopter Playbook](ADOPTER_PLAYBOOK.md) to turn those first contributions
+into public-safe pilot reports, maturity reviews, and follow-up requests.

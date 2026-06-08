@@ -166,6 +166,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Architecture](docs/ARCHITECTURE.md)
 - [Site adapters](docs/SITE_ADAPTERS.md)
 - [Adoption guide](docs/ADOPTION_GUIDE.md)
+- [Adopter playbook](docs/ADOPTER_PLAYBOOK.md)
 - [Safety model](docs/SAFETY_MODEL.md)
 - [Governance](docs/GOVERNANCE.md)
 - [Maturity review](docs/MATURITY_REVIEW.md)

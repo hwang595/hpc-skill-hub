@@ -52,6 +52,8 @@ We are looking for:
 - Feedback on schema fields, risk labels, and review policy.
 - Maturity review evidence for skills that should move from seed to reviewed or
   field-tested.
+- Adoption reports from centers, research groups, tool maintainers, and
+  training programs that tried the seed registry.
 
 Please avoid sharing private hostnames, usernames, allocation names, internal
 project identifiers, unpublished security procedures, or private dataset paths.
@@ -74,6 +76,8 @@ help-wanted, good-first-issue, governance
   must stay private?"
 - Review process: "What evidence should be required before promoting a skill
   from seed to reviewed?"
+- Adoption reports: "What worked during a 30-60-90 day pilot, and what needed
+  a site adapter or new skill?"
 
 ## Launch Checklist
 
