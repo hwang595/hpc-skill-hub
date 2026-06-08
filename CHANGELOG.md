@@ -46,6 +46,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   launch records, and smoke test controls.
 - Add a `containers` collection for Apptainer builds, runtime execution, GPU
   checks, data staging, checksums, and reproducible run capture.
+- Add an `ai-hpc` collection for distributed AI launch, validation,
+  troubleshooting, data staging, and reproducibility workflows.
 
 ## v0.1.0 - Planned
 
@@ -61,8 +63,8 @@ Initial public seed release.
   workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
   workflows, molecular dynamics, CFD, weather workloads, read-only facility
   operations, and training onboarding.
-- 10 curated collections: `core-hpc`, `software-stacks`, `containers`,
-  `workflow-engines`, `data-movement`, `gpu-mpi-performance`,
+- 11 curated collections: `core-hpc`, `software-stacks`, `containers`,
+  `workflow-engines`, `data-movement`, `ai-hpc`, `gpu-mpi-performance`,
   `bioinformatics-workflows`, `simulation-workflows`, `facility-ops`, and
   `training-onboarding`.
 - 1 example public site adapter: `example-campus-cluster`.

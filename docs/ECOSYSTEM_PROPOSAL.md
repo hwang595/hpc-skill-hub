@@ -36,8 +36,10 @@ The project is not only a documentation site. It combines:
 - `workflow-engines`: Nextflow, Snakemake, CWL, WDL.
 - `training-onboarding`: workshop preflight, intro Slurm skills, notebooks,
   Python environments, and common learner failure modes.
-- `ai-hpc`: PyTorch DDP, NCCL diagnostics, GPU memory triage, DeepSpeed launch
-  checks, GPU performance triage.
+- `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
+  DeepSpeed, NCCL diagnostics, GPU memory triage, container runtime execution,
+  data staging, checkpoint/restart planning, reproducible run capture, and
+  Slurm efficiency review.
 - `bioinformatics-workflows`: nf-core, GATK, BLAST, AlphaFold, single-cell
   workflows, and genomics data staging.
 - `simulation-workflows`: LAMMPS, GROMACS, NAMD, OpenFOAM, WRF.

@@ -1,0 +1,27 @@
+{
+  "$schema": "../schemas/collection.schema.json",
+  "id": "ai-hpc",
+  "name": "AI/HPC",
+  "status": "draft",
+  "summary": "Skills for launching, validating, and troubleshooting distributed AI workloads on Slurm-backed HPC systems.",
+  "audience": ["AI/HPC users", "machine learning researchers", "research software engineers", "HPC support teams"],
+  "skill_ids": [
+    "gpu-sanity-check",
+    "ray-on-slurm",
+    "dask-jobqueue-on-slurm",
+    "pytorch-ddp-on-slurm",
+    "deepspeed-on-slurm",
+    "nccl-diagnostics",
+    "gpu-memory-triage",
+    "apptainer-run-container",
+    "dataset-staging-to-scratch",
+    "checkpoint-restart-workflow",
+    "reproducible-run-capture",
+    "slurm-efficiency-report"
+  ],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ]
+}

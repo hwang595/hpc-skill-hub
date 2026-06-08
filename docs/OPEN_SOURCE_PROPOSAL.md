@@ -39,7 +39,7 @@ scratch staging, archive preparation, PyTorch DDP smoke testing, NCCL
 diagnostics, GPU memory triage, and DeepSpeed launch checks. It also includes
 nf-core, GATK, LAMMPS, GROMACS, OpenFOAM, and WRF on Slurm, read-only facility
 usage reporting, node triage, module tree health checks, workshop preflight and
-reset guidance, ten curated collections, and one example site adapter.
+reset guidance, eleven curated collections, and one example site adapter.
 
 ## Community Model
 

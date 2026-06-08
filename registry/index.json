@@ -13,8 +13,35 @@
     "software": 15,
     "workflow": 6
   },
-  "collection_count": 10,
+  "collection_count": 11,
   "collections": [
+    {
+      "audience": [
+        "AI/HPC users",
+        "machine learning researchers",
+        "research software engineers",
+        "HPC support teams"
+      ],
+      "id": "ai-hpc",
+      "name": "AI/HPC",
+      "path": "collections/ai-hpc.json",
+      "skill_ids": [
+        "gpu-sanity-check",
+        "ray-on-slurm",
+        "dask-jobqueue-on-slurm",
+        "pytorch-ddp-on-slurm",
+        "deepspeed-on-slurm",
+        "nccl-diagnostics",
+        "gpu-memory-triage",
+        "apptainer-run-container",
+        "dataset-staging-to-scratch",
+        "checkpoint-restart-workflow",
+        "reproducible-run-capture",
+        "slurm-efficiency-report"
+      ],
+      "status": "draft",
+      "summary": "Skills for launching, validating, and troubleshooting distributed AI workloads on Slurm-backed HPC systems."
+    },
     {
       "audience": [
         "bioinformatics teams",

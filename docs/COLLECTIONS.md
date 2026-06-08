@@ -28,6 +28,10 @@ research software engineer building software stacks may start with
   triage for new users.
 - `data-movement`: Globus and rsync transfers, checksum manifests, scratch
   staging, archive preparation, scratch inventory, and filesystem quota triage.
+- `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
+  DeepSpeed, NCCL diagnostics, GPU memory triage, container runtime execution,
+  data staging, checkpoint/restart planning, reproducible run capture, and
+  Slurm efficiency review for distributed AI workloads.
 - `gpu-mpi-performance`: MPI launch checks, mpi4py launch checks,
   compiler/MPI compatibility, GPU sanity checks, Ray cluster smoke tests, GPU
   memory triage, PyTorch DDP smoke tests, NCCL diagnostics, DeepSpeed launch

@@ -15,7 +15,7 @@ request missing workflows, or contribute public site adapters.
 ## Registry Contents
 
 - Skills: 53.
-- Collections: 10.
+- Collections: 11.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
 - Risk labels: low and medium only in the seed registry.
@@ -44,6 +44,10 @@ request missing workflows, or contribute public site adapters.
   checks, Ray cluster smoke tests, PyTorch DDP, NCCL diagnostics, GPU memory
   triage, DeepSpeed, OpenMP placement, Slurm efficiency review, and basic
   profiling.
+- AI/HPC: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
+  DeepSpeed, NCCL diagnostics, GPU memory triage, container runtime execution,
+  data staging, checkpoint/restart planning, reproducible run capture, and
+  Slurm efficiency review.
 - Bioinformatics: nf-core and GATK workflow patterns with data staging and
   checksum practices.
 - Simulation: LAMMPS, GROMACS, OpenFOAM, WRF, MPI launch checks, OpenMP

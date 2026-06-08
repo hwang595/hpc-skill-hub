@@ -6,7 +6,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 - Skills: 53
 - Site adapters: 1
-- Collections: 10
+- Collections: 11
 - Uncollected skills: 0
 
 ## Risk Distribution
@@ -32,6 +32,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Collection | Skills |
 | --- | ---: |
+| `ai-hpc` | 12 |
 | `bioinformatics-workflows` | 6 |
 | `containers` | 6 |
 | `core-hpc` | 14 |

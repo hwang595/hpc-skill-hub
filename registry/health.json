@@ -13,8 +13,26 @@
     "software": 15,
     "workflow": 6
   },
-  "collection_count": 10,
+  "collection_count": 11,
   "collection_coverage": [
+    {
+      "id": "ai-hpc",
+      "skill_count": 12,
+      "skill_ids": [
+        "gpu-sanity-check",
+        "ray-on-slurm",
+        "dask-jobqueue-on-slurm",
+        "pytorch-ddp-on-slurm",
+        "deepspeed-on-slurm",
+        "nccl-diagnostics",
+        "gpu-memory-triage",
+        "apptainer-run-container",
+        "dataset-staging-to-scratch",
+        "checkpoint-restart-workflow",
+        "reproducible-run-capture",
+        "slurm-efficiency-report"
+      ]
+    },
     {
       "id": "bioinformatics-workflows",
       "skill_count": 6,
