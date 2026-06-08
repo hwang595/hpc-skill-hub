@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a proposal evidence report generator for owner handoffs, open-source
+  review packets, and ecosystem sponsor discussions.
 - Add a reviewed-skill pilot starter issue for routing the first seed skill
   maturity reviews from the local review candidate report.
 - Add a review candidate report generator for ranking seed skills that are

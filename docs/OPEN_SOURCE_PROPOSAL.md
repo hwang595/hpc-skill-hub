@@ -61,6 +61,19 @@ Perlmutter draft adapter.
 5. Promote reviewed skills from `seed` to `reviewed`.
 6. Cut a `v0.1.0` release once schema and contribution workflows are stable.
 
+## Proposal Evidence
+
+Generate a current evidence report before sharing this proposal with a
+repository owner, sponsoring organization, OSPO, or community steering group:
+
+```bash
+python3 tools/proposal_evidence.py --owner <owner> --run-check
+```
+
+The report summarizes registry coverage, community launch assets, release
+manifest state, readiness checks, and the first reviewed-skill pilot queue
+without taking networked GitHub actions.
+
 ## Success Metrics
 
 - Number of reviewed skills.

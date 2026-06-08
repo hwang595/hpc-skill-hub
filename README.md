@@ -179,6 +179,7 @@ Prepare GitHub publication commands without taking networked action:
 python3 tools/launch_readiness.py --owner <owner> --run-check
 python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/launch_evidence.py --owner <owner> --run-check
+python3 tools/proposal_evidence.py --owner <owner> --run-check
 python3 tools/review_candidates.py --limit 12
 ```
 

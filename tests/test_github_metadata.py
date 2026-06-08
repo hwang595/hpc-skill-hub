@@ -354,6 +354,7 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("python3 tools/launch_readiness.py", result.stdout)
         self.assertIn("python3 tools/launch_evidence.py", result.stdout)
         self.assertIn("python3 tools/review_candidates.py --limit 12", result.stdout)
+        self.assertIn("python3 tools/proposal_evidence.py --owner example", result.stdout)
         self.assertIn("Review public launch packet and owner checklist", result.stdout)
         self.assertIn("docs/PUBLIC_LAUNCH_PACKET.md", result.stdout)
         self.assertIn("docs/GITHUB_OWNER_CHECKLIST.md", result.stdout)
@@ -371,6 +372,51 @@ class GitHubMetadataTests(unittest.TestCase):
         )
         self.assertIn("repos/example/hpc-skill-hub/rulesets", result.stdout)
         self.assertIn("gh release create v0.1.0", result.stdout)
+
+    def test_proposal_evidence_generator(self):
+        markdown = subprocess.run(
+            [
+                "python3",
+                "tools/proposal_evidence.py",
+                "--owner",
+                "example",
+                "--review-limit",
+                "3",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        self.assertIn("# HPC Skill Hub Proposal Evidence", markdown.stdout)
+        self.assertIn("## Community Assets", markdown.stdout)
+        self.assertIn("Starter issues: 5", markdown.stdout)
+        self.assertIn("## Reviewed Skill Pilot", markdown.stdout)
+
+        json_result = subprocess.run(
+            [
+                "python3",
+                "tools/proposal_evidence.py",
+                "--owner",
+                "example",
+                "--json",
+                "--review-limit",
+                "3",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        payload = json.loads(json_result.stdout)
+        with (ROOT / "registry" / "index.json").open(encoding="utf-8") as handle:
+            index = json.load(handle)
+        self.assertEqual(payload["registry"]["skill_count"], index["skill_count"])
+        self.assertEqual(payload["community"]["seed_issue_count"], 5)
+        self.assertLessEqual(len(payload["reviewed_skill_pilot"]["candidates"]), 3)
+        self.assertIn("readiness", payload)
 
     def test_launch_evidence_generator(self):
         markdown = subprocess.run(

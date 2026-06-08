@@ -40,10 +40,18 @@ handoff, or open-source proposal:
 python3 tools/launch_evidence.py --owner <owner> --run-check
 ```
 
+To produce a proposal-oriented evidence report with registry coverage,
+community launch assets, readiness checks, and reviewed-skill pilot candidates:
+
+```bash
+python3 tools/proposal_evidence.py --owner <owner> --run-check
+```
+
 Use JSON when another tool or checklist needs to consume the same evidence:
 
 ```bash
 python3 tools/launch_evidence.py --owner <owner> --json
+python3 tools/proposal_evidence.py --owner <owner> --json
 ```
 
 ## Interpreting Results
@@ -67,6 +75,7 @@ The readiness audit complements the command generators:
 python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/launch_evidence.py --owner <owner> --run-check
 python3 tools/launch_readiness.py --owner <owner> --run-check
+python3 tools/proposal_evidence.py --owner <owner> --run-check
 python3 tools/review_candidates.py --limit 12
 python3 tools/build_package_data.py --check
 python3 tools/build_release_manifest.py v0.1.0 --check

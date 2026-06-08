@@ -27,6 +27,15 @@ The project is not only a documentation site. It combines:
 - An integration contract for downstream tools, portals, assistants, and
   workflow projects.
 
+Generate a current proposal evidence report with:
+
+```bash
+python3 tools/proposal_evidence.py --owner <owner> --run-check
+```
+
+The report is useful as a pasteable appendix for open-source proposal reviews,
+owner handoffs, and ecosystem sponsor discussions.
+
 ## Current And Proposed Community Collections
 
 - `core-hpc`: Slurm, modules, shell, storage, interactive sessions, RStudio,
