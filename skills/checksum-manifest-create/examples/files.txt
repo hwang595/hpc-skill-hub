@@ -1,0 +1,3 @@
+# Add one file path per line.
+# data/sample-1.fastq.gz
+# data/sample-2.fastq.gz

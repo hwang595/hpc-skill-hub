@@ -1,0 +1,12 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%labels
+    Author HPC Skill Hub
+    Purpose Minimal example definition for review
+
+%post
+    echo "container build smoke example"
+
+%runscript
+    echo "hello from HPC Skill Hub container example"

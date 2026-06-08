@@ -13,11 +13,11 @@ research software engineer building software stacks may start with
   checkpoint/restart, failure triage, storage triage, OpenMP placement,
   notebooks, and interactive sessions.
 - `software-stacks`: modules, compiler/MPI compatibility, reproducible run
-  capture, Python virtual environments, Conda/Mamba, containers, Spack, and
-  EasyBuild.
+  capture, Python virtual environments, Conda/Mamba, container builds and
+  runtime, Spack, and EasyBuild.
 - `workflow-engines`: Nextflow and Snakemake on Slurm.
-- `data-movement`: Globus dataset transfer, scratch inventory, and filesystem
-  quota triage.
+- `data-movement`: Globus dataset transfer, checksum manifests, scratch
+  inventory, and filesystem quota triage.
 - `gpu-mpi-performance`: MPI launch checks, compiler/MPI compatibility, GPU
   sanity checks, OpenMP placement, and basic profiling.
 

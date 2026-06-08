@@ -49,10 +49,12 @@ tools.
 | `reproducible-run-capture` | Capture command, environment, provenance, and logs for reproducible HPC runs. |
 | `python-virtualenv-on-hpc` | Create lightweight Python virtual environments with explicit HPC module assumptions. |
 | `conda-mamba-on-hpc` | Create Conda or Mamba environments while protecting shared HPC filesystems. |
+| `container-build-for-hpc` | Plan and build Apptainer-compatible images for shared HPC systems. |
 | `apptainer-run-container` | Run Apptainer/Singularity containers safely on shared HPC systems. |
 | `spack-environment-create` | Create reproducible Spack environments for scientific software stacks. |
 | `easybuild-install-software` | Install scientific software with EasyBuild recipes and module output. |
 | `globus-transfer-dataset` | Stage and verify large research datasets with Globus transfers. |
+| `checksum-manifest-create` | Create checksum manifests for transfer validation and reproducibility. |
 | `nextflow-on-slurm` | Configure Nextflow pipelines for Slurm-backed execution. |
 | `snakemake-on-slurm` | Configure Snakemake workflows for Slurm profiles. |
 | `mpi-hello-and-benchmark` | Compile and run MPI sanity checks and simple communication benchmarks. |

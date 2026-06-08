@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 25
+- Skills: 27
 - Site adapters: 1
 - Collections: 5
 - Uncollected skills: 0
@@ -13,29 +13,29 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 10 |
-| `medium` | 15 |
+| `low` | 11 |
+| `medium` | 16 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 25 |
+| `seed` | 27 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 25 |
+| `draft` | 27 |
 
 ## Collection Coverage
 
 | Collection | Skills |
 | --- | ---: |
 | `core-hpc` | 11 |
-| `data-movement` | 3 |
+| `data-movement` | 4 |
 | `gpu-mpi-performance` | 5 |
-| `software-stacks` | 8 |
+| `software-stacks` | 9 |
 | `workflow-engines` | 2 |
 
 ## Uncollected Skills
@@ -48,8 +48,10 @@ All skills are included in at least one collection.
 | --- | --- |
 | `apptainer-run-container` | medium |
 | `checkpoint-restart-workflow` | medium |
+| `checksum-manifest-create` | low |
 | `compiler-mpi-matrix` | low |
 | `conda-mamba-on-hpc` | medium |
+| `container-build-for-hpc` | medium |
 | `easybuild-install-software` | medium |
 | `globus-transfer-dataset` | medium |
 | `gpu-sanity-check` | medium |

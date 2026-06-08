@@ -11,6 +11,7 @@
     "reproducible-run-capture",
     "python-virtualenv-on-hpc",
     "conda-mamba-on-hpc",
+    "container-build-for-hpc",
     "apptainer-run-container",
     "spack-environment-create",
     "easybuild-install-software"

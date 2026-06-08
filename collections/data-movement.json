@@ -7,6 +7,7 @@
   "audience": ["data stewards", "research groups", "facility support teams"],
   "skill_ids": [
     "globus-transfer-dataset",
+    "checksum-manifest-create",
     "scratch-storage-management",
     "quota-and-filesystem-triage"
   ],

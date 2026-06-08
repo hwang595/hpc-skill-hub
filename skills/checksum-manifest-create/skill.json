@@ -1,0 +1,105 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "checksum-manifest-create",
+  "name": "Checksum Manifest Create",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Create checksum manifests for transfer validation and reproducibility.",
+  "description": "This skill helps users create read-only checksum manifests for selected input or output files before transfer, archival, or support handoff.",
+  "categories": ["data"],
+  "tags": ["checksum", "sha256", "manifest", "transfer", "validation", "archive"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "sha256sum",
+      "required": false
+    },
+    {
+      "name": "shasum",
+      "required": false
+    },
+    {
+      "name": "cksum",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "dirname",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "file_manifest",
+      "type": "path",
+      "required": true,
+      "description": "Newline-delimited file list; blank lines and comments are ignored."
+    },
+    {
+      "name": "output_manifest",
+      "type": "path",
+      "required": false,
+      "description": "Checksum output file path."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "checksum_manifest",
+      "description": "Checksum records for each existing file in the manifest."
+    },
+    {
+      "name": "missing_file_report",
+      "description": "Entries for missing paths that should be resolved before transfer or archival."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/files.txt",
+    "examples/create-checksums.sh"
+  ],
+  "examples": [
+    {
+      "title": "Input file manifest template",
+      "path": "examples/files.txt"
+    },
+    {
+      "title": "Create checksum manifest",
+      "path": "examples/create-checksums.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill checksum-manifest-create",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run against a small user-owned file list and confirm checksums and missing entries are recorded."
+    }
+  ],
+  "references": [
+    {
+      "title": "GNU coreutils sha2 utilities",
+      "url": "https://www.gnu.org/software/coreutils/manual/html_node/sha2-utilities.html"
+    },
+    {
+      "title": "BagIt file packaging format",
+      "url": "https://datatracker.ietf.org/doc/html/rfc8493"
+    }
+  ]
+}

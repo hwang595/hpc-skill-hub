@@ -1,14 +1,14 @@
 {
   "categories": {
-    "containers": 1,
-    "data": 3,
+    "containers": 2,
+    "data": 4,
     "debugging": 11,
     "gpu": 1,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
     "scheduler": 14,
-    "software": 7,
+    "software": 8,
     "workflow": 2
   },
   "collection_count": 5,
@@ -49,6 +49,7 @@
       "path": "collections/data-movement.json",
       "skill_ids": [
         "globus-transfer-dataset",
+        "checksum-manifest-create",
         "scratch-storage-management",
         "quota-and-filesystem-triage"
       ],
@@ -89,6 +90,7 @@
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
         "conda-mamba-on-hpc",
+        "container-build-for-hpc",
         "apptainer-run-container",
         "spack-environment-create",
         "easybuild-install-software"
@@ -141,7 +143,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 25,
+  "skill_count": 27,
   "skills": [
     {
       "categories": [
@@ -245,6 +247,58 @@
         "date",
         "cat",
         "sleep"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "data"
+      ],
+      "description": "This skill helps users create read-only checksum manifests for selected input or output files before transfer, archival, or support handoff.",
+      "examples": [
+        {
+          "path": "skills/checksum-manifest-create/examples/files.txt",
+          "title": "Input file manifest template"
+        },
+        {
+          "path": "skills/checksum-manifest-create/examples/create-checksums.sh",
+          "title": "Create checksum manifest"
+        }
+      ],
+      "id": "checksum-manifest-create",
+      "maturity": "seed",
+      "name": "Checksum Manifest Create",
+      "path": "skills/checksum-manifest-create",
+      "readme": "skills/checksum-manifest-create/README.md",
+      "references": [
+        {
+          "title": "GNU coreutils sha2 utilities",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/sha2-utilities.html"
+        },
+        {
+          "title": "BagIt file packaging format",
+          "url": "https://datatracker.ietf.org/doc/html/rfc8493"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Create checksum manifests for transfer validation and reproducibility.",
+      "tags": [
+        "checksum",
+        "sha256",
+        "manifest",
+        "transfer",
+        "validation",
+        "archive"
+      ],
+      "tools": [
+        "sha256sum",
+        "shasum",
+        "cksum",
+        "mkdir",
+        "dirname",
+        "date"
       ],
       "version": "0.1.0"
     },
@@ -357,6 +411,60 @@
         "env",
         "grep",
         "sort"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "containers",
+        "software"
+      ],
+      "description": "This skill helps users prepare reproducible container definitions, choose site-approved build locations, record build metadata, and avoid expensive or policy-sensitive image builds on shared login filesystems.",
+      "examples": [
+        {
+          "path": "skills/container-build-for-hpc/examples/Container.def",
+          "title": "Starter Apptainer definition"
+        },
+        {
+          "path": "skills/container-build-for-hpc/examples/build-plan.sh",
+          "title": "Record or run a container build plan"
+        }
+      ],
+      "id": "container-build-for-hpc",
+      "maturity": "seed",
+      "name": "Container Build For HPC",
+      "path": "skills/container-build-for-hpc",
+      "readme": "skills/container-build-for-hpc/README.md",
+      "references": [
+        {
+          "title": "Apptainer build documentation",
+          "url": "https://apptainer.org/docs/user/latest/build_a_container.html"
+        },
+        {
+          "title": "Apptainer definition files",
+          "url": "https://apptainer.org/docs/user/latest/definition_files.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Plan and build Apptainer-compatible images for shared HPC systems.",
+      "tags": [
+        "apptainer",
+        "singularity",
+        "container",
+        "sif",
+        "definition",
+        "oci"
+      ],
+      "tools": [
+        "apptainer",
+        "singularity",
+        "command",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee"
       ],
       "version": "0.1.0"
     },
@@ -1398,21 +1506,23 @@
   "tags": {
     "affinity": 1,
     "amd": 1,
-    "apptainer": 1,
+    "apptainer": 2,
+    "archive": 1,
     "array": 2,
     "benchmark": 1,
     "checkpoint": 1,
-    "checksum": 2,
+    "checksum": 3,
     "cleanup": 1,
     "compatibility": 1,
     "compiler": 2,
     "conda": 1,
-    "container": 1,
+    "container": 2,
     "cpu": 1,
     "cpu-bind": 1,
     "cuda": 1,
     "dataset": 1,
     "debugging": 1,
+    "definition": 1,
     "easybuild": 1,
     "easyconfig": 1,
     "enospc": 1,
@@ -1431,7 +1541,7 @@
     "lmod": 2,
     "logs": 3,
     "mamba": 1,
-    "manifest": 1,
+    "manifest": 2,
     "memory": 2,
     "micromamba": 1,
     "modules": 5,
@@ -1441,6 +1551,7 @@
     "nf-core": 1,
     "notebook": 1,
     "nvidia": 1,
+    "oci": 1,
     "omp-num-threads": 1,
     "oom": 1,
     "openmp": 1,
@@ -1464,7 +1575,9 @@
     "sbatch": 1,
     "scontrol": 1,
     "scratch": 1,
-    "singularity": 1,
+    "sha256": 1,
+    "sif": 1,
+    "singularity": 2,
     "slurm": 14,
     "snakemake": 1,
     "software": 2,
@@ -1478,9 +1591,10 @@
     "throughput": 1,
     "time": 1,
     "timeout": 2,
-    "transfer": 1,
+    "transfer": 2,
     "triage": 2,
     "tunnel": 1,
+    "validation": 1,
     "venv": 1,
     "virtualenv": 1,
     "walltime": 1,
@@ -1488,17 +1602,17 @@
     "wrapper": 1
   },
   "tools": {
-    "apptainer": 1,
+    "apptainer": 2,
     "awk": 2,
     "bash": 2,
     "cat": 1,
-    "cksum": 1,
+    "cksum": 2,
     "clang": 1,
-    "command": 1,
+    "command": 2,
     "conda": 1,
-    "date": 3,
+    "date": 5,
     "df": 2,
-    "dirname": 1,
+    "dirname": 2,
     "du": 1,
     "eb": 1,
     "env": 4,
@@ -1508,13 +1622,13 @@
     "globus": 1,
     "grep": 5,
     "head": 2,
-    "hostname": 4,
+    "hostname": 5,
     "jupyter": 1,
     "ldd": 2,
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 6,
+    "mkdir": 8,
     "module": 6,
     "mpicc": 2,
     "mpicxx": 1,
@@ -1532,8 +1646,9 @@
     "sbatch": 9,
     "scontrol": 1,
     "sed": 1,
-    "sha256sum": 1,
-    "shasum": 1,
+    "sha256sum": 2,
+    "shasum": 2,
+    "singularity": 1,
     "sleep": 1,
     "snakemake": 1,
     "sort": 4,
@@ -1542,6 +1657,7 @@
     "srun": 4,
     "ssh": 2,
     "tail": 3,
+    "tee": 1,
     "time": 1,
     "uname": 1,
     "which": 1

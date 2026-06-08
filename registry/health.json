@@ -1,14 +1,14 @@
 {
   "category_counts": {
-    "containers": 1,
-    "data": 3,
+    "containers": 2,
+    "data": 4,
     "debugging": 11,
     "gpu": 1,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
     "scheduler": 14,
-    "software": 7,
+    "software": 8,
     "workflow": 2
   },
   "collection_count": 5,
@@ -32,9 +32,10 @@
     },
     {
       "id": "data-movement",
-      "skill_count": 3,
+      "skill_count": 4,
       "skill_ids": [
         "globus-transfer-dataset",
+        "checksum-manifest-create",
         "scratch-storage-management",
         "quota-and-filesystem-triage"
       ]
@@ -52,13 +53,14 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 8,
+      "skill_count": 9,
       "skill_ids": [
         "module-environment-debug",
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
         "conda-mamba-on-hpc",
+        "container-build-for-hpc",
         "apptainer-run-container",
         "spack-environment-create",
         "easybuild-install-software"
@@ -75,13 +77,15 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 25
+    "seed": 27
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
     "checkpoint-restart-workflow": "medium",
+    "checksum-manifest-create": "low",
     "compiler-mpi-matrix": "low",
     "conda-mamba-on-hpc": "medium",
+    "container-build-for-hpc": "medium",
     "easybuild-install-software": "medium",
     "globus-transfer-dataset": "medium",
     "gpu-sanity-check": "medium",
@@ -105,14 +109,14 @@
     "spack-environment-create": "medium"
   },
   "risk_counts": {
-    "low": 10,
-    "medium": 15
+    "low": 11,
+    "medium": 16
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 25,
+  "skill_count": 27,
   "status_counts": {
-    "draft": 25
+    "draft": 27
   },
   "uncollected_skill_ids": []
 }

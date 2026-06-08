@@ -2,21 +2,21 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 25 skills.
+Current registry size: 27 skills.
 
 ## Categories
 
 | Category | Skills |
 | --- | ---: |
-| `containers` | 1 |
-| `data` | 3 |
+| `containers` | 2 |
+| `data` | 4 |
 | `debugging` | 11 |
 | `gpu` | 1 |
 | `interactive` | 2 |
 | `mpi` | 2 |
 | `performance` | 3 |
 | `scheduler` | 14 |
-| `software` | 7 |
+| `software` | 8 |
 | `workflow` | 2 |
 
 ## Skills By Category
@@ -26,11 +26,13 @@ Current registry size: 25 skills.
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
 | [`apptainer-run-container`](../skills/apptainer-run-container/README.md) | medium | seed | Run Apptainer containers safely on shared HPC systems. |
+| [`container-build-for-hpc`](../skills/container-build-for-hpc/README.md) | medium | seed | Plan and build Apptainer-compatible images for shared HPC systems. |
 
 ### Data
 
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
+| [`checksum-manifest-create`](../skills/checksum-manifest-create/README.md) | low | seed | Create checksum manifests for transfer validation and reproducibility. |
 | [`globus-transfer-dataset`](../skills/globus-transfer-dataset/README.md) | medium | seed | Stage large datasets with Globus transfer and verification steps. |
 | [`quota-and-filesystem-triage`](../skills/quota-and-filesystem-triage/README.md) | low | seed | Diagnose quota, inode, and filesystem-space failures from user-visible evidence. |
 | [`scratch-storage-management`](../skills/scratch-storage-management/README.md) | low | seed | Inspect scratch, project, and working-directory usage before HPC jobs. |
@@ -104,6 +106,7 @@ Current registry size: 25 skills.
 | --- | --- | --- | --- |
 | [`compiler-mpi-matrix`](../skills/compiler-mpi-matrix/README.md) | low | seed | Check compiler, MPI wrapper, and module compatibility before building HPC codes. |
 | [`conda-mamba-on-hpc`](../skills/conda-mamba-on-hpc/README.md) | medium | seed | Create Conda or Mamba environments while protecting shared HPC filesystems. |
+| [`container-build-for-hpc`](../skills/container-build-for-hpc/README.md) | medium | seed | Plan and build Apptainer-compatible images for shared HPC systems. |
 | [`easybuild-install-software`](../skills/easybuild-install-software/README.md) | medium | seed | Install scientific software with EasyBuild and generated modules. |
 | [`module-environment-debug`](../skills/module-environment-debug/README.md) | low | seed | Diagnose module, compiler, MPI, and library path conflicts. |
 | [`python-virtualenv-on-hpc`](../skills/python-virtualenv-on-hpc/README.md) | low | seed | Create lightweight Python virtual environments with explicit HPC module assumptions. |
@@ -122,9 +125,9 @@ Current registry size: 25 skills.
 | Collection | Status | Skills | Audience | Description |
 | --- | --- | ---: | --- | --- |
 | [`core-hpc`](../collections/core-hpc.json) | draft | 11 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage. |
-| [`data-movement`](../collections/data-movement.json) | draft | 3 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
+| [`data-movement`](../collections/data-movement.json) | draft | 4 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 5 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, compiler/MPI compatibility, MPI launches, OpenMP placement, and first-pass performance evidence. |
-| [`software-stacks`](../collections/software-stacks.json) | draft | 8 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks. |
+| [`software-stacks`](../collections/software-stacks.json) | draft | 9 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 2 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines on Slurm-backed HPC clusters. |
 
 ## Site Adapters
@@ -138,8 +141,8 @@ Current registry size: 25 skills.
 - Open OnDemand app templates.
 - PyTorch distributed training on Slurm.
 - NCCL multi-node diagnostics.
-- Container build workflows for HPC runtimes.
-- Rsync and checksum data transfer patterns.
+- Rsync data transfer patterns.
+- Dataset staging to scratch workflows.
 - WRF, GROMACS, LAMMPS, OpenFOAM, and Quantum ESPRESSO starter skills.
 - Bioinformatics workflows for nf-core, GATK, BLAST, and AlphaFold.
 - Facility read-only reports for fairshare, partitions, and node health.

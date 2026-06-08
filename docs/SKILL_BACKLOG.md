@@ -18,6 +18,8 @@ new collections.
 | `conda-mamba-on-hpc` | software | medium | Seed skill added to `software-stacks`. |
 | `compiler-mpi-matrix` | software | low | Seed skill added to `software-stacks` and `gpu-mpi-performance`. |
 | `reproducible-run-capture` | debugging | low | Seed skill added to `software-stacks`. |
+| `container-build-for-hpc` | containers | medium | Seed skill added to `software-stacks`. |
+| `checksum-manifest-create` | data | low | Seed skill added to `data-movement`. |
 
 ## Priority 1: Core User Workflows
 
@@ -26,16 +28,14 @@ should be proposed through skill request issues.
 
 ## Priority 2: Software And Reproducibility
 
-| Skill id | Category | Risk | Why it matters |
-| --- | --- | --- | --- |
-| `container-build-for-hpc` | containers | medium | Users need safe image build and conversion patterns before running containers. |
+Priority 2 is implemented in the seed registry. New software or reproducibility
+requests should be proposed through skill request issues.
 
 ## Priority 3: Data Movement And Data Lifecycle
 
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
 | `rsync-data-transfer` | data | medium | Smaller transfers still need resumable, checksummed command patterns. |
-| `checksum-manifest-create` | data | low | Transfer validation should be repeatable and visible. |
 | `dataset-staging-to-scratch` | data | medium | Workflows often need input staging and output collection around jobs. |
 | `large-file-archive-prepare` | data | medium | Users need packaging and manifest patterns before archival or publication. |
 

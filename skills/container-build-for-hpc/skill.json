@@ -1,0 +1,115 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "container-build-for-hpc",
+  "name": "Container Build For HPC",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Plan and build Apptainer-compatible images for shared HPC systems.",
+  "description": "This skill helps users prepare reproducible container definitions, choose site-approved build locations, record build metadata, and avoid expensive or policy-sensitive image builds on shared login filesystems.",
+  "categories": ["containers", "software"],
+  "tags": ["apptainer", "singularity", "container", "sif", "definition", "oci"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "tools": [
+    {
+      "name": "apptainer",
+      "required": false
+    },
+    {
+      "name": "singularity",
+      "required": false
+    },
+    {
+      "name": "command",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "definition_file",
+      "type": "path",
+      "required": true,
+      "description": "Apptainer/Singularity definition file or OCI source plan."
+    },
+    {
+      "name": "output_image",
+      "type": "path",
+      "required": true,
+      "description": "User-owned SIF output path."
+    },
+    {
+      "name": "build_location",
+      "type": "path",
+      "required": false,
+      "description": "Site-approved filesystem for temporary build state and cache."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "build_plan",
+      "description": "Recorded build command, runtime, host, and filesystem assumptions."
+    },
+    {
+      "name": "container_image",
+      "description": "Optional SIF image when the user explicitly opts into building."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/Container.def",
+    "examples/build-plan.sh"
+  ],
+  "examples": [
+    {
+      "title": "Starter Apptainer definition",
+      "path": "examples/Container.def"
+    },
+    {
+      "title": "Record or run a container build plan",
+      "path": "examples/build-plan.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill container-build-for-hpc",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run the build plan without BUILD_IMAGE, review the command, then build only on a site-approved build host or partition."
+    }
+  ],
+  "references": [
+    {
+      "title": "Apptainer build documentation",
+      "url": "https://apptainer.org/docs/user/latest/build_a_container.html"
+    },
+    {
+      "title": "Apptainer definition files",
+      "url": "https://apptainer.org/docs/user/latest/definition_files.html"
+    }
+  ]
+}
