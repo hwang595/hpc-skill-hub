@@ -134,6 +134,27 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("gh api -X POST repos/example/hpc-skill-hub/rulesets", result.stdout)
         self.assertIn("--input .github/rulesets/main.json", result.stdout)
 
+    def test_release_command_generator(self):
+        result = subprocess.run(
+            [
+                "python3",
+                "tools/github_release.py",
+                "v0.1.0",
+                "--repo",
+                "example/hpc-skill-hub",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        self.assertIn("git tag -a v0.1.0", result.stdout)
+        self.assertIn("git push origin v0.1.0", result.stdout)
+        self.assertIn("gh release create v0.1.0", result.stdout)
+        self.assertIn("--notes-file docs/RELEASE_NOTES_v0.1.0.md", result.stdout)
+        self.assertIn("--repo example/hpc-skill-hub", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

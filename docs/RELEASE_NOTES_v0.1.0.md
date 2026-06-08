@@ -61,7 +61,8 @@ request missing workflows, or contribute public site adapters.
   review.
 - Pull request template with validation, risk, privacy, and reviewer prompts.
 - Repository metadata, labels, and starter ruleset files.
-- Command generators for repository setup, labels, and rulesets.
+- Command generators for repository setup, labels, rulesets, and release
+  publication.
 
 ## Known Limitations
 

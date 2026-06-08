@@ -55,6 +55,8 @@ git push -u origin main
   expected label commands.
 - `python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub` prints the
   expected branch ruleset command after the first `Validate` workflow run.
+- `python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub` prints
+  the expected release commands after Pages and Actions are green.
 - Branch protection requires the validation workflow.
 - GitHub Pages is enabled with the `Publish Pages` workflow.
 - Dependabot, issue templates, and pull request templates are present.
