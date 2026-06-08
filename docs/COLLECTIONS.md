@@ -15,13 +15,14 @@ research software engineer building software stacks may start with
   notebooks, and interactive sessions.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
   reproducible run capture, Python virtual environments, Rscript jobs, Julia
-  jobs, Conda/Mamba,
+  jobs, MATLAB batch jobs, Conda/Mamba,
   container builds and runtime, Spack, and EasyBuild.
 - `workflow-engines`: lightweight Slurm dependency chains, Nextflow,
   Snakemake, and nf-core on Slurm.
 - `training-onboarding`: workshop preflight, Slurm basics, interactive
   sessions, notebooks, Python/Conda environments, Rscript batch jobs, Julia
-  batch jobs, module debugging, data staging, and failure triage for new users.
+  batch jobs, MATLAB batch jobs, module debugging, data staging, and failure
+  triage for new users.
 - `data-movement`: Globus and rsync transfers, checksum manifests, scratch
   staging, archive preparation, scratch inventory, and filesystem quota triage.
 - `gpu-mpi-performance`: MPI launch checks, compiler/MPI compatibility, GPU

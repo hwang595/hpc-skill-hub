@@ -20,6 +20,7 @@ new collections.
 | `python-virtualenv-on-hpc` | software | low | Seed skill added to `software-stacks`. |
 | `rscript-on-slurm` | software | medium | Seed skill added to `software-stacks` and `training-onboarding`. |
 | `julia-on-slurm` | software | medium | Seed skill added to `software-stacks` and `training-onboarding`. |
+| `matlab-batch-on-slurm` | software | medium | Seed skill added to `software-stacks` and `training-onboarding`. |
 | `conda-mamba-on-hpc` | software | medium | Seed skill added to `software-stacks`. |
 | `compiler-mpi-matrix` | software | low | Seed skill added to `software-stacks` and `gpu-mpi-performance`. |
 | `reproducible-run-capture` | debugging | low | Seed skill added to `software-stacks`. |

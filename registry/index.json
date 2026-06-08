@@ -9,8 +9,8 @@
     "interactive": 2,
     "mpi": 6,
     "performance": 8,
-    "scheduler": 32,
-    "software": 11,
+    "scheduler": 33,
+    "software": 12,
     "workflow": 5
   },
   "collection_count": 9,
@@ -166,6 +166,7 @@
         "python-virtualenv-on-hpc",
         "rscript-on-slurm",
         "julia-on-slurm",
+        "matlab-batch-on-slurm",
         "conda-mamba-on-hpc",
         "container-build-for-hpc",
         "apptainer-run-container",
@@ -173,7 +174,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, R, Julia, and Conda environments, containers, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -192,13 +193,14 @@
         "python-virtualenv-on-hpc",
         "rscript-on-slurm",
         "julia-on-slurm",
+        "matlab-batch-on-slurm",
         "conda-mamba-on-hpc",
         "module-environment-debug",
         "dataset-staging-to-scratch",
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, Python, R, and Julia workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -221,7 +223,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 33
+    "slurm": 34
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -247,7 +249,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 49,
+  "skill_count": 50,
   "skills": [
     {
       "categories": [
@@ -1443,6 +1445,64 @@
         "awk",
         "tr",
         "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "scheduler"
+      ],
+      "description": "This skill helps users run MATLAB scripts or functions through Slurm using batch startup options while keeping license requirements, working directories, logs, and outputs explicit on shared HPC systems.",
+      "examples": [
+        {
+          "path": "skills/matlab-batch-on-slurm/examples/matlab-slurm.sbatch",
+          "title": "Submit a small MATLAB batch job"
+        },
+        {
+          "path": "skills/matlab-batch-on-slurm/examples/analysis.m",
+          "title": "MATLAB function with reproducibility output"
+        }
+      ],
+      "id": "matlab-batch-on-slurm",
+      "maturity": "seed",
+      "name": "MATLAB Batch On Slurm",
+      "path": "skills/matlab-batch-on-slurm",
+      "readme": "skills/matlab-batch-on-slurm/README.md",
+      "references": [
+        {
+          "title": "MATLAB startup options",
+          "url": "https://www.mathworks.com/help/matlab/matlab_env/startup-options.html"
+        },
+        {
+          "title": "MATLAB run function",
+          "url": "https://www.mathworks.com/help/matlab/ref/run.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run non-interactive MATLAB workloads on Slurm with explicit logs and license notes.",
+      "tags": [
+        "matlab",
+        "slurm",
+        "license",
+        "batch",
+        "logs",
+        "m-files",
+        "reproducibility"
+      ],
+      "tools": [
+        "matlab",
+        "sbatch",
+        "module",
+        "mkdir"
       ],
       "version": "0.1.0"
     },
@@ -2970,7 +3030,7 @@
     "apptainer": 2,
     "archive": 2,
     "array": 2,
-    "batch": 2,
+    "batch": 3,
     "benchmark": 1,
     "bioinformatics": 1,
     "cfd": 1,
@@ -3022,10 +3082,13 @@
     "lab": 1,
     "lammps": 1,
     "ld_library_path": 1,
+    "license": 1,
     "lmod": 3,
-    "logs": 4,
+    "logs": 5,
+    "m-files": 1,
     "mamba": 1,
     "manifest": 3,
+    "matlab": 1,
     "memory": 4,
     "metadata": 1,
     "micromamba": 1,
@@ -3070,7 +3133,7 @@
     "reason": 1,
     "reconstruction": 1,
     "reporting": 1,
-    "reproducibility": 6,
+    "reproducibility": 7,
     "rerun": 1,
     "resources": 1,
     "restart": 3,
@@ -3091,7 +3154,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 31,
+    "slurm": 32,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -3165,9 +3228,10 @@
     "ln": 1,
     "lscpu": 1,
     "mamba": 1,
+    "matlab": 1,
     "micromamba": 1,
-    "mkdir": 22,
-    "module": 10,
+    "mkdir": 23,
+    "module": 11,
     "mpicc": 2,
     "mpicxx": 1,
     "mpifort": 1,
@@ -3187,7 +3251,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 23,
+    "sbatch": 24,
     "scontrol": 5,
     "sed": 1,
     "seff": 1,

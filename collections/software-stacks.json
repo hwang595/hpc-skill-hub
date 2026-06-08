@@ -3,7 +3,7 @@
   "id": "software-stacks",
   "name": "Software Stacks",
   "status": "draft",
-  "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, R, Julia, and Conda environments, containers, and reproducible HPC software stacks.",
+  "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks.",
   "audience": ["research software engineers", "HPC support teams", "tool maintainers"],
   "skill_ids": [
     "module-environment-debug",
@@ -13,6 +13,7 @@
     "python-virtualenv-on-hpc",
     "rscript-on-slurm",
     "julia-on-slurm",
+    "matlab-batch-on-slurm",
     "conda-mamba-on-hpc",
     "container-build-for-hpc",
     "apptainer-run-container",

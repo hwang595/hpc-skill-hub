@@ -36,6 +36,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   library and output controls.
 - Add a Julia on Slurm skill for batch Julia workloads with explicit depot,
   project, and thread settings.
+- Add a MATLAB batch on Slurm skill for non-interactive MATLAB workloads with
+  explicit logging and license notes.
 
 ## v0.1.0 - Planned
 
@@ -43,10 +45,10 @@ Initial public seed release.
 
 ### Added
 
-- 49 seed HPC skills covering Slurm, job arrays, dependency chains, pending
+- 50 seed HPC skills covering Slurm, job arrays, dependency chains, pending
   reason triage, monitoring, resource estimation, efficiency review, failure
   triage, checkpoint/restart, interactive sessions, notebooks, OpenMP
-  placement, storage triage, Python/R/Julia software environments,
+  placement, storage triage, Python/R/Julia/MATLAB software environments,
   containers, Spack, EasyBuild, data movement, workflow engines, MPI/GPU
   diagnostics, AI/HPC launches, bioinformatics workflows, molecular dynamics,
   CFD, weather workloads, read-only facility operations, and training

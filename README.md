@@ -55,6 +55,7 @@ tools.
 | `python-virtualenv-on-hpc` | Create lightweight Python virtual environments with explicit HPC module assumptions. |
 | `rscript-on-slurm` | Run R scripts on Slurm with explicit package-library and output controls. |
 | `julia-on-slurm` | Run Julia scripts on Slurm with explicit depot, project, and thread settings. |
+| `matlab-batch-on-slurm` | Run non-interactive MATLAB workloads on Slurm with explicit logs and license notes. |
 | `conda-mamba-on-hpc` | Create Conda or Mamba environments while protecting shared HPC filesystems. |
 | `container-build-for-hpc` | Plan and build Apptainer-compatible images for shared HPC systems. |
 | `apptainer-run-container` | Run Apptainer/Singularity containers safely on shared HPC systems. |

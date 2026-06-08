@@ -9,8 +9,8 @@
     "interactive": 2,
     "mpi": 6,
     "performance": 8,
-    "scheduler": 32,
-    "software": 11,
+    "scheduler": 33,
+    "software": 12,
     "workflow": 5
   },
   "collection_count": 9,
@@ -103,7 +103,7 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 12,
+      "skill_count": 13,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
@@ -112,6 +112,7 @@
         "python-virtualenv-on-hpc",
         "rscript-on-slurm",
         "julia-on-slurm",
+        "matlab-batch-on-slurm",
         "conda-mamba-on-hpc",
         "container-build-for-hpc",
         "apptainer-run-container",
@@ -121,7 +122,7 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 11,
+      "skill_count": 12,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
@@ -130,6 +131,7 @@
         "python-virtualenv-on-hpc",
         "rscript-on-slurm",
         "julia-on-slurm",
+        "matlab-batch-on-slurm",
         "conda-mamba-on-hpc",
         "module-environment-debug",
         "dataset-staging-to-scratch",
@@ -149,7 +151,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 49
+    "seed": 50
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -173,6 +175,7 @@
     "jupyter-on-slurm": "medium",
     "lammps-on-slurm": "medium",
     "large-file-archive-prepare": "medium",
+    "matlab-batch-on-slurm": "medium",
     "module-environment-debug": "low",
     "module-tree-health-check": "low",
     "mpi-hello-and-benchmark": "medium",
@@ -204,13 +207,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 32
+    "medium": 33
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 49,
+  "skill_count": 50,
   "status_counts": {
-    "draft": 49
+    "draft": 50
   },
   "uncollected_skill_ids": []
 }

@@ -1,0 +1,127 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "matlab-batch-on-slurm",
+  "name": "MATLAB Batch On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run non-interactive MATLAB workloads on Slurm with explicit logs and license notes.",
+  "description": "This skill helps users run MATLAB scripts or functions through Slurm using batch startup options while keeping license requirements, working directories, logs, and outputs explicit on shared HPC systems.",
+  "categories": ["software", "scheduler"],
+  "tags": ["matlab", "slurm", "license", "batch", "logs", "m-files", "reproducibility"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "matlab",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "matlab_entrypoint",
+      "type": "string",
+      "required": true,
+      "description": "MATLAB script or function name to run with matlab -batch."
+    },
+    {
+      "name": "matlab_workdir",
+      "type": "path",
+      "required": false,
+      "description": "Directory added to the MATLAB path before running the entrypoint."
+    },
+    {
+      "name": "license_feature",
+      "type": "string",
+      "required": false,
+      "description": "Optional site-specific Slurm license resource or MATLAB license feature name."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": false,
+      "description": "User-owned output directory for generated files."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "slurm_log",
+      "description": "Slurm stdout/stderr log for the MATLAB job."
+    },
+    {
+      "name": "matlab_log",
+      "description": "Optional MATLAB logfile captured with the -logfile startup option."
+    },
+    {
+      "name": "matlab_environment_record",
+      "description": "MATLAB version, license evidence, thread settings, and selected environment variables captured in logs."
+    },
+    {
+      "name": "analysis_output",
+      "description": "User-defined MATLAB outputs written under the configured output directory."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/matlab-slurm.sbatch",
+    "examples/analysis.m"
+  ],
+  "examples": [
+    {
+      "title": "Submit a small MATLAB batch job",
+      "path": "examples/matlab-slurm.sbatch"
+    },
+    {
+      "title": "MATLAB function with reproducibility output",
+      "path": "examples/analysis.m"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill matlab-batch-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/matlab-batch-on-slurm/examples/matlab-slurm.sbatch",
+      "description": "Check the Slurm wrapper shell syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Replace account, partition, module, and optional license placeholders, then submit to a short test partition and confirm logs record MATLAB version, entrypoint, output directory, and license evidence."
+    }
+  ],
+  "references": [
+    {
+      "title": "MATLAB startup options",
+      "url": "https://www.mathworks.com/help/matlab/matlab_env/startup-options.html"
+    },
+    {
+      "title": "MATLAB run function",
+      "url": "https://www.mathworks.com/help/matlab/ref/run.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}
