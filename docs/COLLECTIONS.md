@@ -10,8 +10,8 @@ research software engineer building software stacks may start with
 ## Seed Collections
 
 - `core-hpc`: Slurm submission, arrays, monitoring, resource estimation,
-  checkpoint/restart, failure triage, storage triage, OpenMP placement,
-  notebooks, and interactive sessions.
+  efficiency review, checkpoint/restart, failure triage, storage triage,
+  OpenMP placement, notebooks, and interactive sessions.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
   reproducible run capture, Python virtual environments, Conda/Mamba,
   container builds and runtime, Spack, and EasyBuild.
@@ -23,7 +23,8 @@ research software engineer building software stacks may start with
   staging, archive preparation, scratch inventory, and filesystem quota triage.
 - `gpu-mpi-performance`: MPI launch checks, compiler/MPI compatibility, GPU
   sanity checks, GPU memory triage, PyTorch DDP smoke tests, NCCL diagnostics,
-  DeepSpeed launch checks, OpenMP placement, and basic profiling.
+  DeepSpeed launch checks, OpenMP placement, Slurm efficiency review, and basic
+  profiling.
 - `bioinformatics-workflows`: nf-core, GATK, Nextflow, Snakemake, data staging,
   and checksum practices for genomics and core-facility workflows.
 - `simulation-workflows`: GROMACS, LAMMPS, OpenFOAM, WRF, MPI launch checks,

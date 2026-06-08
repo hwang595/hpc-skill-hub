@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 44.
+- Skills: 45.
 - Collections: 9.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -23,8 +23,8 @@ request missing workflows, or contribute public site adapters.
 ## Skill Coverage
 
 - Core HPC: Slurm submission, arrays, monitoring, resource estimation,
-  checkpoint/restart, failure triage, interactive sessions, Jupyter, OpenMP
-  placement, quota triage, and scratch management.
+  efficiency review, checkpoint/restart, failure triage, interactive sessions,
+  Jupyter, OpenMP placement, quota triage, and scratch management.
 - Software stacks: module debugging, module tree health, compiler/MPI
   compatibility, reproducible run capture, Python virtualenv, Conda/Mamba,
   Apptainer builds and runtime, Spack, and EasyBuild.
@@ -34,8 +34,8 @@ request missing workflows, or contribute public site adapters.
 - Data movement: Globus, rsync, checksum manifests, scratch staging, archive
   preparation, scratch inventory, and filesystem quota triage.
 - GPU/MPI performance: MPI sanity checks, GPU sanity checks, PyTorch DDP,
-  NCCL diagnostics, GPU memory triage, DeepSpeed, OpenMP placement, and basic
-  profiling.
+  NCCL diagnostics, GPU memory triage, DeepSpeed, OpenMP placement, Slurm
+  efficiency review, and basic profiling.
 - Bioinformatics: nf-core and GATK workflow patterns with data staging and
   checksum practices.
 - Simulation: LAMMPS, GROMACS, OpenFOAM, WRF, MPI launch checks, OpenMP

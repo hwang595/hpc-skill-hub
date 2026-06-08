@@ -1,0 +1,84 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-efficiency-report",
+  "name": "Slurm Efficiency Report",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Summarize completed Slurm job efficiency from accounting data.",
+  "description": "This skill helps users and support teams review CPU, memory, elapsed time, and requested resource signals for a completed Slurm job using read-only accounting commands.",
+  "categories": ["scheduler", "performance", "debugging"],
+  "tags": ["slurm", "seff", "sacct", "efficiency", "cpu", "memory", "walltime"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sacct",
+      "required": true
+    },
+    {
+      "name": "seff",
+      "required": false
+    },
+    {
+      "name": "bash",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "job_id",
+      "type": "string",
+      "required": true,
+      "description": "Completed Slurm job id, array task id, or job step id to inspect."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "efficiency_summary",
+      "description": "Optional seff summary for CPU and memory efficiency when available."
+    },
+    {
+      "name": "accounting_table",
+      "description": "Read-only sacct report with state, elapsed time, requested memory, MaxRSS, TotalCPU, CPUs, and nodes."
+    },
+    {
+      "name": "tuning_notes",
+      "description": "Human-readable prompts for adjusting future CPU, memory, and wall-time requests."
+    }
+  ],
+  "artifacts": ["README.md", "examples/slurm-efficiency-report.sh"],
+  "examples": [
+    {
+      "title": "Collect a Slurm job efficiency report",
+      "path": "examples/slurm-efficiency-report.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-efficiency-report",
+      "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "manual",
+      "description": "Run the script with a completed Slurm job id and confirm it only reads accounting data."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sacct documentation",
+      "url": "https://slurm.schedmd.com/sacct.html"
+    },
+    {
+      "title": "Sheffield HPC seff documentation",
+      "url": "https://docs.hpc.shef.ac.uk/en/latest/referenceinfo/scheduler/SLURM/Common-commands/seff.html"
+    }
+  ]
+}

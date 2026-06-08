@@ -11,6 +11,7 @@ new collections.
 | `scratch-storage-management` | data | low | Seed skill added to `core-hpc` and `data-movement`. |
 | `quota-and-filesystem-triage` | debugging | low | Seed skill added to `core-hpc` and `data-movement`. |
 | `slurm-job-array-patterns` | scheduler | medium | Seed skill added to `core-hpc`. |
+| `slurm-efficiency-report` | scheduler | low | Seed skill added to `core-hpc` and `gpu-mpi-performance`. |
 | `checkpoint-restart-workflow` | scheduler | medium | Seed skill added to `core-hpc`. |
 | `openmp-thread-affinity` | performance | medium | Seed skill added to `core-hpc` and `gpu-mpi-performance`. |
 | `jupyter-on-slurm` | interactive | medium | Seed skill added to `core-hpc`. |

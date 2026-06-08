@@ -3,13 +3,13 @@
     "admin": 4,
     "containers": 2,
     "data": 9,
-    "debugging": 15,
+    "debugging": 16,
     "education": 1,
     "gpu": 6,
     "interactive": 2,
     "mpi": 6,
-    "performance": 7,
-    "scheduler": 27,
+    "performance": 8,
+    "scheduler": 28,
     "software": 9,
     "workflow": 4
   },
@@ -49,6 +49,7 @@
         "slurm-job-array-patterns",
         "slurm-monitor-job",
         "slurm-resource-estimator",
+        "slurm-efficiency-report",
         "checkpoint-restart-workflow",
         "job-failure-triage",
         "interactive-session",
@@ -58,7 +59,7 @@
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage."
     },
     {
       "audience": [
@@ -116,10 +117,11 @@
         "gpu-memory-triage",
         "deepspeed-on-slurm",
         "openmp-thread-affinity",
+        "slurm-efficiency-report",
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -211,7 +213,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 28
+    "slurm": 29
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -237,7 +239,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 44,
+  "skill_count": 45,
   "skills": [
     {
       "categories": [
@@ -2239,6 +2241,56 @@
     },
     {
       "categories": [
+        "scheduler",
+        "performance",
+        "debugging"
+      ],
+      "description": "This skill helps users and support teams review CPU, memory, elapsed time, and requested resource signals for a completed Slurm job using read-only accounting commands.",
+      "examples": [
+        {
+          "path": "skills/slurm-efficiency-report/examples/slurm-efficiency-report.sh",
+          "title": "Collect a Slurm job efficiency report"
+        }
+      ],
+      "id": "slurm-efficiency-report",
+      "maturity": "seed",
+      "name": "Slurm Efficiency Report",
+      "path": "skills/slurm-efficiency-report",
+      "readme": "skills/slurm-efficiency-report/README.md",
+      "references": [
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        },
+        {
+          "title": "Sheffield HPC seff documentation",
+          "url": "https://docs.hpc.shef.ac.uk/en/latest/referenceinfo/scheduler/SLURM/Common-commands/seff.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Summarize completed Slurm job efficiency from accounting data.",
+      "tags": [
+        "slurm",
+        "seff",
+        "sacct",
+        "efficiency",
+        "cpu",
+        "memory",
+        "walltime"
+      ],
+      "tools": [
+        "sacct",
+        "seff",
+        "bash"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "scheduler"
       ],
       "description": "This skill helps users turn a manifest of independent inputs into a bounded Slurm job array with per-task logging, concurrency limits, and restart-friendly task selection.",
@@ -2690,7 +2742,7 @@
     "compiler": 3,
     "conda": 1,
     "container": 2,
-    "cpu": 1,
+    "cpu": 2,
     "cpu-bind": 1,
     "cuda": 2,
     "data": 1,
@@ -2703,6 +2755,7 @@
     "distributed": 2,
     "easybuild": 1,
     "easyconfig": 1,
+    "efficiency": 1,
     "enospc": 1,
     "environment": 4,
     "environment-modules": 1,
@@ -2727,7 +2780,7 @@
     "logs": 4,
     "mamba": 1,
     "manifest": 3,
-    "memory": 3,
+    "memory": 4,
     "metadata": 1,
     "micromamba": 1,
     "modulepath": 1,
@@ -2772,17 +2825,18 @@
     "resume": 1,
     "rocm": 2,
     "rsync": 2,
-    "sacct": 4,
+    "sacct": 5,
     "salloc": 1,
     "samplesheet": 1,
     "sbatch": 1,
     "scontrol": 2,
     "scratch": 2,
+    "seff": 1,
     "sha256": 1,
     "sif": 1,
     "sinfo": 2,
     "singularity": 3,
-    "slurm": 26,
+    "slurm": 27,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -2807,7 +2861,7 @@
     "variant-calling": 1,
     "venv": 1,
     "virtualenv": 1,
-    "walltime": 1,
+    "walltime": 2,
     "weather": 1,
     "workflow": 3,
     "workshop": 1,
@@ -2820,7 +2874,7 @@
     "apptainer": 2,
     "awk": 3,
     "basename": 1,
-    "bash": 2,
+    "bash": 3,
     "blockMesh": 1,
     "cat": 2,
     "cksum": 2,
@@ -2873,11 +2927,12 @@
     "reconstructPar": 1,
     "rocm-smi": 2,
     "rsync": 2,
-    "sacct": 6,
+    "sacct": 7,
     "salloc": 1,
     "sbatch": 20,
     "scontrol": 4,
     "sed": 1,
+    "seff": 1,
     "sha256sum": 2,
     "shasum": 2,
     "sinfo": 3,
