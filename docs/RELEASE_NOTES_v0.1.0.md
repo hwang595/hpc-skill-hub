@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 71.
+- Skills: 72.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -32,10 +32,10 @@ request missing workflows, or contribute public site adapters.
 - Software stacks: module debugging, module tree health, compiler/MPI
   compatibility, reproducible run capture, Python virtualenv, Open OnDemand
   Batch Connect templates, Ray on Slurm, Dask Jobqueue, JAX distributed smoke
-  tests, mpi4py on Slurm, TensorBoard monitors, Streamlit apps, Rscript and
-  RStudio on Slurm, Julia on Slurm, MATLAB batch jobs, VS Code tunnels,
-  Conda/Mamba, Apptainer builds and runtime, containerized MPI, Spack, and
-  EasyBuild.
+  tests, Hugging Face Accelerate launches, mpi4py on Slurm, TensorBoard
+  monitors, Streamlit apps, Rscript and RStudio on Slurm, Julia on Slurm,
+  MATLAB batch jobs, VS Code tunnels, Conda/Mamba, Apptainer builds and runtime,
+  containerized MPI, Spack, and EasyBuild.
 - Containers: Apptainer-compatible image build planning, container runtime
   execution, containerized MPI launch checks, GPU visibility checks, scratch
   staging, checksum manifests, and reproducible run capture.
@@ -51,12 +51,12 @@ request missing workflows, or contribute public site adapters.
   filesystem quota triage.
 - GPU/MPI performance: MPI sanity checks, containerized MPI, mpi4py launch
   checks, GPU sanity checks, Ray cluster smoke tests, JAX distributed smoke
-  tests, PyTorch DDP, NCCL diagnostics, GPU memory triage, TensorBoard
-  monitors, DeepSpeed, OpenMP placement, Slurm efficiency review, storage smoke
-  benchmarks, and basic profiling.
+  tests, Hugging Face Accelerate launches, PyTorch DDP, NCCL diagnostics, GPU
+  memory triage, TensorBoard monitors, DeepSpeed, OpenMP placement, Slurm
+  efficiency review, storage smoke benchmarks, and basic profiling.
 - AI/HPC: GPU allocation checks, Ray clusters, Dask workers, JAX distributed
-  smoke tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage,
-  TensorBoard monitors,
+  smoke tests, Hugging Face Accelerate launches, PyTorch DDP, DeepSpeed, NCCL
+  diagnostics, GPU memory triage, TensorBoard monitors,
   Streamlit demos, container runtime execution, data staging, checkpoint/restart
   planning, reproducible run capture, and Slurm efficiency review.
 - Bioinformatics: nf-core, GATK, and local BLAST+ workflow patterns with data

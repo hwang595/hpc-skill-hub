@@ -97,6 +97,7 @@ tools.
 | `mpi-hello-and-benchmark` | Compile and run MPI sanity checks and simple communication benchmarks. |
 | `gpu-sanity-check` | Verify GPU allocation, CUDA/ROCm visibility, and multi-GPU communication. |
 | `jax-distributed-on-slurm` | Plan and smoke test distributed JAX jobs on Slurm GPU allocations. |
+| `huggingface-accelerate-on-slurm` | Plan and smoke test Hugging Face Accelerate launches on Slurm. |
 | `pytorch-ddp-on-slurm` | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
 | `nccl-diagnostics` | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
 | `gpu-memory-triage` | Distinguish GPU allocation, framework, and model memory failures. |

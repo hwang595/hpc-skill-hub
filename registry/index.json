@@ -6,12 +6,12 @@
     "data": 13,
     "debugging": 18,
     "education": 2,
-    "gpu": 10,
+    "gpu": 11,
     "interactive": 7,
     "mpi": 12,
     "performance": 13,
-    "scheduler": 54,
-    "software": 21,
+    "scheduler": 55,
+    "software": 22,
     "workflow": 10
   },
   "collection_count": 12,
@@ -31,6 +31,7 @@
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "jax-distributed-on-slurm",
+        "huggingface-accelerate-on-slurm",
         "pytorch-ddp-on-slurm",
         "deepspeed-on-slurm",
         "nccl-diagnostics",
@@ -175,6 +176,7 @@
         "gpu-sanity-check",
         "ray-on-slurm",
         "jax-distributed-on-slurm",
+        "huggingface-accelerate-on-slurm",
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
@@ -186,7 +188,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -258,6 +260,7 @@
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "jax-distributed-on-slurm",
+        "huggingface-accelerate-on-slurm",
         "mpi4py-on-slurm",
         "rscript-on-slurm",
         "rstudio-on-slurm",
@@ -272,7 +275,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, JAX, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, JAX, Hugging Face Accelerate, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -336,7 +339,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 51,
+    "slurm": 52,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -389,7 +392,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 71,
+  "skill_count": 72,
   "skills": [
     {
       "categories": [
@@ -1718,6 +1721,70 @@
         "condor_submit",
         "condor_q",
         "condor_rm"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "gpu",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for reviewing Hugging Face Accelerate multi-GPU and multi-node launch settings, including main process address, machine rank, process count, mixed precision, accelerator state, and a tiny tensor collective before running real training.",
+      "examples": [
+        {
+          "path": "skills/huggingface-accelerate-on-slurm/examples/accelerate-slurm.sbatch",
+          "title": "Plan or run an Accelerate Slurm smoke test"
+        },
+        {
+          "path": "skills/huggingface-accelerate-on-slurm/examples/accelerate_smoke.py",
+          "title": "Accelerate tensor collective smoke script"
+        }
+      ],
+      "id": "huggingface-accelerate-on-slurm",
+      "maturity": "seed",
+      "name": "Hugging Face Accelerate On Slurm",
+      "path": "skills/huggingface-accelerate-on-slurm",
+      "readme": "skills/huggingface-accelerate-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Hugging Face Accelerate launching scripts",
+          "url": "https://huggingface.co/docs/accelerate/main/en/basic_tutorials/launch"
+        },
+        {
+          "title": "Hugging Face Transformers with Accelerate",
+          "url": "https://huggingface.co/docs/transformers/accelerate"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Plan and smoke test Hugging Face Accelerate launches on Slurm.",
+      "tags": [
+        "huggingface",
+        "accelerate",
+        "transformers",
+        "pytorch",
+        "slurm",
+        "gpu",
+        "ai"
+      ],
+      "tools": [
+        "sbatch",
+        "srun",
+        "scontrol",
+        "accelerate",
+        "python3",
+        "nvidia-smi",
+        "hostname",
+        "date",
+        "tee"
       ],
       "version": "0.1.0"
     },
@@ -4623,10 +4690,11 @@
     }
   ],
   "tags": {
+    "accelerate": 1,
     "affinity": 1,
     "afterany": 1,
     "afterok": 1,
-    "ai": 2,
+    "ai": 3,
     "all-reduce": 1,
     "amd": 1,
     "apptainer": 3,
@@ -4690,12 +4758,13 @@
     "genomics": 1,
     "git": 1,
     "globus": 1,
-    "gpu": 16,
+    "gpu": 17,
     "grid-engine": 1,
     "gromacs": 1,
     "haplotypecaller": 1,
     "high-throughput": 1,
     "htcondor": 1,
+    "huggingface": 1,
     "ide": 1,
     "inode": 1,
     "interactive": 5,
@@ -4774,7 +4843,7 @@
     "pw.x": 1,
     "pwscf": 1,
     "python": 6,
-    "pytorch": 4,
+    "pytorch": 5,
     "qe": 1,
     "qstat": 2,
     "qsub": 2,
@@ -4811,7 +4880,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 49,
+    "slurm": 50,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -4834,6 +4903,7 @@
     "timeout": 2,
     "training": 2,
     "transfer": 3,
+    "transformers": 1,
     "triage": 4,
     "tunnel": 4,
     "uge": 1,
@@ -4860,6 +4930,7 @@
     "Open OnDemand": 1,
     "R": 1,
     "Rscript": 1,
+    "accelerate": 1,
     "all_reduce_perf": 1,
     "apptainer": 3,
     "awk": 3,
@@ -4884,7 +4955,7 @@
     "cwltool": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 25,
+    "date": 26,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -4902,7 +4973,7 @@
     "gmx_mpi": 1,
     "grep": 9,
     "head": 4,
-    "hostname": 22,
+    "hostname": 23,
     "icoFoam": 1,
     "ior": 1,
     "julia": 1,
@@ -4929,14 +5000,14 @@
     "ncdump": 1,
     "nextflow": 2,
     "nproc": 1,
-    "nvidia-smi": 7,
+    "nvidia-smi": 8,
     "perf": 1,
     "pip": 1,
     "printenv": 1,
     "pw.x": 1,
     "pwd": 7,
     "python": 3,
-    "python3": 9,
+    "python3": 10,
     "qdel": 1,
     "qstat": 2,
     "qsub": 2,
@@ -4950,8 +5021,8 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 41,
-    "scontrol": 7,
+    "sbatch": 42,
+    "scontrol": 8,
     "sed": 3,
     "seff": 1,
     "sha256sum": 2,
@@ -4965,12 +5036,12 @@
     "sprio": 1,
     "squeue": 7,
     "sreport": 1,
-    "srun": 19,
+    "srun": 20,
     "ssh": 5,
     "streamlit": 1,
     "tail": 4,
     "tar": 1,
-    "tee": 19,
+    "tee": 20,
     "tensorboard": 1,
     "test": 8,
     "time": 1,

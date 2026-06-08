@@ -1,0 +1,150 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "huggingface-accelerate-on-slurm",
+  "name": "Hugging Face Accelerate On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Plan and smoke test Hugging Face Accelerate launches on Slurm.",
+  "description": "This skill provides a conservative Slurm pattern for reviewing Hugging Face Accelerate multi-GPU and multi-node launch settings, including main process address, machine rank, process count, mixed precision, accelerator state, and a tiny tensor collective before running real training.",
+  "categories": ["software", "gpu", "scheduler"],
+  "tags": ["huggingface", "accelerate", "transformers", "pytorch", "slurm", "gpu", "ai"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": true
+    },
+    {
+      "name": "accelerate",
+      "required": true
+    },
+    {
+      "name": "python3",
+      "required": true
+    },
+    {
+      "name": "nvidia-smi",
+      "required": false
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "gpu_partition",
+      "type": "string",
+      "required": true,
+      "description": "Slurm partition or queue that provides GPU nodes."
+    },
+    {
+      "name": "accelerate_environment",
+      "type": "string",
+      "required": true,
+      "description": "Module, virtual environment, Conda environment, or container that provides accelerate and PyTorch."
+    },
+    {
+      "name": "processes_per_node",
+      "type": "integer",
+      "required": true,
+      "description": "Number of Accelerate worker processes to launch per Slurm node, normally matching the GPU count per node for data-parallel smoke tests."
+    },
+    {
+      "name": "mixed_precision",
+      "type": "string",
+      "required": false,
+      "description": "Accelerate mixed precision setting such as no, fp16, or bf16."
+    },
+    {
+      "name": "main_process_port",
+      "type": "integer",
+      "required": false,
+      "description": "TCP port used for the main Accelerate process."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "accelerate_launch_log",
+      "description": "Slurm log containing scheduler layout, selected Accelerate launch arguments, package versions, accelerator state, and smoke-test status."
+    },
+    {
+      "name": "launch_record",
+      "description": "Reviewable launch plan with main process address, machine count, total process count, mixed precision, and dry-run or execution mode."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/accelerate-slurm.sbatch",
+    "examples/accelerate_smoke.py"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run an Accelerate Slurm smoke test",
+      "path": "examples/accelerate-slurm.sbatch"
+    },
+    {
+      "title": "Accelerate tensor collective smoke script",
+      "path": "examples/accelerate_smoke.py"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill huggingface-accelerate-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/huggingface-accelerate-on-slurm/examples/accelerate-slurm.sbatch",
+      "description": "Check the Slurm wrapper shell syntax."
+    },
+    {
+      "type": "static",
+      "command": "python3 -m py_compile skills/huggingface-accelerate-on-slurm/examples/accelerate_smoke.py",
+      "description": "Check the Python smoke script syntax without requiring Accelerate to be installed."
+    },
+    {
+      "type": "manual",
+      "description": "Replace account, partition, and environment placeholders, submit with RUN_ACCELERATE_SMOKE=0 to review the launch plan, then submit with RUN_ACCELERATE_SMOKE=1 on a short GPU allocation and confirm every process reports status=ok."
+    }
+  ],
+  "references": [
+    {
+      "title": "Hugging Face Accelerate launching scripts",
+      "url": "https://huggingface.co/docs/accelerate/main/en/basic_tutorials/launch"
+    },
+    {
+      "title": "Hugging Face Transformers with Accelerate",
+      "url": "https://huggingface.co/docs/transformers/accelerate"
+    },
+    {
+      "title": "Slurm srun documentation",
+      "url": "https://slurm.schedmd.com/srun.html"
+    }
+  ]
+}

@@ -6,24 +6,25 @@
     "data": 13,
     "debugging": 18,
     "education": 2,
-    "gpu": 10,
+    "gpu": 11,
     "interactive": 7,
     "mpi": 12,
     "performance": 13,
-    "scheduler": 54,
-    "software": 21,
+    "scheduler": 55,
+    "software": 22,
     "workflow": 10
   },
   "collection_count": 12,
   "collection_coverage": [
     {
       "id": "ai-hpc",
-      "skill_count": 15,
+      "skill_count": 16,
       "skill_ids": [
         "gpu-sanity-check",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "jax-distributed-on-slurm",
+        "huggingface-accelerate-on-slurm",
         "pytorch-ddp-on-slurm",
         "deepspeed-on-slurm",
         "nccl-diagnostics",
@@ -111,7 +112,7 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 16,
+      "skill_count": 17,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
@@ -120,6 +121,7 @@
         "gpu-sanity-check",
         "ray-on-slurm",
         "jax-distributed-on-slurm",
+        "huggingface-accelerate-on-slurm",
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
@@ -165,7 +167,7 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 23,
+      "skill_count": 24,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
@@ -178,6 +180,7 @@
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "jax-distributed-on-slurm",
+        "huggingface-accelerate-on-slurm",
         "mpi4py-on-slurm",
         "rscript-on-slurm",
         "rstudio-on-slurm",
@@ -231,7 +234,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 71
+    "seed": 72
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -256,6 +259,7 @@
     "grid-engine-submit-job": "medium",
     "gromacs-on-slurm": "medium",
     "htcondor-submit-job": "medium",
+    "huggingface-accelerate-on-slurm": "medium",
     "interactive-session": "medium",
     "ior-mdtest-storage-smoke": "medium",
     "jax-distributed-on-slurm": "medium",
@@ -308,13 +312,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 54
+    "medium": 55
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 71,
+  "skill_count": 72,
   "status_counts": {
-    "draft": 71
+    "draft": 72
   },
   "uncollected_skill_ids": []
 }

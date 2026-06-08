@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 71 skills.
+Current registry size: 72 skills.
 
 ## Categories
 
@@ -13,12 +13,12 @@ Current registry size: 71 skills.
 | `data` | 13 |
 | `debugging` | 18 |
 | `education` | 2 |
-| `gpu` | 10 |
+| `gpu` | 11 |
 | `interactive` | 7 |
 | `mpi` | 12 |
 | `performance` | 13 |
-| `scheduler` | 54 |
-| `software` | 21 |
+| `scheduler` | 55 |
+| `software` | 22 |
 | `workflow` | 10 |
 
 ## Skills By Category
@@ -97,6 +97,7 @@ Current registry size: 71 skills.
 | [`gpu-memory-triage`](../skills/gpu-memory-triage/README.md) | low | seed | Distinguish GPU allocation, framework, and model memory failures. |
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
 | [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
+| [`huggingface-accelerate-on-slurm`](../skills/huggingface-accelerate-on-slurm/README.md) | medium | seed | Plan and smoke test Hugging Face Accelerate launches on Slurm. |
 | [`jax-distributed-on-slurm`](../skills/jax-distributed-on-slurm/README.md) | medium | seed | Plan and smoke test distributed JAX jobs on Slurm GPU allocations. |
 | [`namd-on-slurm`](../skills/namd-on-slurm/README.md) | medium | seed | Run NAMD molecular dynamics jobs on Slurm with CPU/GPU and restart planning. |
 | [`nccl-diagnostics`](../skills/nccl-diagnostics/README.md) | medium | seed | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
@@ -169,6 +170,7 @@ Current registry size: 71 skills.
 | [`grid-engine-submit-job`](../skills/grid-engine-submit-job/README.md) | medium | seed | Generate safe Grid Engine qsub scripts for common HPC job shapes. |
 | [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | [`htcondor-submit-job`](../skills/htcondor-submit-job/README.md) | medium | seed | Generate safe HTCondor submit descriptions for common high-throughput job shapes. |
+| [`huggingface-accelerate-on-slurm`](../skills/huggingface-accelerate-on-slurm/README.md) | medium | seed | Plan and smoke test Hugging Face Accelerate launches on Slurm. |
 | [`interactive-session`](../skills/interactive-session/README.md) | medium | seed | Start short interactive compute sessions for debugging and notebooks. |
 | [`ior-mdtest-storage-smoke`](../skills/ior-mdtest-storage-smoke/README.md) | medium | seed | Collect small IOR and MDTest storage benchmark evidence on Slurm. |
 | [`jax-distributed-on-slurm`](../skills/jax-distributed-on-slurm/README.md) | medium | seed | Plan and smoke test distributed JAX jobs on Slurm GPU allocations. |
@@ -218,6 +220,7 @@ Current registry size: 71 skills.
 | [`container-build-for-hpc`](../skills/container-build-for-hpc/README.md) | medium | seed | Plan and build Apptainer-compatible images for shared HPC systems. |
 | [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md) | medium | seed | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |
 | [`easybuild-install-software`](../skills/easybuild-install-software/README.md) | medium | seed | Install scientific software with EasyBuild and generated modules. |
+| [`huggingface-accelerate-on-slurm`](../skills/huggingface-accelerate-on-slurm/README.md) | medium | seed | Plan and smoke test Hugging Face Accelerate launches on Slurm. |
 | [`jax-distributed-on-slurm`](../skills/jax-distributed-on-slurm/README.md) | medium | seed | Plan and smoke test distributed JAX jobs on Slurm GPU allocations. |
 | [`julia-on-slurm`](../skills/julia-on-slurm/README.md) | medium | seed | Run Julia scripts on Slurm with explicit depot, project, and thread settings. |
 | [`matlab-batch-on-slurm`](../skills/matlab-batch-on-slurm/README.md) | medium | seed | Run non-interactive MATLAB workloads on Slurm with explicit logs and license notes. |
@@ -254,16 +257,16 @@ Current registry size: 71 skills.
 
 | Collection | Status | Skills | Audience | Description |
 | --- | --- | ---: | --- | --- |
-| [`ai-hpc`](../collections/ai-hpc.json) | draft | 15 | AI/HPC users, machine learning researchers, research software engineers, HPC support teams | Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads on Slurm-backed HPC systems. |
+| [`ai-hpc`](../collections/ai-hpc.json) | draft | 16 | AI/HPC users, machine learning researchers, research software engineers, HPC support teams | Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads on Slurm-backed HPC systems. |
 | [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | draft | 7 | bioinformatics teams, core facilities, genomics platform engineers | Domain skills for running reviewed nf-core, GATK, and BLAST bioinformatics workflows on Slurm-backed HPC systems. |
 | [`containers`](../collections/containers.json) | draft | 7 | research software engineers, container users, HPC support teams | Skills for building, validating, running MPI containers, and staging data for containerized HPC workloads. |
 | [`core-hpc`](../collections/core-hpc.json) | draft | 16 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 8 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, benchmarking, and managing research data on HPC storage. |
 | [`facility-ops`](../collections/facility-ops.json) | draft | 4 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, pending reason triage, node triage, and module tree health. |
-| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 16 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence. |
+| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 17 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence. |
 | [`scheduler-basics`](../collections/scheduler-basics.json) | draft | 7 | new HPC users, training instructors, support teams, sites with mixed schedulers | Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers. |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 13 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems. |
-| [`software-stacks`](../collections/software-stacks.json) | draft | 23 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, JAX, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks. |
+| [`software-stacks`](../collections/software-stacks.json) | draft | 24 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, JAX, Hugging Face Accelerate, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks. |
 | [`training-onboarding`](../collections/training-onboarding.json) | draft | 17 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 7 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL/WDL runs, Dask worker clusters, and lightweight Slurm dependency chains. |
 
