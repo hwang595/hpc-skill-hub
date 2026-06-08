@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 91 seed skills.
+- 92 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -183,12 +183,13 @@ The first wave emphasizes recurring support and onboarding workflows:
   striping layout planning, and IOR/MDTest smoke evidence.
 - Software stacks: modules, compiler/MPI matrices, CMake build preflight,
   Conda, virtualenv, Spack, EasyBuild, parallel HDF5/NetCDF preflight,
-  containers, and reproducible run capture.
+  BLAS/OpenMP thread pools, containers, and reproducible run capture.
 - Interactive and teaching workflows: Open OnDemand Batch Connect templates,
   Jupyter, TensorBoard, Streamlit, RStudio, VS Code tunnels, workshop reset
   checks, and language-specific batch jobs.
-- AI/HPC: GPU sanity checks, PyTorch DDP, NCCL, DeepSpeed, Ray, Dask, JAX,
-  Hugging Face Accelerate, TensorFlow, and monitoring.
+- AI/HPC: GPU sanity checks, CPU thread-pool control, PyTorch DDP, NCCL,
+  DeepSpeed, Ray, Dask, JAX, Hugging Face Accelerate, TensorFlow, and
+  monitoring.
 - Domain workflows: bioinformatics, molecular dynamics, electronic structure,
   CFD, weather, workflow engines including Parsl, MPI, OpenMP, and performance
   evidence, including CMake build preflight, parallel HDF5/NetCDF preflight,

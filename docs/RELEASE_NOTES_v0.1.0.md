@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 91.
+- Skills: 92.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -33,7 +33,7 @@ request missing workflows, or contribute public site adapters.
   management.
 - Software stacks: module debugging, module tree health, compiler/MPI
   compatibility, CMake build preflight, parallel HDF5/NetCDF preflight,
-  license-aware jobs, reproducible run capture, Python virtualenv, Open OnDemand
+  BLAS/OpenMP thread-pool control, license-aware jobs, reproducible run capture, Python virtualenv, Open OnDemand
   Batch Connect templates, Ray on Slurm, Dask Jobqueue, Parsl, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke tests,
   mpi4py on Slurm, TensorBoard
@@ -47,7 +47,7 @@ request missing workflows, or contribute public site adapters.
   CWL and WDL runs inside Slurm allocations, Dask worker clusters, Parsl worker
   blocks, Nextflow, Snakemake, and nf-core on Slurm.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm
-  workflows, maintenance and reservation triage, array retry planning, Open OnDemand templates, notebooks, TensorBoard monitors,
+  workflows, maintenance and reservation triage, BLAS/OpenMP thread-pool control, array retry planning, Open OnDemand templates, notebooks, TensorBoard monitors,
   Streamlit apps, RStudio, VS Code tunnels, Python/Conda environments, Rscript,
   Julia, MATLAB batch jobs, license-aware software use, and common learner triage.
 - Data movement: Globus, rsync, object-storage transfers, checksum manifests,
@@ -57,7 +57,7 @@ request missing workflows, or contribute public site adapters.
   permission triage.
 - GPU/MPI performance: MPI sanity checks, GPU binding diagnostics, MPI fabric
   diagnostics, rank binding diagnostics, hybrid MPI/OpenMP layout checks,
-  CMake build preflight, parallel HDF5/NetCDF preflight, containerized MPI,
+  BLAS/OpenMP thread-pool control, CMake build preflight, parallel HDF5/NetCDF preflight, containerized MPI,
   mpi4py launch checks, GPU sanity checks, Ray cluster smoke
   tests, JAX distributed smoke tests, Hugging Face Accelerate launches,
   TensorFlow multi-worker smoke tests,
@@ -65,7 +65,7 @@ request missing workflows, or contribute public site adapters.
   DeepSpeed, OpenMP placement, Slurm efficiency review, storage smoke
   benchmarks, Darshan I/O profile analysis, Lustre striping layout planning,
   and basic profiling.
-- AI/HPC: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX distributed
+- AI/HPC: GPU allocation checks, GPU binding diagnostics, CPU thread-pool control, Ray clusters, Dask workers, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke
   tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
   Streamlit demos, container runtime execution, data staging, checkpoint/restart

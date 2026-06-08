@@ -45,6 +45,7 @@ new collections.
 | `hybrid-mpi-openmp-slurm` | mpi | medium | Seed skill added to `gpu-mpi-performance` and `simulation-workflows`. |
 | `cmake-hpc-build-preflight` | software | medium | Seed skill added to `software-stacks`, `gpu-mpi-performance`, and `simulation-workflows`. |
 | `parallel-hdf5-netcdf-preflight` | software | medium | Seed skill added to `software-stacks`, `gpu-mpi-performance`, and `simulation-workflows`. |
+| `blas-openmp-thread-control` | performance | low | Seed skill added to `software-stacks`, `gpu-mpi-performance`, `ai-hpc`, and `training-onboarding`. |
 | `darshan-io-profile-analysis` | performance | low | Seed skill added to `data-movement`, `gpu-mpi-performance`, and `simulation-workflows`. |
 | `lustre-striping-layout-planning` | performance | medium | Seed skill added to `data-movement`, `gpu-mpi-performance`, and `simulation-workflows`. |
 | `rscript-on-slurm` | software | medium | Seed skill added to `software-stacks` and `training-onboarding`. |

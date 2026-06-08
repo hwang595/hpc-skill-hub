@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 91
+- Skills: 92
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -13,36 +13,36 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 22 |
+| `low` | 23 |
 | `medium` | 69 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 91 |
+| `seed` | 92 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 91 |
+| `draft` | 92 |
 
 ## Collection Coverage
 
 | Collection | Skills |
 | --- | ---: |
-| `ai-hpc` | 18 |
+| `ai-hpc` | 19 |
 | `bioinformatics-workflows` | 7 |
 | `containers` | 7 |
 | `core-hpc` | 24 |
 | `data-movement` | 13 |
 | `facility-ops` | 8 |
-| `gpu-mpi-performance` | 26 |
+| `gpu-mpi-performance` | 27 |
 | `scheduler-basics` | 9 |
 | `simulation-workflows` | 20 |
-| `software-stacks` | 29 |
-| `training-onboarding` | 24 |
+| `software-stacks` | 30 |
+| `training-onboarding` | 25 |
 | `workflow-engines` | 9 |
 
 ## Uncollected Skills
@@ -55,6 +55,7 @@ All skills are included in at least one collection.
 | --- | --- |
 | `apptainer-mpi-on-slurm` | medium |
 | `apptainer-run-container` | medium |
+| `blas-openmp-thread-control` | low |
 | `blast-on-slurm` | medium |
 | `checkpoint-restart-workflow` | medium |
 | `checksum-manifest-create` | low |

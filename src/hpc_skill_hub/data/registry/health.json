@@ -4,26 +4,27 @@
     "admin": 7,
     "containers": 3,
     "data": 19,
-    "debugging": 33,
+    "debugging": 34,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
-    "performance": 21,
+    "performance": 22,
     "scheduler": 68,
-    "software": 27,
+    "software": 28,
     "workflow": 12
   },
   "collection_count": 12,
   "collection_coverage": [
     {
       "id": "ai-hpc",
-      "skill_count": 18,
+      "skill_count": 19,
       "skill_ids": [
         "gpu-sanity-check",
         "slurm-gpu-binding-diagnostics",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
+        "blas-openmp-thread-control",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
         "tensorflow-multiworker-on-slurm",
@@ -131,7 +132,7 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 26,
+      "skill_count": 27,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
@@ -140,6 +141,7 @@
         "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
+        "blas-openmp-thread-control",
         "parallel-hdf5-netcdf-preflight",
         "darshan-io-profile-analysis",
         "lustre-striping-layout-planning",
@@ -204,13 +206,14 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 29,
+      "skill_count": 30,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
         "cmake-hpc-build-preflight",
         "parallel-hdf5-netcdf-preflight",
+        "blas-openmp-thread-control",
         "license-aware-slurm-job",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
@@ -239,7 +242,7 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 24,
+      "skill_count": 25,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
@@ -259,6 +262,7 @@
         "julia-on-slurm",
         "matlab-batch-on-slurm",
         "conda-mamba-on-hpc",
+        "blas-openmp-thread-control",
         "module-environment-debug",
         "dataset-staging-to-scratch",
         "node-local-scratch-staging",
@@ -285,11 +289,12 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 91
+    "seed": 92
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
     "apptainer-run-container": "medium",
+    "blas-openmp-thread-control": "low",
     "blast-on-slurm": "medium",
     "checkpoint-restart-workflow": "medium",
     "checksum-manifest-create": "low",
@@ -381,14 +386,14 @@
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
-    "low": 22,
+    "low": 23,
     "medium": 69
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 91,
+  "skill_count": 92,
   "status_counts": {
-    "draft": 91
+    "draft": 92
   },
   "uncollected_skill_ids": []
 }

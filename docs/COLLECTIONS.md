@@ -22,8 +22,8 @@ research software engineer building software stacks may start with
   memory triage, and reproducible run capture for sites comparing or teaching
   scheduler basics.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
-  CMake build preflight, parallel HDF5/NetCDF preflight, license-aware jobs,
-  reproducible run capture, Python virtual environments, Open OnDemand
+  CMake build preflight, parallel HDF5/NetCDF preflight, BLAS/OpenMP thread
+  pools, license-aware jobs, reproducible run capture, Python virtual environments, Open OnDemand
   templates, TensorBoard monitors,
   Streamlit apps, Ray clusters, Dask Jobqueue,
   Parsl worker blocks, JAX distributed smoke tests, Hugging Face Accelerate
@@ -38,7 +38,8 @@ research software engineer building software stacks may start with
   planning, CWL and WDL runs inside Slurm allocations, Dask worker clusters,
   Parsl worker blocks, Nextflow, Snakemake, and nf-core on Slurm.
 - `training-onboarding`: workshop preflight, Slurm basics, maintenance and
-  reservation triage, array retry planning, interactive sessions, Open OnDemand templates, notebooks,
+  reservation triage, array retry planning, BLAS/OpenMP thread pools,
+  interactive sessions, Open OnDemand templates, notebooks,
   TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python/Conda
   environments, Rscript batch jobs, Julia batch jobs, MATLAB batch jobs,
   license-aware software use, module debugging, requeue-safe restart behavior,
@@ -49,7 +50,8 @@ research software engineer building software stacks may start with
   Darshan I/O profile analysis, Lustre striping layout planning, IOR/MDTest
   storage smoke benchmarks, scratch inventory, filesystem quota triage, and
   shared project permissions triage.
-- `ai-hpc`: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX distributed
+- `ai-hpc`: GPU allocation checks, GPU binding diagnostics, CPU thread-pool
+  control, Ray clusters, Dask workers, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke
   tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
   Streamlit demos, container runtime execution, data staging, checkpoint/restart
@@ -57,7 +59,7 @@ research software engineer building software stacks may start with
   distributed AI workloads.
 - `gpu-mpi-performance`: MPI launch checks, containerized MPI checks, mpi4py
   launch checks, MPI fabric diagnostics, MPI rank binding diagnostics, hybrid
-  MPI/OpenMP layout checks, CMake build preflight, parallel HDF5/NetCDF
+  MPI/OpenMP layout checks, BLAS/OpenMP thread-pool control, CMake build preflight, parallel HDF5/NetCDF
   preflight, Darshan I/O profile analysis, Lustre striping layout planning,
   GPU binding diagnostics,
   compiler/MPI

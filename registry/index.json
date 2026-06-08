@@ -4,14 +4,14 @@
     "admin": 7,
     "containers": 3,
     "data": 19,
-    "debugging": 33,
+    "debugging": 34,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
-    "performance": 21,
+    "performance": 22,
     "scheduler": 68,
-    "software": 27,
+    "software": 28,
     "workflow": 12
   },
   "collection_count": 12,
@@ -31,6 +31,7 @@
         "slurm-gpu-binding-diagnostics",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
+        "blas-openmp-thread-control",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
         "tensorflow-multiworker-on-slurm",
@@ -47,7 +48,7 @@
         "slurm-efficiency-report"
       ],
       "status": "draft",
-      "summary": "Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads, GPU binding, and accelerator visibility on Slurm-backed HPC systems."
+      "summary": "Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads, CPU thread pools, GPU binding, and accelerator visibility on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -195,6 +196,7 @@
         "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
+        "blas-openmp-thread-control",
         "parallel-hdf5-netcdf-preflight",
         "darshan-io-profile-analysis",
         "lustre-striping-layout-planning",
@@ -216,7 +218,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, BLAS/OpenMP thread pools, CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -291,6 +293,7 @@
         "compiler-mpi-matrix",
         "cmake-hpc-build-preflight",
         "parallel-hdf5-netcdf-preflight",
+        "blas-openmp-thread-control",
         "license-aware-slurm-job",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
@@ -317,7 +320,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, CMake build preflight, parallel HDF5/NetCDF preflight, licensed software jobs, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, CMake build preflight, parallel HDF5/NetCDF preflight, BLAS/OpenMP thread pools, licensed software jobs, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -347,6 +350,7 @@
         "julia-on-slurm",
         "matlab-batch-on-slurm",
         "conda-mamba-on-hpc",
+        "blas-openmp-thread-control",
         "module-environment-debug",
         "dataset-staging-to-scratch",
         "node-local-scratch-staging",
@@ -355,7 +359,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, maintenance and reservation triage, array retry planning, OOM memory triage, node-local scratch staging, shared project permissions, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, maintenance and reservation triage, array retry planning, OOM memory triage, BLAS/OpenMP thread pools, node-local scratch staging, shared project permissions, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -443,7 +447,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 91,
+  "skill_count": 92,
   "skills": [
     {
       "categories": [
@@ -557,6 +561,69 @@
       "tools": [
         "apptainer",
         "sbatch"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "performance",
+        "software",
+        "debugging"
+      ],
+      "description": "This skill helps users and support teams diagnose CPU oversubscription from implicit math-library and language-runtime thread pools such as OpenMP, oneMKL, OpenBLAS, BLIS, vecLib, NumExpr, R, and Julia, then produce a reviewable export block for Slurm or other HPC batch jobs.",
+      "examples": [
+        {
+          "path": "skills/blas-openmp-thread-control/examples/threadpool-env-report.sh",
+          "title": "Inspect and generate threadpool settings"
+        },
+        {
+          "path": "skills/blas-openmp-thread-control/examples/thread-review-checklist.md",
+          "title": "Review nested thread settings"
+        }
+      ],
+      "id": "blas-openmp-thread-control",
+      "maturity": "seed",
+      "name": "BLAS OpenMP Thread Control",
+      "path": "skills/blas-openmp-thread-control",
+      "readme": "skills/blas-openmp-thread-control/README.md",
+      "references": [
+        {
+          "title": "OpenMP OMP_NUM_THREADS specification",
+          "url": "https://www.openmp.org/spec-html/5.0/openmpse50.html"
+        },
+        {
+          "title": "Intel oneMKL techniques to set the number of threads",
+          "url": "https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2023-1/techniques-to-set-the-number-of-threads.html"
+        },
+        {
+          "title": "OpenBLAS FAQ",
+          "url": "https://www.openmathlib.org/OpenBLAS/docs/faq/"
+        },
+        {
+          "title": "NumExpr user guide",
+          "url": "https://numexpr.readthedocs.io/en/latest/user_guide.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Align BLAS, OpenMP, and language thread pools with HPC CPU allocations.",
+      "tags": [
+        "openmp",
+        "blas",
+        "mkl",
+        "openblas",
+        "numexpr",
+        "threads",
+        "oversubscription",
+        "python",
+        "r",
+        "julia"
+      ],
+      "tools": [
+        "bash",
+        "printenv",
+        "python3"
       ],
       "version": "0.1.0"
     },
@@ -6044,6 +6111,7 @@
     "benchmark": 2,
     "bioinformatics": 4,
     "bjobs": 1,
+    "blas": 1,
     "blast": 1,
     "blastn": 1,
     "blastp": 1,
@@ -6130,7 +6198,7 @@
     "ior": 1,
     "java": 1,
     "jax": 1,
-    "julia": 1,
+    "julia": 2,
     "jupyter": 2,
     "keras": 1,
     "lab": 1,
@@ -6160,6 +6228,7 @@
     "metadata": 2,
     "micromamba": 1,
     "miniwdl": 1,
+    "mkl": 1,
     "modulepath": 1,
     "modules": 8,
     "molecular-dynamics": 4,
@@ -6180,6 +6249,7 @@
     "node-health": 1,
     "node-local": 1,
     "notebook": 1,
+    "numexpr": 1,
     "nvidia": 1,
     "nvidia-smi": 1,
     "object-storage": 1,
@@ -6188,13 +6258,15 @@
     "omp-num-threads": 2,
     "onboarding": 1,
     "oom": 3,
+    "openblas": 1,
     "openfoam": 1,
-    "openmp": 4,
+    "openmp": 5,
     "openmpi": 1,
     "openondemand": 1,
     "openpbs": 1,
     "ost": 1,
     "outputs": 1,
+    "oversubscription": 1,
     "packages": 2,
     "parallel": 1,
     "parallel-environment": 1,
@@ -6227,7 +6299,7 @@
     "publication": 1,
     "pw.x": 1,
     "pwscf": 1,
-    "python": 7,
+    "python": 8,
     "pytorch": 5,
     "qe": 1,
     "qos": 1,
@@ -6237,7 +6309,7 @@
     "quantum-espresso": 1,
     "queue": 2,
     "quota": 2,
-    "r": 2,
+    "r": 3,
     "rank-placement": 2,
     "ray": 1,
     "rclone": 1,
@@ -6299,7 +6371,7 @@
     "tensorboard": 1,
     "tensorflow": 2,
     "tfconfig": 1,
-    "threads": 2,
+    "threads": 3,
     "throughput": 1,
     "time": 1,
     "timeout": 2,
@@ -6341,7 +6413,7 @@
     "awk": 4,
     "aws": 1,
     "basename": 1,
-    "bash": 17,
+    "bash": 18,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -6435,11 +6507,11 @@
     "parsl": 1,
     "perf": 1,
     "pip": 1,
-    "printenv": 1,
+    "printenv": 2,
     "pw.x": 1,
     "pwd": 7,
     "python": 4,
-    "python3": 12,
+    "python3": 13,
     "qdel": 1,
     "qstat": 2,
     "qsub": 2,

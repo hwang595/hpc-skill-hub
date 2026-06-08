@@ -1,0 +1,107 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "blas-openmp-thread-control",
+  "name": "BLAS OpenMP Thread Control",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Align BLAS, OpenMP, and language thread pools with HPC CPU allocations.",
+  "description": "This skill helps users and support teams diagnose CPU oversubscription from implicit math-library and language-runtime thread pools such as OpenMP, oneMKL, OpenBLAS, BLIS, vecLib, NumExpr, R, and Julia, then produce a reviewable export block for Slurm or other HPC batch jobs.",
+  "categories": ["performance", "software", "debugging"],
+  "tags": ["openmp", "blas", "mkl", "openblas", "numexpr", "threads", "oversubscription", "python", "r", "julia"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "printenv",
+      "required": true
+    },
+    {
+      "name": "python3",
+      "required": false,
+      "notes": "Used to report optional NumPy and threadpoolctl runtime details when available."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "threads_per_task",
+      "type": "integer",
+      "required": false,
+      "description": "Intended CPU threads per process or rank, usually SLURM_CPUS_PER_TASK for one threaded task."
+    },
+    {
+      "name": "outer_parallelism",
+      "type": "string",
+      "required": false,
+      "description": "Description of outer parallelism such as MPI ranks, job array tasks, Dask workers, Ray workers, Python multiprocessing, or data-loader workers."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "threadpool_environment_report",
+      "description": "Read-only report of scheduler CPU variables, existing thread-related environment variables, optional Python threadpool metadata, and mismatch warnings."
+    },
+    {
+      "name": "recommended_export_block",
+      "description": "Reviewable shell export block for aligning common math-library and language-runtime thread pools with the intended CPU allocation."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/threadpool-env-report.sh",
+    "examples/thread-review-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Inspect and generate threadpool settings",
+      "path": "examples/threadpool-env-report.sh"
+    },
+    {
+      "title": "Review nested thread settings",
+      "path": "examples/thread-review-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill blas-openmp-thread-control",
+      "description": "Validate the manifest and example artifacts."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash skills/blas-openmp-thread-control/examples/threadpool-env-report.sh 2",
+      "description": "Generate a read-only local report and export block with two intended threads."
+    },
+    {
+      "type": "manual",
+      "description": "Run in a batch allocation for Python, R, Julia, MATLAB, or compiled BLAS workloads and compare CPU efficiency before and after applying reviewed settings."
+    }
+  ],
+  "references": [
+    {
+      "title": "OpenMP OMP_NUM_THREADS specification",
+      "url": "https://www.openmp.org/spec-html/5.0/openmpse50.html"
+    },
+    {
+      "title": "Intel oneMKL techniques to set the number of threads",
+      "url": "https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2023-1/techniques-to-set-the-number-of-threads.html"
+    },
+    {
+      "title": "OpenBLAS FAQ",
+      "url": "https://www.openmathlib.org/OpenBLAS/docs/faq/"
+    },
+    {
+      "title": "NumExpr user guide",
+      "url": "https://numexpr.readthedocs.io/en/latest/user_guide.html"
+    }
+  ]
+}

@@ -59,6 +59,7 @@ tools.
 | `vscode-tunnel-on-slurm` | Run VS Code Remote Tunnels from short Slurm compute allocations. |
 | `training-cluster-reset-checklist` | Prepare and review HPC training environments before and after workshops. |
 | `openmp-thread-affinity` | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
+| `blas-openmp-thread-control` | Align BLAS, OpenMP, and language thread pools with HPC CPU allocations. |
 | `quota-and-filesystem-triage` | Diagnose quota, inode, capacity, and permission failures. |
 | `shared-project-permissions-triage` | Collect read-only evidence for shared project directory permission and ACL failures. |
 | `scratch-storage-management` | Inventory user-owned scratch, project, and workflow storage usage. |

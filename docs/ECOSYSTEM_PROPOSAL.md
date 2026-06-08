@@ -46,8 +46,9 @@ owner handoffs, and ecosystem sponsor discussions.
   containerized MPI, GPU checks, data staging, checksums, and reproducible run
   capture.
 - `software-stacks`: CMake, Spack, EasyBuild, Lmod, compiler and MPI matrices,
-  parallel HDF5/NetCDF preflight, licensed software jobs, Open OnDemand
-  templates, TensorBoard, Streamlit, RStudio, and IDE tunnels.
+  parallel HDF5/NetCDF preflight, BLAS/OpenMP thread pools, licensed software
+  jobs, Open OnDemand templates, TensorBoard, Streamlit, RStudio, and IDE
+  tunnels.
 - `workflow-engines`: array retry planning, CWL, WDL, Nextflow, Snakemake,
   Dask, and Parsl.
 - `data-movement`: Globus, rsync, object storage, checksums, scratch staging,
@@ -55,12 +56,13 @@ owner handoffs, and ecosystem sponsor discussions.
   layout planning, IOR/MDTest storage smoke evidence, archive preparation, and
   quota and shared permission triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, maintenance
-  and reservation triage, Open OnDemand templates, notebooks, TensorBoard,
-  Streamlit, RStudio, IDE tunnels, Python environments, array retry planning,
-  node-local scratch staging,
+  and reservation triage, BLAS/OpenMP thread pools, Open OnDemand templates,
+  notebooks, TensorBoard, Streamlit, RStudio, IDE tunnels, Python environments,
+  array retry planning, node-local scratch staging,
   shared project permissions, requeue-safe restart behavior, licensed software
   use, OOM memory triage, and common learner failure modes.
-- `ai-hpc`: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX, Hugging
+- `ai-hpc`: GPU allocation checks, GPU binding diagnostics, CPU thread-pool
+  control, Ray clusters, Dask workers, JAX, Hugging
   Face Accelerate, TensorFlow, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU
   memory triage, TensorBoard monitors, Streamlit demos, container runtime
   execution, data staging, checkpoint/restart planning, reproducible run
@@ -69,7 +71,7 @@ owner handoffs, and ecosystem sponsor discussions.
   single-cell workflows, and genomics data staging.
 - `simulation-workflows`: LAMMPS, GROMACS, Quantum ESPRESSO, NAMD, OpenFOAM,
   WRF, MPI fabric diagnostics, MPI rank binding diagnostics, hybrid
-  MPI/OpenMP layouts, CMake build preflight, parallel HDF5/NetCDF preflight,
+  MPI/OpenMP layouts, BLAS/OpenMP thread pools, CMake build preflight, parallel HDF5/NetCDF preflight,
   Darshan I/O profile analysis, Lustre striping layout planning, restart
   planning, profiling, and storage smoke evidence.
 - `facility-ops`: read-only usage reporting, QOS/account limit evidence, OOM
