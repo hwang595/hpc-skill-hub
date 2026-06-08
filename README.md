@@ -181,6 +181,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Changelog](CHANGELOG.md)
 - [GitHub publishing guide](docs/GITHUB_PUBLISHING.md)
 - [GitHub repository setup](docs/GITHUB_REPOSITORY_SETUP.md)
+- [Launch readiness](docs/LAUNCH_READINESS.md)
 
 ## License
 

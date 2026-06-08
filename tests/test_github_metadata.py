@@ -200,6 +200,28 @@ class GitHubMetadataTests(unittest.TestCase):
             result.stdout,
         )
 
+    def test_launch_readiness_audit(self):
+        result = subprocess.run(
+            [
+                "python3",
+                "tools/launch_readiness.py",
+                "--json",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        payload = json.loads(result.stdout)
+        by_name = {check["name"]: check for check in payload}
+        self.assertEqual(by_name["required-files"]["status"], "OK")
+        self.assertEqual(by_name["github-metadata"]["status"], "OK")
+        self.assertEqual(by_name["registry-index-current"]["status"], "OK")
+        self.assertEqual(by_name["registry-health-current"]["status"], "OK")
+        self.assertIn(by_name["git-remote"]["status"], {"OK", "WARN"})
+        self.assertIn(by_name["gh-cli"]["status"], {"OK", "WARN"})
+
 
 if __name__ == "__main__":
     unittest.main()

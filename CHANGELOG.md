@@ -20,6 +20,7 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Add maturity review guidance and issue template for promoting seed skills.
 - Add adopter playbook and adoption report issue template for public pilot
   feedback.
+- Add local launch readiness audit for GitHub publishing preparation.
 
 ## v0.1.0 - Planned
 

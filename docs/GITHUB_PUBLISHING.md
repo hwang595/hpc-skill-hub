@@ -19,6 +19,7 @@ and `.github/labels.json` as the source of truth for starter labels.
 Install and authenticate `gh`, then run from the repository root:
 
 ```bash
+python3 tools/launch_readiness.py
 python3 tools/github_repo.py --owner <owner>
 python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
 python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
@@ -50,6 +51,7 @@ git push -u origin main
 - Repository topics and description are set.
 - Repository metadata matches `.github/repository.json`.
 - Labels are created from `.github/labels.json`.
+- `python3 tools/launch_readiness.py` reports no local `FAIL` entries.
 - `python3 tools/github_repo.py --owner <owner>` prints the expected repository
   creation and metadata commands.
 - `python3 tools/github_labels.py --repo <owner>/hpc-skill-hub` prints the
