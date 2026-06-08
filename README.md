@@ -56,6 +56,7 @@ Validate the registry:
 ```bash
 python3 tools/validate_skills.py
 python3 tools/build_index.py --check
+python3 tools/audit_safety.py
 python3 -m unittest discover -s tests
 ```
 
@@ -131,6 +132,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Architecture](docs/ARCHITECTURE.md)
 - [Site adapters](docs/SITE_ADAPTERS.md)
 - [Adoption guide](docs/ADOPTION_GUIDE.md)
+- [Safety model](docs/SAFETY_MODEL.md)
 - [Maintainer guide](docs/MAINTAINER_GUIDE.md)
 - [Open ecosystem proposal](docs/ECOSYSTEM_PROPOSAL.md)
 - [Open source proposal](docs/OPEN_SOURCE_PROPOSAL.md)

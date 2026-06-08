@@ -53,6 +53,10 @@ class RegistryTests(unittest.TestCase):
         result = run_cmd("python3", "tools/build_index.py", "--check")
         self.assertIn("Registry index is current", result.stdout)
 
+    def test_safety_audit_passes(self):
+        result = run_cmd("python3", "tools/audit_safety.py")
+        self.assertIn("Safety audit passed", result.stdout)
+
     def test_index_matches_skill_manifests(self):
         index = self.load_index()
         manifest_ids = sorted(path.parent.name for path in (ROOT / "skills").glob("*/skill.json"))

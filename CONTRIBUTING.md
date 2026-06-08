@@ -22,6 +22,7 @@ A skill should be:
 
    ```bash
    python3 tools/validate_skills.py --skill your-skill-id
+   python3 tools/audit_safety.py
    make check
    ```
 
@@ -47,6 +48,7 @@ non-sensitive local policy for one HPC site or training environment.
 
    ```bash
    python3 tools/validate_skills.py
+   python3 tools/audit_safety.py
    make check
    ```
 

@@ -1,4 +1,4 @@
-.PHONY: check test validate index site cli clean
+.PHONY: audit check test validate index site cli clean
 
 PYTHON ?= python3
 
@@ -7,6 +7,9 @@ validate:
 
 index:
 	$(PYTHON) tools/build_index.py --check
+
+audit:
+	$(PYTHON) tools/audit_safety.py
 
 site:
 	$(PYTHON) tools/build_site.py --output /tmp/hpc-skill-hub-site/index.html
@@ -23,7 +26,7 @@ cli:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index test site cli
+check: validate index audit test site cli
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

@@ -23,6 +23,17 @@ admin actions, or vulnerabilities in generated scripts.
 - Skills should prefer dry-run, read-only, or template generation paths by
   default.
 
+## Automated Safety Audit
+
+Run the lightweight audit before opening a pull request:
+
+```bash
+python3 tools/audit_safety.py
+```
+
+The audit checks for obvious secret material and dangerous shell patterns. It is
+not a substitute for maintainer review. See [docs/SAFETY_MODEL.md](docs/SAFETY_MODEL.md).
+
 ## Supported Versions
 
 During the seed stage, only the `main` branch is supported. Versioned releases
