@@ -62,6 +62,7 @@ def required_files_check() -> Check:
         "docs/RELEASE_PROCESS.md",
         "docs/RELEASE_NOTES_v0.1.0.md",
         "docs/REVIEW_ROUTING.md",
+        "docs/TRIAGE_RUNBOOK.md",
         ".github/CODEOWNERS",
         ".github/repository.json",
         ".github/labels.json",

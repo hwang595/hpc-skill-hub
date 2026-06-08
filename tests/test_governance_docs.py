@@ -91,6 +91,25 @@ class GovernanceDocsTests(unittest.TestCase):
         self.assertIn("maturity-review", routing)
         self.assertIn("docs/REVIEW_ROUTING.md", codeowners)
 
+    def test_triage_runbook_and_labels(self):
+        labels_path = ROOT / ".github" / "labels.json"
+        labels = {label["name"] for label in json.loads(labels_path.read_text())}
+        runbook = (ROOT / "docs" / "TRIAGE_RUNBOOK.md").read_text(
+            encoding="utf-8"
+        )
+
+        for heading in [
+            "## Intake Loop",
+            "## Issue Triage",
+            "## Pull Request Triage",
+            "## Escalation Rules",
+            "## Response Targets",
+        ]:
+            self.assertIn(heading, runbook)
+        for label in ["needs-triage", "needs-domain-review", "safety-review"]:
+            self.assertIn(label, labels)
+            self.assertIn(label, runbook)
+
 
 if __name__ == "__main__":
     unittest.main()

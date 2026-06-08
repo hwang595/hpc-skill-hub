@@ -4,7 +4,8 @@ For maintainer rotation, role ownership, and operational continuity, see
 [Maintainer Handoff](MAINTAINER_HANDOFF.md). For project-level review policy,
 domain ownership, and maturity promotion, see [Governance](GOVERNANCE.md) and
 [Maturity Review](MATURITY_REVIEW.md). For routing pull requests and issues to
-the right maintainers, see [Review Routing](REVIEW_ROUTING.md).
+the right maintainers, see [Review Routing](REVIEW_ROUTING.md). For day-to-day
+issue and pull request intake, see [Triage Runbook](TRIAGE_RUNBOOK.md).
 
 ## Review Checklist
 
@@ -43,6 +44,9 @@ Use [Review Routing](REVIEW_ROUTING.md) to map changed paths, labels, skill
 domains, and risk levels to the smallest reviewer set that covers format,
 domain correctness, and shared-system safety. Update `.github/CODEOWNERS` after
 the public repository has real GitHub users or teams.
+
+Use [Triage Runbook](TRIAGE_RUNBOOK.md) before routing when an issue or pull
+request still needs its scope, sensitivity, label set, or next action clarified.
 
 ## Maturity Promotion
 

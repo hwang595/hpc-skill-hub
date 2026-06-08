@@ -9,6 +9,9 @@ maintainer ownership.
 Use [Community Launch](COMMUNITY_LAUNCH.md) for the first pinned issue,
 discussion prompts, and public adopter invitation.
 
+Use [Triage Runbook](TRIAGE_RUNBOOK.md) for the first public issue and pull
+request intake loop after launch.
+
 ## Recommended Repository Settings
 
 Use `.github/repository.json` as the source of truth for repository settings
@@ -67,6 +70,8 @@ git push -u origin main
 - GitHub Pages is enabled with the `Publish Pages` workflow.
 - Dependabot, issue templates, and pull request templates are present.
 - A pinned issue invites external HPC centers to propose skills and adapters.
+- A triage owner knows how to apply `needs-triage` and
+  `needs-domain-review`.
 
 ## Publish GitHub Pages
 

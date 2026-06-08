@@ -61,7 +61,9 @@ Use labels to make the review queue visible:
 | `schema-change` | Registry and tooling maintainers. |
 | `release` | Release maintainer. |
 | `governance` | Maintainers responsible for policy, review, and community process. |
-| `good first issue` | Registry maintainer should confirm scope is small and public-safe. |
+| `needs-triage` | Registry maintainer should confirm scope, sensitivity, and next action. |
+| `needs-domain-review` | Domain reviewer should check portability, safety, assumptions, and references. |
+| `good-first-issue` | Registry maintainer should confirm scope is small and public-safe. |
 
 ## Pull Request Steps
 

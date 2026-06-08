@@ -11,7 +11,8 @@ description, topics, visibility, and feature settings.
 
 Use `.github/labels.json` as the source of truth for starter labels. Create or
 update these labels before inviting external contributors so issue templates and
-triage labels line up.
+triage labels line up. Use [Triage Runbook](TRIAGE_RUNBOOK.md) for the first
+week of issue and pull request intake after launch.
 
 ## Starter Issues
 
@@ -89,5 +90,6 @@ help-wanted, good-first-issue, governance
 - Apply labels from `.github/labels.json`.
 - Create starter issues from `.github/seed_issues.json`.
 - Pin the first community issue.
+- Run the first weekly triage loop from [Triage Runbook](TRIAGE_RUNBOOK.md).
 - Link the generated Pages site in the repository homepage.
 - Invite the first three to five domain reviewers.

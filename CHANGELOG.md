@@ -24,6 +24,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Add support and citation metadata for public project use.
 - Add review routing guidance and CODEOWNERS launch checklist for maintainer
   assignment.
+- Add triage runbook and starter labels for public issue and pull request
+  intake.
 
 ## v0.1.0 - Planned
 

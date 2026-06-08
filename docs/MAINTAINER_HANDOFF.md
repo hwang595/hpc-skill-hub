@@ -20,13 +20,17 @@ split these responsibilities across institutions and domains.
 
 ## Weekly Maintenance Loop
 
-1. Review open pull requests and label anything that needs domain review.
+1. Review open pull requests and label anything that needs triage or domain
+   review.
 2. Run or confirm `make check` for pending changes.
 3. Check new issues for private cluster details and ask reporters to remove
    sensitive information when needed.
 4. Triage Dependabot pull requests and merge low-risk CI or packaging updates
    after checks pass.
 5. Promote well-scoped requests into `good-first-issue` or `help-wanted`.
+
+Use [Triage Runbook](TRIAGE_RUNBOOK.md) for the intake loop and
+[Review Routing](REVIEW_ROUTING.md) when assigning domain reviewers.
 
 ## Pull Request Review Expectations
 

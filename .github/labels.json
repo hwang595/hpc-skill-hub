@@ -90,6 +90,16 @@
     "description": "Question about usage, adoption, design, or contribution process."
   },
   {
+    "name": "needs-triage",
+    "color": "FBCA04",
+    "description": "Maintainers need to confirm scope, sensitivity, and next action."
+  },
+  {
+    "name": "needs-domain-review",
+    "color": "D4C5F9",
+    "description": "Needs review from a maintainer with relevant HPC domain experience."
+  },
+  {
     "name": "adoption",
     "color": "0E8A16",
     "description": "Public-safe report from trying the registry in a center, lab, tool project, or training program."
