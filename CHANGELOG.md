@@ -7,6 +7,10 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a Slurm output-log triage seed skill for read-only `sacct`, optional
+  `scontrol`/`squeue`, stdout/stderr filename patterns, working-directory,
+  path, file-size, tail, and log-signal evidence around missing, empty, or
+  misplaced Slurm logs.
 - Add a Slurm node-failure triage seed skill for read-only `sacct`, optional
   `scontrol`/`squeue`/`sinfo`, unavailable-node reason, node state, and log
   evidence around `NODE_FAIL`, `BOOT_FAIL`, launch failures, lost tasks, and
@@ -195,9 +199,9 @@ Initial public seed release.
 
 ### Added
 
-- 95 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 96 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, array retry planning, dependency chains, pending reason and maintenance reservation triage, monitoring, resource
-  estimation, QOS/account limit evidence, OOM memory triage, time-limit triage, node-failure triage, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
+  estimation, QOS/account limit evidence, output-log triage, OOM memory triage, time-limit triage, node-failure triage, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
   preemption and requeue-safe restart behavior,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
   placement, BLAS/OpenMP thread pool control, file descriptor triage, storage triage, shared project permissions and ACL triage, node-local scratch staging, Python/R/Julia/MATLAB software environments,

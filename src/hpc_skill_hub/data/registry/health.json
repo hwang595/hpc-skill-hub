@@ -3,14 +3,14 @@
   "category_counts": {
     "admin": 8,
     "containers": 3,
-    "data": 20,
-    "debugging": 37,
+    "data": 21,
+    "debugging": 38,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
     "performance": 22,
-    "scheduler": 70,
+    "scheduler": 71,
     "software": 28,
     "workflow": 14
   },
@@ -70,7 +70,7 @@
     },
     {
       "id": "core-hpc",
-      "skill_count": 27,
+      "skill_count": 28,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
@@ -80,6 +80,7 @@
         "slurm-maintenance-reservation-triage",
         "slurm-qos-account-limit-triage",
         "slurm-monitor-job",
+        "slurm-output-log-triage",
         "slurm-resource-estimator",
         "slurm-oom-memory-triage",
         "slurm-time-limit-triage",
@@ -173,7 +174,7 @@
     },
     {
       "id": "scheduler-basics",
-      "skill_count": 11,
+      "skill_count": 12,
       "skill_ids": [
         "slurm-submit-job",
         "pbs-submit-job",
@@ -182,6 +183,7 @@
         "grid-engine-submit-job",
         "slurm-array-retry-plan",
         "job-failure-triage",
+        "slurm-output-log-triage",
         "slurm-oom-memory-triage",
         "slurm-time-limit-triage",
         "slurm-node-failure-triage",
@@ -252,12 +254,13 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 28,
+      "skill_count": 29,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
         "slurm-maintenance-reservation-triage",
         "slurm-array-retry-plan",
+        "slurm-output-log-triage",
         "slurm-time-limit-triage",
         "slurm-node-failure-triage",
         "license-aware-slurm-job",
@@ -304,7 +307,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 95
+    "seed": 96
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -387,6 +390,7 @@
     "slurm-monitor-job": "low",
     "slurm-node-failure-triage": "low",
     "slurm-oom-memory-triage": "low",
+    "slurm-output-log-triage": "low",
     "slurm-pending-reason-triage": "low",
     "slurm-preemption-requeue": "medium",
     "slurm-qos-account-limit-triage": "low",
@@ -404,14 +408,14 @@
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
-    "low": 26,
+    "low": 27,
     "medium": 69
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 95,
+  "skill_count": 96,
   "status_counts": {
-    "draft": 95
+    "draft": 96
   },
   "uncollected_skill_ids": []
 }

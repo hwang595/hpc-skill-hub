@@ -3,14 +3,14 @@
   "categories": {
     "admin": 8,
     "containers": 3,
-    "data": 20,
-    "debugging": 37,
+    "data": 21,
+    "debugging": 38,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
     "performance": 22,
-    "scheduler": 70,
+    "scheduler": 71,
     "software": 28,
     "workflow": 14
   },
@@ -111,6 +111,7 @@
         "slurm-maintenance-reservation-triage",
         "slurm-qos-account-limit-triage",
         "slurm-monitor-job",
+        "slurm-output-log-triage",
         "slurm-resource-estimator",
         "slurm-oom-memory-triage",
         "slurm-time-limit-triage",
@@ -132,7 +133,7 @@
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason and maintenance triage, QOS/account limit evidence, OOM, time-limit, and node-failure triage, efficiency review, file descriptor triage, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, shared project permissions, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason and maintenance triage, QOS/account limit evidence, OOM, time-limit, node-failure, and output-log triage, efficiency review, file descriptor triage, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, shared project permissions, and storage triage."
     },
     {
       "audience": [
@@ -246,13 +247,14 @@
         "grid-engine-submit-job",
         "slurm-array-retry-plan",
         "job-failure-triage",
+        "slurm-output-log-triage",
         "slurm-oom-memory-triage",
         "slurm-time-limit-triage",
         "slurm-node-failure-triage",
         "reproducible-run-capture"
       ],
       "status": "draft",
-      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers, including array retry, common failure, memory triage, time-limit triage, and node-failure triage."
+      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers, including array retry, common failure, output-log triage, memory triage, time-limit triage, and node-failure triage."
     },
     {
       "audience": [
@@ -346,6 +348,7 @@
         "slurm-submit-job",
         "slurm-maintenance-reservation-triage",
         "slurm-array-retry-plan",
+        "slurm-output-log-triage",
         "slurm-time-limit-triage",
         "slurm-node-failure-triage",
         "license-aware-slurm-job",
@@ -372,7 +375,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, maintenance and reservation triage, array retry planning, OOM memory, time-limit, and node-failure triage, file descriptor limits, BLAS/OpenMP thread pools, node-local scratch staging, shared project permissions, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, maintenance and reservation triage, array retry planning, output-log triage, OOM memory, time-limit, and node-failure triage, file descriptor limits, BLAS/OpenMP thread pools, node-local scratch staging, shared project permissions, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -409,7 +412,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 68,
+    "slurm": 69,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -462,7 +465,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 95,
+  "skill_count": 96,
   "skills": [
     {
       "categories": [
@@ -5365,6 +5368,74 @@
     {
       "categories": [
         "scheduler",
+        "debugging",
+        "data"
+      ],
+      "description": "This skill helps users and support teams diagnose missing, empty, misplaced, or confusing Slurm stdout/stderr logs by collecting accounting, job-record, output-path, working-directory, and filesystem evidence without modifying job or user data.",
+      "examples": [
+        {
+          "path": "skills/slurm-output-log-triage/examples/slurm-output-log-triage.sh",
+          "title": "Collect Slurm output-log evidence"
+        },
+        {
+          "path": "skills/slurm-output-log-triage/examples/output-log-review-checklist.md",
+          "title": "Review missing or empty output logs"
+        }
+      ],
+      "id": "slurm-output-log-triage",
+      "maturity": "seed",
+      "name": "Slurm Output Log Triage",
+      "path": "skills/slurm-output-log-triage",
+      "readme": "skills/slurm-output-log-triage/README.md",
+      "references": [
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        },
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        },
+        {
+          "title": "Slurm scontrol documentation",
+          "url": "https://slurm.schedmd.com/scontrol.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect read-only evidence for missing or confusing Slurm output logs.",
+      "tags": [
+        "slurm",
+        "stdout",
+        "stderr",
+        "logs",
+        "output",
+        "sacct",
+        "scontrol",
+        "workdir",
+        "triage"
+      ],
+      "tools": [
+        "bash",
+        "sacct",
+        "scontrol",
+        "squeue",
+        "ls",
+        "stat",
+        "wc",
+        "tail",
+        "grep",
+        "date",
+        "mkdir"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
         "debugging"
       ],
       "description": "This skill helps users and support teams inspect pending Slurm jobs with squeue, scontrol, and optional sprio output so they can distinguish dependency, priority, resource, partition, reservation, and policy-related wait reasons.",
@@ -6429,7 +6500,7 @@
     "limits": 1,
     "lmod": 3,
     "lmutil": 1,
-    "logs": 6,
+    "logs": 7,
     "lsf": 1,
     "lsof": 1,
     "lustre": 1,
@@ -6485,6 +6556,7 @@
     "openondemand": 1,
     "openpbs": 1,
     "ost": 1,
+    "output": 1,
     "outputs": 1,
     "oversubscription": 1,
     "packages": 2,
@@ -6553,12 +6625,12 @@
     "rstudio": 1,
     "rsync": 3,
     "s3": 1,
-    "sacct": 9,
+    "sacct": 10,
     "sacctmgr": 1,
     "salloc": 1,
     "samplesheet": 1,
     "sbatch": 4,
-    "scontrol": 7,
+    "scontrol": 8,
     "scratch": 4,
     "seff": 1,
     "setgid": 1,
@@ -6569,7 +6641,7 @@
     "sinfo": 4,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 65,
+    "slurm": 66,
     "slurmprovider": 1,
     "small-files": 1,
     "smoke-test": 1,
@@ -6584,6 +6656,8 @@
     "sshare": 1,
     "staging": 4,
     "state": 1,
+    "stderr": 1,
+    "stdout": 1,
     "storage": 3,
     "streamlit": 1,
     "striping": 1,
@@ -6602,7 +6676,7 @@
     "training": 2,
     "transfer": 4,
     "transformers": 1,
-    "triage": 8,
+    "triage": 9,
     "tunnel": 4,
     "ucx": 1,
     "uge": 1,
@@ -6617,6 +6691,7 @@
     "wdl": 1,
     "weather": 1,
     "web-app": 1,
+    "workdir": 1,
     "workers": 1,
     "workflow": 9,
     "workshop": 1,
@@ -6636,7 +6711,7 @@
     "awk": 4,
     "aws": 1,
     "basename": 1,
-    "bash": 21,
+    "bash": 22,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -6663,7 +6738,7 @@
     "darshan-summary-per-file.sh": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 39,
+    "date": 40,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 6,
@@ -6681,7 +6756,7 @@
     "globus": 1,
     "gmx": 1,
     "gmx_mpi": 1,
-    "grep": 15,
+    "grep": 16,
     "h5cc": 1,
     "h5dump": 1,
     "h5pcc": 1,
@@ -6699,7 +6774,7 @@
     "lmp": 1,
     "lmutil": 1,
     "ln": 1,
-    "ls": 2,
+    "ls": 3,
     "lscpu": 3,
     "lsof": 1,
     "make": 1,
@@ -6709,7 +6784,7 @@
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 42,
+    "mkdir": 43,
     "mktemp": 1,
     "module": 25,
     "mpi4py": 1,
@@ -6748,12 +6823,12 @@
     "rocm-smi": 3,
     "rserver": 1,
     "rsync": 3,
-    "sacct": 11,
+    "sacct": 12,
     "sacctmgr": 1,
     "salloc": 1,
     "sbatch": 49,
     "scancel": 1,
-    "scontrol": 16,
+    "scontrol": 17,
     "sed": 4,
     "seff": 3,
     "sha256sum": 2,
@@ -6765,14 +6840,14 @@
     "sort": 10,
     "spack": 1,
     "sprio": 2,
-    "squeue": 12,
+    "squeue": 13,
     "sreport": 1,
     "srun": 26,
     "ssh": 5,
     "sshare": 1,
-    "stat": 2,
+    "stat": 3,
     "streamlit": 1,
-    "tail": 10,
+    "tail": 11,
     "tar": 1,
     "tee": 24,
     "tensorboard": 1,
@@ -6783,7 +6858,7 @@
     "ucx_info": 1,
     "ulimit": 1,
     "uname": 1,
-    "wc": 2,
+    "wc": 3,
     "which": 2,
     "wrf.exe": 1
   }

@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 95
+- Skills: 96
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -13,20 +13,20 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 26 |
+| `low` | 27 |
 | `medium` | 69 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 95 |
+| `seed` | 96 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 95 |
+| `draft` | 96 |
 
 ## Collection Coverage
 
@@ -35,14 +35,14 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `ai-hpc` | 20 |
 | `bioinformatics-workflows` | 7 |
 | `containers` | 7 |
-| `core-hpc` | 27 |
+| `core-hpc` | 28 |
 | `data-movement` | 14 |
 | `facility-ops` | 11 |
 | `gpu-mpi-performance` | 27 |
-| `scheduler-basics` | 11 |
+| `scheduler-basics` | 12 |
 | `simulation-workflows` | 20 |
 | `software-stacks` | 30 |
-| `training-onboarding` | 28 |
+| `training-onboarding` | 29 |
 | `workflow-engines` | 11 |
 
 ## Uncollected Skills
@@ -133,6 +133,7 @@ All skills are included in at least one collection.
 | `slurm-monitor-job` | low |
 | `slurm-node-failure-triage` | low |
 | `slurm-oom-memory-triage` | low |
+| `slurm-output-log-triage` | low |
 | `slurm-pending-reason-triage` | low |
 | `slurm-preemption-requeue` | medium |
 | `slurm-qos-account-limit-triage` | low |

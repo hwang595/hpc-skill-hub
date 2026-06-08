@@ -39,8 +39,8 @@ owner handoffs, and ecosystem sponsor discussions.
 ## Current And Proposed Community Collections
 
 - `core-hpc`: Slurm, QOS/account limit evidence, license-aware jobs,
-  array retry planning, maintenance and reservation triage, OOM memory and
-  time-limit triage, node-failure triage,
+  array retry planning, maintenance and reservation triage, output-log triage,
+  OOM memory and time-limit triage, node-failure triage,
   preemption/requeue handling, modules, shell, storage, shared project
   permissions, interactive sessions, RStudio, and IDE tunnels.
 - `containers`: Apptainer-compatible image builds, runtime execution,
@@ -58,7 +58,7 @@ owner handoffs, and ecosystem sponsor discussions.
   layout planning, IOR/MDTest storage smoke evidence, archive preparation, and
   quota, file descriptor, and shared permission triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, maintenance
-  and reservation triage, time-limit and node-failure triage, file descriptor limits, BLAS/OpenMP thread pools,
+  and reservation triage, output-log triage, time-limit and node-failure triage, file descriptor limits, BLAS/OpenMP thread pools,
   Open OnDemand templates, notebooks, TensorBoard, Streamlit, RStudio, IDE
   tunnels, Python environments, array retry planning, node-local scratch staging,
   shared project permissions, requeue-safe restart behavior, licensed software

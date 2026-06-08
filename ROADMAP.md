@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 95 seed skills.
+- 96 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -120,9 +120,9 @@ Priority integration tracks:
 
 - Slurm: batch scripts, accounting, queue inspection, array retry planning,
   dependency chains, maintenance and reservation triage,
-  QOS/account limit evidence, OOM memory triage, time-limit triage,
-  node-failure triage, license-aware jobs, preemption/requeue handling, and
-  optional REST integration.
+  QOS/account limit evidence, output-log triage, OOM memory triage,
+  time-limit triage, node-failure triage, license-aware jobs,
+  preemption/requeue handling, and optional REST integration.
 - Open OnDemand: Batch Connect app templates and user-facing interactive
   workflows.
 - Apptainer: image execution, bind mounts, GPU pass-through, MPI launch, and
@@ -136,8 +136,8 @@ Priority integration tracks:
   handoff.
 - Workflow engines: array retry planning, Nextflow, Snakemake, CWL, WDL, Dask,
   Parsl, and Ray.
-- Observability: failure triage, QOS/account limit evidence, OOM memory and
-  time-limit triage, node-failure triage, efficiency review,
+- Observability: failure triage, output-log triage, QOS/account limit evidence,
+  OOM memory and time-limit triage, node-failure triage, efficiency review,
   profiling, Darshan I/O profile analysis, Lustre striping layout planning,
   storage smoke evidence, preemption/requeue evidence, GPU binding diagnostics,
   MPI fabric diagnostics, MPI rank binding diagnostics, hybrid MPI/OpenMP
@@ -177,8 +177,8 @@ Exit evidence:
 The first wave emphasizes recurring support and onboarding workflows:
 
 - Scheduler basics across Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine, and
-  failed-array retry planning, including memory, time-limit, and node-failure
-  triage.
+  failed-array retry planning, including output-log, memory, time-limit, and
+  node-failure triage.
 - Storage and data movement: scratch, node-local temporary storage, quota,
   shared project permissions and ACLs, file descriptor pressure, staging,
   checksums, rsync, Globus, object storage, archive preparation, Darshan I/O

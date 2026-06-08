@@ -1,0 +1,162 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-output-log-triage",
+  "name": "Slurm Output Log Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect read-only evidence for missing or confusing Slurm output logs.",
+  "description": "This skill helps users and support teams diagnose missing, empty, misplaced, or confusing Slurm stdout/stderr logs by collecting accounting, job-record, output-path, working-directory, and filesystem evidence without modifying job or user data.",
+  "categories": ["scheduler", "debugging", "data"],
+  "tags": ["slurm", "stdout", "stderr", "logs", "output", "sacct", "scontrol", "workdir", "triage"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "sacct",
+      "required": false,
+      "notes": "Optional accounting evidence for StdOut, StdErr, SubmitLine, state, and exit code when available."
+    },
+    {
+      "name": "scontrol",
+      "required": false,
+      "notes": "Optional job-record evidence for WorkDir, StdOut, StdErr, and command details."
+    },
+    {
+      "name": "squeue",
+      "required": false,
+      "notes": "Optional current job-state evidence when the job is still visible."
+    },
+    {
+      "name": "ls",
+      "required": false
+    },
+    {
+      "name": "stat",
+      "required": false
+    },
+    {
+      "name": "wc",
+      "required": false
+    },
+    {
+      "name": "tail",
+      "required": false
+    },
+    {
+      "name": "grep",
+      "required": false
+    },
+    {
+      "name": "date",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "job_id",
+      "type": "string",
+      "required": false,
+      "description": "Slurm job id, array task id, or job step id to inspect."
+    },
+    {
+      "name": "log_file",
+      "type": "path",
+      "required": false,
+      "description": "Optional known stdout, stderr, or application log path to inspect."
+    },
+    {
+      "name": "error_file",
+      "type": "path",
+      "required": false,
+      "description": "Optional separate stderr path to inspect when stdout and stderr were split."
+    },
+    {
+      "name": "report_dir",
+      "type": "path",
+      "required": false,
+      "description": "Directory where the read-only evidence bundle should be written."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "accounting_report",
+      "description": "Slurm sacct table with state, exit code, submit/start/end times, stdout/stderr filename patterns, and submission line."
+    },
+    {
+      "name": "job_record",
+      "description": "Optional scontrol job record with WorkDir, StdOut, StdErr, Command, and related job metadata."
+    },
+    {
+      "name": "path_checks",
+      "description": "Read-only path existence, file size, permissions, and tail evidence for supplied and default output candidates."
+    },
+    {
+      "name": "log_signals",
+      "description": "Matching lines for output, path, permission, module, command-not-found, quota, and filesystem symptoms."
+    },
+    {
+      "name": "triage_summary",
+      "description": "Human-readable prompts for deciding whether logs are in a different working directory, were empty, failed before launch, or need clearer sbatch output directives."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/slurm-output-log-triage.sh",
+    "examples/output-log-review-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Collect Slurm output-log evidence",
+      "path": "examples/slurm-output-log-triage.sh"
+    },
+    {
+      "title": "Review missing or empty output logs",
+      "path": "examples/output-log-review-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-output-log-triage",
+      "description": "Validate the manifest and example files."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/slurm-output-log-triage/examples/slurm-output-log-triage.sh",
+      "description": "Check shell syntax for the evidence collection script."
+    },
+    {
+      "type": "manual",
+      "description": "Run against a Slurm job with missing, empty, or unexpected output logs and confirm the report stays read-only."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    },
+    {
+      "title": "Slurm sacct documentation",
+      "url": "https://slurm.schedmd.com/sacct.html"
+    },
+    {
+      "title": "Slurm scontrol documentation",
+      "url": "https://slurm.schedmd.com/scontrol.html"
+    }
+  ]
+}

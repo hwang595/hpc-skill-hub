@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 95.
+- Skills: 96.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -26,7 +26,7 @@ request missing workflows, or contribute public site adapters.
 - Core HPC and schedulers: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
   submission, Slurm and Grid Engine arrays, failed-array retry planning,
   dependency chains, pending reason and maintenance reservation triage, QOS/account limit evidence,
-  monitoring, resource estimation, OOM memory triage, time-limit triage, node-failure triage, file descriptor triage, efficiency review,
+  monitoring, output-log triage, resource estimation, OOM memory triage, time-limit triage, node-failure triage, file descriptor triage, efficiency review,
   license-aware jobs, checkpoint/restart, preemption/requeue handling, failure triage, interactive sessions, Open OnDemand Batch
   Connect templates, Jupyter, RStudio, VS Code tunnels, OpenMP placement, quota
   triage, shared project permissions, node-local scratch staging, and scratch
@@ -48,7 +48,7 @@ request missing workflows, or contribute public site adapters.
   blocks, file descriptor triage, time-limit triage, Nextflow, Snakemake, and
   nf-core on Slurm.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm
-  workflows, maintenance and reservation triage, time-limit and node-failure triage, file descriptor limits, BLAS/OpenMP thread-pool control, array retry planning, Open OnDemand templates, notebooks, TensorBoard monitors,
+  workflows, maintenance and reservation triage, output-log triage, time-limit and node-failure triage, file descriptor limits, BLAS/OpenMP thread-pool control, array retry planning, Open OnDemand templates, notebooks, TensorBoard monitors,
   Streamlit apps, RStudio, VS Code tunnels, Python/Conda environments, Rscript,
   Julia, MATLAB batch jobs, license-aware software use, and common learner triage.
 - Data movement: Globus, rsync, object-storage transfers, checksum manifests,
