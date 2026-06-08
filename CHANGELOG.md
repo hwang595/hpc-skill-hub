@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add an Open OnDemand Batch Connect skill for reviewable Slurm-backed portal
+  app skeletons, and extend safety auditing to cover `.erb` templates.
 - Prepare the seed registry for public GitHub launch, including repository
   metadata, labels, rulesets, issue templates, pull request templates, Pages
   publishing, seed community issues, and governance docs.
@@ -99,10 +101,10 @@ Initial public seed release.
 
 ### Added
 
-- 69 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 70 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, dependency chains, pending reason triage, monitoring, resource
   estimation, efficiency review, failure triage, checkpoint/restart,
-  interactive sessions, notebooks, RStudio, IDE tunnels, OpenMP
+  interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
   TensorBoard, Streamlit, Ray, Dask Jobqueue, mpi4py, containers, containerized MPI, Spack, EasyBuild, data movement,
   storage smoke benchmarks, CWL/WDL, workflow engines, MPI/GPU diagnostics,

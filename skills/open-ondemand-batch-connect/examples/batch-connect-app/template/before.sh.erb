@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Open OnDemand Slurm submissions may not inherit a login-shell environment.
+# Keep this explicit and review whether the site prefers another wrapper.
+export SLURM_EXPORT_ENV="${SLURM_EXPORT_ENV:-ALL}"

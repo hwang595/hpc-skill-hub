@@ -1,0 +1,164 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "open-ondemand-batch-connect",
+  "name": "Open OnDemand Batch Connect",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Prepare reviewable Open OnDemand Batch Connect app templates.",
+  "description": "This skill provides a conservative skeleton for Open OnDemand Batch Connect apps, including manifest, form, submit, template, validation, and site-review artifacts for Slurm-backed portal workflows.",
+  "categories": ["interactive", "scheduler", "software", "education"],
+  "tags": ["openondemand", "batch-connect", "portal", "slurm", "interactive", "yaml", "erb", "template"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "bash",
+      "required": true,
+      "notes": "Runs local skeleton validation and the placeholder launcher."
+    },
+    {
+      "name": "find",
+      "required": true,
+      "notes": "Lists app skeleton files for review."
+    },
+    {
+      "name": "grep",
+      "required": true,
+      "notes": "Finds placeholders and resource-manager-specific native arguments."
+    },
+    {
+      "name": "Open OnDemand",
+      "required": false,
+      "notes": "Required only for site-owned deployment and pilot testing."
+    },
+    {
+      "name": "sbatch",
+      "required": false,
+      "notes": "Used indirectly by Open OnDemand on Slurm-backed sites."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "cluster_id",
+      "type": "string",
+      "required": true,
+      "description": "Public Open OnDemand cluster id or placeholder for the target Slurm cluster."
+    },
+    {
+      "name": "account",
+      "type": "string",
+      "required": false,
+      "description": "Site-approved charge account for development or pilot sessions."
+    },
+    {
+      "name": "queue",
+      "type": "string",
+      "required": false,
+      "description": "Short partition or queue approved for portal app tests."
+    },
+    {
+      "name": "launcher",
+      "type": "string",
+      "required": true,
+      "description": "Site-approved command that the Batch Connect session should start."
+    },
+    {
+      "name": "site_policy",
+      "type": "string",
+      "required": true,
+      "description": "Local Open OnDemand policy covering authentication, proxying, logging, cleanup, and scheduler limits."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "app_skeleton",
+      "description": "Reviewable Batch Connect app directory with manifest, form, submit, and template files."
+    },
+    {
+      "name": "review_notes",
+      "description": "Validation output and site checklist for portal maintainers."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/batch-connect-app/manifest.yml",
+    "examples/batch-connect-app/form.yml.erb",
+    "examples/batch-connect-app/submit.yml.erb",
+    "examples/batch-connect-app/template/before.sh.erb",
+    "examples/batch-connect-app/template/script.sh",
+    "examples/validate-batch-connect-app.sh",
+    "examples/site-review-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Review a minimal Batch Connect app manifest",
+      "path": "examples/batch-connect-app/manifest.yml"
+    },
+    {
+      "title": "Review user-facing Batch Connect form fields",
+      "path": "examples/batch-connect-app/form.yml.erb"
+    },
+    {
+      "title": "Review Slurm-backed Batch Connect submission settings",
+      "path": "examples/batch-connect-app/submit.yml.erb"
+    },
+    {
+      "title": "Review the placeholder Batch Connect launcher",
+      "path": "examples/batch-connect-app/template/script.sh"
+    },
+    {
+      "title": "Run local skeleton checks",
+      "path": "examples/validate-batch-connect-app.sh"
+    },
+    {
+      "title": "Review site policy before deployment",
+      "path": "examples/site-review-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill open-ondemand-batch-connect",
+      "description": "Validate the manifest and referenced app skeleton files."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/open-ondemand-batch-connect/examples/validate-batch-connect-app.sh skills/open-ondemand-batch-connect/examples/batch-connect-app/template/script.sh skills/open-ondemand-batch-connect/examples/batch-connect-app/template/before.sh.erb",
+      "description": "Check that shell examples parse."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash skills/open-ondemand-batch-connect/examples/validate-batch-connect-app.sh skills/open-ondemand-batch-connect/examples/batch-connect-app",
+      "description": "Run local Batch Connect skeleton review checks."
+    },
+    {
+      "type": "manual",
+      "description": "After site review, copy the skeleton into an Open OnDemand development area, replace placeholders, run a short pilot session, and confirm logs, cleanup, and scheduler limits."
+    }
+  ],
+  "references": [
+    {
+      "title": "Open OnDemand Slurm configuration",
+      "url": "https://osc.github.io/ood-documentation/latest/installation/resource-manager/slurm.html"
+    },
+    {
+      "title": "Open OnDemand setup interactive apps",
+      "url": "https://osc.github.io/ood-documentation/latest/how-tos/app-development/interactive/setup.html"
+    },
+    {
+      "title": "Open OnDemand Batch Connect submit.yml.erb",
+      "url": "https://osc.github.io/ood-documentation/latest/how-tos/app-development/interactive/submit.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

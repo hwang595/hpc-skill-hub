@@ -1,0 +1,22 @@
+<%-
+account = defined?(bc_account) && bc_account.to_s.strip != "" ? bc_account : "<account>"
+queue = defined?(bc_queue) && bc_queue.to_s.strip != "" ? bc_queue : "<debug-partition>"
+hours = defined?(bc_num_hours) ? bc_num_hours.to_i : 1
+tasks = defined?(bc_num_slots) ? bc_num_slots.to_i : 1
+hours = [[hours, 1].max, 2].min
+tasks = [[tasks, 1].max, 4].min
+-%>
+---
+batch_connect:
+  template: "basic"
+  script_file: "template/script.sh"
+script:
+  job_name: "ood-skill-demo"
+  accounting_id: "<%= account %>"
+  queue_name: "<%= queue %>"
+  wall_time: <%= hours * 3600 %>
+  native:
+    - "--ntasks=<%= tasks %>"
+  job_environment:
+    OOD_SKILL_BATCH_CONNECT: "1"
+    OOD_SKILL_TASKS: "<%= tasks %>"

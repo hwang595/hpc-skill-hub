@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 69 seed skills.
+- 70 seed skills.
 - 12 curated collections.
 - 1 example public site adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -120,7 +120,8 @@ Priority integration tracks:
 
 - Slurm: batch scripts, accounting, queue inspection, dependency chains, and
   optional REST integration.
-- Open OnDemand: portal app templates and user-facing interactive workflows.
+- Open OnDemand: Batch Connect app templates and user-facing interactive
+  workflows.
 - Apptainer: image execution, bind mounts, GPU pass-through, MPI launch, and
   reproducibility.
 - Spack and EasyBuild: scientific software stack creation and module generation.
@@ -168,8 +169,9 @@ The first wave emphasizes recurring support and onboarding workflows:
   archive preparation, and IOR/MDTest smoke evidence.
 - Software stacks: modules, compiler/MPI matrices, Conda, virtualenv, Spack,
   EasyBuild, containers, and reproducible run capture.
-- Interactive and teaching workflows: Jupyter, TensorBoard, Streamlit, RStudio,
-  VS Code tunnels, workshop reset checks, and language-specific batch jobs.
+- Interactive and teaching workflows: Open OnDemand Batch Connect templates,
+  Jupyter, TensorBoard, Streamlit, RStudio, VS Code tunnels, workshop reset
+  checks, and language-specific batch jobs.
 - AI/HPC: GPU sanity checks, PyTorch DDP, NCCL, DeepSpeed, Ray, Dask, and
   monitoring.
 - Domain workflows: bioinformatics, molecular dynamics, electronic structure,

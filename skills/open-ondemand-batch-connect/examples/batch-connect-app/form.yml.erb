@@ -1,0 +1,36 @@
+---
+cluster: "<%= ENV.fetch('OOD_CLUSTER', '<cluster-id>') %>"
+form:
+  - bc_num_hours
+  - bc_num_slots
+  - bc_account
+  - bc_queue
+  - environment_setup
+attributes:
+  bc_num_hours:
+    label: Hours
+    min: 1
+    max: 2
+    step: 1
+    value: 1
+  bc_num_slots:
+    label: Tasks
+    min: 1
+    max: 4
+    step: 1
+    value: 1
+  bc_account:
+    label: Account
+    help: Use a site-approved account or leave as the site default.
+    value: "<account>"
+  bc_queue:
+    label: Partition or queue
+    help: Use a short interactive or debug partition approved for portal apps.
+    value: "<debug-partition>"
+  environment_setup:
+    widget: text_area
+    label: Environment setup
+    help: Keep module loads explicit and reviewed by the portal team.
+    value: |
+      module purge
+      module load <module>

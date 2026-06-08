@@ -31,6 +31,7 @@ TEXT_SUFFIXES = {
     ".c",
     ".cfg",
     ".css",
+    ".erb",
     ".html",
     ".json",
     ".md",

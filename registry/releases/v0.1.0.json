@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/release-manifest.schema.json",
-  "file_count": 442,
+  "file_count": 451,
   "files": [
     {
       "bytes": 489,
@@ -158,9 +158,9 @@
       "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
     },
     {
-      "bytes": 7436,
+      "bytes": 7624,
       "path": "CHANGELOG.md",
-      "sha256": "5f3845ddb040a5e2e8d2c8e0715ed5b77ca83226c5b3db4ee72c552d2cd8d571"
+      "sha256": "5b5bc9055f437938360eafde20b9b7f5736f827b102d2ab5527e160998ed6ca9"
     },
     {
       "bytes": 426,
@@ -188,14 +188,14 @@
       "sha256": "dea798cae34c09327203664ff6b3e488ce7eb4ceff5e6d0f89bc31462fea8825"
     },
     {
-      "bytes": 12003,
+      "bytes": 12101,
       "path": "README.md",
-      "sha256": "51197a1d168f4233a7f6558e3eb05c3c8505b7cd206ddca172c9c5cd72fe7824"
+      "sha256": "3f2411bfe791bcf9dba9cc9e56a476c2d497063f824e1f365da1aaad2938b87d"
     },
     {
-      "bytes": 7737,
+      "bytes": 7787,
       "path": "ROADMAP.md",
-      "sha256": "5db1f5aa6630c96a7fc41dc6fe3cc0e83b98ede135cf789361368a115965b45c"
+      "sha256": "724c8fbe43db8d5833f79c96cb4735dde46a0711c75f01a57b9508996019b6dd"
     },
     {
       "bytes": 1442,
@@ -253,14 +253,14 @@
       "sha256": "b39f8d7e106986fb40a101cd58d62a867c6fd8ae3ddcbfab0cdf26d549687896"
     },
     {
-      "bytes": 1195,
+      "bytes": 1255,
       "path": "collections/software-stacks.json",
-      "sha256": "8f3cfaf515bc91aa37d9a2edfd6575bedd8b37fb399f885618bb60667e3cefe8"
+      "sha256": "089eb8b9bf87b7d9d0c7f0c3b1883d625d48b55bacd7bbfe539b0c30c04d54b7"
     },
     {
-      "bytes": 980,
+      "bytes": 1040,
       "path": "collections/training-onboarding.json",
-      "sha256": "f0e9accfcc3f9169a4016524232fd1b208ae03c598383ba4e7d2c0e9c0c3ee41"
+      "sha256": "b571556ec8d5eb36e656fcc1e9b1f2d22cca6f880253f60dd968ca486aa2e292"
     },
     {
       "bytes": 644,
@@ -298,9 +298,9 @@
       "sha256": "0edd76544bf3a2ce6bbb90af2a99c92cf47da4396630393e83b9c75ff36c3480"
     },
     {
-      "bytes": 3643,
+      "bytes": 3693,
       "path": "docs/COLLECTIONS.md",
-      "sha256": "d4d9a42ba9b6e52bcfc8ae492b520b9631fb3be7c08850a443d93c0c2789f93d"
+      "sha256": "d033e8939becc91783736eb33489b0ea29b54d6d7a830904afc64fe5ebb92032"
     },
     {
       "bytes": 4273,
@@ -308,9 +308,9 @@
       "sha256": "3dda6e850e1dab0481771a87563c5ab76b0a2e5081ef7192c880929b77507e7e"
     },
     {
-      "bytes": 9782,
+      "bytes": 9799,
       "path": "docs/COMPATIBILITY.md",
-      "sha256": "43e1e8581da3c61931bd357e1cee6f332b20cc8e63a1c0481ffa1f845509cc1b"
+      "sha256": "caf2f9959841b27852461d3c502b68a5fd08b9dbd06844b31c9799218825e057"
     },
     {
       "bytes": 4430,
@@ -318,14 +318,14 @@
       "sha256": "58abb3149d2cd5bf73f9e3ee19cd7ceaa402c6c8f726b3a593cba3c6ba766c89"
     },
     {
-      "bytes": 6579,
+      "bytes": 6691,
       "path": "docs/DOMAIN_REVIEWERS.md",
-      "sha256": "8d2090ff4e43185e2bc6a40e4d7ed7eda22d57ed8c97dfcdbfd262f34422cf76"
+      "sha256": "bf894d335d29f788ee1bd9b2f9af180db73607543d8f3ce2f81686f183d21e20"
     },
     {
-      "bytes": 3584,
+      "bytes": 3634,
       "path": "docs/ECOSYSTEM_PROPOSAL.md",
-      "sha256": "18669fca6b42331ef9451bf7fdaa5d05e1bbe560c60e6e992fd4de22124f2d70"
+      "sha256": "a095a29d2710fc4b30ee373dac3f14a6be9ad9571df1537a895242a4317aab14"
     },
     {
       "bytes": 2401,
@@ -378,19 +378,19 @@
       "sha256": "e806c220dcd6a1b70b073b1e4bccd72ac50d7b087937185616f5e09c6ee0e4c5"
     },
     {
-      "bytes": 3158,
+      "bytes": 3197,
       "path": "docs/OPEN_SOURCE_PROPOSAL.md",
-      "sha256": "1a517a9b70259fdc39524b749dbaeed79dadb5172b6bac512ff8480093d9e725"
+      "sha256": "5f208c4ec874f685a3ae1eb8fbb64684d89b6932ba6b58124236123e01889825"
     },
     {
-      "bytes": 3381,
+      "bytes": 3424,
       "path": "docs/REGISTRY_HEALTH.md",
-      "sha256": "0ad227f0b658e75903e68e2803da8ed1911d91c75fc39acbeff9592d9b8d4924"
+      "sha256": "42baa2c3c419e509273961b35bd167d23f8ab52cea16a886ff3275f5ce453d3b"
     },
     {
-      "bytes": 7067,
+      "bytes": 7172,
       "path": "docs/RELEASE_NOTES_v0.1.0.md",
-      "sha256": "13543e005f7c54c8338ffd34bb6d01fbdf31a26298959928f0bbc6c1d708fe27"
+      "sha256": "0c7e175420eace07d4a344f151e1aa9a94b3ff6a62478089e1f725f10edb5a13"
     },
     {
       "bytes": 2778,
@@ -423,14 +423,14 @@
       "sha256": "ead7fbd8016afb1fc046535d8fff55790f087ce973315be7a11b5145892d2b83"
     },
     {
-      "bytes": 7688,
+      "bytes": 7812,
       "path": "docs/SKILL_BACKLOG.md",
-      "sha256": "0d1a55e10da6295e60f6e3b5f8f9d21ea91c081cc95ebde362e5c73048216da4"
+      "sha256": "02cb95e4a956cc1e35b549d081af23964bd9d742094942fadd0abe173bd50238"
     },
     {
-      "bytes": 31067,
+      "bytes": 31777,
       "path": "docs/SKILL_CATALOG.md",
-      "sha256": "d60f7743df4f107918b65e0556d103195efe8b99e54b92eb82709c2df0e65aed"
+      "sha256": "e5d9a3a558d9ff47fe51b8e9a1492d5484ace0a1ce233f906567356fdf57b6ad"
     },
     {
       "bytes": 5949,
@@ -468,14 +468,14 @@
       "sha256": "154ad18564a482d118326f2a0e3acafb3ee4ff2e738bb883c1ba819ada11cbcc"
     },
     {
-      "bytes": 8820,
+      "bytes": 8943,
       "path": "registry/health.json",
-      "sha256": "d9ce80e4c9ae86663d9f462eb5a28a98c16a0ef0251d73f68eb66bbf18bb13a4"
+      "sha256": "a793cddc53b03b5589826b5efa1c9d7370e5c0501f1e2a0ff564e0a896dc43b8"
     },
     {
-      "bytes": 140471,
+      "bytes": 143666,
       "path": "registry/index.json",
-      "sha256": "53390603d91a81751fe739bee131aa328cc2da65e804df9ed1feee3fe27c7bde"
+      "sha256": "0f840fd25657906c9bd82d79364993eb9892a35d9dee433955d53fd16091f468"
     },
     {
       "bytes": 1145,
@@ -1393,6 +1393,51 @@
       "sha256": "9bee197a411a44c6e4fd18ff8f56c7d2855cd26ef8073b8c0583b1cceec16167"
     },
     {
+      "bytes": 2102,
+      "path": "skills/open-ondemand-batch-connect/README.md",
+      "sha256": "7431fc3d2028ed740ec4a41e151b00ab99e9f46ed3269ac6dc9efa35044be310"
+    },
+    {
+      "bytes": 802,
+      "path": "skills/open-ondemand-batch-connect/examples/batch-connect-app/form.yml.erb",
+      "sha256": "042502febb6a69f5290653d221ee3a3f548a2e30c25e95bb1ace3751177e1ccc"
+    },
+    {
+      "bytes": 279,
+      "path": "skills/open-ondemand-batch-connect/examples/batch-connect-app/manifest.yml",
+      "sha256": "a8b61460365936a9d9cd97587c57db8c4d7cd7e03d32a7564fdcd9528499fdfc"
+    },
+    {
+      "bytes": 696,
+      "path": "skills/open-ondemand-batch-connect/examples/batch-connect-app/submit.yml.erb",
+      "sha256": "3bc0080d8468d2ebc3d5f7d2b56646ef87d28b11bc07e638d1621269c0332716"
+    },
+    {
+      "bytes": 241,
+      "path": "skills/open-ondemand-batch-connect/examples/batch-connect-app/template/before.sh.erb",
+      "sha256": "3228e6a3bbcc184abd43351aecd04674275db12d2d008a7cbad0d63eba913fe6"
+    },
+    {
+      "bytes": 726,
+      "path": "skills/open-ondemand-batch-connect/examples/batch-connect-app/template/script.sh",
+      "sha256": "f3b3e085ef37fa853edb0783e22acfe0a30a2de7128388d9be0ae4567e1c1dcc"
+    },
+    {
+      "bytes": 744,
+      "path": "skills/open-ondemand-batch-connect/examples/site-review-checklist.md",
+      "sha256": "ca7e263ecf139da6fdaacda636123edf4652a44ed4dee427e1e9331f67913688"
+    },
+    {
+      "bytes": 1036,
+      "path": "skills/open-ondemand-batch-connect/examples/validate-batch-connect-app.sh",
+      "sha256": "33a9aa25863d7913b55dccc5014b0567e9c63594c73d717f79a2eeb1c8eca2e2"
+    },
+    {
+      "bytes": 5672,
+      "path": "skills/open-ondemand-batch-connect/skill.json",
+      "sha256": "a73578018852774f2e1c7d501be5a85a423ebcf91a31597eeb64eb27de96ba2e"
+    },
+    {
       "bytes": 1639,
       "path": "skills/openfoam-on-slurm/README.md",
       "sha256": "9ef1908593ad775de9f2cbd1e8e13c8f9584cc72f6fc585a349d230c35383639"
@@ -2068,14 +2113,14 @@
       "sha256": "e98635c6044821567bd15ad8844d0cdaf4fffe9b1738d868a8ecca74a5c1e292"
     },
     {
-      "bytes": 8820,
+      "bytes": 8943,
       "path": "src/hpc_skill_hub/data/registry/health.json",
-      "sha256": "d9ce80e4c9ae86663d9f462eb5a28a98c16a0ef0251d73f68eb66bbf18bb13a4"
+      "sha256": "a793cddc53b03b5589826b5efa1c9d7370e5c0501f1e2a0ff564e0a896dc43b8"
     },
     {
-      "bytes": 140471,
+      "bytes": 143666,
       "path": "src/hpc_skill_hub/data/registry/index.json",
-      "sha256": "53390603d91a81751fe739bee131aa328cc2da65e804df9ed1feee3fe27c7bde"
+      "sha256": "0f840fd25657906c9bd82d79364993eb9892a35d9dee433955d53fd16091f468"
     },
     {
       "bytes": 5774,
@@ -2123,9 +2168,9 @@
       "sha256": "32d45202607638caa61a91befd36cc3d08c3b991693294f56c9683eb7c0e6039"
     },
     {
-      "bytes": 6867,
+      "bytes": 6879,
       "path": "tools/audit_safety.py",
-      "sha256": "9b9120dd6aa506f1b062999a9609b7fad5002105177a5cc101c8bd55f12f4aa1"
+      "sha256": "957d25835a46d472e5c12ec8476c5fe71d23632d48558416500b2e496d10ab3a"
     },
     {
       "bytes": 9763,
@@ -2218,23 +2263,23 @@
     "category_count": 12,
     "collection_count": 12,
     "maturity_counts": {
-      "seed": 69
+      "seed": 70
     },
     "risk_counts": {
       "low": 17,
-      "medium": 52
+      "medium": 53
     },
     "scheduler_count": 9,
     "schema_version": "0.1.0",
     "site_adapter_count": 1,
-    "skill_count": 69,
+    "skill_count": 70,
     "status_counts": {
-      "draft": 69
+      "draft": 70
     },
-    "tool_count": 121,
+    "tool_count": 122,
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1270193,
+  "total_bytes": 1290845,
   "version": "v0.1.0"
 }

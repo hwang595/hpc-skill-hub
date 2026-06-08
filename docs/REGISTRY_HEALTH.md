@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 69
+- Skills: 70
 - Site adapters: 1
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 52 |
+| `medium` | 53 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 69 |
+| `seed` | 70 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 69 |
+| `draft` | 70 |
 
 ## Collection Coverage
 
@@ -41,8 +41,8 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `gpu-mpi-performance` | 15 |
 | `scheduler-basics` | 7 |
 | `simulation-workflows` | 13 |
-| `software-stacks` | 21 |
-| `training-onboarding` | 16 |
+| `software-stacks` | 22 |
+| `training-onboarding` | 17 |
 | `workflow-engines` | 7 |
 
 ## Uncollected Skills
@@ -93,6 +93,7 @@ All skills are included in at least one collection.
 | `nextflow-on-slurm` | medium |
 | `nf-core-on-slurm` | medium |
 | `node-health-readonly-triage` | low |
+| `open-ondemand-batch-connect` | medium |
 | `openfoam-on-slurm` | medium |
 | `openmp-thread-affinity` | medium |
 | `pbs-submit-job` | medium |

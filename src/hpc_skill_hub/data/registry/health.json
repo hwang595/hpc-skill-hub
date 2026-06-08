@@ -5,13 +5,13 @@
     "containers": 3,
     "data": 13,
     "debugging": 18,
-    "education": 1,
+    "education": 2,
     "gpu": 9,
-    "interactive": 6,
+    "interactive": 7,
     "mpi": 12,
     "performance": 13,
-    "scheduler": 52,
-    "software": 19,
+    "scheduler": 53,
+    "software": 20,
     "workflow": 10
   },
   "collection_count": 12,
@@ -163,13 +163,14 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 21,
+      "skill_count": 22,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "open-ondemand-batch-connect",
         "tensorboard-on-slurm",
         "streamlit-on-slurm",
         "ray-on-slurm",
@@ -190,11 +191,12 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 16,
+      "skill_count": 17,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
         "interactive-session",
+        "open-ondemand-batch-connect",
         "jupyter-on-slurm",
         "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
@@ -226,7 +228,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 69
+    "seed": 70
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -269,6 +271,7 @@
     "nextflow-on-slurm": "medium",
     "nf-core-on-slurm": "medium",
     "node-health-readonly-triage": "low",
+    "open-ondemand-batch-connect": "medium",
     "openfoam-on-slurm": "medium",
     "openmp-thread-affinity": "medium",
     "pbs-submit-job": "medium",
@@ -301,13 +304,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 52
+    "medium": 53
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 69,
+  "skill_count": 70,
   "status_counts": {
-    "draft": 69
+    "draft": 70
   },
   "uncollected_skill_ids": []
 }

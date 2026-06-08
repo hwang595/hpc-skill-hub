@@ -47,6 +47,7 @@ tools.
 | `checkpoint-restart-workflow` | Structure long jobs so they can resume after limits or preemption. |
 | `job-failure-triage` | Diagnose common job failures such as OOM, time limits, and missing modules. |
 | `interactive-session` | Start interactive compute sessions for shells, notebooks, and IDE tunnels. |
+| `open-ondemand-batch-connect` | Prepare reviewable Open OnDemand Batch Connect app templates. |
 | `jupyter-on-slurm` | Launch Jupyter notebooks inside short Slurm compute allocations. |
 | `rstudio-on-slurm` | Launch policy-aware RStudio or Posit sessions from Slurm allocations. |
 | `vscode-tunnel-on-slurm` | Run VS Code Remote Tunnels from short Slurm compute allocations. |

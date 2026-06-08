@@ -5,13 +5,13 @@
     "containers": 3,
     "data": 13,
     "debugging": 18,
-    "education": 1,
+    "education": 2,
     "gpu": 9,
-    "interactive": 6,
+    "interactive": 7,
     "mpi": 12,
     "performance": 13,
-    "scheduler": 52,
-    "software": 19,
+    "scheduler": 53,
+    "software": 20,
     "workflow": 10
   },
   "collection_count": 12,
@@ -250,6 +250,7 @@
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "open-ondemand-batch-connect",
         "tensorboard-on-slurm",
         "streamlit-on-slurm",
         "ray-on-slurm",
@@ -268,7 +269,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -283,6 +284,7 @@
         "training-cluster-reset-checklist",
         "slurm-submit-job",
         "interactive-session",
+        "open-ondemand-batch-connect",
         "jupyter-on-slurm",
         "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
@@ -298,7 +300,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -331,7 +333,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 49,
+    "slurm": 50,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -358,7 +360,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 69,
+  "skill_count": 70,
   "skills": [
     {
       "categories": [
@@ -2757,6 +2759,88 @@
     },
     {
       "categories": [
+        "interactive",
+        "scheduler",
+        "software",
+        "education"
+      ],
+      "description": "This skill provides a conservative skeleton for Open OnDemand Batch Connect apps, including manifest, form, submit, template, validation, and site-review artifacts for Slurm-backed portal workflows.",
+      "examples": [
+        {
+          "path": "skills/open-ondemand-batch-connect/examples/batch-connect-app/manifest.yml",
+          "title": "Review a minimal Batch Connect app manifest"
+        },
+        {
+          "path": "skills/open-ondemand-batch-connect/examples/batch-connect-app/form.yml.erb",
+          "title": "Review user-facing Batch Connect form fields"
+        },
+        {
+          "path": "skills/open-ondemand-batch-connect/examples/batch-connect-app/submit.yml.erb",
+          "title": "Review Slurm-backed Batch Connect submission settings"
+        },
+        {
+          "path": "skills/open-ondemand-batch-connect/examples/batch-connect-app/template/script.sh",
+          "title": "Review the placeholder Batch Connect launcher"
+        },
+        {
+          "path": "skills/open-ondemand-batch-connect/examples/validate-batch-connect-app.sh",
+          "title": "Run local skeleton checks"
+        },
+        {
+          "path": "skills/open-ondemand-batch-connect/examples/site-review-checklist.md",
+          "title": "Review site policy before deployment"
+        }
+      ],
+      "id": "open-ondemand-batch-connect",
+      "maturity": "seed",
+      "name": "Open OnDemand Batch Connect",
+      "path": "skills/open-ondemand-batch-connect",
+      "readme": "skills/open-ondemand-batch-connect/README.md",
+      "references": [
+        {
+          "title": "Open OnDemand Slurm configuration",
+          "url": "https://osc.github.io/ood-documentation/latest/installation/resource-manager/slurm.html"
+        },
+        {
+          "title": "Open OnDemand setup interactive apps",
+          "url": "https://osc.github.io/ood-documentation/latest/how-tos/app-development/interactive/setup.html"
+        },
+        {
+          "title": "Open OnDemand Batch Connect submit.yml.erb",
+          "url": "https://osc.github.io/ood-documentation/latest/how-tos/app-development/interactive/submit.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Prepare reviewable Open OnDemand Batch Connect app templates.",
+      "tags": [
+        "openondemand",
+        "batch-connect",
+        "portal",
+        "slurm",
+        "interactive",
+        "yaml",
+        "erb",
+        "template"
+      ],
+      "tools": [
+        "bash",
+        "find",
+        "grep",
+        "Open OnDemand",
+        "sbatch"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "mpi",
         "scheduler",
         "performance"
@@ -4457,6 +4541,7 @@
     "archive": 2,
     "array": 3,
     "batch": 3,
+    "batch-connect": 1,
     "benchmark": 2,
     "bioinformatics": 4,
     "bjobs": 1,
@@ -4504,6 +4589,7 @@
     "enospc": 1,
     "environment": 4,
     "environment-modules": 1,
+    "erb": 1,
     "failure": 1,
     "fairshare": 1,
     "fasta": 1,
@@ -4520,7 +4606,7 @@
     "htcondor": 1,
     "ide": 1,
     "inode": 1,
-    "interactive": 4,
+    "interactive": 5,
     "io": 2,
     "ior": 1,
     "java": 1,
@@ -4567,6 +4653,7 @@
     "oom": 2,
     "openfoam": 1,
     "openmp": 3,
+    "openondemand": 1,
     "openpbs": 1,
     "outputs": 1,
     "packages": 2,
@@ -4580,6 +4667,7 @@
     "pip": 1,
     "pipeline": 1,
     "pmix": 1,
+    "portal": 1,
     "ports": 1,
     "posit": 1,
     "preemption": 1,
@@ -4630,7 +4718,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 47,
+    "slurm": 48,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -4644,6 +4732,7 @@
     "storage": 3,
     "streamlit": 1,
     "tar": 1,
+    "template": 1,
     "tensorboard": 1,
     "tensorflow": 1,
     "threads": 2,
@@ -4670,16 +4759,18 @@
     "workshop": 1,
     "wrapper": 1,
     "wrf": 1,
+    "yaml": 1,
     "zero": 1
   },
   "tools": {
+    "Open OnDemand": 1,
     "R": 1,
     "Rscript": 1,
     "all_reduce_perf": 1,
     "apptainer": 3,
     "awk": 3,
     "basename": 1,
-    "bash": 5,
+    "bash": 6,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -4708,14 +4799,14 @@
     "du": 2,
     "eb": 1,
     "env": 6,
-    "find": 4,
+    "find": 5,
     "gatk": 1,
     "gcc": 1,
     "git": 1,
     "globus": 1,
     "gmx": 1,
     "gmx_mpi": 1,
-    "grep": 8,
+    "grep": 9,
     "head": 4,
     "hostname": 21,
     "icoFoam": 1,
@@ -4765,7 +4856,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 39,
+    "sbatch": 40,
     "scontrol": 6,
     "sed": 3,
     "seff": 1,

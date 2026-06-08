@@ -1,0 +1,8 @@
+---
+name: Reviewable Batch Connect App
+category: Interactive Apps
+subcategory: Review Templates
+role: batch_connect
+description: |
+  Minimal Open OnDemand Batch Connect skeleton for reviewing scheduler,
+  environment, logging, and portal policy before building a production app.

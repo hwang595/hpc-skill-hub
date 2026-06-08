@@ -17,10 +17,10 @@ research software engineer building software stacks may start with
   starter submission patterns plus failure triage and reproducible run capture
   for sites comparing or teaching scheduler basics.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
-  reproducible run capture, Python virtual environments, TensorBoard monitors,
-  Streamlit apps, Ray clusters, Dask Jobqueue, mpi4py jobs, Rscript jobs,
-  RStudio sessions, Julia jobs, MATLAB batch jobs, IDE tunnels, Conda/Mamba,
-  container builds and runtime, Spack, and EasyBuild.
+  reproducible run capture, Python virtual environments, Open OnDemand
+  templates, TensorBoard monitors, Streamlit apps, Ray clusters, Dask Jobqueue,
+  mpi4py jobs, Rscript jobs, RStudio sessions, Julia jobs, MATLAB batch jobs,
+  IDE tunnels, Conda/Mamba, container builds and runtime, Spack, and EasyBuild.
 - `containers`: Apptainer-compatible image build planning, container runtime
   execution, containerized MPI launch patterns, GPU visibility checks, scratch
   staging, checksum manifests, and reproducible run capture for containerized
@@ -29,10 +29,10 @@ research software engineer building software stacks may start with
   inside Slurm allocations, Dask worker clusters, Nextflow, Snakemake, and
   nf-core on Slurm.
 - `training-onboarding`: workshop preflight, Slurm basics, interactive
-  sessions, notebooks, TensorBoard monitors, Streamlit apps, RStudio, IDE
-  tunnels, Python/Conda environments, Rscript batch jobs, Julia batch jobs,
-  MATLAB batch jobs, module debugging, data staging, and failure triage for new
-  users.
+  sessions, Open OnDemand templates, notebooks, TensorBoard monitors, Streamlit
+  apps, RStudio, IDE tunnels, Python/Conda environments, Rscript batch jobs,
+  Julia batch jobs, MATLAB batch jobs, module debugging, data staging, and
+  failure triage for new users.
 - `data-movement`: Globus and rsync transfers, checksum manifests, scratch
   staging, archive preparation, IOR/MDTest storage smoke benchmarks, scratch
   inventory, and filesystem quota triage.
