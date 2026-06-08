@@ -204,6 +204,30 @@ class GovernanceDocsTests(unittest.TestCase):
         self.assertIn("risk_level", guide)
         self.assertIn("site adapter", guide)
 
+    def test_github_owner_checklist_is_launch_ready(self):
+        checklist = (ROOT / "docs" / "GITHUB_OWNER_CHECKLIST.md").read_text(
+            encoding="utf-8"
+        )
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        publishing = (ROOT / "docs" / "GITHUB_PUBLISHING.md").read_text(
+            encoding="utf-8"
+        )
+        launch_packet = (ROOT / "docs" / "PUBLIC_LAUNCH_PACKET.md").read_text(
+            encoding="utf-8"
+        )
+
+        for heading in [
+            "## Owner Identity",
+            "## Required Permissions",
+            "## Maintainer Map",
+            "## Public Safety Review",
+            "## Launch Decision Record",
+            "## Final Preflight",
+        ]:
+            self.assertIn(heading, checklist)
+        for text in [readme, publishing, launch_packet]:
+            self.assertIn("GITHUB_OWNER_CHECKLIST.md", text)
+
 
 if __name__ == "__main__":
     unittest.main()

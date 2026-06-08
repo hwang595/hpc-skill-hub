@@ -41,6 +41,9 @@ The publishing environment needs:
   issues, and publish releases.
 - Maintainer GitHub handles or teams for replacing placeholder CODEOWNERS
   ownership.
+- Completed [GitHub Owner Checklist](GITHUB_OWNER_CHECKLIST.md), including
+  owner identity, launch maintainer, release owner, permissions, and public
+  safety review.
 
 ## First Commands
 

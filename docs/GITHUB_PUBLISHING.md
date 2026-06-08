@@ -15,6 +15,10 @@ request intake loop after launch.
 Use [Public Launch Packet](PUBLIC_LAUNCH_PACKET.md) as a concise handoff for
 the GitHub owner or sponsoring organization before running networked commands.
 
+Use [GitHub Owner Checklist](GITHUB_OWNER_CHECKLIST.md) to confirm the owner
+identity, repository permissions, maintainer map, and public-safety review
+before pushing the seed repository.
+
 ## Recommended Repository Settings
 
 Use `.github/repository.json` as the source of truth for repository settings
@@ -50,15 +54,17 @@ release.
 
 ## Publish With An Existing Empty GitHub Repository
 
-Create an empty public repository on GitHub, then run:
+Create an empty public repository on GitHub. If this checkout already has local
+commits, connect it directly and push the existing history:
 
 ```bash
 git branch -M main
 git remote add origin git@github.com:<owner>/hpc-skill-hub.git
-git add .
-git commit -m "Seed HPC Skill Hub registry"
 git push -u origin main
 ```
+
+Only run `git add` and `git commit` first if you are publishing from an
+uncommitted export rather than this maintained local repository.
 
 ## First Release Checklist
 
@@ -98,6 +104,7 @@ git push -u origin main
   are green.
 - `python3 tools/github_publish_plan.py --owner <owner> --run-check` prints the
   expected end-to-end publication plan.
+- The GitHub owner has completed [GitHub Owner Checklist](GITHUB_OWNER_CHECKLIST.md).
 - Branch protection requires the validation and package workflows.
 - GitHub Pages is enabled with the `Publish Pages` workflow.
 - GitHub Discussions is enabled and seeded with adoption, skill coverage, site

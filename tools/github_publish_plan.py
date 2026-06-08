@@ -89,9 +89,9 @@ def main() -> int:
     for check in launch_checks(args.run_check, args.owner):
         print(f"# {check.status:4} {check.name}: {check.detail}")
 
-    print_section("2. Review public launch packet")
+    print_section("2. Review public launch packet and owner checklist")
     print("# Share docs/PUBLIC_LAUNCH_PACKET.md with the GitHub owner,")
-    print("# maintainer team, or sponsoring organization before running networked commands.")
+    print("# and complete docs/GITHUB_OWNER_CHECKLIST.md before running networked commands.")
 
     print_section("3. Create repository and push seed branch")
     print(shell_join(["git", "branch", "-M", metadata["default_branch"]]))

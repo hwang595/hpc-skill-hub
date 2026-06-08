@@ -28,6 +28,7 @@ REQUIRED_LAUNCH_FILES = [
     "CHANGELOG.md",
     "docs/CITATION.md",
     "docs/GITHUB_PUBLISHING.md",
+    "docs/GITHUB_OWNER_CHECKLIST.md",
     "docs/GITHUB_REPOSITORY_SETUP.md",
     "docs/GITHUB_DISCUSSIONS.md",
     "docs/GITHUB_MILESTONES.md",

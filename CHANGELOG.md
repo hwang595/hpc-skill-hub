@@ -7,6 +7,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a GitHub owner checklist for confirming repository ownership,
+  permissions, maintainer queues, public-safety review, and launch decision
+  records before networked publication.
 - Add a public launch packet that summarizes local readiness, GitHub owner
   prerequisites, launch sequence, outreach targets, and success criteria for
   the first open-source publication.

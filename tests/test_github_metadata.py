@@ -347,8 +347,9 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("# HPC Skill Hub GitHub Publish Plan", result.stdout)
         self.assertIn("# Repository: example/hpc-skill-hub", result.stdout)
         self.assertIn("python3 tools/launch_readiness.py", result.stdout)
-        self.assertIn("Review public launch packet", result.stdout)
+        self.assertIn("Review public launch packet and owner checklist", result.stdout)
         self.assertIn("docs/PUBLIC_LAUNCH_PACKET.md", result.stdout)
+        self.assertIn("docs/GITHUB_OWNER_CHECKLIST.md", result.stdout)
         self.assertIn("gh repo create example/hpc-skill-hub", result.stdout)
         self.assertIn("gh label create safety-review", result.stdout)
         self.assertIn("Configure milestones", result.stdout)
@@ -368,6 +369,10 @@ class GitHubMetadataTests(unittest.TestCase):
         launch_readiness = load_launch_readiness_module()
         self.assertIn(
             "docs/PUBLIC_LAUNCH_PACKET.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "docs/GITHUB_OWNER_CHECKLIST.md",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
 

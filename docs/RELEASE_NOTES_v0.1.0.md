@@ -112,6 +112,9 @@ request missing workflows, or contribute public site adapters.
   growth, integrations, and open ecosystem milestones.
 - Public launch packet summarizing local readiness, external GitHub
   prerequisites, launch sequence, outreach targets, and success criteria.
+- GitHub owner checklist covering owner identity, permissions, maintainer map,
+  public-safety review, and launch decision record before networked
+  publication.
 - Local launch readiness audit for GitHub publishing.
 - Command generators for repository setup, labels, starter issues, rulesets,
   and release publication.

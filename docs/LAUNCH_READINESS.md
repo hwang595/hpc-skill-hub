@@ -72,4 +72,6 @@ an authenticated GitHub environment after the local checks are clean.
 
 `tools/github_publish_plan.py` is the safest first command because it prints the
 ordered launch path and embeds the current readiness summary without taking any
-networked action.
+networked action. Complete
+[GitHub Owner Checklist](GITHUB_OWNER_CHECKLIST.md) before running the networked
+commands from that plan.

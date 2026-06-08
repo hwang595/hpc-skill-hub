@@ -3,6 +3,10 @@
 Use this checklist after the local repository is pushed to a public GitHub
 repository. It turns the seed project into a maintainable open-source registry.
 
+Before running networked commands, complete the
+[GitHub Owner Checklist](GITHUB_OWNER_CHECKLIST.md) with the person or
+organization that will own `<owner>/hpc-skill-hub`.
+
 ## Repository Basics
 
 Use `.github/repository.json` as the source of truth for repository name,
