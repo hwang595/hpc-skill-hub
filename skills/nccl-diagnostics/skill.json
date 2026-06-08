@@ -1,0 +1,143 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "nccl-diagnostics",
+  "name": "NCCL Diagnostics",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect NCCL communication evidence for multi-GPU and multi-node jobs.",
+  "description": "This skill provides a conservative Slurm diagnostics wrapper for NCCL-related failures, including GPU topology, selected communication environment variables, NCCL debug settings, and an optional small nccl-tests run.",
+  "categories": ["gpu", "debugging", "scheduler"],
+  "tags": ["nccl", "gpu", "distributed", "slurm", "all-reduce", "network"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "nvidia-smi",
+      "required": false
+    },
+    {
+      "name": "all_reduce_perf",
+      "required": false,
+      "notes": "Provided by NVIDIA nccl-tests when available."
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "env",
+      "required": true
+    },
+    {
+      "name": "sort",
+      "required": true
+    },
+    {
+      "name": "grep",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "gpu_partition",
+      "type": "string",
+      "required": true,
+      "description": "Slurm partition or queue that provides NVIDIA GPU nodes."
+    },
+    {
+      "name": "nodes",
+      "type": "integer",
+      "required": false,
+      "description": "Number of nodes used for diagnostics."
+    },
+    {
+      "name": "gpus_per_node",
+      "type": "integer",
+      "required": false,
+      "description": "Number of GPUs requested per node."
+    },
+    {
+      "name": "run_nccl_tests",
+      "type": "boolean",
+      "required": false,
+      "description": "Opt-in flag that runs a small all_reduce_perf test when nccl-tests is installed."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "nccl_diagnostics_log",
+      "description": "Captured Slurm, CUDA, NCCL, GPU topology, and optional all_reduce_perf output."
+    },
+    {
+      "name": "environment_report",
+      "description": "Filtered communication-related environment variables for support review."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/nccl-diagnostics.sbatch",
+    "examples/nccl-env-notes.md"
+  ],
+  "examples": [
+    {
+      "title": "Submit NCCL diagnostics job",
+      "path": "examples/nccl-diagnostics.sbatch"
+    },
+    {
+      "title": "NCCL environment notes",
+      "path": "examples/nccl-env-notes.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill nccl-diagnostics",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Submit to a short GPU partition and review the diagnostic log; set RUN_NCCL_TESTS=1 only when nccl-tests is available and the allocation is appropriate."
+    }
+  ],
+  "references": [
+    {
+      "title": "NVIDIA NCCL documentation",
+      "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html"
+    },
+    {
+      "title": "NCCL environment variables",
+      "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html"
+    },
+    {
+      "title": "NVIDIA nccl-tests",
+      "url": "https://github.com/NVIDIA/nccl-tests"
+    }
+  ]
+}

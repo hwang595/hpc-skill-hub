@@ -2,12 +2,12 @@
   "categories": {
     "containers": 2,
     "data": 7,
-    "debugging": 11,
-    "gpu": 2,
+    "debugging": 12,
+    "gpu": 3,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
-    "scheduler": 16,
+    "scheduler": 17,
     "software": 8,
     "workflow": 2
   },
@@ -73,11 +73,12 @@
         "compiler-mpi-matrix",
         "gpu-sanity-check",
         "pytorch-ddp-on-slurm",
+        "nccl-diagnostics",
         "openmp-thread-affinity",
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, compiler/MPI compatibility, PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, NCCL communication, compiler/MPI compatibility, PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -121,7 +122,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 16
+    "slurm": 17
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -147,7 +148,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 31,
+  "skill_count": 32,
   "skills": [
     {
       "categories": [
@@ -967,6 +968,71 @@
     },
     {
       "categories": [
+        "gpu",
+        "debugging",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative Slurm diagnostics wrapper for NCCL-related failures, including GPU topology, selected communication environment variables, NCCL debug settings, and an optional small nccl-tests run.",
+      "examples": [
+        {
+          "path": "skills/nccl-diagnostics/examples/nccl-diagnostics.sbatch",
+          "title": "Submit NCCL diagnostics job"
+        },
+        {
+          "path": "skills/nccl-diagnostics/examples/nccl-env-notes.md",
+          "title": "NCCL environment notes"
+        }
+      ],
+      "id": "nccl-diagnostics",
+      "maturity": "seed",
+      "name": "NCCL Diagnostics",
+      "path": "skills/nccl-diagnostics",
+      "readme": "skills/nccl-diagnostics/README.md",
+      "references": [
+        {
+          "title": "NVIDIA NCCL documentation",
+          "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html"
+        },
+        {
+          "title": "NCCL environment variables",
+          "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html"
+        },
+        {
+          "title": "NVIDIA nccl-tests",
+          "url": "https://github.com/NVIDIA/nccl-tests"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect NCCL communication evidence for multi-GPU and multi-node jobs.",
+      "tags": [
+        "nccl",
+        "gpu",
+        "distributed",
+        "slurm",
+        "all-reduce",
+        "network"
+      ],
+      "tools": [
+        "sbatch",
+        "srun",
+        "nvidia-smi",
+        "all_reduce_perf",
+        "mkdir",
+        "date",
+        "hostname",
+        "env",
+        "sort",
+        "grep",
+        "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "workflow",
         "scheduler"
       ],
@@ -1728,6 +1794,7 @@
   ],
   "tags": {
     "affinity": 1,
+    "all-reduce": 1,
     "amd": 1,
     "apptainer": 2,
     "archive": 2,
@@ -1748,7 +1815,7 @@
     "ddp": 1,
     "debugging": 1,
     "definition": 1,
-    "distributed": 1,
+    "distributed": 2,
     "easybuild": 1,
     "easyconfig": 1,
     "enospc": 1,
@@ -1757,7 +1824,7 @@
     "filesystem": 3,
     "git": 1,
     "globus": 1,
-    "gpu": 5,
+    "gpu": 6,
     "inode": 1,
     "interactive": 1,
     "io": 1,
@@ -1774,7 +1841,8 @@
     "modules": 5,
     "mpi": 4,
     "mpicc": 2,
-    "nccl": 1,
+    "nccl": 2,
+    "network": 1,
     "nextflow": 1,
     "nf-core": 1,
     "notebook": 1,
@@ -1811,7 +1879,7 @@
     "sha256": 1,
     "sif": 1,
     "singularity": 2,
-    "slurm": 16,
+    "slurm": 17,
     "snakemake": 1,
     "software": 2,
     "spack": 1,
@@ -1836,6 +1904,7 @@
     "wrapper": 1
   },
   "tools": {
+    "all_reduce_perf": 1,
     "apptainer": 2,
     "awk": 3,
     "basename": 1,
@@ -1845,32 +1914,32 @@
     "clang": 1,
     "command": 2,
     "conda": 1,
-    "date": 9,
+    "date": 10,
     "df": 2,
     "dirname": 3,
     "du": 2,
     "eb": 1,
-    "env": 4,
+    "env": 5,
     "find": 4,
     "gcc": 1,
     "git": 1,
     "globus": 1,
-    "grep": 5,
+    "grep": 6,
     "head": 3,
-    "hostname": 7,
+    "hostname": 8,
     "jupyter": 1,
     "ldd": 2,
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 11,
+    "mkdir": 12,
     "module": 6,
     "mpicc": 2,
     "mpicxx": 1,
     "mpifort": 1,
     "nextflow": 1,
     "nproc": 1,
-    "nvidia-smi": 3,
+    "nvidia-smi": 4,
     "perf": 1,
     "pip": 1,
     "pwd": 2,
@@ -1880,7 +1949,7 @@
     "rsync": 2,
     "sacct": 3,
     "salloc": 1,
-    "sbatch": 11,
+    "sbatch": 12,
     "scontrol": 2,
     "sed": 1,
     "sha256sum": 2,
@@ -1888,14 +1957,14 @@
     "singularity": 1,
     "sleep": 1,
     "snakemake": 1,
-    "sort": 6,
+    "sort": 7,
     "spack": 1,
     "squeue": 1,
-    "srun": 5,
+    "srun": 6,
     "ssh": 2,
     "tail": 3,
     "tar": 1,
-    "tee": 3,
+    "tee": 4,
     "time": 1,
     "tr": 1,
     "uname": 1,

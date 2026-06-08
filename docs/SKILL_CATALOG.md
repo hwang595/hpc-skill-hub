@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 31 skills.
+Current registry size: 32 skills.
 
 ## Categories
 
@@ -10,12 +10,12 @@ Current registry size: 31 skills.
 | --- | ---: |
 | `containers` | 2 |
 | `data` | 7 |
-| `debugging` | 11 |
-| `gpu` | 2 |
+| `debugging` | 12 |
+| `gpu` | 3 |
 | `interactive` | 2 |
 | `mpi` | 2 |
 | `performance` | 3 |
-| `scheduler` | 16 |
+| `scheduler` | 17 |
 | `software` | 8 |
 | `workflow` | 2 |
 
@@ -50,6 +50,7 @@ Current registry size: 31 skills.
 | [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
 | [`module-environment-debug`](../skills/module-environment-debug/README.md) | low | seed | Diagnose module, compiler, MPI, and library path conflicts. |
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
+| [`nccl-diagnostics`](../skills/nccl-diagnostics/README.md) | medium | seed | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
 | [`performance-profile-basic`](../skills/performance-profile-basic/README.md) | low | seed | Collect first-pass performance evidence for an HPC workload. |
 | [`quota-and-filesystem-triage`](../skills/quota-and-filesystem-triage/README.md) | low | seed | Diagnose quota, inode, and filesystem-space failures from user-visible evidence. |
 | [`reproducible-run-capture`](../skills/reproducible-run-capture/README.md) | low | seed | Capture command, environment, provenance, and logs for reproducible HPC runs. |
@@ -61,6 +62,7 @@ Current registry size: 31 skills.
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
+| [`nccl-diagnostics`](../skills/nccl-diagnostics/README.md) | medium | seed | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
 | [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md) | medium | seed | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
 
 ### Interactive
@@ -97,6 +99,7 @@ Current registry size: 31 skills.
 | [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
 | [`jupyter-on-slurm`](../skills/jupyter-on-slurm/README.md) | medium | seed | Launch Jupyter notebooks inside short Slurm compute allocations. |
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
+| [`nccl-diagnostics`](../skills/nccl-diagnostics/README.md) | medium | seed | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
 | [`openmp-thread-affinity`](../skills/openmp-thread-affinity/README.md) | medium | seed | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
 | [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md) | medium | seed | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
@@ -132,7 +135,7 @@ Current registry size: 31 skills.
 | --- | --- | ---: | --- | --- |
 | [`core-hpc`](../collections/core-hpc.json) | draft | 11 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
-| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 6 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, compiler/MPI compatibility, PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence. |
+| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 7 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, NCCL communication, compiler/MPI compatibility, PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 9 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 2 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines on Slurm-backed HPC clusters. |
 
@@ -145,7 +148,6 @@ Current registry size: 31 skills.
 ## Next Candidates
 
 - Open OnDemand app templates.
-- NCCL multi-node diagnostics.
 - Transfer verification across storage tiers.
 - WRF, GROMACS, LAMMPS, OpenFOAM, and Quantum ESPRESSO starter skills.
 - Bioinformatics workflows for nf-core, GATK, BLAST, and AlphaFold.

@@ -63,6 +63,7 @@ tools.
 | `mpi-hello-and-benchmark` | Compile and run MPI sanity checks and simple communication benchmarks. |
 | `gpu-sanity-check` | Verify GPU allocation, CUDA/ROCm visibility, and multi-GPU communication. |
 | `pytorch-ddp-on-slurm` | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
+| `nccl-diagnostics` | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
 | `performance-profile-basic` | Collect first-pass CPU, memory, I/O, and GPU profiling evidence. |
 
 ## Quick Start
