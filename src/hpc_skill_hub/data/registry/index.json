@@ -4,13 +4,13 @@
     "admin": 4,
     "containers": 3,
     "data": 14,
-    "debugging": 23,
+    "debugging": 24,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 15,
     "performance": 17,
-    "scheduler": 62,
+    "scheduler": 63,
     "software": 25,
     "workflow": 11
   },
@@ -110,6 +110,7 @@
         "slurm-efficiency-report",
         "license-aware-slurm-job",
         "checkpoint-restart-workflow",
+        "slurm-preemption-requeue",
         "job-failure-triage",
         "interactive-session",
         "jupyter-on-slurm",
@@ -120,7 +121,7 @@
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, license-aware jobs, restartable workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage."
     },
     {
       "audience": [
@@ -305,6 +306,7 @@
         "training-cluster-reset-checklist",
         "slurm-submit-job",
         "license-aware-slurm-job",
+        "slurm-preemption-requeue",
         "interactive-session",
         "open-ondemand-batch-connect",
         "jupyter-on-slurm",
@@ -322,7 +324,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -356,7 +358,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 59,
+    "slurm": 60,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -409,7 +411,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 80,
+  "skill_count": 81,
   "skills": [
     {
       "categories": [
@@ -4565,6 +4567,76 @@
     {
       "categories": [
         "scheduler",
+        "debugging"
+      ],
+      "description": "This skill helps users make Slurm jobs signal-aware, checkpoint-friendly, and safe to restart when preemption, node failure, or an explicit requeue starts the batch script again with the same job id.",
+      "examples": [
+        {
+          "path": "skills/slurm-preemption-requeue/examples/preemption-requeue.sbatch",
+          "title": "Signal-aware Slurm requeue wrapper"
+        },
+        {
+          "path": "skills/slurm-preemption-requeue/examples/signal-aware-worker.sh",
+          "title": "Toy signal-aware worker"
+        },
+        {
+          "path": "skills/slurm-preemption-requeue/examples/requeue-operator-checklist.md",
+          "title": "Manual requeue operator checklist"
+        }
+      ],
+      "id": "slurm-preemption-requeue",
+      "maturity": "seed",
+      "name": "Slurm Preemption And Requeue",
+      "path": "skills/slurm-preemption-requeue",
+      "readme": "skills/slurm-preemption-requeue/README.md",
+      "references": [
+        {
+          "title": "Slurm sbatch requeue option",
+          "url": "https://slurm.schedmd.com/sbatch.html#OPT_requeue"
+        },
+        {
+          "title": "Slurm sbatch signal option",
+          "url": "https://slurm.schedmd.com/sbatch.html#OPT_signal"
+        },
+        {
+          "title": "Slurm preemption documentation",
+          "url": "https://slurm.schedmd.com/preempt.html"
+        },
+        {
+          "title": "Slurm scontrol requeue documentation",
+          "url": "https://slurm.schedmd.com/scontrol.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Handle Slurm preemption signals and guarded requeue workflows.",
+      "tags": [
+        "slurm",
+        "preemption",
+        "requeue",
+        "signal",
+        "checkpoint",
+        "restart"
+      ],
+      "tools": [
+        "sbatch",
+        "bash",
+        "scontrol",
+        "squeue",
+        "mkdir",
+        "date",
+        "sed",
+        "tail",
+        "sleep"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
         "performance"
       ],
       "description": "This skill uses sacct output to help users choose safer memory, CPU, and wall-time requests for similar Slurm jobs.",
@@ -5264,7 +5336,7 @@
     "cfd": 1,
     "charm++": 1,
     "checklist": 1,
-    "checkpoint": 3,
+    "checkpoint": 4,
     "checksum": 5,
     "cleanup": 1,
     "climate": 1,
@@ -5406,7 +5478,7 @@
     "portal": 1,
     "ports": 1,
     "posit": 1,
-    "preemption": 1,
+    "preemption": 2,
     "preflight": 1,
     "priority": 1,
     "profile": 1,
@@ -5434,9 +5506,10 @@
     "remote-tunnels": 1,
     "reporting": 1,
     "reproducibility": 10,
+    "requeue": 1,
     "rerun": 1,
     "resources": 1,
-    "restart": 6,
+    "restart": 7,
     "resume": 1,
     "rlibs": 1,
     "rocm": 2,
@@ -5455,10 +5528,11 @@
     "sge": 1,
     "sha256": 1,
     "sif": 1,
+    "signal": 1,
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 57,
+    "slurm": 58,
     "slurmprovider": 1,
     "snakemake": 1,
     "software": 2,
@@ -5518,7 +5592,7 @@
     "awk": 3,
     "aws": 1,
     "basename": 1,
-    "bash": 7,
+    "bash": 8,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -5538,7 +5612,7 @@
     "cwltool": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 28,
+    "date": 29,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -5575,7 +5649,7 @@
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 31,
+    "mkdir": 32,
     "module": 25,
     "mpi4py": 1,
     "mpicc": 5,
@@ -5612,26 +5686,26 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 46,
+    "sbatch": 47,
     "scancel": 1,
-    "scontrol": 10,
-    "sed": 3,
+    "scontrol": 11,
+    "sed": 4,
     "seff": 1,
     "sha256sum": 2,
     "shasum": 2,
     "sinfo": 3,
     "singularity": 1,
-    "sleep": 1,
+    "sleep": 2,
     "snakemake": 1,
     "sort": 8,
     "spack": 1,
     "sprio": 1,
-    "squeue": 8,
+    "squeue": 9,
     "sreport": 1,
     "srun": 25,
     "ssh": 5,
     "streamlit": 1,
-    "tail": 4,
+    "tail": 5,
     "tar": 1,
     "tee": 22,
     "tensorboard": 1,

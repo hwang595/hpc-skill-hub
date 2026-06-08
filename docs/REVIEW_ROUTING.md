@@ -32,7 +32,7 @@ recruitment and ownership map for these areas:
 
 | Domain | Examples |
 | --- | --- |
-| Scheduler and allocation | Slurm submission, arrays, accounting, time limits, partitions, reservations. |
+| Scheduler and allocation | Slurm submission, arrays, accounting, time limits, partitions, reservations, preemption, and requeue behavior. |
 | Storage and data movement | Quotas, scratch, archival staging, rsync, Globus, object storage, checksum workflows. |
 | Software environments | Modules, compiler/MPI stacks, licensed software jobs, Conda, Python virtualenvs, Spack, EasyBuild. |
 | Containers | Apptainer/Singularity build and runtime patterns, image portability, bind paths. |

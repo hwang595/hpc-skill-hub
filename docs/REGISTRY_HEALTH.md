@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 80
+- Skills: 81
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 63 |
+| `medium` | 64 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 80 |
+| `seed` | 81 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 80 |
+| `draft` | 81 |
 
 ## Collection Coverage
 
@@ -35,14 +35,14 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `ai-hpc` | 18 |
 | `bioinformatics-workflows` | 7 |
 | `containers` | 7 |
-| `core-hpc` | 17 |
+| `core-hpc` | 18 |
 | `data-movement` | 9 |
 | `facility-ops` | 4 |
 | `gpu-mpi-performance` | 22 |
 | `scheduler-basics` | 7 |
 | `simulation-workflows` | 16 |
 | `software-stacks` | 27 |
-| `training-onboarding` | 18 |
+| `training-onboarding` | 19 |
 | `workflow-engines` | 8 |
 
 ## Uncollected Skills
@@ -122,6 +122,7 @@ All skills are included in at least one collection.
 | `slurm-job-dependency-chain` | medium |
 | `slurm-monitor-job` | low |
 | `slurm-pending-reason-triage` | low |
+| `slurm-preemption-requeue` | medium |
 | `slurm-resource-estimator` | low |
 | `slurm-submit-job` | medium |
 | `snakemake-on-slurm` | medium |

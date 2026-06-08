@@ -6,7 +6,7 @@ to publish HPC Skill Hub as an open-source seed registry.
 ## Current Local Baseline
 
 - Repository name: `hpc-skill-hub`.
-- Seed skills: 80.
+- Seed skills: 81.
 - Curated collections: 12.
 - Site adapters: 2, including one example adapter and one public-doc-backed
   NERSC Perlmutter draft adapter.

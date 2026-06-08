@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 80.
+- Skills: 81.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -26,7 +26,7 @@ request missing workflows, or contribute public site adapters.
 - Core HPC and schedulers: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
   submission, Slurm and Grid Engine arrays, dependency chains, pending reason
   triage, monitoring, resource estimation, efficiency review,
-  license-aware jobs, checkpoint/restart, failure triage, interactive sessions, Open OnDemand Batch
+  license-aware jobs, checkpoint/restart, preemption/requeue handling, failure triage, interactive sessions, Open OnDemand Batch
   Connect templates, Jupyter, RStudio, VS Code tunnels, OpenMP placement, quota
   triage, and scratch management.
 - Software stacks: module debugging, module tree health, compiler/MPI
@@ -62,7 +62,7 @@ request missing workflows, or contribute public site adapters.
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke
   tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
   Streamlit demos, container runtime execution, data staging, checkpoint/restart
-  planning, reproducible run capture, and Slurm efficiency review.
+  planning, preemption/requeue handling, reproducible run capture, and Slurm efficiency review.
 - Bioinformatics: nf-core, GATK, and local BLAST+ workflow patterns with data
   staging and checksum practices.
 - Simulation: LAMMPS, GROMACS, NAMD, Quantum ESPRESSO, CP2K, OpenFOAM, WRF, MPI

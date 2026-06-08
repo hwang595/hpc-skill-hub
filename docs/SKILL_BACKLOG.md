@@ -20,6 +20,7 @@ new collections.
 | `slurm-efficiency-report` | scheduler | low | Seed skill added to `core-hpc` and `gpu-mpi-performance`. |
 | `license-aware-slurm-job` | scheduler | medium | Seed skill added to `core-hpc`, `software-stacks`, and `training-onboarding`. |
 | `checkpoint-restart-workflow` | scheduler | medium | Seed skill added to `core-hpc`. |
+| `slurm-preemption-requeue` | scheduler | medium | Seed skill added to `core-hpc` and `training-onboarding`. |
 | `openmp-thread-affinity` | performance | medium | Seed skill added to `core-hpc` and `gpu-mpi-performance`. |
 | `jupyter-on-slurm` | interactive | medium | Seed skill added to `core-hpc`. |
 | `rstudio-on-slurm` | interactive | medium | Seed skill added to `core-hpc`, `software-stacks`, and `training-onboarding`. |

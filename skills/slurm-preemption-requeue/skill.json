@@ -1,0 +1,147 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-preemption-requeue",
+  "name": "Slurm Preemption And Requeue",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Handle Slurm preemption signals and guarded requeue workflows.",
+  "description": "This skill helps users make Slurm jobs signal-aware, checkpoint-friendly, and safe to restart when preemption, node failure, or an explicit requeue starts the batch script again with the same job id.",
+  "categories": ["scheduler", "debugging"],
+  "tags": ["slurm", "preemption", "requeue", "signal", "checkpoint", "restart"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": false,
+      "notes": "Only needed for operator-reviewed manual requeue actions."
+    },
+    {
+      "name": "squeue",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "sed",
+      "required": true
+    },
+    {
+      "name": "tail",
+      "required": true
+    },
+    {
+      "name": "sleep",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "checkpoint_dir",
+      "type": "path",
+      "required": true,
+      "description": "Durable user-owned directory where progress state is written before termination or requeue."
+    },
+    {
+      "name": "signal_policy",
+      "type": "object",
+      "required": true,
+      "description": "Slurm signal, warning time, and site preemption policy to review before enabling the wrapper."
+    },
+    {
+      "name": "restartable_command",
+      "type": "string",
+      "required": true,
+      "description": "Application or workflow command that can resume from checkpoint state without corrupting prior output."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "checkpoint_state",
+      "description": "Step marker or application checkpoint files that make a restarted batch script idempotent."
+    },
+    {
+      "name": "signal_log",
+      "description": "Evidence showing whether the job saw a warning signal, stop request, or restart path."
+    },
+    {
+      "name": "requeue_review",
+      "description": "Operator checklist for deciding whether an explicit manual requeue is appropriate."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/preemption-requeue.sbatch",
+    "examples/signal-aware-worker.sh",
+    "examples/requeue-operator-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Signal-aware Slurm requeue wrapper",
+      "path": "examples/preemption-requeue.sbatch"
+    },
+    {
+      "title": "Toy signal-aware worker",
+      "path": "examples/signal-aware-worker.sh"
+    },
+    {
+      "title": "Manual requeue operator checklist",
+      "path": "examples/requeue-operator-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-preemption-requeue",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/slurm-preemption-requeue/examples/preemption-requeue.sbatch && bash -n skills/slurm-preemption-requeue/examples/signal-aware-worker.sh",
+      "description": "Check shell syntax without submitting jobs."
+    },
+    {
+      "type": "manual",
+      "description": "Submit on a short test partition after replacing placeholders and confirm a repeated run resumes from existing state."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sbatch requeue option",
+      "url": "https://slurm.schedmd.com/sbatch.html#OPT_requeue"
+    },
+    {
+      "title": "Slurm sbatch signal option",
+      "url": "https://slurm.schedmd.com/sbatch.html#OPT_signal"
+    },
+    {
+      "title": "Slurm preemption documentation",
+      "url": "https://slurm.schedmd.com/preempt.html"
+    },
+    {
+      "title": "Slurm scontrol requeue documentation",
+      "url": "https://slurm.schedmd.com/scontrol.html"
+    }
+  ]
+}

@@ -4,13 +4,13 @@
     "admin": 4,
     "containers": 3,
     "data": 14,
-    "debugging": 23,
+    "debugging": 24,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 15,
     "performance": 17,
-    "scheduler": 62,
+    "scheduler": 63,
     "software": 25,
     "workflow": 11
   },
@@ -68,7 +68,7 @@
     },
     {
       "id": "core-hpc",
-      "skill_count": 17,
+      "skill_count": 18,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
@@ -79,6 +79,7 @@
         "slurm-efficiency-report",
         "license-aware-slurm-job",
         "checkpoint-restart-workflow",
+        "slurm-preemption-requeue",
         "job-failure-triage",
         "interactive-session",
         "jupyter-on-slurm",
@@ -212,11 +213,12 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 18,
+      "skill_count": 19,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
         "license-aware-slurm-job",
+        "slurm-preemption-requeue",
         "interactive-session",
         "open-ondemand-batch-connect",
         "jupyter-on-slurm",
@@ -251,7 +253,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 80
+    "seed": 81
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -323,6 +325,7 @@
     "slurm-job-dependency-chain": "medium",
     "slurm-monitor-job": "low",
     "slurm-pending-reason-triage": "low",
+    "slurm-preemption-requeue": "medium",
     "slurm-resource-estimator": "low",
     "slurm-submit-job": "medium",
     "snakemake-on-slurm": "medium",
@@ -337,13 +340,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 63
+    "medium": 64
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 80,
+  "skill_count": 81,
   "status_counts": {
-    "draft": 80
+    "draft": 81
   },
   "uncollected_skill_ids": []
 }

@@ -46,6 +46,7 @@ tools.
 | `slurm-efficiency-report` | Summarize completed Slurm job efficiency from accounting data. |
 | `license-aware-slurm-job` | Plan Slurm jobs that request and verify tracked software license resources. |
 | `checkpoint-restart-workflow` | Structure long jobs so they can resume after limits or preemption. |
+| `slurm-preemption-requeue` | Handle Slurm preemption signals and guarded requeue workflows. |
 | `job-failure-triage` | Diagnose common job failures such as OOM, time limits, and missing modules. |
 | `interactive-session` | Start interactive compute sessions for shells, notebooks, and IDE tunnels. |
 | `open-ondemand-batch-connect` | Prepare reviewable Open OnDemand Batch Connect app templates. |
