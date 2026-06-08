@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - "README.md"
+      - "collections/**"
       - "docs/**"
       - "registry/index.json"
       - "skills/**"

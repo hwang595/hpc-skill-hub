@@ -1,0 +1,19 @@
+{
+  "$schema": "../schemas/collection.schema.json",
+  "id": "software-stacks",
+  "name": "Software Stacks",
+  "status": "draft",
+  "summary": "Skills for debugging modules, running containers, and creating reproducible HPC software environments.",
+  "audience": ["research software engineers", "HPC support teams", "tool maintainers"],
+  "skill_ids": [
+    "module-environment-debug",
+    "apptainer-run-container",
+    "spack-environment-create",
+    "easybuild-install-software"
+  ],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ]
+}

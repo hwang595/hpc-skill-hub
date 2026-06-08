@@ -14,6 +14,7 @@ from typing import Any, Dict, Iterable, List
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_DIR = ROOT / "skills"
 SITE_ADAPTERS_DIR = ROOT / "site-adapters"
+COLLECTIONS_DIR = ROOT / "collections"
 REGISTRY_DIR = ROOT / "registry"
 INDEX_JSON = REGISTRY_DIR / "index.json"
 CATALOG_MD = ROOT / "docs" / "SKILL_CATALOG.md"
@@ -38,6 +39,13 @@ def iter_site_adapters() -> Iterable[Dict[str, Any]]:
         adapter_dir = adapter_path.parent
         adapter["_path"] = str(adapter_dir.relative_to(ROOT))
         yield adapter
+
+
+def iter_collections() -> Iterable[Dict[str, Any]]:
+    for collection_path in sorted(COLLECTIONS_DIR.glob("*.json")):
+        collection = load_manifest(collection_path)
+        collection["_path"] = str(collection_path.relative_to(ROOT))
+        yield collection
 
 
 def compact_skill(manifest: Dict[str, Any]) -> Dict[str, Any]:
@@ -84,7 +92,23 @@ def compact_site_adapter(adapter: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def build_index(skills: List[Dict[str, Any]], site_adapters: List[Dict[str, Any]]) -> Dict[str, Any]:
+def compact_collection(collection: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "id": collection["id"],
+        "name": collection["name"],
+        "summary": collection["summary"],
+        "status": collection["status"],
+        "audience": collection["audience"],
+        "skill_ids": collection["skill_ids"],
+        "path": collection["_path"],
+    }
+
+
+def build_index(
+    skills: List[Dict[str, Any]],
+    site_adapters: List[Dict[str, Any]],
+    collections: List[Dict[str, Any]],
+) -> Dict[str, Any]:
     category_counts: Dict[str, int] = defaultdict(int)
     tag_counts: Dict[str, int] = defaultdict(int)
     scheduler_counts: Dict[str, int] = defaultdict(int)
@@ -105,12 +129,14 @@ def build_index(skills: List[Dict[str, Any]], site_adapters: List[Dict[str, Any]
         "generated_by": "tools/build_index.py",
         "skill_count": len(skills),
         "site_adapter_count": len(site_adapters),
+        "collection_count": len(collections),
         "categories": dict(sorted(category_counts.items())),
         "tags": dict(sorted(tag_counts.items())),
         "schedulers": dict(sorted(scheduler_counts.items())),
         "tools": dict(sorted(tool_counts.items())),
         "skills": skills,
         "site_adapters": site_adapters,
+        "collections": collections,
     }
 
 
@@ -167,6 +193,21 @@ def build_catalog(index: Dict[str, Any]) -> str:
 
     lines.extend(
         [
+            "## Collections",
+            "",
+            "| Collection | Status | Skills | Audience | Description |",
+            "| --- | --- | ---: | --- | --- |",
+        ]
+    )
+    for collection in index["collections"]:
+        lines.append(
+            f"| [`{collection['id']}`](../{collection['path']}) | "
+            f"{collection['status']} | {len(collection['skill_ids'])} | "
+            f"{', '.join(collection['audience'])} | {collection['summary']} |"
+        )
+    lines.extend(
+        [
+            "",
             "## Site Adapters",
             "",
             "| Adapter | Status | Scheduler | Description |",
@@ -227,7 +268,8 @@ def main() -> int:
 
     skills = [compact_skill(manifest) for manifest in iter_manifests()]
     site_adapters = [compact_site_adapter(adapter) for adapter in iter_site_adapters()]
-    index = build_index(skills, site_adapters)
+    collections = [compact_collection(collection) for collection in iter_collections()]
+    index = build_index(skills, site_adapters, collections)
 
     if args.check:
         errors = check_outputs(index)
@@ -236,8 +278,8 @@ def main() -> int:
                 print(f"ERROR: {error}", file=sys.stderr)
             return 1
         print(
-            f"Registry index is current for {len(skills)} skill(s) "
-            f"and {len(site_adapters)} site adapter(s)."
+            f"Registry index is current for {len(skills)} skill(s), "
+            f"{len(site_adapters)} site adapter(s), and {len(collections)} collection(s)."
         )
         return 0
 

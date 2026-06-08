@@ -99,6 +99,16 @@ Current registry size: 15 skills.
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
 | [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
 
+## Collections
+
+| Collection | Status | Skills | Audience | Description |
+| --- | --- | ---: | --- | --- |
+| [`core-hpc`](../collections/core-hpc.json) | draft | 5 | new HPC users, research software engineers, support teams | Starter skills for submitting, monitoring, estimating, debugging, and using interactive Slurm jobs. |
+| [`data-movement`](../collections/data-movement.json) | draft | 1 | data stewards, research groups, facility support teams | Skills for staging, transferring, and tracking large research datasets. |
+| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 3 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, MPI launches, and first-pass performance evidence. |
+| [`software-stacks`](../collections/software-stacks.json) | draft | 4 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, running containers, and creating reproducible HPC software environments. |
+| [`workflow-engines`](../collections/workflow-engines.json) | draft | 2 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines on Slurm-backed HPC clusters. |
+
 ## Site Adapters
 
 | Adapter | Status | Scheduler | Description |

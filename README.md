@@ -21,6 +21,7 @@ tools.
 ```text
 .
 ├── skills/                 # Skill packages, one directory per skill
+├── collections/            # Curated groups of skills for adoption paths
 ├── site-adapters/          # Optional local cluster policy adapters
 ├── schemas/                # JSON Schemas for skill metadata
 ├── tools/                  # Local validation and maintenance scripts
@@ -64,6 +65,8 @@ Explore the registry:
 python3 tools/hpc_skill.py list
 python3 tools/hpc_skill.py search slurm
 python3 tools/hpc_skill.py show slurm-submit-job --examples
+python3 tools/hpc_skill.py collections
+python3 tools/hpc_skill.py collection core-hpc
 ```
 
 Scaffold new contributions:
@@ -113,6 +116,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 ## Documentation
 
 - [Skill catalog](docs/SKILL_CATALOG.md)
+- [Collections](docs/COLLECTIONS.md)
 - [Machine-readable registry index](registry/index.json)
 - [CLI](docs/CLI.md)
 - [Skill specification](docs/SKILL_SPEC.md)

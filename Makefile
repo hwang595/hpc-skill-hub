@@ -15,6 +15,8 @@ cli:
 	$(PYTHON) tools/hpc_skill.py list
 	$(PYTHON) tools/hpc_skill.py search slurm
 	$(PYTHON) tools/hpc_skill.py show slurm-submit-job --examples
+	$(PYTHON) tools/hpc_skill.py collections
+	$(PYTHON) tools/hpc_skill.py collection core-hpc
 	$(PYTHON) tools/hpc_skill.py adapters
 
 test:

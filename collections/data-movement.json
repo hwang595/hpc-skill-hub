@@ -1,0 +1,16 @@
+{
+  "$schema": "../schemas/collection.schema.json",
+  "id": "data-movement",
+  "name": "Data Movement",
+  "status": "draft",
+  "summary": "Skills for staging, transferring, and tracking large research datasets.",
+  "audience": ["data stewards", "research groups", "facility support teams"],
+  "skill_ids": [
+    "globus-transfer-dataset"
+  ],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ]
+}

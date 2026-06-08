@@ -22,6 +22,7 @@ The project is not only a documentation site. It combines:
 - Risk classification.
 - CI validation.
 - Site adapters for local cluster policy without core registry forks.
+- Curated collections that help users enter the registry by workflow or role.
 - A path to CLI and agent integrations.
 
 ## Proposed Community Collections

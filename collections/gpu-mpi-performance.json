@@ -1,0 +1,18 @@
+{
+  "$schema": "../schemas/collection.schema.json",
+  "id": "gpu-mpi-performance",
+  "name": "GPU, MPI, And Performance",
+  "status": "draft",
+  "summary": "Skills for validating GPU allocations, MPI launches, and first-pass performance evidence.",
+  "audience": ["AI/HPC users", "simulation teams", "performance engineers"],
+  "skill_ids": [
+    "mpi-hello-and-benchmark",
+    "gpu-sanity-check",
+    "performance-profile-basic"
+  ],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ]
+}

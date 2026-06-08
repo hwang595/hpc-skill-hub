@@ -11,6 +11,94 @@
     "software": 3,
     "workflow": 2
   },
+  "collection_count": 5,
+  "collections": [
+    {
+      "audience": [
+        "new HPC users",
+        "research software engineers",
+        "support teams"
+      ],
+      "id": "core-hpc",
+      "name": "Core HPC",
+      "path": "collections/core-hpc.json",
+      "skill_ids": [
+        "slurm-submit-job",
+        "slurm-monitor-job",
+        "slurm-resource-estimator",
+        "job-failure-triage",
+        "interactive-session"
+      ],
+      "status": "draft",
+      "summary": "Starter skills for submitting, monitoring, estimating, debugging, and using interactive Slurm jobs."
+    },
+    {
+      "audience": [
+        "data stewards",
+        "research groups",
+        "facility support teams"
+      ],
+      "id": "data-movement",
+      "name": "Data Movement",
+      "path": "collections/data-movement.json",
+      "skill_ids": [
+        "globus-transfer-dataset"
+      ],
+      "status": "draft",
+      "summary": "Skills for staging, transferring, and tracking large research datasets."
+    },
+    {
+      "audience": [
+        "AI/HPC users",
+        "simulation teams",
+        "performance engineers"
+      ],
+      "id": "gpu-mpi-performance",
+      "name": "GPU, MPI, And Performance",
+      "path": "collections/gpu-mpi-performance.json",
+      "skill_ids": [
+        "mpi-hello-and-benchmark",
+        "gpu-sanity-check",
+        "performance-profile-basic"
+      ],
+      "status": "draft",
+      "summary": "Skills for validating GPU allocations, MPI launches, and first-pass performance evidence."
+    },
+    {
+      "audience": [
+        "research software engineers",
+        "HPC support teams",
+        "tool maintainers"
+      ],
+      "id": "software-stacks",
+      "name": "Software Stacks",
+      "path": "collections/software-stacks.json",
+      "skill_ids": [
+        "module-environment-debug",
+        "apptainer-run-container",
+        "spack-environment-create",
+        "easybuild-install-software"
+      ],
+      "status": "draft",
+      "summary": "Skills for debugging modules, running containers, and creating reproducible HPC software environments."
+    },
+    {
+      "audience": [
+        "pipeline authors",
+        "bioinformatics teams",
+        "workflow platform maintainers"
+      ],
+      "id": "workflow-engines",
+      "name": "Workflow Engines",
+      "path": "collections/workflow-engines.json",
+      "skill_ids": [
+        "nextflow-on-slurm",
+        "snakemake-on-slurm"
+      ],
+      "status": "draft",
+      "summary": "Skills for launching portable workflow engines on Slurm-backed HPC clusters."
+    }
+  ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
     "slurm": 10

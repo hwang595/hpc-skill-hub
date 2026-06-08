@@ -26,6 +26,8 @@ jobs:
           python3 tools/hpc_skill.py list
           python3 tools/hpc_skill.py search slurm
           python3 tools/hpc_skill.py show slurm-submit-job --examples
+          python3 tools/hpc_skill.py collections
+          python3 tools/hpc_skill.py collection core-hpc
           python3 tools/hpc_skill.py adapters
           python3 tools/hpc_skill.py scaffold skill ci-test-skill --name "CI Test Skill" --category education --tool bash --root /tmp/hpc-skill-hub-scaffold --force
           python3 tools/hpc_skill.py scaffold site-adapter ci-test-cluster --name "CI Test Cluster" --root /tmp/hpc-skill-hub-scaffold --force

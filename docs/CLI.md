@@ -9,6 +9,8 @@ Run it from the repository root:
 python3 tools/hpc_skill.py list
 python3 tools/hpc_skill.py search slurm
 python3 tools/hpc_skill.py show slurm-submit-job --examples
+python3 tools/hpc_skill.py collections
+python3 tools/hpc_skill.py collection core-hpc
 python3 tools/hpc_skill.py adapters
 python3 tools/hpc_skill.py adapter example-campus-cluster
 ```
@@ -57,6 +59,7 @@ Every command supports JSON output for automation:
 
 ```bash
 python3 tools/hpc_skill.py show gpu-sanity-check --json
+python3 tools/hpc_skill.py collection core-hpc --json
 python3 tools/hpc_skill.py adapters --json
 ```
 

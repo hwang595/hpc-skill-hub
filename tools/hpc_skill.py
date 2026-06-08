@@ -195,6 +195,58 @@ def cmd_adapter(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_collections(args: argparse.Namespace) -> int:
+    index = load_index()
+    collections = index.get("collections", [])
+    if args.json:
+        emit_json(collections)
+        return 0
+    if not collections:
+        print("No collections found.")
+        return 1
+    rows = [
+        [
+            collection["id"],
+            collection["status"],
+            str(len(collection["skill_ids"])),
+            ", ".join(collection["audience"]),
+            collection["summary"],
+        ]
+        for collection in collections
+    ]
+    print(table(rows, ["id", "status", "skills", "audience", "summary"]))
+    return 0
+
+
+def cmd_collection(args: argparse.Namespace) -> int:
+    index = load_index()
+    collection = find_by_id(index.get("collections", []), args.collection_id)
+    if not collection:
+        print(f"Unknown collection: {args.collection_id}", file=sys.stderr)
+        return 1
+    if args.json:
+        emit_json(collection)
+        return 0
+
+    skill_by_id = {skill["id"]: skill for skill in index["skills"]}
+    print(f"{collection['name']} ({collection['id']})")
+    print("=" * (len(collection["name"]) + len(collection["id"]) + 3))
+    print(wrap(collection["summary"]))
+    print()
+    print(f"Status: {collection['status']}")
+    print(f"Audience: {', '.join(collection['audience'])}")
+    print(f"Manifest: {collection['path']}")
+    print()
+    print("Skills:")
+    for skill_id in collection["skill_ids"]:
+        skill = skill_by_id.get(skill_id)
+        if skill:
+            print(f"- {skill_id}: {skill['summary']}")
+        else:
+            print(f"- {skill_id}: missing from registry")
+    return 0
+
+
 def ensure_id(value: str) -> None:
     if not ID_RE.match(value):
         raise SystemExit(f"Invalid id '{value}'; use lowercase kebab-case")
@@ -419,6 +471,15 @@ def build_parser() -> argparse.ArgumentParser:
     adapter_parser.add_argument("adapter_id", help="Site adapter id")
     adapter_parser.add_argument("--json", action="store_true", help="Emit JSON")
     adapter_parser.set_defaults(func=cmd_adapter)
+
+    collections_parser = subparsers.add_parser("collections", help="List skill collections")
+    collections_parser.add_argument("--json", action="store_true", help="Emit JSON")
+    collections_parser.set_defaults(func=cmd_collections)
+
+    collection_parser = subparsers.add_parser("collection", help="Show one skill collection")
+    collection_parser.add_argument("collection_id", help="Collection id")
+    collection_parser.add_argument("--json", action="store_true", help="Emit JSON")
+    collection_parser.set_defaults(func=cmd_collection)
 
     scaffold_parser = subparsers.add_parser("scaffold", help="Create new registry entries")
     scaffold_subparsers = scaffold_parser.add_subparsers(dest="scaffold_type", required=True)

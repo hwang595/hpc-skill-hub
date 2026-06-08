@@ -29,6 +29,7 @@ class RegistryTests(unittest.TestCase):
         self.assertIn("Validated", result.stdout)
         self.assertIn("skill(s)", result.stdout)
         self.assertIn("site adapter(s)", result.stdout)
+        self.assertIn("collection(s)", result.stdout)
 
     def test_generated_index_is_current(self):
         result = run_cmd("python3", "tools/build_index.py", "--check")
@@ -48,11 +49,24 @@ class RegistryTests(unittest.TestCase):
         self.assertEqual(adapter_ids, index_ids)
         self.assertEqual(index["site_adapter_count"], len(adapter_ids))
 
+    def test_index_matches_collections(self):
+        index = self.load_index()
+        collection_ids = sorted(path.stem for path in (ROOT / "collections").glob("*.json"))
+        index_ids = sorted(collection["id"] for collection in index["collections"])
+        self.assertEqual(collection_ids, index_ids)
+        self.assertEqual(index["collection_count"], len(collection_ids))
+
     def test_cli_show_json(self):
         result = run_cmd("python3", "tools/hpc_skill.py", "show", "slurm-submit-job", "--json")
         payload = json.loads(result.stdout)
         self.assertEqual(payload["id"], "slurm-submit-job")
         self.assertIn("scheduler", payload["categories"])
+
+    def test_cli_collection_json(self):
+        result = run_cmd("python3", "tools/hpc_skill.py", "collection", "core-hpc", "--json")
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["id"], "core-hpc")
+        self.assertIn("slurm-submit-job", payload["skill_ids"])
 
     def test_cli_adapter_json(self):
         result = run_cmd(
@@ -103,7 +117,9 @@ class RegistryTests(unittest.TestCase):
             html = output.read_text(encoding="utf-8")
             self.assertIn("HPC Skill Hub Registry", html)
             self.assertIn("skills/slurm-submit-job/README.md", html)
+            self.assertIn("collections/core-hpc.json", html)
             self.assertTrue((Path(tmpdir) / "README.md").exists())
+            self.assertTrue((Path(tmpdir) / "collections/core-hpc.json").exists())
             self.assertTrue((Path(tmpdir) / "skills/slurm-submit-job/README.md").exists())
             self.assertTrue((Path(tmpdir) / "registry/index.json").exists())
 

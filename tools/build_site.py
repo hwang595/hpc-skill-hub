@@ -14,7 +14,15 @@ from typing import Any, Dict, List
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_PATH = ROOT / "registry" / "index.json"
 DEFAULT_OUTPUT = ROOT / "site" / "index.html"
-SUPPORT_PATHS = ["README.md", "LICENSE", "docs", "skills", "site-adapters", "registry"]
+SUPPORT_PATHS = [
+    "README.md",
+    "LICENSE",
+    "docs",
+    "collections",
+    "skills",
+    "site-adapters",
+    "registry",
+]
 
 
 def load_index() -> Dict[str, Any]:
@@ -68,6 +76,23 @@ def adapter_rows(adapters: List[Dict[str, Any]]) -> str:
     return "\n".join(rows)
 
 
+def collection_rows(collections: List[Dict[str, Any]]) -> str:
+    rows = []
+    for collection in collections:
+        rows.append(
+            f"""
+            <tr>
+              <td><a href="{esc(collection['path'])}">{esc(collection['id'])}</a></td>
+              <td>{esc(collection['summary'])}</td>
+              <td>{badge(collection['status'])}</td>
+              <td>{len(collection['skill_ids'])}</td>
+              <td>{', '.join(esc(item) for item in collection['audience'])}</td>
+            </tr>
+            """
+        )
+    return "\n".join(rows)
+
+
 def stats(index: Dict[str, Any]) -> str:
     category_bits = " ".join(
         f"{badge(category)} <span class=\"count\">{count}</span>"
@@ -77,6 +102,7 @@ def stats(index: Dict[str, Any]) -> str:
     <section class="stats" aria-label="Registry statistics">
       <div><strong>{index['skill_count']}</strong><span>Skills</span></div>
       <div><strong>{index['site_adapter_count']}</strong><span>Site adapters</span></div>
+      <div><strong>{index['collection_count']}</strong><span>Collections</span></div>
       <div><strong>{len(index['tools'])}</strong><span>Tools referenced</span></div>
       <div class="categories">{category_bits}</div>
     </section>
@@ -162,7 +188,7 @@ def render(index: Dict[str, Any]) -> str:
     main {{ padding: 24px 0 42px; }}
     .stats {{
       display: grid;
-      grid-template-columns: repeat(3, minmax(120px, 1fr)) 2fr;
+      grid-template-columns: repeat(4, minmax(120px, 1fr)) 2fr;
       gap: 12px;
       margin-bottom: 22px;
     }}
@@ -301,6 +327,27 @@ def render(index: Dict[str, Any]) -> str:
           </thead>
           <tbody id="skill-table">
             {skill_rows(index['skills'])}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="section" aria-labelledby="collections-heading">
+      <div class="toolbar">
+        <h2 id="collections-heading">Collections</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Collection</th>
+              <th>Summary</th>
+              <th>Status</th>
+              <th>Skills</th>
+              <th>Audience</th>
+            </tr>
+          </thead>
+          <tbody>
+            {collection_rows(index['collections'])}
           </tbody>
         </table>
       </div>

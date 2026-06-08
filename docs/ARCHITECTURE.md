@@ -37,6 +37,13 @@ storage conventions, and policy notes without editing or forking generic skills.
 Both generated artifacts are checked in CI so documentation and machine-readable
 metadata stay aligned with the skill manifests.
 
+## Collections
+
+Collections under `collections/*.json` group skills into adoption paths such as
+core HPC, software stacks, workflow engines, data movement, and GPU/MPI
+performance. Collections reference skill ids instead of duplicating skill
+metadata.
+
 ## CLI
 
 `tools/hpc_skill.py` reads `registry/index.json` and provides lightweight

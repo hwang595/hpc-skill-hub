@@ -14,6 +14,7 @@ from typing import Any, Dict, Iterable, List
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_DIR = ROOT / "skills"
 SITE_ADAPTERS_DIR = ROOT / "site-adapters"
+COLLECTIONS_DIR = ROOT / "collections"
 
 SKILL_REQUIRED_FIELDS = {
     "id",
@@ -82,6 +83,18 @@ ADAPTER_ALLOWED_INSTITUTION_TYPES = {
     "cloud",
     "other",
 }
+COLLECTION_REQUIRED_FIELDS = {
+    "id",
+    "name",
+    "status",
+    "summary",
+    "audience",
+    "skill_ids",
+    "maintainers",
+}
+COLLECTION_OPTIONAL_FIELDS = {"$schema"}
+COLLECTION_ALLOWED_FIELDS = COLLECTION_REQUIRED_FIELDS | COLLECTION_OPTIONAL_FIELDS
+COLLECTION_ALLOWED_STATUS = {"draft", "reviewed", "deprecated"}
 ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+$")
 TAG_RE = re.compile(r"^[a-z0-9][a-z0-9.+_-]*$")
@@ -347,6 +360,62 @@ def validate_adapter(adapter_dir: Path, skill_ids: set[str]) -> List[str]:
     return errors
 
 
+def validate_collection(collection_path: Path, skill_ids: set[str]) -> List[str]:
+    errors: List[str] = []
+    context = str(collection_path.relative_to(ROOT))
+    collection = load_json(collection_path, errors)
+    if not collection:
+        return errors
+
+    missing = sorted(COLLECTION_REQUIRED_FIELDS - set(collection))
+    for field in missing:
+        errors.append(f"{context}: missing required field '{field}'")
+
+    unknown = sorted(set(collection) - COLLECTION_ALLOWED_FIELDS)
+    for field in unknown:
+        errors.append(f"{context}: unknown field '{field}'")
+
+    for field in ["id", "name", "status", "summary"]:
+        require_non_empty_string(collection, field, errors, context)
+
+    collection_id = collection.get("id")
+    if isinstance(collection_id, str):
+        if not ID_RE.match(collection_id):
+            errors.append(f"{context}: id must be lowercase kebab-case")
+        if collection_id != collection_path.stem:
+            errors.append(
+                f"{context}: id '{collection_id}' must match file stem '{collection_path.stem}'"
+            )
+
+    status = collection.get("status")
+    if isinstance(status, str) and status not in COLLECTION_ALLOWED_STATUS:
+        errors.append(f"{context}: status must be one of {sorted(COLLECTION_ALLOWED_STATUS)}")
+
+    audience = require_list(collection, "audience", errors, context)
+    for index, item in enumerate(audience):
+        if not isinstance(item, str) or not item.strip():
+            errors.append(f"{context}: audience[{index}] must be a non-empty string")
+
+    skill_refs = require_list(collection, "skill_ids", errors, context)
+    seen_skill_refs = set()
+    for index, skill_id in enumerate(skill_refs):
+        if not isinstance(skill_id, str) or not ID_RE.match(skill_id):
+            errors.append(f"{context}: skill_ids[{index}] must be a skill id")
+            continue
+        if skill_id in seen_skill_refs:
+            errors.append(f"{context}: skill_ids[{index}] duplicates '{skill_id}'")
+        seen_skill_refs.add(skill_id)
+        if skill_id not in skill_ids:
+            errors.append(f"{context}: skill_ids[{index}] references unknown skill '{skill_id}'")
+
+    maintainers = require_list(collection, "maintainers", errors, context)
+    for index, maintainer in enumerate(maintainers):
+        if not isinstance(maintainer, dict) or not maintainer.get("name"):
+            errors.append(f"{context}: maintainers[{index}] must include a name")
+
+    return errors
+
+
 def discover_skill_dirs(selected: str | None) -> Iterable[Path]:
     if selected:
         yield SKILLS_DIR / selected
@@ -363,6 +432,14 @@ def discover_adapter_dirs() -> Iterable[Path]:
         return
     for path in sorted(SITE_ADAPTERS_DIR.iterdir()):
         if path.is_dir() and not path.name.startswith("."):
+            yield path
+
+
+def discover_collection_paths() -> Iterable[Path]:
+    if not COLLECTIONS_DIR.exists():
+        return
+    for path in sorted(COLLECTIONS_DIR.glob("*.json")):
+        if path.is_file() and not path.name.startswith("."):
             yield path
 
 
@@ -387,14 +464,21 @@ def main() -> int:
     for adapter_dir in adapter_dirs:
         errors.extend(validate_adapter(adapter_dir, skill_ids))
 
+    collection_paths = list(discover_collection_paths()) if not args.skill else []
+    for collection_path in collection_paths:
+        errors.extend(validate_collection(collection_path, skill_ids))
+
     if errors:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
         print(f"Validation failed with {len(errors)} error(s).", file=sys.stderr)
         return 1
 
-    if adapter_dirs:
-        print(f"Validated {len(skill_dirs)} skill(s) and {len(adapter_dirs)} site adapter(s).")
+    if adapter_dirs or collection_paths:
+        print(
+            f"Validated {len(skill_dirs)} skill(s), {len(adapter_dirs)} site adapter(s), "
+            f"and {len(collection_paths)} collection(s)."
+        )
     else:
         print(f"Validated {len(skill_dirs)} skill(s).")
     return 0

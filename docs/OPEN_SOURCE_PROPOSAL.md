@@ -23,6 +23,7 @@ HPC Skill Hub turns those recurring tasks into portable skill packages with:
 - Validation in CI.
 - A generated registry index.
 - Site adapters for public local policy.
+- Curated collections for adoption paths.
 - A lightweight CLI for discovery and scaffolding.
 
 ## Initial Scope

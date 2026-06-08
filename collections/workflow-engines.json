@@ -1,0 +1,17 @@
+{
+  "$schema": "../schemas/collection.schema.json",
+  "id": "workflow-engines",
+  "name": "Workflow Engines",
+  "status": "draft",
+  "summary": "Skills for launching portable workflow engines on Slurm-backed HPC clusters.",
+  "audience": ["pipeline authors", "bioinformatics teams", "workflow platform maintainers"],
+  "skill_ids": [
+    "nextflow-on-slurm",
+    "snakemake-on-slurm"
+  ],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ]
+}
