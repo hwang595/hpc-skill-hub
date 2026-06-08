@@ -7,7 +7,8 @@
   "audience": ["pipeline authors", "bioinformatics teams", "workflow platform maintainers"],
   "skill_ids": [
     "nextflow-on-slurm",
-    "snakemake-on-slurm"
+    "snakemake-on-slurm",
+    "nf-core-on-slurm"
   ],
   "maintainers": [
     {

@@ -1,0 +1,137 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "nf-core-on-slurm",
+  "name": "nf-core On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults.",
+  "description": "This skill provides a reviewed pattern for launching nf-core pipelines on Slurm-backed HPC systems, including a site config, sample sheet placeholder, container cache guidance, work directory controls, and a dry-run-first launch wrapper.",
+  "categories": ["workflow", "scheduler", "data"],
+  "tags": ["nf-core", "nextflow", "slurm", "bioinformatics", "singularity", "samplesheet"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "nextflow",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "pwd",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "pipeline_name",
+      "type": "string",
+      "required": true,
+      "description": "nf-core pipeline name such as nf-core/rnaseq."
+    },
+    {
+      "name": "pipeline_revision",
+      "type": "string",
+      "required": false,
+      "description": "Pinned nf-core pipeline release or Git revision."
+    },
+    {
+      "name": "samplesheet",
+      "type": "path",
+      "required": true,
+      "description": "Pipeline-specific sample sheet or input manifest."
+    },
+    {
+      "name": "outdir",
+      "type": "path",
+      "required": true,
+      "description": "Durable output directory for final pipeline results."
+    },
+    {
+      "name": "work_dir",
+      "type": "path",
+      "required": true,
+      "description": "Scratch or project work directory for Nextflow task directories."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "nfcore_launch_plan",
+      "description": "Reviewable command, profile, config, work/cache paths, and resume policy."
+    },
+    {
+      "name": "nextflow_reports",
+      "description": "Nextflow report, trace, timeline, DAG, and log files when the pipeline is run."
+    },
+    {
+      "name": "pipeline_results",
+      "description": "nf-core pipeline outputs written to the requested durable output directory."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/nfcore-slurm.config",
+    "examples/run-nfcore.sh",
+    "examples/samplesheet.csv"
+  ],
+  "examples": [
+    {
+      "title": "nf-core Slurm config",
+      "path": "examples/nfcore-slurm.config"
+    },
+    {
+      "title": "Plan or run an nf-core pipeline",
+      "path": "examples/run-nfcore.sh"
+    },
+    {
+      "title": "Sample sheet placeholder",
+      "path": "examples/samplesheet.csv"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill nf-core-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run in plan-only mode, then run a small nf-core test profile on a Slurm debug partition with site-approved container settings."
+    }
+  ],
+  "references": [
+    {
+      "title": "nf-core usage introduction",
+      "url": "https://nf-co.re/docs/usage/introduction"
+    },
+    {
+      "title": "nf-core institutional profiles",
+      "url": "https://nf-co.re/docs/tutorials/use_nf-core_pipelines/writing_institutional_profiles"
+    },
+    {
+      "title": "Nextflow Slurm executor",
+      "url": "https://nextflow.io/docs/latest/executor.html"
+    }
+  ]
+}

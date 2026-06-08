@@ -1,0 +1,20 @@
+{
+  "$schema": "../schemas/collection.schema.json",
+  "id": "bioinformatics-workflows",
+  "name": "Bioinformatics Workflows",
+  "status": "draft",
+  "summary": "Domain skills for running reviewed bioinformatics workflows on Slurm-backed HPC systems.",
+  "audience": ["bioinformatics teams", "core facilities", "genomics platform engineers"],
+  "skill_ids": [
+    "nf-core-on-slurm",
+    "nextflow-on-slurm",
+    "snakemake-on-slurm",
+    "dataset-staging-to-scratch",
+    "checksum-manifest-create"
+  ],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ]
+}

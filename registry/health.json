@@ -1,18 +1,29 @@
 {
   "category_counts": {
     "containers": 2,
-    "data": 7,
+    "data": 8,
     "debugging": 13,
     "gpu": 5,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
-    "scheduler": 18,
+    "scheduler": 19,
     "software": 8,
-    "workflow": 2
+    "workflow": 3
   },
-  "collection_count": 5,
+  "collection_count": 6,
   "collection_coverage": [
+    {
+      "id": "bioinformatics-workflows",
+      "skill_count": 5,
+      "skill_ids": [
+        "nf-core-on-slurm",
+        "nextflow-on-slurm",
+        "snakemake-on-slurm",
+        "dataset-staging-to-scratch",
+        "checksum-manifest-create"
+      ]
+    },
     {
       "id": "core-hpc",
       "skill_count": 11,
@@ -75,16 +86,17 @@
     },
     {
       "id": "workflow-engines",
-      "skill_count": 2,
+      "skill_count": 3,
       "skill_ids": [
         "nextflow-on-slurm",
-        "snakemake-on-slurm"
+        "snakemake-on-slurm",
+        "nf-core-on-slurm"
       ]
     }
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 34
+    "seed": 35
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -107,6 +119,7 @@
     "mpi-hello-and-benchmark": "medium",
     "nccl-diagnostics": "medium",
     "nextflow-on-slurm": "medium",
+    "nf-core-on-slurm": "medium",
     "openmp-thread-affinity": "medium",
     "performance-profile-basic": "low",
     "python-virtualenv-on-hpc": "low",
@@ -124,13 +137,13 @@
   },
   "risk_counts": {
     "low": 12,
-    "medium": 22
+    "medium": 23
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 34,
+  "skill_count": 35,
   "status_counts": {
-    "draft": 34
+    "draft": 35
   },
   "uncollected_skill_ids": []
 }

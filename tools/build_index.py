@@ -227,7 +227,7 @@ def build_catalog(index: Dict[str, Any]) -> str:
             "- Open OnDemand app templates.",
             "- Transfer verification across storage tiers.",
             "- WRF, GROMACS, LAMMPS, OpenFOAM, and Quantum ESPRESSO starter skills.",
-            "- Bioinformatics workflows for nf-core, GATK, BLAST, and AlphaFold.",
+            "- Bioinformatics workflows for GATK, BLAST, AlphaFold, and single-cell analysis.",
             "- Facility read-only reports for fairshare, partitions, and node health.",
             "",
         ]

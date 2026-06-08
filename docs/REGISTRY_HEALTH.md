@@ -4,9 +4,9 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 34
+- Skills: 35
 - Site adapters: 1
-- Collections: 5
+- Collections: 6
 - Uncollected skills: 0
 
 ## Risk Distribution
@@ -14,29 +14,30 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 12 |
-| `medium` | 22 |
+| `medium` | 23 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 34 |
+| `seed` | 35 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 34 |
+| `draft` | 35 |
 
 ## Collection Coverage
 
 | Collection | Skills |
 | --- | ---: |
+| `bioinformatics-workflows` | 5 |
 | `core-hpc` | 11 |
 | `data-movement` | 7 |
 | `gpu-mpi-performance` | 9 |
 | `software-stacks` | 9 |
-| `workflow-engines` | 2 |
+| `workflow-engines` | 3 |
 
 ## Uncollected Skills
 
@@ -66,6 +67,7 @@ All skills are included in at least one collection.
 | `mpi-hello-and-benchmark` | medium |
 | `nccl-diagnostics` | medium |
 | `nextflow-on-slurm` | medium |
+| `nf-core-on-slurm` | medium |
 | `openmp-thread-affinity` | medium |
 | `performance-profile-basic` | low |
 | `python-virtualenv-on-hpc` | low |

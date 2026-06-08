@@ -1,0 +1,2 @@
+sample,fastq_1,fastq_2,strandedness
+SAMPLE1,/path/to/sample_R1.fastq.gz,/path/to/sample_R2.fastq.gz,auto
