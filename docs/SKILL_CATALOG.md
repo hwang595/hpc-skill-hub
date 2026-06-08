@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 54 skills.
+Current registry size: 55 skills.
 
 ## Categories
 
@@ -15,9 +15,9 @@ Current registry size: 54 skills.
 | `education` | 1 |
 | `gpu` | 7 |
 | `interactive` | 2 |
-| `mpi` | 7 |
-| `performance` | 8 |
-| `scheduler` | 37 |
+| `mpi` | 8 |
+| `performance` | 9 |
+| `scheduler` | 38 |
 | `software` | 15 |
 | `workflow` | 7 |
 
@@ -111,6 +111,7 @@ Current registry size: 54 skills.
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
 | [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md) | medium | seed | Run mpi4py Python programs on Slurm with matching MPI and Python environments. |
 | [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md) | medium | seed | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |
+| [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md) | medium | seed | Run Quantum ESPRESSO PWscf jobs on Slurm with MPI sizing and restart planning. |
 | [`wrf-on-slurm`](../skills/wrf-on-slurm/README.md) | medium | seed | Run WRF real-data jobs on Slurm with MPI sizing, real.exe staging, restart, and I/O planning. |
 
 ### Performance
@@ -122,6 +123,7 @@ Current registry size: 54 skills.
 | [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md) | medium | seed | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |
 | [`openmp-thread-affinity`](../skills/openmp-thread-affinity/README.md) | medium | seed | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
 | [`performance-profile-basic`](../skills/performance-profile-basic/README.md) | low | seed | Collect first-pass performance evidence for an HPC workload. |
+| [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md) | medium | seed | Run Quantum ESPRESSO PWscf jobs on Slurm with MPI sizing and restart planning. |
 | [`slurm-efficiency-report`](../skills/slurm-efficiency-report/README.md) | low | seed | Summarize completed Slurm job efficiency from accounting data. |
 | [`slurm-resource-estimator`](../skills/slurm-resource-estimator/README.md) | low | seed | Estimate future Slurm resource requests from accounting history. |
 | [`wrf-on-slurm`](../skills/wrf-on-slurm/README.md) | medium | seed | Run WRF real-data jobs on Slurm with MPI sizing, real.exe staging, restart, and I/O planning. |
@@ -155,6 +157,7 @@ Current registry size: 54 skills.
 | [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md) | medium | seed | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |
 | [`openmp-thread-affinity`](../skills/openmp-thread-affinity/README.md) | medium | seed | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
 | [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md) | medium | seed | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
+| [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md) | medium | seed | Run Quantum ESPRESSO PWscf jobs on Slurm with MPI sizing and restart planning. |
 | [`ray-on-slurm`](../skills/ray-on-slurm/README.md) | medium | seed | Launch resource-bounded Ray clusters inside Slurm allocations. |
 | [`rscript-on-slurm`](../skills/rscript-on-slurm/README.md) | medium | seed | Run R scripts on Slurm with explicit package-library and output controls. |
 | [`slurm-efficiency-report`](../skills/slurm-efficiency-report/README.md) | low | seed | Summarize completed Slurm job efficiency from accounting data. |
@@ -211,7 +214,7 @@ Current registry size: 54 skills.
 | [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
 | [`facility-ops`](../collections/facility-ops.json) | draft | 4 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, pending reason triage, node triage, and module tree health. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 12 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence. |
-| [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 9 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, CFD, and weather workloads on Slurm-backed HPC systems. |
+| [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 10 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, and weather workloads on Slurm-backed HPC systems. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 16 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks. |
 | [`training-onboarding`](../collections/training-onboarding.json) | draft | 12 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, Python, R, Julia, and MATLAB workloads, and workshop environments. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 5 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, Dask worker clusters, and lightweight Slurm dependency chains. |
@@ -226,6 +229,5 @@ Current registry size: 54 skills.
 
 - Open OnDemand app templates.
 - Transfer verification across storage tiers.
-- Quantum ESPRESSO starter skills.
 - Bioinformatics workflows for AlphaFold and single-cell analysis.
 - Facility read-only reports for fairshare, partitions, and node health.

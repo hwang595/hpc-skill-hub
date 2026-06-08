@@ -7,9 +7,9 @@
     "education": 1,
     "gpu": 7,
     "interactive": 2,
-    "mpi": 7,
-    "performance": 8,
-    "scheduler": 37,
+    "mpi": 8,
+    "performance": 9,
+    "scheduler": 38,
     "software": 15,
     "workflow": 7
   },
@@ -188,6 +188,7 @@
       "skill_ids": [
         "gromacs-on-slurm",
         "lammps-on-slurm",
+        "quantum-espresso-on-slurm",
         "openfoam-on-slurm",
         "wrf-on-slurm",
         "mpi-hello-and-benchmark",
@@ -197,7 +198,7 @@
         "checkpoint-restart-workflow"
       ],
       "status": "draft",
-      "summary": "Domain skills for MPI/GPU-heavy simulation, CFD, and weather workloads on Slurm-backed HPC systems."
+      "summary": "Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, and weather workloads on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -277,7 +278,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 38
+    "slurm": 39
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -303,7 +304,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 54,
+  "skill_count": 55,
   "skills": [
     {
       "categories": [
@@ -2432,6 +2433,81 @@
     },
     {
       "categories": [
+        "mpi",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for Quantum ESPRESSO pw.x jobs, including MPI task layout, generated input from a template, pseudopotential path checks, scratch and wavefunction directories, restart planning, and dry-run-first SCF smoke-test controls.",
+      "examples": [
+        {
+          "path": "skills/quantum-espresso-on-slurm/examples/qe-pwscf-smoke.sbatch",
+          "title": "Plan or run a Quantum ESPRESSO pw.x smoke test on Slurm"
+        },
+        {
+          "path": "skills/quantum-espresso-on-slurm/examples/si.scf.in.template",
+          "title": "Silicon SCF input template"
+        },
+        {
+          "path": "skills/quantum-espresso-on-slurm/examples/restart-checklist.md",
+          "title": "Quantum ESPRESSO restart checklist"
+        }
+      ],
+      "id": "quantum-espresso-on-slurm",
+      "maturity": "seed",
+      "name": "Quantum ESPRESSO On Slurm",
+      "path": "skills/quantum-espresso-on-slurm",
+      "readme": "skills/quantum-espresso-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Quantum ESPRESSO documentation",
+          "url": "https://www.quantum-espresso.org/documentation/"
+        },
+        {
+          "title": "PWscf user guide",
+          "url": "https://www.quantum-espresso.org/Doc/pw_user_guide/"
+        },
+        {
+          "title": "pw.x input description",
+          "url": "https://www.quantum-espresso.org/Doc/INPUT_PW.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run Quantum ESPRESSO PWscf jobs on Slurm with MPI sizing and restart planning.",
+      "tags": [
+        "quantum-espresso",
+        "qe",
+        "pw.x",
+        "pwscf",
+        "dft",
+        "mpi",
+        "slurm",
+        "pseudopotential",
+        "restart"
+      ],
+      "tools": [
+        "pw.x",
+        "sbatch",
+        "srun",
+        "sed",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "test",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "debugging",
         "data"
       ],
@@ -3392,6 +3468,7 @@
     "definition": 1,
     "dependency": 1,
     "depot": 1,
+    "dft": 1,
     "distributed": 4,
     "easybuild": 1,
     "easyconfig": 1,
@@ -3433,7 +3510,7 @@
     "modulepath": 1,
     "modules": 7,
     "molecular-dynamics": 2,
-    "mpi": 10,
+    "mpi": 11,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
@@ -3466,9 +3543,14 @@
     "profile": 1,
     "profiling": 1,
     "provenance": 1,
+    "pseudopotential": 1,
     "publication": 1,
+    "pw.x": 1,
+    "pwscf": 1,
     "python": 4,
     "pytorch": 3,
+    "qe": 1,
+    "quantum-espresso": 1,
     "quota": 2,
     "r": 1,
     "ray": 1,
@@ -3478,7 +3560,7 @@
     "reproducibility": 8,
     "rerun": 1,
     "resources": 1,
-    "restart": 3,
+    "restart": 4,
     "resume": 1,
     "rlibs": 1,
     "rocm": 2,
@@ -3496,7 +3578,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 36,
+    "slurm": 37,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -3548,7 +3630,7 @@
     "cp": 2,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 19,
+    "date": 20,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -3566,7 +3648,7 @@
     "gmx_mpi": 1,
     "grep": 8,
     "head": 4,
-    "hostname": 16,
+    "hostname": 17,
     "icoFoam": 1,
     "julia": 1,
     "jupyter": 1,
@@ -3578,8 +3660,8 @@
     "mamba": 1,
     "matlab": 1,
     "micromamba": 1,
-    "mkdir": 24,
-    "module": 15,
+    "mkdir": 25,
+    "module": 16,
     "mpi4py": 1,
     "mpicc": 2,
     "mpicxx": 1,
@@ -3592,6 +3674,7 @@
     "perf": 1,
     "pip": 1,
     "printenv": 1,
+    "pw.x": 1,
     "pwd": 7,
     "python": 3,
     "python3": 5,
@@ -3603,9 +3686,9 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 28,
+    "sbatch": 29,
     "scontrol": 6,
-    "sed": 1,
+    "sed": 2,
     "seff": 1,
     "sha256sum": 2,
     "shasum": 2,
@@ -3618,12 +3701,12 @@
     "sprio": 1,
     "squeue": 6,
     "sreport": 1,
-    "srun": 13,
+    "srun": 14,
     "ssh": 2,
     "tail": 4,
     "tar": 1,
-    "tee": 12,
-    "test": 5,
+    "tee": 13,
+    "test": 6,
     "time": 1,
     "tr": 1,
     "uname": 1,

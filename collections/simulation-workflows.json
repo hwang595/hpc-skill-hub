@@ -3,11 +3,12 @@
   "id": "simulation-workflows",
   "name": "Simulation Workflows",
   "status": "draft",
-  "summary": "Domain skills for MPI/GPU-heavy simulation, CFD, and weather workloads on Slurm-backed HPC systems.",
+  "summary": "Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, and weather workloads on Slurm-backed HPC systems.",
   "audience": ["simulation teams", "computational scientists", "performance engineers"],
   "skill_ids": [
     "gromacs-on-slurm",
     "lammps-on-slurm",
+    "quantum-espresso-on-slurm",
     "openfoam-on-slurm",
     "wrf-on-slurm",
     "mpi-hello-and-benchmark",

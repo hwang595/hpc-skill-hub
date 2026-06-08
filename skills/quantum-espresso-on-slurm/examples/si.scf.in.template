@@ -1,0 +1,25 @@
+&CONTROL
+  calculation = 'scf'
+  prefix = '__PREFIX__'
+  pseudo_dir = '__PSEUDO_DIR__'
+  outdir = '__OUTDIR__'
+  wfcdir = '__WFCDIR__'
+  max_seconds = __MAX_SECONDS__
+/
+&SYSTEM
+  ibrav = 2
+  celldm(1) = 10.2
+  nat = 2
+  ntyp = 1
+  ecutwfc = 20.0
+/
+&ELECTRONS
+  conv_thr = 1.0d-8
+/
+ATOMIC_SPECIES
+Si 28.0855 Si.pbe-n-kjpaw_psl.1.0.0.UPF
+ATOMIC_POSITIONS alat
+Si 0.00 0.00 0.00
+Si 0.25 0.25 0.25
+K_POINTS automatic
+2 2 2 0 0 0
