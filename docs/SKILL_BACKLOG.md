@@ -79,6 +79,7 @@ new collections.
 | `gatk-workflow-on-hpc` | workflow | medium | Seed skill added to `bioinformatics-workflows`. |
 | `blast-on-slurm` | workflow | medium | Seed skill added to `bioinformatics-workflows`. |
 | `lammps-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
+| `scientific-simulation-workflows` | workflow | medium | Seed skill added to `simulation-workflows` for issue #12. |
 | `gromacs-on-slurm` | gpu | medium | Seed skill added to `simulation-workflows`. |
 | `namd-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `quantum-espresso-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |

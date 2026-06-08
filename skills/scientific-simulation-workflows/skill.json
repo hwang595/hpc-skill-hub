@@ -1,0 +1,224 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "scientific-simulation-workflows",
+  "name": "Scientific Simulation Workflows",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Plan, check, and triage common scientific simulation workloads on HPC systems.",
+  "description": "This skill helps users prepare reviewable scientific simulation runs across molecular dynamics, CFD, weather, electronic-structure, computational chemistry, and multiphysics software by checking inputs, recording scheduler and runtime context, creating run notes, and scanning logs before scaling to production.",
+  "categories": ["workflow", "software", "scheduler", "debugging", "performance"],
+  "tags": [
+    "simulation",
+    "scientific-computing",
+    "molecular-dynamics",
+    "cfd",
+    "weather",
+    "materials",
+    "computational-chemistry",
+    "mpi",
+    "openmp",
+    "reproducibility"
+  ],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm", "pbs", "openpbs", "pbs-pro", "lsf"],
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "python3",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "pwd",
+      "required": true
+    },
+    {
+      "name": "env",
+      "required": true
+    },
+    {
+      "name": "grep",
+      "required": true
+    },
+    {
+      "name": "sed",
+      "required": true
+    },
+    {
+      "name": "sort",
+      "required": true
+    },
+    {
+      "name": "uname",
+      "required": true
+    },
+    {
+      "name": "command",
+      "required": true,
+      "notes": "Shell builtin used to check optional simulation executable availability."
+    },
+    {
+      "name": "sbatch",
+      "required": false,
+      "notes": "Optional Slurm submit command recorded as a suggested launch path."
+    },
+    {
+      "name": "qsub",
+      "required": false,
+      "notes": "Optional PBS submit command recorded as a suggested launch path."
+    },
+    {
+      "name": "bsub",
+      "required": false,
+      "notes": "Optional LSF submit command recorded as a suggested launch path."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "simulation_software",
+      "type": "string",
+      "required": true,
+      "description": "Scientific software family or executable being planned, such as GROMACS, LAMMPS, OpenFOAM, WRF, Quantum ESPRESSO, CP2K, VASP, Gaussian, ORCA, COMSOL, ANSYS, or Abaqus."
+    },
+    {
+      "name": "input_manifest",
+      "type": "string",
+      "required": false,
+      "description": "Whitespace-separated list of input paths to check before creating or launching a run plan."
+    },
+    {
+      "name": "simulation_command",
+      "type": "string",
+      "required": false,
+      "description": "Reviewed command line for a small smoke run or production launch. The example records it and only runs it when explicitly requested."
+    },
+    {
+      "name": "scheduler_template",
+      "type": "path",
+      "required": false,
+      "description": "Optional Slurm, PBS, or LSF script template to record with suggested submit commands."
+    },
+    {
+      "name": "log_files",
+      "type": "path",
+      "required": false,
+      "description": "Simulation stdout, stderr, or application log files to scan for common failure signals."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": true,
+      "description": "Directory for generated run plans, reproducibility notes, command logs, and log triage reports."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "simulation_run_plan",
+      "description": "Markdown run plan recording software, scheduler context, command, input checks, launch notes, and post-processing notes."
+    },
+    {
+      "name": "input_check_report",
+      "description": "Presence checks for declared simulation input paths before a job is submitted or scaled."
+    },
+    {
+      "name": "reproducibility_notes",
+      "description": "Runtime context with hostname, working directory, scheduler variables, thread settings, MPI/GPU environment signals, and optional module hints."
+    },
+    {
+      "name": "simulation_log_triage",
+      "description": "Compact log scan report with matched line numbers, issue categories, severity, and suggested follow-up checks."
+    },
+    {
+      "name": "postprocess_plan",
+      "description": "Reviewable record of intended lightweight post-processing commands and generated artifacts."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/simulation-run-plan.sh",
+    "examples/check-simulation-log.py",
+    "examples/simulation-review-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Create a plan-only simulation run packet",
+      "path": "examples/simulation-run-plan.sh"
+    },
+    {
+      "title": "Scan simulation logs for common failure signals",
+      "path": "examples/check-simulation-log.py"
+    },
+    {
+      "title": "Simulation workflow review checklist",
+      "path": "examples/simulation-review-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill scientific-simulation-workflows",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash skills/scientific-simulation-workflows/examples/simulation-run-plan.sh",
+      "description": "Generate a plan-only packet without submitting a job or running a simulation command."
+    },
+    {
+      "type": "dry-run",
+      "command": "python3 skills/scientific-simulation-workflows/examples/check-simulation-log.py --log <simulation.log>",
+      "description": "Scan an existing simulation log and summarize common failure signals without modifying inputs or outputs."
+    }
+  ],
+  "references": [
+    {
+      "title": "GROMACS command-line reference",
+      "url": "https://manual.gromacs.org/current/user-guide/cmdline.html"
+    },
+    {
+      "title": "LAMMPS running basics",
+      "url": "https://docs.lammps.org/Run_basics.html"
+    },
+    {
+      "title": "NAMD user's guide",
+      "url": "https://www.ks.uiuc.edu/Research/namd/2.14/ug/"
+    },
+    {
+      "title": "OpenFOAM user guide",
+      "url": "https://www.openfoam.com/documentation/user-guide"
+    },
+    {
+      "title": "WRF users guide",
+      "url": "https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_V4/contents.html"
+    },
+    {
+      "title": "Quantum ESPRESSO user guide",
+      "url": "https://www.quantum-espresso.org/Doc/user_guide/"
+    },
+    {
+      "title": "CP2K manual",
+      "url": "https://manual.cp2k.org/"
+    }
+  ]
+}

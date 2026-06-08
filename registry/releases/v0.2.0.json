@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/release-manifest.schema.json",
-  "file_count": 573,
+  "file_count": 579,
   "files": [
     {
       "bytes": 489,
@@ -163,9 +163,9 @@
       "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
     },
     {
-      "bytes": 15454,
+      "bytes": 15759,
       "path": "CHANGELOG.md",
-      "sha256": "470b029f18bb570434f4ad3345b05d4bcddbc855a4facfac92056e8938101b2c"
+      "sha256": "b13d2b780d594a625a311570e248a966209878f6032540bd84b839a739f65f46"
     },
     {
       "bytes": 426,
@@ -200,7 +200,7 @@
     {
       "bytes": 9669,
       "path": "ROADMAP.md",
-      "sha256": "479b00b6ac5596afb3b8741d19e01f171e33588b6f20b9afbb2fb51436303707"
+      "sha256": "7527c3e4bdc4ff061e73f69fa55aebd47ed89186e0a0c2e699c4d800c03fa423"
     },
     {
       "bytes": 1442,
@@ -263,9 +263,9 @@
       "sha256": "e227fd3b8274a26e1518d2e616984a66de9d68f0155ed9cf4799fb6708fb682b"
     },
     {
-      "bytes": 1295,
+      "bytes": 1353,
       "path": "collections/simulation-workflows.json",
-      "sha256": "d3b7aa59158ad1f4675e2ee65c1f7a5fa20d7d3c6e49a3a0a37b01f58312e752"
+      "sha256": "ade98a35a00c636b3f990911f689f399efc2f7c3662b67cc6f589bf6793918e0"
     },
     {
       "bytes": 1677,
@@ -313,9 +313,9 @@
       "sha256": "0edd76544bf3a2ce6bbb90af2a99c92cf47da4396630393e83b9c75ff36c3480"
     },
     {
-      "bytes": 5789,
+      "bytes": 5821,
       "path": "docs/COLLECTIONS.md",
-      "sha256": "76d3adec5fa096ad60829e4576fd415a7a017365cd71e88b8dd5782ad5a78a6a"
+      "sha256": "38d50dd65f5695cd9aea718120edecb31f464b35d2ade7ef64309b6d63df960f"
     },
     {
       "bytes": 4868,
@@ -323,9 +323,9 @@
       "sha256": "e79805cee0d52ca864948f25de91fa9a0ea1c2781fca36a36714cb3f244b79ca"
     },
     {
-      "bytes": 11424,
+      "bytes": 11922,
       "path": "docs/COMPATIBILITY.md",
-      "sha256": "dd12be06a0eea251141717d10745ba37db2910d70feb5c2f0a67b744ee79549e"
+      "sha256": "12d406f616abba9aeb1ef8ef9489e27abb8dec083a296e5a87d76c44a28dbb4b"
     },
     {
       "bytes": 4430,
@@ -400,7 +400,7 @@
     {
       "bytes": 4422,
       "path": "docs/OPEN_SOURCE_PROPOSAL.md",
-      "sha256": "d6eb9b868a64712b703467e5fe7c63f96d3c5dd8540d31275c45808fdc0db4dd"
+      "sha256": "e2c16faeaac3a84149109a7cdf3cd54789eff9dcfc1630eaee5660ebbf24ba8b"
     },
     {
       "bytes": 2716,
@@ -410,12 +410,12 @@
     {
       "bytes": 5990,
       "path": "docs/PUBLIC_LAUNCH_PACKET.md",
-      "sha256": "51d0cc48b4ac5269377cef6cf39fdcb6f1adb95a101d340269d0015f327cbb00"
+      "sha256": "b6c33058ca11482a0272fc12cc0a15aa2bd8b68a3b88a87128125322d5eb46d9"
     },
     {
-      "bytes": 4494,
+      "bytes": 4541,
       "path": "docs/REGISTRY_HEALTH.md",
-      "sha256": "c3af792987b7b1f31cbef39c6e19f7eca48f4be3e0b65d24bb9bb16ea3c04a90"
+      "sha256": "e075b4e5dec661c89453a8513dd78ed39d669f499d5c7197be49b0890d7830b5"
     },
     {
       "bytes": 10512,
@@ -425,7 +425,7 @@
     {
       "bytes": 2774,
       "path": "docs/RELEASE_NOTES_v0.2.0.md",
-      "sha256": "61349e714f4b89c3f7e629ee3c7dd74e0fd3e8bd92e8d7c677775dbebfa37051"
+      "sha256": "2c45efdcbb814aee5f60fdb576791eec076c5e737179861d90bf1078c8e4bcc7"
     },
     {
       "bytes": 3021,
@@ -435,7 +435,7 @@
     {
       "bytes": 5400,
       "path": "docs/REVIEW_PACKET_v0.2.0.md",
-      "sha256": "36501b143f510d9f2a5b9d3b08c60f4e915e8d21769f11ab4090a7263cea0011"
+      "sha256": "016783248af6dfe9e60edf448ec56bc5a1f2876e935eb5a146a30efeb41b39bf"
     },
     {
       "bytes": 6450,
@@ -463,14 +463,14 @@
       "sha256": "ead7fbd8016afb1fc046535d8fff55790f087ce973315be7a11b5145892d2b83"
     },
     {
-      "bytes": 11276,
+      "bytes": 11394,
       "path": "docs/SKILL_BACKLOG.md",
-      "sha256": "a7ad4978f0b69de2961b5ba4bb853ce6178f884a64fcd7e8e8487f35ab46571c"
+      "sha256": "57d2cfca43c4af6e13f743f7dd2b45f82f1ebcc6dbaab1f1ec3a8358711298a4"
     },
     {
-      "bytes": 47335,
+      "bytes": 48304,
       "path": "docs/SKILL_CATALOG.md",
-      "sha256": "be788eac849ce5481f9a5370461024506a120c7daff8c0e0a4e47dfffd84831f"
+      "sha256": "471fa881c7b604e70120e8dcd44bf64aba266327735745c4529a323b31eb003c"
     },
     {
       "bytes": 5949,
@@ -508,14 +508,14 @@
       "sha256": "a5e06bc4cd3533e9a1e19370092d7d88fbf2e330399e78616db04526f3ab1050"
     },
     {
-      "bytes": 13097,
+      "bytes": 13189,
       "path": "registry/health.json",
-      "sha256": "9acbd9265705ef34c81dca89f797783726813068e3d33601b97699dd787662be"
+      "sha256": "e2eb144f308f22dccf8a1a44c32a57f21629296022ec56d9a77cd97590a6ab1c"
     },
     {
-      "bytes": 206119,
+      "bytes": 209360,
       "path": "registry/index.json",
-      "sha256": "a995cfdbf3a088c43e9b57e6c85d991c8f36c6475b2a097e193aa4fa5a46900b"
+      "sha256": "dd5878000b9dc806538a074456a2d65be0fb08b59e72a62854c6e5e03ec8cb79"
     },
     {
       "bytes": 1145,
@@ -2123,6 +2123,31 @@
       "sha256": "1e7db829ae31460b6de43aa9a6f21d452e971f21c31dc05863b0b8888aa4528e"
     },
     {
+      "bytes": 3286,
+      "path": "skills/scientific-simulation-workflows/README.md",
+      "sha256": "1b710aa6f7c83de7d62ea818e94bb22e7f58a61b7e0dedc64950b6ffc44d60ba"
+    },
+    {
+      "bytes": 6531,
+      "path": "skills/scientific-simulation-workflows/examples/check-simulation-log.py",
+      "sha256": "dcdb1981e135ddfa0e66dd66704c28c39b22585c4be1807caff78ba7b9d5c4cf"
+    },
+    {
+      "bytes": 1969,
+      "path": "skills/scientific-simulation-workflows/examples/simulation-review-checklist.md",
+      "sha256": "2d969317e48ccb6294341d6ecaa7bf7f8f505622a095962140601ec3f8f55210"
+    },
+    {
+      "bytes": 5688,
+      "path": "skills/scientific-simulation-workflows/examples/simulation-run-plan.sh",
+      "sha256": "cfa0d3deb23e2b29c128b740d7621725425ca09531a9d1060b61f758b20d90a3"
+    },
+    {
+      "bytes": 6809,
+      "path": "skills/scientific-simulation-workflows/skill.json",
+      "sha256": "2bb36965bfc60fec30081417347a644c8e94aa15a0a9a5d2ad38bae20f3c8358"
+    },
+    {
       "bytes": 1212,
       "path": "skills/scratch-storage-management/README.md",
       "sha256": "7a47f119b63349fb171ed6284b137b1b02b3fbddcdcda08f18a105406b0f7d0c"
@@ -2718,14 +2743,14 @@
       "sha256": "e98635c6044821567bd15ad8844d0cdaf4fffe9b1738d868a8ecca74a5c1e292"
     },
     {
-      "bytes": 13097,
+      "bytes": 13189,
       "path": "src/hpc_skill_hub/data/registry/health.json",
-      "sha256": "9acbd9265705ef34c81dca89f797783726813068e3d33601b97699dd787662be"
+      "sha256": "e2eb144f308f22dccf8a1a44c32a57f21629296022ec56d9a77cd97590a6ab1c"
     },
     {
-      "bytes": 206119,
+      "bytes": 209360,
       "path": "src/hpc_skill_hub/data/registry/index.json",
-      "sha256": "a995cfdbf3a088c43e9b57e6c85d991c8f36c6475b2a097e193aa4fa5a46900b"
+      "sha256": "dd5878000b9dc806538a074456a2d65be0fb08b59e72a62854c6e5e03ec8cb79"
     },
     {
       "bytes": 1802,
@@ -2746,6 +2771,11 @@
       "bytes": 17406,
       "path": "tests/test_registry.py",
       "sha256": "8205d3199f709955fd2afc98d53c919ae6d365cc088f652a6af7409e89bf1e11"
+    },
+    {
+      "bytes": 2981,
+      "path": "tests/test_scientific_simulation_workflows.py",
+      "sha256": "1125cf9508ce2d5da8ff88365a1797ba9f6ba79c063c000d262c3aa03d311b9d"
     },
     {
       "bytes": 6879,
@@ -2873,23 +2903,23 @@
     "category_count": 12,
     "collection_count": 12,
     "maturity_counts": {
-      "seed": 96
+      "seed": 97
     },
     "risk_counts": {
       "low": 27,
-      "medium": 69
+      "medium": 70
     },
     "scheduler_count": 9,
     "schema_version": "0.1.0",
     "site_adapter_count": 2,
-    "skill_count": 96,
+    "skill_count": 97,
     "status_counts": {
-      "draft": 96
+      "draft": 97
     },
     "tool_count": 159,
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 2849772,
+  "total_bytes": 2885729,
   "version": "v0.2.0"
 }

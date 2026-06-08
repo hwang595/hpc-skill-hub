@@ -14,7 +14,7 @@ process and generated artifacts needed to make those promotions auditable.
 
 ## Registry Contents
 
-- Skills: 96.
+- Skills: 97.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.

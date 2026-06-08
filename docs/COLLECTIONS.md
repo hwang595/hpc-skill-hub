@@ -72,13 +72,13 @@ research software engineer building software stacks may start with
   review, storage smoke benchmarks, and basic profiling.
 - `bioinformatics-workflows`: nf-core, GATK, BLAST, Nextflow, Snakemake, data
   staging, and checksum practices for genomics and core-facility workflows.
-- `simulation-workflows`: GROMACS, LAMMPS, NAMD, Quantum ESPRESSO, CP2K,
-  OpenFOAM, WRF, MPI launch checks, MPI fabric diagnostics, rank binding
-  diagnostics, hybrid MPI/OpenMP layouts, CMake build preflight,
-  parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre
-  striping layout planning, OpenMP placement, profiling, restart planning,
-  storage smoke evidence, and
-  reproducible run capture for simulation teams.
+- `simulation-workflows`: scientific simulation planning, GROMACS, LAMMPS,
+  NAMD, Quantum ESPRESSO, CP2K, OpenFOAM, WRF, MPI launch checks, MPI fabric
+  diagnostics, rank binding diagnostics, hybrid MPI/OpenMP layouts, CMake build
+  preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis,
+  Lustre striping layout planning, OpenMP placement, profiling, restart
+  planning, storage smoke evidence, and reproducible run capture for simulation
+  teams.
 - `facility-ops`: read-only usage reporting, pending reason and maintenance
   triage, node triage, QOS/account limit evidence, OOM memory and time-limit
   triage, node-failure triage, file descriptor pressure, shared project

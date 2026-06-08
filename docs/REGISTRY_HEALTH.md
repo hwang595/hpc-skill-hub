@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 96
+- Skills: 97
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 27 |
-| `medium` | 69 |
+| `medium` | 70 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 96 |
+| `seed` | 97 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 96 |
+| `draft` | 97 |
 
 ## Collection Coverage
 
@@ -40,7 +40,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `facility-ops` | 11 |
 | `gpu-mpi-performance` | 27 |
 | `scheduler-basics` | 12 |
-| `simulation-workflows` | 20 |
+| `simulation-workflows` | 21 |
 | `software-stacks` | 30 |
 | `training-onboarding` | 29 |
 | `workflow-engines` | 11 |
@@ -122,6 +122,7 @@ All skills are included in at least one collection.
 | `rscript-on-slurm` | medium |
 | `rstudio-on-slurm` | medium |
 | `rsync-data-transfer` | medium |
+| `scientific-simulation-workflows` | medium |
 | `scratch-storage-management` | low |
 | `shared-project-permissions-triage` | low |
 | `slurm-array-retry-plan` | medium |

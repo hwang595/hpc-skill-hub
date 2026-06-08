@@ -4,15 +4,15 @@
     "admin": 8,
     "containers": 3,
     "data": 21,
-    "debugging": 38,
+    "debugging": 39,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
-    "performance": 22,
-    "scheduler": 71,
-    "software": 28,
-    "workflow": 14
+    "performance": 23,
+    "scheduler": 72,
+    "software": 29,
+    "workflow": 15
   },
   "collection_count": 12,
   "collections": [
@@ -266,6 +266,7 @@
       "name": "Simulation Workflows",
       "path": "collections/simulation-workflows.json",
       "skill_ids": [
+        "scientific-simulation-workflows",
         "gromacs-on-slurm",
         "lammps-on-slurm",
         "namd-on-slurm",
@@ -288,7 +289,7 @@
         "checkpoint-restart-workflow"
       ],
       "status": "draft",
-      "summary": "Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
+      "summary": "Domain skills for scientific simulation planning, MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on HPC systems."
     },
     {
       "audience": [
@@ -407,12 +408,12 @@
   "schedulers": {
     "grid-engine": 1,
     "htcondor": 1,
-    "lsf": 1,
-    "openpbs": 1,
-    "pbs": 1,
-    "pbs-pro": 1,
+    "lsf": 2,
+    "openpbs": 2,
+    "pbs": 2,
+    "pbs-pro": 2,
     "sge": 1,
-    "slurm": 69,
+    "slurm": 70,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -465,7 +466,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 96,
+  "skill_count": 97,
   "skills": [
     {
       "categories": [
@@ -4713,6 +4714,105 @@
     },
     {
       "categories": [
+        "workflow",
+        "software",
+        "scheduler",
+        "debugging",
+        "performance"
+      ],
+      "description": "This skill helps users prepare reviewable scientific simulation runs across molecular dynamics, CFD, weather, electronic-structure, computational chemistry, and multiphysics software by checking inputs, recording scheduler and runtime context, creating run notes, and scanning logs before scaling to production.",
+      "examples": [
+        {
+          "path": "skills/scientific-simulation-workflows/examples/simulation-run-plan.sh",
+          "title": "Create a plan-only simulation run packet"
+        },
+        {
+          "path": "skills/scientific-simulation-workflows/examples/check-simulation-log.py",
+          "title": "Scan simulation logs for common failure signals"
+        },
+        {
+          "path": "skills/scientific-simulation-workflows/examples/simulation-review-checklist.md",
+          "title": "Simulation workflow review checklist"
+        }
+      ],
+      "id": "scientific-simulation-workflows",
+      "maturity": "seed",
+      "name": "Scientific Simulation Workflows",
+      "path": "skills/scientific-simulation-workflows",
+      "readme": "skills/scientific-simulation-workflows/README.md",
+      "references": [
+        {
+          "title": "GROMACS command-line reference",
+          "url": "https://manual.gromacs.org/current/user-guide/cmdline.html"
+        },
+        {
+          "title": "LAMMPS running basics",
+          "url": "https://docs.lammps.org/Run_basics.html"
+        },
+        {
+          "title": "NAMD user's guide",
+          "url": "https://www.ks.uiuc.edu/Research/namd/2.14/ug/"
+        },
+        {
+          "title": "OpenFOAM user guide",
+          "url": "https://www.openfoam.com/documentation/user-guide"
+        },
+        {
+          "title": "WRF users guide",
+          "url": "https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_V4/contents.html"
+        },
+        {
+          "title": "Quantum ESPRESSO user guide",
+          "url": "https://www.quantum-espresso.org/Doc/user_guide/"
+        },
+        {
+          "title": "CP2K manual",
+          "url": "https://manual.cp2k.org/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm",
+        "pbs",
+        "openpbs",
+        "pbs-pro",
+        "lsf"
+      ],
+      "status": "draft",
+      "summary": "Plan, check, and triage common scientific simulation workloads on HPC systems.",
+      "tags": [
+        "simulation",
+        "scientific-computing",
+        "molecular-dynamics",
+        "cfd",
+        "weather",
+        "materials",
+        "computational-chemistry",
+        "mpi",
+        "openmp",
+        "reproducibility"
+      ],
+      "tools": [
+        "bash",
+        "python3",
+        "mkdir",
+        "date",
+        "hostname",
+        "pwd",
+        "env",
+        "grep",
+        "sed",
+        "sort",
+        "uname",
+        "command",
+        "sbatch",
+        "qsub",
+        "bsub"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "data",
         "debugging"
       ],
@@ -6400,7 +6500,7 @@
     "boot-fail": 1,
     "bsub": 1,
     "build": 1,
-    "cfd": 1,
+    "cfd": 2,
     "cgroup": 1,
     "charm++": 1,
     "checklist": 1,
@@ -6413,6 +6513,7 @@
     "code-cli": 1,
     "compatibility": 1,
     "compiler": 4,
+    "computational-chemistry": 1,
     "conda": 1,
     "condor-q": 1,
     "condor-submit": 1,
@@ -6509,6 +6610,7 @@
     "makeblastdb": 1,
     "mamba": 1,
     "manifest": 3,
+    "materials": 1,
     "matlab": 1,
     "maxrss": 1,
     "mdtest": 1,
@@ -6519,9 +6621,9 @@
     "mkl": 1,
     "modulepath": 1,
     "modules": 8,
-    "molecular-dynamics": 4,
+    "molecular-dynamics": 5,
     "monitoring": 1,
-    "mpi": 22,
+    "mpi": 23,
     "mpi-io": 2,
     "mpi4py": 1,
     "mpicc": 2,
@@ -6551,7 +6653,7 @@
     "oom": 3,
     "openblas": 1,
     "openfoam": 1,
-    "openmp": 5,
+    "openmp": 6,
     "openmpi": 1,
     "openondemand": 1,
     "openpbs": 1,
@@ -6609,7 +6711,7 @@
     "reconstruction": 1,
     "remote-tunnels": 1,
     "reporting": 1,
-    "reproducibility": 11,
+    "reproducibility": 12,
     "reqmem": 1,
     "requeue": 1,
     "rerun": 2,
@@ -6630,6 +6732,7 @@
     "salloc": 1,
     "samplesheet": 1,
     "sbatch": 4,
+    "scientific-computing": 1,
     "scontrol": 8,
     "scratch": 4,
     "seff": 1,
@@ -6638,6 +6741,7 @@
     "sha256": 1,
     "sif": 1,
     "signal": 1,
+    "simulation": 1,
     "sinfo": 4,
     "singleton": 1,
     "singularity": 4,
@@ -6689,7 +6793,7 @@
     "vscode": 1,
     "walltime": 3,
     "wdl": 1,
-    "weather": 1,
+    "weather": 2,
     "web-app": 1,
     "workdir": 1,
     "workers": 1,
@@ -6711,18 +6815,18 @@
     "awk": 4,
     "aws": 1,
     "basename": 1,
-    "bash": 22,
+    "bash": 23,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
-    "bsub": 1,
+    "bsub": 2,
     "cat": 3,
     "charmrun": 1,
     "cksum": 2,
     "clang": 1,
     "cmake": 1,
     "code": 1,
-    "command": 2,
+    "command": 3,
     "conda": 1,
     "condor_q": 1,
     "condor_rm": 1,
@@ -6738,7 +6842,7 @@
     "darshan-summary-per-file.sh": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 40,
+    "date": 41,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 6,
@@ -6746,7 +6850,7 @@
     "distributed": 1,
     "du": 2,
     "eb": 1,
-    "env": 6,
+    "env": 7,
     "fi_info": 1,
     "find": 7,
     "gatk": 1,
@@ -6756,12 +6860,12 @@
     "globus": 1,
     "gmx": 1,
     "gmx_mpi": 1,
-    "grep": 16,
+    "grep": 17,
     "h5cc": 1,
     "h5dump": 1,
     "h5pcc": 1,
     "head": 5,
-    "hostname": 25,
+    "hostname": 26,
     "hwloc-ls": 1,
     "ibv_devinfo": 1,
     "icoFoam": 1,
@@ -6784,7 +6888,7 @@
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 43,
+    "mkdir": 44,
     "mktemp": 1,
     "module": 25,
     "mpi4py": 1,
@@ -6808,12 +6912,12 @@
     "pip": 1,
     "printenv": 2,
     "pw.x": 1,
-    "pwd": 7,
+    "pwd": 8,
     "python": 4,
-    "python3": 13,
+    "python3": 14,
     "qdel": 1,
     "qstat": 2,
-    "qsub": 2,
+    "qsub": 3,
     "quota": 1,
     "ray": 1,
     "rclone": 1,
@@ -6826,10 +6930,10 @@
     "sacct": 12,
     "sacctmgr": 1,
     "salloc": 1,
-    "sbatch": 49,
+    "sbatch": 50,
     "scancel": 1,
     "scontrol": 17,
-    "sed": 4,
+    "sed": 5,
     "seff": 3,
     "sha256sum": 2,
     "shasum": 2,
@@ -6837,7 +6941,7 @@
     "singularity": 1,
     "sleep": 2,
     "snakemake": 1,
-    "sort": 10,
+    "sort": 11,
     "spack": 1,
     "sprio": 2,
     "squeue": 13,
@@ -6857,7 +6961,7 @@
     "tr": 1,
     "ucx_info": 1,
     "ulimit": 1,
-    "uname": 1,
+    "uname": 2,
     "wc": 3,
     "which": 2,
     "wrf.exe": 1

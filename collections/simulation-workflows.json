@@ -3,9 +3,10 @@
   "id": "simulation-workflows",
   "name": "Simulation Workflows",
   "status": "draft",
-  "summary": "Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems.",
+  "summary": "Domain skills for scientific simulation planning, MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on HPC systems.",
   "audience": ["simulation teams", "computational scientists", "performance engineers"],
   "skill_ids": [
+    "scientific-simulation-workflows",
     "gromacs-on-slurm",
     "lammps-on-slurm",
     "namd-on-slurm",
