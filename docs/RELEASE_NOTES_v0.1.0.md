@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 74.
+- Skills: 75.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -31,8 +31,8 @@ request missing workflows, or contribute public site adapters.
   triage, and scratch management.
 - Software stacks: module debugging, module tree health, compiler/MPI
   compatibility, reproducible run capture, Python virtualenv, Open OnDemand
-  Batch Connect templates, Ray on Slurm, Dask Jobqueue, JAX distributed smoke
-  tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke tests,
+  Batch Connect templates, Ray on Slurm, Dask Jobqueue, Parsl, JAX distributed
+  smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke tests,
   mpi4py on Slurm, TensorBoard
   monitors, Streamlit apps, Rscript and RStudio on Slurm, Julia on Slurm,
   MATLAB batch jobs, VS Code tunnels, Conda/Mamba, Apptainer builds and runtime,
@@ -41,8 +41,8 @@ request missing workflows, or contribute public site adapters.
   execution, containerized MPI launch checks, GPU visibility checks, scratch
   staging, checksum manifests, and reproducible run capture.
 - Workflow engines: lightweight Slurm dependency chains, CWL and WDL runs
-  inside Slurm allocations, Dask worker clusters, Nextflow, Snakemake, and
-  nf-core on Slurm.
+  inside Slurm allocations, Dask worker clusters, Parsl worker blocks,
+  Nextflow, Snakemake, and nf-core on Slurm.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm
   workflows, Open OnDemand templates, notebooks, TensorBoard monitors,
   Streamlit apps, RStudio, VS Code tunnels, Python/Conda environments, Rscript,

@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 74 seed skills.
+- 75 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -127,7 +127,7 @@ Priority integration tracks:
 - Spack and EasyBuild: scientific software stack creation and module generation.
 - Globus and data lifecycle tools: reliable transfer, checksums, staging,
   archival, and publication handoff.
-- Workflow engines: Nextflow, Snakemake, CWL, WDL, Dask, and Ray.
+- Workflow engines: Nextflow, Snakemake, CWL, WDL, Dask, Parsl, and Ray.
 - Observability: failure triage, efficiency review, profiling, storage smoke
   evidence, utilization reports, and training reset checks.
 
@@ -175,7 +175,8 @@ The first wave emphasizes recurring support and onboarding workflows:
 - AI/HPC: GPU sanity checks, PyTorch DDP, NCCL, DeepSpeed, Ray, Dask, JAX,
   Hugging Face Accelerate, TensorFlow, and monitoring.
 - Domain workflows: bioinformatics, molecular dynamics, electronic structure,
-  CFD, weather, workflow engines, MPI, OpenMP, and performance evidence.
+  CFD, weather, workflow engines including Parsl, MPI, OpenMP, and performance
+  evidence.
 - Facility support: read-only usage, node, module tree, pending reason, and
   efficiency triage.
 

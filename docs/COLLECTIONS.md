@@ -19,17 +19,17 @@ research software engineer building software stacks may start with
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
   reproducible run capture, Python virtual environments, Open OnDemand
   templates, TensorBoard monitors, Streamlit apps, Ray clusters, Dask Jobqueue,
-  JAX distributed smoke tests, Hugging Face Accelerate launches, TensorFlow
-  multi-worker smoke tests, mpi4py jobs,
-  Rscript jobs, RStudio sessions, Julia jobs, MATLAB batch jobs, IDE tunnels,
-  Conda/Mamba, container builds and runtime, Spack, and EasyBuild.
+  Parsl worker blocks, JAX distributed smoke tests, Hugging Face Accelerate
+  launches, TensorFlow multi-worker smoke tests, mpi4py jobs, Rscript jobs,
+  RStudio sessions, Julia jobs, MATLAB batch jobs, IDE tunnels, Conda/Mamba,
+  container builds and runtime, Spack, and EasyBuild.
 - `containers`: Apptainer-compatible image build planning, container runtime
   execution, containerized MPI launch patterns, GPU visibility checks, scratch
   staging, checksum manifests, and reproducible run capture for containerized
   HPC workloads.
 - `workflow-engines`: lightweight Slurm dependency chains, CWL and WDL runs
-  inside Slurm allocations, Dask worker clusters, Nextflow, Snakemake, and
-  nf-core on Slurm.
+  inside Slurm allocations, Dask worker clusters, Parsl worker blocks, Nextflow,
+  Snakemake, and nf-core on Slurm.
 - `training-onboarding`: workshop preflight, Slurm basics, interactive
   sessions, Open OnDemand templates, notebooks, TensorBoard monitors, Streamlit
   apps, RStudio, IDE tunnels, Python/Conda environments, Rscript batch jobs,

@@ -29,6 +29,7 @@ new collections.
 | `streamlit-on-slurm` | interactive | medium | Seed skill added to `software-stacks`, `training-onboarding`, and `ai-hpc`. |
 | `ray-on-slurm` | gpu | medium | Seed skill added to `software-stacks` and `gpu-mpi-performance`. |
 | `dask-jobqueue-on-slurm` | workflow | medium | Seed skill added to `software-stacks` and `workflow-engines`. |
+| `parsl-on-slurm` | workflow | medium | Seed skill added to `software-stacks` and `workflow-engines`. |
 | `jax-distributed-on-slurm` | gpu | medium | Seed skill added to `ai-hpc`, `gpu-mpi-performance`, and `software-stacks`. |
 | `huggingface-accelerate-on-slurm` | gpu | medium | Seed skill added to `ai-hpc`, `gpu-mpi-performance`, and `software-stacks`. |
 | `tensorflow-multiworker-on-slurm` | gpu | medium | Seed skill added to `ai-hpc`, `gpu-mpi-performance`, and `software-stacks`. |

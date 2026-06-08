@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 74
+- Skills: 75
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 57 |
+| `medium` | 58 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 74 |
+| `seed` | 75 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 74 |
+| `draft` | 75 |
 
 ## Collection Coverage
 
@@ -41,9 +41,9 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `gpu-mpi-performance` | 18 |
 | `scheduler-basics` | 7 |
 | `simulation-workflows` | 13 |
-| `software-stacks` | 25 |
+| `software-stacks` | 26 |
 | `training-onboarding` | 17 |
-| `workflow-engines` | 7 |
+| `workflow-engines` | 8 |
 
 ## Uncollected Skills
 
@@ -99,6 +99,7 @@ All skills are included in at least one collection.
 | `open-ondemand-batch-connect` | medium |
 | `openfoam-on-slurm` | medium |
 | `openmp-thread-affinity` | medium |
+| `parsl-on-slurm` | medium |
 | `pbs-submit-job` | medium |
 | `performance-profile-basic` | low |
 | `python-virtualenv-on-hpc` | low |

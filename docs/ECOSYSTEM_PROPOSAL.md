@@ -45,7 +45,7 @@ owner handoffs, and ecosystem sponsor discussions.
   capture.
 - `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices,
   Open OnDemand templates, TensorBoard, Streamlit, RStudio, and IDE tunnels.
-- `workflow-engines`: CWL, WDL, Nextflow, and Snakemake.
+- `workflow-engines`: CWL, WDL, Nextflow, Snakemake, Dask, and Parsl.
 - `data-movement`: Globus, rsync, object storage, checksums, scratch staging,
   IOR/MDTest storage smoke evidence, archive preparation, and quota triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, Open OnDemand

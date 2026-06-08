@@ -65,6 +65,7 @@ tools.
 | `streamlit-on-slurm` | Run policy-aware Streamlit apps from short Slurm compute allocations. |
 | `ray-on-slurm` | Launch resource-bounded Ray clusters inside Slurm allocations. |
 | `dask-jobqueue-on-slurm` | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |
+| `parsl-on-slurm` | Run small Parsl workflows on Slurm with explicit provider and executor limits. |
 | `mpi4py-on-slurm` | Run mpi4py Python programs on Slurm with matching MPI and Python environments. |
 | `rscript-on-slurm` | Run R scripts on Slurm with explicit package-library and output controls. |
 | `julia-on-slurm` | Run Julia scripts on Slurm with explicit depot, project, and thread settings. |

@@ -1,0 +1,140 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "parsl-on-slurm",
+  "name": "Parsl On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run small Parsl workflows on Slurm with explicit provider and executor limits.",
+  "description": "This skill helps Python workflow authors configure Parsl with SlurmProvider and HighThroughputExecutor while keeping blocks, worker counts, walltime, account, partition, logs, and smoke-test behavior explicit.",
+  "categories": ["software", "workflow", "scheduler"],
+  "tags": ["parsl", "python", "workflow", "slurm", "htex", "slurmprovider", "parallel"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "python",
+      "required": true
+    },
+    {
+      "name": "parsl",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "squeue",
+      "required": false
+    },
+    {
+      "name": "scancel",
+      "required": false
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "account",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific Slurm account or allocation for Parsl worker blocks."
+    },
+    {
+      "name": "partition",
+      "type": "string",
+      "required": false,
+      "description": "Slurm partition or queue for Parsl worker blocks."
+    },
+    {
+      "name": "block_shape",
+      "type": "object",
+      "required": true,
+      "description": "Nodes per block, init/min/max blocks, cores per node, workers per node, walltime, and optional scheduler directives."
+    },
+    {
+      "name": "python_environment",
+      "type": "path",
+      "required": false,
+      "description": "Optional virtualenv or Conda/Mamba environment containing Parsl."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "parsl_run_dir",
+      "description": "Parsl run directory with provider, executor, worker, and task logs."
+    },
+    {
+      "name": "parsl_plan",
+      "description": "JSON launch plan written in dry-run and run modes."
+    },
+    {
+      "name": "parsl_result",
+      "description": "Small JSON result report from the Parsl smoke workflow when RUN_PARSL=1."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/parsl-slurm-demo.sh",
+    "examples/parsl_smoke.py",
+    "examples/requirements.txt"
+  ],
+  "examples": [
+    {
+      "title": "Dry-run or launch a Parsl Slurm demo",
+      "path": "examples/parsl-slurm-demo.sh"
+    },
+    {
+      "title": "Parsl SlurmProvider smoke workflow",
+      "path": "examples/parsl_smoke.py"
+    },
+    {
+      "title": "Minimal Python dependency list",
+      "path": "examples/requirements.txt"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill parsl-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/parsl-on-slurm/examples/parsl-slurm-demo.sh",
+      "description": "Check the shell wrapper syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Run the wrapper with RUN_PARSL=0 to inspect the launch plan, then set RUN_PARSL=1 with one small block on a test partition and confirm the result JSON is written."
+    }
+  ],
+  "references": [
+    {
+      "title": "Parsl execution providers",
+      "url": "https://parsl.readthedocs.io/en/latest/userguide/configuration/providers/providers.html"
+    },
+    {
+      "title": "Parsl SlurmProvider API",
+      "url": "https://parsl.readthedocs.io/en/stable/stubs/parsl.providers.SlurmProvider.html"
+    },
+    {
+      "title": "Parsl HighThroughputExecutor API",
+      "url": "https://parsl.readthedocs.io/en/stable/stubs/parsl.executors.HighThroughputExecutor.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

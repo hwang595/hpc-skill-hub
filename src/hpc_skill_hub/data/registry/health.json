@@ -10,9 +10,9 @@
     "interactive": 7,
     "mpi": 12,
     "performance": 13,
-    "scheduler": 56,
-    "software": 23,
-    "workflow": 10
+    "scheduler": 57,
+    "software": 24,
+    "workflow": 11
   },
   "collection_count": 12,
   "collection_coverage": [
@@ -170,7 +170,7 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 25,
+      "skill_count": 26,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
@@ -182,6 +182,7 @@
         "streamlit-on-slurm",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
+        "parsl-on-slurm",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
         "tensorflow-multiworker-on-slurm",
@@ -224,12 +225,13 @@
     },
     {
       "id": "workflow-engines",
-      "skill_count": 7,
+      "skill_count": 8,
       "skill_ids": [
         "slurm-job-dependency-chain",
         "cwl-on-slurm",
         "wdl-on-slurm",
         "dask-jobqueue-on-slurm",
+        "parsl-on-slurm",
         "nextflow-on-slurm",
         "snakemake-on-slurm",
         "nf-core-on-slurm"
@@ -238,7 +240,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 74
+    "seed": 75
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -287,6 +289,7 @@
     "open-ondemand-batch-connect": "medium",
     "openfoam-on-slurm": "medium",
     "openmp-thread-affinity": "medium",
+    "parsl-on-slurm": "medium",
     "pbs-submit-job": "medium",
     "performance-profile-basic": "low",
     "python-virtualenv-on-hpc": "low",
@@ -318,13 +321,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 57
+    "medium": 58
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 74,
+  "skill_count": 75,
   "status_counts": {
-    "draft": 74
+    "draft": 75
   },
   "uncollected_skill_ids": []
 }

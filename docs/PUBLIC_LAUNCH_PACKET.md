@@ -6,7 +6,7 @@ to publish HPC Skill Hub as an open-source seed registry.
 ## Current Local Baseline
 
 - Repository name: `hpc-skill-hub`.
-- Seed skills: 74.
+- Seed skills: 75.
 - Curated collections: 12.
 - Site adapters: 2, including one example adapter and one public-doc-backed
   NERSC Perlmutter draft adapter.
@@ -99,7 +99,8 @@ steps.
 
 - HPC centers that can review public site adapter patterns.
 - Research software engineering groups that maintain training material.
-- Workflow-engine maintainers for Nextflow, Snakemake, CWL, WDL, Dask, and Ray.
+- Workflow-engine maintainers for Nextflow, Snakemake, CWL, WDL, Dask, Parsl,
+  and Ray.
 - AI/HPC support teams that repeatedly help users with GPUs, distributed
   training, TensorBoard, Streamlit, and storage staging.
 - Domain reviewers for bioinformatics, simulation, MPI, storage, containers,

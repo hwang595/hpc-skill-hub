@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a Parsl on Slurm seed skill with bounded SlurmProvider and
+  HighThroughputExecutor launch planning plus a tiny Python app smoke workflow.
 - Extend registry artifact validation to catch stale public collection and site
   adapter counts in launch and proposal materials.
 - Add a GitHub Pages homepage command generator and post-launch homepage URL
@@ -137,12 +139,12 @@ Initial public seed release.
 
 ### Added
 
-- 74 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 75 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, dependency chains, pending reason triage, monitoring, resource
   estimation, efficiency review, failure triage, checkpoint/restart,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
-  TensorBoard, Streamlit, Ray, Dask Jobqueue, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, containers, containerized MPI, Spack, EasyBuild, object storage, data movement,
+  TensorBoard, Streamlit, Ray, Dask Jobqueue, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, containers, containerized MPI, Spack, EasyBuild, object storage, data movement,
   storage smoke benchmarks, CWL/WDL, workflow engines, MPI/GPU diagnostics,
   AI/HPC launches, bioinformatics workflows including local BLAST+, molecular dynamics including NAMD,
   electronic-structure and quantum chemistry including CP2K, CFD, weather

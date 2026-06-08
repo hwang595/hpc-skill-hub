@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 74 skills.
+Current registry size: 75 skills.
 
 ## Categories
 
@@ -17,9 +17,9 @@ Current registry size: 74 skills.
 | `interactive` | 7 |
 | `mpi` | 12 |
 | `performance` | 13 |
-| `scheduler` | 56 |
-| `software` | 23 |
-| `workflow` | 10 |
+| `scheduler` | 57 |
+| `software` | 24 |
+| `workflow` | 11 |
 
 ## Skills By Category
 
@@ -192,6 +192,7 @@ Current registry size: 74 skills.
 | [`open-ondemand-batch-connect`](../skills/open-ondemand-batch-connect/README.md) | medium | seed | Prepare reviewable Open OnDemand Batch Connect app templates. |
 | [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md) | medium | seed | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |
 | [`openmp-thread-affinity`](../skills/openmp-thread-affinity/README.md) | medium | seed | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
+| [`parsl-on-slurm`](../skills/parsl-on-slurm/README.md) | medium | seed | Run small Parsl workflows on Slurm with explicit provider and executor limits. |
 | [`pbs-submit-job`](../skills/pbs-submit-job/README.md) | medium | seed | Generate safe PBS or OpenPBS batch scripts for common HPC job shapes. |
 | [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md) | medium | seed | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
 | [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md) | medium | seed | Run Quantum ESPRESSO PWscf jobs on Slurm with MPI sizing and restart planning. |
@@ -231,6 +232,7 @@ Current registry size: 74 skills.
 | [`module-tree-health-check`](../skills/module-tree-health-check/README.md) | low | seed | Collect read-only evidence about visible HPC module tree health. |
 | [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md) | medium | seed | Run mpi4py Python programs on Slurm with matching MPI and Python environments. |
 | [`open-ondemand-batch-connect`](../skills/open-ondemand-batch-connect/README.md) | medium | seed | Prepare reviewable Open OnDemand Batch Connect app templates. |
+| [`parsl-on-slurm`](../skills/parsl-on-slurm/README.md) | medium | seed | Run small Parsl workflows on Slurm with explicit provider and executor limits. |
 | [`python-virtualenv-on-hpc`](../skills/python-virtualenv-on-hpc/README.md) | low | seed | Create lightweight Python virtual environments with explicit HPC module assumptions. |
 | [`ray-on-slurm`](../skills/ray-on-slurm/README.md) | medium | seed | Launch resource-bounded Ray clusters inside Slurm allocations. |
 | [`reproducible-run-capture`](../skills/reproducible-run-capture/README.md) | low | seed | Capture command, environment, provenance, and logs for reproducible HPC runs. |
@@ -253,6 +255,7 @@ Current registry size: 74 skills.
 | [`htcondor-submit-job`](../skills/htcondor-submit-job/README.md) | medium | seed | Generate safe HTCondor submit descriptions for common high-throughput job shapes. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
 | [`nf-core-on-slurm`](../skills/nf-core-on-slurm/README.md) | medium | seed | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
+| [`parsl-on-slurm`](../skills/parsl-on-slurm/README.md) | medium | seed | Run small Parsl workflows on Slurm with explicit provider and executor limits. |
 | [`slurm-job-dependency-chain`](../skills/slurm-job-dependency-chain/README.md) | medium | seed | Chain multi-stage Slurm jobs with explicit dependencies. |
 | [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
 | [`wdl-on-slurm`](../skills/wdl-on-slurm/README.md) | medium | seed | Run small WDL workflows inside Slurm allocations with miniwdl. |
@@ -270,9 +273,9 @@ Current registry size: 74 skills.
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 18 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence. |
 | [`scheduler-basics`](../collections/scheduler-basics.json) | draft | 7 | new HPC users, training instructors, support teams, sites with mixed schedulers | Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers. |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 13 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems. |
-| [`software-stacks`](../collections/software-stacks.json) | draft | 25 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks. |
+| [`software-stacks`](../collections/software-stacks.json) | draft | 26 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks. |
 | [`training-onboarding`](../collections/training-onboarding.json) | draft | 17 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments. |
-| [`workflow-engines`](../collections/workflow-engines.json) | draft | 7 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL/WDL runs, Dask worker clusters, and lightweight Slurm dependency chains. |
+| [`workflow-engines`](../collections/workflow-engines.json) | draft | 8 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL/WDL runs, Dask and Parsl worker pools, and lightweight Slurm dependency chains. |
 
 ## Site Adapters
 
