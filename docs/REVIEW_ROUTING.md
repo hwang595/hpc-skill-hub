@@ -33,7 +33,7 @@ recruitment and ownership map for these areas:
 | Domain | Examples |
 | --- | --- |
 | Scheduler and allocation | Slurm submission, arrays, array retry planning, accounting, QOS/account limits, fairshare, memory limits, time limits, partitions, reservations, preemption, and requeue behavior. |
-| Storage and data movement | Quotas, scratch, archival staging, rsync, Globus, object storage, checksum workflows, Darshan I/O profile analysis, Lustre striping layout planning. |
+| Storage and data movement | Quotas, scratch, node-local temporary storage, archival staging, rsync, Globus, object storage, checksum workflows, Darshan I/O profile analysis, Lustre striping layout planning. |
 | Software environments | Modules, compiler/MPI stacks, CMake builds, parallel HDF5/NetCDF builds, licensed software jobs, Conda, Python virtualenvs, Spack, EasyBuild. |
 | Containers | Apptainer/Singularity build and runtime patterns, image portability, bind paths. |
 | Workflow engines | Nextflow, Snakemake, nf-core, array retry planning, checkpoint/restart, staging plans. |

@@ -3,14 +3,14 @@
   "categories": {
     "admin": 5,
     "containers": 3,
-    "data": 17,
-    "debugging": 30,
+    "data": 18,
+    "debugging": 31,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
     "performance": 21,
-    "scheduler": 66,
+    "scheduler": 67,
     "software": 27,
     "workflow": 12
   },
@@ -120,11 +120,12 @@
         "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
         "openmp-thread-affinity",
+        "node-local-scratch-staging",
         "quota-and-filesystem-triage",
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, and storage triage."
     },
     {
       "audience": [
@@ -141,6 +142,7 @@
         "object-storage-transfer",
         "checksum-manifest-create",
         "dataset-staging-to-scratch",
+        "node-local-scratch-staging",
         "darshan-io-profile-analysis",
         "lustre-striping-layout-planning",
         "ior-mdtest-storage-smoke",
@@ -149,7 +151,7 @@
         "quota-and-filesystem-triage"
       ],
       "status": "draft",
-      "summary": "Skills for staging, transferring, validating, profiling, layout planning, benchmarking, and managing research data across HPC filesystems and object storage."
+      "summary": "Skills for staging, transferring, validating, profiling, layout planning, benchmarking, and managing research data across HPC filesystems, node-local scratch, and object storage."
     },
     {
       "audience": [
@@ -341,11 +343,12 @@
         "conda-mamba-on-hpc",
         "module-environment-debug",
         "dataset-staging-to-scratch",
+        "node-local-scratch-staging",
         "slurm-oom-memory-triage",
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, array retry planning, OOM memory triage, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, array retry planning, OOM memory triage, node-local scratch staging, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -380,7 +383,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 64,
+    "slurm": 65,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -433,7 +436,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 88,
+  "skill_count": 89,
   "skills": [
     {
       "categories": [
@@ -3424,6 +3427,85 @@
     },
     {
       "categories": [
+        "data",
+        "scheduler",
+        "debugging"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for using node-local temporary storage, including capacity evidence, secure job-local directory creation, stage-in and stage-out logs, and marker-guarded cleanup.",
+      "examples": [
+        {
+          "path": "skills/node-local-scratch-staging/examples/node-local-scratch.sbatch",
+          "title": "Stage work through node-local scratch"
+        },
+        {
+          "path": "skills/node-local-scratch-staging/examples/cleanup-node-local.sh",
+          "title": "Clean up a marked node-local run directory"
+        },
+        {
+          "path": "skills/node-local-scratch-staging/examples/input-manifest.txt",
+          "title": "Input manifest template"
+        },
+        {
+          "path": "skills/node-local-scratch-staging/examples/site-policy-checklist.md",
+          "title": "Review site policy before using node-local scratch"
+        }
+      ],
+      "id": "node-local-scratch-staging",
+      "maturity": "seed",
+      "name": "Node Local Scratch Staging",
+      "path": "skills/node-local-scratch-staging",
+      "readme": "skills/node-local-scratch-staging/README.md",
+      "references": [
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        },
+        {
+          "title": "GNU Coreutils mktemp documentation",
+          "url": "https://www.gnu.org/software/coreutils/mktemp"
+        },
+        {
+          "title": "Bash Reference Manual",
+          "url": "https://www.gnu.org/software/bash/manual/bash.html"
+        },
+        {
+          "title": "rsync manual page",
+          "url": "https://download.samba.org/pub/rsync/rsync.1"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Stage data through node-local scratch with guarded cleanup.",
+      "tags": [
+        "slurm",
+        "scratch",
+        "tmpdir",
+        "node-local",
+        "staging",
+        "cleanup",
+        "rsync"
+      ],
+      "tools": [
+        "sbatch",
+        "bash",
+        "rsync",
+        "mktemp",
+        "df",
+        "mkdir",
+        "touch",
+        "find",
+        "sort",
+        "hostname",
+        "date",
+        "rm"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "data"
       ],
       "description": "This skill helps users plan and run conservative transfers between HPC filesystems and S3-compatible or cloud object storage remotes using rclone, with dry-run defaults, copy-first behavior, optional sync controls, bounded transfer settings, log capture, and post-transfer validation hooks.",
@@ -5833,7 +5915,7 @@
     "checklist": 1,
     "checkpoint": 4,
     "checksum": 5,
-    "cleanup": 1,
+    "cleanup": 2,
     "climate": 1,
     "cloud": 1,
     "cmake": 1,
@@ -5953,6 +6035,7 @@
     "nextflow": 2,
     "nf-core": 2,
     "node-health": 1,
+    "node-local": 1,
     "notebook": 1,
     "nvidia": 1,
     "nvidia-smi": 1,
@@ -6030,7 +6113,7 @@
     "rocm-smi": 1,
     "rscript": 1,
     "rstudio": 1,
-    "rsync": 2,
+    "rsync": 3,
     "s3": 1,
     "sacct": 7,
     "sacctmgr": 1,
@@ -6038,7 +6121,7 @@
     "samplesheet": 1,
     "sbatch": 4,
     "scontrol": 4,
-    "scratch": 2,
+    "scratch": 3,
     "seff": 1,
     "sge": 1,
     "sha256": 1,
@@ -6047,7 +6130,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 61,
+    "slurm": 62,
     "slurmprovider": 1,
     "smoke-test": 1,
     "snakemake": 1,
@@ -6059,7 +6142,7 @@
     "sreport": 1,
     "srun": 6,
     "sshare": 1,
-    "staging": 3,
+    "staging": 4,
     "state": 1,
     "storage": 3,
     "streamlit": 1,
@@ -6073,6 +6156,7 @@
     "throughput": 1,
     "time": 1,
     "timeout": 2,
+    "tmpdir": 1,
     "topology": 1,
     "training": 2,
     "transfer": 4,
@@ -6110,7 +6194,7 @@
     "awk": 4,
     "aws": 1,
     "basename": 1,
-    "bash": 15,
+    "bash": 16,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -6137,17 +6221,17 @@
     "darshan-summary-per-file.sh": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 36,
+    "date": 37,
     "decomposePar": 1,
     "deepspeed": 1,
-    "df": 4,
+    "df": 5,
     "dirname": 3,
     "distributed": 1,
     "du": 2,
     "eb": 1,
     "env": 6,
     "fi_info": 1,
-    "find": 6,
+    "find": 7,
     "gatk": 1,
     "gcc": 1,
     "git": 1,
@@ -6159,7 +6243,7 @@
     "h5dump": 1,
     "h5pcc": 1,
     "head": 5,
-    "hostname": 24,
+    "hostname": 25,
     "hwloc-ls": 1,
     "ibv_devinfo": 1,
     "icoFoam": 1,
@@ -6179,7 +6263,8 @@
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 39,
+    "mkdir": 40,
+    "mktemp": 1,
     "module": 25,
     "mpi4py": 1,
     "mpicc": 7,
@@ -6212,14 +6297,14 @@
     "rclone": 1,
     "real.exe": 1,
     "reconstructPar": 1,
-    "rm": 1,
+    "rm": 2,
     "rocm-smi": 3,
     "rserver": 1,
-    "rsync": 2,
+    "rsync": 3,
     "sacct": 9,
     "sacctmgr": 1,
     "salloc": 1,
-    "sbatch": 48,
+    "sbatch": 49,
     "scancel": 1,
     "scontrol": 13,
     "sed": 4,
@@ -6230,7 +6315,7 @@
     "singularity": 1,
     "sleep": 2,
     "snakemake": 1,
-    "sort": 9,
+    "sort": 10,
     "spack": 1,
     "sprio": 2,
     "squeue": 10,
@@ -6246,6 +6331,7 @@
     "tensorboard": 1,
     "test": 8,
     "time": 1,
+    "touch": 1,
     "tr": 1,
     "ucx_info": 1,
     "uname": 1,

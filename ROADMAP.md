@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 88 seed skills.
+- 89 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -131,7 +131,7 @@ Priority integration tracks:
 - HDF5 and NetCDF: parallel I/O build preflight, wrapper evidence, and tiny
   MPI-IO smoke tests.
 - Globus and data lifecycle tools: reliable transfer, checksums, staging,
-  archival, and publication handoff.
+  node-local scratch, archival, and publication handoff.
 - Workflow engines: array retry planning, Nextflow, Snakemake, CWL, WDL, Dask,
   Parsl, and Ray.
 - Observability: failure triage, QOS/account limit evidence, OOM memory triage,
@@ -176,9 +176,10 @@ The first wave emphasizes recurring support and onboarding workflows:
 
 - Scheduler basics across Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine, and
   failed-array retry planning.
-- Storage and data movement: scratch, quota, staging, checksums, rsync, Globus,
-  object storage, archive preparation, Darshan I/O profile analysis, Lustre
-  striping layout planning, and IOR/MDTest smoke evidence.
+- Storage and data movement: scratch, node-local temporary storage, quota,
+  staging, checksums, rsync, Globus, object storage, archive preparation,
+  Darshan I/O profile analysis, Lustre striping layout planning, and
+  IOR/MDTest smoke evidence.
 - Software stacks: modules, compiler/MPI matrices, CMake build preflight,
   Conda, virtualenv, Spack, EasyBuild, parallel HDF5/NetCDF preflight,
   containers, and reproducible run capture.

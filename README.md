@@ -60,6 +60,7 @@ tools.
 | `openmp-thread-affinity` | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
 | `quota-and-filesystem-triage` | Diagnose quota, inode, capacity, and permission failures. |
 | `scratch-storage-management` | Inventory user-owned scratch, project, and workflow storage usage. |
+| `node-local-scratch-staging` | Stage data through node-local scratch with guarded cleanup. |
 | `ior-mdtest-storage-smoke` | Collect small IOR and MDTest storage benchmark evidence on Slurm. |
 | `module-environment-debug` | Debug module, compiler, MPI, and library path conflicts. |
 | `module-tree-health-check` | Collect read-only evidence about visible HPC module tree health. |
@@ -91,6 +92,7 @@ tools.
 | `object-storage-transfer` | Plan object-storage transfers between HPC filesystems and cloud remotes. |
 | `checksum-manifest-create` | Create checksum manifests for transfer validation and reproducibility. |
 | `dataset-staging-to-scratch` | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
+| `node-local-scratch-staging` | Stage data through node-local scratch with guarded cleanup. |
 | `large-file-archive-prepare` | Prepare large HPC datasets for archival, publication, or handoff. |
 | `cwl-on-slurm` | Run small CWL workflows inside Slurm allocations with cwltool. |
 | `wdl-on-slurm` | Run small WDL workflows inside Slurm allocations with miniwdl. |

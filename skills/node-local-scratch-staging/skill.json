@@ -1,0 +1,175 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "node-local-scratch-staging",
+  "name": "Node Local Scratch Staging",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Stage data through node-local scratch with guarded cleanup.",
+  "description": "This skill provides a conservative Slurm pattern for using node-local temporary storage, including capacity evidence, secure job-local directory creation, stage-in and stage-out logs, and marker-guarded cleanup.",
+  "categories": ["data", "scheduler", "debugging"],
+  "tags": ["slurm", "scratch", "tmpdir", "node-local", "staging", "cleanup", "rsync"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": false,
+      "notes": "Required only when submitting the example as a Slurm job."
+    },
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "rsync",
+      "required": true
+    },
+    {
+      "name": "mktemp",
+      "required": true
+    },
+    {
+      "name": "df",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "touch",
+      "required": true
+    },
+    {
+      "name": "find",
+      "required": true
+    },
+    {
+      "name": "sort",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": false
+    },
+    {
+      "name": "date",
+      "required": false
+    },
+    {
+      "name": "rm",
+      "required": false,
+      "notes": "Used only by marker-guarded cleanup when CLEANUP_NODE_LOCAL=1 or CONFIRM_DELETE=1."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "input_manifest",
+      "type": "path",
+      "required": true,
+      "description": "Newline-delimited list of files or directories to stage into node-local scratch."
+    },
+    {
+      "name": "node_local_base",
+      "type": "path",
+      "required": false,
+      "description": "Base directory for node-local temporary storage, often TMPDIR, SLURM_TMPDIR, or a site-specific path."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": true,
+      "description": "Durable user-owned directory where selected outputs and logs are staged out."
+    },
+    {
+      "name": "workload_command",
+      "type": "string",
+      "required": false,
+      "description": "Optional command to run from the node-local working directory after stage-in."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "node_local_report",
+      "description": "Capacity, environment, stage-in, workload, stage-out, and cleanup evidence for the job-local directory."
+    },
+    {
+      "name": "staged_inputs",
+      "description": "Inputs copied into a secure job-local working directory."
+    },
+    {
+      "name": "staged_outputs",
+      "description": "Selected outputs copied back to durable storage."
+    },
+    {
+      "name": "cleanup_record",
+      "description": "Evidence that cleanup was skipped, completed, or refused by marker checks."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/node-local-scratch.sbatch",
+    "examples/cleanup-node-local.sh",
+    "examples/input-manifest.txt",
+    "examples/site-policy-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Stage work through node-local scratch",
+      "path": "examples/node-local-scratch.sbatch"
+    },
+    {
+      "title": "Clean up a marked node-local run directory",
+      "path": "examples/cleanup-node-local.sh"
+    },
+    {
+      "title": "Input manifest template",
+      "path": "examples/input-manifest.txt"
+    },
+    {
+      "title": "Review site policy before using node-local scratch",
+      "path": "examples/site-policy-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill node-local-scratch-staging",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/node-local-scratch-staging/examples/node-local-scratch.sbatch skills/node-local-scratch-staging/examples/cleanup-node-local.sh",
+      "description": "Check shell syntax for the staging wrapper and cleanup helper."
+    },
+    {
+      "type": "manual",
+      "description": "Run with a tiny manifest in a short allocation and confirm outputs stage out before any cleanup is enabled."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    },
+    {
+      "title": "GNU Coreutils mktemp documentation",
+      "url": "https://www.gnu.org/software/coreutils/mktemp"
+    },
+    {
+      "title": "Bash Reference Manual",
+      "url": "https://www.gnu.org/software/bash/manual/bash.html"
+    },
+    {
+      "title": "rsync manual page",
+      "url": "https://download.samba.org/pub/rsync/rsync.1"
+    }
+  ]
+}

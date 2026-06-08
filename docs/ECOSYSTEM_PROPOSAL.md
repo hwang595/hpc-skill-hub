@@ -50,12 +50,14 @@ owner handoffs, and ecosystem sponsor discussions.
 - `workflow-engines`: array retry planning, CWL, WDL, Nextflow, Snakemake,
   Dask, and Parsl.
 - `data-movement`: Globus, rsync, object storage, checksums, scratch staging,
-  Darshan I/O profile analysis, Lustre striping layout planning, IOR/MDTest
-  storage smoke evidence, archive preparation, and quota triage.
+  node-local scratch staging, Darshan I/O profile analysis, Lustre striping
+  layout planning, IOR/MDTest storage smoke evidence, archive preparation, and
+  quota triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, Open OnDemand
   templates, notebooks, TensorBoard, Streamlit, RStudio, IDE tunnels, Python
-  environments, array retry planning, requeue-safe restart behavior, licensed
-  software use, OOM memory triage, and common learner failure modes.
+  environments, array retry planning, node-local scratch staging,
+  requeue-safe restart behavior, licensed software use, OOM memory triage, and
+  common learner failure modes.
 - `ai-hpc`: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX, Hugging
   Face Accelerate, TensorFlow, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU
   memory triage, TensorBoard monitors, Streamlit demos, container runtime

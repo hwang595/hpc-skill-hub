@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 88
+- Skills: 89
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 20 |
-| `medium` | 68 |
+| `medium` | 69 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 88 |
+| `seed` | 89 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 88 |
+| `draft` | 89 |
 
 ## Collection Coverage
 
@@ -35,14 +35,14 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `ai-hpc` | 18 |
 | `bioinformatics-workflows` | 7 |
 | `containers` | 7 |
-| `core-hpc` | 21 |
-| `data-movement` | 11 |
+| `core-hpc` | 22 |
+| `data-movement` | 12 |
 | `facility-ops` | 6 |
 | `gpu-mpi-performance` | 26 |
 | `scheduler-basics` | 9 |
 | `simulation-workflows` | 20 |
 | `software-stacks` | 29 |
-| `training-onboarding` | 21 |
+| `training-onboarding` | 22 |
 | `workflow-engines` | 9 |
 
 ## Uncollected Skills
@@ -102,6 +102,7 @@ All skills are included in at least one collection.
 | `nextflow-on-slurm` | medium |
 | `nf-core-on-slurm` | medium |
 | `node-health-readonly-triage` | low |
+| `node-local-scratch-staging` | medium |
 | `object-storage-transfer` | medium |
 | `open-ondemand-batch-connect` | medium |
 | `openfoam-on-slurm` | medium |

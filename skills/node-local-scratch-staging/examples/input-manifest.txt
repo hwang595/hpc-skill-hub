@@ -1,0 +1,4 @@
+# Replace these with small user-owned files or directories for a smoke test.
+# Use one path per line.
+README.md
+docs/SAFETY_MODEL.md

@@ -3,7 +3,7 @@
   "id": "training-onboarding",
   "name": "Training And Onboarding",
   "status": "draft",
-  "summary": "Skills for teaching new HPC users, including Slurm jobs, array retry planning, OOM memory triage, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments.",
+  "summary": "Skills for teaching new HPC users, including Slurm jobs, array retry planning, OOM memory triage, node-local scratch staging, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments.",
   "audience": ["instructors", "new HPC users", "training cluster maintainers"],
   "skill_ids": [
     "training-cluster-reset-checklist",
@@ -25,6 +25,7 @@
     "conda-mamba-on-hpc",
     "module-environment-debug",
     "dataset-staging-to-scratch",
+    "node-local-scratch-staging",
     "slurm-oom-memory-triage",
     "job-failure-triage"
   ],

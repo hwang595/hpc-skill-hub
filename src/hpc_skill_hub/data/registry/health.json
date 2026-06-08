@@ -3,14 +3,14 @@
   "category_counts": {
     "admin": 5,
     "containers": 3,
-    "data": 17,
-    "debugging": 30,
+    "data": 18,
+    "debugging": 31,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
     "performance": 21,
-    "scheduler": 66,
+    "scheduler": 67,
     "software": 27,
     "workflow": 12
   },
@@ -68,7 +68,7 @@
     },
     {
       "id": "core-hpc",
-      "skill_count": 21,
+      "skill_count": 22,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
@@ -89,19 +89,21 @@
         "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
         "openmp-thread-affinity",
+        "node-local-scratch-staging",
         "quota-and-filesystem-triage",
         "scratch-storage-management"
       ]
     },
     {
       "id": "data-movement",
-      "skill_count": 11,
+      "skill_count": 12,
       "skill_ids": [
         "globus-transfer-dataset",
         "rsync-data-transfer",
         "object-storage-transfer",
         "checksum-manifest-create",
         "dataset-staging-to-scratch",
+        "node-local-scratch-staging",
         "darshan-io-profile-analysis",
         "lustre-striping-layout-planning",
         "ior-mdtest-storage-smoke",
@@ -232,7 +234,7 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 21,
+      "skill_count": 22,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
@@ -253,6 +255,7 @@
         "conda-mamba-on-hpc",
         "module-environment-debug",
         "dataset-staging-to-scratch",
+        "node-local-scratch-staging",
         "slurm-oom-memory-triage",
         "job-failure-triage"
       ]
@@ -275,7 +278,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 88
+    "seed": 89
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -327,6 +330,7 @@
     "nextflow-on-slurm": "medium",
     "nf-core-on-slurm": "medium",
     "node-health-readonly-triage": "low",
+    "node-local-scratch-staging": "medium",
     "object-storage-transfer": "medium",
     "open-ondemand-batch-connect": "medium",
     "openfoam-on-slurm": "medium",
@@ -369,13 +373,13 @@
   },
   "risk_counts": {
     "low": 20,
-    "medium": 68
+    "medium": 69
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 88,
+  "skill_count": 89,
   "status_counts": {
-    "draft": 88
+    "draft": 89
   },
   "uncollected_skill_ids": []
 }
