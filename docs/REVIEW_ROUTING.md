@@ -7,6 +7,10 @@ The repository starts with placeholder CODEOWNERS because GitHub usernames and
 teams are not known yet. Once the public repository owner is set, update
 `.github/CODEOWNERS` with real owners and keep this document in sync.
 
+Run `python3 tools/review_candidates.py --limit 12` when seeding the first
+`maturity-review` queue. The report ranks seed skills by local static evidence
+and maps them to the domain areas below.
+
 ## Path Routing
 
 | Path | Primary Review | Notes |

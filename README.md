@@ -126,6 +126,7 @@ python3 tools/hpc_skill.py show slurm-submit-job --examples
 python3 tools/hpc_skill.py collections
 python3 tools/hpc_skill.py collection core-hpc
 python3 tools/hpc_skill.py health
+python3 tools/review_candidates.py --limit 12
 ```
 
 Install the CLI during development:
@@ -178,6 +179,7 @@ Prepare GitHub publication commands without taking networked action:
 python3 tools/launch_readiness.py --owner <owner> --run-check
 python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/launch_evidence.py --owner <owner> --run-check
+python3 tools/review_candidates.py --limit 12
 ```
 
 ## Project Status

@@ -32,6 +32,7 @@ Install and authenticate `gh`, then run from the repository root:
 python3 tools/github_publish_plan.py --owner <owner>
 python3 tools/launch_readiness.py --owner <owner>
 python3 tools/launch_evidence.py --owner <owner>
+python3 tools/review_candidates.py --limit 12
 python3 tools/github_repo.py --owner <owner>
 python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
 python3 tools/github_milestones.py --repo <owner>/hpc-skill-hub
@@ -48,12 +49,15 @@ release commands, run:
 ```bash
 python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/launch_evidence.py --owner <owner> --run-check
+python3 tools/review_candidates.py --limit 12
 ```
 
 These commands are read-only: the publish plan prints commands and current
 local readiness, while the evidence report creates a pasteable Markdown or JSON
-summary for the launch issue or owner handoff. They do not create a repository,
-push commits, edit settings, open issues, or cut a release.
+summary for the launch issue or owner handoff. The review candidate report
+prints a local first-review queue for domain reviewer recruitment. They do not
+create a repository, push commits, edit settings, open issues, or cut a
+release.
 
 ## Publish With An Existing Empty GitHub Repository
 
@@ -93,6 +97,8 @@ uncommitted export rather than this maintained local repository.
 - `python3 tools/launch_readiness.py` reports no local `FAIL` entries.
 - `python3 tools/launch_evidence.py --owner <owner> --run-check` produces a
   launch evidence report with no `FAIL` readiness checks.
+- `python3 tools/review_candidates.py --limit 12` prints the first reviewed
+  skill pilot queue for domain reviewer recruitment.
 - `python3 tools/github_repo.py --owner <owner>` prints the expected repository
   creation and metadata commands.
 - `python3 tools/github_labels.py --repo <owner>/hpc-skill-hub` prints the

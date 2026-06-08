@@ -29,6 +29,7 @@ to publish HPC Skill Hub as an open-source seed registry.
   metadata, starter ruleset, and seed community issues.
 - Governance, safety, contributor, review, maturity, release, adoption, and
   integration documentation.
+- Local review candidate reporting for the first `reviewed` skill pilot queue.
 
 ## External Launch Prerequisites
 
@@ -53,11 +54,13 @@ Run these from the repository root in the authenticated environment:
 python3 tools/launch_readiness.py --owner <owner> --run-check
 python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/launch_evidence.py --owner <owner> --run-check
+python3 tools/review_candidates.py --limit 12
 ```
 
 Attach the launch evidence report to the launch issue or owner handoff. If the
-publish plan looks correct, follow the printed commands in order. The first
-networked step is:
+publish plan looks correct, use the review candidate report to seed first
+domain reviewer assignments, then follow the printed commands in order. The
+first networked step is:
 
 ```bash
 git branch -M main
@@ -77,7 +80,8 @@ steps.
 5. Enable Discussions and create the documented discussion categories.
 6. Open starter community issues and pin the community call issue.
 7. Apply the `main` branch ruleset after workflow status checks are visible.
-8. Invite initial domain reviewers and site-adapter reviewers.
+8. Generate the review candidate report and invite initial domain reviewers and
+   site-adapter reviewers.
 9. Tag and publish `v0.1.0` with `registry/releases/v0.1.0.json` attached.
 
 ## First Outreach Targets

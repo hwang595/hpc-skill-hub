@@ -21,6 +21,20 @@ to place in the skill.
 Promotion should happen in a pull request that updates `skill.json`, generated
 registry files, and supporting evidence.
 
+## Finding First Review Candidates
+
+Use the local review candidate report to find seed skills that already have
+good static evidence and clear reviewer routing:
+
+```bash
+python3 tools/review_candidates.py --limit 12
+python3 tools/review_candidates.py --collection data-movement --limit 8
+```
+
+The report is a triage aid, not a maturity decision. Maintainers should still
+confirm examples, references, portability, site assumptions, risk labels, and
+public evidence before promoting a skill to `reviewed`.
+
 ## Evidence By Level
 
 To promote to `reviewed`, include:

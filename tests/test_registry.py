@@ -90,6 +90,50 @@ class RegistryTests(unittest.TestCase):
         )
         self.assertIn("Release manifest is current", result.stdout)
 
+    def test_review_candidates_report(self):
+        result = run_cmd("python3", "tools/review_candidates.py", "--limit", "5")
+        self.assertIn("# HPC Skill Hub Review Candidates", result.stdout)
+        self.assertIn(
+            "| Skill | Risk | Categories | Collections | Score | Review Focus |",
+            result.stdout,
+        )
+
+        json_result = run_cmd(
+            "python3",
+            "tools/review_candidates.py",
+            "--json",
+            "--limit",
+            "5",
+        )
+        payload = json.loads(json_result.stdout)
+        index = self.load_index()
+        seed_count = sum(
+            1 for skill in index["skills"] if skill["maturity"] == "seed"
+        )
+
+        self.assertEqual(payload["skill_count"], index["skill_count"])
+        self.assertEqual(payload["seed_skill_count"], seed_count)
+        self.assertLessEqual(len(payload["candidates"]), 5)
+        self.assertTrue(payload["candidates"])
+        for candidate in payload["candidates"]:
+            self.assertEqual(candidate["maturity"], "seed")
+            self.assertIn("review_focus", candidate)
+            self.assertIn("evidence", candidate)
+
+        collection_result = run_cmd(
+            "python3",
+            "tools/review_candidates.py",
+            "--json",
+            "--collection",
+            "data-movement",
+            "--limit",
+            "3",
+        )
+        collection_payload = json.loads(collection_result.stdout)
+        self.assertTrue(collection_payload["candidates"])
+        for candidate in collection_payload["candidates"]:
+            self.assertIn("data-movement", candidate["collections"])
+
     def test_release_manifest_summarizes_registry(self):
         manifest_path = ROOT / "registry" / "releases" / "v0.1.0.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))

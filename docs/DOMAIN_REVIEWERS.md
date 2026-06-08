@@ -4,6 +4,11 @@ HPC Skill Hub needs domain reviewers before seed skills can become reviewed,
 field-tested, or maintained. This document turns the broad review routing rules
 into a public recruitment and ownership map.
 
+Use `python3 tools/review_candidates.py --limit 12` to generate a local queue of
+seed skills that have enough static evidence for first domain review routing.
+Use `--collection <collection-id>` when recruiting reviewers for a specific
+collection.
+
 ## Reviewer Responsibilities
 
 Domain reviewers help maintainers decide whether a skill is portable, safe, and

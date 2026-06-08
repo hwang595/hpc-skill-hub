@@ -82,6 +82,7 @@ request missing workflows, or contribute public site adapters.
 - `python3 tools/hpc_skill.py scaffold skill <skill-id>`
 - `python3 tools/hpc_skill.py scaffold site-adapter <adapter-id>`
 - `python3 tools/hpc_skill.py health`
+- `python3 tools/review_candidates.py --limit 12`
 
 ## GitHub Launch Readiness
 
@@ -109,6 +110,8 @@ request missing workflows, or contribute public site adapters.
 - Launch readiness checks for Discussion forms and milestone metadata.
 - Launch evidence report generation for maintainer handoff, owner checklists,
   and public launch issue evidence.
+- Review candidate report generation for the first `reviewed` skill pilot and
+  domain reviewer recruitment.
 - Integration guide, integration request template, and starter label for
   downstream tools, portals, assistants, and workflow projects.
 - Repository metadata, labels, and starter ruleset files.

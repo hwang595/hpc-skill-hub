@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a review candidate report generator for ranking seed skills that are
+  ready for first domain review routing and `reviewed` maturity pilot planning.
 - Add a launch evidence report generator for maintainer handoff, launch issues,
   and open-source proposal evidence without taking networked action.
 - Add an object storage transfer seed skill with rclone dry-run copy planning,
