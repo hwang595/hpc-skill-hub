@@ -64,6 +64,7 @@ tools.
 | `gpu-sanity-check` | Verify GPU allocation, CUDA/ROCm visibility, and multi-GPU communication. |
 | `pytorch-ddp-on-slurm` | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
 | `nccl-diagnostics` | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
+| `gpu-memory-triage` | Distinguish GPU allocation, framework, and model memory failures. |
 | `performance-profile-basic` | Collect first-pass CPU, memory, I/O, and GPU profiling evidence. |
 
 ## Quick Start

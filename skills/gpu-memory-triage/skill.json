@@ -1,0 +1,124 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "gpu-memory-triage",
+  "name": "GPU Memory Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Distinguish GPU allocation, framework, and model memory failures.",
+  "description": "This skill collects read-only evidence for GPU memory failures, including scheduler GPU allocation, device memory visibility, framework memory summaries, and common out-of-memory log signals.",
+  "categories": ["debugging", "gpu"],
+  "tags": ["gpu", "memory", "oom", "cuda", "rocm", "pytorch", "triage"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": false
+    },
+    {
+      "name": "python3",
+      "required": true
+    },
+    {
+      "name": "nvidia-smi",
+      "required": false
+    },
+    {
+      "name": "rocm-smi",
+      "required": false
+    },
+    {
+      "name": "grep",
+      "required": true
+    },
+    {
+      "name": "tail",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "log_file",
+      "type": "path",
+      "required": false,
+      "description": "Training or job log to scan for GPU memory signals."
+    },
+    {
+      "name": "gpu_partition",
+      "type": "string",
+      "required": false,
+      "description": "Optional Slurm partition or queue that provides GPU nodes."
+    },
+    {
+      "name": "framework_environment",
+      "type": "string",
+      "required": false,
+      "description": "Module, virtual environment, Conda environment, or container that provides the ML framework."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "gpu_memory_report",
+      "description": "Device visibility, memory totals, framework memory summary, and log clues."
+    },
+    {
+      "name": "triage_next_actions",
+      "description": "Likely next checks for allocation, data-loader, model, batch-size, precision, or fragmentation issues."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/gpu-memory-triage.sbatch",
+    "examples/memory-signals.md"
+  ],
+  "examples": [
+    {
+      "title": "Collect GPU memory triage evidence",
+      "path": "examples/gpu-memory-triage.sbatch"
+    },
+    {
+      "title": "GPU memory signal reference",
+      "path": "examples/memory-signals.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill gpu-memory-triage",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run on a short GPU allocation and scan a failed training log to confirm the report distinguishes allocation visibility from framework memory errors."
+    }
+  ],
+  "references": [
+    {
+      "title": "NVIDIA System Management Interface",
+      "url": "https://developer.nvidia.com/nvidia-system-management-interface"
+    },
+    {
+      "title": "PyTorch CUDA memory management",
+      "url": "https://pytorch.org/docs/stable/notes/cuda.html#memory-management"
+    },
+    {
+      "title": "ROCm SMI documentation",
+      "url": "https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/"
+    }
+  ]
+}

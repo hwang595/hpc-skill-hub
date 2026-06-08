@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 32
+- Skills: 33
 - Site adapters: 1
 - Collections: 5
 - Uncollected skills: 0
@@ -13,20 +13,20 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 11 |
+| `low` | 12 |
 | `medium` | 21 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 32 |
+| `seed` | 33 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 32 |
+| `draft` | 33 |
 
 ## Collection Coverage
 
@@ -34,7 +34,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | --- | ---: |
 | `core-hpc` | 11 |
 | `data-movement` | 7 |
-| `gpu-mpi-performance` | 7 |
+| `gpu-mpi-performance` | 8 |
 | `software-stacks` | 9 |
 | `workflow-engines` | 2 |
 
@@ -55,6 +55,7 @@ All skills are included in at least one collection.
 | `dataset-staging-to-scratch` | medium |
 | `easybuild-install-software` | medium |
 | `globus-transfer-dataset` | medium |
+| `gpu-memory-triage` | low |
 | `gpu-sanity-check` | medium |
 | `interactive-session` | medium |
 | `job-failure-triage` | low |

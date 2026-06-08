@@ -25,6 +25,7 @@ new collections.
 | `large-file-archive-prepare` | data | medium | Seed skill added to `data-movement`. |
 | `pytorch-ddp-on-slurm` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
 | `nccl-diagnostics` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
+| `gpu-memory-triage` | debugging | low | Seed skill added to `gpu-mpi-performance`. |
 
 ## Priority 1: Core User Workflows
 
@@ -47,7 +48,6 @@ request issues.
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
 | `deepspeed-on-slurm` | gpu | medium | Large model training needs conservative Slurm and storage patterns. |
-| `gpu-memory-triage` | debugging | low | Users need to distinguish allocation, framework, and model memory failures. |
 
 ## Priority 5: Domain Collections
 

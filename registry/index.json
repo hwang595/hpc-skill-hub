@@ -2,8 +2,8 @@
   "categories": {
     "containers": 2,
     "data": 7,
-    "debugging": 12,
-    "gpu": 3,
+    "debugging": 13,
+    "gpu": 4,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
@@ -74,11 +74,12 @@
         "gpu-sanity-check",
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
+        "gpu-memory-triage",
         "openmp-thread-affinity",
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, NCCL communication, compiler/MPI compatibility, PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, NCCL communication, compiler/MPI compatibility, PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -122,7 +123,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 17
+    "slurm": 18
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -148,7 +149,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 32,
+  "skill_count": 33,
   "skills": [
     {
       "categories": [
@@ -612,6 +613,68 @@
       ],
       "tools": [
         "globus"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "debugging",
+        "gpu"
+      ],
+      "description": "This skill collects read-only evidence for GPU memory failures, including scheduler GPU allocation, device memory visibility, framework memory summaries, and common out-of-memory log signals.",
+      "examples": [
+        {
+          "path": "skills/gpu-memory-triage/examples/gpu-memory-triage.sbatch",
+          "title": "Collect GPU memory triage evidence"
+        },
+        {
+          "path": "skills/gpu-memory-triage/examples/memory-signals.md",
+          "title": "GPU memory signal reference"
+        }
+      ],
+      "id": "gpu-memory-triage",
+      "maturity": "seed",
+      "name": "GPU Memory Triage",
+      "path": "skills/gpu-memory-triage",
+      "readme": "skills/gpu-memory-triage/README.md",
+      "references": [
+        {
+          "title": "NVIDIA System Management Interface",
+          "url": "https://developer.nvidia.com/nvidia-system-management-interface"
+        },
+        {
+          "title": "PyTorch CUDA memory management",
+          "url": "https://pytorch.org/docs/stable/notes/cuda.html#memory-management"
+        },
+        {
+          "title": "ROCm SMI documentation",
+          "url": "https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Distinguish GPU allocation, framework, and model memory failures.",
+      "tags": [
+        "gpu",
+        "memory",
+        "oom",
+        "cuda",
+        "rocm",
+        "pytorch",
+        "triage"
+      ],
+      "tools": [
+        "sbatch",
+        "python3",
+        "nvidia-smi",
+        "rocm-smi",
+        "grep",
+        "tail",
+        "date",
+        "hostname"
       ],
       "version": "0.1.0"
     },
@@ -1809,7 +1872,7 @@
     "container": 2,
     "cpu": 1,
     "cpu-bind": 1,
-    "cuda": 1,
+    "cuda": 2,
     "data": 1,
     "dataset": 2,
     "ddp": 1,
@@ -1824,7 +1887,7 @@
     "filesystem": 3,
     "git": 1,
     "globus": 1,
-    "gpu": 6,
+    "gpu": 7,
     "inode": 1,
     "interactive": 1,
     "io": 1,
@@ -1835,7 +1898,7 @@
     "logs": 4,
     "mamba": 1,
     "manifest": 3,
-    "memory": 2,
+    "memory": 3,
     "metadata": 1,
     "micromamba": 1,
     "modules": 5,
@@ -1849,7 +1912,7 @@
     "nvidia": 1,
     "oci": 1,
     "omp-num-threads": 1,
-    "oom": 1,
+    "oom": 2,
     "openmp": 1,
     "outputs": 1,
     "parameter-sweep": 1,
@@ -1862,14 +1925,14 @@
     "provenance": 1,
     "publication": 1,
     "python": 1,
-    "pytorch": 1,
+    "pytorch": 2,
     "quota": 2,
     "reproducibility": 4,
     "rerun": 1,
     "resources": 1,
     "restart": 1,
     "resume": 1,
-    "rocm": 1,
+    "rocm": 2,
     "rsync": 2,
     "sacct": 2,
     "salloc": 1,
@@ -1894,7 +1957,7 @@
     "time": 1,
     "timeout": 2,
     "transfer": 3,
-    "triage": 2,
+    "triage": 3,
     "tunnel": 1,
     "validation": 1,
     "venv": 1,
@@ -1914,7 +1977,7 @@
     "clang": 1,
     "command": 2,
     "conda": 1,
-    "date": 10,
+    "date": 11,
     "df": 2,
     "dirname": 3,
     "du": 2,
@@ -1924,9 +1987,9 @@
     "gcc": 1,
     "git": 1,
     "globus": 1,
-    "grep": 6,
+    "grep": 7,
     "head": 3,
-    "hostname": 8,
+    "hostname": 9,
     "jupyter": 1,
     "ldd": 2,
     "lscpu": 1,
@@ -1939,17 +2002,17 @@
     "mpifort": 1,
     "nextflow": 1,
     "nproc": 1,
-    "nvidia-smi": 4,
+    "nvidia-smi": 5,
     "perf": 1,
     "pip": 1,
     "pwd": 2,
-    "python3": 3,
+    "python3": 4,
     "quota": 1,
-    "rocm-smi": 1,
+    "rocm-smi": 2,
     "rsync": 2,
     "sacct": 3,
     "salloc": 1,
-    "sbatch": 12,
+    "sbatch": 13,
     "scontrol": 2,
     "sed": 1,
     "sha256sum": 2,
@@ -1962,7 +2025,7 @@
     "squeue": 1,
     "srun": 6,
     "ssh": 2,
-    "tail": 3,
+    "tail": 4,
     "tar": 1,
     "tee": 4,
     "time": 1,
