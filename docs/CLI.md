@@ -15,6 +15,24 @@ python3 tools/hpc_skill.py adapters
 python3 tools/hpc_skill.py adapter example-campus-cluster
 ```
 
+Install the package during development to use the `hpc-skill` command:
+
+```bash
+python3 -m pip install .
+hpc-skill list
+hpc-skill collection core-hpc
+```
+
+The installed command finds the registry from the current repository checkout.
+If you run it from another directory, set `HPC_SKILL_HUB_ROOT` to the repository
+root.
+
+For code changes without reinstalling:
+
+```bash
+PYTHONPATH=src python3 -m hpc_skill_hub collections
+```
+
 ## Scaffolding Contributions
 
 Create a draft skill:

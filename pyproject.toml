@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hpc-skill-hub"
+version = "0.1.0"
+description = "Open registry of validated, reusable skills for HPC workflows."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [
+  { name = "HPC Skill Hub contributors" }
+]
+keywords = ["hpc", "slurm", "apptainer", "spack", "globus", "nextflow", "snakemake", "mpi", "gpu"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Topic :: Scientific/Engineering"
+]
+
+[project.scripts]
+hpc-skill = "hpc_skill_hub.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

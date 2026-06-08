@@ -22,6 +22,9 @@ python3 tools/build_index.py --check
 python3 tools/build_site.py --output /tmp/hpc-skill-hub-site/index.html
 python3 tools/hpc_skill.py list
 python3 tools/hpc_skill.py collections
+PYTHONPATH=src python3 -m hpc_skill_hub collection core-hpc
+python3 -m pip install .
+hpc-skill collection core-hpc
 python3 -m unittest discover -s tests
 make check
 ```

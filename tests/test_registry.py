@@ -19,6 +19,24 @@ def run_cmd(*args, cwd=ROOT):
     )
 
 
+def run_cmd_with_env(*args, cwd=ROOT, env=None):
+    merged_env = None
+    if env is not None:
+        import os
+
+        merged_env = os.environ.copy()
+        merged_env.update(env)
+    return subprocess.run(
+        args,
+        cwd=str(cwd),
+        env=merged_env,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=True,
+    )
+
+
 class RegistryTests(unittest.TestCase):
     def load_index(self):
         with (ROOT / "registry" / "index.json").open(encoding="utf-8") as handle:
@@ -67,6 +85,19 @@ class RegistryTests(unittest.TestCase):
         payload = json.loads(result.stdout)
         self.assertEqual(payload["id"], "core-hpc")
         self.assertIn("slurm-submit-job", payload["skill_ids"])
+
+    def test_package_module_entrypoint(self):
+        result = run_cmd_with_env(
+            "python3",
+            "-m",
+            "hpc_skill_hub",
+            "collection",
+            "core-hpc",
+            "--json",
+            env={"PYTHONPATH": "src"},
+        )
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["id"], "core-hpc")
 
     def test_cli_adapter_json(self):
         result = run_cmd(

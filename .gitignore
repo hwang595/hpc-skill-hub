@@ -6,6 +6,7 @@ __pycache__/
 *.pyc
 *.log
 *.tmp
+*.egg-info/
 dist/
 build/
 site/

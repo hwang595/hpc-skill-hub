@@ -21,9 +21,13 @@ jobs:
         run: python3 tools/build_index.py --check
       - name: Run test suite
         run: python3 -m unittest discover -s tests
+      - name: Install CLI package
+        run: python3 -m pip install .
       - name: Smoke test registry CLI
         run: |
           python3 tools/hpc_skill.py list
+          hpc-skill collections
+          hpc-skill collection core-hpc
           python3 tools/hpc_skill.py search slurm
           python3 tools/hpc_skill.py show slurm-submit-job --examples
           python3 tools/hpc_skill.py collections

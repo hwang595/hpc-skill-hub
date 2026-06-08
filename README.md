@@ -69,6 +69,14 @@ python3 tools/hpc_skill.py collections
 python3 tools/hpc_skill.py collection core-hpc
 ```
 
+Install the CLI during development:
+
+```bash
+python3 -m pip install .
+hpc-skill list
+hpc-skill collection core-hpc
+```
+
 Scaffold new contributions:
 
 ```bash
