@@ -1,0 +1,3 @@
+# Add one input path per line. Blank lines and comments are ignored.
+# data/input-1.txt
+# data/input-2.txt

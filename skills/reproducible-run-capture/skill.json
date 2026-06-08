@@ -1,0 +1,121 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "reproducible-run-capture",
+  "name": "Reproducible Run Capture",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Capture command, environment, provenance, and logs for reproducible HPC runs.",
+  "description": "This skill wraps a user command with metadata capture so support teams and collaborators can see command arguments, working directory, modules, environment, git state, optional input checksums, stdout, stderr, and exit code.",
+  "categories": ["debugging", "software"],
+  "tags": ["reproducibility", "provenance", "environment", "logs", "git", "checksum"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "env",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "uname",
+      "required": true
+    },
+    {
+      "name": "sort",
+      "required": true
+    },
+    {
+      "name": "git",
+      "required": false
+    },
+    {
+      "name": "module",
+      "required": false
+    },
+    {
+      "name": "sha256sum",
+      "required": false
+    },
+    {
+      "name": "shasum",
+      "required": false
+    },
+    {
+      "name": "cksum",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "command",
+      "type": "string",
+      "required": true,
+      "description": "Command and arguments to run while capturing reproducibility metadata."
+    },
+    {
+      "name": "input_manifest",
+      "type": "path",
+      "required": false,
+      "description": "Optional newline-delimited list of input files to checksum."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "run_capture_directory",
+      "description": "Directory containing command, environment, provenance, stdout, stderr, input checksums, and exit code."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/capture-run.sh",
+    "examples/input-files.txt"
+  ],
+  "examples": [
+    {
+      "title": "Capture one command run",
+      "path": "examples/capture-run.sh"
+    },
+    {
+      "title": "Input manifest template",
+      "path": "examples/input-files.txt"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill reproducible-run-capture",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run the wrapper around a short command and confirm metadata, stdout, stderr, and exit-code files are written."
+    }
+  ],
+  "references": [
+    {
+      "title": "Software Heritage reproducibility overview",
+      "url": "https://www.softwareheritage.org/reproducibility/"
+    },
+    {
+      "title": "Git documentation",
+      "url": "https://git-scm.com/doc"
+    }
+  ]
+}

@@ -2,13 +2,13 @@
   "category_counts": {
     "containers": 1,
     "data": 3,
-    "debugging": 9,
+    "debugging": 11,
     "gpu": 1,
     "interactive": 2,
-    "mpi": 1,
+    "mpi": 2,
     "performance": 3,
     "scheduler": 14,
-    "software": 5,
+    "software": 7,
     "workflow": 2
   },
   "collection_count": 5,
@@ -41,9 +41,10 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 4,
+      "skill_count": 5,
       "skill_ids": [
         "mpi-hello-and-benchmark",
+        "compiler-mpi-matrix",
         "gpu-sanity-check",
         "openmp-thread-affinity",
         "performance-profile-basic"
@@ -51,9 +52,11 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 6,
+      "skill_count": 8,
       "skill_ids": [
         "module-environment-debug",
+        "compiler-mpi-matrix",
+        "reproducible-run-capture",
         "python-virtualenv-on-hpc",
         "conda-mamba-on-hpc",
         "apptainer-run-container",
@@ -72,11 +75,12 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 23
+    "seed": 25
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
     "checkpoint-restart-workflow": "medium",
+    "compiler-mpi-matrix": "low",
     "conda-mamba-on-hpc": "medium",
     "easybuild-install-software": "medium",
     "globus-transfer-dataset": "medium",
@@ -91,6 +95,7 @@
     "performance-profile-basic": "low",
     "python-virtualenv-on-hpc": "low",
     "quota-and-filesystem-triage": "low",
+    "reproducible-run-capture": "low",
     "scratch-storage-management": "low",
     "slurm-job-array-patterns": "medium",
     "slurm-monitor-job": "low",
@@ -100,14 +105,14 @@
     "spack-environment-create": "medium"
   },
   "risk_counts": {
-    "low": 8,
+    "low": 10,
     "medium": 15
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 23,
+  "skill_count": 25,
   "status_counts": {
-    "draft": 23
+    "draft": 25
   },
   "uncollected_skill_ids": []
 }

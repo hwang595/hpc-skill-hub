@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 23
+- Skills: 25
 - Site adapters: 1
 - Collections: 5
 - Uncollected skills: 0
@@ -13,20 +13,20 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 8 |
+| `low` | 10 |
 | `medium` | 15 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 23 |
+| `seed` | 25 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 23 |
+| `draft` | 25 |
 
 ## Collection Coverage
 
@@ -34,8 +34,8 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | --- | ---: |
 | `core-hpc` | 11 |
 | `data-movement` | 3 |
-| `gpu-mpi-performance` | 4 |
-| `software-stacks` | 6 |
+| `gpu-mpi-performance` | 5 |
+| `software-stacks` | 8 |
 | `workflow-engines` | 2 |
 
 ## Uncollected Skills
@@ -48,6 +48,7 @@ All skills are included in at least one collection.
 | --- | --- |
 | `apptainer-run-container` | medium |
 | `checkpoint-restart-workflow` | medium |
+| `compiler-mpi-matrix` | low |
 | `conda-mamba-on-hpc` | medium |
 | `easybuild-install-software` | medium |
 | `globus-transfer-dataset` | medium |
@@ -62,6 +63,7 @@ All skills are included in at least one collection.
 | `performance-profile-basic` | low |
 | `python-virtualenv-on-hpc` | low |
 | `quota-and-filesystem-triage` | low |
+| `reproducible-run-capture` | low |
 | `scratch-storage-management` | low |
 | `slurm-job-array-patterns` | medium |
 | `slurm-monitor-job` | low |

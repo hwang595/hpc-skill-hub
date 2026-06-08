@@ -1,0 +1,125 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "compiler-mpi-matrix",
+  "name": "Compiler MPI Matrix",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Check compiler, MPI wrapper, and module compatibility before building HPC codes.",
+  "description": "This skill gathers read-only evidence about loaded modules, compiler paths, MPI wrapper commands, and optional MPI smoke compilation so users can avoid mismatched compiler and MPI stacks.",
+  "categories": ["software", "mpi", "debugging"],
+  "tags": ["compiler", "mpi", "modules", "mpicc", "wrapper", "compatibility"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "module",
+      "required": false
+    },
+    {
+      "name": "command",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "head",
+      "required": true
+    },
+    {
+      "name": "mpicc",
+      "required": false
+    },
+    {
+      "name": "mpicxx",
+      "required": false
+    },
+    {
+      "name": "mpifort",
+      "required": false
+    },
+    {
+      "name": "gcc",
+      "required": false
+    },
+    {
+      "name": "clang",
+      "required": false
+    },
+    {
+      "name": "ldd",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "executable",
+      "type": "path",
+      "required": false,
+      "description": "Optional executable or shared library to inspect with ldd."
+    },
+    {
+      "name": "compile_smoke",
+      "type": "boolean",
+      "required": false,
+      "description": "Opt-in flag to compile the included MPI hello-world smoke source."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "compiler_mpi_report",
+      "description": "Report of compiler commands, MPI wrappers, module state, and selected environment variables."
+    },
+    {
+      "name": "mpi_smoke_binary",
+      "description": "Optional user-owned binary compiled from the included MPI smoke source."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/compiler-mpi-report.sh",
+    "examples/hello-mpi.c"
+  ],
+  "examples": [
+    {
+      "title": "Collect compiler and MPI wrapper report",
+      "path": "examples/compiler-mpi-report.sh"
+    },
+    {
+      "title": "MPI hello-world smoke source",
+      "path": "examples/hello-mpi.c"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill compiler-mpi-matrix",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run the report after loading a compiler/MPI module pair and review wrapper commands for consistency."
+    }
+  ],
+  "references": [
+    {
+      "title": "MPI Forum",
+      "url": "https://www.mpi-forum.org/"
+    },
+    {
+      "title": "Lmod documentation",
+      "url": "https://lmod.readthedocs.io/"
+    }
+  ]
+}

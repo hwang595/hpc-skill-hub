@@ -16,6 +16,8 @@ new collections.
 | `jupyter-on-slurm` | interactive | medium | Seed skill added to `core-hpc`. |
 | `python-virtualenv-on-hpc` | software | low | Seed skill added to `software-stacks`. |
 | `conda-mamba-on-hpc` | software | medium | Seed skill added to `software-stacks`. |
+| `compiler-mpi-matrix` | software | low | Seed skill added to `software-stacks` and `gpu-mpi-performance`. |
+| `reproducible-run-capture` | debugging | low | Seed skill added to `software-stacks`. |
 
 ## Priority 1: Core User Workflows
 
@@ -26,8 +28,6 @@ should be proposed through skill request issues.
 
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
-| `compiler-mpi-matrix` | software | low | Users need to match compiler, MPI, modules, and application binaries. |
-| `reproducible-run-capture` | debugging | low | Capturing modules, environment, git SHA, and inputs improves supportability. |
 | `container-build-for-hpc` | containers | medium | Users need safe image build and conversion patterns before running containers. |
 
 ## Priority 3: Data Movement And Data Lifecycle

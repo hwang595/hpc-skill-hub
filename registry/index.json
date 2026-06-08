@@ -2,13 +2,13 @@
   "categories": {
     "containers": 1,
     "data": 3,
-    "debugging": 9,
+    "debugging": 11,
     "gpu": 1,
     "interactive": 2,
-    "mpi": 1,
+    "mpi": 2,
     "performance": 3,
     "scheduler": 14,
-    "software": 5,
+    "software": 7,
     "workflow": 2
   },
   "collection_count": 5,
@@ -66,12 +66,13 @@
       "path": "collections/gpu-mpi-performance.json",
       "skill_ids": [
         "mpi-hello-and-benchmark",
+        "compiler-mpi-matrix",
         "gpu-sanity-check",
         "openmp-thread-affinity",
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, MPI launches, OpenMP placement, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, compiler/MPI compatibility, MPI launches, OpenMP placement, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -84,6 +85,8 @@
       "path": "collections/software-stacks.json",
       "skill_ids": [
         "module-environment-debug",
+        "compiler-mpi-matrix",
+        "reproducible-run-capture",
         "python-virtualenv-on-hpc",
         "conda-mamba-on-hpc",
         "apptainer-run-container",
@@ -91,7 +94,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, Python and Conda environments, containers, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -138,7 +141,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 23,
+  "skill_count": 25,
   "skills": [
     {
       "categories": [
@@ -242,6 +245,65 @@
         "date",
         "cat",
         "sleep"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "mpi",
+        "debugging"
+      ],
+      "description": "This skill gathers read-only evidence about loaded modules, compiler paths, MPI wrapper commands, and optional MPI smoke compilation so users can avoid mismatched compiler and MPI stacks.",
+      "examples": [
+        {
+          "path": "skills/compiler-mpi-matrix/examples/compiler-mpi-report.sh",
+          "title": "Collect compiler and MPI wrapper report"
+        },
+        {
+          "path": "skills/compiler-mpi-matrix/examples/hello-mpi.c",
+          "title": "MPI hello-world smoke source"
+        }
+      ],
+      "id": "compiler-mpi-matrix",
+      "maturity": "seed",
+      "name": "Compiler MPI Matrix",
+      "path": "skills/compiler-mpi-matrix",
+      "readme": "skills/compiler-mpi-matrix/README.md",
+      "references": [
+        {
+          "title": "MPI Forum",
+          "url": "https://www.mpi-forum.org/"
+        },
+        {
+          "title": "Lmod documentation",
+          "url": "https://lmod.readthedocs.io/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Check compiler, MPI wrapper, and module compatibility before building HPC codes.",
+      "tags": [
+        "compiler",
+        "mpi",
+        "modules",
+        "mpicc",
+        "wrapper",
+        "compatibility"
+      ],
+      "tools": [
+        "module",
+        "command",
+        "mkdir",
+        "hostname",
+        "head",
+        "mpicc",
+        "mpicxx",
+        "mpifort",
+        "gcc",
+        "clang",
+        "ldd"
       ],
       "version": "0.1.0"
     },
@@ -933,6 +995,64 @@
     },
     {
       "categories": [
+        "debugging",
+        "software"
+      ],
+      "description": "This skill wraps a user command with metadata capture so support teams and collaborators can see command arguments, working directory, modules, environment, git state, optional input checksums, stdout, stderr, and exit code.",
+      "examples": [
+        {
+          "path": "skills/reproducible-run-capture/examples/capture-run.sh",
+          "title": "Capture one command run"
+        },
+        {
+          "path": "skills/reproducible-run-capture/examples/input-files.txt",
+          "title": "Input manifest template"
+        }
+      ],
+      "id": "reproducible-run-capture",
+      "maturity": "seed",
+      "name": "Reproducible Run Capture",
+      "path": "skills/reproducible-run-capture",
+      "readme": "skills/reproducible-run-capture/README.md",
+      "references": [
+        {
+          "title": "Software Heritage reproducibility overview",
+          "url": "https://www.softwareheritage.org/reproducibility/"
+        },
+        {
+          "title": "Git documentation",
+          "url": "https://git-scm.com/doc"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Capture command, environment, provenance, and logs for reproducible HPC runs.",
+      "tags": [
+        "reproducibility",
+        "provenance",
+        "environment",
+        "logs",
+        "git",
+        "checksum"
+      ],
+      "tools": [
+        "env",
+        "mkdir",
+        "date",
+        "hostname",
+        "uname",
+        "sort",
+        "git",
+        "module",
+        "sha256sum",
+        "shasum",
+        "cksum"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "data",
         "debugging"
       ],
@@ -1282,9 +1402,10 @@
     "array": 2,
     "benchmark": 1,
     "checkpoint": 1,
-    "checksum": 1,
+    "checksum": 2,
     "cleanup": 1,
-    "compiler": 1,
+    "compatibility": 1,
+    "compiler": 2,
     "conda": 1,
     "container": 1,
     "cpu": 1,
@@ -1295,9 +1416,10 @@
     "easybuild": 1,
     "easyconfig": 1,
     "enospc": 1,
-    "environment": 3,
+    "environment": 4,
     "failure": 1,
     "filesystem": 3,
+    "git": 1,
     "globus": 1,
     "gpu": 4,
     "inode": 1,
@@ -1307,14 +1429,14 @@
     "lab": 1,
     "ld_library_path": 1,
     "lmod": 2,
-    "logs": 2,
+    "logs": 3,
     "mamba": 1,
     "manifest": 1,
     "memory": 2,
     "micromamba": 1,
-    "modules": 4,
-    "mpi": 3,
-    "mpicc": 1,
+    "modules": 5,
+    "mpi": 4,
+    "mpicc": 2,
     "nextflow": 1,
     "nf-core": 1,
     "notebook": 1,
@@ -1329,9 +1451,10 @@
     "preemption": 1,
     "profile": 1,
     "profiling": 1,
+    "provenance": 1,
     "python": 1,
     "quota": 2,
-    "reproducibility": 3,
+    "reproducibility": 4,
     "rerun": 1,
     "resources": 1,
     "restart": 1,
@@ -1361,33 +1484,41 @@
     "venv": 1,
     "virtualenv": 1,
     "walltime": 1,
-    "workflow": 2
+    "workflow": 2,
+    "wrapper": 1
   },
   "tools": {
     "apptainer": 1,
     "awk": 2,
     "bash": 2,
     "cat": 1,
+    "cksum": 1,
+    "clang": 1,
+    "command": 1,
     "conda": 1,
-    "date": 2,
+    "date": 3,
     "df": 2,
     "dirname": 1,
     "du": 1,
     "eb": 1,
-    "env": 3,
+    "env": 4,
     "find": 2,
+    "gcc": 1,
+    "git": 1,
     "globus": 1,
     "grep": 5,
-    "head": 1,
-    "hostname": 2,
+    "head": 2,
+    "hostname": 4,
     "jupyter": 1,
-    "ldd": 1,
+    "ldd": 2,
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 4,
-    "module": 4,
-    "mpicc": 1,
+    "mkdir": 6,
+    "module": 6,
+    "mpicc": 2,
+    "mpicxx": 1,
+    "mpifort": 1,
     "nextflow": 1,
     "nproc": 1,
     "nvidia-smi": 2,
@@ -1401,15 +1532,18 @@
     "sbatch": 9,
     "scontrol": 1,
     "sed": 1,
+    "sha256sum": 1,
+    "shasum": 1,
     "sleep": 1,
     "snakemake": 1,
-    "sort": 3,
+    "sort": 4,
     "spack": 1,
     "squeue": 1,
     "srun": 4,
     "ssh": 2,
     "tail": 3,
     "time": 1,
+    "uname": 1,
     "which": 1
   }
 }
