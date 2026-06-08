@@ -66,7 +66,8 @@ git push -u origin main
 - Support and citation metadata are present.
 - Changelog and release notes are present.
 - Every skill has a manifest, README, and at least one example artifact.
-- Registry index, registry health, and generated catalog docs are current.
+- Registry index, registry health, generated catalog docs, compatibility
+  tables, and release manifest are current.
 - Repository topics and description are set.
 - Repository metadata matches `.github/repository.json`.
 - Labels are created from `.github/labels.json`.
@@ -80,7 +81,8 @@ git push -u origin main
 - `python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub` prints the
   expected branch ruleset command after the first `Validate` workflow run.
 - `python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub` prints
-  the expected release commands after Pages and Actions are green.
+  the expected release commands and manifest attachment after Pages and Actions
+  are green.
 - `python3 tools/github_publish_plan.py --owner <owner> --run-check` prints the
   expected end-to-end publication plan.
 - Branch protection requires the validation workflow.

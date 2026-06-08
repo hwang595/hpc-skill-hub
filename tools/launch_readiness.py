@@ -73,6 +73,7 @@ def required_files_check() -> Check:
         "docs/COMPATIBILITY.md",
         "docs/RELEASE_PROCESS.md",
         "docs/RELEASE_NOTES_v0.1.0.md",
+        "registry/releases/v0.1.0.json",
         "docs/REVIEW_ROUTING.md",
         "docs/TRIAGE_RUNBOOK.md",
         ".github/CODEOWNERS",
@@ -85,6 +86,7 @@ def required_files_check() -> Check:
         ".github/pull_request_template.md",
         "tools/github_publish_plan.py",
         "tools/build_compatibility.py",
+        "tools/build_release_manifest.py",
     ]
     missing = [path for path in required if not (ROOT / path).exists()]
     if missing:
@@ -114,6 +116,10 @@ def generated_artifacts_check() -> List[Check]:
         ("registry-index-current", ["python3", "tools/build_index.py", "--check"]),
         ("registry-health-current", ["python3", "tools/build_health.py", "--check"]),
         ("compatibility-current", ["python3", "tools/build_compatibility.py", "--check"]),
+        (
+            "release-manifest-current",
+            ["python3", "tools/build_release_manifest.py", "v0.1.0", "--check"],
+        ),
     ]:
         result = run_command(command)
         if result.returncode == 0:

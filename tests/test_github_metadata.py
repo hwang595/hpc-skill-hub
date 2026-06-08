@@ -180,6 +180,7 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("git tag -a v0.1.0", result.stdout)
         self.assertIn("git push origin v0.1.0", result.stdout)
         self.assertIn("gh release create v0.1.0", result.stdout)
+        self.assertIn("registry/releases/v0.1.0.json", result.stdout)
         self.assertIn("--notes-file docs/RELEASE_NOTES_v0.1.0.md", result.stdout)
         self.assertIn("--repo example/hpc-skill-hub", result.stdout)
 

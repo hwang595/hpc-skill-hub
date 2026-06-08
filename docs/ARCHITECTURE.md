@@ -45,6 +45,9 @@ collection health.
 collection, workflow engine, container, domain, and tool compatibility views
 derived from `registry/index.json`.
 
+`tools/build_release_manifest.py` generates `registry/releases/<version>.json`
+with deterministic file sizes and SHA-256 checksums for release provenance.
+
 ## Collections
 
 Collections under `collections/*.json` group skills into adoption paths such as

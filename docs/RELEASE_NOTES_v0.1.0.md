@@ -91,6 +91,7 @@ request missing workflows, or contribute public site adapters.
 - Local launch readiness audit for GitHub publishing.
 - Command generators for repository setup, labels, starter issues, rulesets,
   and release publication.
+- Deterministic release manifest with file checksums for the seed snapshot.
 
 ## Known Limitations
 
@@ -109,6 +110,7 @@ Before tagging `v0.1.0`, maintainers should confirm:
 - `make check` passes locally and in GitHub Actions.
 - `registry/index.json`, `registry/health.json`, `docs/SKILL_CATALOG.md`, and
   `docs/REGISTRY_HEALTH.md` are current.
+- `docs/COMPATIBILITY.md` and `registry/releases/v0.1.0.json` are current.
 - GitHub repository metadata, labels, and rulesets match `.github/`.
 - The generated Pages site is published.
 - The first community issue is pinned.

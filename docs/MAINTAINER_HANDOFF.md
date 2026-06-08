@@ -49,7 +49,7 @@ Before transferring release responsibility:
 
 - Confirm `docs/RELEASE_PROCESS.md` is current.
 - Confirm `registry/index.json`, `registry/health.json`, generated catalog
-  docs, and compatibility tables are fresh.
+  docs, compatibility tables, and release manifests are fresh.
 - Confirm the release owner can build and install the package locally.
 - Confirm the release owner has GitHub permission to create releases and manage
   Pages workflows.

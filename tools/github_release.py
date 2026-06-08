@@ -21,11 +21,21 @@ def notes_path_for_version(version: str) -> Path:
     return ROOT / "docs" / f"RELEASE_NOTES_v{normalized}.md"
 
 
+def manifest_path_for_version(version: str) -> Path:
+    tag = version if version.startswith("v") else f"v{version}"
+    return ROOT / "registry" / "releases" / f"{tag}.json"
+
+
 def release_commands(version: str, repo: str | None) -> List[List[str]]:
     tag = version if version.startswith("v") else f"v{version}"
     notes_path = notes_path_for_version(tag)
+    manifest_path = manifest_path_for_version(tag)
     if not notes_path.exists():
         raise FileNotFoundError(f"release notes not found: {notes_path.relative_to(ROOT)}")
+    if not manifest_path.exists():
+        raise FileNotFoundError(
+            f"release manifest not found: {manifest_path.relative_to(ROOT)}"
+        )
 
     commands = [
         ["git", "tag", "-a", tag, "-m", f"{tag} seed release"],
@@ -35,6 +45,7 @@ def release_commands(version: str, repo: str | None) -> List[List[str]]:
             "release",
             "create",
             tag,
+            str(manifest_path.relative_to(ROOT)),
             "--title",
             tag,
             "--notes-file",

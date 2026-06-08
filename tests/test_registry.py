@@ -61,6 +61,33 @@ class RegistryTests(unittest.TestCase):
         result = run_cmd("python3", "tools/build_compatibility.py", "--check")
         self.assertIn("Compatibility tables are current", result.stdout)
 
+    def test_generated_release_manifest_is_current(self):
+        result = run_cmd(
+            "python3",
+            "tools/build_release_manifest.py",
+            "v0.1.0",
+            "--check",
+        )
+        self.assertIn("Release manifest is current", result.stdout)
+
+    def test_release_manifest_summarizes_registry(self):
+        manifest_path = ROOT / "registry" / "releases" / "v0.1.0.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        index = self.load_index()
+
+        self.assertEqual(manifest["version"], "v0.1.0")
+        self.assertEqual(manifest["registry"]["skill_count"], index["skill_count"])
+        self.assertEqual(
+            manifest["registry"]["collection_count"], index["collection_count"]
+        )
+        self.assertEqual(
+            manifest["registry"]["site_adapter_count"], index["site_adapter_count"]
+        )
+        paths = {entry["path"] for entry in manifest["files"]}
+        self.assertIn("registry/index.json", paths)
+        self.assertIn("docs/COMPATIBILITY.md", paths)
+        self.assertIn("skills/slurm-submit-job/skill.json", paths)
+
     def test_safety_audit_passes(self):
         result = run_cmd("python3", "tools/audit_safety.py")
         self.assertIn("Safety audit passed", result.stdout)
