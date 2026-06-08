@@ -7,6 +7,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a public launch packet that summarizes local readiness, GitHub owner
+  prerequisites, launch sequence, outreach targets, and success criteria for
+  the first open-source publication.
 - Add a public-doc-backed draft NERSC Perlmutter site adapter, covering Slurm
   constraints, QOS notes, Lmod, scratch storage, Globus/DTN transfer guidance,
   and container adaptation notes from public NERSC documentation.

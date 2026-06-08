@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/release-manifest.schema.json",
-  "file_count": 453,
+  "file_count": 454,
   "files": [
     {
       "bytes": 489,
@@ -158,9 +158,9 @@
       "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
     },
     {
-      "bytes": 7893,
+      "bytes": 8082,
       "path": "CHANGELOG.md",
-      "sha256": "c39e52b654c016af1102cd8851fdab10c2e9a6ee242563a6bc07512c64ec7fd8"
+      "sha256": "0ff01faf8d1b66d50c4bbf945fa3e7003c124ddc00db47f7f0d1afddcdbdbaa1"
     },
     {
       "bytes": 426,
@@ -188,9 +188,9 @@
       "sha256": "dea798cae34c09327203664ff6b3e488ce7eb4ceff5e6d0f89bc31462fea8825"
     },
     {
-      "bytes": 12101,
+      "bytes": 12156,
       "path": "README.md",
-      "sha256": "3f2411bfe791bcf9dba9cc9e56a476c2d497063f824e1f365da1aaad2938b87d"
+      "sha256": "a496e4044f64a0ee948d9ce2efd13e662ae0694fc01a81248b7edb8dac3b861e"
     },
     {
       "bytes": 7842,
@@ -303,9 +303,9 @@
       "sha256": "d033e8939becc91783736eb33489b0ea29b54d6d7a830904afc64fe5ebb92032"
     },
     {
-      "bytes": 4273,
+      "bytes": 4468,
       "path": "docs/COMMUNITY_LAUNCH.md",
-      "sha256": "3dda6e850e1dab0481771a87563c5ab76b0a2e5081ef7192c880929b77507e7e"
+      "sha256": "65f15aa811ca315f78993d13b37ec13882f9a8b3dca6bcd1cd5367a2798093b5"
     },
     {
       "bytes": 9799,
@@ -338,9 +338,9 @@
       "sha256": "9ac1621cbec756a8cdd95971a8abe128219c6b4ac2353548e1e30593152ee18a"
     },
     {
-      "bytes": 4861,
+      "bytes": 5018,
       "path": "docs/GITHUB_PUBLISHING.md",
-      "sha256": "afa75e675da9a005670c785212fa749315d3203014c7d6f256a0b05b300899db"
+      "sha256": "5777177aae63dc3a0559505e26f664d5db4997569088c6d3fafdb846ca3e5c16"
     },
     {
       "bytes": 4105,
@@ -383,14 +383,19 @@
       "sha256": "e604cea3c81bf899021f043c8303bfbf3f9f943511fec97c1a0cb445a94d24ef"
     },
     {
+      "bytes": 4423,
+      "path": "docs/PUBLIC_LAUNCH_PACKET.md",
+      "sha256": "d97ac5c908e9e095e11aadbf3e35f74a4133c93b41b0b9fa0cd6a49593b15533"
+    },
+    {
       "bytes": 3424,
       "path": "docs/REGISTRY_HEALTH.md",
       "sha256": "6cb6fa3d597d21a5f78fe0c706416e404ea700b9bc31bb713ade87df4aaf8d2e"
     },
     {
-      "bytes": 7328,
+      "bytes": 7470,
       "path": "docs/RELEASE_NOTES_v0.1.0.md",
-      "sha256": "09f74f0c079358b77e27dac28372c528cd96af9fc53400e5f0e69f08ac2d9ac0"
+      "sha256": "fa77d4ca181585b1e4f212f36413c52e4de524d2c53231ddb6a0f5e1ebb6f380"
     },
     {
       "bytes": 2778,
@@ -2290,6 +2295,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1302321,
+  "total_bytes": 1307482,
   "version": "v0.1.0"
 }

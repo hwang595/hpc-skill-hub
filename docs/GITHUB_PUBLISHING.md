@@ -12,6 +12,9 @@ discussion prompts, and public adopter invitation.
 Use [Triage Runbook](TRIAGE_RUNBOOK.md) for the first public issue and pull
 request intake loop after launch.
 
+Use [Public Launch Packet](PUBLIC_LAUNCH_PACKET.md) as a concise handoff for
+the GitHub owner or sponsoring organization before running networked commands.
+
 ## Recommended Repository Settings
 
 Use `.github/repository.json` as the source of truth for repository settings

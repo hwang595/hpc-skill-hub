@@ -110,6 +110,8 @@ request missing workflows, or contribute public site adapters.
 - Support and citation metadata for public project use.
 - Technical roadmap covering the seed baseline, GitHub launch gates, registry
   growth, integrations, and open ecosystem milestones.
+- Public launch packet summarizing local readiness, external GitHub
+  prerequisites, launch sequence, outreach targets, and success criteria.
 - Local launch readiness audit for GitHub publishing.
 - Command generators for repository setup, labels, starter issues, rulesets,
   and release publication.

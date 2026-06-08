@@ -4,6 +4,10 @@ Use this guide after the repository is pushed to GitHub and the validation and
 package workflows are green. It gives maintainers ready-to-use text and a small
 launch sequence for opening the project as an ecosystem.
 
+Use [Public Launch Packet](PUBLIC_LAUNCH_PACKET.md) when sharing the current
+local readiness state and first GitHub actions with a repository owner,
+maintainer team, or sponsoring organization.
+
 ## Repository Metadata
 
 Use `.github/repository.json` as the source of truth for repository name,
