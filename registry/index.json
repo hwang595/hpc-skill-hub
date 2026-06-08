@@ -1,13 +1,13 @@
 {
   "categories": {
     "containers": 2,
-    "data": 4,
+    "data": 6,
     "debugging": 11,
     "gpu": 1,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
-    "scheduler": 14,
+    "scheduler": 15,
     "software": 8,
     "workflow": 2
   },
@@ -49,7 +49,9 @@
       "path": "collections/data-movement.json",
       "skill_ids": [
         "globus-transfer-dataset",
+        "rsync-data-transfer",
         "checksum-manifest-create",
+        "dataset-staging-to-scratch",
         "scratch-storage-management",
         "quota-and-filesystem-triage"
       ],
@@ -117,7 +119,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 14
+    "slurm": 15
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -143,7 +145,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 27,
+  "skill_count": 29,
   "skills": [
     {
       "categories": [
@@ -465,6 +467,63 @@
         "date",
         "hostname",
         "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "data",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative Slurm staging wrapper that copies declared inputs to a job scratch directory, runs a workload there, and copies selected outputs back to durable storage.",
+      "examples": [
+        {
+          "path": "skills/dataset-staging-to-scratch/examples/stage-to-scratch.sbatch",
+          "title": "Slurm staging wrapper"
+        },
+        {
+          "path": "skills/dataset-staging-to-scratch/examples/input-manifest.txt",
+          "title": "Input manifest template"
+        }
+      ],
+      "id": "dataset-staging-to-scratch",
+      "maturity": "seed",
+      "name": "Dataset Staging To Scratch",
+      "path": "skills/dataset-staging-to-scratch",
+      "readme": "skills/dataset-staging-to-scratch/README.md",
+      "references": [
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        },
+        {
+          "title": "rsync manual page",
+          "url": "https://download.samba.org/pub/rsync/rsync.1"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Stage inputs to scratch, run work, and collect outputs from Slurm jobs.",
+      "tags": [
+        "scratch",
+        "staging",
+        "slurm",
+        "rsync",
+        "outputs",
+        "workflow"
+      ],
+      "tools": [
+        "sbatch",
+        "rsync",
+        "mkdir",
+        "date",
+        "hostname",
+        "find",
+        "sort",
+        "pwd"
       ],
       "version": "0.1.0"
     },
@@ -1161,6 +1220,52 @@
     },
     {
       "categories": [
+        "data"
+      ],
+      "description": "This skill helps users plan and run rsync transfers with conservative defaults, dry-run review, log capture, checksum-aware options, and a post-transfer validation checklist.",
+      "examples": [
+        {
+          "path": "skills/rsync-data-transfer/examples/rsync-plan.sh",
+          "title": "Plan or run an rsync transfer"
+        }
+      ],
+      "id": "rsync-data-transfer",
+      "maturity": "seed",
+      "name": "Rsync Data Transfer",
+      "path": "skills/rsync-data-transfer",
+      "readme": "skills/rsync-data-transfer/README.md",
+      "references": [
+        {
+          "title": "rsync project",
+          "url": "https://rsync.samba.org/"
+        },
+        {
+          "title": "rsync manual page",
+          "url": "https://download.samba.org/pub/rsync/rsync.1"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Transfer datasets with rsync dry-runs, resumable options, and validation hooks.",
+      "tags": [
+        "rsync",
+        "transfer",
+        "checksum",
+        "resume",
+        "data",
+        "logs"
+      ],
+      "tools": [
+        "rsync",
+        "mkdir",
+        "date",
+        "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "data",
         "debugging"
       ],
@@ -1511,7 +1616,7 @@
     "array": 2,
     "benchmark": 1,
     "checkpoint": 1,
-    "checksum": 3,
+    "checksum": 4,
     "cleanup": 1,
     "compatibility": 1,
     "compiler": 2,
@@ -1520,6 +1625,7 @@
     "cpu": 1,
     "cpu-bind": 1,
     "cuda": 1,
+    "data": 1,
     "dataset": 1,
     "debugging": 1,
     "definition": 1,
@@ -1539,7 +1645,7 @@
     "lab": 1,
     "ld_library_path": 1,
     "lmod": 2,
-    "logs": 3,
+    "logs": 4,
     "mamba": 1,
     "manifest": 2,
     "memory": 2,
@@ -1555,6 +1661,7 @@
     "omp-num-threads": 1,
     "oom": 1,
     "openmp": 1,
+    "outputs": 1,
     "parameter-sweep": 1,
     "perf": 1,
     "permission": 1,
@@ -1569,36 +1676,38 @@
     "rerun": 1,
     "resources": 1,
     "restart": 1,
+    "resume": 1,
     "rocm": 1,
+    "rsync": 2,
     "sacct": 2,
     "salloc": 1,
     "sbatch": 1,
     "scontrol": 1,
-    "scratch": 1,
+    "scratch": 2,
     "sha256": 1,
     "sif": 1,
     "singularity": 2,
-    "slurm": 14,
+    "slurm": 15,
     "snakemake": 1,
     "software": 2,
     "spack": 1,
     "squeue": 1,
     "srun": 2,
-    "staging": 2,
+    "staging": 3,
     "state": 1,
     "storage": 2,
     "threads": 1,
     "throughput": 1,
     "time": 1,
     "timeout": 2,
-    "transfer": 2,
+    "transfer": 3,
     "triage": 2,
     "tunnel": 1,
     "validation": 1,
     "venv": 1,
     "virtualenv": 1,
     "walltime": 1,
-    "workflow": 2,
+    "workflow": 3,
     "wrapper": 1
   },
   "tools": {
@@ -1610,25 +1719,25 @@
     "clang": 1,
     "command": 2,
     "conda": 1,
-    "date": 5,
+    "date": 7,
     "df": 2,
     "dirname": 2,
     "du": 1,
     "eb": 1,
     "env": 4,
-    "find": 2,
+    "find": 3,
     "gcc": 1,
     "git": 1,
     "globus": 1,
     "grep": 5,
     "head": 2,
-    "hostname": 5,
+    "hostname": 6,
     "jupyter": 1,
     "ldd": 2,
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 8,
+    "mkdir": 10,
     "module": 6,
     "mpicc": 2,
     "mpicxx": 1,
@@ -1638,12 +1747,14 @@
     "nvidia-smi": 2,
     "perf": 1,
     "pip": 1,
+    "pwd": 1,
     "python3": 2,
     "quota": 1,
     "rocm-smi": 1,
+    "rsync": 2,
     "sacct": 3,
     "salloc": 1,
-    "sbatch": 9,
+    "sbatch": 10,
     "scontrol": 1,
     "sed": 1,
     "sha256sum": 2,
@@ -1651,13 +1762,13 @@
     "singularity": 1,
     "sleep": 1,
     "snakemake": 1,
-    "sort": 4,
+    "sort": 5,
     "spack": 1,
     "squeue": 1,
     "srun": 4,
     "ssh": 2,
     "tail": 3,
-    "tee": 1,
+    "tee": 2,
     "time": 1,
     "uname": 1,
     "which": 1

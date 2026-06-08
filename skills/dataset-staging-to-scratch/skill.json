@@ -1,0 +1,124 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "dataset-staging-to-scratch",
+  "name": "Dataset Staging To Scratch",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Stage inputs to scratch, run work, and collect outputs from Slurm jobs.",
+  "description": "This skill provides a conservative Slurm staging wrapper that copies declared inputs to a job scratch directory, runs a workload there, and copies selected outputs back to durable storage.",
+  "categories": ["data", "scheduler"],
+  "tags": ["scratch", "staging", "slurm", "rsync", "outputs", "workflow"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "rsync",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "find",
+      "required": true
+    },
+    {
+      "name": "sort",
+      "required": true
+    },
+    {
+      "name": "pwd",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "input_manifest",
+      "type": "path",
+      "required": true,
+      "description": "Newline-delimited list of files or directories to stage into scratch."
+    },
+    {
+      "name": "scratch_dir",
+      "type": "path",
+      "required": false,
+      "description": "Job-local or user-owned scratch path."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": true,
+      "description": "Durable user-owned directory where selected outputs are collected."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "staged_inputs",
+      "description": "Inputs copied into job scratch for local access."
+    },
+    {
+      "name": "collected_outputs",
+      "description": "Selected outputs copied back to durable storage."
+    },
+    {
+      "name": "staging_log",
+      "description": "Log of stage-in, work, and stage-out steps."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/stage-to-scratch.sbatch",
+    "examples/input-manifest.txt"
+  ],
+  "examples": [
+    {
+      "title": "Slurm staging wrapper",
+      "path": "examples/stage-to-scratch.sbatch"
+    },
+    {
+      "title": "Input manifest template",
+      "path": "examples/input-manifest.txt"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill dataset-staging-to-scratch",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run with a tiny user-owned input manifest on a short debug partition and confirm outputs return to durable storage."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    },
+    {
+      "title": "rsync manual page",
+      "url": "https://download.samba.org/pub/rsync/rsync.1"
+    }
+  ]
+}

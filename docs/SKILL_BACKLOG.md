@@ -20,6 +20,8 @@ new collections.
 | `reproducible-run-capture` | debugging | low | Seed skill added to `software-stacks`. |
 | `container-build-for-hpc` | containers | medium | Seed skill added to `software-stacks`. |
 | `checksum-manifest-create` | data | low | Seed skill added to `data-movement`. |
+| `rsync-data-transfer` | data | medium | Seed skill added to `data-movement`. |
+| `dataset-staging-to-scratch` | data | medium | Seed skill added to `data-movement`. |
 
 ## Priority 1: Core User Workflows
 
@@ -35,8 +37,6 @@ requests should be proposed through skill request issues.
 
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
-| `rsync-data-transfer` | data | medium | Smaller transfers still need resumable, checksummed command patterns. |
-| `dataset-staging-to-scratch` | data | medium | Workflows often need input staging and output collection around jobs. |
 | `large-file-archive-prepare` | data | medium | Users need packaging and manifest patterns before archival or publication. |
 
 ## Priority 4: AI/HPC And Accelerators

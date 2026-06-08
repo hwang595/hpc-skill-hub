@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 27
+- Skills: 29
 - Site adapters: 1
 - Collections: 5
 - Uncollected skills: 0
@@ -14,26 +14,26 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 11 |
-| `medium` | 16 |
+| `medium` | 18 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 27 |
+| `seed` | 29 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 27 |
+| `draft` | 29 |
 
 ## Collection Coverage
 
 | Collection | Skills |
 | --- | ---: |
 | `core-hpc` | 11 |
-| `data-movement` | 4 |
+| `data-movement` | 6 |
 | `gpu-mpi-performance` | 5 |
 | `software-stacks` | 9 |
 | `workflow-engines` | 2 |
@@ -52,6 +52,7 @@ All skills are included in at least one collection.
 | `compiler-mpi-matrix` | low |
 | `conda-mamba-on-hpc` | medium |
 | `container-build-for-hpc` | medium |
+| `dataset-staging-to-scratch` | medium |
 | `easybuild-install-software` | medium |
 | `globus-transfer-dataset` | medium |
 | `gpu-sanity-check` | medium |
@@ -66,6 +67,7 @@ All skills are included in at least one collection.
 | `python-virtualenv-on-hpc` | low |
 | `quota-and-filesystem-triage` | low |
 | `reproducible-run-capture` | low |
+| `rsync-data-transfer` | medium |
 | `scratch-storage-management` | low |
 | `slurm-job-array-patterns` | medium |
 | `slurm-monitor-job` | low |

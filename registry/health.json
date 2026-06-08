@@ -1,13 +1,13 @@
 {
   "category_counts": {
     "containers": 2,
-    "data": 4,
+    "data": 6,
     "debugging": 11,
     "gpu": 1,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
-    "scheduler": 14,
+    "scheduler": 15,
     "software": 8,
     "workflow": 2
   },
@@ -32,10 +32,12 @@
     },
     {
       "id": "data-movement",
-      "skill_count": 4,
+      "skill_count": 6,
       "skill_ids": [
         "globus-transfer-dataset",
+        "rsync-data-transfer",
         "checksum-manifest-create",
+        "dataset-staging-to-scratch",
         "scratch-storage-management",
         "quota-and-filesystem-triage"
       ]
@@ -77,7 +79,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 27
+    "seed": 29
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -86,6 +88,7 @@
     "compiler-mpi-matrix": "low",
     "conda-mamba-on-hpc": "medium",
     "container-build-for-hpc": "medium",
+    "dataset-staging-to-scratch": "medium",
     "easybuild-install-software": "medium",
     "globus-transfer-dataset": "medium",
     "gpu-sanity-check": "medium",
@@ -100,6 +103,7 @@
     "python-virtualenv-on-hpc": "low",
     "quota-and-filesystem-triage": "low",
     "reproducible-run-capture": "low",
+    "rsync-data-transfer": "medium",
     "scratch-storage-management": "low",
     "slurm-job-array-patterns": "medium",
     "slurm-monitor-job": "low",
@@ -110,13 +114,13 @@
   },
   "risk_counts": {
     "low": 11,
-    "medium": 16
+    "medium": 18
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 27,
+  "skill_count": 29,
   "status_counts": {
-    "draft": 27
+    "draft": 29
   },
   "uncollected_skill_ids": []
 }

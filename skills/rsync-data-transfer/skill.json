@@ -1,0 +1,98 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "rsync-data-transfer",
+  "name": "Rsync Data Transfer",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Transfer datasets with rsync dry-runs, resumable options, and validation hooks.",
+  "description": "This skill helps users plan and run rsync transfers with conservative defaults, dry-run review, log capture, checksum-aware options, and a post-transfer validation checklist.",
+  "categories": ["data"],
+  "tags": ["rsync", "transfer", "checksum", "resume", "data", "logs"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "tools": [
+    {
+      "name": "rsync",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "source_path",
+      "type": "path",
+      "required": true,
+      "description": "Source path or rsync source specification."
+    },
+    {
+      "name": "destination_path",
+      "type": "path",
+      "required": true,
+      "description": "Destination path or rsync destination specification."
+    },
+    {
+      "name": "run_transfer",
+      "type": "boolean",
+      "required": false,
+      "description": "Opt-in flag that changes the example from dry-run planning to actual transfer."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "transfer_plan",
+      "description": "Dry-run or executed rsync command and log file."
+    },
+    {
+      "name": "transfer_log",
+      "description": "Rsync output suitable for review and support."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/rsync-plan.sh"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run an rsync transfer",
+      "path": "examples/rsync-plan.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill rsync-data-transfer",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run the example in dry-run mode against two small user-owned directories and review the log before RUN_TRANSFER=1."
+    }
+  ],
+  "references": [
+    {
+      "title": "rsync project",
+      "url": "https://rsync.samba.org/"
+    },
+    {
+      "title": "rsync manual page",
+      "url": "https://download.samba.org/pub/rsync/rsync.1"
+    }
+  ]
+}

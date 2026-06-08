@@ -16,8 +16,8 @@ research software engineer building software stacks may start with
   capture, Python virtual environments, Conda/Mamba, container builds and
   runtime, Spack, and EasyBuild.
 - `workflow-engines`: Nextflow and Snakemake on Slurm.
-- `data-movement`: Globus dataset transfer, checksum manifests, scratch
-  inventory, and filesystem quota triage.
+- `data-movement`: Globus and rsync transfers, checksum manifests, scratch
+  staging, scratch inventory, and filesystem quota triage.
 - `gpu-mpi-performance`: MPI launch checks, compiler/MPI compatibility, GPU
   sanity checks, OpenMP placement, and basic profiling.
 
