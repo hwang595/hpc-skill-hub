@@ -1,5 +1,6 @@
 The seed registry needs domain reviewers before skills can move from `seed` to
-`reviewed` or `field-tested`.
+`reviewed` or `field-tested`. The public reviewer area map lives in
+`docs/DOMAIN_REVIEWERS.md`.
 
 Reviewer areas we would like to cover:
 

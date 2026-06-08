@@ -102,6 +102,36 @@ class GovernanceDocsTests(unittest.TestCase):
         self.assertIn("maturity-review", routing)
         self.assertIn("docs/REVIEW_ROUTING.md", codeowners)
 
+    def test_domain_reviewer_matrix_is_publication_ready(self):
+        matrix = (ROOT / "docs" / "DOMAIN_REVIEWERS.md").read_text(
+            encoding="utf-8"
+        )
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        routing = (ROOT / "docs" / "REVIEW_ROUTING.md").read_text(
+            encoding="utf-8"
+        )
+        launch = (ROOT / "docs" / "COMMUNITY_LAUNCH.md").read_text(
+            encoding="utf-8"
+        )
+        seed_issue = (
+            ROOT / ".github" / "seed-issues" / "domain-reviewers.md"
+        ).read_text(encoding="utf-8")
+
+        for area in [
+            "Scheduler and allocation",
+            "Storage and data movement",
+            "Software environments",
+            "AI, GPU, and accelerator workflows",
+            "Bioinformatics workflows",
+            "Simulation workflows",
+            "Facility operations and training",
+            "Site adapters",
+            "Registry tooling",
+        ]:
+            self.assertIn(area, matrix)
+        for linked_text in [readme, routing, launch, seed_issue]:
+            self.assertIn("DOMAIN_REVIEWERS.md", linked_text)
+
     def test_triage_runbook_and_labels(self):
         labels_path = ROOT / ".github" / "labels.json"
         labels = {label["name"] for label in json.loads(labels_path.read_text())}

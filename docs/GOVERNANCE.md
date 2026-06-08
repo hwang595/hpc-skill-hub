@@ -10,7 +10,8 @@ turning the core registry into a collection of private cluster policies.
 - Registry maintainers own schemas, validation, releases, and general review.
 - Domain maintainers review skills in areas such as schedulers, containers,
   data movement, AI/HPC, bioinformatics, molecular dynamics, CFD, climate, and
-  facility operations.
+  facility operations. Use [Domain Reviewers](DOMAIN_REVIEWERS.md) to recruit
+  and route seed-stage reviewers.
 - Site adapter maintainers own public local policy mappings for a specific
   institution, training cluster, or public environment.
 

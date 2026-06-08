@@ -75,6 +75,7 @@ def required_files_check() -> Check:
         "docs/RELEASE_NOTES_v0.1.0.md",
         "registry/releases/v0.1.0.json",
         "docs/REVIEW_ROUTING.md",
+        "docs/DOMAIN_REVIEWERS.md",
         "docs/TRIAGE_RUNBOOK.md",
         ".github/CODEOWNERS",
         ".github/repository.json",

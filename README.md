@@ -192,6 +192,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Safety model](docs/SAFETY_MODEL.md)
 - [Governance](docs/GOVERNANCE.md)
 - [Review routing](docs/REVIEW_ROUTING.md)
+- [Domain reviewers](docs/DOMAIN_REVIEWERS.md)
 - [Triage runbook](docs/TRIAGE_RUNBOOK.md)
 - [Maturity review](docs/MATURITY_REVIEW.md)
 - [RFC process](docs/RFC_PROCESS.md)

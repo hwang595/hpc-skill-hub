@@ -1,5 +1,5 @@
 {
-  "file_count": 354,
+  "file_count": 355,
   "files": [
     {
       "bytes": 489,
@@ -87,9 +87,9 @@
       "sha256": "9c12c24b8ecfa89eb73455a9f7c345a26ebfa7e99cfa73ad661a79e64a55520c"
     },
     {
-      "bytes": 925,
+      "bytes": 991,
       "path": ".github/seed-issues/domain-reviewers.md",
-      "sha256": "d54d8b10ec86a7785c6c5fd6098687248cf45ce777c0f0623dd9d3477bb995d4"
+      "sha256": "216420e2c9609c50a3d1ef87807b211242d0dc157622641ce5efdb87100fb66f"
     },
     {
       "bytes": 655,
@@ -152,9 +152,9 @@
       "sha256": "d78e08f09ed920854665f4058872fab57e4746ca700413444421592cc8f8913e"
     },
     {
-      "bytes": 10517,
+      "bytes": 10564,
       "path": "README.md",
-      "sha256": "7694cbd4a7e606bc58b5aa01814ec8017cab0002d104c03ab7444e7bf4caccc5"
+      "sha256": "2a7ebf22b22ea35c39741db8882e024200560624a53847173c0e14fbcf16227b"
     },
     {
       "bytes": 2982,
@@ -262,14 +262,19 @@
       "sha256": "727af3e7669d5fafc678121a678cd8a58c3687f168449b677b40b4ddbbd9353c"
     },
     {
-      "bytes": 3689,
+      "bytes": 3737,
       "path": "docs/COMMUNITY_LAUNCH.md",
-      "sha256": "73847cdd9ea806e520850c1e8119bd978293039d05602cab1ee4266a05594e9b"
+      "sha256": "e3bd3fe7746ba3b4f6e78400f6ecbb8258fd656552f66b801cc9b57c056cb4ac"
     },
     {
       "bytes": 8237,
       "path": "docs/COMPATIBILITY.md",
       "sha256": "3d2dde3444db58dee4aea99480295147d9348680019d43b93630474f91ee6d81"
+    },
+    {
+      "bytes": 5971,
+      "path": "docs/DOMAIN_REVIEWERS.md",
+      "sha256": "fbec1082f795aa4ee58d42e2a156886a2020ff1c010fd6da7b721c2327e62059"
     },
     {
       "bytes": 3034,
@@ -287,9 +292,9 @@
       "sha256": "299437af941e3e87f2a600e9f4720e36790acbf58d5ba8aeadbadd934c1b8bd9"
     },
     {
-      "bytes": 3421,
+      "bytes": 3510,
       "path": "docs/GOVERNANCE.md",
-      "sha256": "52dd3d56a263a4783eebc9d91f7c264b32e25bf52adf5994d2a99d40c59dc1a2"
+      "sha256": "197a98ecd20b89efe2bbaf2f23ed083caee8767859b7793ac90dcfd8cb288b96"
     },
     {
       "bytes": 6324,
@@ -337,9 +342,9 @@
       "sha256": "b09b055aacebe9b52cf955022853bd04e6a3b286c8ede5c4d8d13e84bc7852a4"
     },
     {
-      "bytes": 5178,
+      "bytes": 5283,
       "path": "docs/REVIEW_ROUTING.md",
-      "sha256": "46384f7b6b167e33a6ae2998f1e6c80079a0e73c0dfb1053a4795e28f910e150"
+      "sha256": "b087376f9f898a8d2e986ce1da554caedc4a80b25656389f730329ddc752ff38"
     },
     {
       "bytes": 2184,
@@ -1687,9 +1692,9 @@
       "sha256": "8041bbf0672444a26d9bfa2d2e65afe58c4653a5df90be12b427260b1d986257"
     },
     {
-      "bytes": 5644,
+      "bytes": 6780,
       "path": "tests/test_governance_docs.py",
-      "sha256": "060247794ee1b3fd56c6e10dea81e7c09e834f125076e3e1ba676e0ccaeb018d"
+      "sha256": "bc29adbbc04dcc5ec921e92b901a0918560374f2692dab41f503a5896fd7dd74"
     },
     {
       "bytes": 11569,
@@ -1762,9 +1767,9 @@
       "sha256": "f40297733b779b3c8f2ff8ab62fdc6af5e5e63da495c096c93940dda6fb8a01e"
     },
     {
-      "bytes": 8259,
+      "bytes": 8295,
       "path": "tools/launch_readiness.py",
-      "sha256": "5aa6a5363af610bfef7271fda18b51d889ca45cbc4d716f1be96f93ec50178f8"
+      "sha256": "2bd1f556b45170d95dfbfed95d50dcb37caa791e99765408b29e201ba7111247"
     },
     {
       "bytes": 18164,
@@ -1794,6 +1799,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 874162,
+  "total_bytes": 881660,
   "version": "v0.1.0"
 }

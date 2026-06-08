@@ -96,4 +96,5 @@ help-wanted, good-first-issue, governance
 - Pin the first community issue.
 - Run the first weekly triage loop from [Triage Runbook](TRIAGE_RUNBOOK.md).
 - Link the generated Pages site in the repository homepage.
-- Invite the first three to five domain reviewers.
+- Invite the first three to five domain reviewers using
+  [Domain Reviewers](DOMAIN_REVIEWERS.md).

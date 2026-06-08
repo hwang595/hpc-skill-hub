@@ -23,7 +23,8 @@ teams are not known yet. Once the public repository owner is set, update
 ## Domain Routing
 
 Ask for domain review when a change requires operational judgment beyond the
-registry format:
+registry format. Use [Domain Reviewers](DOMAIN_REVIEWERS.md) as the public
+recruitment and ownership map for these areas:
 
 | Domain | Examples |
 | --- | --- |
