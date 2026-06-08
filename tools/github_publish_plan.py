@@ -89,38 +89,42 @@ def main() -> int:
     for check in launch_checks(args.run_check, args.owner):
         print(f"# {check.status:4} {check.name}: {check.detail}")
 
-    print_section("2. Create repository and push seed branch")
+    print_section("2. Review public launch packet")
+    print("# Share docs/PUBLIC_LAUNCH_PACKET.md with the GitHub owner,")
+    print("# maintainer team, or sponsoring organization before running networked commands.")
+
+    print_section("3. Create repository and push seed branch")
     print(shell_join(["git", "branch", "-M", metadata["default_branch"]]))
     print(shell_join(create_command(metadata, args.owner, not args.no_push)))
     print_commands(edit_commands(metadata, args.owner))
 
-    print_section("3. Configure labels")
+    print_section("4. Configure labels")
     print_commands(command_for_label(label, repo) for label in load_labels())
 
-    print_section("4. Configure milestones")
+    print_section("5. Configure milestones")
     print_commands(
         command_for_milestone(milestone, repo) for milestone in load_milestones()
     )
 
-    print_section("5. Configure discussion categories")
+    print_section("6. Configure discussion categories")
     print("# Create GitHub Discussions categories matching these template slugs:")
     for name, slug, path in DISCUSSION_FORMS:
         print(f"# - {name}: slug `{slug}`, form {path}")
 
-    print_section("6. Open starter issues")
+    print_section("7. Open starter issues")
     for issue in load_seed_issues():
         print(shell_join(command_for_issue(issue, repo)))
         if issue.get("pin"):
             print(f"# Pin the issue created from {issue['body']}.")
 
     print_section(
-        "7. Apply branch rulesets after first green Validate and Package workflows"
+        "8. Apply branch rulesets after first green Validate and Package workflows"
     )
     for path in iter_ruleset_paths():
         load_ruleset(path)
         print(shell_join(command_for_ruleset(path, repo)))
 
-    print_section("8. Publish first release after CI and Pages are green")
+    print_section("9. Publish first release after CI and Pages are green")
     print_commands(release_commands(args.version, repo))
 
     return 0
