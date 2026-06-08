@@ -1,0 +1,17 @@
+[ defaults ]
+1 1 no 1.0 1.0
+
+[ atomtypes ]
+OW  8  15.9994  0.0  A  0.3165  0.6502
+
+[ moleculetype ]
+SOL  1
+
+[ atoms ]
+1  OW  1  SOL  OW  1  0.0  15.9994
+
+[ system ]
+Tiny smoke system
+
+[ molecules ]
+SOL  2

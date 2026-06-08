@@ -3,11 +3,11 @@
     "containers": 2,
     "data": 9,
     "debugging": 13,
-    "gpu": 5,
+    "gpu": 6,
     "interactive": 2,
-    "mpi": 3,
-    "performance": 4,
-    "scheduler": 21,
+    "mpi": 4,
+    "performance": 5,
+    "scheduler": 22,
     "software": 8,
     "workflow": 4
   },
@@ -112,6 +112,7 @@
       "name": "Simulation Workflows",
       "path": "collections/simulation-workflows.json",
       "skill_ids": [
+        "gromacs-on-slurm",
         "lammps-on-slurm",
         "mpi-hello-and-benchmark",
         "openmp-thread-affinity",
@@ -120,7 +121,7 @@
         "checkpoint-restart-workflow"
       ],
       "status": "draft",
-      "summary": "Domain skills for MPI-heavy simulation workloads on Slurm-backed HPC systems."
+      "summary": "Domain skills for MPI/GPU-heavy simulation workloads on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -165,7 +166,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 22
+    "slurm": 23
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -191,7 +192,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 37,
+  "skill_count": 38,
   "skills": [
     {
       "categories": [
@@ -903,6 +904,87 @@
         "sbatch",
         "nvidia-smi",
         "rocm-smi"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "gpu",
+        "mpi",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides a conservative Slurm wrapper for GROMACS simulations, including executable naming, MPI/OpenMP layout, optional GPU offload flags, checkpoint/restart controls, and a dry-run-first smoke test.",
+      "examples": [
+        {
+          "path": "skills/gromacs-on-slurm/examples/gromacs-smoke.sbatch",
+          "title": "Plan or run a GROMACS smoke test on Slurm"
+        },
+        {
+          "path": "skills/gromacs-on-slurm/examples/smoke.mdp",
+          "title": "Tiny MDP file"
+        },
+        {
+          "path": "skills/gromacs-on-slurm/examples/conf.gro",
+          "title": "Tiny coordinate file"
+        },
+        {
+          "path": "skills/gromacs-on-slurm/examples/topol.top",
+          "title": "Tiny topology file"
+        },
+        {
+          "path": "skills/gromacs-on-slurm/examples/checkpoint-checklist.md",
+          "title": "GROMACS checkpoint checklist"
+        }
+      ],
+      "id": "gromacs-on-slurm",
+      "maturity": "seed",
+      "name": "GROMACS On Slurm",
+      "path": "skills/gromacs-on-slurm",
+      "readme": "skills/gromacs-on-slurm/README.md",
+      "references": [
+        {
+          "title": "GROMACS command-line reference",
+          "url": "https://manual.gromacs.org/current/user-guide/cmdline.html"
+        },
+        {
+          "title": "GROMACS mdrun reference",
+          "url": "https://manual.gromacs.org/current/onlinehelp/gmx-mdrun.html"
+        },
+        {
+          "title": "Getting good performance from mdrun",
+          "url": "https://manual.gromacs.org/2023/user-guide/mdrun-performance.html"
+        },
+        {
+          "title": "Managing long simulations",
+          "url": "https://manual.gromacs.org/2018-current/user-guide/managing-simulations.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning.",
+      "tags": [
+        "gromacs",
+        "molecular-dynamics",
+        "mpi",
+        "openmp",
+        "gpu",
+        "checkpoint"
+      ],
+      "tools": [
+        "gmx",
+        "gmx_mpi",
+        "sbatch",
+        "srun",
+        "mkdir",
+        "pwd",
+        "date",
+        "hostname",
+        "tee",
+        "test"
       ],
       "version": "0.1.0"
     },
@@ -2177,7 +2259,7 @@
     "array": 2,
     "benchmark": 1,
     "bioinformatics": 1,
-    "checkpoint": 2,
+    "checkpoint": 3,
     "checksum": 4,
     "cleanup": 1,
     "compatibility": 1,
@@ -2204,7 +2286,8 @@
     "genomics": 1,
     "git": 1,
     "globus": 1,
-    "gpu": 9,
+    "gpu": 10,
+    "gromacs": 1,
     "haplotypecaller": 1,
     "inode": 1,
     "interactive": 1,
@@ -2222,8 +2305,8 @@
     "metadata": 1,
     "micromamba": 1,
     "modules": 5,
-    "molecular-dynamics": 1,
-    "mpi": 5,
+    "molecular-dynamics": 2,
+    "mpi": 6,
     "mpicc": 2,
     "nccl": 2,
     "network": 1,
@@ -2234,7 +2317,7 @@
     "oci": 1,
     "omp-num-threads": 1,
     "oom": 2,
-    "openmp": 1,
+    "openmp": 2,
     "outputs": 1,
     "parameter-sweep": 1,
     "perf": 1,
@@ -2301,7 +2384,7 @@
     "clang": 1,
     "command": 2,
     "conda": 1,
-    "date": 15,
+    "date": 16,
     "deepspeed": 1,
     "df": 2,
     "dirname": 3,
@@ -2313,16 +2396,18 @@
     "gcc": 1,
     "git": 1,
     "globus": 1,
+    "gmx": 1,
+    "gmx_mpi": 1,
     "grep": 8,
     "head": 4,
-    "hostname": 12,
+    "hostname": 13,
     "jupyter": 1,
     "ldd": 2,
     "lmp": 1,
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 16,
+    "mkdir": 17,
     "module": 6,
     "mpicc": 2,
     "mpicxx": 1,
@@ -2332,14 +2417,14 @@
     "nvidia-smi": 6,
     "perf": 1,
     "pip": 1,
-    "pwd": 4,
+    "pwd": 5,
     "python3": 5,
     "quota": 1,
     "rocm-smi": 2,
     "rsync": 2,
     "sacct": 3,
     "salloc": 1,
-    "sbatch": 17,
+    "sbatch": 18,
     "scontrol": 3,
     "sed": 1,
     "sha256sum": 2,
@@ -2350,12 +2435,12 @@
     "sort": 8,
     "spack": 1,
     "squeue": 1,
-    "srun": 8,
+    "srun": 9,
     "ssh": 2,
     "tail": 4,
     "tar": 1,
-    "tee": 8,
-    "test": 2,
+    "tee": 9,
+    "test": 3,
     "time": 1,
     "tr": 1,
     "uname": 1,

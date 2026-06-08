@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 37 skills.
+Current registry size: 38 skills.
 
 ## Categories
 
@@ -11,11 +11,11 @@ Current registry size: 37 skills.
 | `containers` | 2 |
 | `data` | 9 |
 | `debugging` | 13 |
-| `gpu` | 5 |
+| `gpu` | 6 |
 | `interactive` | 2 |
-| `mpi` | 3 |
-| `performance` | 4 |
-| `scheduler` | 21 |
+| `mpi` | 4 |
+| `performance` | 5 |
+| `scheduler` | 22 |
 | `software` | 8 |
 | `workflow` | 4 |
 
@@ -67,6 +67,7 @@ Current registry size: 37 skills.
 | [`deepspeed-on-slurm`](../skills/deepspeed-on-slurm/README.md) | medium | seed | Plan and smoke test DeepSpeed launches on Slurm GPU allocations. |
 | [`gpu-memory-triage`](../skills/gpu-memory-triage/README.md) | low | seed | Distinguish GPU allocation, framework, and model memory failures. |
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
+| [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | [`nccl-diagnostics`](../skills/nccl-diagnostics/README.md) | medium | seed | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
 | [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md) | medium | seed | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
 
@@ -82,6 +83,7 @@ Current registry size: 37 skills.
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
 | [`compiler-mpi-matrix`](../skills/compiler-mpi-matrix/README.md) | low | seed | Check compiler, MPI wrapper, and module compatibility before building HPC codes. |
+| [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | [`lammps-on-slurm`](../skills/lammps-on-slurm/README.md) | medium | seed | Run LAMMPS molecular dynamics jobs on Slurm with MPI, GPU, and restart planning. |
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
 
@@ -89,6 +91,7 @@ Current registry size: 37 skills.
 
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
+| [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | [`lammps-on-slurm`](../skills/lammps-on-slurm/README.md) | medium | seed | Run LAMMPS molecular dynamics jobs on Slurm with MPI, GPU, and restart planning. |
 | [`openmp-thread-affinity`](../skills/openmp-thread-affinity/README.md) | medium | seed | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
 | [`performance-profile-basic`](../skills/performance-profile-basic/README.md) | low | seed | Collect first-pass performance evidence for an HPC workload. |
@@ -104,6 +107,7 @@ Current registry size: 37 skills.
 | [`deepspeed-on-slurm`](../skills/deepspeed-on-slurm/README.md) | medium | seed | Plan and smoke test DeepSpeed launches on Slurm GPU allocations. |
 | [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
+| [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | [`interactive-session`](../skills/interactive-session/README.md) | medium | seed | Start short interactive compute sessions for debugging and notebooks. |
 | [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
 | [`jupyter-on-slurm`](../skills/jupyter-on-slurm/README.md) | medium | seed | Launch Jupyter notebooks inside short Slurm compute allocations. |
@@ -150,7 +154,7 @@ Current registry size: 37 skills.
 | [`core-hpc`](../collections/core-hpc.json) | draft | 11 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 9 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence. |
-| [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 6 | simulation teams, computational scientists, performance engineers | Domain skills for MPI-heavy simulation workloads on Slurm-backed HPC systems. |
+| [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 7 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation workloads on Slurm-backed HPC systems. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 9 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 3 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines on Slurm-backed HPC clusters. |
 
@@ -164,6 +168,6 @@ Current registry size: 37 skills.
 
 - Open OnDemand app templates.
 - Transfer verification across storage tiers.
-- WRF, GROMACS, OpenFOAM, and Quantum ESPRESSO starter skills.
+- WRF, OpenFOAM, and Quantum ESPRESSO starter skills.
 - Bioinformatics workflows for BLAST, AlphaFold, and single-cell analysis.
 - Facility read-only reports for fairshare, partitions, and node health.

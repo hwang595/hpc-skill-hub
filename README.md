@@ -62,6 +62,7 @@ tools.
 | `snakemake-on-slurm` | Configure Snakemake workflows for Slurm profiles. |
 | `nf-core-on-slurm` | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
 | `gatk-workflow-on-hpc` | Plan and run GATK variant-calling workflows on shared HPC systems. |
+| `gromacs-on-slurm` | Run GROMACS molecular dynamics jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | `lammps-on-slurm` | Run LAMMPS molecular dynamics jobs on Slurm with MPI, GPU, and restart planning. |
 | `mpi-hello-and-benchmark` | Compile and run MPI sanity checks and simple communication benchmarks. |
 | `gpu-sanity-check` | Verify GPU allocation, CUDA/ROCm visibility, and multi-GPU communication. |

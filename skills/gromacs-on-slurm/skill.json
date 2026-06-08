@@ -1,0 +1,175 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "gromacs-on-slurm",
+  "name": "GROMACS On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning.",
+  "description": "This skill provides a conservative Slurm wrapper for GROMACS simulations, including executable naming, MPI/OpenMP layout, optional GPU offload flags, checkpoint/restart controls, and a dry-run-first smoke test.",
+  "categories": ["gpu", "mpi", "scheduler", "performance"],
+  "tags": ["gromacs", "molecular-dynamics", "mpi", "openmp", "gpu", "checkpoint"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "gmx",
+      "required": false,
+      "notes": "Common serial or thread-MPI GROMACS wrapper."
+    },
+    {
+      "name": "gmx_mpi",
+      "required": false,
+      "notes": "Common MPI-enabled GROMACS wrapper."
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "pwd",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    },
+    {
+      "name": "test",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "mdp_file",
+      "type": "path",
+      "required": true,
+      "description": "GROMACS parameter file for grompp."
+    },
+    {
+      "name": "coordinate_file",
+      "type": "path",
+      "required": true,
+      "description": "Input coordinate file such as conf.gro."
+    },
+    {
+      "name": "topology_file",
+      "type": "path",
+      "required": true,
+      "description": "Topology file such as topol.top."
+    },
+    {
+      "name": "gromacs_command",
+      "type": "string",
+      "required": false,
+      "description": "GROMACS wrapper command, usually gmx or gmx_mpi."
+    },
+    {
+      "name": "gpu_offload_settings",
+      "type": "string",
+      "required": false,
+      "description": "Optional reviewed mdrun GPU settings such as GMX_NB, GMX_PME, and GMX_GPU_ID."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": true,
+      "description": "Durable output directory for TPR, logs, checkpoints, and run records."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "gromacs_launch_plan",
+      "description": "Reviewable Slurm, MPI/OpenMP, GPU, checkpoint, and command plan."
+    },
+    {
+      "name": "tpr_file",
+      "description": "GROMACS portable binary run input created by grompp when RUN_GROMACS=1."
+    },
+    {
+      "name": "mdrun_outputs",
+      "description": "Optional mdrun log, checkpoint, trajectory, and energy files."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/gromacs-smoke.sbatch",
+    "examples/smoke.mdp",
+    "examples/conf.gro",
+    "examples/topol.top",
+    "examples/checkpoint-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run a GROMACS smoke test on Slurm",
+      "path": "examples/gromacs-smoke.sbatch"
+    },
+    {
+      "title": "Tiny MDP file",
+      "path": "examples/smoke.mdp"
+    },
+    {
+      "title": "Tiny coordinate file",
+      "path": "examples/conf.gro"
+    },
+    {
+      "title": "Tiny topology file",
+      "path": "examples/topol.top"
+    },
+    {
+      "title": "GROMACS checkpoint checklist",
+      "path": "examples/checkpoint-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill gromacs-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run plan-only mode first, then set RUN_GROMACS=1 on a short debug partition with a site-approved GROMACS module."
+    }
+  ],
+  "references": [
+    {
+      "title": "GROMACS command-line reference",
+      "url": "https://manual.gromacs.org/current/user-guide/cmdline.html"
+    },
+    {
+      "title": "GROMACS mdrun reference",
+      "url": "https://manual.gromacs.org/current/onlinehelp/gmx-mdrun.html"
+    },
+    {
+      "title": "Getting good performance from mdrun",
+      "url": "https://manual.gromacs.org/2023/user-guide/mdrun-performance.html"
+    },
+    {
+      "title": "Managing long simulations",
+      "url": "https://manual.gromacs.org/2018-current/user-guide/managing-simulations.html"
+    }
+  ]
+}
