@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hpc-skill-hub"
-version = "0.1.0"
+version = "0.2.0"
 description = "Open registry of validated, reusable skills for HPC workflows."
 readme = "README.md"
 requires-python = ">=3.9"

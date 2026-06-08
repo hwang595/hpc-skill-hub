@@ -26,7 +26,9 @@ jobs:
       - name: Check packaged registry data
         run: python3 tools/build_package_data.py --check
       - name: Check release manifest
-        run: python3 tools/build_release_manifest.py v0.1.0 --check
+        run: python3 tools/build_release_manifest.py v0.2.0 --check
+      - name: Check reviewed-skill pilot packet
+        run: python3 tools/review_packet.py --check
       - name: Validate generated artifact contracts
         run: python3 tools/validate_registry_artifacts.py
       - name: Run safety audit
@@ -47,6 +49,7 @@ jobs:
           hpc-skill collections
           hpc-skill collection core-hpc
           hpc-skill health
+          python3 tools/review_packet.py --json --limit 5
           hpc-skill validate --skill slurm-submit-job
           python3 tools/hpc_skill.py search slurm
           python3 tools/hpc_skill.py show slurm-submit-job --examples

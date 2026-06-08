@@ -27,13 +27,16 @@ Use the local review candidate report to find seed skills that already have
 good static evidence and clear reviewer routing:
 
 ```bash
+python3 tools/review_packet.py --check
 python3 tools/review_candidates.py --limit 12
 python3 tools/review_candidates.py --collection data-movement --limit 8
 ```
 
-The report is a triage aid, not a maturity decision. Maintainers should still
-confirm examples, references, portability, site assumptions, risk labels, and
-public evidence before promoting a skill to `reviewed`.
+For the `v0.2.0` reviewed-skill pilot, use
+`docs/REVIEW_PACKET_v0.2.0.md` as the reviewer queue and issue-seeding packet.
+The packet and report are triage aids, not maturity decisions. Maintainers
+should still confirm examples, references, portability, site assumptions, risk
+labels, and public evidence before promoting a skill to `reviewed`.
 
 ## Evidence By Level
 

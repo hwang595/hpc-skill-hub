@@ -14,7 +14,7 @@ from typing import Any, Dict, Iterable, List, Set
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_JSON = ROOT / "registry" / "index.json"
 HEALTH_JSON = ROOT / "registry" / "health.json"
-RELEASE_MANIFEST = ROOT / "registry" / "releases" / "v0.1.0.json"
+RELEASE_MANIFEST = ROOT / "registry" / "releases" / "v0.2.0.json"
 PACKAGE_DATA_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "registry"
 SCHEMAS = {
     "index": ROOT / "schemas" / "registry-index.schema.json",
@@ -28,7 +28,8 @@ PUBLIC_BASELINE_DOCS = [
     ROOT / "docs" / "OPEN_SOURCE_PROPOSAL.md",
     ROOT / "docs" / "PUBLIC_LAUNCH_PACKET.md",
     ROOT / "docs" / "REGISTRY_HEALTH.md",
-    ROOT / "docs" / "RELEASE_NOTES_v0.1.0.md",
+    ROOT / "docs" / "RELEASE_NOTES_v0.2.0.md",
+    ROOT / "docs" / "REVIEW_PACKET_v0.2.0.md",
     ROOT / "docs" / "SKILL_CATALOG.md",
 ]
 
@@ -308,10 +309,13 @@ def public_count_expectations(index: Dict[str, Any]) -> Dict[str, List[str]]:
             f"- Site adapters: {site_adapter_count}",
             f"- Collections: {collection_count}",
         ],
-        "docs/RELEASE_NOTES_v0.1.0.md": [
+        "docs/RELEASE_NOTES_v0.2.0.md": [
             f"- Skills: {skill_count}.",
             f"- Collections: {collection_count}.",
             f"- Site adapters: {site_adapter_count},",
+        ],
+        "docs/REVIEW_PACKET_v0.2.0.md": [
+            f"- Skills: {skill_count}",
         ],
         "docs/SKILL_CATALOG.md": [
             f"Current registry size: {skill_count} skills.",

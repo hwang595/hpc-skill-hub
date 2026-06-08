@@ -22,7 +22,8 @@ python3 tools/build_index.py --check
 python3 tools/build_health.py --check
 python3 tools/build_compatibility.py --check
 python3 tools/build_package_data.py --check
-python3 tools/build_release_manifest.py v0.1.0 --check
+python3 tools/build_release_manifest.py <version> --check
+python3 tools/review_packet.py --check
 python3 tools/validate_registry_artifacts.py
 python3 tools/audit_safety.py
 python3 tools/launch_readiness.py
@@ -52,6 +53,8 @@ Review:
   pass `tools/validate_registry_artifacts.py`.
 - `registry/releases/v<version>.json` is current and attached to the GitHub
   release.
+- For `v0.2.0` and later reviewed-skill pilot releases,
+  `docs/REVIEW_PACKET_v0.2.0.md` or its successor is current.
 - Built source and wheel distributions pass `twine check`, and the `Package`
   workflow smoke tests the installed `hpc-skill` CLI outside the checkout.
 - New skills have README files, examples, tests, and references.
@@ -77,17 +80,18 @@ Review:
 ## Safety Notes
 ```
 
-## First Seed Release
+## Release Command Generator
 
-Use [v0.1.0 Release Notes](RELEASE_NOTES_v0.1.0.md) as the starting point for
-the first public GitHub release body.
+Use the matching release notes, such as
+[v0.2.0 Release Notes](RELEASE_NOTES_v0.2.0.md), as the starting point for the
+GitHub release body.
 
 After `main` is pushed, GitHub Actions are green, the Pages site is published,
 and the repository homepage points at the Pages URL, inspect the release
 commands:
 
 ```bash
-python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub
+python3 tools/github_release.py <version> --repo <owner>/hpc-skill-hub
 ```
 
 Run the printed commands when they look correct.

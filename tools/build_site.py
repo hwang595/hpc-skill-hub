@@ -181,7 +181,7 @@ def project_status(index: Dict[str, Any]) -> str:
         ),
     ]
     pills = [
-        '<span class="status-pill">v0.1.0</span>',
+        '<span class="status-pill">v0.2.0-dev</span>',
         '<span class="status-pill">Python 3.9+</span>',
         f'<span class="status-pill">{index["skill_count"]} skills</span>',
         f'<span class="status-pill">{index["collection_count"]} collections</span>',

@@ -119,7 +119,7 @@ uncommitted export rather than this maintained local repository.
 - `python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub` prints the
   expected branch ruleset command after the first `Validate` and `Package`
   workflow runs.
-- `python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub` prints
+- `python3 tools/github_release.py v0.2.0 --repo <owner>/hpc-skill-hub` prints
   the expected release commands and manifest attachment after Pages and Actions
   are green.
 - `python3 tools/github_homepage.py --repo <owner>/hpc-skill-hub` prints the

@@ -57,8 +57,8 @@ def main() -> int:
     )
     parser.add_argument(
         "--version",
-        default="v0.1.0",
-        help="Release version to include in the plan. Default: v0.1.0.",
+        default="v0.2.0",
+        help="Release version to include in the plan. Default: v0.2.0.",
     )
     parser.add_argument(
         "--run-check",
@@ -90,6 +90,7 @@ def main() -> int:
         evidence_command.append("--run-check")
     print(shell_join(evidence_command))
     print(shell_join(["python3", "tools/review_candidates.py", "--limit", "12"]))
+    print(shell_join(["python3", "tools/review_packet.py", "--check"]))
     proposal_command = ["python3", "tools/proposal_evidence.py", "--owner", args.owner]
     if args.run_check:
         proposal_command.append("--run-check")
@@ -145,7 +146,7 @@ def main() -> int:
         )
     )
 
-    print_section("10. Publish first release after CI and Pages are green")
+    print_section("10. Publish release after CI and Pages are green")
     print_commands(release_commands(args.version, repo))
 
     print_section("11. Verify published repository state")

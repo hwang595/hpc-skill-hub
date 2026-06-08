@@ -18,9 +18,12 @@ The seed repository currently includes:
   and deterministic release manifest artifacts.
 - GitHub metadata for labels, issue templates, discussion templates,
   milestones, workflows, starter rulesets, and seed community issues.
+- A published `v0.1.0` release and a `v0.2.0` development track for the first
+  reviewed-skill pilot.
 
-The remaining external launch prerequisites are a public GitHub remote, an
-authenticated GitHub CLI environment, and maintainer-owned repository settings.
+The public GitHub launch is complete. Current development focuses on turning
+seed skills into reviewed skills through public-safe evidence and domain
+review.
 
 ## Phase 0: Seed Repository
 
@@ -45,7 +48,7 @@ Exit evidence:
 
 ## Phase 1: Public GitHub Launch
 
-Status: ready for an authenticated GitHub environment.
+Status: complete for the seed repository.
 
 Technical gates:
 
@@ -69,7 +72,7 @@ Exit evidence:
 
 ## Phase 2: Usable Registry
 
-Status: local foundation exists; public feedback is needed.
+Status: in progress for `v0.2.0`.
 
 Technical gates:
 
@@ -81,6 +84,8 @@ Technical gates:
   without forking core skills.
 - Add field evidence to selected seed skills through adoption reports.
 - Promote selected skills from `seed` to `reviewed` only after domain review.
+- Generate and keep current a reviewed-skill pilot packet for reviewer routing,
+  issue labels, promotion gates, and public evidence checklists.
 
 Exit evidence:
 
@@ -88,6 +93,7 @@ Exit evidence:
 - At least one public site adapter is reviewed or contributed by a real site or
   training environment.
 - At least five skills complete maturity review and move to `reviewed`.
+- `docs/REVIEW_PACKET_v0.2.0.md` is current and linked from the release notes.
 
 ## Phase 3: CLI And Developer Experience
 
