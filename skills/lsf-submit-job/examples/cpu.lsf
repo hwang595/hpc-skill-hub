@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#BSUB -J lsf-cpu-smoke
+#BSUB -P <project>
+#BSUB -q <queue>
+#BSUB -n 1
+#BSUB -R "span[hosts=1]"
+#BSUB -M 2048
+#BSUB -W 00:05
+#BSUB -o lsf-cpu-smoke.%J.out
+#BSUB -e lsf-cpu-smoke.%J.err
+
+set -euo pipefail
+
+cd "${LS_SUBCWD:-$PWD}"
+
+echo "started_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "host=$(hostname)"
+echo "LSB_JOBID=${LSB_JOBID:-}"
+echo "LSB_QUEUE=${LSB_QUEUE:-}"
+echo "LS_SUBCWD=${LS_SUBCWD:-}"
+echo "PWD=$PWD"
+echo "message=hello from an LSF CPU smoke test"
+echo "finished_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"

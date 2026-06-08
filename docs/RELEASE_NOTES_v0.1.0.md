@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 60.
+- Skills: 61.
 - Collections: 12.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -22,7 +22,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Skill Coverage
 
-- Core HPC and schedulers: Slurm and PBS/OpenPBS submission, Slurm arrays,
+- Core HPC and schedulers: Slurm, PBS/OpenPBS, and LSF submission, Slurm arrays,
   dependency chains, pending reason triage, monitoring, resource estimation,
   efficiency review, checkpoint/restart, failure triage, interactive sessions,
   Jupyter, OpenMP placement, quota triage, and scratch management.

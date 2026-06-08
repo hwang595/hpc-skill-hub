@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#BSUB -J lsf-mpi-smoke
+#BSUB -P <project>
+#BSUB -q <queue>
+#BSUB -n 8
+#BSUB -R "span[ptile=4]"
+#BSUB -M 4096
+#BSUB -W 00:10
+#BSUB -o lsf-mpi-smoke.%J.out
+#BSUB -e lsf-mpi-smoke.%J.err
+
+set -euo pipefail
+
+cd "${LS_SUBCWD:-$PWD}"
+
+echo "started_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "host=$(hostname)"
+echo "LSB_JOBID=${LSB_JOBID:-}"
+echo "LSB_QUEUE=${LSB_QUEUE:-}"
+echo "LSB_DJOB_NUMPROC=${LSB_DJOB_NUMPROC:-}"
+echo "LSB_HOSTS=${LSB_HOSTS:-}"
+
+mpi_ranks="${LSB_DJOB_NUMPROC:-8}"
+echo "launch_plan=mpirun -np ${mpi_ranks} hostname"
+
+if [ "${RUN_MPI:-0}" = "1" ]; then
+  mpirun -np "${mpi_ranks}" hostname
+else
+  echo "dry_run=true"
+  echo "Set RUN_MPI=1 only after loading the correct MPI module and reviewing site launch policy."
+fi
+
+echo "finished_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"

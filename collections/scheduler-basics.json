@@ -3,11 +3,12 @@
   "id": "scheduler-basics",
   "name": "Scheduler Basics",
   "status": "draft",
-  "summary": "Starter skills for submitting and comparing basic jobs across Slurm and PBS-style schedulers.",
+  "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, and LSF schedulers.",
   "audience": ["new HPC users", "training instructors", "support teams", "sites with mixed schedulers"],
   "skill_ids": [
     "slurm-submit-job",
     "pbs-submit-job",
+    "lsf-submit-job",
     "job-failure-triage",
     "reproducible-run-capture"
   ],

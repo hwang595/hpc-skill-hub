@@ -1,0 +1,115 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "lsf-submit-job",
+  "name": "LSF Submit Job",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Generate safe IBM LSF bsub scripts for common HPC job shapes.",
+  "description": "This skill helps users create IBM Spectrum LSF bsub scripts for CPU, MPI, GPU, and short smoke-test workloads with conservative defaults, clear placeholders, and notes about queue, project, resource string, and site-specific launch syntax.",
+  "categories": ["scheduler"],
+  "tags": ["lsf", "bsub", "bjobs", "cpu", "gpu", "mpi", "queue"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["lsf"],
+  "tools": [
+    {
+      "name": "bsub",
+      "required": true
+    },
+    {
+      "name": "bjobs",
+      "required": false
+    },
+    {
+      "name": "mpirun",
+      "required": false,
+      "notes": "MPI launch command and hostfile integration vary by site; some LSF systems provide jsrun, mpiexec, or wrappers."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "project",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific project, account, or application profile string used by local LSF policy."
+    },
+    {
+      "name": "queue",
+      "type": "string",
+      "required": false,
+      "description": "Target LSF queue."
+    },
+    {
+      "name": "resources",
+      "type": "object",
+      "required": true,
+      "description": "Requested cores, hosts, memory, GPUs, wall time, resource string, and output paths."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "lsf_script",
+      "description": "An LSF bsub script that can be adapted and submitted after site review."
+    },
+    {
+      "name": "job_id",
+      "description": "The job id printed by bsub after submission."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/cpu.lsf",
+    "examples/mpi.lsf",
+    "examples/gpu.lsf"
+  ],
+  "examples": [
+    {
+      "title": "CPU batch job",
+      "path": "examples/cpu.lsf"
+    },
+    {
+      "title": "MPI batch job",
+      "path": "examples/mpi.lsf"
+    },
+    {
+      "title": "GPU batch job",
+      "path": "examples/gpu.lsf"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill lsf-submit-job",
+      "description": "Validate the manifest and referenced artifacts."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/lsf-submit-job/examples/cpu.lsf",
+      "description": "Check the CPU script shell syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Run bsub with a short wall time on a test queue after replacing placeholders and confirming local queue, project, GPU, and resource-string policy."
+    }
+  ],
+  "references": [
+    {
+      "title": "IBM Spectrum LSF bsub reference",
+      "url": "https://www.ibm.com/docs/SSWRJV_10.1.0/lsf_command_ref/bsub.man_top.1.html"
+    },
+    {
+      "title": "IBM Spectrum LSF quick reference",
+      "url": "https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=started-quick-reference"
+    },
+    {
+      "title": "IBM Spectrum LSF clusters, jobs, and queues",
+      "url": "https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=lsf-clusters-jobs-queues"
+    }
+  ]
+}

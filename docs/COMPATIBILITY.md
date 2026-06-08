@@ -7,17 +7,18 @@ This document is generated from `registry/index.json` by
 
 | Signal | Count |
 | --- | ---: |
-| Skills | 60 |
+| Skills | 61 |
 | Collections | 12 |
 | Site adapters | 1 |
-| Schedulers | 4 |
+| Schedulers | 5 |
 | Categories | 12 |
-| Tools | 107 |
+| Tools | 109 |
 
 ## Scheduler Coverage
 
 | Scheduler | Skills | Categories | Collections |
 | --- | ---: | --- | --- |
+| `lsf` | 1 | `scheduler` | `scheduler-basics` |
 | `openpbs` | 1 | `scheduler` | `scheduler-basics` |
 | `pbs` | 1 | `scheduler` | `scheduler-basics` |
 | `pbs-pro` | 1 | `scheduler` | `scheduler-basics` |
@@ -37,7 +38,7 @@ Counts show how many skills in each collection include each category.
 | [`data-movement`](../collections/data-movement.json) | 7 | 0 | 0 | 7 | 2 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
 | [`facility-ops`](../collections/facility-ops.json) | 4 | 3 | 0 | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 3 | 1 | 0 |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | 12 | 0 | 0 | 0 | 7 | 0 | 6 | 0 | 3 | 3 | 9 | 3 | 0 |
-| [`scheduler-basics`](../collections/scheduler-basics.json) | 4 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 3 | 1 | 0 |
+| [`scheduler-basics`](../collections/scheduler-basics.json) | 5 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 1 | 0 |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | 12 | 0 | 0 | 0 | 4 | 0 | 3 | 0 | 8 | 9 | 10 | 1 | 0 |
 | [`software-stacks`](../collections/software-stacks.json) | 16 | 1 | 2 | 0 | 4 | 0 | 1 | 0 | 2 | 0 | 7 | 15 | 1 |
 | [`training-onboarding`](../collections/training-onboarding.json) | 12 | 1 | 0 | 1 | 2 | 1 | 0 | 2 | 0 | 0 | 9 | 6 | 0 |
@@ -65,7 +66,7 @@ Counts show how many skills in each collection include each category.
 | Conda and Mamba | [`conda-mamba-on-hpc`](../skills/conda-mamba-on-hpc/README.md) |
 | Python | [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md), [`deepspeed-on-slurm`](../skills/deepspeed-on-slurm/README.md), [`gpu-memory-triage`](../skills/gpu-memory-triage/README.md), [`jupyter-on-slurm`](../skills/jupyter-on-slurm/README.md), [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md), [`python-virtualenv-on-hpc`](../skills/python-virtualenv-on-hpc/README.md), [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md), [`ray-on-slurm`](../skills/ray-on-slurm/README.md) |
 | R, Julia, and MATLAB | [`julia-on-slurm`](../skills/julia-on-slurm/README.md), [`matlab-batch-on-slurm`](../skills/matlab-batch-on-slurm/README.md), [`rscript-on-slurm`](../skills/rscript-on-slurm/README.md) |
-| Compiler and MPI stacks | [`compiler-mpi-matrix`](../skills/compiler-mpi-matrix/README.md), [`cp2k-on-slurm`](../skills/cp2k-on-slurm/README.md), [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md), [`lammps-on-slurm`](../skills/lammps-on-slurm/README.md), [`module-environment-debug`](../skills/module-environment-debug/README.md), [`module-tree-health-check`](../skills/module-tree-health-check/README.md), [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md), [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md), [`namd-on-slurm`](../skills/namd-on-slurm/README.md), [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md), [`pbs-submit-job`](../skills/pbs-submit-job/README.md), [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md), [`slurm-submit-job`](../skills/slurm-submit-job/README.md), [`wrf-on-slurm`](../skills/wrf-on-slurm/README.md) |
+| Compiler and MPI stacks | [`compiler-mpi-matrix`](../skills/compiler-mpi-matrix/README.md), [`cp2k-on-slurm`](../skills/cp2k-on-slurm/README.md), [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md), [`lammps-on-slurm`](../skills/lammps-on-slurm/README.md), [`lsf-submit-job`](../skills/lsf-submit-job/README.md), [`module-environment-debug`](../skills/module-environment-debug/README.md), [`module-tree-health-check`](../skills/module-tree-health-check/README.md), [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md), [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md), [`namd-on-slurm`](../skills/namd-on-slurm/README.md), [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md), [`pbs-submit-job`](../skills/pbs-submit-job/README.md), [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md), [`slurm-submit-job`](../skills/slurm-submit-job/README.md), [`wrf-on-slurm`](../skills/wrf-on-slurm/README.md) |
 
 ## Domain And Adoption Collections
 
@@ -122,6 +123,7 @@ they show where examples and wrappers expect a command or library.
 | `du` | 2 |
 | `ldd` | 2 |
 | `mpicc` | 2 |
+| `mpirun` | 2 |
 | `nextflow` | 2 |
 | `rocm-smi` | 2 |
 | `rsync` | 2 |
@@ -132,4 +134,4 @@ they show where examples and wrappers expect a command or library.
 
 ### Specialized Single-Skill Tools
 
-`all_reduce_perf`, `basename`, `blastn`, `blockMesh`, `charmrun`, `clang`, `conda`, `cp2k.psmp`, `cwltool`, `dask`, `dask_jobqueue`, `decomposePar`, `deepspeed`, `distributed`, `eb`, `gatk`, `gcc`, `git`, `globus`, `gmx`, `gmx_mpi`, `icoFoam`, `julia`, `jupyter`, `lmp`, `ln`, `lscpu`, `makeblastdb`, `mamba`, `matlab`, `micromamba`, `miniwdl`, `mpi4py`, `mpicxx`, `mpiexec`, `mpifort`, `mpirun`, `namd2`, `ncdump`, `nproc`, `perf`, `pip`, `printenv`, `pw.x`, `qstat`, `qsub`, `quota`, `ray`, `real.exe`, `reconstructPar`, `Rscript`, `salloc`, `seff`, `singularity`, `sleep`, `snakemake`, `spack`, `sprio`, `sreport`, `tar`, `time`, `tr`, `uname`, `wc`, `wrf.exe`.
+`all_reduce_perf`, `basename`, `bjobs`, `blastn`, `blockMesh`, `bsub`, `charmrun`, `clang`, `conda`, `cp2k.psmp`, `cwltool`, `dask`, `dask_jobqueue`, `decomposePar`, `deepspeed`, `distributed`, `eb`, `gatk`, `gcc`, `git`, `globus`, `gmx`, `gmx_mpi`, `icoFoam`, `julia`, `jupyter`, `lmp`, `ln`, `lscpu`, `makeblastdb`, `mamba`, `matlab`, `micromamba`, `miniwdl`, `mpi4py`, `mpicxx`, `mpiexec`, `mpifort`, `namd2`, `ncdump`, `nproc`, `perf`, `pip`, `printenv`, `pw.x`, `qstat`, `qsub`, `quota`, `ray`, `real.exe`, `reconstructPar`, `Rscript`, `salloc`, `seff`, `singularity`, `sleep`, `snakemake`, `spack`, `sprio`, `sreport`, `tar`, `time`, `tr`, `uname`, `wc`, `wrf.exe`.

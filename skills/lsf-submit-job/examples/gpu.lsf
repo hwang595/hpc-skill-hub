@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#BSUB -J lsf-gpu-smoke
+#BSUB -P <project>
+#BSUB -q <gpu-queue>
+#BSUB -n 4
+#BSUB -R "span[hosts=1]"
+#BSUB -gpu "num=1"
+#BSUB -M 8192
+#BSUB -W 00:10
+#BSUB -o lsf-gpu-smoke.%J.out
+#BSUB -e lsf-gpu-smoke.%J.err
+
+set -euo pipefail
+
+cd "${LS_SUBCWD:-$PWD}"
+
+echo "started_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "host=$(hostname)"
+echo "LSB_JOBID=${LSB_JOBID:-}"
+echo "LSB_QUEUE=${LSB_QUEUE:-}"
+echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-}"
+echo "ROCR_VISIBLE_DEVICES=${ROCR_VISIBLE_DEVICES:-}"
+echo "LSF GPU resource syntax varies by site; confirm -gpu and resource strings before submitting."
+
+if command -v nvidia-smi >/dev/null 2>&1; then
+  nvidia-smi -L || true
+else
+  echo "nvidia_smi=not_found"
+fi
+
+echo "finished_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"

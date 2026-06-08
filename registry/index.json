@@ -10,7 +10,7 @@
     "interactive": 2,
     "mpi": 10,
     "performance": 11,
-    "scheduler": 43,
+    "scheduler": 44,
     "software": 15,
     "workflow": 9
   },
@@ -190,11 +190,12 @@
       "skill_ids": [
         "slurm-submit-job",
         "pbs-submit-job",
+        "lsf-submit-job",
         "job-failure-triage",
         "reproducible-run-capture"
       ],
       "status": "draft",
-      "summary": "Starter skills for submitting and comparing basic jobs across Slurm and PBS-style schedulers."
+      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, and LSF schedulers."
     },
     {
       "audience": [
@@ -302,6 +303,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
+    "lsf": 1,
     "openpbs": 1,
     "pbs": 1,
     "pbs-pro": 1,
@@ -331,7 +333,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 60,
+  "skill_count": 61,
   "skills": [
     {
       "categories": [
@@ -1815,6 +1817,66 @@
         "awk",
         "tr",
         "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler"
+      ],
+      "description": "This skill helps users create IBM Spectrum LSF bsub scripts for CPU, MPI, GPU, and short smoke-test workloads with conservative defaults, clear placeholders, and notes about queue, project, resource string, and site-specific launch syntax.",
+      "examples": [
+        {
+          "path": "skills/lsf-submit-job/examples/cpu.lsf",
+          "title": "CPU batch job"
+        },
+        {
+          "path": "skills/lsf-submit-job/examples/mpi.lsf",
+          "title": "MPI batch job"
+        },
+        {
+          "path": "skills/lsf-submit-job/examples/gpu.lsf",
+          "title": "GPU batch job"
+        }
+      ],
+      "id": "lsf-submit-job",
+      "maturity": "seed",
+      "name": "LSF Submit Job",
+      "path": "skills/lsf-submit-job",
+      "readme": "skills/lsf-submit-job/README.md",
+      "references": [
+        {
+          "title": "IBM Spectrum LSF bsub reference",
+          "url": "https://www.ibm.com/docs/SSWRJV_10.1.0/lsf_command_ref/bsub.man_top.1.html"
+        },
+        {
+          "title": "IBM Spectrum LSF quick reference",
+          "url": "https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=started-quick-reference"
+        },
+        {
+          "title": "IBM Spectrum LSF clusters, jobs, and queues",
+          "url": "https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=lsf-clusters-jobs-queues"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "lsf"
+      ],
+      "status": "draft",
+      "summary": "Generate safe IBM LSF bsub scripts for common HPC job shapes.",
+      "tags": [
+        "lsf",
+        "bsub",
+        "bjobs",
+        "cpu",
+        "gpu",
+        "mpi",
+        "queue"
+      ],
+      "tools": [
+        "bsub",
+        "bjobs",
+        "mpirun"
       ],
       "version": "0.1.0"
     },
@@ -3827,9 +3889,11 @@
     "batch": 3,
     "benchmark": 1,
     "bioinformatics": 4,
+    "bjobs": 1,
     "blast": 1,
     "blastn": 1,
     "blastp": 1,
+    "bsub": 1,
     "cfd": 1,
     "charm++": 1,
     "checklist": 1,
@@ -3842,7 +3906,7 @@
     "conda": 1,
     "container": 2,
     "cp2k": 1,
-    "cpu": 3,
+    "cpu": 4,
     "cpu-bind": 1,
     "cran": 1,
     "cuda": 2,
@@ -3875,7 +3939,7 @@
     "genomics": 1,
     "git": 1,
     "globus": 1,
-    "gpu": 13,
+    "gpu": 14,
     "gromacs": 1,
     "haplotypecaller": 1,
     "inode": 1,
@@ -3890,6 +3954,7 @@
     "license": 1,
     "lmod": 3,
     "logs": 5,
+    "lsf": 1,
     "m-files": 1,
     "makeblastdb": 1,
     "mamba": 1,
@@ -3902,7 +3967,7 @@
     "modulepath": 1,
     "modules": 7,
     "molecular-dynamics": 4,
-    "mpi": 13,
+    "mpi": 14,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
@@ -3950,6 +4015,7 @@
     "qsub": 1,
     "quantum-chemistry": 1,
     "quantum-espresso": 1,
+    "queue": 1,
     "quota": 2,
     "r": 1,
     "ray": 1,
@@ -4020,8 +4086,10 @@
     "awk": 3,
     "basename": 1,
     "bash": 5,
+    "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
+    "bsub": 1,
     "cat": 2,
     "charmrun": 1,
     "cksum": 2,
@@ -4071,7 +4139,7 @@
     "mpicxx": 1,
     "mpiexec": 1,
     "mpifort": 1,
-    "mpirun": 1,
+    "mpirun": 2,
     "namd2": 1,
     "ncdump": 1,
     "nextflow": 2,

@@ -44,6 +44,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Add a read-only Slurm pending reason triage skill for queue wait diagnosis.
 - Add a PBS submit job skill and scheduler basics collection for OpenPBS/PBS Pro
   starter workloads.
+- Add an LSF submit job skill for IBM Spectrum LSF CPU, MPI, and GPU starter
+  workloads.
 - Add a NAMD on Slurm skill for molecular dynamics jobs with CPU/GPU layout and
   restart planning.
 - Add a CP2K on Slurm skill for MPI/OpenMP electronic-structure and molecular
@@ -79,7 +81,7 @@ Initial public seed release.
 
 ### Added
 
-- 60 seed HPC skills covering Slurm, PBS/OpenPBS, job arrays, dependency
+- 61 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, job arrays, dependency
   chains, pending reason triage, monitoring, resource estimation, efficiency
   review, failure triage, checkpoint/restart, interactive sessions, notebooks,
   OpenMP

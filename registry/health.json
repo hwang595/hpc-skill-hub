@@ -10,7 +10,7 @@
     "interactive": 2,
     "mpi": 10,
     "performance": 11,
-    "scheduler": 43,
+    "scheduler": 44,
     "software": 15,
     "workflow": 9
   },
@@ -122,10 +122,11 @@
     },
     {
       "id": "scheduler-basics",
-      "skill_count": 4,
+      "skill_count": 5,
       "skill_ids": [
         "slurm-submit-job",
         "pbs-submit-job",
+        "lsf-submit-job",
         "job-failure-triage",
         "reproducible-run-capture"
       ]
@@ -204,7 +205,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 60
+    "seed": 61
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -232,6 +233,7 @@
     "jupyter-on-slurm": "medium",
     "lammps-on-slurm": "medium",
     "large-file-archive-prepare": "medium",
+    "lsf-submit-job": "medium",
     "matlab-batch-on-slurm": "medium",
     "module-environment-debug": "low",
     "module-tree-health-check": "low",
@@ -270,13 +272,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 43
+    "medium": 44
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 60,
+  "skill_count": 61,
   "status_counts": {
-    "draft": 60
+    "draft": 61
   },
   "uncollected_skill_ids": []
 }
