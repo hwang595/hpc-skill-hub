@@ -81,6 +81,12 @@ as reviewed or field-tested.
 For maintainer roles, maturity promotion, and site-policy boundaries, see
 [Governance](docs/GOVERNANCE.md).
 
+## Propose A Project-Level Change
+
+Use the [RFC Process](docs/RFC_PROCESS.md) for changes to schemas, validation
+rules, risk or maturity policy, site adapter policy, governance, or other
+ecosystem-level behavior.
+
 ## Style
 
 - Prefer POSIX shell examples unless a scheduler or tool requires otherwise.

@@ -45,6 +45,11 @@ Most decisions should happen in pull requests and issues. Maintainers should
 prefer small, reversible decisions and document tradeoffs when a change affects
 schema compatibility, safety policy, or public adoption paths.
 
+Use the [RFC Process](RFC_PROCESS.md) for project-level changes such as schema
+updates, validation gates, risk or maturity policy, site adapter policy, or
+governance changes. Accepted project-level decisions should be recorded in
+`docs/decisions/`.
+
 Escalate to a dedicated safety review issue when a contribution:
 
 - Could affect shared systems or facility operations.

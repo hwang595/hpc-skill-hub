@@ -1,0 +1,46 @@
+import json
+import unittest
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class GovernanceDocsTests(unittest.TestCase):
+    def test_rfc_template_has_required_sections(self):
+        template = (ROOT / "docs" / "rfcs" / "0000-template.md").read_text(
+            encoding="utf-8"
+        )
+        for heading in [
+            "## Summary",
+            "## Motivation",
+            "## Proposal",
+            "## Compatibility",
+            "## Validation",
+            "## Rollout",
+            "## Safety And Privacy",
+            "## Open Questions",
+        ]:
+            self.assertIn(heading, template)
+
+    def test_seed_decision_record_exists(self):
+        decision = (
+            ROOT / "docs" / "decisions" / "0001-record-seed-governance.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("# Decision 0001", decision)
+        self.assertIn("Accepted", decision)
+        self.assertIn("Use lightweight repository maintainer ownership", decision)
+
+    def test_rfc_issue_template_has_label(self):
+        labels_path = ROOT / ".github" / "labels.json"
+        labels = {label["name"] for label in json.loads(labels_path.read_text())}
+        template = (
+            ROOT / ".github" / "ISSUE_TEMPLATE" / "rfc_proposal.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("labels: [\"rfc\"]", template)
+        self.assertIn("rfc", labels)
+        self.assertIn("decision-record", labels)
+
+
+if __name__ == "__main__":
+    unittest.main()
