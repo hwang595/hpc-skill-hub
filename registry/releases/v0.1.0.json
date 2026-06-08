@@ -2253,9 +2253,9 @@
       "sha256": "37335bc4470c6acce6babee3957dadbcfe7bc0b1bf38140f9cee3d233581e515"
     },
     {
-      "bytes": 18000,
+      "bytes": 18073,
       "path": "tests/test_github_metadata.py",
-      "sha256": "a979c9d4c19c5a2ab9894a8836c7a1159d5359c03be152e07030d2306f8e4400"
+      "sha256": "67b44c473b6631252c36b9bb93a0a9d4968322317de07e95ecd9a94e89db5d28"
     },
     {
       "bytes": 8714,
@@ -2318,9 +2318,9 @@
       "sha256": "5465fe37c4e0fb810d16518935819e087b118f4b055d1698a4f56d979e231ad4"
     },
     {
-      "bytes": 4613,
+      "bytes": 4809,
       "path": "tools/github_publish_plan.py",
-      "sha256": "99c7317c781e3dfc5296199589654befe30c707dcabf6725a1daedb3ad375ded"
+      "sha256": "1eb70e6eb75bf0b96b08ec9a74441335f70c281ccdbfc0a4935e919733edc5a8"
     },
     {
       "bytes": 2226,
@@ -2385,6 +2385,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1398053,
+  "total_bytes": 1398322,
   "version": "v0.1.0"
 }

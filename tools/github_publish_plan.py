@@ -85,6 +85,10 @@ def main() -> int:
     if args.run_check:
         readiness_command.append("--run-check")
     print(shell_join(readiness_command))
+    evidence_command = ["python3", "tools/launch_evidence.py", "--owner", args.owner]
+    if args.run_check:
+        evidence_command.append("--run-check")
+    print(shell_join(evidence_command))
     print()
     for check in launch_checks(args.run_check, args.owner):
         print(f"# {check.status:4} {check.name}: {check.detail}")

@@ -347,6 +347,7 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("# HPC Skill Hub GitHub Publish Plan", result.stdout)
         self.assertIn("# Repository: example/hpc-skill-hub", result.stdout)
         self.assertIn("python3 tools/launch_readiness.py", result.stdout)
+        self.assertIn("python3 tools/launch_evidence.py", result.stdout)
         self.assertIn("Review public launch packet and owner checklist", result.stdout)
         self.assertIn("docs/PUBLIC_LAUNCH_PACKET.md", result.stdout)
         self.assertIn("docs/GITHUB_OWNER_CHECKLIST.md", result.stdout)
