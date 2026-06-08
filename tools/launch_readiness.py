@@ -17,6 +17,59 @@ from typing import Iterable, List
 
 ROOT = Path(__file__).resolve().parents[1]
 
+REQUIRED_LAUNCH_FILES = [
+    "README.md",
+    "ROADMAP.md",
+    "CONTRIBUTING.md",
+    "SUPPORT.md",
+    "SECURITY.md",
+    "CODE_OF_CONDUCT.md",
+    "CITATION.cff",
+    "CHANGELOG.md",
+    "docs/CITATION.md",
+    "docs/GITHUB_PUBLISHING.md",
+    "docs/GITHUB_REPOSITORY_SETUP.md",
+    "docs/GITHUB_DISCUSSIONS.md",
+    "docs/GITHUB_MILESTONES.md",
+    "docs/INTEGRATION_GUIDE.md",
+    "docs/COMMUNITY_LAUNCH.md",
+    "docs/PUBLIC_LAUNCH_PACKET.md",
+    "docs/ADOPTION_WORKSHEET.md",
+    "docs/SKILL_LIFECYCLE.md",
+    "docs/COMPATIBILITY.md",
+    "docs/RELEASE_PROCESS.md",
+    "docs/RELEASE_NOTES_v0.1.0.md",
+    "schemas/registry-index.schema.json",
+    "schemas/registry-health.schema.json",
+    "schemas/release-manifest.schema.json",
+    "registry/releases/v0.1.0.json",
+    "docs/REVIEW_ROUTING.md",
+    "docs/DOMAIN_REVIEWERS.md",
+    "docs/CONTRIBUTOR_LADDER.md",
+    "docs/TRIAGE_RUNBOOK.md",
+    ".github/CODEOWNERS",
+    ".github/repository.json",
+    ".github/labels.json",
+    ".github/milestones.json",
+    ".github/seed_issues.json",
+    ".github/DISCUSSION_TEMPLATE/adoption.yml",
+    ".github/DISCUSSION_TEMPLATE/skill-coverage.yml",
+    ".github/DISCUSSION_TEMPLATE/site-adapters.yml",
+    ".github/DISCUSSION_TEMPLATE/review-process.yml",
+    ".github/DISCUSSION_TEMPLATE/integrations.yml",
+    ".github/rulesets/main.json",
+    ".github/workflows/validate.yml",
+    ".github/workflows/package.yml",
+    ".github/workflows/pages.yml",
+    ".github/pull_request_template.md",
+    "tools/github_publish_plan.py",
+    "tools/github_milestones.py",
+    "tools/build_compatibility.py",
+    "tools/build_package_data.py",
+    "tools/build_release_manifest.py",
+    "tools/validate_registry_artifacts.py",
+]
+
 
 @dataclass(frozen=True)
 class Check:
@@ -56,61 +109,10 @@ def fail(name: str, detail: str) -> Check:
 
 
 def required_files_check() -> Check:
-    required = [
-        "README.md",
-        "ROADMAP.md",
-        "CONTRIBUTING.md",
-        "SUPPORT.md",
-        "SECURITY.md",
-        "CODE_OF_CONDUCT.md",
-        "CITATION.cff",
-        "CHANGELOG.md",
-        "docs/CITATION.md",
-        "docs/GITHUB_PUBLISHING.md",
-        "docs/GITHUB_REPOSITORY_SETUP.md",
-        "docs/GITHUB_DISCUSSIONS.md",
-        "docs/GITHUB_MILESTONES.md",
-        "docs/INTEGRATION_GUIDE.md",
-        "docs/COMMUNITY_LAUNCH.md",
-        "docs/ADOPTION_WORKSHEET.md",
-        "docs/SKILL_LIFECYCLE.md",
-        "docs/COMPATIBILITY.md",
-        "docs/RELEASE_PROCESS.md",
-        "docs/RELEASE_NOTES_v0.1.0.md",
-        "schemas/registry-index.schema.json",
-        "schemas/registry-health.schema.json",
-        "schemas/release-manifest.schema.json",
-        "registry/releases/v0.1.0.json",
-        "docs/REVIEW_ROUTING.md",
-        "docs/DOMAIN_REVIEWERS.md",
-        "docs/CONTRIBUTOR_LADDER.md",
-        "docs/TRIAGE_RUNBOOK.md",
-        ".github/CODEOWNERS",
-        ".github/repository.json",
-        ".github/labels.json",
-        ".github/milestones.json",
-        ".github/seed_issues.json",
-        ".github/DISCUSSION_TEMPLATE/adoption.yml",
-        ".github/DISCUSSION_TEMPLATE/skill-coverage.yml",
-        ".github/DISCUSSION_TEMPLATE/site-adapters.yml",
-        ".github/DISCUSSION_TEMPLATE/review-process.yml",
-        ".github/DISCUSSION_TEMPLATE/integrations.yml",
-        ".github/rulesets/main.json",
-        ".github/workflows/validate.yml",
-        ".github/workflows/package.yml",
-        ".github/workflows/pages.yml",
-        ".github/pull_request_template.md",
-        "tools/github_publish_plan.py",
-        "tools/github_milestones.py",
-        "tools/build_compatibility.py",
-        "tools/build_package_data.py",
-        "tools/build_release_manifest.py",
-        "tools/validate_registry_artifacts.py",
-    ]
-    missing = [path for path in required if not (ROOT / path).exists()]
+    missing = [path for path in REQUIRED_LAUNCH_FILES if not (ROOT / path).exists()]
     if missing:
         return fail("required-files", "missing: " + ", ".join(missing))
-    return ok("required-files", f"{len(required)} launch files present")
+    return ok("required-files", f"{len(REQUIRED_LAUNCH_FILES)} launch files present")
 
 
 def registry_health_check() -> Check:

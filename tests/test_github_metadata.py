@@ -1,11 +1,24 @@
+import importlib.util
 import json
 import re
 import subprocess
+import sys
 import unittest
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def load_launch_readiness_module():
+    spec = importlib.util.spec_from_file_location(
+        "launch_readiness", ROOT / "tools" / "launch_readiness.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
 
 
 class GitHubMetadataTests(unittest.TestCase):
@@ -350,6 +363,12 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("gh release create v0.1.0", result.stdout)
 
     def test_launch_readiness_audit(self):
+        launch_readiness = load_launch_readiness_module()
+        self.assertIn(
+            "docs/PUBLIC_LAUNCH_PACKET.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+
         result = subprocess.run(
             [
                 "python3",
