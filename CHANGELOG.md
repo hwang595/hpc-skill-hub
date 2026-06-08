@@ -7,6 +7,10 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a Slurm time-limit triage seed skill for read-only `sacct`, optional
+  `scontrol`/`seff`, and log evidence around `TIMEOUT`, walltime exhaustion,
+  scheduler signals, checkpoint cadence, slow array tasks, and workflow retry
+  choices.
 - Add a file descriptor limit triage seed skill for read-only `ulimit`,
   `/proc` limits, optional `lsof`, fd count, and log evidence around `EMFILE`,
   `Too many open files`, workflow fan-out, data loaders, and many-small-file
@@ -187,9 +191,9 @@ Initial public seed release.
 
 ### Added
 
-- 93 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 94 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, array retry planning, dependency chains, pending reason and maintenance reservation triage, monitoring, resource
-  estimation, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
+  estimation, QOS/account limit evidence, OOM memory triage, time-limit triage, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
   preemption and requeue-safe restart behavior,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
   placement, BLAS/OpenMP thread pool control, file descriptor triage, storage triage, shared project permissions and ACL triage, node-local scratch staging, Python/R/Julia/MATLAB software environments,

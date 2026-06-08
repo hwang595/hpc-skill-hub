@@ -47,6 +47,7 @@ tools.
 | `slurm-monitor-job` | Inspect queued, running, completed, and failed Slurm jobs. |
 | `slurm-resource-estimator` | Estimate memory, wall time, and CPU needs from accounting history. |
 | `slurm-oom-memory-triage` | Collect Slurm memory evidence for out-of-memory jobs. |
+| `slurm-time-limit-triage` | Collect read-only evidence for Slurm time-limit failures. |
 | `slurm-efficiency-report` | Summarize completed Slurm job efficiency from accounting data. |
 | `license-aware-slurm-job` | Plan Slurm jobs that request and verify tracked software license resources. |
 | `checkpoint-restart-workflow` | Structure long jobs so they can resume after limits or preemption. |

@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 93.
+- Skills: 94.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -26,7 +26,7 @@ request missing workflows, or contribute public site adapters.
 - Core HPC and schedulers: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
   submission, Slurm and Grid Engine arrays, failed-array retry planning,
   dependency chains, pending reason and maintenance reservation triage, QOS/account limit evidence,
-  monitoring, resource estimation, OOM memory triage, file descriptor triage, efficiency review,
+  monitoring, resource estimation, OOM memory triage, time-limit triage, file descriptor triage, efficiency review,
   license-aware jobs, checkpoint/restart, preemption/requeue handling, failure triage, interactive sessions, Open OnDemand Batch
   Connect templates, Jupyter, RStudio, VS Code tunnels, OpenMP placement, quota
   triage, shared project permissions, node-local scratch staging, and scratch
@@ -45,9 +45,10 @@ request missing workflows, or contribute public site adapters.
   staging, checksum manifests, and reproducible run capture.
 - Workflow engines: lightweight Slurm dependency chains, array retry planning,
   CWL and WDL runs inside Slurm allocations, Dask worker clusters, Parsl worker
-  blocks, file descriptor triage, Nextflow, Snakemake, and nf-core on Slurm.
+  blocks, file descriptor triage, time-limit triage, Nextflow, Snakemake, and
+  nf-core on Slurm.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm
-  workflows, maintenance and reservation triage, file descriptor limits, BLAS/OpenMP thread-pool control, array retry planning, Open OnDemand templates, notebooks, TensorBoard monitors,
+  workflows, maintenance and reservation triage, time-limit triage, file descriptor limits, BLAS/OpenMP thread-pool control, array retry planning, Open OnDemand templates, notebooks, TensorBoard monitors,
   Streamlit apps, RStudio, VS Code tunnels, Python/Conda environments, Rscript,
   Julia, MATLAB batch jobs, license-aware software use, and common learner triage.
 - Data movement: Globus, rsync, object-storage transfers, checksum manifests,
@@ -80,9 +81,9 @@ request missing workflows, or contribute public site adapters.
   reproducibility.
 - Facility operations: read-only Slurm usage reporting, pending reason and
   maintenance triage, QOS/account limit evidence, OOM memory triage,
-  node-health triage, file descriptor pressure, shared project permission
-  evidence, and module tree health checks for support teams and facility
-  maintainers.
+  time-limit triage, node-health triage, file descriptor pressure, shared
+  project permission evidence, and module tree health checks for support teams
+  and facility maintainers.
 
 ## Tooling
 

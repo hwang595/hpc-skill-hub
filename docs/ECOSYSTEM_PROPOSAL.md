@@ -39,7 +39,8 @@ owner handoffs, and ecosystem sponsor discussions.
 ## Current And Proposed Community Collections
 
 - `core-hpc`: Slurm, QOS/account limit evidence, license-aware jobs,
-  array retry planning, maintenance and reservation triage, OOM memory triage,
+  array retry planning, maintenance and reservation triage, OOM memory and
+  time-limit triage,
   preemption/requeue handling, modules, shell, storage, shared project
   permissions, interactive sessions, RStudio, and IDE tunnels.
 - `containers`: Apptainer-compatible image builds, runtime execution,
@@ -50,13 +51,14 @@ owner handoffs, and ecosystem sponsor discussions.
   jobs, Open OnDemand templates, TensorBoard, Streamlit, RStudio, and IDE
   tunnels.
 - `workflow-engines`: array retry planning, CWL, WDL, Nextflow, Snakemake,
-  Dask, Parsl, and file descriptor triage for worker fan-out.
+  Dask, Parsl, file descriptor triage for worker fan-out, and time-limit
+  triage for long-running tasks.
 - `data-movement`: Globus, rsync, object storage, checksums, scratch staging,
   node-local scratch staging, Darshan I/O profile analysis, Lustre striping
   layout planning, IOR/MDTest storage smoke evidence, archive preparation, and
   quota, file descriptor, and shared permission triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, maintenance
-  and reservation triage, file descriptor limits, BLAS/OpenMP thread pools,
+  and reservation triage, time-limit triage, file descriptor limits, BLAS/OpenMP thread pools,
   Open OnDemand templates, notebooks, TensorBoard, Streamlit, RStudio, IDE
   tunnels, Python environments, array retry planning, node-local scratch staging,
   shared project permissions, requeue-safe restart behavior, licensed software
@@ -75,9 +77,9 @@ owner handoffs, and ecosystem sponsor discussions.
   Darshan I/O profile analysis, Lustre striping layout planning, restart
   planning, profiling, and storage smoke evidence.
 - `facility-ops`: read-only usage reporting, QOS/account limit evidence, OOM
-  memory triage, file descriptor pressure, maintenance and reservation evidence,
-  node triage, shared project permission evidence, module tree health checks,
-  support handoffs, and public operational patterns.
+  memory and time-limit triage, file descriptor pressure, maintenance and
+  reservation evidence, node triage, shared project permission evidence, module
+  tree health checks, support handoffs, and public operational patterns.
 
 ## Governance Direction
 

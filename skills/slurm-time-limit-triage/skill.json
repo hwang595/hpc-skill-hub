@@ -1,0 +1,140 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-time-limit-triage",
+  "name": "Slurm Time Limit Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect read-only evidence for Slurm time-limit failures.",
+  "description": "This skill helps users and support teams diagnose Slurm TIMEOUT, walltime exhaustion, and near-time-limit jobs by collecting accounting, job-record, optional efficiency, and log evidence without modifying scheduler state.",
+  "categories": ["scheduler", "debugging", "workflow"],
+  "tags": ["slurm", "timeout", "walltime", "timelimit", "sacct", "scontrol", "checkpoint", "workflow", "triage"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "sacct",
+      "required": false,
+      "notes": "Required for completed-job accounting evidence when Slurm accounting is available."
+    },
+    {
+      "name": "scontrol",
+      "required": false,
+      "notes": "Optional job record evidence for running, pending, or recently completed jobs."
+    },
+    {
+      "name": "seff",
+      "required": false,
+      "notes": "Optional efficiency summary when provided by the site."
+    },
+    {
+      "name": "grep",
+      "required": false
+    },
+    {
+      "name": "tail",
+      "required": false
+    },
+    {
+      "name": "date",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "job_id",
+      "type": "string",
+      "required": false,
+      "description": "Slurm job id, array task id, or job step id to inspect."
+    },
+    {
+      "name": "log_file",
+      "type": "path",
+      "required": false,
+      "description": "Optional Slurm stdout, stderr, or application log to scan for time-limit clues."
+    },
+    {
+      "name": "report_dir",
+      "type": "path",
+      "required": false,
+      "description": "Directory where the read-only evidence bundle should be written."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "accounting_report",
+      "description": "Slurm sacct table with job and step states, exit codes, elapsed time, time limits, submit/start/end times, resources, and node list."
+    },
+    {
+      "name": "job_record",
+      "description": "Optional scontrol job record for jobs still visible to Slurm."
+    },
+    {
+      "name": "log_time_signals",
+      "description": "Matching log lines for time-limit, signal, checkpoint, workflow retry, and graceful-shutdown symptoms."
+    },
+    {
+      "name": "triage_summary",
+      "description": "Human-readable prompts for deciding whether to request more walltime, checkpoint more often, split work, reduce concurrency, or inspect slow tasks."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/slurm-time-limit-triage.sh",
+    "examples/time-limit-review-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Collect Slurm time-limit evidence",
+      "path": "examples/slurm-time-limit-triage.sh"
+    },
+    {
+      "title": "Review walltime and checkpoint choices",
+      "path": "examples/time-limit-review-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-time-limit-triage",
+      "description": "Validate the manifest and example files."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/slurm-time-limit-triage/examples/slurm-time-limit-triage.sh",
+      "description": "Check shell syntax for the evidence collection script."
+    },
+    {
+      "type": "manual",
+      "description": "Run against a completed Slurm job with TIMEOUT or near-limit symptoms and confirm the report stays read-only."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sacct documentation",
+      "url": "https://slurm.schedmd.com/sacct.html"
+    },
+    {
+      "title": "Slurm job state codes",
+      "url": "https://slurm.schedmd.com/job_state_codes.html"
+    },
+    {
+      "title": "Slurm scontrol documentation",
+      "url": "https://slurm.schedmd.com/scontrol.html"
+    }
+  ]
+}

@@ -4,15 +4,15 @@
     "admin": 7,
     "containers": 3,
     "data": 20,
-    "debugging": 35,
+    "debugging": 36,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
     "performance": 22,
-    "scheduler": 68,
+    "scheduler": 69,
     "software": 28,
-    "workflow": 13
+    "workflow": 14
   },
   "collection_count": 12,
   "collections": [
@@ -113,6 +113,7 @@
         "slurm-monitor-job",
         "slurm-resource-estimator",
         "slurm-oom-memory-triage",
+        "slurm-time-limit-triage",
         "slurm-efficiency-report",
         "file-descriptor-limit-triage",
         "license-aware-slurm-job",
@@ -130,7 +131,7 @@
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason and maintenance triage, QOS/account limit evidence, OOM memory triage, efficiency review, file descriptor triage, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, shared project permissions, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason and maintenance triage, QOS/account limit evidence, OOM and time-limit triage, efficiency review, file descriptor triage, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, shared project permissions, and storage triage."
     },
     {
       "audience": [
@@ -175,13 +176,14 @@
         "slurm-maintenance-reservation-triage",
         "slurm-qos-account-limit-triage",
         "slurm-oom-memory-triage",
+        "slurm-time-limit-triage",
         "file-descriptor-limit-triage",
         "node-health-readonly-triage",
         "shared-project-permissions-triage",
         "module-tree-health-check"
       ],
       "status": "draft",
-      "summary": "Read-only operational skills for usage reporting, pending reason and maintenance triage, QOS/account limit evidence, OOM memory triage, file descriptor pressure, node triage, shared project permissions, and module tree health."
+      "summary": "Read-only operational skills for usage reporting, pending reason and maintenance triage, QOS/account limit evidence, OOM memory and time-limit triage, file descriptor pressure, node triage, shared project permissions, and module tree health."
     },
     {
       "audience": [
@@ -243,10 +245,11 @@
         "slurm-array-retry-plan",
         "job-failure-triage",
         "slurm-oom-memory-triage",
+        "slurm-time-limit-triage",
         "reproducible-run-capture"
       ],
       "status": "draft",
-      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers, including array retry, common failure, and memory triage."
+      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers, including array retry, common failure, memory triage, and time-limit triage."
     },
     {
       "audience": [
@@ -340,6 +343,7 @@
         "slurm-submit-job",
         "slurm-maintenance-reservation-triage",
         "slurm-array-retry-plan",
+        "slurm-time-limit-triage",
         "license-aware-slurm-job",
         "slurm-preemption-requeue",
         "interactive-session",
@@ -364,7 +368,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, maintenance and reservation triage, array retry planning, OOM memory triage, file descriptor limits, BLAS/OpenMP thread pools, node-local scratch staging, shared project permissions, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, maintenance and reservation triage, array retry planning, OOM memory and time-limit triage, file descriptor limits, BLAS/OpenMP thread pools, node-local scratch staging, shared project permissions, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -381,6 +385,7 @@
         "cwl-on-slurm",
         "wdl-on-slurm",
         "file-descriptor-limit-triage",
+        "slurm-time-limit-triage",
         "dask-jobqueue-on-slurm",
         "parsl-on-slurm",
         "nextflow-on-slurm",
@@ -388,7 +393,7 @@
         "nf-core-on-slurm"
       ],
       "status": "draft",
-      "summary": "Skills for launching portable workflow engines, CWL/WDL runs, Dask and Parsl worker pools, file descriptor triage, lightweight Slurm dependency chains, and safe array retry planning."
+      "summary": "Skills for launching portable workflow engines, CWL/WDL runs, Dask and Parsl worker pools, file descriptor and time-limit triage, lightweight Slurm dependency chains, and safe array retry planning."
     }
   ],
   "generated_by": "tools/build_index.py",
@@ -400,7 +405,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 66,
+    "slurm": 67,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -453,7 +458,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 93,
+  "skill_count": 94,
   "skills": [
     {
       "categories": [
@@ -5582,6 +5587,71 @@
     },
     {
       "categories": [
+        "scheduler",
+        "debugging",
+        "workflow"
+      ],
+      "description": "This skill helps users and support teams diagnose Slurm TIMEOUT, walltime exhaustion, and near-time-limit jobs by collecting accounting, job-record, optional efficiency, and log evidence without modifying scheduler state.",
+      "examples": [
+        {
+          "path": "skills/slurm-time-limit-triage/examples/slurm-time-limit-triage.sh",
+          "title": "Collect Slurm time-limit evidence"
+        },
+        {
+          "path": "skills/slurm-time-limit-triage/examples/time-limit-review-checklist.md",
+          "title": "Review walltime and checkpoint choices"
+        }
+      ],
+      "id": "slurm-time-limit-triage",
+      "maturity": "seed",
+      "name": "Slurm Time Limit Triage",
+      "path": "skills/slurm-time-limit-triage",
+      "readme": "skills/slurm-time-limit-triage/README.md",
+      "references": [
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        },
+        {
+          "title": "Slurm job state codes",
+          "url": "https://slurm.schedmd.com/job_state_codes.html"
+        },
+        {
+          "title": "Slurm scontrol documentation",
+          "url": "https://slurm.schedmd.com/scontrol.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect read-only evidence for Slurm time-limit failures.",
+      "tags": [
+        "slurm",
+        "timeout",
+        "walltime",
+        "timelimit",
+        "sacct",
+        "scontrol",
+        "checkpoint",
+        "workflow",
+        "triage"
+      ],
+      "tools": [
+        "bash",
+        "sacct",
+        "scontrol",
+        "seff",
+        "grep",
+        "tail",
+        "date",
+        "mkdir"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "workflow",
         "scheduler"
       ],
@@ -6188,7 +6258,7 @@
     "cgroup": 1,
     "charm++": 1,
     "checklist": 1,
-    "checkpoint": 4,
+    "checkpoint": 5,
     "checksum": 5,
     "cleanup": 2,
     "climate": 1,
@@ -6405,12 +6475,12 @@
     "rstudio": 1,
     "rsync": 3,
     "s3": 1,
-    "sacct": 7,
+    "sacct": 8,
     "sacctmgr": 1,
     "salloc": 1,
     "samplesheet": 1,
     "sbatch": 4,
-    "scontrol": 5,
+    "scontrol": 6,
     "scratch": 4,
     "seff": 1,
     "setgid": 1,
@@ -6421,7 +6491,7 @@
     "sinfo": 3,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 63,
+    "slurm": 64,
     "slurmprovider": 1,
     "small-files": 1,
     "smoke-test": 1,
@@ -6447,13 +6517,14 @@
     "threads": 3,
     "throughput": 1,
     "time": 1,
-    "timeout": 2,
+    "timelimit": 1,
+    "timeout": 3,
     "tmpdir": 1,
     "topology": 1,
     "training": 2,
     "transfer": 4,
     "transformers": 1,
-    "triage": 6,
+    "triage": 7,
     "tunnel": 4,
     "ucx": 1,
     "uge": 1,
@@ -6464,12 +6535,12 @@
     "venv": 1,
     "virtualenv": 1,
     "vscode": 1,
-    "walltime": 2,
+    "walltime": 3,
     "wdl": 1,
     "weather": 1,
     "web-app": 1,
     "workers": 1,
-    "workflow": 8,
+    "workflow": 9,
     "workshop": 1,
     "wrapper": 1,
     "wrf": 1,
@@ -6487,7 +6558,7 @@
     "awk": 4,
     "aws": 1,
     "basename": 1,
-    "bash": 19,
+    "bash": 20,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -6514,7 +6585,7 @@
     "darshan-summary-per-file.sh": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 37,
+    "date": 38,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 6,
@@ -6532,7 +6603,7 @@
     "globus": 1,
     "gmx": 1,
     "gmx_mpi": 1,
-    "grep": 13,
+    "grep": 14,
     "h5cc": 1,
     "h5dump": 1,
     "h5pcc": 1,
@@ -6560,7 +6631,7 @@
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 40,
+    "mkdir": 41,
     "mktemp": 1,
     "module": 25,
     "mpi4py": 1,
@@ -6599,14 +6670,14 @@
     "rocm-smi": 3,
     "rserver": 1,
     "rsync": 3,
-    "sacct": 9,
+    "sacct": 10,
     "sacctmgr": 1,
     "salloc": 1,
     "sbatch": 49,
     "scancel": 1,
-    "scontrol": 14,
+    "scontrol": 15,
     "sed": 4,
-    "seff": 2,
+    "seff": 3,
     "sha256sum": 2,
     "shasum": 2,
     "sinfo": 4,
@@ -6623,7 +6694,7 @@
     "sshare": 1,
     "stat": 2,
     "streamlit": 1,
-    "tail": 8,
+    "tail": 9,
     "tar": 1,
     "tee": 24,
     "tensorboard": 1,

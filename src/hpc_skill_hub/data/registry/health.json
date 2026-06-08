@@ -4,15 +4,15 @@
     "admin": 7,
     "containers": 3,
     "data": 20,
-    "debugging": 35,
+    "debugging": 36,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
     "performance": 22,
-    "scheduler": 68,
+    "scheduler": 69,
     "software": 28,
-    "workflow": 13
+    "workflow": 14
   },
   "collection_count": 12,
   "collection_coverage": [
@@ -70,7 +70,7 @@
     },
     {
       "id": "core-hpc",
-      "skill_count": 25,
+      "skill_count": 26,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
@@ -82,6 +82,7 @@
         "slurm-monitor-job",
         "slurm-resource-estimator",
         "slurm-oom-memory-triage",
+        "slurm-time-limit-triage",
         "slurm-efficiency-report",
         "file-descriptor-limit-triage",
         "license-aware-slurm-job",
@@ -121,13 +122,14 @@
     },
     {
       "id": "facility-ops",
-      "skill_count": 9,
+      "skill_count": 10,
       "skill_ids": [
         "cluster-usage-report-readonly",
         "slurm-pending-reason-triage",
         "slurm-maintenance-reservation-triage",
         "slurm-qos-account-limit-triage",
         "slurm-oom-memory-triage",
+        "slurm-time-limit-triage",
         "file-descriptor-limit-triage",
         "node-health-readonly-triage",
         "shared-project-permissions-triage",
@@ -169,7 +171,7 @@
     },
     {
       "id": "scheduler-basics",
-      "skill_count": 9,
+      "skill_count": 10,
       "skill_ids": [
         "slurm-submit-job",
         "pbs-submit-job",
@@ -179,6 +181,7 @@
         "slurm-array-retry-plan",
         "job-failure-triage",
         "slurm-oom-memory-triage",
+        "slurm-time-limit-triage",
         "reproducible-run-capture"
       ]
     },
@@ -246,12 +249,13 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 26,
+      "skill_count": 27,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
         "slurm-maintenance-reservation-triage",
         "slurm-array-retry-plan",
+        "slurm-time-limit-triage",
         "license-aware-slurm-job",
         "slurm-preemption-requeue",
         "interactive-session",
@@ -278,13 +282,14 @@
     },
     {
       "id": "workflow-engines",
-      "skill_count": 10,
+      "skill_count": 11,
       "skill_ids": [
         "slurm-job-dependency-chain",
         "slurm-array-retry-plan",
         "cwl-on-slurm",
         "wdl-on-slurm",
         "file-descriptor-limit-triage",
+        "slurm-time-limit-triage",
         "dask-jobqueue-on-slurm",
         "parsl-on-slurm",
         "nextflow-on-slurm",
@@ -295,7 +300,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 93
+    "seed": 94
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -382,6 +387,7 @@
     "slurm-qos-account-limit-triage": "low",
     "slurm-resource-estimator": "low",
     "slurm-submit-job": "medium",
+    "slurm-time-limit-triage": "low",
     "snakemake-on-slurm": "medium",
     "spack-environment-create": "medium",
     "streamlit-on-slurm": "medium",
@@ -393,14 +399,14 @@
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
-    "low": 24,
+    "low": 25,
     "medium": 69
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 93,
+  "skill_count": 94,
   "status_counts": {
-    "draft": 93
+    "draft": 94
   },
   "uncollected_skill_ids": []
 }
