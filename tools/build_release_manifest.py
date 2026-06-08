@@ -34,6 +34,7 @@ ROOT_FILES = [
 
 INCLUDED_DIRS = [
     ".github",
+    "assets",
     "collections",
     "docs",
     "registry",

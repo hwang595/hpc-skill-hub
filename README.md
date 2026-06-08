@@ -1,4 +1,32 @@
-# HPC Skill Hub
+<p align="center">
+  <img src="assets/brand/hpc-skill-hub-logo.png" alt="HPC Skill Hub logo" width="176">
+</p>
+
+<h1 align="center">HPC Skill Hub</h1>
+
+<p align="center">
+  <strong>Open, validated, reusable skills for HPC workflows.</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/validate.yml?query=branch%3Amain"><img alt="Validate workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/validate.yml/badge.svg?branch=main"></a>
+  <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/package.yml?query=branch%3Amain"><img alt="Package workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/package.yml/badge.svg?branch=main"></a>
+  <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/pages.yml?query=branch%3Amain"><img alt="Pages workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/pages.yml/badge.svg?branch=main"></a>
+  <img alt="Version 0.1.0" src="https://img.shields.io/badge/version-0.1.0-0f766e">
+  <img alt="Python 3.9+" src="https://img.shields.io/badge/python-3.9%2B-3776ab">
+  <img alt="96 skills" src="https://img.shields.io/badge/skills-96-2563eb">
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-green"></a>
+</p>
+
+<p align="center">
+  <a href="https://hwang595.github.io/hpc-skill-hub/">Registry site</a>
+  ·
+  <a href="docs/SKILL_CATALOG.md">Skill catalog</a>
+  ·
+  <a href="docs/SKILL_LIFECYCLE.md">Contribute a skill</a>
+  ·
+  <a href="docs/OPEN_SOURCE_PROPOSAL.md">Open ecosystem proposal</a>
+</p>
 
 HPC Skill Hub is an open registry of reusable, reviewable skills for running,
 debugging, optimizing, and maintaining high performance computing workflows.
@@ -26,6 +54,7 @@ tools.
 ├── schemas/                # JSON Schemas for skill metadata
 ├── tools/                  # Local validation and maintenance scripts
 ├── docs/                   # Architecture, specification, and governance docs
+├── assets/                 # Project logo and public brand assets
 └── .github/workflows/      # CI checks for every pull request
 ```
 
@@ -207,6 +236,18 @@ python3 tools/review_candidates.py --limit 12
 python3 tools/github_homepage.py --repo <owner>/hpc-skill-hub
 python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --dry-run
 ```
+
+## Quality Gates
+
+The repository is set up as a versioned registry, not just a documentation dump:
+
+| Gate | What it proves |
+| --- | --- |
+| `Validate` workflow | Skill manifests, generated registry files, safety audit, CLI smoke tests, and unit tests pass on every push and pull request. |
+| `Package` workflow | Source and wheel distributions build cleanly, metadata passes `twine check`, and the installed wheel can read registry data outside the checkout. |
+| `Publish Pages` workflow | The searchable static registry site builds and deploys from the tracked registry index. |
+| `registry/releases/v0.1.0.json` | Versioned release manifest with file checksums and registry counts for reproducible snapshots. |
+| `pyproject.toml` | Package version, Python compatibility, CLI entry point, and project metadata are tracked in source control. |
 
 ## Project Status
 

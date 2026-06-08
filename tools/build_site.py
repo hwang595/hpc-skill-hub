@@ -17,6 +17,7 @@ DEFAULT_OUTPUT = ROOT / "site" / "index.html"
 SUPPORT_PATHS = [
     "README.md",
     "LICENSE",
+    "assets",
     "docs",
     "collections",
     "skills",
@@ -164,6 +165,34 @@ def contribution_lanes() -> str:
     )
 
 
+def project_status(index: Dict[str, Any]) -> str:
+    links = [
+        (
+            "Validate",
+            "https://github.com/hwang595/hpc-skill-hub/actions/workflows/validate.yml?query=branch%3Amain",
+        ),
+        (
+            "Package",
+            "https://github.com/hwang595/hpc-skill-hub/actions/workflows/package.yml?query=branch%3Amain",
+        ),
+        (
+            "Pages",
+            "https://github.com/hwang595/hpc-skill-hub/actions/workflows/pages.yml?query=branch%3Amain",
+        ),
+    ]
+    pills = [
+        '<span class="status-pill">v0.1.0</span>',
+        '<span class="status-pill">Python 3.9+</span>',
+        f'<span class="status-pill">{index["skill_count"]} skills</span>',
+        f'<span class="status-pill">{index["collection_count"]} collections</span>',
+        '<span class="status-pill">MIT</span>',
+    ]
+    return "\n".join(
+        f'<a class="status-pill" href="{esc(href)}">{esc(label)} CI</a>'
+        for label, href in links
+    ) + "\n" + "\n".join(pills)
+
+
 def render(index: Dict[str, Any]) -> str:
     return f"""<!doctype html>
 <html lang="en">
@@ -214,14 +243,12 @@ def render(index: Dict[str, Any]) -> str:
       min-width: 0;
     }}
     .mark {{
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      color: white;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      font-weight: 800;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: block;
+      object-fit: cover;
+      border: 1px solid var(--line);
     }}
     h1 {{
       margin: 0;
@@ -232,6 +259,24 @@ def render(index: Dict[str, Any]) -> str:
       color: var(--muted);
       margin: 2px 0 0;
       font-size: .95rem;
+    }}
+    .project-status {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }}
+    .status-pill {{
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 8px;
+      background: #f8fafc;
+      color: #344054;
+      font-size: .78rem;
+      white-space: nowrap;
+    }}
+    a.status-pill {{
+      color: #1d4ed8;
     }}
     nav {{
       display: flex;
@@ -404,10 +449,13 @@ def render(index: Dict[str, Any]) -> str:
   <header>
     <div class="wrap topbar">
       <div class="brand">
-        <div class="mark" aria-hidden="true">H</div>
+        <img class="mark" src="assets/brand/hpc-skill-hub-logo.png" alt="" aria-hidden="true">
         <div>
           <h1>HPC Skill Hub Registry</h1>
           <p class="subtitle">Reusable skills for HPC workflows, site policy, and operational debugging.</p>
+          <div class="project-status" aria-label="Project status">
+            {project_status(index)}
+          </div>
         </div>
       </div>
       <nav aria-label="Project links">

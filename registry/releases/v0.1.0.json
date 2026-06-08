@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/release-manifest.schema.json",
-  "file_count": 568,
+  "file_count": 570,
   "files": [
     {
       "bytes": 489,
@@ -145,17 +145,17 @@
     {
       "bytes": 1237,
       "path": ".github/workflows/package.yml",
-      "sha256": "38e6c07f743fa0d0ce19425e2ca416d12c820daae647993597d76d19ec09d0c0"
+      "sha256": "cf674a644130bd8a6d4128665e9a517ab998ee6bbb36159efff4f9e121f5b557"
     },
     {
       "bytes": 1045,
       "path": ".github/workflows/pages.yml",
-      "sha256": "d01c467dc95bd22fbf2a4433fc22cbcefad25c6ac0505c8689d97d062dcdb70e"
+      "sha256": "f20e6ae90d3e844ea29da443d624b4b48bb056d08f5caed02275b5a14cac246c"
     },
     {
       "bytes": 2533,
       "path": ".github/workflows/validate.yml",
-      "sha256": "10747f45fef4cce5a5f6bedb51e4c0f01ddcbe68948a70a04aa9e544f234f90f"
+      "sha256": "1b4852c53777faa1521856dc7228ce66137a71ee7846ea68dedff03d469b83b3"
     },
     {
       "bytes": 113,
@@ -193,9 +193,9 @@
       "sha256": "dea798cae34c09327203664ff6b3e488ce7eb4ceff5e6d0f89bc31462fea8825"
     },
     {
-      "bytes": 15429,
+      "bytes": 17947,
       "path": "README.md",
-      "sha256": "6d57803dab42c0afcd917d5efe8d2fd18ca5f4c787dc585e61277133f96c345d"
+      "sha256": "25e2232ba4ff7cc114022a0a5dcf7d8fd85cb9ad22fdab0b9e632d2555ab39e5"
     },
     {
       "bytes": 9379,
@@ -211,6 +211,16 @@
       "bytes": 2402,
       "path": "SUPPORT.md",
       "sha256": "9cc854bd17b71213ae9b70e63180e14de1d2f87a2b7219bb4b9bf86e66897bd6"
+    },
+    {
+      "bytes": 264634,
+      "path": "assets/brand/hpc-skill-hub-logo.png",
+      "sha256": "87d88b054e398829d6e7259b73dec496b8f2ea37376616ab4b9ba7913ac960cb"
+    },
+    {
+      "bytes": 672514,
+      "path": "assets/brand/hpc-skill-hub-social-preview.png",
+      "sha256": "cc140bee1594eee4acdf461e057ad865dfbdea13715e79bc9b0af3e46d8a74ba"
     },
     {
       "bytes": 1168,
@@ -2753,14 +2763,14 @@
       "sha256": "1d166ec38e617ec2a8ee28d4dcd755c14545f8ae57412bbe54a5e748d0623a84"
     },
     {
-      "bytes": 5403,
+      "bytes": 5417,
       "path": "tools/build_release_manifest.py",
-      "sha256": "c245ddb5002eb9777147aa528c3eaf26a01d112ec43020209c13d0309c7160c8"
+      "sha256": "64153f11bc60f932bdadaaccca2ba885924de57ec718a193f6536fe0a1046402"
     },
     {
-      "bytes": 16285,
+      "bytes": 17776,
       "path": "tools/build_site.py",
-      "sha256": "6a8d18a630fbf69f3bb90bc8ceac8d180541cb0760490604c4080e0852e45d74"
+      "sha256": "fe38fb8e9e913f0ace4c8bf1555bfd04df78d3eeba8186b9edea462a514218f1"
     },
     {
       "bytes": 2692,
@@ -2865,6 +2875,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1886736,
+  "total_bytes": 2827907,
   "version": "v0.1.0"
 }
