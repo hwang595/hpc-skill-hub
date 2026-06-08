@@ -112,9 +112,9 @@
       "sha256": "d01c467dc95bd22fbf2a4433fc22cbcefad25c6ac0505c8689d97d062dcdb70e"
     },
     {
-      "bytes": 1871,
+      "bytes": 2423,
       "path": ".github/workflows/validate.yml",
-      "sha256": "59683125fe1702733201259a8ecb54134bf47a3c5f76e21894a1b341d69e0de0"
+      "sha256": "37bd18fe66da8d8d355533286a390dabe5d53407e01514c799e080be42bd1ac5"
     },
     {
       "bytes": 113,
@@ -1702,9 +1702,9 @@
       "sha256": "37335bc4470c6acce6babee3957dadbcfe7bc0b1bf38140f9cee3d233581e515"
     },
     {
-      "bytes": 10111,
+      "bytes": 11040,
       "path": "tests/test_github_metadata.py",
-      "sha256": "8041bbf0672444a26d9bfa2d2e65afe58c4653a5df90be12b427260b1d986257"
+      "sha256": "f80131b487d9a232bdd9587691c4442a40ec4b4992214d765c04bc5816702504"
     },
     {
       "bytes": 7822,
@@ -1819,6 +1819,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1012772,
+  "total_bytes": 1014253,
   "version": "v0.1.0"
 }

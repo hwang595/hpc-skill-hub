@@ -145,6 +145,26 @@ class GitHubMetadataTests(unittest.TestCase):
             required_checks["required_status_checks"],
         )
 
+    def test_validate_workflow_covers_release_artifacts(self):
+        workflow = (ROOT / ".github" / "workflows" / "validate.yml").read_text(
+            encoding="utf-8"
+        )
+
+        for command in [
+            "python3 tools/build_index.py --check",
+            "python3 tools/build_health.py --check",
+            "python3 tools/build_compatibility.py --check",
+            "python3 tools/build_package_data.py --check",
+            "python3 tools/build_release_manifest.py v0.1.0 --check",
+            "python3 tools/audit_safety.py",
+            "python3 -m unittest discover -s tests",
+        ]:
+            self.assertIn(command, workflow)
+        self.assertIn("Smoke test installed package outside checkout", workflow)
+        self.assertIn("cd /tmp", workflow)
+        self.assertIn("hpc-skill health --json", workflow)
+        self.assertIn("python3 -m hpc_skill_hub show slurm-submit-job --json", workflow)
+
     def test_ruleset_command_generator(self):
         result = subprocess.run(
             [

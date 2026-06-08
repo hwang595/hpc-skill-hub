@@ -21,12 +21,24 @@ jobs:
         run: python3 tools/build_index.py --check
       - name: Check generated registry health
         run: python3 tools/build_health.py --check
+      - name: Check generated compatibility tables
+        run: python3 tools/build_compatibility.py --check
+      - name: Check packaged registry data
+        run: python3 tools/build_package_data.py --check
+      - name: Check release manifest
+        run: python3 tools/build_release_manifest.py v0.1.0 --check
       - name: Run safety audit
         run: python3 tools/audit_safety.py
       - name: Run test suite
         run: python3 -m unittest discover -s tests
       - name: Install CLI package
         run: python3 -m pip install .
+      - name: Smoke test installed package outside checkout
+        run: |
+          cd /tmp
+          hpc-skill health --json
+          hpc-skill collection core-hpc --json
+          python3 -m hpc_skill_hub show slurm-submit-job --json
       - name: Smoke test registry CLI
         run: |
           python3 tools/hpc_skill.py list
