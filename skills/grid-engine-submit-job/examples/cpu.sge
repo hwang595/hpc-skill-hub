@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#$ -N sge-cpu-smoke
+#$ -P <project>
+#$ -q <queue>
+#$ -cwd
+#$ -l h_rt=00:05:00
+#$ -l h_vmem=2G
+#$ -o sge-cpu-smoke.$JOB_ID.out
+#$ -e sge-cpu-smoke.$JOB_ID.err
+
+set -euo pipefail
+
+echo "started_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "host=$(hostname)"
+echo "JOB_ID=${JOB_ID:-}"
+echo "QUEUE=${QUEUE:-}"
+echo "SGE_O_WORKDIR=${SGE_O_WORKDIR:-}"
+echo "PWD=$PWD"
+echo "message=hello from a Grid Engine CPU smoke test"
+echo "finished_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"

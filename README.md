@@ -37,6 +37,7 @@ tools.
 | `pbs-submit-job` | Generate safe PBS or OpenPBS batch scripts for common HPC job shapes. |
 | `lsf-submit-job` | Generate safe IBM LSF bsub scripts for common HPC job shapes. |
 | `htcondor-submit-job` | Generate safe HTCondor submit descriptions for high-throughput jobs. |
+| `grid-engine-submit-job` | Generate safe Grid Engine qsub scripts for common HPC job shapes. |
 | `slurm-job-array-patterns` | Run parameter sweeps and independent tasks with bounded Slurm arrays. |
 | `slurm-job-dependency-chain` | Chain multi-stage Slurm jobs with explicit dependencies. |
 | `slurm-pending-reason-triage` | Explain why Slurm jobs are pending using read-only scheduler signals. |

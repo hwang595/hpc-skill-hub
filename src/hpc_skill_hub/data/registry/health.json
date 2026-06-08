@@ -10,7 +10,7 @@
     "interactive": 2,
     "mpi": 10,
     "performance": 11,
-    "scheduler": 45,
+    "scheduler": 46,
     "software": 15,
     "workflow": 10
   },
@@ -122,12 +122,13 @@
     },
     {
       "id": "scheduler-basics",
-      "skill_count": 6,
+      "skill_count": 7,
       "skill_ids": [
         "slurm-submit-job",
         "pbs-submit-job",
         "lsf-submit-job",
         "htcondor-submit-job",
+        "grid-engine-submit-job",
         "job-failure-triage",
         "reproducible-run-capture"
       ]
@@ -206,7 +207,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 62
+    "seed": 63
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -227,6 +228,7 @@
     "globus-transfer-dataset": "medium",
     "gpu-memory-triage": "low",
     "gpu-sanity-check": "medium",
+    "grid-engine-submit-job": "medium",
     "gromacs-on-slurm": "medium",
     "htcondor-submit-job": "medium",
     "interactive-session": "medium",
@@ -274,13 +276,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 45
+    "medium": 46
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 62,
+  "skill_count": 63,
   "status_counts": {
-    "draft": 62
+    "draft": 63
   },
   "uncollected_skill_ids": []
 }

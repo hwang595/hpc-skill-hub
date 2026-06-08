@@ -10,7 +10,7 @@
     "interactive": 2,
     "mpi": 10,
     "performance": 11,
-    "scheduler": 45,
+    "scheduler": 46,
     "software": 15,
     "workflow": 10
   },
@@ -192,11 +192,12 @@
         "pbs-submit-job",
         "lsf-submit-job",
         "htcondor-submit-job",
+        "grid-engine-submit-job",
         "job-failure-triage",
         "reproducible-run-capture"
       ],
       "status": "draft",
-      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, and HTCondor schedulers."
+      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers."
     },
     {
       "audience": [
@@ -304,12 +305,15 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
+    "grid-engine": 1,
     "htcondor": 1,
     "lsf": 1,
     "openpbs": 1,
     "pbs": 1,
     "pbs-pro": 1,
-    "slurm": 43
+    "sge": 1,
+    "slurm": 43,
+    "uge": 1
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -335,7 +339,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 62,
+  "skill_count": 63,
   "skills": [
     {
       "categories": [
@@ -1393,6 +1397,70 @@
         "sbatch",
         "nvidia-smi",
         "rocm-smi"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler"
+      ],
+      "description": "This skill helps users create Sun Grid Engine, Oracle Grid Engine, Son of Grid Engine, or Univa Grid Engine qsub scripts for CPU, parallel environment, and array workloads with conservative defaults, clear placeholders, and notes about site-specific queue, project, resource, and PE syntax.",
+      "examples": [
+        {
+          "path": "skills/grid-engine-submit-job/examples/cpu.sge",
+          "title": "CPU batch job"
+        },
+        {
+          "path": "skills/grid-engine-submit-job/examples/parallel-environment.sge",
+          "title": "Parallel environment job"
+        },
+        {
+          "path": "skills/grid-engine-submit-job/examples/array.sge",
+          "title": "Array job"
+        }
+      ],
+      "id": "grid-engine-submit-job",
+      "maturity": "seed",
+      "name": "Grid Engine Submit Job",
+      "path": "skills/grid-engine-submit-job",
+      "readme": "skills/grid-engine-submit-job/README.md",
+      "references": [
+        {
+          "title": "Oracle Grid Engine submitting jobs",
+          "url": "https://docs.oracle.com/cd/E19957-01/820-0699/chp4-1/index.html"
+        },
+        {
+          "title": "Sun Grid Engine qsub man page",
+          "url": "https://gridscheduler.sourceforge.net/htmlman/htmlman1/qsub.html"
+        },
+        {
+          "title": "Grid Engine basic usage",
+          "url": "https://gridengine.sourceforge.io/SGE/howto/basic_usage.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "grid-engine",
+        "sge",
+        "uge"
+      ],
+      "status": "draft",
+      "summary": "Generate safe Grid Engine qsub scripts for common HPC job shapes.",
+      "tags": [
+        "grid-engine",
+        "sge",
+        "uge",
+        "qsub",
+        "qstat",
+        "array",
+        "mpi",
+        "parallel-environment"
+      ],
+      "tools": [
+        "qsub",
+        "qstat",
+        "qdel",
+        "mpirun"
       ],
       "version": "0.1.0"
     },
@@ -3948,7 +4016,7 @@
     "amd": 1,
     "apptainer": 2,
     "archive": 2,
-    "array": 2,
+    "array": 3,
     "batch": 3,
     "benchmark": 1,
     "bioinformatics": 4,
@@ -4005,6 +4073,7 @@
     "git": 1,
     "globus": 1,
     "gpu": 15,
+    "grid-engine": 1,
     "gromacs": 1,
     "haplotypecaller": 1,
     "high-throughput": 1,
@@ -4034,7 +4103,7 @@
     "modulepath": 1,
     "modules": 7,
     "molecular-dynamics": 4,
-    "mpi": 14,
+    "mpi": 15,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
@@ -4056,6 +4125,7 @@
     "openpbs": 1,
     "outputs": 1,
     "packages": 2,
+    "parallel-environment": 1,
     "parameter-sweep": 1,
     "pbs": 1,
     "pbs-pro": 1,
@@ -4078,8 +4148,8 @@
     "python": 4,
     "pytorch": 3,
     "qe": 1,
-    "qstat": 1,
-    "qsub": 1,
+    "qstat": 2,
+    "qsub": 2,
     "quantum-chemistry": 1,
     "quantum-espresso": 1,
     "queue": 2,
@@ -4105,6 +4175,7 @@
     "scontrol": 3,
     "scratch": 2,
     "seff": 1,
+    "sge": 1,
     "sha256": 1,
     "sif": 1,
     "sinfo": 2,
@@ -4131,6 +4202,7 @@
     "transfer": 3,
     "triage": 4,
     "tunnel": 1,
+    "uge": 1,
     "usage": 1,
     "validation": 1,
     "variant-calling": 1,
@@ -4209,7 +4281,7 @@
     "mpicxx": 1,
     "mpiexec": 1,
     "mpifort": 1,
-    "mpirun": 2,
+    "mpirun": 3,
     "namd2": 1,
     "ncdump": 1,
     "nextflow": 2,
@@ -4222,8 +4294,9 @@
     "pwd": 7,
     "python": 3,
     "python3": 5,
-    "qstat": 1,
-    "qsub": 1,
+    "qdel": 1,
+    "qstat": 2,
+    "qsub": 2,
     "quota": 1,
     "ray": 1,
     "real.exe": 1,

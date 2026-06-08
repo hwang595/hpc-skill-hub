@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#$ -N sge-pe-smoke
+#$ -P <project>
+#$ -q <queue>
+#$ -cwd
+#$ -pe <parallel-environment> 4
+#$ -l h_rt=00:10:00
+#$ -l h_vmem=2G
+#$ -o sge-pe-smoke.$JOB_ID.out
+#$ -e sge-pe-smoke.$JOB_ID.err
+
+set -euo pipefail
+
+echo "started_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "host=$(hostname)"
+echo "JOB_ID=${JOB_ID:-}"
+echo "QUEUE=${QUEUE:-}"
+echo "NSLOTS=${NSLOTS:-}"
+echo "PE_HOSTFILE=${PE_HOSTFILE:-}"
+
+if [ -n "${PE_HOSTFILE:-}" ] && [ -f "${PE_HOSTFILE}" ]; then
+  echo "pe_hostfile=${PE_HOSTFILE}"
+  sed -n '1,20p' "${PE_HOSTFILE}"
+fi
+
+slots="${NSLOTS:-4}"
+echo "launch_plan=mpirun -np ${slots} hostname"
+
+if [ "${RUN_MPI:-0}" = "1" ]; then
+  mpirun -np "${slots}" hostname
+else
+  echo "dry_run=true"
+  echo "Set RUN_MPI=1 only after loading the correct MPI module and reviewing PE launch policy."
+fi
+
+echo "finished_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"

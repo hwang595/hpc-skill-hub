@@ -1,0 +1,119 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "grid-engine-submit-job",
+  "name": "Grid Engine Submit Job",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Generate safe Grid Engine qsub scripts for common HPC job shapes.",
+  "description": "This skill helps users create Sun Grid Engine, Oracle Grid Engine, Son of Grid Engine, or Univa Grid Engine qsub scripts for CPU, parallel environment, and array workloads with conservative defaults, clear placeholders, and notes about site-specific queue, project, resource, and PE syntax.",
+  "categories": ["scheduler"],
+  "tags": ["grid-engine", "sge", "uge", "qsub", "qstat", "array", "mpi", "parallel-environment"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["grid-engine", "sge", "uge"],
+  "tools": [
+    {
+      "name": "qsub",
+      "required": true
+    },
+    {
+      "name": "qstat",
+      "required": false
+    },
+    {
+      "name": "qdel",
+      "required": false
+    },
+    {
+      "name": "mpirun",
+      "required": false,
+      "notes": "Parallel environment and MPI launcher names vary by site."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "project",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific project or accounting string used by local Grid Engine policy."
+    },
+    {
+      "name": "queue",
+      "type": "string",
+      "required": false,
+      "description": "Target Grid Engine queue."
+    },
+    {
+      "name": "resources",
+      "type": "object",
+      "required": true,
+      "description": "Requested slots, memory, wall time, parallel environment, array range, and output paths."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "grid_engine_script",
+      "description": "A Grid Engine qsub script that can be adapted and submitted after site review."
+    },
+    {
+      "name": "job_id",
+      "description": "The job id printed by qsub after submission."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/cpu.sge",
+    "examples/parallel-environment.sge",
+    "examples/array.sge"
+  ],
+  "examples": [
+    {
+      "title": "CPU batch job",
+      "path": "examples/cpu.sge"
+    },
+    {
+      "title": "Parallel environment job",
+      "path": "examples/parallel-environment.sge"
+    },
+    {
+      "title": "Array job",
+      "path": "examples/array.sge"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill grid-engine-submit-job",
+      "description": "Validate the manifest and referenced artifacts."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/grid-engine-submit-job/examples/cpu.sge",
+      "description": "Check the CPU script shell syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Run qsub with a short wall time on a test queue after replacing placeholders and confirming local queue, project, memory, and parallel environment policy."
+    }
+  ],
+  "references": [
+    {
+      "title": "Oracle Grid Engine submitting jobs",
+      "url": "https://docs.oracle.com/cd/E19957-01/820-0699/chp4-1/index.html"
+    },
+    {
+      "title": "Sun Grid Engine qsub man page",
+      "url": "https://gridscheduler.sourceforge.net/htmlman/htmlman1/qsub.html"
+    },
+    {
+      "title": "Grid Engine basic usage",
+      "url": "https://gridengine.sourceforge.io/SGE/howto/basic_usage.html"
+    }
+  ]
+}

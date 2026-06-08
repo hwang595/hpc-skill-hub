@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#$ -N sge-array-smoke
+#$ -P <project>
+#$ -q <queue>
+#$ -cwd
+#$ -t 1-4
+#$ -l h_rt=00:05:00
+#$ -l h_vmem=1G
+#$ -o sge-array-smoke.$JOB_ID.$TASK_ID.out
+#$ -e sge-array-smoke.$JOB_ID.$TASK_ID.err
+
+set -euo pipefail
+
+task_id="${SGE_TASK_ID:-${TASK_ID:-1}}"
+
+echo "started_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "host=$(hostname)"
+echo "JOB_ID=${JOB_ID:-}"
+echo "SGE_TASK_ID=${SGE_TASK_ID:-}"
+echo "task_id=${task_id}"
+echo "message=hello from Grid Engine array task ${task_id}"
+echo "finished_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"

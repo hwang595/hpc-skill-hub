@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 62
+- Skills: 63
 - Site adapters: 1
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 45 |
+| `medium` | 46 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 62 |
+| `seed` | 63 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 62 |
+| `draft` | 63 |
 
 ## Collection Coverage
 
@@ -39,7 +39,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `data-movement` | 7 |
 | `facility-ops` | 4 |
 | `gpu-mpi-performance` | 12 |
-| `scheduler-basics` | 6 |
+| `scheduler-basics` | 7 |
 | `simulation-workflows` | 12 |
 | `software-stacks` | 16 |
 | `training-onboarding` | 12 |
@@ -71,6 +71,7 @@ All skills are included in at least one collection.
 | `globus-transfer-dataset` | medium |
 | `gpu-memory-triage` | low |
 | `gpu-sanity-check` | medium |
+| `grid-engine-submit-job` | medium |
 | `gromacs-on-slurm` | medium |
 | `htcondor-submit-job` | medium |
 | `interactive-session` | medium |
