@@ -34,7 +34,8 @@ research software engineer building software stacks may start with
   MATLAB batch jobs, module debugging, data staging, and failure triage for new
   users.
 - `data-movement`: Globus and rsync transfers, checksum manifests, scratch
-  staging, archive preparation, scratch inventory, and filesystem quota triage.
+  staging, archive preparation, IOR/MDTest storage smoke benchmarks, scratch
+  inventory, and filesystem quota triage.
 - `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
   DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
   Streamlit demos, container runtime execution, data staging, checkpoint/restart
@@ -44,12 +45,13 @@ research software engineer building software stacks may start with
   launch checks, compiler/MPI compatibility, GPU sanity checks, Ray cluster
   smoke tests, GPU memory triage, TensorBoard monitors, PyTorch DDP smoke tests,
   NCCL diagnostics, DeepSpeed launch checks, OpenMP placement, Slurm efficiency
-  review, and basic profiling.
+  review, storage smoke benchmarks, and basic profiling.
 - `bioinformatics-workflows`: nf-core, GATK, BLAST, Nextflow, Snakemake, data
   staging, and checksum practices for genomics and core-facility workflows.
 - `simulation-workflows`: GROMACS, LAMMPS, NAMD, Quantum ESPRESSO, CP2K,
   OpenFOAM, WRF, MPI launch checks, OpenMP placement, profiling, restart
-  planning, and reproducible run capture for simulation teams.
+  planning, storage smoke evidence, and reproducible run capture for simulation
+  teams.
 - `facility-ops`: read-only usage reporting, pending reason triage, node
   triage, and module tree health checks for HPC support teams and facility
   maintainers.

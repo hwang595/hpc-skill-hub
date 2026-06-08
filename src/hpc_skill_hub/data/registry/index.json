@@ -3,14 +3,14 @@
   "categories": {
     "admin": 4,
     "containers": 3,
-    "data": 12,
+    "data": 13,
     "debugging": 18,
     "education": 1,
     "gpu": 9,
     "interactive": 6,
-    "mpi": 11,
-    "performance": 12,
-    "scheduler": 51,
+    "mpi": 12,
+    "performance": 13,
+    "scheduler": 52,
     "software": 19,
     "workflow": 10
   },
@@ -131,12 +131,13 @@
         "rsync-data-transfer",
         "checksum-manifest-create",
         "dataset-staging-to-scratch",
+        "ior-mdtest-storage-smoke",
         "large-file-archive-prepare",
         "scratch-storage-management",
         "quota-and-filesystem-triage"
       ],
       "status": "draft",
-      "summary": "Skills for staging, transferring, validating, and managing research data on HPC storage."
+      "summary": "Skills for staging, transferring, validating, benchmarking, and managing research data on HPC storage."
     },
     {
       "audience": [
@@ -179,10 +180,11 @@
         "deepspeed-on-slurm",
         "openmp-thread-affinity",
         "slurm-efficiency-report",
+        "ior-mdtest-storage-smoke",
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -225,12 +227,13 @@
         "wrf-on-slurm",
         "mpi-hello-and-benchmark",
         "openmp-thread-affinity",
+        "ior-mdtest-storage-smoke",
         "performance-profile-basic",
         "reproducible-run-capture",
         "checkpoint-restart-workflow"
       ],
       "status": "draft",
-      "summary": "Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, and weather workloads on Slurm-backed HPC systems."
+      "summary": "Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -328,7 +331,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 48,
+    "slurm": 49,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -355,7 +358,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 68,
+  "skill_count": 69,
   "skills": [
     {
       "categories": [
@@ -1735,6 +1738,92 @@
         "salloc",
         "srun",
         "ssh"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "performance",
+        "data",
+        "mpi",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative pattern for running tiny IOR and MDTest smoke benchmarks from Slurm allocations, recording the exact commands, target directory, tool versions, and cleanup notes needed for storage or performance support triage.",
+      "examples": [
+        {
+          "path": "skills/ior-mdtest-storage-smoke/examples/ior-mdtest-smoke.sbatch",
+          "title": "Plan or run a tiny IOR and MDTest smoke benchmark on Slurm"
+        },
+        {
+          "path": "skills/ior-mdtest-storage-smoke/examples/storage-smoke-preflight.sh",
+          "title": "Check Slurm, IOR, MDTest, and target directory prerequisites"
+        },
+        {
+          "path": "skills/ior-mdtest-storage-smoke/examples/summarize-results.py",
+          "title": "Summarize captured IOR and MDTest output"
+        },
+        {
+          "path": "skills/ior-mdtest-storage-smoke/examples/cleanup-run.sh",
+          "title": "Clean up a marked benchmark run directory"
+        },
+        {
+          "path": "skills/ior-mdtest-storage-smoke/examples/site-policy-checklist.md",
+          "title": "Review site policy before running storage benchmarks"
+        }
+      ],
+      "id": "ior-mdtest-storage-smoke",
+      "maturity": "seed",
+      "name": "IOR MDTest Storage Smoke",
+      "path": "skills/ior-mdtest-storage-smoke",
+      "readme": "skills/ior-mdtest-storage-smoke/README.md",
+      "references": [
+        {
+          "title": "IOR and MDTest upstream repository",
+          "url": "https://github.com/hpc/ior"
+        },
+        {
+          "title": "IOR introduction",
+          "url": "https://ior.readthedocs.io/en/3.3/"
+        },
+        {
+          "title": "IOR command line options",
+          "url": "https://ior.readthedocs.io/en/3.2/userDoc/options.html"
+        },
+        {
+          "title": "IOR first steps and cache notes",
+          "url": "https://ior.readthedocs.io/en/latest/userDoc/tutorial.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect small IOR and MDTest storage benchmark evidence on Slurm.",
+      "tags": [
+        "ior",
+        "mdtest",
+        "storage",
+        "filesystem",
+        "io",
+        "mpi",
+        "slurm",
+        "benchmark",
+        "metadata"
+      ],
+      "tools": [
+        "sbatch",
+        "srun",
+        "ior",
+        "mdtest",
+        "python3",
+        "mkdir",
+        "tee",
+        "rm"
       ],
       "version": "0.1.0"
     },
@@ -4368,7 +4457,7 @@
     "archive": 2,
     "array": 3,
     "batch": 3,
-    "benchmark": 1,
+    "benchmark": 2,
     "bioinformatics": 4,
     "bjobs": 1,
     "blast": 1,
@@ -4418,7 +4507,7 @@
     "failure": 1,
     "fairshare": 1,
     "fasta": 1,
-    "filesystem": 3,
+    "filesystem": 4,
     "gatk": 1,
     "genomics": 1,
     "git": 1,
@@ -4432,7 +4521,8 @@
     "ide": 1,
     "inode": 1,
     "interactive": 4,
-    "io": 1,
+    "io": 2,
+    "ior": 1,
     "java": 1,
     "julia": 1,
     "jupyter": 2,
@@ -4448,15 +4538,16 @@
     "mamba": 1,
     "manifest": 3,
     "matlab": 1,
+    "mdtest": 1,
     "memory": 4,
-    "metadata": 1,
+    "metadata": 2,
     "micromamba": 1,
     "miniwdl": 1,
     "modulepath": 1,
     "modules": 7,
     "molecular-dynamics": 4,
     "monitoring": 1,
-    "mpi": 16,
+    "mpi": 17,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
@@ -4539,7 +4630,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 46,
+    "slurm": 47,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -4550,7 +4641,7 @@
     "srun": 5,
     "staging": 3,
     "state": 1,
-    "storage": 2,
+    "storage": 3,
     "streamlit": 1,
     "tar": 1,
     "tensorboard": 1,
@@ -4628,6 +4719,7 @@
     "head": 4,
     "hostname": 21,
     "icoFoam": 1,
+    "ior": 1,
     "julia": 1,
     "jupyter": 1,
     "ldd": 2,
@@ -4637,9 +4729,10 @@
     "makeblastdb": 1,
     "mamba": 1,
     "matlab": 1,
+    "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 29,
+    "mkdir": 30,
     "module": 19,
     "mpi4py": 1,
     "mpicc": 2,
@@ -4658,7 +4751,7 @@
     "pw.x": 1,
     "pwd": 7,
     "python": 3,
-    "python3": 7,
+    "python3": 8,
     "qdel": 1,
     "qstat": 2,
     "qsub": 2,
@@ -4666,12 +4759,13 @@
     "ray": 1,
     "real.exe": 1,
     "reconstructPar": 1,
+    "rm": 1,
     "rocm-smi": 2,
     "rserver": 1,
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 38,
+    "sbatch": 39,
     "scontrol": 6,
     "sed": 3,
     "seff": 1,
@@ -4686,12 +4780,12 @@
     "sprio": 1,
     "squeue": 7,
     "sreport": 1,
-    "srun": 17,
+    "srun": 18,
     "ssh": 5,
     "streamlit": 1,
     "tail": 4,
     "tar": 1,
-    "tee": 17,
+    "tee": 18,
     "tensorboard": 1,
     "test": 8,
     "time": 1,

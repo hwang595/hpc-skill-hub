@@ -37,6 +37,8 @@ The project is not only a documentation site. It combines:
 - `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices,
   TensorBoard, Streamlit, RStudio, and IDE tunnels.
 - `workflow-engines`: CWL, WDL, Nextflow, and Snakemake.
+- `data-movement`: Globus, rsync, checksums, scratch staging, IOR/MDTest
+  storage smoke evidence, archive preparation, and quota triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, notebooks,
   TensorBoard, Streamlit, RStudio, IDE tunnels, Python environments, and common
   learner failure modes.
@@ -47,7 +49,7 @@ The project is not only a documentation site. It combines:
 - `bioinformatics-workflows`: nf-core, GATK, local BLAST+, AlphaFold,
   single-cell workflows, and genomics data staging.
 - `simulation-workflows`: LAMMPS, GROMACS, Quantum ESPRESSO, NAMD, OpenFOAM,
-  WRF.
+  WRF, restart planning, profiling, and storage smoke evidence.
 - `facility-ops`: read-only usage reporting, node triage, module tree health
   checks, support handoffs, and public operational patterns.
 

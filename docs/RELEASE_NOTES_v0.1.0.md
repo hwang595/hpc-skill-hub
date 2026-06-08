@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 68.
+- Skills: 69.
 - Collections: 12.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -44,11 +44,13 @@ request missing workflows, or contribute public site adapters.
   tunnels, Python/Conda environments, Rscript, Julia, and MATLAB batch jobs, and
   common learner triage.
 - Data movement: Globus, rsync, checksum manifests, scratch staging, archive
-  preparation, scratch inventory, and filesystem quota triage.
+  preparation, IOR/MDTest storage smoke benchmarks, scratch inventory, and
+  filesystem quota triage.
 - GPU/MPI performance: MPI sanity checks, containerized MPI, mpi4py launch
   checks, GPU sanity checks, Ray cluster smoke tests, PyTorch DDP, NCCL
   diagnostics, GPU memory triage, TensorBoard monitors, DeepSpeed, OpenMP
-  placement, Slurm efficiency review, and basic profiling.
+  placement, Slurm efficiency review, storage smoke benchmarks, and basic
+  profiling.
 - AI/HPC: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
   DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
   Streamlit demos, container runtime execution, data staging, checkpoint/restart
@@ -56,8 +58,8 @@ request missing workflows, or contribute public site adapters.
 - Bioinformatics: nf-core, GATK, and local BLAST+ workflow patterns with data
   staging and checksum practices.
 - Simulation: LAMMPS, GROMACS, NAMD, Quantum ESPRESSO, CP2K, OpenFOAM, WRF, MPI
-  launch checks, OpenMP placement, restart planning, profiling, and
-  reproducibility.
+  launch checks, OpenMP placement, restart planning, profiling, storage smoke
+  evidence, and reproducibility.
 - Facility operations: read-only Slurm usage reporting, pending reason triage,
   node-health triage, and module tree health checks for support teams and
   facility maintainers.

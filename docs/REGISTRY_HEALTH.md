@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 68
+- Skills: 69
 - Site adapters: 1
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 51 |
+| `medium` | 52 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 68 |
+| `seed` | 69 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 68 |
+| `draft` | 69 |
 
 ## Collection Coverage
 
@@ -36,11 +36,11 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `bioinformatics-workflows` | 7 |
 | `containers` | 7 |
 | `core-hpc` | 16 |
-| `data-movement` | 7 |
+| `data-movement` | 8 |
 | `facility-ops` | 4 |
-| `gpu-mpi-performance` | 14 |
+| `gpu-mpi-performance` | 15 |
 | `scheduler-basics` | 7 |
-| `simulation-workflows` | 12 |
+| `simulation-workflows` | 13 |
 | `software-stacks` | 21 |
 | `training-onboarding` | 16 |
 | `workflow-engines` | 7 |
@@ -76,6 +76,7 @@ All skills are included in at least one collection.
 | `gromacs-on-slurm` | medium |
 | `htcondor-submit-job` | medium |
 | `interactive-session` | medium |
+| `ior-mdtest-storage-smoke` | medium |
 | `job-failure-triage` | low |
 | `julia-on-slurm` | medium |
 | `jupyter-on-slurm` | medium |

@@ -1,0 +1,177 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ior-mdtest-storage-smoke",
+  "name": "IOR MDTest Storage Smoke",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect small IOR and MDTest storage benchmark evidence on Slurm.",
+  "description": "This skill provides a conservative pattern for running tiny IOR and MDTest smoke benchmarks from Slurm allocations, recording the exact commands, target directory, tool versions, and cleanup notes needed for storage or performance support triage.",
+  "categories": ["performance", "data", "mpi", "scheduler"],
+  "tags": ["ior", "mdtest", "storage", "filesystem", "io", "mpi", "slurm", "benchmark", "metadata"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true,
+      "notes": "Used to run the benchmark smoke test in a scheduled allocation."
+    },
+    {
+      "name": "srun",
+      "required": true,
+      "notes": "Default MPI launcher for Slurm-managed tasks."
+    },
+    {
+      "name": "ior",
+      "required": true,
+      "notes": "Runs the tiny POSIX file I/O smoke benchmark."
+    },
+    {
+      "name": "mdtest",
+      "required": true,
+      "notes": "Runs the tiny filesystem metadata smoke benchmark."
+    },
+    {
+      "name": "python3",
+      "required": true,
+      "notes": "Summarizes captured benchmark output."
+    },
+    {
+      "name": "mkdir",
+      "required": true,
+      "notes": "Creates the marked benchmark run directory."
+    },
+    {
+      "name": "tee",
+      "required": true,
+      "notes": "Captures command output while leaving it visible in the Slurm log."
+    },
+    {
+      "name": "rm",
+      "required": false,
+      "notes": "Used only by the explicit cleanup helper after marker checks."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "bench_root",
+      "type": "path",
+      "required": true,
+      "description": "Scratch or project directory approved for tiny I/O benchmark output."
+    },
+    {
+      "name": "task_count",
+      "type": "integer",
+      "required": false,
+      "description": "Small MPI task count for the smoke benchmark."
+    },
+    {
+      "name": "ior_sizes",
+      "type": "string",
+      "required": false,
+      "description": "Small IOR transfer, block, and segment settings."
+    },
+    {
+      "name": "mdtest_items",
+      "type": "integer",
+      "required": false,
+      "description": "Small per-rank metadata item count."
+    },
+    {
+      "name": "site_policy",
+      "type": "string",
+      "required": true,
+      "description": "Local policy confirming that user-started storage benchmarks are allowed on the target filesystem."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "run_directory",
+      "description": "Marked directory containing metadata, commands, IOR output, MDTest output, and summaries."
+    },
+    {
+      "name": "benchmark_evidence",
+      "description": "Tiny benchmark output suitable for support triage, not for site-wide performance claims."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/ior-mdtest-smoke.sbatch",
+    "examples/storage-smoke-preflight.sh",
+    "examples/summarize-results.py",
+    "examples/cleanup-run.sh",
+    "examples/site-policy-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run a tiny IOR and MDTest smoke benchmark on Slurm",
+      "path": "examples/ior-mdtest-smoke.sbatch"
+    },
+    {
+      "title": "Check Slurm, IOR, MDTest, and target directory prerequisites",
+      "path": "examples/storage-smoke-preflight.sh"
+    },
+    {
+      "title": "Summarize captured IOR and MDTest output",
+      "path": "examples/summarize-results.py"
+    },
+    {
+      "title": "Clean up a marked benchmark run directory",
+      "path": "examples/cleanup-run.sh"
+    },
+    {
+      "title": "Review site policy before running storage benchmarks",
+      "path": "examples/site-policy-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill ior-mdtest-storage-smoke",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/ior-mdtest-storage-smoke/examples/ior-mdtest-smoke.sbatch skills/ior-mdtest-storage-smoke/examples/storage-smoke-preflight.sh skills/ior-mdtest-storage-smoke/examples/cleanup-run.sh",
+      "description": "Check that shell examples parse."
+    },
+    {
+      "type": "static",
+      "command": "python3 -m py_compile skills/ior-mdtest-storage-smoke/examples/summarize-results.py",
+      "description": "Check that the summary helper parses."
+    },
+    {
+      "type": "manual",
+      "description": "After site approval, submit the plan-only job, then run with RUN_BENCHMARK=1 in a short allocation and remove the marked run directory after preserving outputs."
+    }
+  ],
+  "references": [
+    {
+      "title": "IOR and MDTest upstream repository",
+      "url": "https://github.com/hpc/ior"
+    },
+    {
+      "title": "IOR introduction",
+      "url": "https://ior.readthedocs.io/en/3.3/"
+    },
+    {
+      "title": "IOR command line options",
+      "url": "https://ior.readthedocs.io/en/3.2/userDoc/options.html"
+    },
+    {
+      "title": "IOR first steps and cache notes",
+      "url": "https://ior.readthedocs.io/en/latest/userDoc/tutorial.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}
