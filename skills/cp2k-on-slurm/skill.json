@@ -1,0 +1,165 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "cp2k-on-slurm",
+  "name": "CP2K On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run CP2K calculations on Slurm with MPI/OpenMP layout and restart planning.",
+  "description": "This skill provides a conservative Slurm pattern for CP2K calculations, including MPI/OpenMP layout, CP2K data file checks, generated input from a template, output and restart record keeping, and dry-run-first smoke-test controls.",
+  "categories": ["mpi", "gpu", "scheduler", "performance"],
+  "tags": ["cp2k", "dft", "quantum-chemistry", "molecular-dynamics", "mpi", "openmp", "slurm", "restart"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "cp2k.psmp",
+      "required": false,
+      "notes": "Common CP2K MPI/OpenMP executable name; sites may expose cp2k.popt, cp2k, module wrappers, or container entrypoints instead."
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "sed",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    },
+    {
+      "name": "test",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "input_template",
+      "type": "path",
+      "required": true,
+      "description": "CP2K input template with placeholders for project, basis set file, potential file, and print level."
+    },
+    {
+      "name": "cp2k_data_files",
+      "type": "path",
+      "required": true,
+      "description": "Basis set and potential files such as BASIS_MOLOPT and GTH_POTENTIALS, staged from a reviewed CP2K data directory."
+    },
+    {
+      "name": "cp2k_executable",
+      "type": "string",
+      "required": false,
+      "description": "CP2K executable or site wrapper command available in the job environment."
+    },
+    {
+      "name": "record_dir",
+      "type": "path",
+      "required": true,
+      "description": "Durable directory for generated input, stdout, logs, restart files, and run metadata."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "cp2k_launch_plan",
+      "description": "Reviewable Slurm, MPI/OpenMP, executable, input, data-file, output, and restart plan."
+    },
+    {
+      "name": "cp2k_generated_input",
+      "description": "Rendered CP2K input file with concrete project and data-file paths."
+    },
+    {
+      "name": "cp2k_output",
+      "description": "CP2K stdout output file when RUN_CP2K=1."
+    },
+    {
+      "name": "cp2k_restart_state",
+      "description": "Restart, wavefunction, trajectory, or project-prefixed files needed for continuation or follow-on calculations."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/cp2k-smoke.sbatch",
+    "examples/h2o-energy.inp.template",
+    "examples/restart-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run a CP2K smoke test on Slurm",
+      "path": "examples/cp2k-smoke.sbatch"
+    },
+    {
+      "title": "Water energy input template",
+      "path": "examples/h2o-energy.inp.template"
+    },
+    {
+      "title": "CP2K restart checklist",
+      "path": "examples/restart-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill cp2k-on-slurm",
+      "description": "Validate the manifest and referenced artifacts."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/cp2k-on-slurm/examples/cp2k-smoke.sbatch",
+      "description": "Check the Slurm wrapper shell syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Run plan-only mode first; set RUN_CP2K=1 only after loading a site-approved CP2K executable and providing reviewed basis set and potential files."
+    }
+  ],
+  "references": [
+    {
+      "title": "CP2K manual",
+      "url": "https://manual.cp2k.org/"
+    },
+    {
+      "title": "CP2K input reference",
+      "url": "https://manual.cp2k.org/trunk/CP2K_INPUT.html"
+    },
+    {
+      "title": "CP2K run a first calculation",
+      "url": "https://manual.cp2k.org/trunk/getting-started/first-calculation.html"
+    },
+    {
+      "title": "CP2K input file guide",
+      "url": "https://www.cp2k.org/input_file"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

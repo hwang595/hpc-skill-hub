@@ -6,11 +6,11 @@
     "data": 12,
     "debugging": 17,
     "education": 1,
-    "gpu": 8,
+    "gpu": 9,
     "interactive": 2,
-    "mpi": 9,
-    "performance": 10,
-    "scheduler": 41,
+    "mpi": 10,
+    "performance": 11,
+    "scheduler": 42,
     "software": 15,
     "workflow": 9
   },
@@ -122,12 +122,13 @@
     },
     {
       "id": "simulation-workflows",
-      "skill_count": 11,
+      "skill_count": 12,
       "skill_ids": [
         "gromacs-on-slurm",
         "lammps-on-slurm",
         "namd-on-slurm",
         "quantum-espresso-on-slurm",
+        "cp2k-on-slurm",
         "openfoam-on-slurm",
         "wrf-on-slurm",
         "mpi-hello-and-benchmark",
@@ -193,7 +194,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 58
+    "seed": 59
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -204,6 +205,7 @@
     "compiler-mpi-matrix": "low",
     "conda-mamba-on-hpc": "medium",
     "container-build-for-hpc": "medium",
+    "cp2k-on-slurm": "medium",
     "cwl-on-slurm": "medium",
     "dask-jobqueue-on-slurm": "medium",
     "dataset-staging-to-scratch": "medium",
@@ -257,13 +259,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 41
+    "medium": 42
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 58,
+  "skill_count": 59,
   "status_counts": {
-    "draft": 58
+    "draft": 59
   },
   "uncollected_skill_ids": []
 }

@@ -80,6 +80,7 @@ tools.
 | `lammps-on-slurm` | Run LAMMPS molecular dynamics jobs on Slurm with MPI, GPU, and restart planning. |
 | `namd-on-slurm` | Run NAMD molecular dynamics jobs on Slurm with CPU/GPU and restart planning. |
 | `quantum-espresso-on-slurm` | Run Quantum ESPRESSO PWscf jobs on Slurm with MPI sizing and restart planning. |
+| `cp2k-on-slurm` | Run CP2K calculations on Slurm with MPI/OpenMP layout and restart planning. |
 | `openfoam-on-slurm` | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |
 | `wrf-on-slurm` | Run WRF real-data jobs on Slurm with MPI sizing, real.exe staging, restart, and I/O planning. |
 | `mpi-hello-and-benchmark` | Compile and run MPI sanity checks and simple communication benchmarks. |

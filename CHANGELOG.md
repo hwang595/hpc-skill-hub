@@ -44,6 +44,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Add a read-only Slurm pending reason triage skill for queue wait diagnosis.
 - Add a NAMD on Slurm skill for molecular dynamics jobs with CPU/GPU layout and
   restart planning.
+- Add a CP2K on Slurm skill for MPI/OpenMP electronic-structure and molecular
+  simulation jobs.
 - Add an Rscript on Slurm skill for batch R workloads with explicit package
   library and output controls.
 - Add a Julia on Slurm skill for batch Julia workloads with explicit depot,
@@ -75,15 +77,15 @@ Initial public seed release.
 
 ### Added
 
-- 58 seed HPC skills covering Slurm, job arrays, dependency chains, pending
+- 59 seed HPC skills covering Slurm, job arrays, dependency chains, pending
   reason triage, monitoring, resource estimation, efficiency review, failure
   triage, checkpoint/restart, interactive sessions, notebooks, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
   Ray, Dask Jobqueue, mpi4py, containers, Spack, EasyBuild, data movement,
   CWL/WDL, workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
   workflows including local BLAST+, molecular dynamics including NAMD,
-  electronic-structure, CFD, weather workloads, read-only facility operations,
-  and training onboarding.
+  electronic-structure and quantum chemistry including CP2K, CFD, weather
+  workloads, read-only facility operations, and training onboarding.
 - 11 curated collections: `core-hpc`, `software-stacks`, `containers`,
   `workflow-engines`, `data-movement`, `ai-hpc`, `gpu-mpi-performance`,
   `bioinformatics-workflows`, `simulation-workflows`, `facility-ops`, and

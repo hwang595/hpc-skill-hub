@@ -6,11 +6,11 @@
     "data": 12,
     "debugging": 17,
     "education": 1,
-    "gpu": 8,
+    "gpu": 9,
     "interactive": 2,
-    "mpi": 9,
-    "performance": 10,
-    "scheduler": 41,
+    "mpi": 10,
+    "performance": 11,
+    "scheduler": 42,
     "software": 15,
     "workflow": 9
   },
@@ -191,6 +191,7 @@
         "lammps-on-slurm",
         "namd-on-slurm",
         "quantum-espresso-on-slurm",
+        "cp2k-on-slurm",
         "openfoam-on-slurm",
         "wrf-on-slurm",
         "mpi-hello-and-benchmark",
@@ -282,7 +283,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 42
+    "slurm": 43
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -308,7 +309,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 58,
+  "skill_count": 59,
   "skills": [
     {
       "categories": [
@@ -755,6 +756,85 @@
         "date",
         "hostname",
         "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "mpi",
+        "gpu",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for CP2K calculations, including MPI/OpenMP layout, CP2K data file checks, generated input from a template, output and restart record keeping, and dry-run-first smoke-test controls.",
+      "examples": [
+        {
+          "path": "skills/cp2k-on-slurm/examples/cp2k-smoke.sbatch",
+          "title": "Plan or run a CP2K smoke test on Slurm"
+        },
+        {
+          "path": "skills/cp2k-on-slurm/examples/h2o-energy.inp.template",
+          "title": "Water energy input template"
+        },
+        {
+          "path": "skills/cp2k-on-slurm/examples/restart-checklist.md",
+          "title": "CP2K restart checklist"
+        }
+      ],
+      "id": "cp2k-on-slurm",
+      "maturity": "seed",
+      "name": "CP2K On Slurm",
+      "path": "skills/cp2k-on-slurm",
+      "readme": "skills/cp2k-on-slurm/README.md",
+      "references": [
+        {
+          "title": "CP2K manual",
+          "url": "https://manual.cp2k.org/"
+        },
+        {
+          "title": "CP2K input reference",
+          "url": "https://manual.cp2k.org/trunk/CP2K_INPUT.html"
+        },
+        {
+          "title": "CP2K run a first calculation",
+          "url": "https://manual.cp2k.org/trunk/getting-started/first-calculation.html"
+        },
+        {
+          "title": "CP2K input file guide",
+          "url": "https://www.cp2k.org/input_file"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run CP2K calculations on Slurm with MPI/OpenMP layout and restart planning.",
+      "tags": [
+        "cp2k",
+        "dft",
+        "quantum-chemistry",
+        "molecular-dynamics",
+        "mpi",
+        "openmp",
+        "slurm",
+        "restart"
+      ],
+      "tools": [
+        "cp2k.psmp",
+        "sbatch",
+        "srun",
+        "sed",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "test",
+        "module"
       ],
       "version": "0.1.0"
     },
@@ -3676,6 +3756,7 @@
     "compiler": 3,
     "conda": 1,
     "container": 2,
+    "cp2k": 1,
     "cpu": 2,
     "cpu-bind": 1,
     "cran": 1,
@@ -3693,7 +3774,7 @@
     "definition": 1,
     "dependency": 1,
     "depot": 1,
-    "dft": 1,
+    "dft": 2,
     "distributed": 4,
     "easybuild": 1,
     "easyconfig": 1,
@@ -3735,8 +3816,8 @@
     "miniwdl": 1,
     "modulepath": 1,
     "modules": 7,
-    "molecular-dynamics": 3,
-    "mpi": 11,
+    "molecular-dynamics": 4,
+    "mpi": 12,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
@@ -3754,7 +3835,7 @@
     "onboarding": 1,
     "oom": 2,
     "openfoam": 1,
-    "openmp": 2,
+    "openmp": 3,
     "outputs": 1,
     "packages": 2,
     "parameter-sweep": 1,
@@ -3777,6 +3858,7 @@
     "python": 4,
     "pytorch": 3,
     "qe": 1,
+    "quantum-chemistry": 1,
     "quantum-espresso": 1,
     "quota": 2,
     "r": 1,
@@ -3787,7 +3869,7 @@
     "reproducibility": 10,
     "rerun": 1,
     "resources": 1,
-    "restart": 5,
+    "restart": 6,
     "resume": 1,
     "rlibs": 1,
     "rocm": 2,
@@ -3805,7 +3887,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 40,
+    "slurm": 41,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -3857,10 +3939,11 @@
     "command": 2,
     "conda": 1,
     "cp": 2,
+    "cp2k.psmp": 1,
     "cwltool": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 23,
+    "date": 24,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -3878,7 +3961,7 @@
     "gmx_mpi": 1,
     "grep": 8,
     "head": 4,
-    "hostname": 20,
+    "hostname": 21,
     "icoFoam": 1,
     "julia": 1,
     "jupyter": 1,
@@ -3891,8 +3974,8 @@
     "matlab": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 28,
-    "module": 18,
+    "mkdir": 29,
+    "module": 19,
     "mpi4py": 1,
     "mpicc": 2,
     "mpicxx": 1,
@@ -3918,9 +4001,9 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 32,
+    "sbatch": 33,
     "scontrol": 6,
-    "sed": 2,
+    "sed": 3,
     "seff": 1,
     "sha256sum": 2,
     "shasum": 2,
@@ -3933,12 +4016,12 @@
     "sprio": 1,
     "squeue": 6,
     "sreport": 1,
-    "srun": 15,
+    "srun": 16,
     "ssh": 2,
     "tail": 4,
     "tar": 1,
-    "tee": 16,
-    "test": 7,
+    "tee": 17,
+    "test": 8,
     "time": 1,
     "tr": 1,
     "uname": 1,

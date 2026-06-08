@@ -45,6 +45,7 @@ new collections.
 | `gromacs-on-slurm` | gpu | medium | Seed skill added to `simulation-workflows`. |
 | `namd-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `quantum-espresso-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
+| `cp2k-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `openfoam-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `wrf-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `cluster-usage-report-readonly` | admin | low | Seed skill added to `facility-ops`. |

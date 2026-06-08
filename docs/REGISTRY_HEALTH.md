@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 58
+- Skills: 59
 - Site adapters: 1
 - Collections: 11
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 41 |
+| `medium` | 42 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 58 |
+| `seed` | 59 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 58 |
+| `draft` | 59 |
 
 ## Collection Coverage
 
@@ -39,7 +39,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `data-movement` | 7 |
 | `facility-ops` | 4 |
 | `gpu-mpi-performance` | 12 |
-| `simulation-workflows` | 11 |
+| `simulation-workflows` | 12 |
 | `software-stacks` | 16 |
 | `training-onboarding` | 12 |
 | `workflow-engines` | 7 |
@@ -60,6 +60,7 @@ All skills are included in at least one collection.
 | `compiler-mpi-matrix` | low |
 | `conda-mamba-on-hpc` | medium |
 | `container-build-for-hpc` | medium |
+| `cp2k-on-slurm` | medium |
 | `cwl-on-slurm` | medium |
 | `dask-jobqueue-on-slurm` | medium |
 | `dataset-staging-to-scratch` | medium |
