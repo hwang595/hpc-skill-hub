@@ -41,6 +41,10 @@ metadata stay aligned with the skill manifests.
 `docs/REGISTRY_HEALTH.md` for maintainer-facing coverage, risk, maturity, and
 collection health.
 
+`tools/build_compatibility.py` generates `docs/COMPATIBILITY.md` for scheduler,
+collection, workflow engine, container, domain, and tool compatibility views
+derived from `registry/index.json`.
+
 ## Collections
 
 Collections under `collections/*.json` group skills into adoption paths such as

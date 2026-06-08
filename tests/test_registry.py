@@ -57,6 +57,10 @@ class RegistryTests(unittest.TestCase):
         result = run_cmd("python3", "tools/build_health.py", "--check")
         self.assertIn("Registry health is current", result.stdout)
 
+    def test_generated_compatibility_is_current(self):
+        result = run_cmd("python3", "tools/build_compatibility.py", "--check")
+        self.assertIn("Compatibility tables are current", result.stdout)
+
     def test_safety_audit_passes(self):
         result = run_cmd("python3", "tools/audit_safety.py")
         self.assertIn("Safety audit passed", result.stdout)
@@ -112,6 +116,16 @@ class RegistryTests(unittest.TestCase):
         )
         self.assertIn("Validated 1 skill(s).", result.stdout)
         self.assertIn("Validation completed successfully.", result.stdout)
+
+    def test_cli_validate_full_checks_compatibility(self):
+        result = run_cmd(
+            "python3",
+            "tools/hpc_skill.py",
+            "validate",
+            "--skip-safety",
+        )
+        self.assertIn("Check generated compatibility tables", result.stdout)
+        self.assertIn("Compatibility tables are current", result.stdout)
 
     def test_package_module_entrypoint(self):
         result = run_cmd_with_env(
@@ -189,6 +203,7 @@ class RegistryTests(unittest.TestCase):
             self.assertIn("skills/slurm-submit-job/README.md", html)
             self.assertIn("collections/core-hpc.json", html)
             self.assertTrue((Path(tmpdir) / "README.md").exists())
+            self.assertTrue((Path(tmpdir) / "docs/COMPATIBILITY.md").exists())
             self.assertTrue((Path(tmpdir) / "collections/core-hpc.json").exists())
             self.assertTrue((Path(tmpdir) / "skills/slurm-submit-job/README.md").exists())
             self.assertTrue((Path(tmpdir) / "registry/index.json").exists())

@@ -76,6 +76,7 @@ A maturity promotion pull request should:
   ```bash
   python3 tools/build_index.py
   python3 tools/build_health.py
+  python3 tools/build_compatibility.py
   make check
   ```
 

@@ -358,6 +358,14 @@ def cmd_validate(args: argparse.Namespace) -> int:
                         "Check generated registry health",
                         [sys.executable, str(tools_dir / "build_health.py"), "--check"],
                     ),
+                    (
+                        "Check generated compatibility tables",
+                        [
+                            sys.executable,
+                            str(tools_dir / "build_compatibility.py"),
+                            "--check",
+                        ],
+                    ),
                 ]
             )
         if not args.skip_safety:

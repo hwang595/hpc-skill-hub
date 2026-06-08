@@ -301,6 +301,7 @@ def render(index: Dict[str, Any]) -> str:
       <nav aria-label="Project links">
         <a href="README.md">README</a>
         <a href="docs/SKILL_SPEC.md">Skill spec</a>
+        <a href="docs/COMPATIBILITY.md">Compatibility</a>
         <a href="docs/SITE_ADAPTERS.md">Site adapters</a>
         <a href="docs/ECOSYSTEM_PROPOSAL.md">Proposal</a>
       </nav>

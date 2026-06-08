@@ -178,6 +178,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Collections](docs/COLLECTIONS.md)
 - [Machine-readable registry index](registry/index.json)
 - [Registry health](docs/REGISTRY_HEALTH.md)
+- [Compatibility tables](docs/COMPATIBILITY.md)
 - [CLI](docs/CLI.md)
 - [Skill specification](docs/SKILL_SPEC.md)
 - [Skill authoring guide](docs/SKILL_AUTHORING_GUIDE.md)

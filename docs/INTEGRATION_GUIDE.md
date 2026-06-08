@@ -13,6 +13,7 @@ The stable seed-stage surfaces are:
 | Surface | Purpose |
 | --- | --- |
 | `registry/index.json` | Machine-readable registry summary for skills, collections, site adapters, categories, risk, maturity, and paths. |
+| `docs/COMPATIBILITY.md` | Generated compatibility view for schedulers, collections, workflow engines, containers, domains, and tool signals. |
 | `schemas/*.schema.json` | Validation contracts for skill manifests, collections, and site adapters. |
 | `skills/*/README.md` | Human-readable operating notes, assumptions, safety notes, and examples. |
 | `skills/*/examples/` | Reviewable example scripts, batch files, configs, and checklists. |

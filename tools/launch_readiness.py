@@ -69,6 +69,7 @@ def required_files_check() -> Check:
         "docs/GITHUB_REPOSITORY_SETUP.md",
         "docs/INTEGRATION_GUIDE.md",
         "docs/COMMUNITY_LAUNCH.md",
+        "docs/COMPATIBILITY.md",
         "docs/RELEASE_PROCESS.md",
         "docs/RELEASE_NOTES_v0.1.0.md",
         "docs/REVIEW_ROUTING.md",
@@ -82,6 +83,7 @@ def required_files_check() -> Check:
         ".github/workflows/pages.yml",
         ".github/pull_request_template.md",
         "tools/github_publish_plan.py",
+        "tools/build_compatibility.py",
     ]
     missing = [path for path in required if not (ROOT / path).exists()]
     if missing:
@@ -110,6 +112,7 @@ def generated_artifacts_check() -> List[Check]:
     for name, command in [
         ("registry-index-current", ["python3", "tools/build_index.py", "--check"]),
         ("registry-health-current", ["python3", "tools/build_health.py", "--check"]),
+        ("compatibility-current", ["python3", "tools/build_compatibility.py", "--check"]),
     ]:
         result = run_command(command)
         if result.returncode == 0:

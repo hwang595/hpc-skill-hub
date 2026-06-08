@@ -81,8 +81,9 @@ python3 tools/hpc_skill.py validate
 ```
 
 The full command checks manifest metadata, generated registry index freshness,
-registry health freshness, and the safety audit. Single-skill validation skips
-generated registry checks and audits only that skill directory.
+registry health freshness, compatibility table freshness, and the safety audit.
+Single-skill validation skips generated registry checks and audits only that
+skill directory.
 
 ## Filtering Skills
 
@@ -114,6 +115,8 @@ python3 tools/build_index.py
 python3 tools/build_index.py --check
 python3 tools/build_health.py
 python3 tools/build_health.py --check
+python3 tools/build_compatibility.py
+python3 tools/build_compatibility.py --check
 ```
 
 ## Future Direction

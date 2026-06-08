@@ -13,8 +13,8 @@
 - Add richer metadata search over skill manifests.
 - Publish static documentation from the registry.
 - Publish a generated GitHub Pages registry explorer.
-- Add compatibility tables for schedulers, containers, workflow engines, and
-  scientific domains.
+- Keep generated compatibility tables for schedulers, containers, workflow
+  engines, and scientific domains.
 - Add site adapters so HPC centers can publish public local policy without
   forking core skills.
 - Introduce skill quality levels: `seed`, `reviewed`, `field-tested`, and

@@ -20,6 +20,7 @@ Run:
 python3 tools/validate_skills.py
 python3 tools/build_index.py --check
 python3 tools/build_health.py --check
+python3 tools/build_compatibility.py --check
 python3 tools/audit_safety.py
 python3 tools/launch_readiness.py
 python3 tools/build_site.py --output /tmp/hpc-skill-hub-site/index.html
@@ -39,6 +40,7 @@ Review:
 - `docs/RELEASE_NOTES_v<version>.md` is ready for GitHub release notes.
 - `registry/index.json` is current.
 - `docs/SKILL_CATALOG.md` is current.
+- `docs/COMPATIBILITY.md` is current.
 - New skills have README files, examples, tests, and references.
 - Medium and high-risk entries explain impact and safety notes.
 - Site adapters contain only public, non-sensitive information.

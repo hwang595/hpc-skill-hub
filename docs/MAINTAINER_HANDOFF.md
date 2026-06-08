@@ -48,8 +48,8 @@ Use [Triage Runbook](TRIAGE_RUNBOOK.md) for the intake loop and
 Before transferring release responsibility:
 
 - Confirm `docs/RELEASE_PROCESS.md` is current.
-- Confirm `registry/index.json`, `registry/health.json`, and generated catalog
-  docs are fresh.
+- Confirm `registry/index.json`, `registry/health.json`, generated catalog
+  docs, and compatibility tables are fresh.
 - Confirm the release owner can build and install the package locally.
 - Confirm the release owner has GitHub permission to create releases and manage
   Pages workflows.

@@ -61,6 +61,8 @@ git push -u origin main
 - `make check` passes locally and in GitHub Actions.
 - README, roadmap, contribution guide, security policy, and governance docs are
   present.
+- Generated skill catalog, registry health, and compatibility tables are
+  current.
 - Support and citation metadata are present.
 - Changelog and release notes are present.
 - Every skill has a manifest, README, and at least one example artifact.

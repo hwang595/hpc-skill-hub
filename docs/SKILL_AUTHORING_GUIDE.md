@@ -25,6 +25,7 @@ new HPC skills.
    ```bash
    python3 tools/build_index.py
    python3 tools/build_health.py
+   python3 tools/build_compatibility.py
    ```
 
 6. Run the full local gate:
