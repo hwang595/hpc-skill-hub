@@ -30,6 +30,7 @@ skills keep their own `version` field in `skills/*/skill.json`.
   downstream registry consumers.
 - Add a read-only Slurm efficiency report skill for completed job resource
   review.
+- Add a Slurm job dependency chain skill for small multi-stage workflows.
 
 ## v0.1.0 - Planned
 
@@ -37,8 +38,8 @@ Initial public seed release.
 
 ### Added
 
-- 45 seed HPC skills covering Slurm, job arrays, monitoring, resource
-  estimation, efficiency review, failure triage, checkpoint/restart,
+- 46 seed HPC skills covering Slurm, job arrays, dependency chains, monitoring,
+  resource estimation, efficiency review, failure triage, checkpoint/restart,
   interactive sessions, notebooks, OpenMP placement, storage triage, software
   environments, containers, Spack, EasyBuild, data movement, workflow engines,
   MPI/GPU diagnostics, AI/HPC launches, bioinformatics workflows, molecular

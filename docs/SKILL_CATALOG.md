@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 45 skills.
+Current registry size: 46 skills.
 
 ## Categories
 
@@ -17,9 +17,9 @@ Current registry size: 45 skills.
 | `interactive` | 2 |
 | `mpi` | 6 |
 | `performance` | 8 |
-| `scheduler` | 28 |
+| `scheduler` | 29 |
 | `software` | 9 |
-| `workflow` | 4 |
+| `workflow` | 5 |
 
 ## Skills By Category
 
@@ -148,6 +148,7 @@ Current registry size: 45 skills.
 | [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md) | medium | seed | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
 | [`slurm-efficiency-report`](../skills/slurm-efficiency-report/README.md) | low | seed | Summarize completed Slurm job efficiency from accounting data. |
 | [`slurm-job-array-patterns`](../skills/slurm-job-array-patterns/README.md) | medium | seed | Run parameter sweeps and many independent tasks with Slurm job arrays. |
+| [`slurm-job-dependency-chain`](../skills/slurm-job-dependency-chain/README.md) | medium | seed | Chain multi-stage Slurm jobs with explicit dependencies. |
 | [`slurm-monitor-job`](../skills/slurm-monitor-job/README.md) | low | seed | Inspect Slurm job state, accounting records, and output paths. |
 | [`slurm-resource-estimator`](../skills/slurm-resource-estimator/README.md) | low | seed | Estimate future Slurm resource requests from accounting history. |
 | [`slurm-submit-job`](../skills/slurm-submit-job/README.md) | medium | seed | Generate safe Slurm batch scripts for common HPC job shapes. |
@@ -176,6 +177,7 @@ Current registry size: 45 skills.
 | [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
 | [`nf-core-on-slurm`](../skills/nf-core-on-slurm/README.md) | medium | seed | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
+| [`slurm-job-dependency-chain`](../skills/slurm-job-dependency-chain/README.md) | medium | seed | Chain multi-stage Slurm jobs with explicit dependencies. |
 | [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
 
 ## Collections
@@ -183,14 +185,14 @@ Current registry size: 45 skills.
 | Collection | Status | Skills | Audience | Description |
 | --- | --- | ---: | --- | --- |
 | [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | draft | 6 | bioinformatics teams, core facilities, genomics platform engineers | Domain skills for running reviewed nf-core and GATK bioinformatics workflows on Slurm-backed HPC systems. |
-| [`core-hpc`](../collections/core-hpc.json) | draft | 12 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage. |
+| [`core-hpc`](../collections/core-hpc.json) | draft | 13 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, dependency chains, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
 | [`facility-ops`](../collections/facility-ops.json) | draft | 3 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, node triage, and module tree health. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 10 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence. |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 9 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, CFD, and weather workloads on Slurm-backed HPC systems. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 10 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks. |
 | [`training-onboarding`](../collections/training-onboarding.json) | draft | 9 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users and preparing workshop environments. |
-| [`workflow-engines`](../collections/workflow-engines.json) | draft | 3 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines on Slurm-backed HPC clusters. |
+| [`workflow-engines`](../collections/workflow-engines.json) | draft | 4 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines and lightweight Slurm dependency chains. |
 
 ## Site Adapters
 

@@ -3,9 +3,10 @@
   "id": "workflow-engines",
   "name": "Workflow Engines",
   "status": "draft",
-  "summary": "Skills for launching portable workflow engines on Slurm-backed HPC clusters.",
+  "summary": "Skills for launching portable workflow engines and lightweight Slurm dependency chains.",
   "audience": ["pipeline authors", "bioinformatics teams", "workflow platform maintainers"],
   "skill_ids": [
+    "slurm-job-dependency-chain",
     "nextflow-on-slurm",
     "snakemake-on-slurm",
     "nf-core-on-slurm"

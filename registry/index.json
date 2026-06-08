@@ -9,9 +9,9 @@
     "interactive": 2,
     "mpi": 6,
     "performance": 8,
-    "scheduler": 28,
+    "scheduler": 29,
     "software": 9,
-    "workflow": 4
+    "workflow": 5
   },
   "collection_count": 9,
   "collections": [
@@ -47,6 +47,7 @@
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
+        "slurm-job-dependency-chain",
         "slurm-monitor-job",
         "slurm-resource-estimator",
         "slurm-efficiency-report",
@@ -59,7 +60,7 @@
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage."
     },
     {
       "audience": [
@@ -203,17 +204,18 @@
       "name": "Workflow Engines",
       "path": "collections/workflow-engines.json",
       "skill_ids": [
+        "slurm-job-dependency-chain",
         "nextflow-on-slurm",
         "snakemake-on-slurm",
         "nf-core-on-slurm"
       ],
       "status": "draft",
-      "summary": "Skills for launching portable workflow engines on Slurm-backed HPC clusters."
+      "summary": "Skills for launching portable workflow engines and lightweight Slurm dependency chains."
     }
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 29
+    "slurm": 30
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -239,7 +241,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 45,
+  "skill_count": 46,
   "skills": [
     {
       "categories": [
@@ -2344,6 +2346,56 @@
     {
       "categories": [
         "scheduler",
+        "workflow"
+      ],
+      "description": "This skill helps users plan and optionally submit small Slurm dependency chains for preprocessing, analysis, and postprocessing stages using afterok, afterany, and singleton patterns.",
+      "examples": [
+        {
+          "path": "skills/slurm-job-dependency-chain/examples/dependency-chain.sh",
+          "title": "Plan or submit a three-stage dependency chain"
+        }
+      ],
+      "id": "slurm-job-dependency-chain",
+      "maturity": "seed",
+      "name": "Slurm Job Dependency Chain",
+      "path": "skills/slurm-job-dependency-chain",
+      "readme": "skills/slurm-job-dependency-chain/README.md",
+      "references": [
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        },
+        {
+          "title": "Slurm job array dependency notes",
+          "url": "https://slurm.schedmd.com/job_array.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Chain multi-stage Slurm jobs with explicit dependencies.",
+      "tags": [
+        "slurm",
+        "sbatch",
+        "dependency",
+        "afterok",
+        "afterany",
+        "singleton",
+        "pipeline"
+      ],
+      "tools": [
+        "sbatch",
+        "squeue",
+        "bash",
+        "mkdir"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
         "debugging"
       ],
       "description": "This skill provides read-only commands for checking queued, running, completed, and failed Slurm jobs using squeue, sacct, scontrol, and log files.",
@@ -2725,6 +2777,8 @@
   ],
   "tags": {
     "affinity": 1,
+    "afterany": 1,
+    "afterok": 1,
     "all-reduce": 1,
     "amd": 1,
     "apptainer": 2,
@@ -2752,6 +2806,7 @@
     "decomposition": 1,
     "deepspeed": 1,
     "definition": 1,
+    "dependency": 1,
     "distributed": 2,
     "easybuild": 1,
     "easyconfig": 1,
@@ -2807,6 +2862,7 @@
     "perf": 1,
     "permission": 1,
     "pip": 1,
+    "pipeline": 1,
     "preemption": 1,
     "preflight": 1,
     "profile": 1,
@@ -2828,15 +2884,16 @@
     "sacct": 5,
     "salloc": 1,
     "samplesheet": 1,
-    "sbatch": 1,
+    "sbatch": 2,
     "scontrol": 2,
     "scratch": 2,
     "seff": 1,
     "sha256": 1,
     "sif": 1,
     "sinfo": 2,
+    "singleton": 1,
     "singularity": 3,
-    "slurm": 27,
+    "slurm": 28,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -2874,7 +2931,7 @@
     "apptainer": 2,
     "awk": 3,
     "basename": 1,
-    "bash": 3,
+    "bash": 4,
     "blockMesh": 1,
     "cat": 2,
     "cksum": 2,
@@ -2908,7 +2965,7 @@
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 19,
+    "mkdir": 20,
     "module": 8,
     "mpicc": 2,
     "mpicxx": 1,
@@ -2929,7 +2986,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 20,
+    "sbatch": 21,
     "scontrol": 4,
     "sed": 1,
     "seff": 1,
@@ -2941,7 +2998,7 @@
     "snakemake": 1,
     "sort": 8,
     "spack": 1,
-    "squeue": 4,
+    "squeue": 5,
     "sreport": 1,
     "srun": 11,
     "ssh": 2,

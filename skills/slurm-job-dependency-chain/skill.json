@@ -1,0 +1,99 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-job-dependency-chain",
+  "name": "Slurm Job Dependency Chain",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Chain multi-stage Slurm jobs with explicit dependencies.",
+  "description": "This skill helps users plan and optionally submit small Slurm dependency chains for preprocessing, analysis, and postprocessing stages using afterok, afterany, and singleton patterns.",
+  "categories": ["scheduler", "workflow"],
+  "tags": ["slurm", "sbatch", "dependency", "afterok", "afterany", "singleton", "pipeline"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "squeue",
+      "required": false
+    },
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "stage_scripts",
+      "type": "path",
+      "required": false,
+      "description": "Batch scripts for each stage, or generated demo scripts from the example."
+    },
+    {
+      "name": "dependency_policy",
+      "type": "string",
+      "required": true,
+      "description": "Dependency type such as afterok for success-only continuation or afterany for cleanup/reporting."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "dependency_plan",
+      "description": "Reviewable sbatch commands showing stage order and dependency ids."
+    },
+    {
+      "name": "submitted_job_ids",
+      "description": "Job ids for each stage when the user explicitly submits the demo chain."
+    },
+    {
+      "name": "stage_logs",
+      "description": "Separate Slurm logs for each dependency stage."
+    }
+  ],
+  "artifacts": ["README.md", "examples/dependency-chain.sh"],
+  "examples": [
+    {
+      "title": "Plan or submit a three-stage dependency chain",
+      "path": "examples/dependency-chain.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-job-dependency-chain",
+      "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash skills/slurm-job-dependency-chain/examples/dependency-chain.sh --plan /tmp/hpc-skill-hub-dependency-demo",
+      "description": "Generate a dependency plan without submitting jobs."
+    },
+    {
+      "type": "manual",
+      "description": "Run with --submit on a short test partition and confirm the later stages remain pending until dependencies are satisfied."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    },
+    {
+      "title": "Slurm job array dependency notes",
+      "url": "https://slurm.schedmd.com/job_array.html"
+    }
+  ]
+}

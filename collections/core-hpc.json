@@ -3,11 +3,12 @@
   "id": "core-hpc",
   "name": "Core HPC",
   "status": "draft",
-  "summary": "Starter skills for Slurm jobs, arrays, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage.",
+  "summary": "Starter skills for Slurm jobs, arrays, dependency chains, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage.",
   "audience": ["new HPC users", "research software engineers", "support teams"],
   "skill_ids": [
     "slurm-submit-job",
     "slurm-job-array-patterns",
+    "slurm-job-dependency-chain",
     "slurm-monitor-job",
     "slurm-resource-estimator",
     "slurm-efficiency-report",
