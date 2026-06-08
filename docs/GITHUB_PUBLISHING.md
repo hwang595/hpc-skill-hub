@@ -2,6 +2,10 @@
 
 This repository is designed to be published as `hpc-skill-hub`.
 
+After the first push, use [GitHub Repository Setup](GITHUB_REPOSITORY_SETUP.md)
+to configure branch protection, Pages, security features, labels, and
+maintainer ownership.
+
 ## Recommended Repository Settings
 
 - Visibility: public.
@@ -40,13 +44,15 @@ git push -u origin main
 
 ## First Release Checklist
 
-- `python3 tools/validate_skills.py` passes.
+- `make check` passes locally and in GitHub Actions.
 - README, roadmap, contribution guide, security policy, and governance docs are
   present.
 - Every skill has a manifest, README, and at least one example artifact.
+- Registry index, registry health, and generated catalog docs are current.
 - Repository topics and description are set.
 - Branch protection requires the validation workflow.
 - GitHub Pages is enabled with the `Publish Pages` workflow.
+- Dependabot, issue templates, and pull request templates are present.
 - A pinned issue invites external HPC centers to propose skills and adapters.
 
 ## Publish GitHub Pages

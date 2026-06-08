@@ -137,10 +137,12 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Adoption guide](docs/ADOPTION_GUIDE.md)
 - [Safety model](docs/SAFETY_MODEL.md)
 - [Maintainer guide](docs/MAINTAINER_GUIDE.md)
+- [Maintainer handoff](docs/MAINTAINER_HANDOFF.md)
 - [Open ecosystem proposal](docs/ECOSYSTEM_PROPOSAL.md)
 - [Open source proposal](docs/OPEN_SOURCE_PROPOSAL.md)
 - [Release process](docs/RELEASE_PROCESS.md)
 - [GitHub publishing guide](docs/GITHUB_PUBLISHING.md)
+- [GitHub repository setup](docs/GITHUB_REPOSITORY_SETUP.md)
 
 ## License
 

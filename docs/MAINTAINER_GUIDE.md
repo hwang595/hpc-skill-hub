@@ -1,5 +1,8 @@
 # Maintainer Guide
 
+For maintainer rotation, role ownership, and operational continuity, see
+[Maintainer Handoff](MAINTAINER_HANDOFF.md).
+
 ## Review Checklist
 
 - The skill id matches the directory name.
