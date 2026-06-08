@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 83
+- Skills: 84
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -13,20 +13,20 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 18 |
+| `low` | 19 |
 | `medium` | 65 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 83 |
+| `seed` | 84 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 83 |
+| `draft` | 84 |
 
 ## Collection Coverage
 
@@ -36,11 +36,11 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `bioinformatics-workflows` | 7 |
 | `containers` | 7 |
 | `core-hpc` | 19 |
-| `data-movement` | 9 |
+| `data-movement` | 10 |
 | `facility-ops` | 5 |
-| `gpu-mpi-performance` | 23 |
+| `gpu-mpi-performance` | 24 |
 | `scheduler-basics` | 7 |
-| `simulation-workflows` | 17 |
+| `simulation-workflows` | 18 |
 | `software-stacks` | 28 |
 | `training-onboarding` | 19 |
 | `workflow-engines` | 8 |
@@ -64,6 +64,7 @@ All skills are included in at least one collection.
 | `container-build-for-hpc` | medium |
 | `cp2k-on-slurm` | medium |
 | `cwl-on-slurm` | medium |
+| `darshan-io-profile-analysis` | low |
 | `dask-jobqueue-on-slurm` | medium |
 | `dataset-staging-to-scratch` | medium |
 | `deepspeed-on-slurm` | medium |

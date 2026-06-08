@@ -1,0 +1,137 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "darshan-io-profile-analysis",
+  "name": "Darshan I/O Profile Analysis",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Analyze Darshan logs for HPC I/O behavior and bottleneck evidence.",
+  "description": "This skill helps users and support teams turn existing Darshan logs into reviewable I/O evidence, including parser summaries, optional PDF commands, DXT trace notes, and a checklist for interpreting POSIX, MPI-IO, HDF5, and PnetCDF access patterns.",
+  "categories": ["performance", "data", "debugging", "mpi"],
+  "tags": ["darshan", "io", "profiling", "mpi-io", "hdf5", "pnetcdf", "filesystem", "logs"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "darshan-parser",
+      "required": true,
+      "notes": "Primary darshan-util command for text-format log analysis."
+    },
+    {
+      "name": "darshan-config",
+      "required": false,
+      "notes": "Records Darshan utility configuration and default log path when available."
+    },
+    {
+      "name": "darshan-job-summary.pl",
+      "required": false,
+      "notes": "Optional PDF summary generator; disabled by default in the example script."
+    },
+    {
+      "name": "darshan-summary-per-file.sh",
+      "required": false,
+      "notes": "Optional per-file PDF generator; disabled by default because it can create many files."
+    },
+    {
+      "name": "darshan-dxt-parser",
+      "required": false,
+      "notes": "Optional parser for logs collected with DXT instrumentation enabled."
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "darshan_log",
+      "type": "path",
+      "required": true,
+      "description": "Existing Darshan log file produced by a previously instrumented workload."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": false,
+      "description": "Local directory where parser output, optional command notes, and review notes should be written."
+    },
+    {
+      "name": "job_context",
+      "type": "object",
+      "required": false,
+      "description": "Optional public-safe context such as application name, filesystem, scheduler job id, and expected I/O pattern."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "darshan_parser_report",
+      "description": "Text output from darshan-parser, plus optional perf, file, and total summaries when the utility supports them."
+    },
+    {
+      "name": "optional_summary_commands",
+      "description": "Reviewable commands for PDF, per-file, and DXT summaries that remain disabled unless explicitly requested."
+    },
+    {
+      "name": "review_notes",
+      "description": "Checklist for interpreting I/O modules, small I/O, shared-file access, imbalance, metadata pressure, and privacy-sensitive log fields."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/analyze-darshan-log.sh",
+    "examples/instrumentation-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Analyze an existing Darshan log",
+      "path": "examples/analyze-darshan-log.sh"
+    },
+    {
+      "title": "Review instrumentation choices before collecting new logs",
+      "path": "examples/instrumentation-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill darshan-io-profile-analysis",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/darshan-io-profile-analysis/examples/analyze-darshan-log.sh",
+      "description": "Check shell syntax without parsing a real Darshan log."
+    },
+    {
+      "type": "manual",
+      "description": "Run the script against a public-safe Darshan log and confirm parser output, optional command notes, and review notes are written to the output directory."
+    }
+  ],
+  "references": [
+    {
+      "title": "Darshan runtime installation and usage",
+      "url": "https://darshan.readthedocs.io/en/latest/darshan-runtime/doc/darshan-runtime.html"
+    },
+    {
+      "title": "Darshan-util installation and usage",
+      "url": "https://darshan.readthedocs.io/en/latest/darshan-util/doc/darshan-util.html"
+    },
+    {
+      "title": "Modularized I/O characterization using Darshan 3.x",
+      "url": "https://darshan.readthedocs.io/en/stable/doc/darshan-modularization.html"
+    }
+  ]
+}

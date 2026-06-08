@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/release-manifest.schema.json",
-  "file_count": 517,
+  "file_count": 521,
   "files": [
     {
       "bytes": 489,
@@ -163,9 +163,9 @@
       "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
     },
     {
-      "bytes": 11616,
+      "bytes": 11850,
       "path": "CHANGELOG.md",
-      "sha256": "227164acb114c6d79a410a61b4314e1e4b360a0b003fc7bca7d852062dde58bf"
+      "sha256": "03166fc40d74cb3d26c0702a63105aa04252bf5bf3ece6d6d07868a728449041"
     },
     {
       "bytes": 426,
@@ -193,14 +193,14 @@
       "sha256": "dea798cae34c09327203664ff6b3e488ce7eb4ceff5e6d0f89bc31462fea8825"
     },
     {
-      "bytes": 13999,
+      "bytes": 14102,
       "path": "README.md",
-      "sha256": "8b697c6cafa1abb3e83b88c1795ff7df87acb6116457159a60f5cd162da87a8e"
+      "sha256": "4b90e849aeff8f442de90e01aa3f94d55d1b5212b58185cfec2f6cd9d194733c"
     },
     {
-      "bytes": 8372,
+      "bytes": 8471,
       "path": "ROADMAP.md",
-      "sha256": "2402ce57de4c5db0c34ac675972c6e119fe5a608b2ca5c4f444cf35c2c6dd729"
+      "sha256": "245487a728a828d04a6c9f973ec9097c1b71b90af2005a55a181ce678c6f215a"
     },
     {
       "bytes": 1442,
@@ -233,9 +233,9 @@
       "sha256": "1e2ed1fee2ece3b509744fd767a979d0dbedcfecb75de4cf19a46bbe5998d88e"
     },
     {
-      "bytes": 739,
+      "bytes": 785,
       "path": "collections/data-movement.json",
-      "sha256": "acc6784aa5d4a224e211462b730b3e385754665e81501a22aef5cb418fe362f3"
+      "sha256": "1804cc3b9db6fe7e566852bb8a2410e6128d439060d0dcff18f62b8f1ee4d37f"
     },
     {
       "bytes": 654,
@@ -243,9 +243,9 @@
       "sha256": "5d7d1f0498af5957bb80ee7310498a1068bb5f104c333698e55d561014610c8a"
     },
     {
-      "bytes": 1503,
+      "bytes": 1568,
       "path": "collections/gpu-mpi-performance.json",
-      "sha256": "018152c025431ee5236128351a57bd3e2b0f9cc9ecbc3c74735a37d520835c8b"
+      "sha256": "7be7e6781902528118e2a2499ac8e6c8d437d1fd70b0ed422982df4e9c098a1a"
     },
     {
       "bytes": 658,
@@ -253,9 +253,9 @@
       "sha256": "5680806db1b1abb1bc72f55c62fb39067cc5e8cfcda528599f1a0e40526d8905"
     },
     {
-      "bytes": 1102,
+      "bytes": 1167,
       "path": "collections/simulation-workflows.json",
-      "sha256": "27508f8f91cc77c61f9c7e41cb4045ebfb42c3773e399218fb86d8223772ba1f"
+      "sha256": "2d58883dfa762ccc1e43278939979e6a96bc9a3f9827ecdf2da578760683c9f2"
     },
     {
       "bytes": 1561,
@@ -303,9 +303,9 @@
       "sha256": "0edd76544bf3a2ce6bbb90af2a99c92cf47da4396630393e83b9c75ff36c3480"
     },
     {
-      "bytes": 4568,
+      "bytes": 4662,
       "path": "docs/COLLECTIONS.md",
-      "sha256": "8ef43dfca1784a7c707c56b0d679acea9e1f1bd9e3fd295c72e33be3eef18abf"
+      "sha256": "a6f387b7c0506e492051e42f973c9ae092546b185218a1f85eb0f3148a20d970"
     },
     {
       "bytes": 4868,
@@ -313,9 +313,9 @@
       "sha256": "e79805cee0d52ca864948f25de91fa9a0ea1c2781fca36a36714cb3f244b79ca"
     },
     {
-      "bytes": 10753,
+      "bytes": 10957,
       "path": "docs/COMPATIBILITY.md",
-      "sha256": "ca20d2dc08148ac2310a54be135d80a7cec58a3e9ee6a9a47c91893b02ac1aec"
+      "sha256": "efcf40832cf0bf29dfcb2d3fc551cbf0e68564275992a0bec6e5b66c2af68044"
     },
     {
       "bytes": 4430,
@@ -323,14 +323,14 @@
       "sha256": "58abb3149d2cd5bf73f9e3ee19cd7ceaa402c6c8f726b3a593cba3c6ba766c89"
     },
     {
-      "bytes": 8273,
+      "bytes": 8456,
       "path": "docs/DOMAIN_REVIEWERS.md",
-      "sha256": "f29edcd849dadaab113877501d0cbfa03662143a379d1b2342e188a6010685ea"
+      "sha256": "d4c38bd2db9045fd3e37d1e8dc7071ec30a4d46c0387fdc67171a9f2f663151d"
     },
     {
-      "bytes": 4330,
+      "bytes": 4392,
       "path": "docs/ECOSYSTEM_PROPOSAL.md",
-      "sha256": "3d6357ca355de76d446e23eef82bbd233cd4b681583968711fec400810134e5a"
+      "sha256": "7b79789a40d45966dbe456d1d8eaea1ec9487a90a96ffe3392731d92cbfe42d1"
     },
     {
       "bytes": 2401,
@@ -388,9 +388,9 @@
       "sha256": "caeebd39a29a72242a9d4134c597eedc910dc761e2e2be5e52eeae0f36c58f76"
     },
     {
-      "bytes": 4020,
+      "bytes": 4050,
       "path": "docs/OPEN_SOURCE_PROPOSAL.md",
-      "sha256": "0372c1f9843456ce538910ec1034fb16fd4f7d3d2ebc7a3eab7157dea15e9650"
+      "sha256": "b1c9f7f3f627ae46e07cc5c952501718d0724c35224e564d1151a7594c0daff1"
     },
     {
       "bytes": 2716,
@@ -400,17 +400,17 @@
     {
       "bytes": 5874,
       "path": "docs/PUBLIC_LAUNCH_PACKET.md",
-      "sha256": "314641c1fb7bc91c0401c275aeba900ab449ca1063bebb92fb988708af481674"
+      "sha256": "76a1d70a9c1ae05cd4b12e8160dfe4d725c77b1d238ca7420b6eccd872309563"
     },
     {
-      "bytes": 3961,
+      "bytes": 4002,
       "path": "docs/REGISTRY_HEALTH.md",
-      "sha256": "5f268f101b39309fc0890854b124bb1840104f518f0055e565fd2ac2b89ba857"
+      "sha256": "ac8010d3256ca4493e98da03f7e6b4ce2cf5076588d77671da077a410be59251"
     },
     {
-      "bytes": 9439,
+      "bytes": 9533,
       "path": "docs/RELEASE_NOTES_v0.1.0.md",
-      "sha256": "471895f46b5d802b79bf9d9324b57904d6b42a21b5496ed43862b9308b90203b"
+      "sha256": "13547f20eb10c130f0970b3e65b27251ec63b7942d49754e4229e909f1b95584"
     },
     {
       "bytes": 2827,
@@ -418,9 +418,9 @@
       "sha256": "c6d0c9f09088c0d49c1f8ebadfb82b086601b7be7a531f78461fa4795ea827ec"
     },
     {
-      "bytes": 5769,
+      "bytes": 5829,
       "path": "docs/REVIEW_ROUTING.md",
-      "sha256": "4376cfa95e43b9e6437ba27413e8017117a8d651386fb5babf81b9fb883fd3e7"
+      "sha256": "70f9976e19197b1580dcb42292e8ccb5c2e0702b0296055cdbdd8d93a3aa2653"
     },
     {
       "bytes": 2184,
@@ -443,14 +443,14 @@
       "sha256": "ead7fbd8016afb1fc046535d8fff55790f087ce973315be7a11b5145892d2b83"
     },
     {
-      "bytes": 9352,
+      "bytes": 9496,
       "path": "docs/SKILL_BACKLOG.md",
-      "sha256": "0010e825d932e3decc54383f4f6baa6184ba399b07cabcea9b1d12eb97323f1a"
+      "sha256": "b3b9011cd8504d864332b575c6e217d78d802980f44b588a90b04f6a2fba9ba2"
     },
     {
-      "bytes": 39574,
+      "bytes": 40314,
       "path": "docs/SKILL_CATALOG.md",
-      "sha256": "0b964792c9428db3b818456c1cea88cc60c902ca4039ce70afae8c8ea4f285c0"
+      "sha256": "c4752e3f564a0fe3326c7c80793671c1cd16a6f5446327ab55c4729b74e22c95"
     },
     {
       "bytes": 5949,
@@ -488,14 +488,14 @@
       "sha256": "154ad18564a482d118326f2a0e3acafb3ee4ff2e738bb883c1ba819ada11cbcc"
     },
     {
-      "bytes": 10647,
+      "bytes": 10807,
       "path": "registry/health.json",
-      "sha256": "36e09a0c5693114c10df01eed83ce6c1e93c592607b817a0789ac11be7ff17dd"
+      "sha256": "d0af65af535d16bb505cbd64b70df518a283906d29f0cef76d0afddfc92552c9"
     },
     {
-      "bytes": 174947,
+      "bytes": 177486,
       "path": "registry/index.json",
-      "sha256": "58b8c723e3b64c044fac97ed804ee03cb5fcc9caa05c3403a916efb05c6ad410"
+      "sha256": "1b52a799550102039bf43c02452400235ab35d21cff7ff882c0219988458529d"
     },
     {
       "bytes": 1145,
@@ -791,6 +791,26 @@
       "bytes": 4014,
       "path": "skills/cwl-on-slurm/skill.json",
       "sha256": "a04d2a09b48fb7f99706594e02285e36bb99c78759924b797dee74504aef9b54"
+    },
+    {
+      "bytes": 2437,
+      "path": "skills/darshan-io-profile-analysis/README.md",
+      "sha256": "68a0a67d767665785980e9cedb7d8507982f244124da5bb00834a7148d52c01f"
+    },
+    {
+      "bytes": 5244,
+      "path": "skills/darshan-io-profile-analysis/examples/analyze-darshan-log.sh",
+      "sha256": "8a18e53737669b0637e1caaa5c945ac12531c7d774e22d85d8a873db31639aaa"
+    },
+    {
+      "bytes": 1639,
+      "path": "skills/darshan-io-profile-analysis/examples/instrumentation-checklist.md",
+      "sha256": "0cd859921b8e94c315f9c9dbb6459d7901c9cced81c7b933fb5c95ac230d10f6"
+    },
+    {
+      "bytes": 4619,
+      "path": "skills/darshan-io-profile-analysis/skill.json",
+      "sha256": "e16d9cfc42214779abd77ccfa9a4dd07251a157ba1ab44f7f74b2a993215be3a"
     },
     {
       "bytes": 2113,
@@ -2418,14 +2438,14 @@
       "sha256": "e98635c6044821567bd15ad8844d0cdaf4fffe9b1738d868a8ecca74a5c1e292"
     },
     {
-      "bytes": 10647,
+      "bytes": 10807,
       "path": "src/hpc_skill_hub/data/registry/health.json",
-      "sha256": "36e09a0c5693114c10df01eed83ce6c1e93c592607b817a0789ac11be7ff17dd"
+      "sha256": "d0af65af535d16bb505cbd64b70df518a283906d29f0cef76d0afddfc92552c9"
     },
     {
-      "bytes": 174947,
+      "bytes": 177486,
       "path": "src/hpc_skill_hub/data/registry/index.json",
-      "sha256": "58b8c723e3b64c044fac97ed804ee03cb5fcc9caa05c3403a916efb05c6ad410"
+      "sha256": "1b52a799550102039bf43c02452400235ab35d21cff7ff882c0219988458529d"
     },
     {
       "bytes": 5774,
@@ -2593,23 +2613,23 @@
     "category_count": 12,
     "collection_count": 12,
     "maturity_counts": {
-      "seed": 83
+      "seed": 84
     },
     "risk_counts": {
-      "low": 18,
+      "low": 19,
       "medium": 65
     },
     "scheduler_count": 9,
     "schema_version": "0.1.0",
     "site_adapter_count": 2,
-    "skill_count": 83,
+    "skill_count": 84,
     "status_counts": {
-      "draft": 83
+      "draft": 84
     },
-    "tool_count": 140,
+    "tool_count": 145,
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1631012,
+  "total_bytes": 1652613,
   "version": "v0.1.0"
 }

@@ -40,8 +40,9 @@ research software engineer building software stacks may start with
   debugging, requeue-safe restart behavior, data staging, and failure triage
   for new users.
 - `data-movement`: Globus, rsync, and object-storage transfers, checksum
-  manifests, scratch staging, archive preparation, IOR/MDTest storage smoke
-  benchmarks, scratch inventory, and filesystem quota triage.
+  manifests, scratch staging, archive preparation, Darshan I/O profile
+  analysis, IOR/MDTest storage smoke benchmarks, scratch inventory, and
+  filesystem quota triage.
 - `ai-hpc`: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke
   tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
@@ -50,7 +51,8 @@ research software engineer building software stacks may start with
   distributed AI workloads.
 - `gpu-mpi-performance`: MPI launch checks, containerized MPI checks, mpi4py
   launch checks, MPI fabric diagnostics, MPI rank binding diagnostics, hybrid
-  MPI/OpenMP layout checks, parallel HDF5/NetCDF preflight, GPU binding diagnostics, compiler/MPI
+  MPI/OpenMP layout checks, parallel HDF5/NetCDF preflight, Darshan I/O
+  profile analysis, GPU binding diagnostics, compiler/MPI
   compatibility, GPU sanity checks, Ray cluster smoke tests, JAX distributed smoke tests,
   Hugging Face Accelerate launches, TensorFlow multi-worker smoke tests,
   GPU memory triage, TensorBoard monitors, PyTorch DDP smoke tests, NCCL
@@ -61,8 +63,8 @@ research software engineer building software stacks may start with
 - `simulation-workflows`: GROMACS, LAMMPS, NAMD, Quantum ESPRESSO, CP2K,
   OpenFOAM, WRF, MPI launch checks, MPI fabric diagnostics, rank binding
   diagnostics, hybrid MPI/OpenMP layouts, parallel HDF5/NetCDF preflight,
-  OpenMP placement, profiling, restart planning, storage smoke evidence, and
-  reproducible run capture for simulation teams.
+  Darshan I/O profile analysis, OpenMP placement, profiling, restart planning,
+  storage smoke evidence, and reproducible run capture for simulation teams.
 - `facility-ops`: read-only usage reporting, pending reason triage, node
   triage, QOS/account limit evidence, and module tree health checks for HPC
   support teams and facility maintainers.

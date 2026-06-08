@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 83 skills.
+Current registry size: 84 skills.
 
 ## Categories
 
@@ -10,13 +10,13 @@ Current registry size: 83 skills.
 | --- | ---: |
 | `admin` | 5 |
 | `containers` | 3 |
-| `data` | 15 |
-| `debugging` | 25 |
+| `data` | 16 |
+| `debugging` | 26 |
 | `education` | 2 |
 | `gpu` | 13 |
 | `interactive` | 7 |
-| `mpi` | 16 |
-| `performance` | 18 |
+| `mpi` | 17 |
+| `performance` | 19 |
 | `scheduler` | 64 |
 | `software` | 26 |
 | `workflow` | 11 |
@@ -48,6 +48,7 @@ Current registry size: 83 skills.
 | [`blast-on-slurm`](../skills/blast-on-slurm/README.md) | medium | seed | Run local BLAST+ searches on Slurm with bounded smoke-test defaults. |
 | [`checksum-manifest-create`](../skills/checksum-manifest-create/README.md) | low | seed | Create checksum manifests for transfer validation and reproducibility. |
 | [`cwl-on-slurm`](../skills/cwl-on-slurm/README.md) | medium | seed | Run small CWL workflows inside Slurm allocations with cwltool. |
+| [`darshan-io-profile-analysis`](../skills/darshan-io-profile-analysis/README.md) | low | seed | Analyze Darshan logs for HPC I/O behavior and bottleneck evidence. |
 | [`dataset-staging-to-scratch`](../skills/dataset-staging-to-scratch/README.md) | medium | seed | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
 | [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | [`globus-transfer-dataset`](../skills/globus-transfer-dataset/README.md) | medium | seed | Stage large datasets with Globus transfer and verification steps. |
@@ -67,6 +68,7 @@ Current registry size: 83 skills.
 | --- | --- | --- | --- |
 | [`checkpoint-restart-workflow`](../skills/checkpoint-restart-workflow/README.md) | medium | seed | Structure long HPC jobs so they can resume after time limits or preemption. |
 | [`compiler-mpi-matrix`](../skills/compiler-mpi-matrix/README.md) | low | seed | Check compiler, MPI wrapper, and module compatibility before building HPC codes. |
+| [`darshan-io-profile-analysis`](../skills/darshan-io-profile-analysis/README.md) | low | seed | Analyze Darshan logs for HPC I/O behavior and bottleneck evidence. |
 | [`gpu-memory-triage`](../skills/gpu-memory-triage/README.md) | low | seed | Distinguish GPU allocation, framework, and model memory failures. |
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
 | [`hybrid-mpi-openmp-slurm`](../skills/hybrid-mpi-openmp-slurm/README.md) | medium | seed | Plan and verify hybrid MPI/OpenMP task and thread layouts on Slurm. |
@@ -135,6 +137,7 @@ Current registry size: 83 skills.
 | [`apptainer-mpi-on-slurm`](../skills/apptainer-mpi-on-slurm/README.md) | medium | seed | Run MPI applications from Apptainer containers inside Slurm allocations. |
 | [`compiler-mpi-matrix`](../skills/compiler-mpi-matrix/README.md) | low | seed | Check compiler, MPI wrapper, and module compatibility before building HPC codes. |
 | [`cp2k-on-slurm`](../skills/cp2k-on-slurm/README.md) | medium | seed | Run CP2K calculations on Slurm with MPI/OpenMP layout and restart planning. |
+| [`darshan-io-profile-analysis`](../skills/darshan-io-profile-analysis/README.md) | low | seed | Analyze Darshan logs for HPC I/O behavior and bottleneck evidence. |
 | [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | [`hybrid-mpi-openmp-slurm`](../skills/hybrid-mpi-openmp-slurm/README.md) | medium | seed | Plan and verify hybrid MPI/OpenMP task and thread layouts on Slurm. |
 | [`ior-mdtest-storage-smoke`](../skills/ior-mdtest-storage-smoke/README.md) | medium | seed | Collect small IOR and MDTest storage benchmark evidence on Slurm. |
@@ -155,6 +158,7 @@ Current registry size: 83 skills.
 | --- | --- | --- | --- |
 | [`apptainer-mpi-on-slurm`](../skills/apptainer-mpi-on-slurm/README.md) | medium | seed | Run MPI applications from Apptainer containers inside Slurm allocations. |
 | [`cp2k-on-slurm`](../skills/cp2k-on-slurm/README.md) | medium | seed | Run CP2K calculations on Slurm with MPI/OpenMP layout and restart planning. |
+| [`darshan-io-profile-analysis`](../skills/darshan-io-profile-analysis/README.md) | low | seed | Analyze Darshan logs for HPC I/O behavior and bottleneck evidence. |
 | [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | [`hybrid-mpi-openmp-slurm`](../skills/hybrid-mpi-openmp-slurm/README.md) | medium | seed | Plan and verify hybrid MPI/OpenMP task and thread layouts on Slurm. |
 | [`ior-mdtest-storage-smoke`](../skills/ior-mdtest-storage-smoke/README.md) | medium | seed | Collect small IOR and MDTest storage benchmark evidence on Slurm. |
@@ -296,11 +300,11 @@ Current registry size: 83 skills.
 | [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | draft | 7 | bioinformatics teams, core facilities, genomics platform engineers | Domain skills for running reviewed nf-core, GATK, and BLAST bioinformatics workflows on Slurm-backed HPC systems. |
 | [`containers`](../collections/containers.json) | draft | 7 | research software engineers, container users, HPC support teams | Skills for building, validating, running MPI containers, and staging data for containerized HPC workloads. |
 | [`core-hpc`](../collections/core-hpc.json) | draft | 19 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, QOS/account limit evidence, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage. |
-| [`data-movement`](../collections/data-movement.json) | draft | 9 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, benchmarking, and managing research data across HPC filesystems and object storage. |
+| [`data-movement`](../collections/data-movement.json) | draft | 10 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, profiling, benchmarking, and managing research data across HPC filesystems and object storage. |
 | [`facility-ops`](../collections/facility-ops.json) | draft | 5 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, pending reason triage, QOS/account limit evidence, node triage, and module tree health. |
-| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 23 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence. |
+| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 24 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence. |
 | [`scheduler-basics`](../collections/scheduler-basics.json) | draft | 7 | new HPC users, training instructors, support teams, sites with mixed schedulers | Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers. |
-| [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 17 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, parallel HDF5/NetCDF preflight, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems. |
+| [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 18 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 28 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, parallel HDF5/NetCDF preflight, licensed software jobs, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks. |
 | [`training-onboarding`](../collections/training-onboarding.json) | draft | 19 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 8 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL/WDL runs, Dask and Parsl worker pools, and lightweight Slurm dependency chains. |

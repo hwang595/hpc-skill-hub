@@ -3,13 +3,13 @@
   "category_counts": {
     "admin": 5,
     "containers": 3,
-    "data": 15,
-    "debugging": 25,
+    "data": 16,
+    "debugging": 26,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
-    "mpi": 16,
-    "performance": 18,
+    "mpi": 17,
+    "performance": 19,
     "scheduler": 64,
     "software": 26,
     "workflow": 11
@@ -93,13 +93,14 @@
     },
     {
       "id": "data-movement",
-      "skill_count": 9,
+      "skill_count": 10,
       "skill_ids": [
         "globus-transfer-dataset",
         "rsync-data-transfer",
         "object-storage-transfer",
         "checksum-manifest-create",
         "dataset-staging-to-scratch",
+        "darshan-io-profile-analysis",
         "ior-mdtest-storage-smoke",
         "large-file-archive-prepare",
         "scratch-storage-management",
@@ -119,7 +120,7 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 23,
+      "skill_count": 24,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
@@ -128,6 +129,7 @@
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
         "parallel-hdf5-netcdf-preflight",
+        "darshan-io-profile-analysis",
         "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
         "slurm-gpu-binding-diagnostics",
@@ -161,7 +163,7 @@
     },
     {
       "id": "simulation-workflows",
-      "skill_count": 17,
+      "skill_count": 18,
       "skill_ids": [
         "gromacs-on-slurm",
         "lammps-on-slurm",
@@ -175,6 +177,7 @@
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
         "parallel-hdf5-netcdf-preflight",
+        "darshan-io-profile-analysis",
         "openmp-thread-affinity",
         "ior-mdtest-storage-smoke",
         "performance-profile-basic",
@@ -258,7 +261,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 83
+    "seed": 84
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -272,6 +275,7 @@
     "container-build-for-hpc": "medium",
     "cp2k-on-slurm": "medium",
     "cwl-on-slurm": "medium",
+    "darshan-io-profile-analysis": "low",
     "dask-jobqueue-on-slurm": "medium",
     "dataset-staging-to-scratch": "medium",
     "deepspeed-on-slurm": "medium",
@@ -346,14 +350,14 @@
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
-    "low": 18,
+    "low": 19,
     "medium": 65
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 83,
+  "skill_count": 84,
   "status_counts": {
-    "draft": 83
+    "draft": 84
   },
   "uncollected_skill_ids": []
 }

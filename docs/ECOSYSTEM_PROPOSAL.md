@@ -49,7 +49,8 @@ owner handoffs, and ecosystem sponsor discussions.
   templates, TensorBoard, Streamlit, RStudio, and IDE tunnels.
 - `workflow-engines`: CWL, WDL, Nextflow, Snakemake, Dask, and Parsl.
 - `data-movement`: Globus, rsync, object storage, checksums, scratch staging,
-  IOR/MDTest storage smoke evidence, archive preparation, and quota triage.
+  Darshan I/O profile analysis, IOR/MDTest storage smoke evidence, archive
+  preparation, and quota triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, Open OnDemand
   templates, notebooks, TensorBoard, Streamlit, RStudio, IDE tunnels, Python
   environments, requeue-safe restart behavior, licensed software use, and
@@ -63,8 +64,8 @@ owner handoffs, and ecosystem sponsor discussions.
   single-cell workflows, and genomics data staging.
 - `simulation-workflows`: LAMMPS, GROMACS, Quantum ESPRESSO, NAMD, OpenFOAM,
   WRF, MPI fabric diagnostics, MPI rank binding diagnostics, hybrid
-  MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, restart planning,
-  profiling, and storage smoke evidence.
+  MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, Darshan I/O profile
+  analysis, restart planning, profiling, and storage smoke evidence.
 - `facility-ops`: read-only usage reporting, QOS/account limit evidence, node
   triage, module tree health checks, support handoffs, and public operational
   patterns.

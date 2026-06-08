@@ -3,13 +3,13 @@
   "categories": {
     "admin": 5,
     "containers": 3,
-    "data": 15,
-    "debugging": 25,
+    "data": 16,
+    "debugging": 26,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
-    "mpi": 16,
-    "performance": 18,
+    "mpi": 17,
+    "performance": 19,
     "scheduler": 64,
     "software": 26,
     "workflow": 11
@@ -139,13 +139,14 @@
         "object-storage-transfer",
         "checksum-manifest-create",
         "dataset-staging-to-scratch",
+        "darshan-io-profile-analysis",
         "ior-mdtest-storage-smoke",
         "large-file-archive-prepare",
         "scratch-storage-management",
         "quota-and-filesystem-triage"
       ],
       "status": "draft",
-      "summary": "Skills for staging, transferring, validating, benchmarking, and managing research data across HPC filesystems and object storage."
+      "summary": "Skills for staging, transferring, validating, profiling, benchmarking, and managing research data across HPC filesystems and object storage."
     },
     {
       "audience": [
@@ -183,6 +184,7 @@
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
         "parallel-hdf5-netcdf-preflight",
+        "darshan-io-profile-analysis",
         "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
         "slurm-gpu-binding-diagnostics",
@@ -201,7 +203,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -247,6 +249,7 @@
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
         "parallel-hdf5-netcdf-preflight",
+        "darshan-io-profile-analysis",
         "openmp-thread-affinity",
         "ior-mdtest-storage-smoke",
         "performance-profile-basic",
@@ -254,7 +257,7 @@
         "checkpoint-restart-workflow"
       ],
       "status": "draft",
-      "summary": "Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, parallel HDF5/NetCDF preflight, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
+      "summary": "Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -416,7 +419,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 83,
+  "skill_count": 84,
   "skills": [
     {
       "categories": [
@@ -1080,6 +1083,69 @@
         "hostname",
         "tee",
         "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "performance",
+        "data",
+        "debugging",
+        "mpi"
+      ],
+      "description": "This skill helps users and support teams turn existing Darshan logs into reviewable I/O evidence, including parser summaries, optional PDF commands, DXT trace notes, and a checklist for interpreting POSIX, MPI-IO, HDF5, and PnetCDF access patterns.",
+      "examples": [
+        {
+          "path": "skills/darshan-io-profile-analysis/examples/analyze-darshan-log.sh",
+          "title": "Analyze an existing Darshan log"
+        },
+        {
+          "path": "skills/darshan-io-profile-analysis/examples/instrumentation-checklist.md",
+          "title": "Review instrumentation choices before collecting new logs"
+        }
+      ],
+      "id": "darshan-io-profile-analysis",
+      "maturity": "seed",
+      "name": "Darshan I/O Profile Analysis",
+      "path": "skills/darshan-io-profile-analysis",
+      "readme": "skills/darshan-io-profile-analysis/README.md",
+      "references": [
+        {
+          "title": "Darshan runtime installation and usage",
+          "url": "https://darshan.readthedocs.io/en/latest/darshan-runtime/doc/darshan-runtime.html"
+        },
+        {
+          "title": "Darshan-util installation and usage",
+          "url": "https://darshan.readthedocs.io/en/latest/darshan-util/doc/darshan-util.html"
+        },
+        {
+          "title": "Modularized I/O characterization using Darshan 3.x",
+          "url": "https://darshan.readthedocs.io/en/stable/doc/darshan-modularization.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Analyze Darshan logs for HPC I/O behavior and bottleneck evidence.",
+      "tags": [
+        "darshan",
+        "io",
+        "profiling",
+        "mpi-io",
+        "hdf5",
+        "pnetcdf",
+        "filesystem",
+        "logs"
+      ],
+      "tools": [
+        "bash",
+        "darshan-parser",
+        "darshan-config",
+        "darshan-job-summary.pl",
+        "darshan-summary-per-file.sh",
+        "darshan-dxt-parser",
+        "mkdir",
+        "date"
       ],
       "version": "0.1.0"
     },
@@ -5506,6 +5572,7 @@
     "cuda-visible-devices": 1,
     "cwl": 1,
     "cwltool": 1,
+    "darshan": 1,
     "dask": 1,
     "dask-jobqueue": 1,
     "data": 1,
@@ -5530,7 +5597,7 @@
     "failure": 1,
     "fairshare": 2,
     "fasta": 1,
-    "filesystem": 4,
+    "filesystem": 5,
     "gatk": 1,
     "genomics": 1,
     "git": 1,
@@ -5541,7 +5608,7 @@
     "grid-engine": 1,
     "gromacs": 1,
     "haplotypecaller": 1,
-    "hdf5": 1,
+    "hdf5": 2,
     "high-throughput": 1,
     "htcondor": 1,
     "htex": 1,
@@ -5551,7 +5618,7 @@
     "inode": 1,
     "interactive": 5,
     "interconnect": 1,
-    "io": 2,
+    "io": 3,
     "ior": 1,
     "java": 1,
     "jax": 1,
@@ -5568,7 +5635,7 @@
     "limits": 1,
     "lmod": 3,
     "lmutil": 1,
-    "logs": 5,
+    "logs": 6,
     "lsf": 1,
     "m-files": 1,
     "makeblastdb": 1,
@@ -5585,7 +5652,7 @@
     "molecular-dynamics": 4,
     "monitoring": 1,
     "mpi": 21,
-    "mpi-io": 1,
+    "mpi-io": 2,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
@@ -5628,6 +5695,7 @@
     "pip": 1,
     "pipeline": 1,
     "pmix": 2,
+    "pnetcdf": 1,
     "portal": 1,
     "ports": 1,
     "posit": 1,
@@ -5635,7 +5703,7 @@
     "preflight": 2,
     "priority": 1,
     "profile": 1,
-    "profiling": 1,
+    "profiling": 2,
     "provenance": 1,
     "pseudopotential": 1,
     "publication": 1,
@@ -5749,7 +5817,7 @@
     "awk": 3,
     "aws": 1,
     "basename": 1,
-    "bash": 10,
+    "bash": 11,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -5767,9 +5835,14 @@
     "cp": 2,
     "cp2k.psmp": 1,
     "cwltool": 1,
+    "darshan-config": 1,
+    "darshan-dxt-parser": 1,
+    "darshan-job-summary.pl": 1,
+    "darshan-parser": 1,
+    "darshan-summary-per-file.sh": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 31,
+    "date": 32,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -5809,7 +5882,7 @@
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 34,
+    "mkdir": 35,
     "module": 25,
     "mpi4py": 1,
     "mpicc": 6,
