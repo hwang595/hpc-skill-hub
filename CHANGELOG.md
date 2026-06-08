@@ -52,6 +52,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   controls, and a tiny FASTA smoke test.
 - Add a Quantum ESPRESSO on Slurm skill with MPI sizing, pseudopotential checks,
   scratch paths, restart planning, and a PWscf input template.
+- Add a CWL on Slurm skill with cwltool cache, output, temporary directory, and
+  smoke-test controls.
 
 ## v0.1.0 - Planned
 
@@ -59,12 +61,12 @@ Initial public seed release.
 
 ### Added
 
-- 55 seed HPC skills covering Slurm, job arrays, dependency chains, pending
+- 56 seed HPC skills covering Slurm, job arrays, dependency chains, pending
   reason triage, monitoring, resource estimation, efficiency review, failure
   triage, checkpoint/restart, interactive sessions, notebooks, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
   Ray, Dask Jobqueue, mpi4py, containers, Spack, EasyBuild, data movement,
-  workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
+  CWL, workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
   workflows including local BLAST+, molecular dynamics, electronic-structure,
   CFD, weather workloads, read-only facility operations, and training
   onboarding.

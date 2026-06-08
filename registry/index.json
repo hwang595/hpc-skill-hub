@@ -2,16 +2,16 @@
   "categories": {
     "admin": 4,
     "containers": 2,
-    "data": 10,
+    "data": 11,
     "debugging": 17,
     "education": 1,
     "gpu": 7,
     "interactive": 2,
     "mpi": 8,
     "performance": 9,
-    "scheduler": 38,
+    "scheduler": 39,
     "software": 15,
-    "workflow": 7
+    "workflow": 8
   },
   "collection_count": 11,
   "collections": [
@@ -267,18 +267,19 @@
       "path": "collections/workflow-engines.json",
       "skill_ids": [
         "slurm-job-dependency-chain",
+        "cwl-on-slurm",
         "dask-jobqueue-on-slurm",
         "nextflow-on-slurm",
         "snakemake-on-slurm",
         "nf-core-on-slurm"
       ],
       "status": "draft",
-      "summary": "Skills for launching portable workflow engines, Dask worker clusters, and lightweight Slurm dependency chains."
+      "summary": "Skills for launching portable workflow engines, CWL runs, Dask worker clusters, and lightweight Slurm dependency chains."
     }
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 39
+    "slurm": 40
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -304,7 +305,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 55,
+  "skill_count": 56,
   "skills": [
     {
       "categories": [
@@ -751,6 +752,79 @@
         "date",
         "hostname",
         "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler",
+        "data"
+      ],
+      "description": "This skill provides a conservative pattern for running Common Workflow Language workflows with cwltool inside a Slurm allocation, including output, cache, and temporary directory controls, a tiny CommandLineTool smoke test, and dry-run-first launch records.",
+      "examples": [
+        {
+          "path": "skills/cwl-on-slurm/examples/cwl-smoke.sbatch",
+          "title": "Plan or run a CWL smoke test in Slurm"
+        },
+        {
+          "path": "skills/cwl-on-slurm/examples/wordcount.cwl",
+          "title": "Tiny CWL CommandLineTool"
+        },
+        {
+          "path": "skills/cwl-on-slurm/examples/job.yml",
+          "title": "CWL input object"
+        },
+        {
+          "path": "skills/cwl-on-slurm/examples/sample.txt",
+          "title": "Tiny text input"
+        }
+      ],
+      "id": "cwl-on-slurm",
+      "maturity": "seed",
+      "name": "CWL On Slurm",
+      "path": "skills/cwl-on-slurm",
+      "readme": "skills/cwl-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Common Workflow Language User Guide",
+          "url": "https://www.commonwl.org/user_guide/"
+        },
+        {
+          "title": "cwltool reference implementation documentation",
+          "url": "https://cwltool.readthedocs.io/en/stable/"
+        },
+        {
+          "title": "CWL CommandLineTool v1.2 specification",
+          "url": "https://www.commonwl.org/v1.2/CommandLineTool.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run small CWL workflows inside Slurm allocations with cwltool.",
+      "tags": [
+        "cwl",
+        "cwltool",
+        "workflow",
+        "slurm",
+        "bioinformatics",
+        "reproducibility"
+      ],
+      "tools": [
+        "cwltool",
+        "sbatch",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "module"
       ],
       "version": "0.1.0"
     },
@@ -3439,7 +3513,7 @@
     "array": 2,
     "batch": 3,
     "benchmark": 1,
-    "bioinformatics": 2,
+    "bioinformatics": 3,
     "blast": 1,
     "blastn": 1,
     "blastp": 1,
@@ -3457,6 +3531,8 @@
     "cpu-bind": 1,
     "cran": 1,
     "cuda": 2,
+    "cwl": 1,
+    "cwltool": 1,
     "dask": 1,
     "dask-jobqueue": 1,
     "data": 1,
@@ -3557,7 +3633,7 @@
     "reason": 1,
     "reconstruction": 1,
     "reporting": 1,
-    "reproducibility": 8,
+    "reproducibility": 9,
     "rerun": 1,
     "resources": 1,
     "restart": 4,
@@ -3578,7 +3654,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 37,
+    "slurm": 38,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -3607,7 +3683,7 @@
     "walltime": 2,
     "weather": 1,
     "workers": 1,
-    "workflow": 4,
+    "workflow": 5,
     "workshop": 1,
     "wrapper": 1,
     "wrf": 1,
@@ -3628,9 +3704,10 @@
     "command": 2,
     "conda": 1,
     "cp": 2,
+    "cwltool": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 20,
+    "date": 21,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -3648,7 +3725,7 @@
     "gmx_mpi": 1,
     "grep": 8,
     "head": 4,
-    "hostname": 17,
+    "hostname": 18,
     "icoFoam": 1,
     "julia": 1,
     "jupyter": 1,
@@ -3660,8 +3737,8 @@
     "mamba": 1,
     "matlab": 1,
     "micromamba": 1,
-    "mkdir": 25,
-    "module": 16,
+    "mkdir": 26,
+    "module": 17,
     "mpi4py": 1,
     "mpicc": 2,
     "mpicxx": 1,
@@ -3686,7 +3763,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 29,
+    "sbatch": 30,
     "scontrol": 6,
     "sed": 2,
     "seff": 1,
@@ -3705,7 +3782,7 @@
     "ssh": 2,
     "tail": 4,
     "tar": 1,
-    "tee": 13,
+    "tee": 14,
     "test": 6,
     "time": 1,
     "tr": 1,

@@ -20,8 +20,9 @@ research software engineer building software stacks may start with
 - `containers`: Apptainer-compatible image build planning, container runtime
   execution, GPU visibility checks, scratch staging, checksum manifests, and
   reproducible run capture for containerized HPC workloads.
-- `workflow-engines`: lightweight Slurm dependency chains, Dask worker
-  clusters, Nextflow, Snakemake, and nf-core on Slurm.
+- `workflow-engines`: lightweight Slurm dependency chains, CWL runs inside
+  Slurm allocations, Dask worker clusters, Nextflow, Snakemake, and nf-core on
+  Slurm.
 - `training-onboarding`: workshop preflight, Slurm basics, interactive
   sessions, notebooks, Python/Conda environments, Rscript batch jobs, Julia
   batch jobs, MATLAB batch jobs, module debugging, data staging, and failure

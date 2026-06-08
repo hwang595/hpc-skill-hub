@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 55 skills.
+Current registry size: 56 skills.
 
 ## Categories
 
@@ -10,16 +10,16 @@ Current registry size: 55 skills.
 | --- | ---: |
 | `admin` | 4 |
 | `containers` | 2 |
-| `data` | 10 |
+| `data` | 11 |
 | `debugging` | 17 |
 | `education` | 1 |
 | `gpu` | 7 |
 | `interactive` | 2 |
 | `mpi` | 8 |
 | `performance` | 9 |
-| `scheduler` | 38 |
+| `scheduler` | 39 |
 | `software` | 15 |
-| `workflow` | 7 |
+| `workflow` | 8 |
 
 ## Skills By Category
 
@@ -45,6 +45,7 @@ Current registry size: 55 skills.
 | --- | --- | --- | --- |
 | [`blast-on-slurm`](../skills/blast-on-slurm/README.md) | medium | seed | Run local BLAST+ searches on Slurm with bounded smoke-test defaults. |
 | [`checksum-manifest-create`](../skills/checksum-manifest-create/README.md) | low | seed | Create checksum manifests for transfer validation and reproducibility. |
+| [`cwl-on-slurm`](../skills/cwl-on-slurm/README.md) | medium | seed | Run small CWL workflows inside Slurm allocations with cwltool. |
 | [`dataset-staging-to-scratch`](../skills/dataset-staging-to-scratch/README.md) | medium | seed | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
 | [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | [`globus-transfer-dataset`](../skills/globus-transfer-dataset/README.md) | medium | seed | Stage large datasets with Globus transfer and verification steps. |
@@ -136,6 +137,7 @@ Current registry size: 55 skills.
 | [`blast-on-slurm`](../skills/blast-on-slurm/README.md) | medium | seed | Run local BLAST+ searches on Slurm with bounded smoke-test defaults. |
 | [`checkpoint-restart-workflow`](../skills/checkpoint-restart-workflow/README.md) | medium | seed | Structure long HPC jobs so they can resume after time limits or preemption. |
 | [`cluster-usage-report-readonly`](../skills/cluster-usage-report-readonly/README.md) | low | seed | Collect read-only Slurm usage evidence for facility support reports. |
+| [`cwl-on-slurm`](../skills/cwl-on-slurm/README.md) | medium | seed | Run small CWL workflows inside Slurm allocations with cwltool. |
 | [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md) | medium | seed | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |
 | [`dataset-staging-to-scratch`](../skills/dataset-staging-to-scratch/README.md) | medium | seed | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
 | [`deepspeed-on-slurm`](../skills/deepspeed-on-slurm/README.md) | medium | seed | Plan and smoke test DeepSpeed launches on Slurm GPU allocations. |
@@ -196,6 +198,7 @@ Current registry size: 55 skills.
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
 | [`blast-on-slurm`](../skills/blast-on-slurm/README.md) | medium | seed | Run local BLAST+ searches on Slurm with bounded smoke-test defaults. |
+| [`cwl-on-slurm`](../skills/cwl-on-slurm/README.md) | medium | seed | Run small CWL workflows inside Slurm allocations with cwltool. |
 | [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md) | medium | seed | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |
 | [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
@@ -217,7 +220,7 @@ Current registry size: 55 skills.
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 10 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, and weather workloads on Slurm-backed HPC systems. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 16 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks. |
 | [`training-onboarding`](../collections/training-onboarding.json) | draft | 12 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, Python, R, Julia, and MATLAB workloads, and workshop environments. |
-| [`workflow-engines`](../collections/workflow-engines.json) | draft | 5 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, Dask worker clusters, and lightweight Slurm dependency chains. |
+| [`workflow-engines`](../collections/workflow-engines.json) | draft | 6 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL runs, Dask worker clusters, and lightweight Slurm dependency chains. |
 
 ## Site Adapters
 

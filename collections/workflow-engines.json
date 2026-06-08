@@ -3,10 +3,11 @@
   "id": "workflow-engines",
   "name": "Workflow Engines",
   "status": "draft",
-  "summary": "Skills for launching portable workflow engines, Dask worker clusters, and lightweight Slurm dependency chains.",
+  "summary": "Skills for launching portable workflow engines, CWL runs, Dask worker clusters, and lightweight Slurm dependency chains.",
   "audience": ["pipeline authors", "bioinformatics teams", "workflow platform maintainers"],
   "skill_ids": [
     "slurm-job-dependency-chain",
+    "cwl-on-slurm",
     "dask-jobqueue-on-slurm",
     "nextflow-on-slurm",
     "snakemake-on-slurm",

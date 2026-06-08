@@ -69,6 +69,7 @@ tools.
 | `checksum-manifest-create` | Create checksum manifests for transfer validation and reproducibility. |
 | `dataset-staging-to-scratch` | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
 | `large-file-archive-prepare` | Prepare large HPC datasets for archival, publication, or handoff. |
+| `cwl-on-slurm` | Run small CWL workflows inside Slurm allocations with cwltool. |
 | `nextflow-on-slurm` | Configure Nextflow pipelines for Slurm-backed execution. |
 | `snakemake-on-slurm` | Configure Snakemake workflows for Slurm profiles. |
 | `nf-core-on-slurm` | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |

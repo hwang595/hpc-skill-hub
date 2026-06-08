@@ -2,16 +2,16 @@
   "category_counts": {
     "admin": 4,
     "containers": 2,
-    "data": 10,
+    "data": 11,
     "debugging": 17,
     "education": 1,
     "gpu": 7,
     "interactive": 2,
     "mpi": 8,
     "performance": 9,
-    "scheduler": 38,
+    "scheduler": 39,
     "software": 15,
-    "workflow": 7
+    "workflow": 8
   },
   "collection_count": 11,
   "collection_coverage": [
@@ -177,9 +177,10 @@
     },
     {
       "id": "workflow-engines",
-      "skill_count": 5,
+      "skill_count": 6,
       "skill_ids": [
         "slurm-job-dependency-chain",
+        "cwl-on-slurm",
         "dask-jobqueue-on-slurm",
         "nextflow-on-slurm",
         "snakemake-on-slurm",
@@ -189,7 +190,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 55
+    "seed": 56
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -200,6 +201,7 @@
     "compiler-mpi-matrix": "low",
     "conda-mamba-on-hpc": "medium",
     "container-build-for-hpc": "medium",
+    "cwl-on-slurm": "medium",
     "dask-jobqueue-on-slurm": "medium",
     "dataset-staging-to-scratch": "medium",
     "deepspeed-on-slurm": "medium",
@@ -250,13 +252,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 38
+    "medium": 39
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 55,
+  "skill_count": 56,
   "status_counts": {
-    "draft": 55
+    "draft": 56
   },
   "uncollected_skill_ids": []
 }
