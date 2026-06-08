@@ -19,8 +19,9 @@ research software engineer building software stacks may start with
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
   reproducible run capture, Python virtual environments, Open OnDemand
   templates, TensorBoard monitors, Streamlit apps, Ray clusters, Dask Jobqueue,
-  mpi4py jobs, Rscript jobs, RStudio sessions, Julia jobs, MATLAB batch jobs,
-  IDE tunnels, Conda/Mamba, container builds and runtime, Spack, and EasyBuild.
+  JAX distributed smoke tests, mpi4py jobs, Rscript jobs, RStudio sessions,
+  Julia jobs, MATLAB batch jobs, IDE tunnels, Conda/Mamba, container builds and
+  runtime, Spack, and EasyBuild.
 - `containers`: Apptainer-compatible image build planning, container runtime
   execution, containerized MPI launch patterns, GPU visibility checks, scratch
   staging, checksum manifests, and reproducible run capture for containerized
@@ -36,16 +37,18 @@ research software engineer building software stacks may start with
 - `data-movement`: Globus and rsync transfers, checksum manifests, scratch
   staging, archive preparation, IOR/MDTest storage smoke benchmarks, scratch
   inventory, and filesystem quota triage.
-- `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
-  DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
+- `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, JAX distributed
+  smoke tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage,
+  TensorBoard monitors,
   Streamlit demos, container runtime execution, data staging, checkpoint/restart
   planning, reproducible run capture, and Slurm efficiency review for
   distributed AI workloads.
 - `gpu-mpi-performance`: MPI launch checks, containerized MPI checks, mpi4py
   launch checks, compiler/MPI compatibility, GPU sanity checks, Ray cluster
-  smoke tests, GPU memory triage, TensorBoard monitors, PyTorch DDP smoke tests,
-  NCCL diagnostics, DeepSpeed launch checks, OpenMP placement, Slurm efficiency
-  review, storage smoke benchmarks, and basic profiling.
+  smoke tests, JAX distributed smoke tests, GPU memory triage, TensorBoard
+  monitors, PyTorch DDP smoke tests, NCCL diagnostics, DeepSpeed launch checks,
+  OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and basic
+  profiling.
 - `bioinformatics-workflows`: nf-core, GATK, BLAST, Nextflow, Snakemake, data
   staging, and checksum practices for genomics and core-facility workflows.
 - `simulation-workflows`: GROMACS, LAMMPS, NAMD, Quantum ESPRESSO, CP2K,

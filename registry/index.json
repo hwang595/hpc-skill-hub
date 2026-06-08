@@ -6,12 +6,12 @@
     "data": 13,
     "debugging": 18,
     "education": 2,
-    "gpu": 9,
+    "gpu": 10,
     "interactive": 7,
     "mpi": 12,
     "performance": 13,
-    "scheduler": 53,
-    "software": 20,
+    "scheduler": 54,
+    "software": 21,
     "workflow": 10
   },
   "collection_count": 12,
@@ -30,6 +30,7 @@
         "gpu-sanity-check",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
+        "jax-distributed-on-slurm",
         "pytorch-ddp-on-slurm",
         "deepspeed-on-slurm",
         "nccl-diagnostics",
@@ -173,6 +174,7 @@
         "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
         "ray-on-slurm",
+        "jax-distributed-on-slurm",
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
@@ -184,7 +186,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -255,6 +257,7 @@
         "streamlit-on-slurm",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
+        "jax-distributed-on-slurm",
         "mpi4py-on-slurm",
         "rscript-on-slurm",
         "rstudio-on-slurm",
@@ -269,7 +272,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, JAX, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -333,7 +336,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 50,
+    "slurm": 51,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -386,7 +389,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 70,
+  "skill_count": 71,
   "skills": [
     {
       "categories": [
@@ -1852,6 +1855,69 @@
         "mkdir",
         "tee",
         "rm"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "gpu",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for checking JAX imports, accelerator visibility, multi-process initialization, process metadata, and a small compiled computation before launching real distributed JAX workloads.",
+      "examples": [
+        {
+          "path": "skills/jax-distributed-on-slurm/examples/jax-distributed.sbatch",
+          "title": "Plan or run a distributed JAX smoke test"
+        },
+        {
+          "path": "skills/jax-distributed-on-slurm/examples/jax_smoke.py",
+          "title": "JAX distributed smoke script"
+        }
+      ],
+      "id": "jax-distributed-on-slurm",
+      "maturity": "seed",
+      "name": "JAX Distributed On Slurm",
+      "path": "skills/jax-distributed-on-slurm",
+      "readme": "skills/jax-distributed-on-slurm/README.md",
+      "references": [
+        {
+          "title": "JAX distributed initialization",
+          "url": "https://docs.jax.dev/en/latest/_autosummary/jax.distributed.initialize.html"
+        },
+        {
+          "title": "JAX multi-process guide",
+          "url": "https://docs.jax.dev/en/latest/multi_process.html"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Plan and smoke test distributed JAX jobs on Slurm GPU allocations.",
+      "tags": [
+        "jax",
+        "xla",
+        "python",
+        "distributed",
+        "slurm",
+        "gpu",
+        "ai"
+      ],
+      "tools": [
+        "sbatch",
+        "srun",
+        "scontrol",
+        "python3",
+        "nvidia-smi",
+        "hostname",
+        "date",
+        "tee"
       ],
       "version": "0.1.0"
     },
@@ -4560,7 +4626,7 @@
     "affinity": 1,
     "afterany": 1,
     "afterok": 1,
-    "ai": 1,
+    "ai": 2,
     "all-reduce": 1,
     "amd": 1,
     "apptainer": 3,
@@ -4608,7 +4674,7 @@
     "dependency": 1,
     "depot": 1,
     "dft": 2,
-    "distributed": 4,
+    "distributed": 5,
     "easybuild": 1,
     "easyconfig": 1,
     "efficiency": 1,
@@ -4624,7 +4690,7 @@
     "genomics": 1,
     "git": 1,
     "globus": 1,
-    "gpu": 15,
+    "gpu": 16,
     "grid-engine": 1,
     "gromacs": 1,
     "haplotypecaller": 1,
@@ -4636,6 +4702,7 @@
     "io": 2,
     "ior": 1,
     "java": 1,
+    "jax": 1,
     "julia": 1,
     "jupyter": 2,
     "lab": 1,
@@ -4706,7 +4773,7 @@
     "publication": 1,
     "pw.x": 1,
     "pwscf": 1,
-    "python": 5,
+    "python": 6,
     "pytorch": 4,
     "qe": 1,
     "qstat": 2,
@@ -4744,7 +4811,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 48,
+    "slurm": 49,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -4785,6 +4852,7 @@
     "workshop": 1,
     "wrapper": 1,
     "wrf": 1,
+    "xla": 1,
     "yaml": 1,
     "zero": 1
   },
@@ -4816,7 +4884,7 @@
     "cwltool": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 24,
+    "date": 25,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -4834,7 +4902,7 @@
     "gmx_mpi": 1,
     "grep": 9,
     "head": 4,
-    "hostname": 21,
+    "hostname": 22,
     "icoFoam": 1,
     "ior": 1,
     "julia": 1,
@@ -4861,14 +4929,14 @@
     "ncdump": 1,
     "nextflow": 2,
     "nproc": 1,
-    "nvidia-smi": 6,
+    "nvidia-smi": 7,
     "perf": 1,
     "pip": 1,
     "printenv": 1,
     "pw.x": 1,
     "pwd": 7,
     "python": 3,
-    "python3": 8,
+    "python3": 9,
     "qdel": 1,
     "qstat": 2,
     "qsub": 2,
@@ -4882,8 +4950,8 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 40,
-    "scontrol": 6,
+    "sbatch": 41,
+    "scontrol": 7,
     "sed": 3,
     "seff": 1,
     "sha256sum": 2,
@@ -4897,12 +4965,12 @@
     "sprio": 1,
     "squeue": 7,
     "sreport": 1,
-    "srun": 18,
+    "srun": 19,
     "ssh": 5,
     "streamlit": 1,
     "tail": 4,
     "tar": 1,
-    "tee": 18,
+    "tee": 19,
     "tensorboard": 1,
     "test": 8,
     "time": 1,

@@ -1,0 +1,140 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "jax-distributed-on-slurm",
+  "name": "JAX Distributed On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Plan and smoke test distributed JAX jobs on Slurm GPU allocations.",
+  "description": "This skill provides a conservative Slurm pattern for checking JAX imports, accelerator visibility, multi-process initialization, process metadata, and a small compiled computation before launching real distributed JAX workloads.",
+  "categories": ["software", "gpu", "scheduler"],
+  "tags": ["jax", "xla", "python", "distributed", "slurm", "gpu", "ai"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": true
+    },
+    {
+      "name": "python3",
+      "required": true
+    },
+    {
+      "name": "nvidia-smi",
+      "required": false
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "gpu_partition",
+      "type": "string",
+      "required": true,
+      "description": "Slurm partition or queue that provides GPU nodes."
+    },
+    {
+      "name": "jax_environment",
+      "type": "string",
+      "required": true,
+      "description": "Module, virtual environment, Conda environment, or container that provides jax and jaxlib for the target accelerator backend."
+    },
+    {
+      "name": "resources",
+      "type": "object",
+      "required": true,
+      "description": "Slurm nodes, tasks per node, GPUs per node, CPUs, memory, and wall time requested for the JAX smoke test."
+    },
+    {
+      "name": "coordinator_port",
+      "type": "integer",
+      "required": false,
+      "description": "TCP port used by process 0 for JAX distributed initialization."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "jax_smoke_log",
+      "description": "Slurm log containing JAX version, backend, device visibility, process metadata, and smoke-test status."
+    },
+    {
+      "name": "launch_record",
+      "description": "Reviewable launch plan with selected coordinator address, process count, and dry-run or execution mode."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/jax-distributed.sbatch",
+    "examples/jax_smoke.py"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run a distributed JAX smoke test",
+      "path": "examples/jax-distributed.sbatch"
+    },
+    {
+      "title": "JAX distributed smoke script",
+      "path": "examples/jax_smoke.py"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill jax-distributed-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/jax-distributed-on-slurm/examples/jax-distributed.sbatch",
+      "description": "Check the Slurm wrapper shell syntax."
+    },
+    {
+      "type": "static",
+      "command": "python3 -m py_compile skills/jax-distributed-on-slurm/examples/jax_smoke.py",
+      "description": "Check the Python smoke script syntax without requiring JAX to be installed."
+    },
+    {
+      "type": "manual",
+      "description": "Replace account, partition, and environment placeholders, submit with RUN_JAX_SMOKE=0 to review the launch plan, then submit with RUN_JAX_SMOKE=1 on a short GPU allocation and confirm every process reports a JAX backend and status=ok."
+    }
+  ],
+  "references": [
+    {
+      "title": "JAX distributed initialization",
+      "url": "https://docs.jax.dev/en/latest/_autosummary/jax.distributed.initialize.html"
+    },
+    {
+      "title": "JAX multi-process guide",
+      "url": "https://docs.jax.dev/en/latest/multi_process.html"
+    },
+    {
+      "title": "Slurm srun documentation",
+      "url": "https://slurm.schedmd.com/srun.html"
+    }
+  ]
+}

@@ -9,6 +9,7 @@
     "gpu-sanity-check",
     "ray-on-slurm",
     "dask-jobqueue-on-slurm",
+    "jax-distributed-on-slurm",
     "pytorch-ddp-on-slurm",
     "deepspeed-on-slurm",
     "nccl-diagnostics",

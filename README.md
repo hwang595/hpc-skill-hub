@@ -96,6 +96,7 @@ tools.
 | `wrf-on-slurm` | Run WRF real-data jobs on Slurm with MPI sizing, real.exe staging, restart, and I/O planning. |
 | `mpi-hello-and-benchmark` | Compile and run MPI sanity checks and simple communication benchmarks. |
 | `gpu-sanity-check` | Verify GPU allocation, CUDA/ROCm visibility, and multi-GPU communication. |
+| `jax-distributed-on-slurm` | Plan and smoke test distributed JAX jobs on Slurm GPU allocations. |
 | `pytorch-ddp-on-slurm` | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
 | `nccl-diagnostics` | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
 | `gpu-memory-triage` | Distinguish GPU allocation, framework, and model memory failures. |
