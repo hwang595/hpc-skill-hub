@@ -23,7 +23,7 @@ research software engineer building software stacks may start with
   DeepSpeed launch checks, OpenMP placement, and basic profiling.
 - `bioinformatics-workflows`: nf-core, GATK, Nextflow, Snakemake, data staging,
   and checksum practices for genomics and core-facility workflows.
-- `simulation-workflows`: GROMACS, LAMMPS, OpenFOAM, MPI launch checks,
+- `simulation-workflows`: GROMACS, LAMMPS, OpenFOAM, WRF, MPI launch checks,
   OpenMP placement, profiling, restart planning, and reproducible run capture
   for simulation teams.
 

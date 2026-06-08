@@ -32,6 +32,7 @@ new collections.
 | `lammps-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `gromacs-on-slurm` | gpu | medium | Seed skill added to `simulation-workflows`. |
 | `openfoam-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
+| `wrf-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 
 ## Priority 1: Core User Workflows
 
@@ -56,9 +57,8 @@ requests should be proposed through skill request issues.
 
 ## Priority 5: Domain Collections
 
-| Skill id | Category | Risk | Why it matters |
-| --- | --- | --- | --- |
-| `wrf-on-slurm` | mpi | medium | Climate/weather workloads need MPI sizing, restart, and I/O guidance. |
+Priority 5 is implemented in the seed registry. New domain workflow requests
+should be proposed through skill request issues.
 
 ## Priority 6: Facility Operations
 
