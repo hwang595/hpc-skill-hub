@@ -1,0 +1,140 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "license-aware-slurm-job",
+  "name": "License-Aware Slurm Job",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Plan Slurm jobs that request and verify tracked software license resources.",
+  "description": "This skill helps users and support teams make licensed software jobs explicit by checking visible Slurm license resources, documenting optional license-manager evidence, and adding bounded Slurm --licenses requests before running commercial or limited-seat applications.",
+  "categories": ["scheduler", "software", "debugging"],
+  "tags": ["slurm", "licenses", "sbatch", "scontrol", "lmutil", "licensed-software", "dry-run"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": false
+    },
+    {
+      "name": "lmutil",
+      "required": false,
+      "notes": "Optional external license-manager evidence when the site permits users to query it."
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "account",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific Slurm account or allocation for the licensed software test job."
+    },
+    {
+      "name": "partition",
+      "type": "string",
+      "required": false,
+      "description": "Slurm partition or queue for the licensed software test job."
+    },
+    {
+      "name": "license_resource",
+      "type": "string",
+      "required": true,
+      "description": "Public-safe Slurm license resource name or placeholder, such as app-feature."
+    },
+    {
+      "name": "license_count",
+      "type": "integer",
+      "required": true,
+      "description": "Number of license tokens or seats requested by the small test job."
+    },
+    {
+      "name": "application_command",
+      "type": "string",
+      "required": true,
+      "description": "Small licensed application command to run only after dry-run review."
+    },
+    {
+      "name": "optional_license_status_command",
+      "type": "string",
+      "required": false,
+      "description": "Optional site-approved read-only command for external license-manager status checks."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "license_status_report",
+      "description": "Read-only evidence from visible Slurm license resources and optional site-approved license-manager checks."
+    },
+    {
+      "name": "submission_plan",
+      "description": "Dry-run sbatch command showing account, partition, --licenses, exported app settings, and template path."
+    },
+    {
+      "name": "slurm_job_id",
+      "description": "Job id printed by sbatch only when SUBMIT_LICENSED_JOB=1 is explicitly set."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/license-aware-slurm-job.sh",
+    "examples/licensed-software-template.sbatch"
+  ],
+  "examples": [
+    {
+      "title": "License-aware submission planner",
+      "path": "examples/license-aware-slurm-job.sh"
+    },
+    {
+      "title": "Licensed software Slurm template",
+      "path": "examples/licensed-software-template.sbatch"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill license-aware-slurm-job",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/license-aware-slurm-job/examples/license-aware-slurm-job.sh && bash -n skills/license-aware-slurm-job/examples/licensed-software-template.sbatch",
+      "description": "Check shell syntax for the planner and Slurm template."
+    },
+    {
+      "type": "manual",
+      "description": "Run the planner with SUBMIT_LICENSED_JOB=0 to review visible license evidence and the sbatch command, then submit a tiny test with SUBMIT_LICENSED_JOB=1 and RUN_LICENSED_APP=0 before enabling the licensed command."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm Licenses Guide",
+      "url": "https://slurm.schedmd.com/licenses.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    },
+    {
+      "title": "Slurm scontrol documentation",
+      "url": "https://slurm.schedmd.com/scontrol.html"
+    },
+    {
+      "title": "Slurm FAQ",
+      "url": "https://slurm.schedmd.com/faq.html"
+    }
+  ]
+}

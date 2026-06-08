@@ -34,7 +34,7 @@ recruitment and ownership map for these areas:
 | --- | --- |
 | Scheduler and allocation | Slurm submission, arrays, accounting, time limits, partitions, reservations. |
 | Storage and data movement | Quotas, scratch, archival staging, rsync, Globus, object storage, checksum workflows. |
-| Software environments | Modules, compiler/MPI stacks, Conda, Python virtualenvs, Spack, EasyBuild. |
+| Software environments | Modules, compiler/MPI stacks, licensed software jobs, Conda, Python virtualenvs, Spack, EasyBuild. |
 | Containers | Apptainer/Singularity build and runtime patterns, image portability, bind paths. |
 | Workflow engines | Nextflow, Snakemake, nf-core, checkpoint/restart, staging plans. |
 | MPI, GPU, and performance | MPI launch, rank binding diagnostics, OpenMP affinity, CUDA/ROCm visibility, NCCL, profiling, AI training launchers. |

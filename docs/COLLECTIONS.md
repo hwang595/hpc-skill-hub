@@ -11,13 +11,13 @@ research software engineer building software stacks may start with
 
 - `core-hpc`: Slurm submission, arrays, dependency chains, pending reason
   triage, monitoring, resource estimation, efficiency review,
-  checkpoint/restart, failure triage, storage triage, OpenMP placement,
-  notebooks, RStudio, IDE tunnels, and interactive sessions.
+  license-aware jobs, checkpoint/restart, failure triage, storage triage,
+  OpenMP placement, notebooks, RStudio, IDE tunnels, and interactive sessions.
 - `scheduler-basics`: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
   starter submission patterns plus failure triage and reproducible run capture
   for sites comparing or teaching scheduler basics.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
-  reproducible run capture, Python virtual environments, Open OnDemand
+  license-aware jobs, reproducible run capture, Python virtual environments, Open OnDemand
   templates, TensorBoard monitors, Streamlit apps, Ray clusters, Dask Jobqueue,
   Parsl worker blocks, JAX distributed smoke tests, Hugging Face Accelerate
   launches, TensorFlow multi-worker smoke tests, mpi4py jobs, Rscript jobs,
@@ -33,8 +33,8 @@ research software engineer building software stacks may start with
 - `training-onboarding`: workshop preflight, Slurm basics, interactive
   sessions, Open OnDemand templates, notebooks, TensorBoard monitors, Streamlit
   apps, RStudio, IDE tunnels, Python/Conda environments, Rscript batch jobs,
-  Julia batch jobs, MATLAB batch jobs, module debugging, data staging, and
-  failure triage for new users.
+  Julia batch jobs, MATLAB batch jobs, license-aware software use, module
+  debugging, data staging, and failure triage for new users.
 - `data-movement`: Globus, rsync, and object-storage transfers, checksum
   manifests, scratch staging, archive preparation, IOR/MDTest storage smoke
   benchmarks, scratch inventory, and filesystem quota triage.

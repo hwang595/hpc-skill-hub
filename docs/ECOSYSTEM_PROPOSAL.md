@@ -38,19 +38,20 @@ owner handoffs, and ecosystem sponsor discussions.
 
 ## Current And Proposed Community Collections
 
-- `core-hpc`: Slurm, modules, shell, storage, interactive sessions, RStudio,
-  and IDE tunnels.
+- `core-hpc`: Slurm, license-aware jobs, modules, shell, storage, interactive
+  sessions, RStudio, and IDE tunnels.
 - `containers`: Apptainer-compatible image builds, runtime execution,
   containerized MPI, GPU checks, data staging, checksums, and reproducible run
   capture.
 - `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices,
-  Open OnDemand templates, TensorBoard, Streamlit, RStudio, and IDE tunnels.
+  licensed software jobs, Open OnDemand templates, TensorBoard, Streamlit,
+  RStudio, and IDE tunnels.
 - `workflow-engines`: CWL, WDL, Nextflow, Snakemake, Dask, and Parsl.
 - `data-movement`: Globus, rsync, object storage, checksums, scratch staging,
   IOR/MDTest storage smoke evidence, archive preparation, and quota triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, Open OnDemand
   templates, notebooks, TensorBoard, Streamlit, RStudio, IDE tunnels, Python
-  environments, and common learner failure modes.
+  environments, licensed software use, and common learner failure modes.
 - `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, JAX, Hugging
   Face Accelerate, TensorFlow, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU
   memory triage, TensorBoard monitors, Streamlit demos, container runtime

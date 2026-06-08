@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 76 seed skills.
+- 77 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -118,8 +118,8 @@ Status: skill coverage exists; deeper integrations are future work.
 
 Priority integration tracks:
 
-- Slurm: batch scripts, accounting, queue inspection, dependency chains, and
-  optional REST integration.
+- Slurm: batch scripts, accounting, queue inspection, dependency chains,
+  license-aware jobs, and optional REST integration.
 - Open OnDemand: Batch Connect app templates and user-facing interactive
   workflows.
 - Apptainer: image execution, bind mounts, GPU pass-through, MPI launch, and

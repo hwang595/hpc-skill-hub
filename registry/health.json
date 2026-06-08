@@ -4,14 +4,14 @@
     "admin": 4,
     "containers": 3,
     "data": 14,
-    "debugging": 19,
+    "debugging": 20,
     "education": 2,
     "gpu": 12,
     "interactive": 7,
     "mpi": 13,
     "performance": 14,
-    "scheduler": 58,
-    "software": 24,
+    "scheduler": 59,
+    "software": 25,
     "workflow": 11
   },
   "collection_count": 12,
@@ -67,7 +67,7 @@
     },
     {
       "id": "core-hpc",
-      "skill_count": 16,
+      "skill_count": 17,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
@@ -76,6 +76,7 @@
         "slurm-monitor-job",
         "slurm-resource-estimator",
         "slurm-efficiency-report",
+        "license-aware-slurm-job",
         "checkpoint-restart-workflow",
         "job-failure-triage",
         "interactive-session",
@@ -172,11 +173,12 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 26,
+      "skill_count": 27,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
+        "license-aware-slurm-job",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
         "open-ondemand-batch-connect",
@@ -204,10 +206,11 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 17,
+      "skill_count": 18,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
+        "license-aware-slurm-job",
         "interactive-session",
         "open-ondemand-batch-connect",
         "jupyter-on-slurm",
@@ -242,7 +245,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 76
+    "seed": 77
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -276,6 +279,7 @@
     "jupyter-on-slurm": "medium",
     "lammps-on-slurm": "medium",
     "large-file-archive-prepare": "medium",
+    "license-aware-slurm-job": "medium",
     "lsf-submit-job": "medium",
     "matlab-batch-on-slurm": "medium",
     "module-environment-debug": "low",
@@ -324,13 +328,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 59
+    "medium": 60
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 76,
+  "skill_count": 77,
   "status_counts": {
-    "draft": 76
+    "draft": 77
   },
   "uncollected_skill_ids": []
 }

@@ -3,11 +3,12 @@
   "id": "training-onboarding",
   "name": "Training And Onboarding",
   "status": "draft",
-  "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments.",
+  "summary": "Skills for teaching new HPC users, including Slurm jobs, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments.",
   "audience": ["instructors", "new HPC users", "training cluster maintainers"],
   "skill_ids": [
     "training-cluster-reset-checklist",
     "slurm-submit-job",
+    "license-aware-slurm-job",
     "interactive-session",
     "open-ondemand-batch-connect",
     "jupyter-on-slurm",

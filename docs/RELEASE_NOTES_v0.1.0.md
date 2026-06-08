@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 76.
+- Skills: 77.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -26,11 +26,11 @@ request missing workflows, or contribute public site adapters.
 - Core HPC and schedulers: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
   submission, Slurm and Grid Engine arrays, dependency chains, pending reason
   triage, monitoring, resource estimation, efficiency review,
-  checkpoint/restart, failure triage, interactive sessions, Open OnDemand Batch
+  license-aware jobs, checkpoint/restart, failure triage, interactive sessions, Open OnDemand Batch
   Connect templates, Jupyter, RStudio, VS Code tunnels, OpenMP placement, quota
   triage, and scratch management.
 - Software stacks: module debugging, module tree health, compiler/MPI
-  compatibility, reproducible run capture, Python virtualenv, Open OnDemand
+  compatibility, license-aware jobs, reproducible run capture, Python virtualenv, Open OnDemand
   Batch Connect templates, Ray on Slurm, Dask Jobqueue, Parsl, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke tests,
   mpi4py on Slurm, TensorBoard
@@ -46,7 +46,7 @@ request missing workflows, or contribute public site adapters.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm
   workflows, Open OnDemand templates, notebooks, TensorBoard monitors,
   Streamlit apps, RStudio, VS Code tunnels, Python/Conda environments, Rscript,
-  Julia, and MATLAB batch jobs, and common learner triage.
+  Julia, MATLAB batch jobs, license-aware software use, and common learner triage.
 - Data movement: Globus, rsync, object-storage transfers, checksum manifests,
   scratch staging, archive preparation, IOR/MDTest storage smoke benchmarks,
   scratch inventory, and filesystem quota triage.
