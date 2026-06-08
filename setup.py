@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="hpc-skill-hub",
-    version="0.1.0",
+    version="0.2.0",
     description="Open registry of validated, reusable skills for HPC workflows.",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",

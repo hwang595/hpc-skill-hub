@@ -1,4 +1,4 @@
-.PHONY: artifact-contracts audit check compatibility health package-data release-manifest test validate index site cli clean
+.PHONY: artifact-contracts audit check compatibility health package-data release-manifest review-packet test validate index site cli clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -19,7 +19,10 @@ package-data:
 	$(PYTHON) tools/build_package_data.py --check
 
 release-manifest:
-	$(PYTHON) tools/build_release_manifest.py v0.1.0 --check
+	$(PYTHON) tools/build_release_manifest.py v0.2.0 --check
+
+review-packet:
+	$(PYTHON) tools/review_packet.py --check
 
 artifact-contracts:
 	$(PYTHON) tools/validate_registry_artifacts.py
@@ -44,7 +47,7 @@ cli:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health compatibility package-data release-manifest artifact-contracts audit test site cli
+check: validate index health compatibility package-data release-manifest review-packet artifact-contracts audit test site cli
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

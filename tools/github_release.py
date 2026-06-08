@@ -38,7 +38,7 @@ def release_commands(version: str, repo: str | None) -> List[List[str]]:
         )
 
     commands = [
-        ["git", "tag", "-a", tag, "-m", f"{tag} seed release"],
+        ["git", "tag", "-a", tag, "-m", f"{tag} release"],
         ["git", "push", "origin", tag],
         [
             "gh",

@@ -12,7 +12,7 @@
   <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/validate.yml?query=branch%3Amain"><img alt="Validate workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/validate.yml/badge.svg?branch=main"></a>
   <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/package.yml?query=branch%3Amain"><img alt="Package workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/package.yml/badge.svg?branch=main"></a>
   <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/pages.yml?query=branch%3Amain"><img alt="Pages workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/pages.yml/badge.svg?branch=main"></a>
-  <img alt="Version 0.1.0" src="https://img.shields.io/badge/version-0.1.0-0f766e">
+  <img alt="Version 0.2.0 in development" src="https://img.shields.io/badge/version-0.2.0--dev-0f766e">
   <img alt="Python 3.9+" src="https://img.shields.io/badge/python-3.9%2B-3776ab">
   <img alt="96 skills" src="https://img.shields.io/badge/skills-96-2563eb">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-green"></a>
@@ -246,7 +246,8 @@ The repository is set up as a versioned registry, not just a documentation dump:
 | `Validate` workflow | Skill manifests, generated registry files, safety audit, CLI smoke tests, and unit tests pass on every push and pull request. |
 | `Package` workflow | Source and wheel distributions build cleanly, metadata passes `twine check`, and the installed wheel can read registry data outside the checkout. |
 | `Publish Pages` workflow | The searchable static registry site builds and deploys from the tracked registry index. |
-| `registry/releases/v0.1.0.json` | Versioned release manifest with file checksums and registry counts for reproducible snapshots. |
+| `registry/releases/v0.2.0.json` | Versioned release manifest with file checksums and registry counts for reproducible snapshots. |
+| `docs/REVIEW_PACKET_v0.2.0.md` | Reviewed-skill pilot queue with reviewer routing, suggested labels, and promotion gates. |
 | `pyproject.toml` | Package version, Python compatibility, CLI entry point, and project metadata are tracked in source control. |
 
 ## Project Status
@@ -298,6 +299,8 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [GitHub milestones](docs/GITHUB_MILESTONES.md)
 - [Release process](docs/RELEASE_PROCESS.md)
 - [v0.1.0 release notes](docs/RELEASE_NOTES_v0.1.0.md)
+- [v0.2.0 release notes](docs/RELEASE_NOTES_v0.2.0.md)
+- [v0.2.0 review packet](docs/REVIEW_PACKET_v0.2.0.md)
 - [Changelog](CHANGELOG.md)
 - [GitHub publishing guide](docs/GITHUB_PUBLISHING.md)
 - [GitHub repository setup](docs/GITHUB_REPOSITORY_SETUP.md)

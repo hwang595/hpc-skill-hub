@@ -33,8 +33,9 @@ mutate GitHub by itself.
 - Put maturity review work and early field-test evidence in
   `v0.2.0 reviewed-skill pilot`.
 - Use the reviewed-skill pilot starter issue and
-  `python3 tools/review_candidates.py --limit 12` to seed the first batch of
-  maturity review work for `v0.2.0 reviewed-skill pilot`.
+  `python3 tools/review_packet.py --check` to keep
+  `docs/REVIEW_PACKET_v0.2.0.md` current for the first batch of maturity
+  review work.
 - Put site adapter and downstream integration work in
   `v0.3.0 integrations and adapters`.
 - Put broad requests in `ecosystem backlog` until a maintainer can split them

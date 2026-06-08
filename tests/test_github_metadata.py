@@ -303,7 +303,8 @@ class GitHubMetadataTests(unittest.TestCase):
             "python3 tools/build_health.py --check",
             "python3 tools/build_compatibility.py --check",
             "python3 tools/build_package_data.py --check",
-            "python3 tools/build_release_manifest.py v0.1.0 --check",
+            "python3 tools/build_release_manifest.py v0.2.0 --check",
+            "python3 tools/review_packet.py --check",
             "python3 tools/validate_registry_artifacts.py",
             "python3 tools/audit_safety.py",
             "python3 -m unittest discover -s tests",
@@ -421,6 +422,7 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("python3 tools/launch_readiness.py", result.stdout)
         self.assertIn("python3 tools/launch_evidence.py", result.stdout)
         self.assertIn("python3 tools/review_candidates.py --limit 12", result.stdout)
+        self.assertIn("python3 tools/review_packet.py --check", result.stdout)
         self.assertIn("python3 tools/proposal_evidence.py --owner example", result.stdout)
         self.assertIn("Review public launch packet and owner checklist", result.stdout)
         self.assertIn("docs/PUBLIC_LAUNCH_PACKET.md", result.stdout)
@@ -438,7 +440,7 @@ class GitHubMetadataTests(unittest.TestCase):
             result.stdout,
         )
         self.assertIn("repos/example/hpc-skill-hub/rulesets", result.stdout)
-        self.assertIn("gh release create v0.1.0", result.stdout)
+        self.assertIn("gh release create v0.2.0", result.stdout)
         self.assertIn("Link Pages URL from repository homepage", result.stdout)
         self.assertIn("python3 tools/github_homepage.py", result.stdout)
         self.assertIn("Verify published repository state", result.stdout)
@@ -469,7 +471,7 @@ class GitHubMetadataTests(unittest.TestCase):
             result.stdout,
         )
         self.assertIn("python3 tools/github_homepage.py --repo example/hpc-skill-hub", result.stdout)
-        self.assertIn("gh release view v0.1.0", result.stdout)
+        self.assertIn("gh release view v0.2.0", result.stdout)
 
     def test_proposal_evidence_generator(self):
         markdown = subprocess.run(

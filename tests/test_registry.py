@@ -118,10 +118,30 @@ class RegistryTests(unittest.TestCase):
         result = run_cmd(
             "python3",
             "tools/build_release_manifest.py",
-            "v0.1.0",
+            "v0.2.0",
             "--check",
         )
         self.assertIn("Release manifest is current", result.stdout)
+
+    def test_review_packet_is_current(self):
+        result = run_cmd("python3", "tools/review_packet.py", "--check")
+        self.assertIn("Review packet is current", result.stdout)
+
+        json_result = run_cmd(
+            "python3",
+            "tools/review_packet.py",
+            "--json",
+            "--limit",
+            "5",
+        )
+        payload = json.loads(json_result.stdout)
+        self.assertEqual(payload["target_version"], "v0.2.0")
+        self.assertLessEqual(len(payload["candidates"]), 5)
+        self.assertTrue(payload["focus_groups"])
+        for candidate in payload["candidates"]:
+            self.assertEqual(candidate["promotion_target"], "reviewed")
+            self.assertIn("issue_title", candidate)
+            self.assertIn("suggested_labels", candidate)
 
     def test_review_candidates_report(self):
         result = run_cmd("python3", "tools/review_candidates.py", "--limit", "5")
@@ -168,11 +188,11 @@ class RegistryTests(unittest.TestCase):
             self.assertIn("data-movement", candidate["collections"])
 
     def test_release_manifest_summarizes_registry(self):
-        manifest_path = ROOT / "registry" / "releases" / "v0.1.0.json"
+        manifest_path = ROOT / "registry" / "releases" / "v0.2.0.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         index = self.load_index()
 
-        self.assertEqual(manifest["version"], "v0.1.0")
+        self.assertEqual(manifest["version"], "v0.2.0")
         self.assertEqual(manifest["registry"]["skill_count"], index["skill_count"])
         self.assertEqual(
             manifest["registry"]["collection_count"], index["collection_count"]

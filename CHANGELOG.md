@@ -7,6 +7,16 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Start `v0.2.0` reviewed-skill pilot development.
+- Add `tools/review_packet.py` for generating and checking the reviewed-skill
+  pilot packet from the current registry.
+- Add `docs/REVIEW_PACKET_v0.2.0.md` with reviewer routing, suggested labels,
+  candidate evidence, and maturity promotion gates.
+- Add `docs/RELEASE_NOTES_v0.2.0.md` and `registry/releases/v0.2.0.json` as
+  the current development release artifacts while preserving the published
+  `v0.1.0` snapshot.
+- Update local and GitHub validation to check the current `v0.2.0` release
+  manifest and review packet.
 - Add a Slurm output-log triage seed skill for read-only `sacct`, optional
   `scontrol`/`squeue`, stdout/stderr filename patterns, working-directory,
   path, file-size, tail, and log-signal evidence around missing, empty, or
@@ -193,7 +203,7 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Add a WDL on Slurm skill with miniwdl input, run directory, output JSON, and
   smoke-test controls.
 
-## v0.1.0 - Planned
+## v0.1.0 - Released
 
 Initial public seed release.
 

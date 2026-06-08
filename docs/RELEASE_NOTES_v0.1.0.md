@@ -1,6 +1,6 @@
 # v0.1.0 Release Notes
 
-Status: planned seed release.
+Status: released seed release.
 
 ## Summary
 
