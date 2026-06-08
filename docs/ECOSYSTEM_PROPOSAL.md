@@ -42,10 +42,11 @@ The project is not only a documentation site. It combines:
 - `training-onboarding`: workshop preflight, intro Slurm skills, Open OnDemand
   templates, notebooks, TensorBoard, Streamlit, RStudio, IDE tunnels, Python
   environments, and common learner failure modes.
-- `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
-  DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
-  Streamlit demos, container runtime execution, data staging, checkpoint/restart
-  planning, reproducible run capture, and Slurm efficiency review.
+- `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, JAX, Hugging
+  Face Accelerate, TensorFlow, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU
+  memory triage, TensorBoard monitors, Streamlit demos, container runtime
+  execution, data staging, checkpoint/restart planning, reproducible run
+  capture, and Slurm efficiency review.
 - `bioinformatics-workflows`: nf-core, GATK, local BLAST+, AlphaFold,
   single-cell workflows, and genomics data staging.
 - `simulation-workflows`: LAMMPS, GROMACS, Quantum ESPRESSO, NAMD, OpenFOAM,

@@ -21,6 +21,15 @@ SCHEMAS = {
     "health": ROOT / "schemas" / "registry-health.schema.json",
     "release": ROOT / "schemas" / "release-manifest.schema.json",
 }
+PUBLIC_COUNT_DOCS = [
+    ROOT / "CHANGELOG.md",
+    ROOT / "ROADMAP.md",
+    ROOT / "docs" / "OPEN_SOURCE_PROPOSAL.md",
+    ROOT / "docs" / "PUBLIC_LAUNCH_PACKET.md",
+    ROOT / "docs" / "REGISTRY_HEALTH.md",
+    ROOT / "docs" / "RELEASE_NOTES_v0.1.0.md",
+    ROOT / "docs" / "SKILL_CATALOG.md",
+]
 
 
 def load_json(path: Path) -> Dict[str, Any]:
@@ -267,6 +276,29 @@ def validate_package_data(errors: List[str]) -> None:
             )
 
 
+def validate_public_count_mentions(index: Dict[str, Any], errors: List[str]) -> None:
+    skill_count = index.get("skill_count")
+    expected_mentions = {
+        "CHANGELOG.md": f"- {skill_count} seed HPC skills",
+        "ROADMAP.md": f"- {skill_count} seed skills.",
+        "docs/OPEN_SOURCE_PROPOSAL.md": f"The seed registry includes {skill_count} skills",
+        "docs/PUBLIC_LAUNCH_PACKET.md": f"- Seed skills: {skill_count}.",
+        "docs/REGISTRY_HEALTH.md": f"- Skills: {skill_count}",
+        "docs/RELEASE_NOTES_v0.1.0.md": f"- Skills: {skill_count}.",
+        "docs/SKILL_CATALOG.md": f"Current registry size: {skill_count} skills.",
+    }
+
+    for path in PUBLIC_COUNT_DOCS:
+        rel = relative(path)
+        expected = expected_mentions[rel]
+        text = path.read_text(encoding="utf-8")
+        require(
+            expected in text,
+            errors,
+            f"{rel}: expected public registry count mention {expected!r}",
+        )
+
+
 def validate_schemas(errors: List[str]) -> None:
     for name, path in SCHEMAS.items():
         require(path.exists(), errors, f"schema {name} is missing at {relative(path)}")
@@ -292,6 +324,7 @@ def main() -> int:
     validate_health(index, health, errors)
     validate_release(index, health, release, errors)
     validate_package_data(errors)
+    validate_public_count_mentions(index, errors)
 
     if errors:
         for error in errors:

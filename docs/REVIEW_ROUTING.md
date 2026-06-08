@@ -29,7 +29,7 @@ recruitment and ownership map for these areas:
 | Domain | Examples |
 | --- | --- |
 | Scheduler and allocation | Slurm submission, arrays, accounting, time limits, partitions, reservations. |
-| Storage and data movement | Quotas, scratch, archival staging, rsync, Globus, checksum workflows. |
+| Storage and data movement | Quotas, scratch, archival staging, rsync, Globus, object storage, checksum workflows. |
 | Software environments | Modules, compiler/MPI stacks, Conda, Python virtualenvs, Spack, EasyBuild. |
 | Containers | Apptainer/Singularity build and runtime patterns, image portability, bind paths. |
 | Workflow engines | Nextflow, Snakemake, nf-core, checkpoint/restart, staging plans. |

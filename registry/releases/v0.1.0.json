@@ -193,9 +193,9 @@
       "sha256": "c904105f5e2f559400a8f89311d74e7c85690cc47791fb9f2eda106e7f89c03c"
     },
     {
-      "bytes": 7842,
+      "bytes": 7900,
       "path": "ROADMAP.md",
-      "sha256": "5db9c3794a8079a72a5d432b8168d94496221debd579afc3d82ba3a09d9125c3"
+      "sha256": "c24433d6bddab1ccb92dcd306a045ef0f243a333303f6fcbdc2a690094668a5d"
     },
     {
       "bytes": 1442,
@@ -323,9 +323,9 @@
       "sha256": "ee15b19e6b6629ff0e4df8413ccaec0b26d2218d3cfc7e9dce1d35a34aaa2aaa"
     },
     {
-      "bytes": 3650,
+      "bytes": 3694,
       "path": "docs/ECOSYSTEM_PROPOSAL.md",
-      "sha256": "dc5b432c2cba22a42c8fcc3fb5c8b32e89e371fced43198dcd4ff5d88e412b2c"
+      "sha256": "8636f9881f48284589c9208c2815406d734a20fa4d0381c661c529cb9c71d5f7"
     },
     {
       "bytes": 2401,
@@ -408,9 +408,9 @@
       "sha256": "41b45e8f082281547a97a5f811b9f5c34a75c24301e223c7b6d98b1d23f305b1"
     },
     {
-      "bytes": 5283,
+      "bytes": 5299,
       "path": "docs/REVIEW_ROUTING.md",
-      "sha256": "b087376f9f898a8d2e986ce1da554caedc4a80b25656389f730329ddc752ff38"
+      "sha256": "2b6ed54a751c4ce94849c0960d90e27f6a8b9fb211a8352295c8a327fac9f04a"
     },
     {
       "bytes": 2184,
@@ -2348,9 +2348,9 @@
       "sha256": "fe813fbc5fb4337b477db365389892e0139c7e8741552024f3ae4cd4b05cfbad"
     },
     {
-      "bytes": 10689,
+      "bytes": 12003,
       "path": "tools/validate_registry_artifacts.py",
-      "sha256": "0c8ddd556e3e57a1959a421408e237d14912558e0cdc36907053d8d888ad233f"
+      "sha256": "ddb8e112b0b2872e706c6f1d3706a96c21cb329ed9b432bf3bd0c058f4b9c5a7"
     },
     {
       "bytes": 18164,
@@ -2380,6 +2380,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1387830,
+  "total_bytes": 1389262,
   "version": "v0.1.0"
 }
