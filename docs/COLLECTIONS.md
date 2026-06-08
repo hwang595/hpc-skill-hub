@@ -45,18 +45,18 @@ research software engineer building software stacks may start with
   planning, reproducible run capture, and Slurm efficiency review for
   distributed AI workloads.
 - `gpu-mpi-performance`: MPI launch checks, containerized MPI checks, mpi4py
-  launch checks, compiler/MPI compatibility, GPU sanity checks, Ray cluster
-  smoke tests, JAX distributed smoke tests, Hugging Face Accelerate launches,
-  TensorFlow multi-worker smoke tests,
+  launch checks, MPI rank binding diagnostics, compiler/MPI compatibility, GPU
+  sanity checks, Ray cluster smoke tests, JAX distributed smoke tests,
+  Hugging Face Accelerate launches, TensorFlow multi-worker smoke tests,
   GPU memory triage, TensorBoard monitors, PyTorch DDP smoke tests, NCCL
   diagnostics, DeepSpeed launch checks, OpenMP placement, Slurm efficiency
   review, storage smoke benchmarks, and basic profiling.
 - `bioinformatics-workflows`: nf-core, GATK, BLAST, Nextflow, Snakemake, data
   staging, and checksum practices for genomics and core-facility workflows.
 - `simulation-workflows`: GROMACS, LAMMPS, NAMD, Quantum ESPRESSO, CP2K,
-  OpenFOAM, WRF, MPI launch checks, OpenMP placement, profiling, restart
-  planning, storage smoke evidence, and reproducible run capture for simulation
-  teams.
+  OpenFOAM, WRF, MPI launch checks, rank binding diagnostics, OpenMP placement,
+  profiling, restart planning, storage smoke evidence, and reproducible run
+  capture for simulation teams.
 - `facility-ops`: read-only usage reporting, pending reason triage, node
   triage, and module tree health checks for HPC support teams and facility
   maintainers.

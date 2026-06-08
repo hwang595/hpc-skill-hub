@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 75
+- Skills: 76
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 58 |
+| `medium` | 59 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 75 |
+| `seed` | 76 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 75 |
+| `draft` | 76 |
 
 ## Collection Coverage
 
@@ -38,9 +38,9 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `core-hpc` | 16 |
 | `data-movement` | 9 |
 | `facility-ops` | 4 |
-| `gpu-mpi-performance` | 18 |
+| `gpu-mpi-performance` | 19 |
 | `scheduler-basics` | 7 |
-| `simulation-workflows` | 13 |
+| `simulation-workflows` | 14 |
 | `software-stacks` | 26 |
 | `training-onboarding` | 17 |
 | `workflow-engines` | 8 |
@@ -89,6 +89,7 @@ All skills are included in at least one collection.
 | `module-environment-debug` | low |
 | `module-tree-health-check` | low |
 | `mpi-hello-and-benchmark` | medium |
+| `mpi-rank-binding-diagnostics` | medium |
 | `mpi4py-on-slurm` | medium |
 | `namd-on-slurm` | medium |
 | `nccl-diagnostics` | medium |

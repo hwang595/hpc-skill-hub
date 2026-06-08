@@ -67,6 +67,7 @@ tools.
 | `dask-jobqueue-on-slurm` | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |
 | `parsl-on-slurm` | Run small Parsl workflows on Slurm with explicit provider and executor limits. |
 | `mpi4py-on-slurm` | Run mpi4py Python programs on Slurm with matching MPI and Python environments. |
+| `mpi-rank-binding-diagnostics` | Collect MPI rank placement and CPU binding evidence from Slurm jobs. |
 | `rscript-on-slurm` | Run R scripts on Slurm with explicit package-library and output controls. |
 | `julia-on-slurm` | Run Julia scripts on Slurm with explicit depot, project, and thread settings. |
 | `matlab-batch-on-slurm` | Run non-interactive MATLAB workloads on Slurm with explicit logs and license notes. |

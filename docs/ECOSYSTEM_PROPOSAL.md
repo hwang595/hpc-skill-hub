@@ -59,7 +59,8 @@ owner handoffs, and ecosystem sponsor discussions.
 - `bioinformatics-workflows`: nf-core, GATK, local BLAST+, AlphaFold,
   single-cell workflows, and genomics data staging.
 - `simulation-workflows`: LAMMPS, GROMACS, Quantum ESPRESSO, NAMD, OpenFOAM,
-  WRF, restart planning, profiling, and storage smoke evidence.
+  WRF, MPI rank binding diagnostics, restart planning, profiling, and storage
+  smoke evidence.
 - `facility-ops`: read-only usage reporting, node triage, module tree health
   checks, support handoffs, and public operational patterns.
 

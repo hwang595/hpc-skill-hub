@@ -4,13 +4,13 @@
     "admin": 4,
     "containers": 3,
     "data": 14,
-    "debugging": 18,
+    "debugging": 19,
     "education": 2,
     "gpu": 12,
     "interactive": 7,
-    "mpi": 12,
-    "performance": 13,
-    "scheduler": 57,
+    "mpi": 13,
+    "performance": 14,
+    "scheduler": 58,
     "software": 24,
     "workflow": 11
   },
@@ -174,6 +174,7 @@
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
         "mpi4py-on-slurm",
+        "mpi-rank-binding-diagnostics",
         "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
         "ray-on-slurm",
@@ -191,7 +192,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI rank binding, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -233,6 +234,7 @@
         "openfoam-on-slurm",
         "wrf-on-slurm",
         "mpi-hello-and-benchmark",
+        "mpi-rank-binding-diagnostics",
         "openmp-thread-affinity",
         "ior-mdtest-storage-smoke",
         "performance-profile-basic",
@@ -240,7 +242,7 @@
         "checkpoint-restart-workflow"
       ],
       "status": "draft",
-      "summary": "Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
+      "summary": "Domain skills for MPI/GPU-heavy simulation, rank binding diagnostics, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -345,7 +347,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 54,
+    "slurm": 55,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -398,7 +400,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 75,
+  "skill_count": 76,
   "skills": [
     {
       "categories": [
@@ -2544,6 +2546,72 @@
       "tools": [
         "mpicc",
         "srun"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "mpi",
+        "scheduler",
+        "performance",
+        "debugging"
+      ],
+      "description": "This skill helps users and support teams diagnose MPI rank placement, CPU binding, cpus-per-task, and topology assumptions before comparing performance or scaling simulation workloads.",
+      "examples": [
+        {
+          "path": "skills/mpi-rank-binding-diagnostics/examples/mpi-rank-binding-diagnostics.sbatch",
+          "title": "MPI rank binding diagnostic Slurm job"
+        },
+        {
+          "path": "skills/mpi-rank-binding-diagnostics/examples/mpi_rank_probe.c",
+          "title": "MPI rank and CPU affinity probe"
+        }
+      ],
+      "id": "mpi-rank-binding-diagnostics",
+      "maturity": "seed",
+      "name": "MPI Rank Binding Diagnostics",
+      "path": "skills/mpi-rank-binding-diagnostics",
+      "readme": "skills/mpi-rank-binding-diagnostics/README.md",
+      "references": [
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        },
+        {
+          "title": "Slurm resource binding",
+          "url": "https://slurm.schedmd.com/resource_binding.html"
+        },
+        {
+          "title": "Open MPI mpirun documentation",
+          "url": "https://docs.open-mpi.org/en/v5.0.10/man-openmpi/man1/mpirun.1.html"
+        },
+        {
+          "title": "hwloc command-line tools",
+          "url": "https://hwloc.readthedocs.io/en/master/doxygen/html/tools.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect MPI rank placement and CPU binding evidence from Slurm jobs.",
+      "tags": [
+        "mpi",
+        "slurm",
+        "srun",
+        "cpu-bind",
+        "affinity",
+        "rank-placement",
+        "topology"
+      ],
+      "tools": [
+        "mpicc",
+        "srun",
+        "lscpu",
+        "numactl",
+        "hwloc-ls",
+        "module"
       ],
       "version": "0.1.0"
     },
@@ -4889,7 +4957,7 @@
   ],
   "tags": {
     "accelerate": 1,
-    "affinity": 1,
+    "affinity": 2,
     "afterany": 1,
     "afterok": 1,
     "ai": 4,
@@ -4925,7 +4993,7 @@
     "container": 3,
     "cp2k": 1,
     "cpu": 5,
-    "cpu-bind": 1,
+    "cpu-bind": 2,
     "cran": 1,
     "cuda": 2,
     "cwl": 1,
@@ -4997,7 +5065,7 @@
     "modules": 7,
     "molecular-dynamics": 4,
     "monitoring": 1,
-    "mpi": 17,
+    "mpi": 18,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
@@ -5058,6 +5126,7 @@
     "queue": 2,
     "quota": 2,
     "r": 2,
+    "rank-placement": 1,
     "ray": 1,
     "rclone": 1,
     "reason": 1,
@@ -5088,7 +5157,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 52,
+    "slurm": 53,
     "slurmprovider": 1,
     "snakemake": 1,
     "software": 2,
@@ -5097,7 +5166,7 @@
     "sprio": 1,
     "squeue": 4,
     "sreport": 1,
-    "srun": 5,
+    "srun": 6,
     "staging": 3,
     "state": 1,
     "storage": 3,
@@ -5111,6 +5180,7 @@
     "throughput": 1,
     "time": 1,
     "timeout": 2,
+    "topology": 1,
     "training": 2,
     "transfer": 4,
     "transformers": 1,
@@ -5185,6 +5255,7 @@
     "grep": 9,
     "head": 4,
     "hostname": 24,
+    "hwloc-ls": 1,
     "icoFoam": 1,
     "ior": 1,
     "julia": 1,
@@ -5192,7 +5263,7 @@
     "ldd": 2,
     "lmp": 1,
     "ln": 1,
-    "lscpu": 1,
+    "lscpu": 2,
     "makeblastdb": 1,
     "mamba": 1,
     "matlab": 1,
@@ -5200,9 +5271,9 @@
     "micromamba": 1,
     "miniwdl": 1,
     "mkdir": 31,
-    "module": 20,
+    "module": 21,
     "mpi4py": 1,
-    "mpicc": 2,
+    "mpicc": 3,
     "mpicxx": 1,
     "mpiexec": 1,
     "mpifort": 1,
@@ -5211,6 +5282,7 @@
     "ncdump": 1,
     "nextflow": 2,
     "nproc": 1,
+    "numactl": 1,
     "nvidia-smi": 9,
     "parsl": 1,
     "perf": 1,
@@ -5250,7 +5322,7 @@
     "sprio": 1,
     "squeue": 8,
     "sreport": 1,
-    "srun": 21,
+    "srun": 22,
     "ssh": 5,
     "streamlit": 1,
     "tail": 4,

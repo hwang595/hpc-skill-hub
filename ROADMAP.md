@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 75 seed skills.
+- 76 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -129,7 +129,8 @@ Priority integration tracks:
   archival, and publication handoff.
 - Workflow engines: Nextflow, Snakemake, CWL, WDL, Dask, Parsl, and Ray.
 - Observability: failure triage, efficiency review, profiling, storage smoke
-  evidence, utilization reports, and training reset checks.
+  evidence, MPI rank binding diagnostics, utilization reports, and training
+  reset checks.
 
 Exit evidence:
 

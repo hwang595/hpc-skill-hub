@@ -1,0 +1,141 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "mpi-rank-binding-diagnostics",
+  "name": "MPI Rank Binding Diagnostics",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect MPI rank placement and CPU binding evidence from Slurm jobs.",
+  "description": "This skill helps users and support teams diagnose MPI rank placement, CPU binding, cpus-per-task, and topology assumptions before comparing performance or scaling simulation workloads.",
+  "categories": ["mpi", "scheduler", "performance", "debugging"],
+  "tags": ["mpi", "slurm", "srun", "cpu-bind", "affinity", "rank-placement", "topology"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "mpicc",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "lscpu",
+      "required": false
+    },
+    {
+      "name": "numactl",
+      "required": false
+    },
+    {
+      "name": "hwloc-ls",
+      "required": false
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "account",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific Slurm account or allocation for the short diagnostic job."
+    },
+    {
+      "name": "partition",
+      "type": "string",
+      "required": false,
+      "description": "Slurm partition or queue for the diagnostic job."
+    },
+    {
+      "name": "mpi_module",
+      "type": "string",
+      "required": false,
+      "description": "Optional MPI module to load before compiling and launching the probe."
+    },
+    {
+      "name": "binding_policy",
+      "type": "string",
+      "required": false,
+      "description": "Slurm srun --cpu-bind policy to test, such as verbose,cores or verbose,none."
+    },
+    {
+      "name": "task_shape",
+      "type": "object",
+      "required": true,
+      "description": "Nodes, tasks per node, cpus per task, and total task count for the small diagnostic run."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "topology_report",
+      "description": "Node and Slurm environment evidence, including optional lscpu, numactl, and hwloc output."
+    },
+    {
+      "name": "rank_affinity_report",
+      "description": "TSV report mapping MPI ranks to hosts, processor names, visible CPU counts, and affinity masks."
+    },
+    {
+      "name": "launch_plan",
+      "description": "Dry-run launch plan showing compile and srun command lines before execution."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/mpi-rank-binding-diagnostics.sbatch",
+    "examples/mpi_rank_probe.c"
+  ],
+  "examples": [
+    {
+      "title": "MPI rank binding diagnostic Slurm job",
+      "path": "examples/mpi-rank-binding-diagnostics.sbatch"
+    },
+    {
+      "title": "MPI rank and CPU affinity probe",
+      "path": "examples/mpi_rank_probe.c"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill mpi-rank-binding-diagnostics",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/mpi-rank-binding-diagnostics/examples/mpi-rank-binding-diagnostics.sbatch",
+      "description": "Check the Slurm wrapper syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Submit the wrapper with RUN_MPI_BINDING_PROBE=0 to review the plan, then set RUN_MPI_BINDING_PROBE=1 on a short test partition and confirm rank-affinity.tsv is written."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm srun documentation",
+      "url": "https://slurm.schedmd.com/srun.html"
+    },
+    {
+      "title": "Slurm resource binding",
+      "url": "https://slurm.schedmd.com/resource_binding.html"
+    },
+    {
+      "title": "Open MPI mpirun documentation",
+      "url": "https://docs.open-mpi.org/en/v5.0.10/man-openmpi/man1/mpirun.1.html"
+    },
+    {
+      "title": "hwloc command-line tools",
+      "url": "https://hwloc.readthedocs.io/en/master/doxygen/html/tools.html"
+    }
+  ]
+}
