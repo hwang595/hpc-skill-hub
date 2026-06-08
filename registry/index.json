@@ -9,8 +9,8 @@
     "interactive": 2,
     "mpi": 6,
     "performance": 8,
-    "scheduler": 30,
-    "software": 9,
+    "scheduler": 31,
+    "software": 10,
     "workflow": 5
   },
   "collection_count": 9,
@@ -164,6 +164,7 @@
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "rscript-on-slurm",
         "conda-mamba-on-hpc",
         "container-build-for-hpc",
         "apptainer-run-container",
@@ -171,7 +172,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, R, and Conda environments, containers, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -188,13 +189,14 @@
         "interactive-session",
         "jupyter-on-slurm",
         "python-virtualenv-on-hpc",
+        "rscript-on-slurm",
         "conda-mamba-on-hpc",
         "module-environment-debug",
         "dataset-staging-to-scratch",
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users and preparing workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, Python and R workloads, and workshop environments."
     },
     {
       "audience": [
@@ -217,7 +219,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 31
+    "slurm": 32
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -243,7 +245,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 47,
+  "skill_count": 48,
   "skills": [
     {
       "categories": [
@@ -2150,6 +2152,65 @@
     },
     {
       "categories": [
+        "software",
+        "scheduler"
+      ],
+      "description": "This skill helps users run Rscript workloads through Slurm while keeping package libraries, working directories, logs, and output paths explicit and portable on shared HPC systems.",
+      "examples": [
+        {
+          "path": "skills/rscript-on-slurm/examples/rscript-slurm.sbatch",
+          "title": "Submit a small Rscript batch job"
+        },
+        {
+          "path": "skills/rscript-on-slurm/examples/analysis.R",
+          "title": "Base R analysis script with reproducibility output"
+        }
+      ],
+      "id": "rscript-on-slurm",
+      "maturity": "seed",
+      "name": "Rscript On Slurm",
+      "path": "skills/rscript-on-slurm",
+      "readme": "skills/rscript-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Rscript documentation",
+          "url": "https://stat.ethz.ch/R-manual/R-devel/library/utils/html/Rscript.html"
+        },
+        {
+          "title": "R Installation and Administration: Managing libraries",
+          "url": "https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Managing-libraries"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run R scripts on Slurm with explicit package-library and output controls.",
+      "tags": [
+        "r",
+        "rscript",
+        "slurm",
+        "cran",
+        "rlibs",
+        "packages",
+        "batch",
+        "reproducibility"
+      ],
+      "tools": [
+        "Rscript",
+        "sbatch",
+        "module",
+        "mkdir"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "data"
       ],
       "description": "This skill helps users plan and run rsync transfers with conservative defaults, dry-run review, log capture, checksum-aware options, and a post-transfer validation checklist.",
@@ -2841,6 +2902,7 @@
     "apptainer": 2,
     "archive": 2,
     "array": 2,
+    "batch": 1,
     "benchmark": 1,
     "bioinformatics": 1,
     "cfd": 1,
@@ -2855,6 +2917,7 @@
     "container": 2,
     "cpu": 2,
     "cpu-bind": 1,
+    "cran": 1,
     "cuda": 2,
     "data": 1,
     "dataset": 2,
@@ -2916,6 +2979,7 @@
     "openfoam": 1,
     "openmp": 2,
     "outputs": 1,
+    "packages": 1,
     "parameter-sweep": 1,
     "pending": 1,
     "perf": 1,
@@ -2932,15 +2996,18 @@
     "python": 1,
     "pytorch": 3,
     "quota": 2,
+    "r": 1,
     "reason": 1,
     "reconstruction": 1,
     "reporting": 1,
-    "reproducibility": 4,
+    "reproducibility": 5,
     "rerun": 1,
     "resources": 1,
     "restart": 3,
     "resume": 1,
+    "rlibs": 1,
     "rocm": 2,
+    "rscript": 1,
     "rsync": 2,
     "sacct": 5,
     "salloc": 1,
@@ -2954,7 +3021,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 29,
+    "slurm": 30,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -2989,6 +3056,7 @@
     "zero": 1
   },
   "tools": {
+    "Rscript": 1,
     "all_reduce_perf": 1,
     "apptainer": 2,
     "awk": 3,
@@ -3027,8 +3095,8 @@
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 20,
-    "module": 8,
+    "mkdir": 21,
+    "module": 9,
     "mpicc": 2,
     "mpicxx": 1,
     "mpifort": 1,
@@ -3048,7 +3116,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 21,
+    "sbatch": 22,
     "scontrol": 5,
     "sed": 1,
     "seff": 1,

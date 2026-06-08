@@ -53,6 +53,7 @@ tools.
 | `compiler-mpi-matrix` | Check compiler, MPI wrapper, and module compatibility before building HPC codes. |
 | `reproducible-run-capture` | Capture command, environment, provenance, and logs for reproducible HPC runs. |
 | `python-virtualenv-on-hpc` | Create lightweight Python virtual environments with explicit HPC module assumptions. |
+| `rscript-on-slurm` | Run R scripts on Slurm with explicit package-library and output controls. |
 | `conda-mamba-on-hpc` | Create Conda or Mamba environments while protecting shared HPC filesystems. |
 | `container-build-for-hpc` | Plan and build Apptainer-compatible images for shared HPC systems. |
 | `apptainer-run-container` | Run Apptainer/Singularity containers safely on shared HPC systems. |

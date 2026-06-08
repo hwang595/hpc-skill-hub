@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 47
+- Skills: 48
 - Site adapters: 1
 - Collections: 9
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 30 |
+| `medium` | 31 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 47 |
+| `seed` | 48 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 47 |
+| `draft` | 48 |
 
 ## Collection Coverage
 
@@ -38,8 +38,8 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `facility-ops` | 4 |
 | `gpu-mpi-performance` | 10 |
 | `simulation-workflows` | 9 |
-| `software-stacks` | 10 |
-| `training-onboarding` | 9 |
+| `software-stacks` | 11 |
+| `training-onboarding` | 10 |
 | `workflow-engines` | 4 |
 
 ## Uncollected Skills
@@ -84,6 +84,7 @@ All skills are included in at least one collection.
 | `pytorch-ddp-on-slurm` | medium |
 | `quota-and-filesystem-triage` | low |
 | `reproducible-run-capture` | low |
+| `rscript-on-slurm` | medium |
 | `rsync-data-transfer` | medium |
 | `scratch-storage-management` | low |
 | `slurm-efficiency-report` | low |

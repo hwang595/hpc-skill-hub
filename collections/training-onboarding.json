@@ -3,7 +3,7 @@
   "id": "training-onboarding",
   "name": "Training And Onboarding",
   "status": "draft",
-  "summary": "Skills for teaching new HPC users and preparing workshop environments.",
+  "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, Python and R workloads, and workshop environments.",
   "audience": ["instructors", "new HPC users", "training cluster maintainers"],
   "skill_ids": [
     "training-cluster-reset-checklist",
@@ -11,6 +11,7 @@
     "interactive-session",
     "jupyter-on-slurm",
     "python-virtualenv-on-hpc",
+    "rscript-on-slurm",
     "conda-mamba-on-hpc",
     "module-environment-debug",
     "dataset-staging-to-scratch",

@@ -9,8 +9,8 @@
     "interactive": 2,
     "mpi": 6,
     "performance": 8,
-    "scheduler": 30,
-    "software": 9,
+    "scheduler": 31,
+    "software": 10,
     "workflow": 5
   },
   "collection_count": 9,
@@ -103,13 +103,14 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 10,
+      "skill_count": 11,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "rscript-on-slurm",
         "conda-mamba-on-hpc",
         "container-build-for-hpc",
         "apptainer-run-container",
@@ -119,13 +120,14 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 9,
+      "skill_count": 10,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
         "interactive-session",
         "jupyter-on-slurm",
         "python-virtualenv-on-hpc",
+        "rscript-on-slurm",
         "conda-mamba-on-hpc",
         "module-environment-debug",
         "dataset-staging-to-scratch",
@@ -145,7 +147,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 47
+    "seed": 48
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -182,6 +184,7 @@
     "pytorch-ddp-on-slurm": "medium",
     "quota-and-filesystem-triage": "low",
     "reproducible-run-capture": "low",
+    "rscript-on-slurm": "medium",
     "rsync-data-transfer": "medium",
     "scratch-storage-management": "low",
     "slurm-efficiency-report": "low",
@@ -198,13 +201,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 30
+    "medium": 31
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 47,
+  "skill_count": 48,
   "status_counts": {
-    "draft": 47
+    "draft": 48
   },
   "uncollected_skill_ids": []
 }

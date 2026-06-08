@@ -1,0 +1,117 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "rscript-on-slurm",
+  "name": "Rscript On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run R scripts on Slurm with explicit package-library and output controls.",
+  "description": "This skill helps users run Rscript workloads through Slurm while keeping package libraries, working directories, logs, and output paths explicit and portable on shared HPC systems.",
+  "categories": ["software", "scheduler"],
+  "tags": ["r", "rscript", "slurm", "cran", "rlibs", "packages", "batch", "reproducibility"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "Rscript",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "r_script",
+      "type": "path",
+      "required": true,
+      "description": "R script to run with Rscript."
+    },
+    {
+      "name": "r_library_path",
+      "type": "path",
+      "required": false,
+      "description": "User-owned R package library path, often set through R_LIBS_USER."
+    },
+    {
+      "name": "work_directory",
+      "type": "path",
+      "required": false,
+      "description": "User-owned working directory for logs and outputs."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "slurm_log",
+      "description": "Slurm stdout/stderr log for the R job."
+    },
+    {
+      "name": "r_session_info",
+      "description": "R version, library paths, and sessionInfo output for reproducibility."
+    },
+    {
+      "name": "analysis_output",
+      "description": "User-defined R outputs written under the configured output directory."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/rscript-slurm.sbatch",
+    "examples/analysis.R"
+  ],
+  "examples": [
+    {
+      "title": "Submit a small Rscript batch job",
+      "path": "examples/rscript-slurm.sbatch"
+    },
+    {
+      "title": "Base R analysis script with reproducibility output",
+      "path": "examples/analysis.R"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill rscript-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/rscript-on-slurm/examples/rscript-slurm.sbatch",
+      "description": "Check the Slurm wrapper shell syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Replace account, partition, and module placeholders, then submit to a short test partition and confirm the log contains R version, library paths, and sessionInfo output."
+    }
+  ],
+  "references": [
+    {
+      "title": "Rscript documentation",
+      "url": "https://stat.ethz.ch/R-manual/R-devel/library/utils/html/Rscript.html"
+    },
+    {
+      "title": "R Installation and Administration: Managing libraries",
+      "url": "https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Managing-libraries"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}
