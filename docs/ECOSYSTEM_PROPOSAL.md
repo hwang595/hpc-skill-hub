@@ -52,7 +52,7 @@ owner handoffs, and ecosystem sponsor discussions.
 - `training-onboarding`: workshop preflight, intro Slurm skills, Open OnDemand
   templates, notebooks, TensorBoard, Streamlit, RStudio, IDE tunnels, Python
   environments, licensed software use, and common learner failure modes.
-- `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, JAX, Hugging
+- `ai-hpc`: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX, Hugging
   Face Accelerate, TensorFlow, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU
   memory triage, TensorBoard monitors, Streamlit demos, container runtime
   execution, data staging, checkpoint/restart planning, reproducible run

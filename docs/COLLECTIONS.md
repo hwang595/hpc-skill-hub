@@ -38,7 +38,7 @@ research software engineer building software stacks may start with
 - `data-movement`: Globus, rsync, and object-storage transfers, checksum
   manifests, scratch staging, archive preparation, IOR/MDTest storage smoke
   benchmarks, scratch inventory, and filesystem quota triage.
-- `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, JAX distributed
+- `ai-hpc`: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke
   tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
   Streamlit demos, container runtime execution, data staging, checkpoint/restart
@@ -46,7 +46,7 @@ research software engineer building software stacks may start with
   distributed AI workloads.
 - `gpu-mpi-performance`: MPI launch checks, containerized MPI checks, mpi4py
   launch checks, MPI rank binding diagnostics, hybrid MPI/OpenMP layout checks,
-  compiler/MPI compatibility, GPU sanity checks, Ray cluster smoke tests, JAX distributed smoke tests,
+  GPU binding diagnostics, compiler/MPI compatibility, GPU sanity checks, Ray cluster smoke tests, JAX distributed smoke tests,
   Hugging Face Accelerate launches, TensorFlow multi-worker smoke tests,
   GPU memory triage, TensorBoard monitors, PyTorch DDP smoke tests, NCCL
   diagnostics, DeepSpeed launch checks, OpenMP placement, Slurm efficiency

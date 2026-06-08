@@ -3,10 +3,11 @@
   "id": "ai-hpc",
   "name": "AI/HPC",
   "status": "draft",
-  "summary": "Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads on Slurm-backed HPC systems.",
+  "summary": "Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads, GPU binding, and accelerator visibility on Slurm-backed HPC systems.",
   "audience": ["AI/HPC users", "machine learning researchers", "research software engineers", "HPC support teams"],
   "skill_ids": [
     "gpu-sanity-check",
+    "slurm-gpu-binding-diagnostics",
     "ray-on-slurm",
     "dask-jobqueue-on-slurm",
     "jax-distributed-on-slurm",

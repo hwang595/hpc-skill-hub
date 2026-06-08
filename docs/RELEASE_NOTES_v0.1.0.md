@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 78.
+- Skills: 79.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -50,15 +50,15 @@ request missing workflows, or contribute public site adapters.
 - Data movement: Globus, rsync, object-storage transfers, checksum manifests,
   scratch staging, archive preparation, IOR/MDTest storage smoke benchmarks,
   scratch inventory, and filesystem quota triage.
-- GPU/MPI performance: MPI sanity checks, rank binding diagnostics, hybrid
-  MPI/OpenMP layout checks,
+- GPU/MPI performance: MPI sanity checks, GPU binding diagnostics, rank binding
+  diagnostics, hybrid MPI/OpenMP layout checks,
   containerized MPI, mpi4py launch checks, GPU sanity checks, Ray cluster smoke
   tests, JAX distributed smoke tests, Hugging Face Accelerate launches,
   TensorFlow multi-worker smoke tests,
   PyTorch DDP, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
   DeepSpeed, OpenMP placement, Slurm efficiency review, storage smoke benchmarks,
   and basic profiling.
-- AI/HPC: GPU allocation checks, Ray clusters, Dask workers, JAX distributed
+- AI/HPC: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke
   tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
   Streamlit demos, container runtime execution, data staging, checkpoint/restart

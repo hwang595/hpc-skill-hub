@@ -4,13 +4,13 @@
     "admin": 4,
     "containers": 3,
     "data": 14,
-    "debugging": 21,
+    "debugging": 22,
     "education": 2,
-    "gpu": 12,
+    "gpu": 13,
     "interactive": 7,
     "mpi": 14,
-    "performance": 15,
-    "scheduler": 60,
+    "performance": 16,
+    "scheduler": 61,
     "software": 25,
     "workflow": 11
   },
@@ -28,6 +28,7 @@
       "path": "collections/ai-hpc.json",
       "skill_ids": [
         "gpu-sanity-check",
+        "slurm-gpu-binding-diagnostics",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "jax-distributed-on-slurm",
@@ -46,7 +47,7 @@
         "slurm-efficiency-report"
       ],
       "status": "draft",
-      "summary": "Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads on Slurm-backed HPC systems."
+      "summary": "Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads, GPU binding, and accelerator visibility on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -179,6 +180,7 @@
         "hybrid-mpi-openmp-slurm",
         "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
+        "slurm-gpu-binding-diagnostics",
         "ray-on-slurm",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
@@ -194,7 +196,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI rank binding, hybrid MPI/OpenMP layouts, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI rank binding, hybrid MPI/OpenMP layouts, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -352,7 +354,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 57,
+    "slurm": 58,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -405,7 +407,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 78,
+  "skill_count": 79,
   "skills": [
     {
       "categories": [
@@ -4212,6 +4214,77 @@
     },
     {
       "categories": [
+        "gpu",
+        "scheduler",
+        "debugging",
+        "performance"
+      ],
+      "description": "This skill helps users and support teams diagnose Slurm GPU allocation, per-task GPU binding, CUDA_VISIBLE_DEVICES remapping, and vendor telemetry before scaling multi-GPU training, simulation, or MPI workloads.",
+      "examples": [
+        {
+          "path": "skills/slurm-gpu-binding-diagnostics/examples/gpu-binding-diagnostics.sbatch",
+          "title": "GPU binding diagnostic Slurm job"
+        },
+        {
+          "path": "skills/slurm-gpu-binding-diagnostics/examples/print-gpu-binding.sh",
+          "title": "Per-task GPU binding probe"
+        }
+      ],
+      "id": "slurm-gpu-binding-diagnostics",
+      "maturity": "seed",
+      "name": "Slurm GPU Binding Diagnostics",
+      "path": "skills/slurm-gpu-binding-diagnostics",
+      "readme": "skills/slurm-gpu-binding-diagnostics/README.md",
+      "references": [
+        {
+          "title": "Slurm GRES scheduling",
+          "url": "https://slurm.schedmd.com/gres.html"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        },
+        {
+          "title": "Slurm gres.conf documentation",
+          "url": "https://slurm.schedmd.com/gres.conf.html"
+        },
+        {
+          "title": "NVIDIA CUDA environment variables",
+          "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/05-appendices/environment-variables.html"
+        },
+        {
+          "title": "ROCm SMI documentation",
+          "url": "https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect per-task GPU binding and visibility evidence from Slurm jobs.",
+      "tags": [
+        "slurm",
+        "gpu",
+        "cuda-visible-devices",
+        "gpu-bind",
+        "gres",
+        "nvidia-smi",
+        "rocm-smi",
+        "rank-placement"
+      ],
+      "tools": [
+        "srun",
+        "sbatch",
+        "nvidia-smi",
+        "rocm-smi",
+        "python3",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "scheduler"
       ],
       "description": "This skill helps users turn a manifest of independent inputs into a bounded Slurm job array with per-task logging, concurrency limits, and restart-friendly task selection.",
@@ -5134,6 +5207,7 @@
     "cpus-per-task": 1,
     "cran": 1,
     "cuda": 2,
+    "cuda-visible-devices": 1,
     "cwl": 1,
     "cwltool": 1,
     "dask": 1,
@@ -5165,7 +5239,9 @@
     "genomics": 1,
     "git": 1,
     "globus": 1,
-    "gpu": 18,
+    "gpu": 19,
+    "gpu-bind": 1,
+    "gres": 1,
     "grid-engine": 1,
     "gromacs": 1,
     "haplotypecaller": 1,
@@ -5223,6 +5299,7 @@
     "node-health": 1,
     "notebook": 1,
     "nvidia": 1,
+    "nvidia-smi": 1,
     "object-storage": 1,
     "oci": 1,
     "omp-num-threads": 2,
@@ -5269,7 +5346,7 @@
     "queue": 2,
     "quota": 2,
     "r": 2,
-    "rank-placement": 1,
+    "rank-placement": 2,
     "ray": 1,
     "rclone": 1,
     "reason": 1,
@@ -5283,6 +5360,7 @@
     "resume": 1,
     "rlibs": 1,
     "rocm": 2,
+    "rocm-smi": 1,
     "rscript": 1,
     "rstudio": 1,
     "rsync": 2,
@@ -5300,7 +5378,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 55,
+    "slurm": 56,
     "slurmprovider": 1,
     "snakemake": 1,
     "software": 2,
@@ -5415,7 +5493,7 @@
     "micromamba": 1,
     "miniwdl": 1,
     "mkdir": 31,
-    "module": 23,
+    "module": 24,
     "mpi4py": 1,
     "mpicc": 4,
     "mpicxx": 1,
@@ -5427,7 +5505,7 @@
     "nextflow": 2,
     "nproc": 1,
     "numactl": 1,
-    "nvidia-smi": 9,
+    "nvidia-smi": 10,
     "parsl": 1,
     "perf": 1,
     "pip": 1,
@@ -5435,7 +5513,7 @@
     "pw.x": 1,
     "pwd": 7,
     "python": 4,
-    "python3": 11,
+    "python3": 12,
     "qdel": 1,
     "qstat": 2,
     "qsub": 2,
@@ -5445,12 +5523,12 @@
     "real.exe": 1,
     "reconstructPar": 1,
     "rm": 1,
-    "rocm-smi": 2,
+    "rocm-smi": 3,
     "rserver": 1,
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 45,
+    "sbatch": 46,
     "scancel": 1,
     "scontrol": 10,
     "sed": 3,
@@ -5466,7 +5544,7 @@
     "sprio": 1,
     "squeue": 8,
     "sreport": 1,
-    "srun": 23,
+    "srun": 24,
     "ssh": 5,
     "streamlit": 1,
     "tail": 4,

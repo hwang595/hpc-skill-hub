@@ -55,6 +55,7 @@ new collections.
 | `wdl-on-slurm` | workflow | medium | Seed skill added to `workflow-engines`. |
 | `pytorch-ddp-on-slurm` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
 | `nccl-diagnostics` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
+| `slurm-gpu-binding-diagnostics` | gpu | medium | Seed skill added to `ai-hpc` and `gpu-mpi-performance`. |
 | `gpu-memory-triage` | debugging | low | Seed skill added to `gpu-mpi-performance`. |
 | `deepspeed-on-slurm` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
 | `nf-core-on-slurm` | workflow | medium | Seed skill added to `workflow-engines` and `bioinformatics-workflows`. |

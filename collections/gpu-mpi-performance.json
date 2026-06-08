@@ -3,7 +3,7 @@
   "id": "gpu-mpi-performance",
   "name": "GPU, MPI, And Performance",
   "status": "draft",
-  "summary": "Skills for validating GPU allocations, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI rank binding, hybrid MPI/OpenMP layouts, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence.",
+  "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI rank binding, hybrid MPI/OpenMP layouts, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence.",
   "audience": ["AI/HPC users", "simulation teams", "performance engineers"],
   "skill_ids": [
     "mpi-hello-and-benchmark",
@@ -13,6 +13,7 @@
     "hybrid-mpi-openmp-slurm",
     "apptainer-mpi-on-slurm",
     "gpu-sanity-check",
+    "slurm-gpu-binding-diagnostics",
     "ray-on-slurm",
     "jax-distributed-on-slurm",
     "huggingface-accelerate-on-slurm",

@@ -1,0 +1,145 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-gpu-binding-diagnostics",
+  "name": "Slurm GPU Binding Diagnostics",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect per-task GPU binding and visibility evidence from Slurm jobs.",
+  "description": "This skill helps users and support teams diagnose Slurm GPU allocation, per-task GPU binding, CUDA_VISIBLE_DEVICES remapping, and vendor telemetry before scaling multi-GPU training, simulation, or MPI workloads.",
+  "categories": ["gpu", "scheduler", "debugging", "performance"],
+  "tags": ["slurm", "gpu", "cuda-visible-devices", "gpu-bind", "gres", "nvidia-smi", "rocm-smi", "rank-placement"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "nvidia-smi",
+      "required": false
+    },
+    {
+      "name": "rocm-smi",
+      "required": false
+    },
+    {
+      "name": "python3",
+      "required": false
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "account",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific Slurm account or allocation for the short GPU diagnostic job."
+    },
+    {
+      "name": "gpu_partition",
+      "type": "string",
+      "required": false,
+      "description": "Slurm GPU partition or queue for the diagnostic job."
+    },
+    {
+      "name": "gpu_request",
+      "type": "object",
+      "required": true,
+      "description": "Nodes, tasks per node, GPUs per node or per task, and optional GPU type constraints."
+    },
+    {
+      "name": "gpu_bind_policy",
+      "type": "string",
+      "required": false,
+      "description": "Slurm GPU binding policy such as verbose,closest or map_gpu:0,1."
+    },
+    {
+      "name": "application_command",
+      "type": "string",
+      "required": false,
+      "description": "Real multi-GPU command to substitute after the binding report is reviewed."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "gpu_binding_plan",
+      "description": "Dry-run srun command showing task count, GPU binding policy, and environment settings."
+    },
+    {
+      "name": "gpu_binding_report",
+      "description": "Per-task report with Slurm GPU variables, CUDA/ROCm visibility, local task ids, and optional vendor telemetry."
+    },
+    {
+      "name": "gpu_topology_report",
+      "description": "Optional nvidia-smi or rocm-smi topology and device inventory evidence captured from the allocation."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/gpu-binding-diagnostics.sbatch",
+    "examples/print-gpu-binding.sh"
+  ],
+  "examples": [
+    {
+      "title": "GPU binding diagnostic Slurm job",
+      "path": "examples/gpu-binding-diagnostics.sbatch"
+    },
+    {
+      "title": "Per-task GPU binding probe",
+      "path": "examples/print-gpu-binding.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-gpu-binding-diagnostics",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/slurm-gpu-binding-diagnostics/examples/gpu-binding-diagnostics.sbatch && bash -n skills/slurm-gpu-binding-diagnostics/examples/print-gpu-binding.sh",
+      "description": "Check shell syntax for the Slurm wrapper and per-task probe."
+    },
+    {
+      "type": "manual",
+      "description": "Submit the wrapper with RUN_GPU_BINDING_PROBE=0 to review the plan, then set RUN_GPU_BINDING_PROBE=1 on a short GPU partition and confirm gpu-binding.tsv has one row per Slurm task."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm GRES scheduling",
+      "url": "https://slurm.schedmd.com/gres.html"
+    },
+    {
+      "title": "Slurm srun documentation",
+      "url": "https://slurm.schedmd.com/srun.html"
+    },
+    {
+      "title": "Slurm gres.conf documentation",
+      "url": "https://slurm.schedmd.com/gres.conf.html"
+    },
+    {
+      "title": "NVIDIA CUDA environment variables",
+      "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/05-appendices/environment-variables.html"
+    },
+    {
+      "title": "ROCm SMI documentation",
+      "url": "https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/"
+    }
+  ]
+}

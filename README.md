@@ -101,6 +101,7 @@ tools.
 | `mpi-hello-and-benchmark` | Compile and run MPI sanity checks and simple communication benchmarks. |
 | `hybrid-mpi-openmp-slurm` | Plan and verify hybrid MPI/OpenMP task and thread layouts on Slurm. |
 | `gpu-sanity-check` | Verify GPU allocation, CUDA/ROCm visibility, and multi-GPU communication. |
+| `slurm-gpu-binding-diagnostics` | Collect per-task GPU binding and visibility evidence from Slurm jobs. |
 | `jax-distributed-on-slurm` | Plan and smoke test distributed JAX jobs on Slurm GPU allocations. |
 | `huggingface-accelerate-on-slurm` | Plan and smoke test Hugging Face Accelerate launches on Slurm. |
 | `tensorflow-multiworker-on-slurm` | Plan and smoke test TensorFlow MultiWorkerMirroredStrategy jobs on Slurm. |

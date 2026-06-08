@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 78
+- Skills: 79
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -14,31 +14,31 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 61 |
+| `medium` | 62 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 78 |
+| `seed` | 79 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 78 |
+| `draft` | 79 |
 
 ## Collection Coverage
 
 | Collection | Skills |
 | --- | ---: |
-| `ai-hpc` | 17 |
+| `ai-hpc` | 18 |
 | `bioinformatics-workflows` | 7 |
 | `containers` | 7 |
 | `core-hpc` | 17 |
 | `data-movement` | 9 |
 | `facility-ops` | 4 |
-| `gpu-mpi-performance` | 20 |
+| `gpu-mpi-performance` | 21 |
 | `scheduler-basics` | 7 |
 | `simulation-workflows` | 15 |
 | `software-stacks` | 27 |
@@ -116,6 +116,7 @@ All skills are included in at least one collection.
 | `rsync-data-transfer` | medium |
 | `scratch-storage-management` | low |
 | `slurm-efficiency-report` | low |
+| `slurm-gpu-binding-diagnostics` | medium |
 | `slurm-job-array-patterns` | medium |
 | `slurm-job-dependency-chain` | medium |
 | `slurm-monitor-job` | low |

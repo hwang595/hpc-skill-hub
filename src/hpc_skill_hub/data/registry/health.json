@@ -4,13 +4,13 @@
     "admin": 4,
     "containers": 3,
     "data": 14,
-    "debugging": 21,
+    "debugging": 22,
     "education": 2,
-    "gpu": 12,
+    "gpu": 13,
     "interactive": 7,
     "mpi": 14,
-    "performance": 15,
-    "scheduler": 60,
+    "performance": 16,
+    "scheduler": 61,
     "software": 25,
     "workflow": 11
   },
@@ -18,9 +18,10 @@
   "collection_coverage": [
     {
       "id": "ai-hpc",
-      "skill_count": 17,
+      "skill_count": 18,
       "skill_ids": [
         "gpu-sanity-check",
+        "slurm-gpu-binding-diagnostics",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "jax-distributed-on-slurm",
@@ -115,7 +116,7 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 20,
+      "skill_count": 21,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
@@ -124,6 +125,7 @@
         "hybrid-mpi-openmp-slurm",
         "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
+        "slurm-gpu-binding-diagnostics",
         "ray-on-slurm",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
@@ -247,7 +249,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 78
+    "seed": 79
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -313,6 +315,7 @@
     "rsync-data-transfer": "medium",
     "scratch-storage-management": "low",
     "slurm-efficiency-report": "low",
+    "slurm-gpu-binding-diagnostics": "medium",
     "slurm-job-array-patterns": "medium",
     "slurm-job-dependency-chain": "medium",
     "slurm-monitor-job": "low",
@@ -331,13 +334,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 61
+    "medium": 62
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 78,
+  "skill_count": 79,
   "status_counts": {
-    "draft": 78
+    "draft": 79
   },
   "uncollected_skill_ids": []
 }
