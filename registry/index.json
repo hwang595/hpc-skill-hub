@@ -1,15 +1,15 @@
 {
   "categories": {
     "containers": 2,
-    "data": 8,
+    "data": 9,
     "debugging": 13,
     "gpu": 5,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
-    "scheduler": 19,
+    "scheduler": 20,
     "software": 8,
-    "workflow": 3
+    "workflow": 4
   },
   "collection_count": 6,
   "collections": [
@@ -24,13 +24,14 @@
       "path": "collections/bioinformatics-workflows.json",
       "skill_ids": [
         "nf-core-on-slurm",
+        "gatk-workflow-on-hpc",
         "nextflow-on-slurm",
         "snakemake-on-slurm",
         "dataset-staging-to-scratch",
         "checksum-manifest-create"
       ],
       "status": "draft",
-      "summary": "Domain skills for running reviewed bioinformatics workflows on Slurm-backed HPC systems."
+      "summary": "Domain skills for running reviewed nf-core and GATK bioinformatics workflows on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -144,7 +145,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 20
+    "slurm": 21
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -170,7 +171,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 35,
+  "skill_count": 36,
   "skills": [
     {
       "categories": [
@@ -663,6 +664,72 @@
       "tools": [
         "eb",
         "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler",
+        "data"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for GATK workflows, including Java memory and temporary directory controls, reference and input checks, data staging reminders, and a dry-run-first HaplotypeCaller example.",
+      "examples": [
+        {
+          "path": "skills/gatk-workflow-on-hpc/examples/gatk-haplotypecaller.sbatch",
+          "title": "Plan or run GATK HaplotypeCaller on Slurm"
+        },
+        {
+          "path": "skills/gatk-workflow-on-hpc/examples/inputs.env",
+          "title": "Input environment template"
+        },
+        {
+          "path": "skills/gatk-workflow-on-hpc/examples/workflow-checklist.md",
+          "title": "GATK workflow checklist"
+        }
+      ],
+      "id": "gatk-workflow-on-hpc",
+      "maturity": "seed",
+      "name": "GATK Workflow On HPC",
+      "path": "skills/gatk-workflow-on-hpc",
+      "readme": "skills/gatk-workflow-on-hpc/README.md",
+      "references": [
+        {
+          "title": "GATK germline short variant discovery",
+          "url": "https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels"
+        },
+        {
+          "title": "GATK local temporary directory setup",
+          "url": "https://gatk.broadinstitute.org/hc/en-us/articles/18965297287067-How-to-setup-and-use-temporary-folder-for-GATK-local-execution"
+        },
+        {
+          "title": "GATK GenomicsDBImport",
+          "url": "https://gatk.broadinstitute.org/hc/en-us/articles/30332006200603-GenomicsDBImport"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Plan and run GATK variant-calling workflows on shared HPC systems.",
+      "tags": [
+        "gatk",
+        "genomics",
+        "haplotypecaller",
+        "java",
+        "slurm",
+        "variant-calling"
+      ],
+      "tools": [
+        "gatk",
+        "sbatch",
+        "mkdir",
+        "pwd",
+        "date",
+        "hostname",
+        "tee",
+        "test"
       ],
       "version": "0.1.0"
     },
@@ -2043,12 +2110,16 @@
     "environment": 4,
     "failure": 1,
     "filesystem": 3,
+    "gatk": 1,
+    "genomics": 1,
     "git": 1,
     "globus": 1,
     "gpu": 8,
+    "haplotypecaller": 1,
     "inode": 1,
     "interactive": 1,
     "io": 1,
+    "java": 1,
     "jupyter": 2,
     "lab": 1,
     "ld_library_path": 1,
@@ -2101,7 +2172,7 @@
     "sha256": 1,
     "sif": 1,
     "singularity": 3,
-    "slurm": 19,
+    "slurm": 20,
     "snakemake": 1,
     "software": 2,
     "spack": 1,
@@ -2119,6 +2190,7 @@
     "triage": 3,
     "tunnel": 1,
     "validation": 1,
+    "variant-calling": 1,
     "venv": 1,
     "virtualenv": 1,
     "walltime": 1,
@@ -2137,7 +2209,7 @@
     "clang": 1,
     "command": 2,
     "conda": 1,
-    "date": 13,
+    "date": 14,
     "deepspeed": 1,
     "df": 2,
     "dirname": 3,
@@ -2145,18 +2217,19 @@
     "eb": 1,
     "env": 6,
     "find": 4,
+    "gatk": 1,
     "gcc": 1,
     "git": 1,
     "globus": 1,
     "grep": 8,
     "head": 4,
-    "hostname": 10,
+    "hostname": 11,
     "jupyter": 1,
     "ldd": 2,
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 14,
+    "mkdir": 15,
     "module": 6,
     "mpicc": 2,
     "mpicxx": 1,
@@ -2166,14 +2239,14 @@
     "nvidia-smi": 6,
     "perf": 1,
     "pip": 1,
-    "pwd": 3,
+    "pwd": 4,
     "python3": 5,
     "quota": 1,
     "rocm-smi": 2,
     "rsync": 2,
     "sacct": 3,
     "salloc": 1,
-    "sbatch": 15,
+    "sbatch": 16,
     "scontrol": 3,
     "sed": 1,
     "sha256sum": 2,
@@ -2188,7 +2261,8 @@
     "ssh": 2,
     "tail": 4,
     "tar": 1,
-    "tee": 6,
+    "tee": 7,
+    "test": 1,
     "time": 1,
     "tr": 1,
     "uname": 1,

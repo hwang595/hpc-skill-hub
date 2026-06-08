@@ -2,22 +2,22 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 35 skills.
+Current registry size: 36 skills.
 
 ## Categories
 
 | Category | Skills |
 | --- | ---: |
 | `containers` | 2 |
-| `data` | 8 |
+| `data` | 9 |
 | `debugging` | 13 |
 | `gpu` | 5 |
 | `interactive` | 2 |
 | `mpi` | 2 |
 | `performance` | 3 |
-| `scheduler` | 19 |
+| `scheduler` | 20 |
 | `software` | 8 |
-| `workflow` | 3 |
+| `workflow` | 4 |
 
 ## Skills By Category
 
@@ -34,6 +34,7 @@ Current registry size: 35 skills.
 | --- | --- | --- | --- |
 | [`checksum-manifest-create`](../skills/checksum-manifest-create/README.md) | low | seed | Create checksum manifests for transfer validation and reproducibility. |
 | [`dataset-staging-to-scratch`](../skills/dataset-staging-to-scratch/README.md) | medium | seed | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
+| [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | [`globus-transfer-dataset`](../skills/globus-transfer-dataset/README.md) | medium | seed | Stage large datasets with Globus transfer and verification steps. |
 | [`large-file-archive-prepare`](../skills/large-file-archive-prepare/README.md) | medium | seed | Prepare large HPC datasets for archival, publication, or handoff. |
 | [`nf-core-on-slurm`](../skills/nf-core-on-slurm/README.md) | medium | seed | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
@@ -99,6 +100,7 @@ Current registry size: 35 skills.
 | [`checkpoint-restart-workflow`](../skills/checkpoint-restart-workflow/README.md) | medium | seed | Structure long HPC jobs so they can resume after time limits or preemption. |
 | [`dataset-staging-to-scratch`](../skills/dataset-staging-to-scratch/README.md) | medium | seed | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
 | [`deepspeed-on-slurm`](../skills/deepspeed-on-slurm/README.md) | medium | seed | Plan and smoke test DeepSpeed launches on Slurm GPU allocations. |
+| [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
 | [`interactive-session`](../skills/interactive-session/README.md) | medium | seed | Start short interactive compute sessions for debugging and notebooks. |
 | [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
@@ -132,6 +134,7 @@ Current registry size: 35 skills.
 
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
+| [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
 | [`nf-core-on-slurm`](../skills/nf-core-on-slurm/README.md) | medium | seed | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
 | [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
@@ -140,7 +143,7 @@ Current registry size: 35 skills.
 
 | Collection | Status | Skills | Audience | Description |
 | --- | --- | ---: | --- | --- |
-| [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | draft | 5 | bioinformatics teams, core facilities, genomics platform engineers | Domain skills for running reviewed bioinformatics workflows on Slurm-backed HPC systems. |
+| [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | draft | 6 | bioinformatics teams, core facilities, genomics platform engineers | Domain skills for running reviewed nf-core and GATK bioinformatics workflows on Slurm-backed HPC systems. |
 | [`core-hpc`](../collections/core-hpc.json) | draft | 11 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 9 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence. |
@@ -158,5 +161,5 @@ Current registry size: 35 skills.
 - Open OnDemand app templates.
 - Transfer verification across storage tiers.
 - WRF, GROMACS, LAMMPS, OpenFOAM, and Quantum ESPRESSO starter skills.
-- Bioinformatics workflows for GATK, BLAST, AlphaFold, and single-cell analysis.
+- Bioinformatics workflows for BLAST, AlphaFold, and single-cell analysis.
 - Facility read-only reports for fairshare, partitions, and node health.

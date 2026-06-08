@@ -1,0 +1,139 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "gatk-workflow-on-hpc",
+  "name": "GATK Workflow On HPC",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Plan and run GATK variant-calling workflows on shared HPC systems.",
+  "description": "This skill provides a conservative Slurm pattern for GATK workflows, including Java memory and temporary directory controls, reference and input checks, data staging reminders, and a dry-run-first HaplotypeCaller example.",
+  "categories": ["workflow", "scheduler", "data"],
+  "tags": ["gatk", "genomics", "haplotypecaller", "java", "slurm", "variant-calling"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "gatk",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "pwd",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    },
+    {
+      "name": "test",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "aligned_bam",
+      "type": "path",
+      "required": true,
+      "description": "Analysis-ready BAM or CRAM file with matching index."
+    },
+    {
+      "name": "reference_fasta",
+      "type": "path",
+      "required": true,
+      "description": "Reference FASTA with required GATK indexes and dictionary."
+    },
+    {
+      "name": "intervals",
+      "type": "path",
+      "required": false,
+      "description": "Optional interval list or BED file used for a smoke test or scatter."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": true,
+      "description": "Durable directory for generated GVCF, logs, and run records."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "gatk_launch_plan",
+      "description": "Reviewable command, Java memory settings, temporary directory, and input checks."
+    },
+    {
+      "name": "gvcf_output",
+      "description": "Optional HaplotypeCaller GVCF output when RUN_GATK=1."
+    },
+    {
+      "name": "run_record",
+      "description": "Logs and checklist for provenance, support, and reruns."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/gatk-haplotypecaller.sbatch",
+    "examples/inputs.env",
+    "examples/workflow-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run GATK HaplotypeCaller on Slurm",
+      "path": "examples/gatk-haplotypecaller.sbatch"
+    },
+    {
+      "title": "Input environment template",
+      "path": "examples/inputs.env"
+    },
+    {
+      "title": "GATK workflow checklist",
+      "path": "examples/workflow-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill gatk-workflow-on-hpc",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run plan-only mode with a tiny user-owned BAM, reference, and interval; set RUN_GATK=1 only after the input and reference checks pass."
+    }
+  ],
+  "references": [
+    {
+      "title": "GATK germline short variant discovery",
+      "url": "https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels"
+    },
+    {
+      "title": "GATK local temporary directory setup",
+      "url": "https://gatk.broadinstitute.org/hc/en-us/articles/18965297287067-How-to-setup-and-use-temporary-folder-for-GATK-local-execution"
+    },
+    {
+      "title": "GATK GenomicsDBImport",
+      "url": "https://gatk.broadinstitute.org/hc/en-us/articles/30332006200603-GenomicsDBImport"
+    }
+  ]
+}

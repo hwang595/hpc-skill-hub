@@ -61,6 +61,7 @@ tools.
 | `nextflow-on-slurm` | Configure Nextflow pipelines for Slurm-backed execution. |
 | `snakemake-on-slurm` | Configure Snakemake workflows for Slurm profiles. |
 | `nf-core-on-slurm` | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
+| `gatk-workflow-on-hpc` | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | `mpi-hello-and-benchmark` | Compile and run MPI sanity checks and simple communication benchmarks. |
 | `gpu-sanity-check` | Verify GPU allocation, CUDA/ROCm visibility, and multi-GPU communication. |
 | `pytorch-ddp-on-slurm` | Launch and verify PyTorch distributed data parallel jobs on Slurm. |

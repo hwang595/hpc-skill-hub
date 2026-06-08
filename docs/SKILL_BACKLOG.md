@@ -28,6 +28,7 @@ new collections.
 | `gpu-memory-triage` | debugging | low | Seed skill added to `gpu-mpi-performance`. |
 | `deepspeed-on-slurm` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
 | `nf-core-on-slurm` | workflow | medium | Seed skill added to `workflow-engines` and `bioinformatics-workflows`. |
+| `gatk-workflow-on-hpc` | workflow | medium | Seed skill added to `bioinformatics-workflows`. |
 
 ## Priority 1: Core User Workflows
 
@@ -54,7 +55,6 @@ requests should be proposed through skill request issues.
 
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
-| `gatk-workflow-on-hpc` | workflow | medium | Genomics workflows often combine Java, modules, containers, and data staging. |
 | `lammps-on-slurm` | mpi | medium | Molecular dynamics users need MPI, GPU, restart, and scaling examples. |
 | `gromacs-on-slurm` | gpu | medium | GROMACS runs expose common GPU/MPI/thread placement decisions. |
 | `openfoam-on-slurm` | mpi | medium | CFD workflows need decomposition, MPI launch, and output management patterns. |

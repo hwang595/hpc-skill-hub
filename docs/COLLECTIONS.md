@@ -21,8 +21,8 @@ research software engineer building software stacks may start with
 - `gpu-mpi-performance`: MPI launch checks, compiler/MPI compatibility, GPU
   sanity checks, GPU memory triage, PyTorch DDP smoke tests, NCCL diagnostics,
   DeepSpeed launch checks, OpenMP placement, and basic profiling.
-- `bioinformatics-workflows`: nf-core, Nextflow, Snakemake, data staging, and
-  checksum practices for genomics and core-facility workflows.
+- `bioinformatics-workflows`: nf-core, GATK, Nextflow, Snakemake, data staging,
+  and checksum practices for genomics and core-facility workflows.
 
 ## Contribution Guidance
 

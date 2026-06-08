@@ -34,7 +34,7 @@ The project is not only a documentation site. It combines:
 - `ai-hpc`: PyTorch DDP, NCCL diagnostics, GPU memory triage, DeepSpeed launch
   checks, GPU performance triage.
 - `bioinformatics-workflows`: nf-core, GATK, BLAST, AlphaFold, single-cell
-  workflows.
+  workflows, and genomics data staging.
 - `simulation`: LAMMPS, GROMACS, NAMD, OpenFOAM, WRF.
 - `facility-ops`: read-only reporting, health checks, usage reports, portals.
 
