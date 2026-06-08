@@ -24,6 +24,7 @@ new collections.
 | `rstudio-on-slurm` | interactive | medium | Seed skill added to `core-hpc`, `software-stacks`, and `training-onboarding`. |
 | `vscode-tunnel-on-slurm` | interactive | medium | Seed skill added to `core-hpc`, `software-stacks`, and `training-onboarding`. |
 | `python-virtualenv-on-hpc` | software | low | Seed skill added to `software-stacks`. |
+| `streamlit-on-slurm` | interactive | medium | Seed skill added to `software-stacks`, `training-onboarding`, and `ai-hpc`. |
 | `ray-on-slurm` | gpu | medium | Seed skill added to `software-stacks` and `gpu-mpi-performance`. |
 | `dask-jobqueue-on-slurm` | workflow | medium | Seed skill added to `software-stacks` and `workflow-engines`. |
 | `mpi4py-on-slurm` | software | medium | Seed skill added to `software-stacks` and `gpu-mpi-performance`. |

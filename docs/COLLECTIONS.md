@@ -17,10 +17,10 @@ research software engineer building software stacks may start with
   starter submission patterns plus failure triage and reproducible run capture
   for sites comparing or teaching scheduler basics.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
-  reproducible run capture, Python virtual environments, Ray clusters, Dask
-  Jobqueue, mpi4py jobs, Rscript jobs, RStudio sessions, Julia jobs, MATLAB
-  batch jobs, IDE tunnels, Conda/Mamba, container builds and runtime, Spack, and
-  EasyBuild.
+  reproducible run capture, Python virtual environments, Streamlit apps, Ray
+  clusters, Dask Jobqueue, mpi4py jobs, Rscript jobs, RStudio sessions, Julia
+  jobs, MATLAB batch jobs, IDE tunnels, Conda/Mamba, container builds and
+  runtime, Spack, and EasyBuild.
 - `containers`: Apptainer-compatible image build planning, container runtime
   execution, containerized MPI launch patterns, GPU visibility checks, scratch
   staging, checksum manifests, and reproducible run capture for containerized
@@ -29,15 +29,15 @@ research software engineer building software stacks may start with
   inside Slurm allocations, Dask worker clusters, Nextflow, Snakemake, and
   nf-core on Slurm.
 - `training-onboarding`: workshop preflight, Slurm basics, interactive
-  sessions, notebooks, RStudio, IDE tunnels, Python/Conda environments, Rscript
-  batch jobs, Julia batch jobs, MATLAB batch jobs, module debugging, data
-  staging, and failure triage for new users.
+  sessions, notebooks, Streamlit apps, RStudio, IDE tunnels, Python/Conda
+  environments, Rscript batch jobs, Julia batch jobs, MATLAB batch jobs, module
+  debugging, data staging, and failure triage for new users.
 - `data-movement`: Globus and rsync transfers, checksum manifests, scratch
   staging, archive preparation, scratch inventory, and filesystem quota triage.
 - `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
-  DeepSpeed, NCCL diagnostics, GPU memory triage, container runtime execution,
-  data staging, checkpoint/restart planning, reproducible run capture, and
-  Slurm efficiency review for distributed AI workloads.
+  DeepSpeed, NCCL diagnostics, GPU memory triage, Streamlit demos, container
+  runtime execution, data staging, checkpoint/restart planning, reproducible run
+  capture, and Slurm efficiency review for distributed AI workloads.
 - `gpu-mpi-performance`: MPI launch checks, containerized MPI checks, mpi4py
   launch checks, compiler/MPI compatibility, GPU sanity checks, Ray cluster
   smoke tests, GPU memory triage, PyTorch DDP smoke tests, NCCL diagnostics,

@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 66.
+- Skills: 67.
 - Collections: 12.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -29,9 +29,9 @@ request missing workflows, or contribute public site adapters.
   VS Code tunnels, OpenMP placement, quota triage, and scratch management.
 - Software stacks: module debugging, module tree health, compiler/MPI
   compatibility, reproducible run capture, Python virtualenv, Ray on Slurm,
-  Dask Jobqueue, mpi4py on Slurm, Rscript and RStudio on Slurm, Julia on Slurm,
-  MATLAB batch jobs, VS Code tunnels, Conda/Mamba, Apptainer builds and runtime,
-  containerized MPI, Spack, and EasyBuild.
+  Dask Jobqueue, mpi4py on Slurm, Streamlit apps, Rscript and RStudio on Slurm,
+  Julia on Slurm, MATLAB batch jobs, VS Code tunnels, Conda/Mamba, Apptainer
+  builds and runtime, containerized MPI, Spack, and EasyBuild.
 - Containers: Apptainer-compatible image build planning, container runtime
   execution, containerized MPI launch checks, GPU visibility checks, scratch
   staging, checksum manifests, and reproducible run capture.
@@ -39,8 +39,9 @@ request missing workflows, or contribute public site adapters.
   inside Slurm allocations, Dask worker clusters, Nextflow, Snakemake, and
   nf-core on Slurm.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm
-  workflows, notebooks, RStudio, VS Code tunnels, Python/Conda environments,
-  Rscript, Julia, and MATLAB batch jobs, and common learner triage.
+  workflows, notebooks, Streamlit apps, RStudio, VS Code tunnels, Python/Conda
+  environments, Rscript, Julia, and MATLAB batch jobs, and common learner
+  triage.
 - Data movement: Globus, rsync, checksum manifests, scratch staging, archive
   preparation, scratch inventory, and filesystem quota triage.
 - GPU/MPI performance: MPI sanity checks, containerized MPI, mpi4py launch
@@ -48,9 +49,9 @@ request missing workflows, or contribute public site adapters.
   diagnostics, GPU memory triage, DeepSpeed, OpenMP placement, Slurm efficiency
   review, and basic profiling.
 - AI/HPC: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
-  DeepSpeed, NCCL diagnostics, GPU memory triage, container runtime execution,
-  data staging, checkpoint/restart planning, reproducible run capture, and
-  Slurm efficiency review.
+  DeepSpeed, NCCL diagnostics, GPU memory triage, Streamlit demos, container
+  runtime execution, data staging, checkpoint/restart planning, reproducible run
+  capture, and Slurm efficiency review.
 - Bioinformatics: nf-core, GATK, and local BLAST+ workflow patterns with data
   staging and checksum practices.
 - Simulation: LAMMPS, GROMACS, NAMD, Quantum ESPRESSO, CP2K, OpenFOAM, WRF, MPI

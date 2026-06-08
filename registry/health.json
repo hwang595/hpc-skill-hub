@@ -7,18 +7,18 @@
     "debugging": 17,
     "education": 1,
     "gpu": 9,
-    "interactive": 4,
+    "interactive": 5,
     "mpi": 11,
     "performance": 12,
-    "scheduler": 49,
-    "software": 17,
+    "scheduler": 50,
+    "software": 18,
     "workflow": 10
   },
   "collection_count": 12,
   "collection_coverage": [
     {
       "id": "ai-hpc",
-      "skill_count": 12,
+      "skill_count": 13,
       "skill_ids": [
         "gpu-sanity-check",
         "ray-on-slurm",
@@ -27,6 +27,7 @@
         "deepspeed-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
+        "streamlit-on-slurm",
         "apptainer-run-container",
         "dataset-staging-to-scratch",
         "checkpoint-restart-workflow",
@@ -157,13 +158,14 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 19,
+      "skill_count": 20,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "streamlit-on-slurm",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "mpi4py-on-slurm",
@@ -182,7 +184,7 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 14,
+      "skill_count": 15,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
@@ -191,6 +193,7 @@
         "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
         "python-virtualenv-on-hpc",
+        "streamlit-on-slurm",
         "rscript-on-slurm",
         "julia-on-slurm",
         "matlab-batch-on-slurm",
@@ -216,7 +219,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 66
+    "seed": 67
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -281,6 +284,7 @@
     "slurm-submit-job": "medium",
     "snakemake-on-slurm": "medium",
     "spack-environment-create": "medium",
+    "streamlit-on-slurm": "medium",
     "training-cluster-reset-checklist": "medium",
     "vscode-tunnel-on-slurm": "medium",
     "wdl-on-slurm": "medium",
@@ -288,13 +292,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 49
+    "medium": 50
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 66,
+  "skill_count": 67,
   "status_counts": {
-    "draft": 66
+    "draft": 67
   },
   "uncollected_skill_ids": []
 }

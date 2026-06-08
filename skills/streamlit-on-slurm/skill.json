@@ -1,0 +1,138 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "streamlit-on-slurm",
+  "name": "Streamlit On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run policy-aware Streamlit apps from short Slurm compute allocations.",
+  "description": "This skill provides a conservative pattern for running Streamlit data apps on Slurm-backed HPC systems, including preflight checks, plan-only defaults, explicit port handling, optional tunnel guidance, and a tiny smoke-test app.",
+  "categories": ["interactive", "scheduler", "software"],
+  "tags": ["streamlit", "python", "web-app", "slurm", "interactive", "tunnel"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true,
+      "notes": "Used to run the Streamlit app inside a scheduled allocation."
+    },
+    {
+      "name": "python3",
+      "required": true,
+      "notes": "Used to run the app and verify the Python environment."
+    },
+    {
+      "name": "streamlit",
+      "required": true,
+      "notes": "The Streamlit CLI must be available in the selected Python environment."
+    },
+    {
+      "name": "ssh",
+      "required": false,
+      "notes": "Used only when the site requires SSH port forwarding to reach compute-node web services."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "app_path",
+      "type": "path",
+      "required": true,
+      "description": "Streamlit app entrypoint, such as streamlit_app.py."
+    },
+    {
+      "name": "port",
+      "type": "integer",
+      "required": false,
+      "description": "Port where Streamlit should listen inside the Slurm allocation."
+    },
+    {
+      "name": "project_dir",
+      "type": "path",
+      "required": false,
+      "description": "Project directory used as the working directory for the Streamlit app."
+    },
+    {
+      "name": "site_policy",
+      "type": "string",
+      "required": true,
+      "description": "Local policy confirming whether user-started web apps and tunnels are allowed on compute nodes."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "streamlit_log",
+      "description": "Slurm output showing compute host, app path, selected port, and Streamlit startup output."
+    },
+    {
+      "name": "connection_notes",
+      "description": "SSH tunnel or site portal notes for reaching the scheduled app."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/streamlit-app.sbatch",
+    "examples/streamlit-preflight.sh",
+    "examples/streamlit_app.py",
+    "examples/tunnel-template.sh",
+    "examples/site-policy-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Plan or launch a Streamlit app on Slurm",
+      "path": "examples/streamlit-app.sbatch"
+    },
+    {
+      "title": "Check Python, Streamlit, Slurm, and app prerequisites",
+      "path": "examples/streamlit-preflight.sh"
+    },
+    {
+      "title": "Tiny Streamlit smoke-test app",
+      "path": "examples/streamlit_app.py"
+    },
+    {
+      "title": "Build an SSH tunnel command when required by the site",
+      "path": "examples/tunnel-template.sh"
+    },
+    {
+      "title": "Review site policy before starting a web app",
+      "path": "examples/site-policy-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill streamlit-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/streamlit-on-slurm/examples/streamlit-app.sbatch skills/streamlit-on-slurm/examples/streamlit-preflight.sh skills/streamlit-on-slurm/examples/tunnel-template.sh",
+      "description": "Check that shell examples parse."
+    },
+    {
+      "type": "manual",
+      "description": "After site approval, run the preflight, submit the plan-only job, then set RUN_STREAMLIT_APP=1 in a short allocation and cancel it when finished."
+    }
+  ],
+  "references": [
+    {
+      "title": "Streamlit command-line interface",
+      "url": "https://docs.streamlit.io/develop/api-reference/cli"
+    },
+    {
+      "title": "Streamlit run command",
+      "url": "https://docs.streamlit.io/develop/api-reference/cli/run"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

@@ -7,11 +7,11 @@
     "debugging": 17,
     "education": 1,
     "gpu": 9,
-    "interactive": 4,
+    "interactive": 5,
     "mpi": 11,
     "performance": 12,
-    "scheduler": 49,
-    "software": 17,
+    "scheduler": 50,
+    "software": 18,
     "workflow": 10
   },
   "collection_count": 12,
@@ -34,6 +34,7 @@
         "deepspeed-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
+        "streamlit-on-slurm",
         "apptainer-run-container",
         "dataset-staging-to-scratch",
         "checkpoint-restart-workflow",
@@ -41,7 +42,7 @@
         "slurm-efficiency-report"
       ],
       "status": "draft",
-      "summary": "Skills for launching, validating, and troubleshooting distributed AI workloads on Slurm-backed HPC systems."
+      "summary": "Skills for launching, validating, demoing, and troubleshooting distributed AI workloads on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -244,6 +245,7 @@
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "streamlit-on-slurm",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "mpi4py-on-slurm",
@@ -260,7 +262,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Streamlit, Ray, Dask, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -279,6 +281,7 @@
         "rstudio-on-slurm",
         "vscode-tunnel-on-slurm",
         "python-virtualenv-on-hpc",
+        "streamlit-on-slurm",
         "rscript-on-slurm",
         "julia-on-slurm",
         "matlab-batch-on-slurm",
@@ -288,7 +291,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -321,7 +324,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 46,
+    "slurm": 47,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -348,7 +351,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 66,
+  "skill_count": 67,
   "skills": [
     {
       "categories": [
@@ -3932,6 +3935,76 @@
     },
     {
       "categories": [
+        "interactive",
+        "scheduler",
+        "software"
+      ],
+      "description": "This skill provides a conservative pattern for running Streamlit data apps on Slurm-backed HPC systems, including preflight checks, plan-only defaults, explicit port handling, optional tunnel guidance, and a tiny smoke-test app.",
+      "examples": [
+        {
+          "path": "skills/streamlit-on-slurm/examples/streamlit-app.sbatch",
+          "title": "Plan or launch a Streamlit app on Slurm"
+        },
+        {
+          "path": "skills/streamlit-on-slurm/examples/streamlit-preflight.sh",
+          "title": "Check Python, Streamlit, Slurm, and app prerequisites"
+        },
+        {
+          "path": "skills/streamlit-on-slurm/examples/streamlit_app.py",
+          "title": "Tiny Streamlit smoke-test app"
+        },
+        {
+          "path": "skills/streamlit-on-slurm/examples/tunnel-template.sh",
+          "title": "Build an SSH tunnel command when required by the site"
+        },
+        {
+          "path": "skills/streamlit-on-slurm/examples/site-policy-checklist.md",
+          "title": "Review site policy before starting a web app"
+        }
+      ],
+      "id": "streamlit-on-slurm",
+      "maturity": "seed",
+      "name": "Streamlit On Slurm",
+      "path": "skills/streamlit-on-slurm",
+      "readme": "skills/streamlit-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Streamlit command-line interface",
+          "url": "https://docs.streamlit.io/develop/api-reference/cli"
+        },
+        {
+          "title": "Streamlit run command",
+          "url": "https://docs.streamlit.io/develop/api-reference/cli/run"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run policy-aware Streamlit apps from short Slurm compute allocations.",
+      "tags": [
+        "streamlit",
+        "python",
+        "web-app",
+        "slurm",
+        "interactive",
+        "tunnel"
+      ],
+      "tools": [
+        "sbatch",
+        "python3",
+        "streamlit",
+        "ssh"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "education",
         "admin",
         "scheduler"
@@ -4282,7 +4355,7 @@
     "htcondor": 1,
     "ide": 1,
     "inode": 1,
-    "interactive": 3,
+    "interactive": 4,
     "io": 1,
     "java": 1,
     "julia": 1,
@@ -4351,7 +4424,7 @@
     "publication": 1,
     "pw.x": 1,
     "pwscf": 1,
-    "python": 4,
+    "python": 5,
     "pytorch": 3,
     "qe": 1,
     "qstat": 2,
@@ -4389,7 +4462,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 44,
+    "slurm": 45,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -4401,6 +4474,7 @@
     "staging": 3,
     "state": 1,
     "storage": 2,
+    "streamlit": 1,
     "tar": 1,
     "threads": 2,
     "throughput": 1,
@@ -4409,7 +4483,7 @@
     "training": 1,
     "transfer": 3,
     "triage": 4,
-    "tunnel": 2,
+    "tunnel": 3,
     "uge": 1,
     "usage": 1,
     "validation": 1,
@@ -4420,6 +4494,7 @@
     "walltime": 2,
     "wdl": 1,
     "weather": 1,
+    "web-app": 1,
     "workers": 1,
     "workflow": 6,
     "workshop": 1,
@@ -4504,7 +4579,7 @@
     "pw.x": 1,
     "pwd": 7,
     "python": 3,
-    "python3": 5,
+    "python3": 6,
     "qdel": 1,
     "qstat": 2,
     "qsub": 2,
@@ -4517,7 +4592,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 36,
+    "sbatch": 37,
     "scontrol": 6,
     "sed": 3,
     "seff": 1,
@@ -4533,7 +4608,8 @@
     "squeue": 7,
     "sreport": 1,
     "srun": 17,
-    "ssh": 3,
+    "ssh": 4,
+    "streamlit": 1,
     "tail": 4,
     "tar": 1,
     "tee": 17,

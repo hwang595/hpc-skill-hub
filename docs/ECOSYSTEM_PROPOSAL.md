@@ -35,14 +35,15 @@ The project is not only a documentation site. It combines:
   containerized MPI, GPU checks, data staging, checksums, and reproducible run
   capture.
 - `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices,
-  RStudio, and IDE tunnels.
+  Streamlit, RStudio, and IDE tunnels.
 - `workflow-engines`: CWL, WDL, Nextflow, and Snakemake.
 - `training-onboarding`: workshop preflight, intro Slurm skills, notebooks,
-  RStudio, IDE tunnels, Python environments, and common learner failure modes.
+  Streamlit, RStudio, IDE tunnels, Python environments, and common learner
+  failure modes.
 - `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
-  DeepSpeed, NCCL diagnostics, GPU memory triage, container runtime execution,
-  data staging, checkpoint/restart planning, reproducible run capture, and
-  Slurm efficiency review.
+  DeepSpeed, NCCL diagnostics, GPU memory triage, Streamlit demos, container
+  runtime execution, data staging, checkpoint/restart planning, reproducible run
+  capture, and Slurm efficiency review.
 - `bioinformatics-workflows`: nf-core, GATK, local BLAST+, AlphaFold,
   single-cell workflows, and genomics data staging.
 - `simulation-workflows`: LAMMPS, GROMACS, Quantum ESPRESSO, NAMD, OpenFOAM,
