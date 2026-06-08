@@ -107,6 +107,8 @@ request missing workflows, or contribute public site adapters.
 - GitHub milestone metadata and command generator for launch, reviewed-skill
   pilot, integration, adapter, and ecosystem backlog planning.
 - Launch readiness checks for Discussion forms and milestone metadata.
+- Launch evidence report generation for maintainer handoff, owner checklists,
+  and public launch issue evidence.
 - Integration guide, integration request template, and starter label for
   downstream tools, portals, assistants, and workflow projects.
 - Repository metadata, labels, and starter ruleset files.

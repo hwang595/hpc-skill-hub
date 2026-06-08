@@ -52,9 +52,11 @@ Run these from the repository root in the authenticated environment:
 ```bash
 python3 tools/launch_readiness.py --owner <owner> --run-check
 python3 tools/github_publish_plan.py --owner <owner> --run-check
+python3 tools/launch_evidence.py --owner <owner> --run-check
 ```
 
-If the plan looks correct, follow the printed commands in order. The first
+Attach the launch evidence report to the launch issue or owner handoff. If the
+publish plan looks correct, follow the printed commands in order. The first
 networked step is:
 
 ```bash

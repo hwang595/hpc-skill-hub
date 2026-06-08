@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a launch evidence report generator for maintainer handoff, launch issues,
+  and open-source proposal evidence without taking networked action.
 - Add an object storage transfer seed skill with rclone dry-run copy planning,
   guarded sync mode, optional AWS CLI S3 sync planning, bounded transfer
   settings, and validation logs.

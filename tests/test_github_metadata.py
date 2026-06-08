@@ -365,6 +365,46 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("repos/example/hpc-skill-hub/rulesets", result.stdout)
         self.assertIn("gh release create v0.1.0", result.stdout)
 
+    def test_launch_evidence_generator(self):
+        markdown = subprocess.run(
+            [
+                "python3",
+                "tools/launch_evidence.py",
+                "--owner",
+                "example",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        self.assertIn("# HPC Skill Hub Launch Evidence", markdown.stdout)
+        self.assertIn("- Repository: `hpc-skill-hub`", markdown.stdout)
+        self.assertIn("| Status | Check | Detail |", markdown.stdout)
+        self.assertIn("registry-health", markdown.stdout)
+
+        json_result = subprocess.run(
+            [
+                "python3",
+                "tools/launch_evidence.py",
+                "--owner",
+                "example",
+                "--json",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        evidence = json.loads(json_result.stdout)
+        index = json.loads((ROOT / "registry" / "index.json").read_text(encoding="utf-8"))
+        self.assertEqual(evidence["repository"], "hpc-skill-hub")
+        self.assertEqual(evidence["registry"]["skill_count"], index["skill_count"])
+        self.assertIn("release_manifest", evidence)
+        self.assertTrue(evidence["readiness"])
+
     def test_launch_readiness_audit(self):
         launch_readiness = load_launch_readiness_module()
         self.assertIn(

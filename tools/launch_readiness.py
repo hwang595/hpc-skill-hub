@@ -64,6 +64,7 @@ REQUIRED_LAUNCH_FILES = [
     ".github/workflows/pages.yml",
     ".github/pull_request_template.md",
     "tools/github_publish_plan.py",
+    "tools/launch_evidence.py",
     "tools/github_milestones.py",
     "tools/build_compatibility.py",
     "tools/build_package_data.py",

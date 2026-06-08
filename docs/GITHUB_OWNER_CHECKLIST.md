@@ -46,6 +46,8 @@ Before pushing publicly:
 
 - Review [Public Launch Packet](PUBLIC_LAUNCH_PACKET.md).
 - Run `python3 tools/launch_readiness.py --owner <owner> --run-check`.
+- Run `python3 tools/launch_evidence.py --owner <owner> --run-check` and attach
+  the report to the launch decision record or owner handoff.
 - Confirm no private hostnames, usernames, allocation names, internal project
   ids, private paths, tickets, credentials, or unpublished cluster policy are
   present.
@@ -73,6 +75,7 @@ Run the ordered dry-run plan:
 
 ```bash
 python3 tools/github_publish_plan.py --owner <owner> --run-check
+python3 tools/launch_evidence.py --owner <owner> --run-check
 ```
 
 Then follow [GitHub Publishing Guide](GITHUB_PUBLISHING.md) and

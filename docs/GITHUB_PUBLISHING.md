@@ -31,6 +31,7 @@ Install and authenticate `gh`, then run from the repository root:
 ```bash
 python3 tools/github_publish_plan.py --owner <owner>
 python3 tools/launch_readiness.py --owner <owner>
+python3 tools/launch_evidence.py --owner <owner>
 python3 tools/github_repo.py --owner <owner>
 python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
 python3 tools/github_milestones.py --repo <owner>/hpc-skill-hub
@@ -46,11 +47,13 @@ release commands, run:
 
 ```bash
 python3 tools/github_publish_plan.py --owner <owner> --run-check
+python3 tools/launch_evidence.py --owner <owner> --run-check
 ```
 
-This plan is read-only: it prints commands and current local readiness, but it
-does not create a repository, push commits, edit settings, open issues, or cut a
-release.
+These commands are read-only: the publish plan prints commands and current
+local readiness, while the evidence report creates a pasteable Markdown or JSON
+summary for the launch issue or owner handoff. They do not create a repository,
+push commits, edit settings, open issues, or cut a release.
 
 ## Publish With An Existing Empty GitHub Repository
 
@@ -88,6 +91,8 @@ uncommitted export rather than this maintained local repository.
 - GitHub Discussions categories match `.github/DISCUSSION_TEMPLATE/` and
   [GitHub Discussions](GITHUB_DISCUSSIONS.md).
 - `python3 tools/launch_readiness.py` reports no local `FAIL` entries.
+- `python3 tools/launch_evidence.py --owner <owner> --run-check` produces a
+  launch evidence report with no `FAIL` readiness checks.
 - `python3 tools/github_repo.py --owner <owner>` prints the expected repository
   creation and metadata commands.
 - `python3 tools/github_labels.py --repo <owner>/hpc-skill-hub` prints the
