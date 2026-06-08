@@ -14,7 +14,8 @@ research software engineer building software stacks may start with
   monitoring, resource estimation, OOM memory triage,
   efficiency review,
   license-aware jobs, checkpoint/restart, preemption/requeue handling, failure
-  triage, node-local scratch staging, storage triage, OpenMP placement,
+  triage, node-local scratch staging, shared project permissions, storage
+  triage, OpenMP placement,
   notebooks, RStudio, IDE tunnels, and interactive sessions.
 - `scheduler-basics`: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
   starter submission patterns plus array retry planning, failure triage, OOM
@@ -41,12 +42,13 @@ research software engineer building software stacks may start with
   TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python/Conda
   environments, Rscript batch jobs, Julia batch jobs, MATLAB batch jobs,
   license-aware software use, module debugging, requeue-safe restart behavior,
-  data staging, node-local scratch staging, OOM memory triage, and failure
-  triage for new users.
+  data staging, node-local scratch staging, shared project permissions, OOM
+  memory triage, and failure triage for new users.
 - `data-movement`: Globus, rsync, and object-storage transfers, checksum
   manifests, scratch staging, node-local scratch staging, archive preparation,
   Darshan I/O profile analysis, Lustre striping layout planning, IOR/MDTest
-  storage smoke benchmarks, scratch inventory, and filesystem quota triage.
+  storage smoke benchmarks, scratch inventory, filesystem quota triage, and
+  shared project permissions triage.
 - `ai-hpc`: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke
   tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
@@ -74,8 +76,9 @@ research software engineer building software stacks may start with
   storage smoke evidence, and
   reproducible run capture for simulation teams.
 - `facility-ops`: read-only usage reporting, pending reason triage, node
-  triage, QOS/account limit evidence, OOM memory triage, and module tree health
-  checks for HPC support teams and facility maintainers.
+  triage, QOS/account limit evidence, OOM memory triage, shared project
+  permissions, and module tree health checks for HPC support teams and facility
+  maintainers.
 
 ## Contribution Guidance
 

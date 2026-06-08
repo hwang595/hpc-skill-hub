@@ -1,10 +1,10 @@
 {
   "$schema": "../schemas/registry-index.schema.json",
   "categories": {
-    "admin": 5,
+    "admin": 6,
     "containers": 3,
-    "data": 18,
-    "debugging": 31,
+    "data": 19,
+    "debugging": 32,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
@@ -122,10 +122,11 @@
         "openmp-thread-affinity",
         "node-local-scratch-staging",
         "quota-and-filesystem-triage",
+        "shared-project-permissions-triage",
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, shared project permissions, and storage triage."
     },
     {
       "audience": [
@@ -148,10 +149,11 @@
         "ior-mdtest-storage-smoke",
         "large-file-archive-prepare",
         "scratch-storage-management",
-        "quota-and-filesystem-triage"
+        "quota-and-filesystem-triage",
+        "shared-project-permissions-triage"
       ],
       "status": "draft",
-      "summary": "Skills for staging, transferring, validating, profiling, layout planning, benchmarking, and managing research data across HPC filesystems, node-local scratch, and object storage."
+      "summary": "Skills for staging, transferring, validating, profiling, layout planning, benchmarking, permissions triage, and managing research data across HPC filesystems, node-local scratch, and object storage."
     },
     {
       "audience": [
@@ -168,10 +170,11 @@
         "slurm-qos-account-limit-triage",
         "slurm-oom-memory-triage",
         "node-health-readonly-triage",
+        "shared-project-permissions-triage",
         "module-tree-health-check"
       ],
       "status": "draft",
-      "summary": "Read-only operational skills for usage reporting, pending reason triage, QOS/account limit evidence, OOM memory triage, node triage, and module tree health."
+      "summary": "Read-only operational skills for usage reporting, pending reason triage, QOS/account limit evidence, OOM memory triage, node triage, shared project permissions, and module tree health."
     },
     {
       "audience": [
@@ -344,11 +347,12 @@
         "module-environment-debug",
         "dataset-staging-to-scratch",
         "node-local-scratch-staging",
+        "shared-project-permissions-triage",
         "slurm-oom-memory-triage",
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, array retry planning, OOM memory triage, node-local scratch staging, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, array retry planning, OOM memory triage, node-local scratch staging, shared project permissions, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -436,7 +440,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 89,
+  "skill_count": 90,
   "skills": [
     {
       "categories": [
@@ -4609,6 +4613,73 @@
     },
     {
       "categories": [
+        "debugging",
+        "data",
+        "admin"
+      ],
+      "description": "This skill helps HPC users and support teams diagnose permission denied failures in shared project, scratch, and collaboration directories without changing ownership, modes, ACLs, or group membership.",
+      "examples": [
+        {
+          "path": "skills/shared-project-permissions-triage/examples/permission-triage.sh",
+          "title": "Collect shared directory permission evidence"
+        },
+        {
+          "path": "skills/shared-project-permissions-triage/examples/support-review-checklist.md",
+          "title": "Review shared directory permission evidence"
+        }
+      ],
+      "id": "shared-project-permissions-triage",
+      "maturity": "seed",
+      "name": "Shared Project Permissions Triage",
+      "path": "skills/shared-project-permissions-triage",
+      "readme": "skills/shared-project-permissions-triage/README.md",
+      "references": [
+        {
+          "title": "util-linux namei manual page",
+          "url": "https://man7.org/linux/man-pages/man1/namei.1.html"
+        },
+        {
+          "title": "Linux getfacl manual page",
+          "url": "https://man7.org/linux/man-pages/man1/getfacl.1.html"
+        },
+        {
+          "title": "GNU coreutils id invocation",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/id-invocation.html"
+        },
+        {
+          "title": "GNU coreutils stat invocation",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/stat-invocation.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Collect read-only evidence for shared project directory permission failures.",
+      "tags": [
+        "permissions",
+        "acl",
+        "group",
+        "setgid",
+        "scratch",
+        "project",
+        "triage"
+      ],
+      "tools": [
+        "id",
+        "ls",
+        "stat",
+        "test",
+        "dirname",
+        "namei",
+        "getfacl",
+        "df",
+        "grep",
+        "tail"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "scheduler",
         "debugging",
         "workflow"
@@ -5888,6 +5959,7 @@
   "tags": {
     "accelerate": 1,
     "account": 1,
+    "acl": 1,
     "affinity": 2,
     "afterany": 1,
     "afterok": 1,
@@ -5972,6 +6044,7 @@
     "gres": 1,
     "grid-engine": 1,
     "gromacs": 1,
+    "group": 1,
     "haplotypecaller": 1,
     "hdf5": 2,
     "high-throughput": 1,
@@ -6063,6 +6136,7 @@
     "pending": 1,
     "perf": 1,
     "permission": 1,
+    "permissions": 1,
     "pfl": 1,
     "pingpong": 1,
     "pip": 1,
@@ -6077,6 +6151,7 @@
     "priority": 1,
     "profile": 1,
     "profiling": 2,
+    "project": 1,
     "provenance": 1,
     "pseudopotential": 1,
     "publication": 1,
@@ -6121,8 +6196,9 @@
     "samplesheet": 1,
     "sbatch": 4,
     "scontrol": 4,
-    "scratch": 3,
+    "scratch": 4,
     "seff": 1,
+    "setgid": 1,
     "sge": 1,
     "sha256": 1,
     "sif": 1,
@@ -6161,7 +6237,7 @@
     "training": 2,
     "transfer": 4,
     "transformers": 1,
-    "triage": 5,
+    "triage": 6,
     "tunnel": 4,
     "ucx": 1,
     "uge": 1,
@@ -6224,8 +6300,8 @@
     "date": 37,
     "decomposePar": 1,
     "deepspeed": 1,
-    "df": 5,
-    "dirname": 3,
+    "df": 6,
+    "dirname": 4,
     "distributed": 1,
     "du": 2,
     "eb": 1,
@@ -6234,11 +6310,12 @@
     "find": 7,
     "gatk": 1,
     "gcc": 1,
+    "getfacl": 1,
     "git": 1,
     "globus": 1,
     "gmx": 1,
     "gmx_mpi": 1,
-    "grep": 10,
+    "grep": 11,
     "h5cc": 1,
     "h5dump": 1,
     "h5pcc": 1,
@@ -6247,6 +6324,7 @@
     "hwloc-ls": 1,
     "ibv_devinfo": 1,
     "icoFoam": 1,
+    "id": 1,
     "ior": 1,
     "julia": 1,
     "jupyter": 1,
@@ -6255,6 +6333,7 @@
     "lmp": 1,
     "lmutil": 1,
     "ln": 1,
+    "ls": 1,
     "lscpu": 3,
     "make": 1,
     "makeblastdb": 1,
@@ -6273,6 +6352,7 @@
     "mpifort": 2,
     "mpirun": 4,
     "namd2": 1,
+    "namei": 1,
     "nc-config": 1,
     "ncdump": 2,
     "nextflow": 2,
@@ -6323,13 +6403,13 @@
     "srun": 26,
     "ssh": 5,
     "sshare": 1,
-    "stat": 1,
+    "stat": 2,
     "streamlit": 1,
-    "tail": 6,
+    "tail": 7,
     "tar": 1,
     "tee": 24,
     "tensorboard": 1,
-    "test": 8,
+    "test": 9,
     "time": 1,
     "touch": 1,
     "tr": 1,

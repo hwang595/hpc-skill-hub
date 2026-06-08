@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 89.
+- Skills: 90.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -29,7 +29,8 @@ request missing workflows, or contribute public site adapters.
   monitoring, resource estimation, OOM memory triage, efficiency review,
   license-aware jobs, checkpoint/restart, preemption/requeue handling, failure triage, interactive sessions, Open OnDemand Batch
   Connect templates, Jupyter, RStudio, VS Code tunnels, OpenMP placement, quota
-  triage, node-local scratch staging, and scratch management.
+  triage, shared project permissions, node-local scratch staging, and scratch
+  management.
 - Software stacks: module debugging, module tree health, compiler/MPI
   compatibility, CMake build preflight, parallel HDF5/NetCDF preflight,
   license-aware jobs, reproducible run capture, Python virtualenv, Open OnDemand
@@ -52,7 +53,8 @@ request missing workflows, or contribute public site adapters.
 - Data movement: Globus, rsync, object-storage transfers, checksum manifests,
   scratch staging, node-local scratch staging, archive preparation, Darshan I/O
   profile analysis, Lustre striping layout planning, IOR/MDTest storage smoke
-  benchmarks, scratch inventory, and filesystem quota triage.
+  benchmarks, scratch inventory, filesystem quota triage, and shared project
+  permission triage.
 - GPU/MPI performance: MPI sanity checks, GPU binding diagnostics, MPI fabric
   diagnostics, rank binding diagnostics, hybrid MPI/OpenMP layout checks,
   CMake build preflight, parallel HDF5/NetCDF preflight, containerized MPI,
@@ -77,8 +79,9 @@ request missing workflows, or contribute public site adapters.
   placement, restart planning, profiling, storage smoke evidence, and
   reproducibility.
 - Facility operations: read-only Slurm usage reporting, pending reason triage,
-  QOS/account limit evidence, OOM memory triage, node-health triage, and module
-  tree health checks for support teams and facility maintainers.
+  QOS/account limit evidence, OOM memory triage, node-health triage, shared
+  project permission evidence, and module tree health checks for support teams
+  and facility maintainers.
 
 ## Tooling
 

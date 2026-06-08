@@ -7,6 +7,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a shared project permissions triage seed skill for read-only user/group,
+  path traversal, `stat`, optional `namei`, optional `getfacl`, and log evidence
+  around shared directory access and ACL failures.
 - Add a node-local scratch staging seed skill for capacity evidence, secure
   `mktemp -d` work directories, stage-in/stage-out logs, and marker-guarded
   cleanup around `TMPDIR`/`SLURM_TMPDIR` style temporary storage.
@@ -173,12 +176,12 @@ Initial public seed release.
 
 ### Added
 
-- 89 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 90 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, array retry planning, dependency chains, pending reason triage, monitoring, resource
   estimation, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
   preemption and requeue-safe restart behavior,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
-  placement, storage triage, node-local scratch staging, Python/R/Julia/MATLAB software environments,
+  placement, storage triage, shared project permissions and ACL triage, node-local scratch staging, Python/R/Julia/MATLAB software environments,
   CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile
   analysis, Lustre striping layout planning,
   TensorBoard, Streamlit, Ray, Dask Jobqueue, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, containers, containerized MPI, Spack, EasyBuild, object storage, data movement, node-local scratch staging,

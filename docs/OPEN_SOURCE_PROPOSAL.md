@@ -28,7 +28,7 @@ HPC Skill Hub turns those recurring tasks into portable skill packages with:
 
 ## Initial Scope
 
-The seed registry includes 89 skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine, modules, Apptainer, containerized MPI, CMake, Spack,
+The seed registry includes 90 skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine, modules, Apptainer, containerized MPI, CMake, Spack,
 EasyBuild, Globus, CWL, WDL, Nextflow, Snakemake, MPI, GPU sanity checks, and basic
 profiling, Slurm OOM memory triage, Slurm array retry planning, Darshan I/O profile analysis, Lustre striping layout planning, GPU binding diagnostics, MPI fabric diagnostics, MPI rank binding diagnostics, hybrid MPI/OpenMP layout checks, CMake build preflight, parallel HDF5/NetCDF preflight, license-aware Slurm jobs, plus storage, quota, arrays, dependency chains, pending reason
 triage, QOS/account limit evidence, job efficiency review, checkpoint/restart
@@ -36,7 +36,7 @@ workflows, preemption and requeue-safe restart behavior, OpenMP placement,
 Open OnDemand Batch Connect templates, Jupyter notebooks, TensorBoard monitors, Streamlit apps, RStudio sessions, VS Code tunnels, Python/Conda environments, Ray, Dask Jobqueue, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py,
 Rscript, Julia, and MATLAB batch jobs, compiler/MPI compatibility, CMake build preflight,
 reproducible run capture, container builds, checksum manifests, rsync transfer,
-object storage transfer, scratch staging, node-local scratch staging, archive preparation, IOR/MDTest storage smoke benchmarks,
+object storage transfer, scratch staging, node-local scratch staging, shared project permissions and ACL triage, archive preparation, IOR/MDTest storage smoke benchmarks,
 PyTorch DDP smoke testing, NCCL diagnostics, GPU memory triage, and DeepSpeed launch checks. It also includes
 nf-core, GATK, local BLAST+, LAMMPS, GROMACS, NAMD, Quantum ESPRESSO, CP2K,
 OpenFOAM, and WRF on Slurm, read-only facility usage reporting, node triage,

@@ -1,10 +1,10 @@
 {
   "$schema": "../schemas/registry-health.schema.json",
   "category_counts": {
-    "admin": 5,
+    "admin": 6,
     "containers": 3,
-    "data": 18,
-    "debugging": 31,
+    "data": 19,
+    "debugging": 32,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
@@ -68,7 +68,7 @@
     },
     {
       "id": "core-hpc",
-      "skill_count": 22,
+      "skill_count": 23,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
@@ -91,12 +91,13 @@
         "openmp-thread-affinity",
         "node-local-scratch-staging",
         "quota-and-filesystem-triage",
+        "shared-project-permissions-triage",
         "scratch-storage-management"
       ]
     },
     {
       "id": "data-movement",
-      "skill_count": 12,
+      "skill_count": 13,
       "skill_ids": [
         "globus-transfer-dataset",
         "rsync-data-transfer",
@@ -109,18 +110,20 @@
         "ior-mdtest-storage-smoke",
         "large-file-archive-prepare",
         "scratch-storage-management",
-        "quota-and-filesystem-triage"
+        "quota-and-filesystem-triage",
+        "shared-project-permissions-triage"
       ]
     },
     {
       "id": "facility-ops",
-      "skill_count": 6,
+      "skill_count": 7,
       "skill_ids": [
         "cluster-usage-report-readonly",
         "slurm-pending-reason-triage",
         "slurm-qos-account-limit-triage",
         "slurm-oom-memory-triage",
         "node-health-readonly-triage",
+        "shared-project-permissions-triage",
         "module-tree-health-check"
       ]
     },
@@ -234,7 +237,7 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 22,
+      "skill_count": 23,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
@@ -256,6 +259,7 @@
         "module-environment-debug",
         "dataset-staging-to-scratch",
         "node-local-scratch-staging",
+        "shared-project-permissions-triage",
         "slurm-oom-memory-triage",
         "job-failure-triage"
       ]
@@ -278,7 +282,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 89
+    "seed": 90
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -349,6 +353,7 @@
     "rstudio-on-slurm": "medium",
     "rsync-data-transfer": "medium",
     "scratch-storage-management": "low",
+    "shared-project-permissions-triage": "low",
     "slurm-array-retry-plan": "medium",
     "slurm-efficiency-report": "low",
     "slurm-gpu-binding-diagnostics": "medium",
@@ -372,14 +377,14 @@
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
-    "low": 20,
+    "low": 21,
     "medium": 69
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 89,
+  "skill_count": 90,
   "status_counts": {
-    "draft": 89
+    "draft": 90
   },
   "uncollected_skill_ids": []
 }

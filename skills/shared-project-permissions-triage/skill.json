@@ -1,0 +1,132 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "shared-project-permissions-triage",
+  "name": "Shared Project Permissions Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect read-only evidence for shared project directory permission failures.",
+  "description": "This skill helps HPC users and support teams diagnose permission denied failures in shared project, scratch, and collaboration directories without changing ownership, modes, ACLs, or group membership.",
+  "categories": ["debugging", "data", "admin"],
+  "tags": ["permissions", "acl", "group", "setgid", "scratch", "project", "triage"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "id",
+      "required": true
+    },
+    {
+      "name": "ls",
+      "required": true
+    },
+    {
+      "name": "stat",
+      "required": true
+    },
+    {
+      "name": "test",
+      "required": true
+    },
+    {
+      "name": "dirname",
+      "required": true
+    },
+    {
+      "name": "namei",
+      "required": false,
+      "notes": "Useful on Linux systems for inspecting path traversal permissions."
+    },
+    {
+      "name": "getfacl",
+      "required": false,
+      "notes": "Useful on filesystems that expose POSIX ACLs."
+    },
+    {
+      "name": "df",
+      "required": false
+    },
+    {
+      "name": "grep",
+      "required": false
+    },
+    {
+      "name": "tail",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "target_path",
+      "type": "path",
+      "required": false,
+      "description": "Shared file or directory that produced a permission denied, group access, or collaboration failure."
+    },
+    {
+      "name": "log_file",
+      "type": "path",
+      "required": false,
+      "description": "Optional job, transfer, or application log with permission-related errors."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "permissions_triage_report",
+      "description": "Read-only report with current identity, group membership, path metadata, traversal permissions, ACL output when available, and relevant log clues."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/permission-triage.sh",
+    "examples/support-review-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Collect shared directory permission evidence",
+      "path": "examples/permission-triage.sh"
+    },
+    {
+      "title": "Review shared directory permission evidence",
+      "path": "examples/support-review-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill shared-project-permissions-triage",
+      "description": "Validate the manifest and example artifacts."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash skills/shared-project-permissions-triage/examples/permission-triage.sh .",
+      "description": "Collect read-only evidence for the current directory."
+    },
+    {
+      "type": "manual",
+      "description": "Run against a user-owned shared project test directory and confirm the script does not change ownership, modes, ACLs, group membership, or files."
+    }
+  ],
+  "references": [
+    {
+      "title": "util-linux namei manual page",
+      "url": "https://man7.org/linux/man-pages/man1/namei.1.html"
+    },
+    {
+      "title": "Linux getfacl manual page",
+      "url": "https://man7.org/linux/man-pages/man1/getfacl.1.html"
+    },
+    {
+      "title": "GNU coreutils id invocation",
+      "url": "https://www.gnu.org/software/coreutils/manual/html_node/id-invocation.html"
+    },
+    {
+      "title": "GNU coreutils stat invocation",
+      "url": "https://www.gnu.org/software/coreutils/manual/html_node/stat-invocation.html"
+    }
+  ]
+}

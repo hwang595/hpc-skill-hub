@@ -59,6 +59,7 @@ tools.
 | `training-cluster-reset-checklist` | Prepare and review HPC training environments before and after workshops. |
 | `openmp-thread-affinity` | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
 | `quota-and-filesystem-triage` | Diagnose quota, inode, capacity, and permission failures. |
+| `shared-project-permissions-triage` | Collect read-only evidence for shared project directory permission and ACL failures. |
 | `scratch-storage-management` | Inventory user-owned scratch, project, and workflow storage usage. |
 | `node-local-scratch-staging` | Stage data through node-local scratch with guarded cleanup. |
 | `ior-mdtest-storage-smoke` | Collect small IOR and MDTest storage benchmark evidence on Slurm. |

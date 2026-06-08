@@ -3,7 +3,7 @@
   "id": "core-hpc",
   "name": "Core HPC",
   "status": "draft",
-  "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, and storage triage.",
+  "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, shared project permissions, and storage triage.",
   "audience": ["new HPC users", "research software engineers", "support teams"],
   "skill_ids": [
     "slurm-submit-job",
@@ -27,6 +27,7 @@
     "openmp-thread-affinity",
     "node-local-scratch-staging",
     "quota-and-filesystem-triage",
+    "shared-project-permissions-triage",
     "scratch-storage-management"
   ],
   "maintainers": [

@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 89 seed skills.
+- 90 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -131,7 +131,8 @@ Priority integration tracks:
 - HDF5 and NetCDF: parallel I/O build preflight, wrapper evidence, and tiny
   MPI-IO smoke tests.
 - Globus and data lifecycle tools: reliable transfer, checksums, staging,
-  node-local scratch, archival, and publication handoff.
+  shared project permissions, node-local scratch, archival, and publication
+  handoff.
 - Workflow engines: array retry planning, Nextflow, Snakemake, CWL, WDL, Dask,
   Parsl, and Ray.
 - Observability: failure triage, QOS/account limit evidence, OOM memory triage,
@@ -177,9 +178,9 @@ The first wave emphasizes recurring support and onboarding workflows:
 - Scheduler basics across Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine, and
   failed-array retry planning.
 - Storage and data movement: scratch, node-local temporary storage, quota,
-  staging, checksums, rsync, Globus, object storage, archive preparation,
-  Darshan I/O profile analysis, Lustre striping layout planning, and
-  IOR/MDTest smoke evidence.
+  shared project permissions and ACLs, staging, checksums, rsync, Globus,
+  object storage, archive preparation, Darshan I/O profile analysis, Lustre
+  striping layout planning, and IOR/MDTest smoke evidence.
 - Software stacks: modules, compiler/MPI matrices, CMake build preflight,
   Conda, virtualenv, Spack, EasyBuild, parallel HDF5/NetCDF preflight,
   containers, and reproducible run capture.
@@ -194,7 +195,7 @@ The first wave emphasizes recurring support and onboarding workflows:
   Darshan I/O profile analysis, and Lustre striping layout planning for
   data-heavy codes.
 - Facility support: read-only usage, node, module tree, pending reason, OOM
-  memory, and efficiency triage.
+  memory, shared directory permissions, and efficiency triage.
 
 Future skills should be prioritized when they reduce repeated support tickets,
 have public references, can be validated without private cluster access, and

@@ -40,7 +40,8 @@ owner handoffs, and ecosystem sponsor discussions.
 
 - `core-hpc`: Slurm, QOS/account limit evidence, license-aware jobs,
   array retry planning, OOM memory triage, preemption/requeue handling,
-  modules, shell, storage, interactive sessions, RStudio, and IDE tunnels.
+  modules, shell, storage, shared project permissions, interactive sessions,
+  RStudio, and IDE tunnels.
 - `containers`: Apptainer-compatible image builds, runtime execution,
   containerized MPI, GPU checks, data staging, checksums, and reproducible run
   capture.
@@ -52,12 +53,12 @@ owner handoffs, and ecosystem sponsor discussions.
 - `data-movement`: Globus, rsync, object storage, checksums, scratch staging,
   node-local scratch staging, Darshan I/O profile analysis, Lustre striping
   layout planning, IOR/MDTest storage smoke evidence, archive preparation, and
-  quota triage.
+  quota and shared permission triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, Open OnDemand
   templates, notebooks, TensorBoard, Streamlit, RStudio, IDE tunnels, Python
   environments, array retry planning, node-local scratch staging,
-  requeue-safe restart behavior, licensed software use, OOM memory triage, and
-  common learner failure modes.
+  shared project permissions, requeue-safe restart behavior, licensed software
+  use, OOM memory triage, and common learner failure modes.
 - `ai-hpc`: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX, Hugging
   Face Accelerate, TensorFlow, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU
   memory triage, TensorBoard monitors, Streamlit demos, container runtime
@@ -71,8 +72,8 @@ owner handoffs, and ecosystem sponsor discussions.
   Darshan I/O profile analysis, Lustre striping layout planning, restart
   planning, profiling, and storage smoke evidence.
 - `facility-ops`: read-only usage reporting, QOS/account limit evidence, OOM
-  memory triage, node triage, module tree health checks, support handoffs, and
-  public operational patterns.
+  memory triage, node triage, shared project permission evidence, module tree
+  health checks, support handoffs, and public operational patterns.
 
 ## Governance Direction
 
