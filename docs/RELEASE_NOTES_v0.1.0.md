@@ -15,7 +15,7 @@ request missing workflows, or contribute public site adapters.
 ## Registry Contents
 
 - Skills: 53.
-- Collections: 9.
+- Collections: 10.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
 - Risk labels: low and medium only in the seed registry.
@@ -30,6 +30,9 @@ request missing workflows, or contribute public site adapters.
   compatibility, reproducible run capture, Python virtualenv, Ray on Slurm,
   Dask Jobqueue, mpi4py on Slurm, Rscript on Slurm, Julia on Slurm, MATLAB
   batch jobs, Conda/Mamba, Apptainer builds and runtime, Spack, and EasyBuild.
+- Containers: Apptainer-compatible image build planning, container runtime
+  execution, GPU visibility checks, scratch staging, checksum manifests, and
+  reproducible run capture.
 - Workflow engines: lightweight Slurm dependency chains, Dask worker clusters,
   Nextflow, Snakemake, and nf-core on Slurm.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm

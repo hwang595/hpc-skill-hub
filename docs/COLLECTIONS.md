@@ -17,6 +17,9 @@ research software engineer building software stacks may start with
   reproducible run capture, Python virtual environments, Ray clusters, Dask
   Jobqueue, mpi4py jobs, Rscript jobs, Julia jobs, MATLAB batch jobs, Conda/Mamba,
   container builds and runtime, Spack, and EasyBuild.
+- `containers`: Apptainer-compatible image build planning, container runtime
+  execution, GPU visibility checks, scratch staging, checksum manifests, and
+  reproducible run capture for containerized HPC workloads.
 - `workflow-engines`: lightweight Slurm dependency chains, Dask worker
   clusters, Nextflow, Snakemake, and nf-core on Slurm.
 - `training-onboarding`: workshop preflight, Slurm basics, interactive

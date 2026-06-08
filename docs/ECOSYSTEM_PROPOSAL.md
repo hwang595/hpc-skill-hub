@@ -27,10 +27,11 @@ The project is not only a documentation site. It combines:
 - An integration contract for downstream tools, portals, assistants, and
   workflow projects.
 
-## Proposed Community Collections
+## Current And Proposed Community Collections
 
 - `core-hpc`: Slurm, modules, shell, storage, interactive sessions.
-- `containers`: Apptainer, OCI image conversion, GPU containers.
+- `containers`: Apptainer-compatible image builds, runtime execution, GPU
+  checks, data staging, checksums, and reproducible run capture.
 - `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices.
 - `workflow-engines`: Nextflow, Snakemake, CWL, WDL.
 - `training-onboarding`: workshop preflight, intro Slurm skills, notebooks,

@@ -13,7 +13,7 @@
     "software": 15,
     "workflow": 6
   },
-  "collection_count": 9,
+  "collection_count": 10,
   "collection_coverage": [
     {
       "id": "bioinformatics-workflows",
@@ -25,6 +25,18 @@
         "snakemake-on-slurm",
         "dataset-staging-to-scratch",
         "checksum-manifest-create"
+      ]
+    },
+    {
+      "id": "containers",
+      "skill_count": 6,
+      "skill_ids": [
+        "container-build-for-hpc",
+        "apptainer-run-container",
+        "gpu-sanity-check",
+        "dataset-staging-to-scratch",
+        "checksum-manifest-create",
+        "reproducible-run-capture"
       ]
     },
     {

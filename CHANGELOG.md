@@ -44,6 +44,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   bounded worker scaling.
 - Add a Ray on Slurm skill with explicit head node selection, resource bounds,
   launch records, and smoke test controls.
+- Add a `containers` collection for Apptainer builds, runtime execution, GPU
+  checks, data staging, checksums, and reproducible run capture.
 
 ## v0.1.0 - Planned
 
@@ -59,9 +61,10 @@ Initial public seed release.
   workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
   workflows, molecular dynamics, CFD, weather workloads, read-only facility
   operations, and training onboarding.
-- 9 curated collections: `core-hpc`, `software-stacks`, `workflow-engines`,
-  `data-movement`, `gpu-mpi-performance`, `bioinformatics-workflows`, and
-  `simulation-workflows`, `facility-ops`, and `training-onboarding`.
+- 10 curated collections: `core-hpc`, `software-stacks`, `containers`,
+  `workflow-engines`, `data-movement`, `gpu-mpi-performance`,
+  `bioinformatics-workflows`, `simulation-workflows`, `facility-ops`, and
+  `training-onboarding`.
 - 1 example public site adapter: `example-campus-cluster`.
 - Machine-readable registry index and health reports.
 - Installable `hpc-skill` CLI for discovery, validation, scaffolding,

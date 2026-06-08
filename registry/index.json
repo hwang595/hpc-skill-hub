@@ -13,7 +13,7 @@
     "software": 15,
     "workflow": 6
   },
-  "collection_count": 9,
+  "collection_count": 10,
   "collections": [
     {
       "audience": [
@@ -34,6 +34,26 @@
       ],
       "status": "draft",
       "summary": "Domain skills for running reviewed nf-core and GATK bioinformatics workflows on Slurm-backed HPC systems."
+    },
+    {
+      "audience": [
+        "research software engineers",
+        "container users",
+        "HPC support teams"
+      ],
+      "id": "containers",
+      "name": "Containers",
+      "path": "collections/containers.json",
+      "skill_ids": [
+        "container-build-for-hpc",
+        "apptainer-run-container",
+        "gpu-sanity-check",
+        "dataset-staging-to-scratch",
+        "checksum-manifest-create",
+        "reproducible-run-capture"
+      ],
+      "status": "draft",
+      "summary": "Skills for building, validating, running, and staging data for containerized HPC workloads."
     },
     {
       "audience": [
