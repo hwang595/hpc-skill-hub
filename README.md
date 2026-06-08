@@ -64,6 +64,7 @@ tools.
 | `gatk-workflow-on-hpc` | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | `gromacs-on-slurm` | Run GROMACS molecular dynamics jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | `lammps-on-slurm` | Run LAMMPS molecular dynamics jobs on Slurm with MPI, GPU, and restart planning. |
+| `openfoam-on-slurm` | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |
 | `mpi-hello-and-benchmark` | Compile and run MPI sanity checks and simple communication benchmarks. |
 | `gpu-sanity-check` | Verify GPU allocation, CUDA/ROCm visibility, and multi-GPU communication. |
 | `pytorch-ddp-on-slurm` | Launch and verify PyTorch distributed data parallel jobs on Slurm. |

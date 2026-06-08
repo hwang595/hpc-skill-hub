@@ -31,6 +31,7 @@ new collections.
 | `gatk-workflow-on-hpc` | workflow | medium | Seed skill added to `bioinformatics-workflows`. |
 | `lammps-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `gromacs-on-slurm` | gpu | medium | Seed skill added to `simulation-workflows`. |
+| `openfoam-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 
 ## Priority 1: Core User Workflows
 
@@ -57,7 +58,6 @@ requests should be proposed through skill request issues.
 
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
-| `openfoam-on-slurm` | mpi | medium | CFD workflows need decomposition, MPI launch, and output management patterns. |
 | `wrf-on-slurm` | mpi | medium | Climate/weather workloads need MPI sizing, restart, and I/O guidance. |
 
 ## Priority 6: Facility Operations

@@ -5,9 +5,9 @@
     "debugging": 13,
     "gpu": 6,
     "interactive": 2,
-    "mpi": 4,
-    "performance": 5,
-    "scheduler": 22,
+    "mpi": 5,
+    "performance": 6,
+    "scheduler": 23,
     "software": 8,
     "workflow": 4
   },
@@ -114,6 +114,7 @@
       "skill_ids": [
         "gromacs-on-slurm",
         "lammps-on-slurm",
+        "openfoam-on-slurm",
         "mpi-hello-and-benchmark",
         "openmp-thread-affinity",
         "performance-profile-basic",
@@ -121,7 +122,7 @@
         "checkpoint-restart-workflow"
       ],
       "status": "draft",
-      "summary": "Domain skills for MPI/GPU-heavy simulation workloads on Slurm-backed HPC systems."
+      "summary": "Domain skills for MPI/GPU-heavy simulation and CFD workloads on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -166,7 +167,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 23
+    "slurm": 24
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -192,7 +193,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 38,
+  "skill_count": 39,
   "skills": [
     {
       "categories": [
@@ -1540,6 +1541,78 @@
     },
     {
       "categories": [
+        "mpi",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides a conservative Slurm wrapper for OpenFOAM cases, including case staging, domain decomposition, solver launch with -parallel, reconstruction, output records, and a dry-run-first cavity smoke case.",
+      "examples": [
+        {
+          "path": "skills/openfoam-on-slurm/examples/openfoam-smoke.sbatch",
+          "title": "Plan or run an OpenFOAM cavity smoke case on Slurm"
+        },
+        {
+          "path": "skills/openfoam-on-slurm/examples/decomposition-checklist.md",
+          "title": "OpenFOAM decomposition checklist"
+        },
+        {
+          "path": "skills/openfoam-on-slurm/examples/cavity-smoke/system/controlDict",
+          "title": "Tiny cavity smoke case"
+        }
+      ],
+      "id": "openfoam-on-slurm",
+      "maturity": "seed",
+      "name": "OpenFOAM On Slurm",
+      "path": "skills/openfoam-on-slurm",
+      "readme": "skills/openfoam-on-slurm/README.md",
+      "references": [
+        {
+          "title": "OpenFOAM parallel running",
+          "url": "https://www.openfoam.com/documentation/user-guide/3-running-applications/3.2-running-applications-in-parallel"
+        },
+        {
+          "title": "OpenFOAM tutorials",
+          "url": "https://www.openfoam.com/documentation/user-guide/2-openfoam-cases/2.1-file-structure-of-openfoam-cases"
+        },
+        {
+          "title": "OpenFOAM command line documentation",
+          "url": "https://www.openfoam.com/documentation/guides/latest/doc/openfoam-guide-command-line.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning.",
+      "tags": [
+        "openfoam",
+        "cfd",
+        "mpi",
+        "slurm",
+        "decomposition",
+        "reconstruction"
+      ],
+      "tools": [
+        "blockMesh",
+        "decomposePar",
+        "reconstructPar",
+        "icoFoam",
+        "sbatch",
+        "srun",
+        "mkdir",
+        "cp",
+        "cat",
+        "pwd",
+        "date",
+        "hostname",
+        "tee",
+        "test"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "performance",
         "scheduler"
       ],
@@ -2259,6 +2332,7 @@
     "array": 2,
     "benchmark": 1,
     "bioinformatics": 1,
+    "cfd": 1,
     "checkpoint": 3,
     "checksum": 4,
     "cleanup": 1,
@@ -2273,6 +2347,7 @@
     "dataset": 2,
     "ddp": 1,
     "debugging": 1,
+    "decomposition": 1,
     "deepspeed": 1,
     "definition": 1,
     "distributed": 2,
@@ -2306,7 +2381,7 @@
     "micromamba": 1,
     "modules": 5,
     "molecular-dynamics": 2,
-    "mpi": 6,
+    "mpi": 7,
     "mpicc": 2,
     "nccl": 2,
     "network": 1,
@@ -2317,6 +2392,7 @@
     "oci": 1,
     "omp-num-threads": 1,
     "oom": 2,
+    "openfoam": 1,
     "openmp": 2,
     "outputs": 1,
     "parameter-sweep": 1,
@@ -2331,6 +2407,7 @@
     "python": 1,
     "pytorch": 3,
     "quota": 2,
+    "reconstruction": 1,
     "reproducibility": 4,
     "rerun": 1,
     "resources": 1,
@@ -2347,7 +2424,7 @@
     "sha256": 1,
     "sif": 1,
     "singularity": 3,
-    "slurm": 21,
+    "slurm": 22,
     "snakemake": 1,
     "software": 2,
     "spack": 1,
@@ -2379,12 +2456,15 @@
     "awk": 3,
     "basename": 1,
     "bash": 2,
-    "cat": 1,
+    "blockMesh": 1,
+    "cat": 2,
     "cksum": 2,
     "clang": 1,
     "command": 2,
     "conda": 1,
-    "date": 16,
+    "cp": 1,
+    "date": 17,
+    "decomposePar": 1,
     "deepspeed": 1,
     "df": 2,
     "dirname": 3,
@@ -2400,14 +2480,15 @@
     "gmx_mpi": 1,
     "grep": 8,
     "head": 4,
-    "hostname": 13,
+    "hostname": 14,
+    "icoFoam": 1,
     "jupyter": 1,
     "ldd": 2,
     "lmp": 1,
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 17,
+    "mkdir": 18,
     "module": 6,
     "mpicc": 2,
     "mpicxx": 1,
@@ -2417,14 +2498,15 @@
     "nvidia-smi": 6,
     "perf": 1,
     "pip": 1,
-    "pwd": 5,
+    "pwd": 6,
     "python3": 5,
     "quota": 1,
+    "reconstructPar": 1,
     "rocm-smi": 2,
     "rsync": 2,
     "sacct": 3,
     "salloc": 1,
-    "sbatch": 18,
+    "sbatch": 19,
     "scontrol": 3,
     "sed": 1,
     "sha256sum": 2,
@@ -2435,12 +2517,12 @@
     "sort": 8,
     "spack": 1,
     "squeue": 1,
-    "srun": 9,
+    "srun": 10,
     "ssh": 2,
     "tail": 4,
     "tar": 1,
-    "tee": 9,
-    "test": 3,
+    "tee": 10,
+    "test": 4,
     "time": 1,
     "tr": 1,
     "uname": 1,
