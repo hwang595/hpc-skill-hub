@@ -57,6 +57,14 @@ python3 tools/validate_skills.py
 python3 tools/build_index.py --check
 ```
 
+Explore the registry:
+
+```bash
+python3 tools/hpc_skill.py list
+python3 tools/hpc_skill.py search slurm
+python3 tools/hpc_skill.py show slurm-submit-job --examples
+```
+
 Validate one skill:
 
 ```bash
@@ -93,6 +101,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 
 - [Skill catalog](docs/SKILL_CATALOG.md)
 - [Machine-readable registry index](registry/index.json)
+- [CLI](docs/CLI.md)
 - [Skill specification](docs/SKILL_SPEC.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Site adapters](docs/SITE_ADAPTERS.md)

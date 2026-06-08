@@ -23,6 +23,7 @@
 
 - Add `hpc-skill list`, `hpc-skill show`, `hpc-skill validate`, and
   `hpc-skill scaffold`.
+- Grow the seed `tools/hpc_skill.py` script into an installable package.
 - Add template rendering for common HPC scripts and config files.
 - Add local dry-run checks for commands that may be dangerous on shared systems.
 - Add optional adapters for agentic tools that can read skill metadata.

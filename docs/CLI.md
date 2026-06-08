@@ -1,0 +1,47 @@
+# CLI
+
+`tools/hpc_skill.py` is a zero-dependency command-line interface for exploring
+the generated registry index.
+
+Run it from the repository root:
+
+```bash
+python3 tools/hpc_skill.py list
+python3 tools/hpc_skill.py search slurm
+python3 tools/hpc_skill.py show slurm-submit-job --examples
+python3 tools/hpc_skill.py adapters
+python3 tools/hpc_skill.py adapter example-campus-cluster
+```
+
+## Filtering Skills
+
+```bash
+python3 tools/hpc_skill.py list --category scheduler
+python3 tools/hpc_skill.py list --scheduler slurm
+python3 tools/hpc_skill.py list --risk medium
+python3 tools/hpc_skill.py list --tag gpu
+```
+
+## JSON Output
+
+Every command supports JSON output for automation:
+
+```bash
+python3 tools/hpc_skill.py show gpu-sanity-check --json
+python3 tools/hpc_skill.py adapters --json
+```
+
+## Updating The Index
+
+The CLI reads `registry/index.json`. Rebuild the index after changing skills or
+site adapters:
+
+```bash
+python3 tools/build_index.py
+python3 tools/build_index.py --check
+```
+
+## Future Direction
+
+This script is intentionally small. It can become the base for a packaged
+`hpc-skill` command with scaffold, render, and site-aware template workflows.

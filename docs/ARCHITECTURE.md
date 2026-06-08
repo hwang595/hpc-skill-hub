@@ -37,6 +37,13 @@ storage conventions, and policy notes without editing or forking generic skills.
 Both generated artifacts are checked in CI so documentation and machine-readable
 metadata stay aligned with the skill manifests.
 
+## CLI
+
+`tools/hpc_skill.py` reads `registry/index.json` and provides lightweight
+discovery commands for users and maintainers. It deliberately uses only the
+Python standard library so it can run on login nodes, laptops, CI systems, and
+minimal container images.
+
 ## Validation Flow
 
 ```text
