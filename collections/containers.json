@@ -3,11 +3,12 @@
   "id": "containers",
   "name": "Containers",
   "status": "draft",
-  "summary": "Skills for building, validating, running, and staging data for containerized HPC workloads.",
+  "summary": "Skills for building, validating, running MPI containers, and staging data for containerized HPC workloads.",
   "audience": ["research software engineers", "container users", "HPC support teams"],
   "skill_ids": [
     "container-build-for-hpc",
     "apptainer-run-container",
+    "apptainer-mpi-on-slurm",
     "gpu-sanity-check",
     "dataset-staging-to-scratch",
     "checksum-manifest-create",

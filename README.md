@@ -66,6 +66,7 @@ tools.
 | `conda-mamba-on-hpc` | Create Conda or Mamba environments while protecting shared HPC filesystems. |
 | `container-build-for-hpc` | Plan and build Apptainer-compatible images for shared HPC systems. |
 | `apptainer-run-container` | Run Apptainer/Singularity containers safely on shared HPC systems. |
+| `apptainer-mpi-on-slurm` | Run MPI applications from Apptainer containers inside Slurm allocations. |
 | `spack-environment-create` | Create reproducible Spack environments for scientific software stacks. |
 | `easybuild-install-software` | Install scientific software with EasyBuild recipes and module output. |
 | `globus-transfer-dataset` | Stage and verify large research datasets with Globus transfers. |

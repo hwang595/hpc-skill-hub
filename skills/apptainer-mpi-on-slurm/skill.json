@@ -1,0 +1,128 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "apptainer-mpi-on-slurm",
+  "name": "Apptainer MPI On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run MPI applications from Apptainer containers inside Slurm allocations.",
+  "description": "This skill provides conservative Slurm templates for launching MPI applications in Apptainer or Singularity containers, including hybrid MPI and host-MPI bind model checks.",
+  "categories": ["containers", "mpi", "scheduler", "performance"],
+  "tags": ["apptainer", "singularity", "container", "mpi", "slurm", "srun", "mpirun", "pmix"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "apptainer",
+      "required": true,
+      "notes": "Singularity can be substituted on sites that still expose the older command name."
+    },
+    {
+      "name": "sbatch",
+      "required": false,
+      "notes": "Used to submit the example Slurm batch scripts."
+    },
+    {
+      "name": "srun",
+      "required": false,
+      "notes": "Used by the hybrid MPI Slurm example when the site recommends Slurm-native launch."
+    },
+    {
+      "name": "mpirun",
+      "required": false,
+      "notes": "Used by the bind-model example when the site recommends host MPI launch."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "image",
+      "type": "path",
+      "required": true,
+      "description": "SIF image containing the MPI application and compatible runtime libraries."
+    },
+    {
+      "name": "container_command",
+      "type": "string",
+      "required": true,
+      "description": "Application command or binary path to execute inside the container."
+    },
+    {
+      "name": "mpi_model",
+      "type": "string",
+      "required": true,
+      "description": "Hybrid MPI or bind-model MPI approach approved for the target site."
+    },
+    {
+      "name": "binds",
+      "type": "array",
+      "required": false,
+      "description": "Host directories, MPI libraries, data paths, and scratch paths to bind into the container."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "container_mpi_job",
+      "description": "A Slurm batch script for launching MPI ranks through Apptainer with explicit binds and runtime checks."
+    },
+    {
+      "name": "preflight_report",
+      "description": "A short compatibility report showing host MPI, container MPI, image metadata, and intended launch model."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/hybrid-mpi.sbatch",
+    "examples/bind-host-mpi.sbatch",
+    "examples/mpi-preflight.sh"
+  ],
+  "examples": [
+    {
+      "title": "Launch a hybrid MPI container job with Slurm",
+      "path": "examples/hybrid-mpi.sbatch"
+    },
+    {
+      "title": "Launch a bind-model MPI container job with host MPI",
+      "path": "examples/bind-host-mpi.sbatch"
+    },
+    {
+      "title": "Inspect host and container MPI assumptions",
+      "path": "examples/mpi-preflight.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill apptainer-mpi-on-slurm",
+      "description": "Validate the manifest and required artifacts."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/apptainer-mpi-on-slurm/examples/hybrid-mpi.sbatch skills/apptainer-mpi-on-slurm/examples/bind-host-mpi.sbatch skills/apptainer-mpi-on-slurm/examples/mpi-preflight.sh",
+      "description": "Check that the shell examples parse."
+    },
+    {
+      "type": "manual",
+      "description": "Run mpi-preflight.sh with a site-approved image, then submit one small two-node or single-node smoke test using the launch method recommended by local support."
+    }
+  ],
+  "references": [
+    {
+      "title": "Apptainer MPI applications",
+      "url": "https://apptainer.org/docs/user/main/mpi.html"
+    },
+    {
+      "title": "Apptainer bind paths and mounts",
+      "url": "https://apptainer.org/docs/user/main/bind_paths_and_mounts.html"
+    },
+    {
+      "title": "Slurm srun documentation",
+      "url": "https://slurm.schedmd.com/srun.html"
+    }
+  ]
+}

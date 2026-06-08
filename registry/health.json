@@ -2,15 +2,15 @@
   "$schema": "../schemas/registry-health.schema.json",
   "category_counts": {
     "admin": 4,
-    "containers": 2,
+    "containers": 3,
     "data": 12,
     "debugging": 17,
     "education": 1,
     "gpu": 9,
     "interactive": 2,
-    "mpi": 10,
-    "performance": 11,
-    "scheduler": 46,
+    "mpi": 11,
+    "performance": 12,
+    "scheduler": 47,
     "software": 15,
     "workflow": 10
   },
@@ -49,10 +49,11 @@
     },
     {
       "id": "containers",
-      "skill_count": 6,
+      "skill_count": 7,
       "skill_ids": [
         "container-build-for-hpc",
         "apptainer-run-container",
+        "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
         "dataset-staging-to-scratch",
         "checksum-manifest-create",
@@ -104,11 +105,12 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 12,
+      "skill_count": 13,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
         "mpi4py-on-slurm",
+        "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
         "ray-on-slurm",
         "pytorch-ddp-on-slurm",
@@ -153,7 +155,7 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 16,
+      "skill_count": 17,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
@@ -169,6 +171,7 @@
         "conda-mamba-on-hpc",
         "container-build-for-hpc",
         "apptainer-run-container",
+        "apptainer-mpi-on-slurm",
         "spack-environment-create",
         "easybuild-install-software"
       ]
@@ -207,9 +210,10 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 63
+    "seed": 64
   },
   "risk_by_skill": {
+    "apptainer-mpi-on-slurm": "medium",
     "apptainer-run-container": "medium",
     "blast-on-slurm": "medium",
     "checkpoint-restart-workflow": "medium",
@@ -276,13 +280,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 46
+    "medium": 47
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 63,
+  "skill_count": 64,
   "status_counts": {
-    "draft": 63
+    "draft": 64
   },
   "uncollected_skill_ids": []
 }

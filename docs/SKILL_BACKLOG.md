@@ -32,6 +32,7 @@ new collections.
 | `compiler-mpi-matrix` | software | low | Seed skill added to `software-stacks` and `gpu-mpi-performance`. |
 | `reproducible-run-capture` | debugging | low | Seed skill added to `software-stacks`. |
 | `container-build-for-hpc` | containers | medium | Seed skill added to `software-stacks`. |
+| `apptainer-mpi-on-slurm` | containers | medium | Seed skill added to `containers`, `software-stacks`, and `gpu-mpi-performance`. |
 | `checksum-manifest-create` | data | low | Seed skill added to `data-movement`. |
 | `rsync-data-transfer` | data | medium | Seed skill added to `data-movement`. |
 | `dataset-staging-to-scratch` | data | medium | Seed skill added to `data-movement`. |

@@ -2,15 +2,15 @@
   "$schema": "../schemas/registry-index.schema.json",
   "categories": {
     "admin": 4,
-    "containers": 2,
+    "containers": 3,
     "data": 12,
     "debugging": 17,
     "education": 1,
     "gpu": 9,
     "interactive": 2,
-    "mpi": 10,
-    "performance": 11,
-    "scheduler": 46,
+    "mpi": 11,
+    "performance": 12,
+    "scheduler": 47,
     "software": 15,
     "workflow": 10
   },
@@ -76,13 +76,14 @@
       "skill_ids": [
         "container-build-for-hpc",
         "apptainer-run-container",
+        "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
         "dataset-staging-to-scratch",
         "checksum-manifest-create",
         "reproducible-run-capture"
       ],
       "status": "draft",
-      "summary": "Skills for building, validating, running, and staging data for containerized HPC workloads."
+      "summary": "Skills for building, validating, running MPI containers, and staging data for containerized HPC workloads."
     },
     {
       "audience": [
@@ -164,6 +165,7 @@
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
         "mpi4py-on-slurm",
+        "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
         "ray-on-slurm",
         "pytorch-ddp-on-slurm",
@@ -175,7 +177,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -249,11 +251,12 @@
         "conda-mamba-on-hpc",
         "container-build-for-hpc",
         "apptainer-run-container",
+        "apptainer-mpi-on-slurm",
         "spack-environment-create",
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, Conda environments, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -312,7 +315,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 43,
+    "slurm": 44,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -339,8 +342,73 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 63,
+  "skill_count": 64,
   "skills": [
+    {
+      "categories": [
+        "containers",
+        "mpi",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides conservative Slurm templates for launching MPI applications in Apptainer or Singularity containers, including hybrid MPI and host-MPI bind model checks.",
+      "examples": [
+        {
+          "path": "skills/apptainer-mpi-on-slurm/examples/hybrid-mpi.sbatch",
+          "title": "Launch a hybrid MPI container job with Slurm"
+        },
+        {
+          "path": "skills/apptainer-mpi-on-slurm/examples/bind-host-mpi.sbatch",
+          "title": "Launch a bind-model MPI container job with host MPI"
+        },
+        {
+          "path": "skills/apptainer-mpi-on-slurm/examples/mpi-preflight.sh",
+          "title": "Inspect host and container MPI assumptions"
+        }
+      ],
+      "id": "apptainer-mpi-on-slurm",
+      "maturity": "seed",
+      "name": "Apptainer MPI On Slurm",
+      "path": "skills/apptainer-mpi-on-slurm",
+      "readme": "skills/apptainer-mpi-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Apptainer MPI applications",
+          "url": "https://apptainer.org/docs/user/main/mpi.html"
+        },
+        {
+          "title": "Apptainer bind paths and mounts",
+          "url": "https://apptainer.org/docs/user/main/bind_paths_and_mounts.html"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run MPI applications from Apptainer containers inside Slurm allocations.",
+      "tags": [
+        "apptainer",
+        "singularity",
+        "container",
+        "mpi",
+        "slurm",
+        "srun",
+        "mpirun",
+        "pmix"
+      ],
+      "tools": [
+        "apptainer",
+        "sbatch",
+        "srun",
+        "mpirun"
+      ],
+      "version": "0.1.0"
+    },
     {
       "categories": [
         "containers",
@@ -4014,7 +4082,7 @@
     "ai": 1,
     "all-reduce": 1,
     "amd": 1,
-    "apptainer": 2,
+    "apptainer": 3,
     "archive": 2,
     "array": 3,
     "batch": 3,
@@ -4037,7 +4105,7 @@
     "conda": 1,
     "condor-q": 1,
     "condor-submit": 1,
-    "container": 2,
+    "container": 3,
     "cp2k": 1,
     "cpu": 5,
     "cpu-bind": 1,
@@ -4103,10 +4171,11 @@
     "modulepath": 1,
     "modules": 7,
     "molecular-dynamics": 4,
-    "mpi": 15,
+    "mpi": 16,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
+    "mpirun": 1,
     "namd": 1,
     "nccl": 2,
     "netcdf": 1,
@@ -4134,6 +4203,7 @@
     "permission": 1,
     "pip": 1,
     "pipeline": 1,
+    "pmix": 1,
     "ports": 1,
     "preemption": 1,
     "preflight": 1,
@@ -4180,8 +4250,8 @@
     "sif": 1,
     "sinfo": 2,
     "singleton": 1,
-    "singularity": 3,
-    "slurm": 41,
+    "singularity": 4,
+    "slurm": 42,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -4189,7 +4259,7 @@
     "sprio": 1,
     "squeue": 4,
     "sreport": 1,
-    "srun": 4,
+    "srun": 5,
     "staging": 3,
     "state": 1,
     "storage": 2,
@@ -4221,7 +4291,7 @@
   "tools": {
     "Rscript": 1,
     "all_reduce_perf": 1,
-    "apptainer": 2,
+    "apptainer": 3,
     "awk": 3,
     "basename": 1,
     "bash": 5,
@@ -4281,7 +4351,7 @@
     "mpicxx": 1,
     "mpiexec": 1,
     "mpifort": 1,
-    "mpirun": 3,
+    "mpirun": 4,
     "namd2": 1,
     "ncdump": 1,
     "nextflow": 2,
@@ -4305,7 +4375,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 33,
+    "sbatch": 34,
     "scontrol": 6,
     "sed": 3,
     "seff": 1,
@@ -4320,7 +4390,7 @@
     "sprio": 1,
     "squeue": 6,
     "sreport": 1,
-    "srun": 16,
+    "srun": 17,
     "ssh": 2,
     "tail": 4,
     "tar": 1,

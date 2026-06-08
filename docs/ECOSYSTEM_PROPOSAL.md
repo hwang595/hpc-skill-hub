@@ -30,8 +30,9 @@ The project is not only a documentation site. It combines:
 ## Current And Proposed Community Collections
 
 - `core-hpc`: Slurm, modules, shell, storage, interactive sessions.
-- `containers`: Apptainer-compatible image builds, runtime execution, GPU
-  checks, data staging, checksums, and reproducible run capture.
+- `containers`: Apptainer-compatible image builds, runtime execution,
+  containerized MPI, GPU checks, data staging, checksums, and reproducible run
+  capture.
 - `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices.
 - `workflow-engines`: CWL, WDL, Nextflow, and Snakemake.
 - `training-onboarding`: workshop preflight, intro Slurm skills, notebooks,

@@ -21,8 +21,9 @@ research software engineer building software stacks may start with
   Jobqueue, mpi4py jobs, Rscript jobs, Julia jobs, MATLAB batch jobs, Conda/Mamba,
   container builds and runtime, Spack, and EasyBuild.
 - `containers`: Apptainer-compatible image build planning, container runtime
-  execution, GPU visibility checks, scratch staging, checksum manifests, and
-  reproducible run capture for containerized HPC workloads.
+  execution, containerized MPI launch patterns, GPU visibility checks, scratch
+  staging, checksum manifests, and reproducible run capture for containerized
+  HPC workloads.
 - `workflow-engines`: lightweight Slurm dependency chains, CWL and WDL runs
   inside Slurm allocations, Dask worker clusters, Nextflow, Snakemake, and
   nf-core on Slurm.
@@ -36,10 +37,11 @@ research software engineer building software stacks may start with
   DeepSpeed, NCCL diagnostics, GPU memory triage, container runtime execution,
   data staging, checkpoint/restart planning, reproducible run capture, and
   Slurm efficiency review for distributed AI workloads.
-- `gpu-mpi-performance`: MPI launch checks, mpi4py launch checks,
-  compiler/MPI compatibility, GPU sanity checks, Ray cluster smoke tests, GPU
-  memory triage, PyTorch DDP smoke tests, NCCL diagnostics, DeepSpeed launch
-  checks, OpenMP placement, Slurm efficiency review, and basic profiling.
+- `gpu-mpi-performance`: MPI launch checks, containerized MPI checks, mpi4py
+  launch checks, compiler/MPI compatibility, GPU sanity checks, Ray cluster
+  smoke tests, GPU memory triage, PyTorch DDP smoke tests, NCCL diagnostics,
+  DeepSpeed launch checks, OpenMP placement, Slurm efficiency review, and basic
+  profiling.
 - `bioinformatics-workflows`: nf-core, GATK, BLAST, Nextflow, Snakemake, data
   staging, and checksum practices for genomics and core-facility workflows.
 - `simulation-workflows`: GROMACS, LAMMPS, NAMD, Quantum ESPRESSO, CP2K,
