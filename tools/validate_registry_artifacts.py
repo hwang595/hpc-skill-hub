@@ -21,9 +21,10 @@ SCHEMAS = {
     "health": ROOT / "schemas" / "registry-health.schema.json",
     "release": ROOT / "schemas" / "release-manifest.schema.json",
 }
-PUBLIC_COUNT_DOCS = [
+PUBLIC_BASELINE_DOCS = [
     ROOT / "CHANGELOG.md",
     ROOT / "ROADMAP.md",
+    ROOT / "docs" / "COMPATIBILITY.md",
     ROOT / "docs" / "OPEN_SOURCE_PROPOSAL.md",
     ROOT / "docs" / "PUBLIC_LAUNCH_PACKET.md",
     ROOT / "docs" / "REGISTRY_HEALTH.md",
@@ -276,27 +277,60 @@ def validate_package_data(errors: List[str]) -> None:
             )
 
 
-def validate_public_count_mentions(index: Dict[str, Any], errors: List[str]) -> None:
+def public_count_expectations(index: Dict[str, Any]) -> Dict[str, List[str]]:
     skill_count = index.get("skill_count")
-    expected_mentions = {
-        "CHANGELOG.md": f"- {skill_count} seed HPC skills",
-        "ROADMAP.md": f"- {skill_count} seed skills.",
-        "docs/OPEN_SOURCE_PROPOSAL.md": f"The seed registry includes {skill_count} skills",
-        "docs/PUBLIC_LAUNCH_PACKET.md": f"- Seed skills: {skill_count}.",
-        "docs/REGISTRY_HEALTH.md": f"- Skills: {skill_count}",
-        "docs/RELEASE_NOTES_v0.1.0.md": f"- Skills: {skill_count}.",
-        "docs/SKILL_CATALOG.md": f"Current registry size: {skill_count} skills.",
+    collection_count = index.get("collection_count")
+    site_adapter_count = index.get("site_adapter_count")
+    return {
+        "CHANGELOG.md": [f"- {skill_count} seed HPC skills"],
+        "ROADMAP.md": [
+            f"- {skill_count} seed skills.",
+            f"- {collection_count} curated collections.",
+            f"- {site_adapter_count} site adapters:",
+        ],
+        "docs/COMPATIBILITY.md": [
+            f"| Skills | {skill_count} |",
+            f"| Collections | {collection_count} |",
+            f"| Site adapters | {site_adapter_count} |",
+        ],
+        "docs/OPEN_SOURCE_PROPOSAL.md": [
+            f"The seed registry includes {skill_count} skills",
+            f"{collection_count} curated collections",
+            f"{site_adapter_count} site adapters",
+        ],
+        "docs/PUBLIC_LAUNCH_PACKET.md": [
+            f"- Seed skills: {skill_count}.",
+            f"- Curated collections: {collection_count}.",
+            f"- Site adapters: {site_adapter_count},",
+        ],
+        "docs/REGISTRY_HEALTH.md": [
+            f"- Skills: {skill_count}",
+            f"- Site adapters: {site_adapter_count}",
+            f"- Collections: {collection_count}",
+        ],
+        "docs/RELEASE_NOTES_v0.1.0.md": [
+            f"- Skills: {skill_count}.",
+            f"- Collections: {collection_count}.",
+            f"- Site adapters: {site_adapter_count},",
+        ],
+        "docs/SKILL_CATALOG.md": [
+            f"Current registry size: {skill_count} skills.",
+        ],
     }
 
-    for path in PUBLIC_COUNT_DOCS:
+
+def validate_public_count_mentions(index: Dict[str, Any], errors: List[str]) -> None:
+    expected_mentions = public_count_expectations(index)
+
+    for path in PUBLIC_BASELINE_DOCS:
         rel = relative(path)
-        expected = expected_mentions[rel]
         text = path.read_text(encoding="utf-8")
-        require(
-            expected in text,
-            errors,
-            f"{rel}: expected public registry count mention {expected!r}",
-        )
+        for expected in expected_mentions[rel]:
+            require(
+                expected in text,
+                errors,
+                f"{rel}: expected public registry baseline mention {expected!r}",
+            )
 
 
 def validate_schemas(errors: List[str]) -> None:

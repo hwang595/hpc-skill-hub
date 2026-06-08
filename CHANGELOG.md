@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Extend registry artifact validation to catch stale public collection and site
+  adapter counts in launch and proposal materials.
 - Add a GitHub Pages homepage command generator and post-launch homepage URL
   check for confirming the published repository links to its generated site.
 - Add a post-launch GitHub verification tool for checking published repository

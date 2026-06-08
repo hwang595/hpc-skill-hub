@@ -39,8 +39,8 @@ object storage transfer, scratch staging, archive preparation, IOR/MDTest storag
 PyTorch DDP smoke testing, NCCL diagnostics, GPU memory triage, and DeepSpeed launch checks. It also includes
 nf-core, GATK, local BLAST+, LAMMPS, GROMACS, NAMD, Quantum ESPRESSO, CP2K,
 OpenFOAM, and WRF on Slurm, read-only facility usage reporting, node triage,
-module tree health checks, workshop preflight and reset guidance, twelve curated
-collections, one example site adapter, and one public-doc-backed NERSC
+module tree health checks, workshop preflight and reset guidance, 12 curated collections,
+and 2 site adapters: one example adapter and one public-doc-backed NERSC
 Perlmutter draft adapter.
 
 ## Community Model

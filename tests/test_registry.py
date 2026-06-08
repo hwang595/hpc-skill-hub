@@ -1,3 +1,4 @@
+import importlib.util
 import json
 import shutil
 import subprocess
@@ -7,6 +8,16 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def load_registry_artifact_module():
+    spec = importlib.util.spec_from_file_location(
+        "validate_registry_artifacts", ROOT / "tools" / "validate_registry_artifacts.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(module)
+    return module
 
 
 def run_cmd(*args, cwd=ROOT):
@@ -80,6 +91,28 @@ class RegistryTests(unittest.TestCase):
     def test_registry_artifact_contracts_pass(self):
         result = run_cmd("python3", "tools/validate_registry_artifacts.py")
         self.assertIn("Validated registry artifacts", result.stdout)
+
+    def test_public_baseline_counts_are_checked(self):
+        module = load_registry_artifact_module()
+        index = self.load_index()
+        errors = []
+        module.validate_public_count_mentions(index, errors)
+        self.assertEqual(errors, [])
+
+        bad_index = dict(index)
+        bad_index["collection_count"] = index["collection_count"] + 1
+        bad_index["site_adapter_count"] = index["site_adapter_count"] + 1
+        bad_errors = []
+        module.PUBLIC_BASELINE_DOCS = [ROOT / "docs" / "PUBLIC_LAUNCH_PACKET.md"]
+        module.validate_public_count_mentions(bad_index, bad_errors)
+        self.assertTrue(
+            any("Curated collections" in error for error in bad_errors),
+            bad_errors,
+        )
+        self.assertTrue(
+            any("Site adapters" in error for error in bad_errors),
+            bad_errors,
+        )
 
     def test_generated_release_manifest_is_current(self):
         result = run_cmd(

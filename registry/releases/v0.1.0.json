@@ -163,9 +163,9 @@
       "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
     },
     {
-      "bytes": 9952,
+      "bytes": 10083,
       "path": "CHANGELOG.md",
-      "sha256": "e2a76e7a85b55a4632874d543143e6c32bd2e5390de5cf1c7f40b3e371cf37c5"
+      "sha256": "99e019063c2ac3dcb1ed443dd7d35a8149ea9ae17773c4f02276d491955aa06d"
     },
     {
       "bytes": 426,
@@ -388,9 +388,9 @@
       "sha256": "caeebd39a29a72242a9d4134c597eedc910dc761e2e2be5e52eeae0f36c58f76"
     },
     {
-      "bytes": 3758,
+      "bytes": 3769,
       "path": "docs/OPEN_SOURCE_PROPOSAL.md",
-      "sha256": "582d6fc1d503c26efca6f3afa8d4dad9c39208e9c8ab7155c4b46ba313bb7bc3"
+      "sha256": "ea9b22aed6e893ae1c4dffe401a77897a4761a6760724c1313bea8788fbe1627"
     },
     {
       "bytes": 2716,
@@ -2273,9 +2273,9 @@
       "sha256": "4a625d36f1145fb3ea4be9bacabc9c8b315ce130520bc15419be6ec4eac10d01"
     },
     {
-      "bytes": 15049,
+      "bytes": 16263,
       "path": "tests/test_registry.py",
-      "sha256": "5a54ba7a736aed8d8c2e70a6979d306c4547375215e5fc83896c238f553f4e35"
+      "sha256": "28faaa33f7607459be4dfb8520016acb44b089403a77904c0c20cac559c7e29c"
     },
     {
       "bytes": 6879,
@@ -2383,9 +2383,9 @@
       "sha256": "b9eb2838fcbe60f776f4a9582c3c63b87d0723659f961bafb7a89bae48c4c619"
     },
     {
-      "bytes": 12003,
+      "bytes": 13205,
       "path": "tools/validate_registry_artifacts.py",
-      "sha256": "ddb8e112b0b2872e706c6f1d3706a96c21cb329ed9b432bf3bd0c058f4b9c5a7"
+      "sha256": "a82e82aab41bcd9d4deb7c0b66e1d45d4381c2ed6796031cc258003ef2bd7ce3"
     },
     {
       "bytes": 18164,
@@ -2415,6 +2415,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1460803,
+  "total_bytes": 1463361,
   "version": "v0.1.0"
 }
