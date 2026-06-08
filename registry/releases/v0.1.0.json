@@ -128,9 +128,9 @@
       "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
     },
     {
-      "bytes": 5224,
+      "bytes": 5366,
       "path": "CHANGELOG.md",
-      "sha256": "1d80624c40444c1590dd96e5358be52da17be02b244e0a0506e7cc88e4785d27"
+      "sha256": "612cf0fdf939e25a1dc2400f9df6fe71d7ae81b90eb42b4aeb66e3ee59874a80"
     },
     {
       "bytes": 426,
@@ -248,9 +248,9 @@
       "sha256": "a8429851eb83711b4f4ce31682574687eafb0069016c36a0508483e2647b5ef9"
     },
     {
-      "bytes": 4175,
+      "bytes": 4290,
       "path": "docs/ARCHITECTURE.md",
-      "sha256": "35331a2f018e15c0926b00ddc0442392afea12735e8b678d434f75175b4f4282"
+      "sha256": "f1e33cd8a68c1ffe220c23c138e0178553fcf5e47cb8f0e8141e3d1be3713a3a"
     },
     {
       "bytes": 1151,
@@ -343,9 +343,9 @@
       "sha256": "ac484cf1253a7b77d4d28921288eb543fd815d32b0402fe768b006b171d65839"
     },
     {
-      "bytes": 5992,
+      "bytes": 6111,
       "path": "docs/RELEASE_NOTES_v0.1.0.md",
-      "sha256": "7bccdb6c67cecb21b7572a15860d21243e5d9121d835190bc5d960482bfc59c2"
+      "sha256": "0e8b439b4455dcc51d44c8f3b32280d881ac66a0a3b2209fd25464618f5e63a9"
     },
     {
       "bytes": 2778,
@@ -1738,9 +1738,9 @@
       "sha256": "09c57b74cd2a4426fd284b9af25f9c0d4af638cd1aa86ae70d41ec57d1edfead"
     },
     {
-      "bytes": 13029,
+      "bytes": 13404,
       "path": "tests/test_registry.py",
-      "sha256": "7263e01e84f3d27b41361c769ec5825f10b4c59920bf29ff435a3e7c4cf9b114"
+      "sha256": "32d45202607638caa61a91befd36cc3d08c3b991693294f56c9683eb7c0e6039"
     },
     {
       "bytes": 6867,
@@ -1773,9 +1773,9 @@
       "sha256": "22b56d29164650c5977d40bcbd7a5cc891af9327c1c085b15c9e084024bb20ac"
     },
     {
-      "bytes": 12365,
+      "bytes": 16285,
       "path": "tools/build_site.py",
-      "sha256": "6f9dd7fdf99b112a0fbeaca5f36174e32bf99d599c8dcf31d604c0f4d2d70f72"
+      "sha256": "6a8d18a630fbf69f3bb90bc8ceac8d180541cb0760490604c4080e0852e45d74"
     },
     {
       "bytes": 3455,
@@ -1850,6 +1850,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1048846,
+  "total_bytes": 1053517,
   "version": "v0.1.0"
 }

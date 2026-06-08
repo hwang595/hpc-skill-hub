@@ -75,7 +75,9 @@ request missing workflows, or contribute public site adapters.
 - Validation workflow for every pull request and push to `main`.
 - Package workflow for source distribution, wheel, metadata, and installed CLI
   smoke checks.
-- GitHub Pages publishing workflow for the generated static registry.
+- GitHub Pages publishing workflow for the generated static registry, including
+  ecosystem entry points for adopters, contributors, site adapters,
+  integrations, safety review, and RFCs.
 - Dependabot configuration for GitHub Actions and Python packaging.
 - Issue templates for bugs, docs, skill requests, site adapters, and safety
   review.

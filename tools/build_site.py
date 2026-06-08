@@ -109,6 +109,61 @@ def stats(index: Dict[str, Any]) -> str:
     """
 
 
+def ecosystem_paths() -> str:
+    paths = [
+        (
+            "Adopt",
+            "Start with a curated collection, run public-safe checks, and share an adoption report.",
+            "docs/ADOPTER_PLAYBOOK.md",
+            "Adopter playbook",
+        ),
+        (
+            "Contribute",
+            "Request or author a skill with clear scope, conservative examples, and public references.",
+            "docs/SKILL_LIFECYCLE.md",
+            "Skill lifecycle",
+        ),
+        (
+            "Adapt",
+            "Map portable skills to public local policy without forking the core registry.",
+            "docs/SITE_ADAPTERS.md",
+            "Site adapters",
+        ),
+        (
+            "Integrate",
+            "Consume registry JSON, schemas, and CLI output from portals, assistants, and workflow tools.",
+            "docs/INTEGRATION_GUIDE.md",
+            "Integration guide",
+        ),
+    ]
+    cards = []
+    for title, text, href, cta in paths:
+        cards.append(
+            f"""
+            <li>
+              <strong>{esc(title)}</strong>
+              <span>{esc(text)}</span>
+              <a href="{esc(href)}">{esc(cta)}</a>
+            </li>
+            """
+        )
+    return "\n".join(cards)
+
+
+def contribution_lanes() -> str:
+    lanes = [
+        ("Skill request", "docs/SKILL_LIFECYCLE.md"),
+        ("Site adapter request", "docs/SITE_ADAPTERS.md"),
+        ("Integration request", "docs/INTEGRATION_GUIDE.md"),
+        ("Adoption report", "docs/ADOPTER_PLAYBOOK.md"),
+        ("Safety review", "docs/SAFETY_MODEL.md"),
+        ("RFC proposal", "docs/RFC_PROCESS.md"),
+    ]
+    return "\n".join(
+        f'<a href="{esc(href)}">{esc(label)}</a>' for label, href in lanes
+    )
+
+
 def render(index: Dict[str, Any]) -> str:
     return f"""<!doctype html>
 <html lang="en">
@@ -228,6 +283,61 @@ def render(index: Dict[str, Any]) -> str:
       font: inherit;
       background: white;
     }}
+    .intro {{
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 22px;
+    }}
+    .intro-panel {{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }}
+    .intro h2 {{
+      margin-bottom: 8px;
+    }}
+    .intro p {{
+      margin: 0 0 12px;
+      color: var(--muted);
+    }}
+    .path-list {{
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 0;
+      margin: 14px 0 0;
+    }}
+    .path-list li {{
+      border-left: 3px solid var(--accent);
+      padding: 2px 0 2px 10px;
+    }}
+    .path-list strong,
+    .path-list span {{
+      display: block;
+    }}
+    .path-list span {{
+      color: var(--muted);
+      margin: 4px 0 8px;
+      font-size: .9rem;
+    }}
+    .lane-links {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }}
+    .lane-links a {{
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: #f8fafc;
+      color: #1d4ed8;
+      font-size: .86rem;
+    }}
     h2 {{
       margin: 0;
       font-size: 1.05rem;
@@ -282,6 +392,8 @@ def render(index: Dict[str, Any]) -> str:
     }}
     @media (max-width: 800px) {{
       .topbar {{ align-items: flex-start; flex-direction: column; }}
+      .intro {{ grid-template-columns: 1fr; }}
+      .path-list {{ grid-template-columns: 1fr; }}
       .stats {{ grid-template-columns: 1fr; }}
       .toolbar {{ align-items: flex-start; flex-direction: column; }}
       h1 {{ font-size: 1.2rem; }}
@@ -300,6 +412,7 @@ def render(index: Dict[str, Any]) -> str:
       </div>
       <nav aria-label="Project links">
         <a href="README.md">README</a>
+        <a href="docs/SKILL_LIFECYCLE.md">Contribute</a>
         <a href="docs/SKILL_SPEC.md">Skill spec</a>
         <a href="docs/COMPATIBILITY.md">Compatibility</a>
         <a href="docs/SITE_ADAPTERS.md">Site adapters</a>
@@ -308,6 +421,22 @@ def render(index: Dict[str, Any]) -> str:
     </div>
   </header>
   <main class="wrap">
+    <section class="intro" aria-labelledby="ecosystem-heading">
+      <div class="intro-panel">
+        <h2 id="ecosystem-heading">Open HPC Skill Ecosystem</h2>
+        <p>Use the registry to discover portable HPC skills, adapt them to public site policy, and grow reviewed workflows through community evidence.</p>
+        <ul class="path-list">
+          {ecosystem_paths()}
+        </ul>
+      </div>
+      <div class="intro-panel" aria-labelledby="contribute-heading">
+        <h2 id="contribute-heading">Contribution Lanes</h2>
+        <p>Start with the issue type that matches the smallest public-safe change. Maintainers can route domain review, safety review, RFCs, and maturity promotion from there.</p>
+        <div class="lane-links">
+          {contribution_lanes()}
+        </div>
+      </div>
+    </section>
     {stats(index)}
     <section class="section" aria-labelledby="skills-heading">
       <div class="toolbar">

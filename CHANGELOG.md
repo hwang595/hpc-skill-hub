@@ -28,6 +28,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   intake.
 - Add skill lifecycle guidance for moving community requests through seed,
   review, field testing, maintenance, and deprecation.
+- Add ecosystem entry points to the generated static site for adopters,
+  contributors, site adapters, integrations, safety review, and RFCs.
 - Add integration guide, integration request template, and starter label for
   downstream registry consumers.
 - Add a read-only Slurm efficiency report skill for completed job resource

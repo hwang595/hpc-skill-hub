@@ -75,8 +75,10 @@ snapshot for read-only discovery commands.
 ## Static Site
 
 `tools/build_site.py` reads `registry/index.json` and emits a single-file HTML
-registry explorer. The `Publish Pages` workflow builds and deploys that output
-through GitHub Pages when the repository is hosted on GitHub.
+registry explorer with search, collection and site-adapter tables, adoption
+paths, and contribution lanes for new community requests. The `Publish Pages`
+workflow builds and deploys that output through GitHub Pages when the
+repository is hosted on GitHub.
 
 ## Validation Flow
 
