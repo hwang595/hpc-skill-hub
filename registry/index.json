@@ -7,11 +7,11 @@
     "debugging": 17,
     "education": 1,
     "gpu": 9,
-    "interactive": 2,
+    "interactive": 3,
     "mpi": 11,
     "performance": 12,
-    "scheduler": 47,
-    "software": 15,
+    "scheduler": 48,
+    "software": 16,
     "workflow": 10
   },
   "collection_count": 12,
@@ -106,12 +106,13 @@
         "job-failure-triage",
         "interactive-session",
         "jupyter-on-slurm",
+        "vscode-tunnel-on-slurm",
         "openmp-thread-affinity",
         "quota-and-filesystem-triage",
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, IDE tunnels, OpenMP placement, debugging, and storage triage."
     },
     {
       "audience": [
@@ -248,6 +249,7 @@
         "rscript-on-slurm",
         "julia-on-slurm",
         "matlab-batch-on-slurm",
+        "vscode-tunnel-on-slurm",
         "conda-mamba-on-hpc",
         "container-build-for-hpc",
         "apptainer-run-container",
@@ -256,7 +258,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, Conda environments, containers, containerized MPI, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -272,6 +274,7 @@
         "slurm-submit-job",
         "interactive-session",
         "jupyter-on-slurm",
+        "vscode-tunnel-on-slurm",
         "python-virtualenv-on-hpc",
         "rscript-on-slurm",
         "julia-on-slurm",
@@ -282,7 +285,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -315,7 +318,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 44,
+    "slurm": 45,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -342,7 +345,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 64,
+  "skill_count": 65,
   "skills": [
     {
       "categories": [
@@ -3919,6 +3922,67 @@
     },
     {
       "categories": [
+        "interactive",
+        "scheduler",
+        "software"
+      ],
+      "description": "This skill provides a conservative pattern for starting VS Code Remote Tunnels on allocated Slurm compute nodes, with explicit site-policy checks, plan-only defaults, and cleanup notes.",
+      "examples": [
+        {
+          "path": "skills/vscode-tunnel-on-slurm/examples/vscode-tunnel.sbatch",
+          "title": "Plan or start a VS Code tunnel inside a Slurm job"
+        },
+        {
+          "path": "skills/vscode-tunnel-on-slurm/examples/vscode-tunnel-preflight.sh",
+          "title": "Check VS Code CLI and Slurm prerequisites"
+        },
+        {
+          "path": "skills/vscode-tunnel-on-slurm/examples/site-policy-checklist.md",
+          "title": "Review site policy before enabling tunnels"
+        }
+      ],
+      "id": "vscode-tunnel-on-slurm",
+      "maturity": "seed",
+      "name": "VS Code Tunnel On Slurm",
+      "path": "skills/vscode-tunnel-on-slurm",
+      "readme": "skills/vscode-tunnel-on-slurm/README.md",
+      "references": [
+        {
+          "title": "VS Code Remote Tunnels",
+          "url": "https://code.visualstudio.com/docs/remote/tunnels"
+        },
+        {
+          "title": "VS Code command-line interface",
+          "url": "https://code.visualstudio.com/docs/configure/command-line"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run VS Code Remote Tunnels from short Slurm compute allocations.",
+      "tags": [
+        "vscode",
+        "remote-tunnels",
+        "ide",
+        "slurm",
+        "interactive",
+        "code-cli"
+      ],
+      "tools": [
+        "code",
+        "sbatch",
+        "squeue"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "workflow",
         "scheduler",
         "data"
@@ -4100,6 +4164,7 @@
     "checksum": 4,
     "cleanup": 1,
     "climate": 1,
+    "code-cli": 1,
     "compatibility": 1,
     "compiler": 3,
     "conda": 1,
@@ -4146,8 +4211,9 @@
     "haplotypecaller": 1,
     "high-throughput": 1,
     "htcondor": 1,
+    "ide": 1,
     "inode": 1,
-    "interactive": 1,
+    "interactive": 2,
     "io": 1,
     "java": 1,
     "julia": 1,
@@ -4228,6 +4294,7 @@
     "ray": 1,
     "reason": 1,
     "reconstruction": 1,
+    "remote-tunnels": 1,
     "reporting": 1,
     "reproducibility": 10,
     "rerun": 1,
@@ -4251,7 +4318,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 42,
+    "slurm": 43,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -4278,6 +4345,7 @@
     "variant-calling": 1,
     "venv": 1,
     "virtualenv": 1,
+    "vscode": 1,
     "walltime": 2,
     "wdl": 1,
     "weather": 1,
@@ -4303,6 +4371,7 @@
     "charmrun": 1,
     "cksum": 2,
     "clang": 1,
+    "code": 1,
     "command": 2,
     "conda": 1,
     "condor_q": 1,
@@ -4375,7 +4444,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 34,
+    "sbatch": 35,
     "scontrol": 6,
     "sed": 3,
     "seff": 1,
@@ -4388,7 +4457,7 @@
     "sort": 8,
     "spack": 1,
     "sprio": 1,
-    "squeue": 6,
+    "squeue": 7,
     "sreport": 1,
     "srun": 17,
     "ssh": 2,

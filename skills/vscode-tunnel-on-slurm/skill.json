@@ -1,0 +1,123 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "vscode-tunnel-on-slurm",
+  "name": "VS Code Tunnel On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run VS Code Remote Tunnels from short Slurm compute allocations.",
+  "description": "This skill provides a conservative pattern for starting VS Code Remote Tunnels on allocated Slurm compute nodes, with explicit site-policy checks, plan-only defaults, and cleanup notes.",
+  "categories": ["interactive", "scheduler", "software"],
+  "tags": ["vscode", "remote-tunnels", "ide", "slurm", "interactive", "code-cli"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "code",
+      "required": true,
+      "notes": "VS Code CLI with the tunnel command available on the compute node."
+    },
+    {
+      "name": "sbatch",
+      "required": true,
+      "notes": "Used to launch the tunnel inside a scheduled allocation."
+    },
+    {
+      "name": "squeue",
+      "required": false,
+      "notes": "Useful for confirming and cancelling the interactive tunnel job."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "project_dir",
+      "type": "path",
+      "required": true,
+      "description": "Project directory to open from the allocated compute node."
+    },
+    {
+      "name": "tunnel_name",
+      "type": "string",
+      "required": false,
+      "description": "Short tunnel name that avoids exposing private project, host, or user details."
+    },
+    {
+      "name": "time_limit",
+      "type": "string",
+      "required": false,
+      "description": "Short wall time for the tunnel allocation."
+    },
+    {
+      "name": "site_policy",
+      "type": "string",
+      "required": true,
+      "description": "Local policy confirming whether VS Code tunnels and outbound tunnel services are allowed."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "tunnel_log",
+      "description": "Slurm output showing the compute node, tunnel name, selected project directory, and VS Code CLI output."
+    },
+    {
+      "name": "cleanup_notes",
+      "description": "Steps for cancelling the Slurm job and unregistering stale tunnel state when appropriate."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/vscode-tunnel.sbatch",
+    "examples/vscode-tunnel-preflight.sh",
+    "examples/site-policy-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Plan or start a VS Code tunnel inside a Slurm job",
+      "path": "examples/vscode-tunnel.sbatch"
+    },
+    {
+      "title": "Check VS Code CLI and Slurm prerequisites",
+      "path": "examples/vscode-tunnel-preflight.sh"
+    },
+    {
+      "title": "Review site policy before enabling tunnels",
+      "path": "examples/site-policy-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill vscode-tunnel-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/vscode-tunnel-on-slurm/examples/vscode-tunnel.sbatch skills/vscode-tunnel-on-slurm/examples/vscode-tunnel-preflight.sh",
+      "description": "Check that shell examples parse."
+    },
+    {
+      "type": "manual",
+      "description": "After local policy approval, submit a short debug job with RUN_VSCODE_TUNNEL=1, confirm the log shows a VS Code tunnel URL or connection instructions, then cancel the job."
+    }
+  ],
+  "references": [
+    {
+      "title": "VS Code Remote Tunnels",
+      "url": "https://code.visualstudio.com/docs/remote/tunnels"
+    },
+    {
+      "title": "VS Code command-line interface",
+      "url": "https://code.visualstudio.com/docs/configure/command-line"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

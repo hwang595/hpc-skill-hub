@@ -48,6 +48,7 @@ tools.
 | `job-failure-triage` | Diagnose common job failures such as OOM, time limits, and missing modules. |
 | `interactive-session` | Start interactive compute sessions for shells, notebooks, and IDE tunnels. |
 | `jupyter-on-slurm` | Launch Jupyter notebooks inside short Slurm compute allocations. |
+| `vscode-tunnel-on-slurm` | Run VS Code Remote Tunnels from short Slurm compute allocations. |
 | `training-cluster-reset-checklist` | Prepare and review HPC training environments before and after workshops. |
 | `openmp-thread-affinity` | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
 | `quota-and-filesystem-triage` | Diagnose quota, inode, capacity, and permission failures. |

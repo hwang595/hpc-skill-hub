@@ -3,7 +3,7 @@
   "id": "core-hpc",
   "name": "Core HPC",
   "status": "draft",
-  "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage.",
+  "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, IDE tunnels, OpenMP placement, debugging, and storage triage.",
   "audience": ["new HPC users", "research software engineers", "support teams"],
   "skill_ids": [
     "slurm-submit-job",
@@ -17,6 +17,7 @@
     "job-failure-triage",
     "interactive-session",
     "jupyter-on-slurm",
+    "vscode-tunnel-on-slurm",
     "openmp-thread-affinity",
     "quota-and-filesystem-triage",
     "scratch-storage-management"

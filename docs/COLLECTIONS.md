@@ -12,14 +12,14 @@ research software engineer building software stacks may start with
 - `core-hpc`: Slurm submission, arrays, dependency chains, pending reason
   triage, monitoring, resource estimation, efficiency review,
   checkpoint/restart, failure triage, storage triage, OpenMP placement,
-  notebooks, and interactive sessions.
+  notebooks, IDE tunnels, and interactive sessions.
 - `scheduler-basics`: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
   starter submission patterns plus failure triage and reproducible run capture
   for sites comparing or teaching scheduler basics.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
   reproducible run capture, Python virtual environments, Ray clusters, Dask
-  Jobqueue, mpi4py jobs, Rscript jobs, Julia jobs, MATLAB batch jobs, Conda/Mamba,
-  container builds and runtime, Spack, and EasyBuild.
+  Jobqueue, mpi4py jobs, Rscript jobs, Julia jobs, MATLAB batch jobs, IDE
+  tunnels, Conda/Mamba, container builds and runtime, Spack, and EasyBuild.
 - `containers`: Apptainer-compatible image build planning, container runtime
   execution, containerized MPI launch patterns, GPU visibility checks, scratch
   staging, checksum manifests, and reproducible run capture for containerized
@@ -28,9 +28,9 @@ research software engineer building software stacks may start with
   inside Slurm allocations, Dask worker clusters, Nextflow, Snakemake, and
   nf-core on Slurm.
 - `training-onboarding`: workshop preflight, Slurm basics, interactive
-  sessions, notebooks, Python/Conda environments, Rscript batch jobs, Julia
-  batch jobs, MATLAB batch jobs, module debugging, data staging, and failure
-  triage for new users.
+  sessions, notebooks, IDE tunnels, Python/Conda environments, Rscript batch
+  jobs, Julia batch jobs, MATLAB batch jobs, module debugging, data staging,
+  and failure triage for new users.
 - `data-movement`: Globus and rsync transfers, checksum manifests, scratch
   staging, archive preparation, scratch inventory, and filesystem quota triage.
 - `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,
