@@ -9,9 +9,10 @@ research software engineer building software stacks may start with
 
 ## Seed Collections
 
-- `core-hpc`: Slurm submission, arrays, dependency chains, monitoring,
-  resource estimation, efficiency review, checkpoint/restart, failure triage,
-  storage triage, OpenMP placement, notebooks, and interactive sessions.
+- `core-hpc`: Slurm submission, arrays, dependency chains, pending reason
+  triage, monitoring, resource estimation, efficiency review,
+  checkpoint/restart, failure triage, storage triage, OpenMP placement,
+  notebooks, and interactive sessions.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
   reproducible run capture, Python virtual environments, Conda/Mamba,
   container builds and runtime, Spack, and EasyBuild.
@@ -31,8 +32,9 @@ research software engineer building software stacks may start with
 - `simulation-workflows`: GROMACS, LAMMPS, OpenFOAM, WRF, MPI launch checks,
   OpenMP placement, profiling, restart planning, and reproducible run capture
   for simulation teams.
-- `facility-ops`: read-only usage reporting, node triage, and module tree
-  health checks for HPC support teams and facility maintainers.
+- `facility-ops`: read-only usage reporting, pending reason triage, node
+  triage, and module tree health checks for HPC support teams and facility
+  maintainers.
 
 ## Contribution Guidance
 

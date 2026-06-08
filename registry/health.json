@@ -3,13 +3,13 @@
     "admin": 4,
     "containers": 2,
     "data": 9,
-    "debugging": 16,
+    "debugging": 17,
     "education": 1,
     "gpu": 6,
     "interactive": 2,
     "mpi": 6,
     "performance": 8,
-    "scheduler": 29,
+    "scheduler": 30,
     "software": 9,
     "workflow": 5
   },
@@ -29,11 +29,12 @@
     },
     {
       "id": "core-hpc",
-      "skill_count": 13,
+      "skill_count": 14,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
         "slurm-job-dependency-chain",
+        "slurm-pending-reason-triage",
         "slurm-monitor-job",
         "slurm-resource-estimator",
         "slurm-efficiency-report",
@@ -61,9 +62,10 @@
     },
     {
       "id": "facility-ops",
-      "skill_count": 3,
+      "skill_count": 4,
       "skill_ids": [
         "cluster-usage-report-readonly",
+        "slurm-pending-reason-triage",
         "node-health-readonly-triage",
         "module-tree-health-check"
       ]
@@ -143,7 +145,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 46
+    "seed": 47
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -186,6 +188,7 @@
     "slurm-job-array-patterns": "medium",
     "slurm-job-dependency-chain": "medium",
     "slurm-monitor-job": "low",
+    "slurm-pending-reason-triage": "low",
     "slurm-resource-estimator": "low",
     "slurm-submit-job": "medium",
     "snakemake-on-slurm": "medium",
@@ -194,14 +197,14 @@
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
-    "low": 16,
+    "low": 17,
     "medium": 30
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 46,
+  "skill_count": 47,
   "status_counts": {
-    "draft": 46
+    "draft": 47
   },
   "uncollected_skill_ids": []
 }

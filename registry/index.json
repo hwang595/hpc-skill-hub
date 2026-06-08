@@ -3,13 +3,13 @@
     "admin": 4,
     "containers": 2,
     "data": 9,
-    "debugging": 16,
+    "debugging": 17,
     "education": 1,
     "gpu": 6,
     "interactive": 2,
     "mpi": 6,
     "performance": 8,
-    "scheduler": 29,
+    "scheduler": 30,
     "software": 9,
     "workflow": 5
   },
@@ -48,6 +48,7 @@
         "slurm-submit-job",
         "slurm-job-array-patterns",
         "slurm-job-dependency-chain",
+        "slurm-pending-reason-triage",
         "slurm-monitor-job",
         "slurm-resource-estimator",
         "slurm-efficiency-report",
@@ -60,7 +61,7 @@
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage."
     },
     {
       "audience": [
@@ -94,11 +95,12 @@
       "path": "collections/facility-ops.json",
       "skill_ids": [
         "cluster-usage-report-readonly",
+        "slurm-pending-reason-triage",
         "node-health-readonly-triage",
         "module-tree-health-check"
       ],
       "status": "draft",
-      "summary": "Read-only operational skills for usage reporting, node triage, and module tree health."
+      "summary": "Read-only operational skills for usage reporting, pending reason triage, node triage, and module tree health."
     },
     {
       "audience": [
@@ -215,7 +217,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 30
+    "slurm": 31
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -241,7 +243,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 46,
+  "skill_count": 47,
   "skills": [
     {
       "categories": [
@@ -2443,6 +2445,61 @@
     {
       "categories": [
         "scheduler",
+        "debugging"
+      ],
+      "description": "This skill helps users and support teams inspect pending Slurm jobs with squeue, scontrol, and optional sprio output so they can distinguish dependency, priority, resource, partition, reservation, and policy-related wait reasons.",
+      "examples": [
+        {
+          "path": "skills/slurm-pending-reason-triage/examples/pending-reason-triage.sh",
+          "title": "Inspect pending Slurm reasons"
+        }
+      ],
+      "id": "slurm-pending-reason-triage",
+      "maturity": "seed",
+      "name": "Slurm Pending Reason Triage",
+      "path": "skills/slurm-pending-reason-triage",
+      "readme": "skills/slurm-pending-reason-triage/README.md",
+      "references": [
+        {
+          "title": "Slurm squeue documentation",
+          "url": "https://slurm.schedmd.com/squeue.html"
+        },
+        {
+          "title": "Slurm scontrol documentation",
+          "url": "https://slurm.schedmd.com/scontrol.html"
+        },
+        {
+          "title": "Slurm sprio documentation",
+          "url": "https://slurm.schedmd.com/sprio.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Explain why Slurm jobs are pending using read-only scheduler signals.",
+      "tags": [
+        "slurm",
+        "pending",
+        "squeue",
+        "scontrol",
+        "sprio",
+        "priority",
+        "fairshare",
+        "reason"
+      ],
+      "tools": [
+        "squeue",
+        "scontrol",
+        "sprio",
+        "bash"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
         "performance"
       ],
       "description": "This skill uses sacct output to help users choose safer memory, CPU, and wall-time requests for similar Slurm jobs.",
@@ -2815,6 +2872,7 @@
     "environment": 4,
     "environment-modules": 1,
     "failure": 1,
+    "fairshare": 1,
     "filesystem": 3,
     "gatk": 1,
     "genomics": 1,
@@ -2859,12 +2917,14 @@
     "openmp": 2,
     "outputs": 1,
     "parameter-sweep": 1,
+    "pending": 1,
     "perf": 1,
     "permission": 1,
     "pip": 1,
     "pipeline": 1,
     "preemption": 1,
     "preflight": 1,
+    "priority": 1,
     "profile": 1,
     "profiling": 1,
     "provenance": 1,
@@ -2872,6 +2932,7 @@
     "python": 1,
     "pytorch": 3,
     "quota": 2,
+    "reason": 1,
     "reconstruction": 1,
     "reporting": 1,
     "reproducibility": 4,
@@ -2885,7 +2946,7 @@
     "salloc": 1,
     "samplesheet": 1,
     "sbatch": 2,
-    "scontrol": 2,
+    "scontrol": 3,
     "scratch": 2,
     "seff": 1,
     "sha256": 1,
@@ -2893,12 +2954,13 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 28,
+    "slurm": 29,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
     "spack": 1,
-    "squeue": 3,
+    "sprio": 1,
+    "squeue": 4,
     "sreport": 1,
     "srun": 2,
     "staging": 3,
@@ -2931,7 +2993,7 @@
     "apptainer": 2,
     "awk": 3,
     "basename": 1,
-    "bash": 4,
+    "bash": 5,
     "blockMesh": 1,
     "cat": 2,
     "cksum": 2,
@@ -2987,7 +3049,7 @@
     "sacct": 7,
     "salloc": 1,
     "sbatch": 21,
-    "scontrol": 4,
+    "scontrol": 5,
     "sed": 1,
     "seff": 1,
     "sha256sum": 2,
@@ -2998,7 +3060,8 @@
     "snakemake": 1,
     "sort": 8,
     "spack": 1,
-    "squeue": 5,
+    "sprio": 1,
+    "squeue": 6,
     "sreport": 1,
     "srun": 11,
     "ssh": 2,

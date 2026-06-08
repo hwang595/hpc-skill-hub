@@ -1,0 +1,102 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-pending-reason-triage",
+  "name": "Slurm Pending Reason Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Explain why Slurm jobs are pending using read-only scheduler signals.",
+  "description": "This skill helps users and support teams inspect pending Slurm jobs with squeue, scontrol, and optional sprio output so they can distinguish dependency, priority, resource, partition, reservation, and policy-related wait reasons.",
+  "categories": ["scheduler", "debugging"],
+  "tags": ["slurm", "pending", "squeue", "scontrol", "sprio", "priority", "fairshare", "reason"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "squeue",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": false
+    },
+    {
+      "name": "sprio",
+      "required": false
+    },
+    {
+      "name": "bash",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "job_id",
+      "type": "string",
+      "required": false,
+      "description": "Optional Slurm job id, array task id, or job step id to inspect."
+    },
+    {
+      "name": "user",
+      "type": "string",
+      "required": false,
+      "description": "User whose pending jobs should be listed when no job id is provided."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "pending_queue_snapshot",
+      "description": "Read-only squeue report including state, reason, priority, partition, and time limit."
+    },
+    {
+      "name": "job_detail_report",
+      "description": "Optional scontrol show job output for one selected job."
+    },
+    {
+      "name": "priority_factor_report",
+      "description": "Optional sprio report with scheduling priority components when available."
+    },
+    {
+      "name": "triage_prompts",
+      "description": "Human-readable prompts for interpreting common pending reasons."
+    }
+  ],
+  "artifacts": ["README.md", "examples/pending-reason-triage.sh"],
+  "examples": [
+    {
+      "title": "Inspect pending Slurm reasons",
+      "path": "examples/pending-reason-triage.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-pending-reason-triage",
+      "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "manual",
+      "description": "Run with a pending job id and confirm it only reads scheduler state."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm squeue documentation",
+      "url": "https://slurm.schedmd.com/squeue.html"
+    },
+    {
+      "title": "Slurm scontrol documentation",
+      "url": "https://slurm.schedmd.com/scontrol.html"
+    },
+    {
+      "title": "Slurm sprio documentation",
+      "url": "https://slurm.schedmd.com/sprio.html"
+    }
+  ]
+}
