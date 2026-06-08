@@ -1,4 +1,4 @@
-.PHONY: audit check compatibility health release-manifest test validate index site cli clean
+.PHONY: audit check compatibility health package-data release-manifest test validate index site cli clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -14,6 +14,9 @@ health:
 
 compatibility:
 	$(PYTHON) tools/build_compatibility.py --check
+
+package-data:
+	$(PYTHON) tools/build_package_data.py --check
 
 release-manifest:
 	$(PYTHON) tools/build_release_manifest.py v0.1.0 --check
@@ -38,7 +41,7 @@ cli:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health compatibility release-manifest audit test site cli
+check: validate index health compatibility package-data release-manifest audit test site cli
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

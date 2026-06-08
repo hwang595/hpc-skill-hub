@@ -27,3 +27,6 @@ hpc-skill = "hpc_skill_hub.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+hpc_skill_hub = ["data/registry/*.json"]

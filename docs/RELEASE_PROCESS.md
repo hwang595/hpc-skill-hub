@@ -21,6 +21,7 @@ python3 tools/validate_skills.py
 python3 tools/build_index.py --check
 python3 tools/build_health.py --check
 python3 tools/build_compatibility.py --check
+python3 tools/build_package_data.py --check
 python3 tools/build_release_manifest.py v0.1.0 --check
 python3 tools/audit_safety.py
 python3 tools/launch_readiness.py
@@ -42,6 +43,7 @@ Review:
 - `registry/index.json` is current.
 - `docs/SKILL_CATALOG.md` is current.
 - `docs/COMPATIBILITY.md` is current.
+- `src/hpc_skill_hub/data/registry/` matches the generated registry JSON.
 - `registry/releases/v<version>.json` is current and attached to the GitHub
   release.
 - New skills have README files, examples, tests, and references.

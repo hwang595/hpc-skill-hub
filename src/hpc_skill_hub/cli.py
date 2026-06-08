@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.resources as resources
 import json
 import os
 import re
@@ -15,9 +16,10 @@ from typing import Any, Dict, Iterable, List, Optional
 
 
 ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+PACKAGE_NAME = "hpc_skill_hub"
 
 
-def find_repo_root() -> Path:
+def discover_repo_root() -> Optional[Path]:
     candidates: List[Path] = []
     env_root = os.environ.get("HPC_SKILL_HUB_ROOT")
     if env_root:
@@ -29,6 +31,13 @@ def find_repo_root() -> Path:
     for candidate in candidates:
         if (candidate / "registry" / "index.json").exists() and (candidate / "skills").exists():
             return candidate
+    return None
+
+
+def find_repo_root() -> Path:
+    root = discover_repo_root()
+    if root:
+        return root
     raise SystemExit(
         "Could not find HPC Skill Hub registry root. Run from the repository root "
         "or set HPC_SKILL_HUB_ROOT."
@@ -45,20 +54,39 @@ def get_root() -> Path:
     return ROOT
 
 
+def load_packaged_json(filename: str) -> Dict[str, Any]:
+    try:
+        data_path = resources.files(PACKAGE_NAME).joinpath(
+            "data", "registry", filename
+        )
+        with data_path.open("r", encoding="utf-8") as handle:
+            return json.load(handle)
+    except FileNotFoundError:
+        raise SystemExit(
+            f"packaged registry data is missing: data/registry/{filename}"
+        )
+
+
 def load_index() -> Dict[str, Any]:
-    index_path = get_root() / "registry" / "index.json"
-    if not index_path.exists():
-        raise SystemExit("registry/index.json is missing; run tools/build_index.py")
-    with index_path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
+    root = discover_repo_root()
+    if root:
+        index_path = root / "registry" / "index.json"
+        if not index_path.exists():
+            raise SystemExit("registry/index.json is missing; run tools/build_index.py")
+        with index_path.open("r", encoding="utf-8") as handle:
+            return json.load(handle)
+    return load_packaged_json("index.json")
 
 
 def load_health() -> Dict[str, Any]:
-    health_path = get_root() / "registry" / "health.json"
-    if not health_path.exists():
-        raise SystemExit("registry/health.json is missing; run tools/build_health.py")
-    with health_path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
+    root = discover_repo_root()
+    if root:
+        health_path = root / "registry" / "health.json"
+        if not health_path.exists():
+            raise SystemExit("registry/health.json is missing; run tools/build_health.py")
+        with health_path.open("r", encoding="utf-8") as handle:
+            return json.load(handle)
+    return load_packaged_json("health.json")
 
 
 def emit_json(data: Any) -> None:

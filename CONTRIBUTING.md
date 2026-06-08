@@ -27,6 +27,7 @@ authoring workflow, review rubric, risk guidance, and common anti-patterns.
    python3 tools/hpc_skill.py validate --skill your-skill-id
    python3 tools/build_index.py
    python3 tools/build_health.py
+   python3 tools/build_package_data.py
    python3 tools/hpc_skill.py validate
    make check
    ```

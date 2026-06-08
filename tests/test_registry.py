@@ -1,4 +1,5 @@
 import json
+import shutil
 import subprocess
 import tempfile
 import unittest
@@ -71,6 +72,10 @@ class RegistryTests(unittest.TestCase):
     def test_generated_compatibility_is_current(self):
         result = run_cmd("python3", "tools/build_compatibility.py", "--check")
         self.assertIn("Compatibility tables are current", result.stdout)
+
+    def test_generated_package_data_is_current(self):
+        result = run_cmd("python3", "tools/build_package_data.py", "--check")
+        self.assertIn("Package registry data is current", result.stdout)
 
     def test_generated_release_manifest_is_current(self):
         result = run_cmd(
@@ -232,6 +237,26 @@ class RegistryTests(unittest.TestCase):
         )
         payload = json.loads(result.stdout)
         self.assertEqual(payload["id"], "core-hpc")
+
+    def test_package_entrypoint_uses_packaged_registry_outside_repo(self):
+        index = self.load_index()
+        with tempfile.TemporaryDirectory() as tmpdir:
+            package_copy = Path(tmpdir) / "hpc_skill_hub"
+            shutil.copytree(ROOT / "src" / "hpc_skill_hub", package_copy)
+            result = run_cmd_with_env(
+                "python3",
+                "-m",
+                "hpc_skill_hub",
+                "health",
+                "--json",
+                cwd=tmpdir,
+                env={"PYTHONPATH": tmpdir},
+            )
+
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["skill_count"], index["skill_count"])
+        self.assertEqual(payload["collection_count"], index["collection_count"])
+        self.assertEqual(payload["site_adapter_count"], index["site_adapter_count"])
 
     def test_package_validate_entrypoint(self):
         result = run_cmd_with_env(

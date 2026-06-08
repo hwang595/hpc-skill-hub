@@ -10,6 +10,7 @@ setup(
     python_requires=">=3.9",
     package_dir={"": "src"},
     packages=find_packages("src"),
+    package_data={"hpc_skill_hub": ["data/registry/*.json"]},
     entry_points={
         "console_scripts": [
             "hpc-skill=hpc_skill_hub.cli:main",

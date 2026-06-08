@@ -48,6 +48,10 @@ derived from `registry/index.json`.
 `tools/build_release_manifest.py` generates `registry/releases/<version>.json`
 with deterministic file sizes and SHA-256 checksums for release provenance.
 
+`tools/build_package_data.py` copies `registry/index.json` and
+`registry/health.json` into `src/hpc_skill_hub/data/registry/` so installed CLI
+users can run read-only discovery commands without a repository checkout.
+
 ## Collections
 
 Collections under `collections/*.json` group skills into adoption paths such as
@@ -60,7 +64,9 @@ metadata.
 `tools/hpc_skill.py` reads `registry/index.json` and provides lightweight
 discovery commands for users and maintainers. It deliberately uses only the
 Python standard library so it can run on login nodes, laptops, CI systems, and
-minimal container images.
+minimal container images. The package entry point prefers a full repository
+checkout when one is available, then falls back to the packaged registry
+snapshot for read-only discovery commands.
 
 ## Static Site
 

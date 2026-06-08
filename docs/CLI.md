@@ -25,9 +25,11 @@ hpc-skill list
 hpc-skill collection core-hpc
 ```
 
-The installed command finds the registry from the current repository checkout.
-If you run it from another directory, set `HPC_SKILL_HUB_ROOT` to the repository
-root.
+The installed command can run read-only discovery commands from the packaged
+registry snapshot. When a full checkout is available, it prefers the current
+repository's `registry/index.json` and `registry/health.json`. For commands
+that validate or write repository files, run from the repository root or set
+`HPC_SKILL_HUB_ROOT` to the repository root.
 
 For code changes without reinstalling:
 
@@ -117,6 +119,8 @@ python3 tools/build_health.py
 python3 tools/build_health.py --check
 python3 tools/build_compatibility.py
 python3 tools/build_compatibility.py --check
+python3 tools/build_package_data.py
+python3 tools/build_package_data.py --check
 ```
 
 ## Future Direction

@@ -1,5 +1,5 @@
 {
-  "file_count": 356,
+  "file_count": 359,
   "files": [
     {
       "bytes": 489,
@@ -137,9 +137,9 @@
       "sha256": "06ef7d2e4154ba907891bbac1f79040dd94f911d87cb78613543034efa60f794"
     },
     {
-      "bytes": 3152,
+      "bytes": 3191,
       "path": "CONTRIBUTING.md",
-      "sha256": "8cc7262be3baef98b937f5a7f66a97dbee179bfbbbc8ba66c15e0ec9a8443c98"
+      "sha256": "259cf5f23938fc098f4fcde7bd6ecafc092bcf499ce319fc347cea5fcb2b5fce"
     },
     {
       "bytes": 1083,
@@ -147,9 +147,9 @@
       "sha256": "e6674ee41c39ac92f5229d41e9575c0c753fb3025068a191fc5e94c45575e3a0"
     },
     {
-      "bytes": 1211,
+      "bytes": 1299,
       "path": "Makefile",
-      "sha256": "d78e08f09ed920854665f4058872fab57e4746ca700413444421592cc8f8913e"
+      "sha256": "f51e115a7c8ef942d645f42380bd8974c1e1a0dd6163a59b62dbf32ca4fd4645"
     },
     {
       "bytes": 10615,
@@ -242,9 +242,9 @@
       "sha256": "a8429851eb83711b4f4ce31682574687eafb0069016c36a0508483e2647b5ef9"
     },
     {
-      "bytes": 3588,
+      "bytes": 3972,
       "path": "docs/ARCHITECTURE.md",
-      "sha256": "9cd472251546ead003a239b7d57a20aca1fd601666153b57438f4af71870d151"
+      "sha256": "50636b664833b5f86a2d3f99a0ace807927cb74cc7eaca30fce8aac773bc9cad"
     },
     {
       "bytes": 1151,
@@ -252,9 +252,9 @@
       "sha256": "2da62f31137090af41af1750a6c07b2309a1c953266c5f2f417ff77cd1267426"
     },
     {
-      "bytes": 3285,
+      "bytes": 3551,
       "path": "docs/CLI.md",
-      "sha256": "4eacfd926515b8843825525c67d710b6f1b60910a5adf93b898e9a424b6eec66"
+      "sha256": "52a93845387e7f0af12d520b82b83d11f535cd7dc65429ed87782cdc2c11b6d7"
     },
     {
       "bytes": 3053,
@@ -302,14 +302,14 @@
       "sha256": "72feaa12690755d5646a096aa3296a2139370411304fc2230a6f805b08eec964"
     },
     {
-      "bytes": 6324,
+      "bytes": 6819,
       "path": "docs/INTEGRATION_GUIDE.md",
-      "sha256": "7077bb679bb9f2f2345a5ed8e7fd99dc513b503c62b131fc9ffe20d953e5103a"
+      "sha256": "c8130088a6c75fbba8f14994969bbf648b7ea840c237a6ca8a6eb5ab8e1b338e"
     },
     {
-      "bytes": 2133,
+      "bytes": 2177,
       "path": "docs/LAUNCH_READINESS.md",
-      "sha256": "0c8f2cf50cef46310d74d698304d6c220320dac340a23075cbfe5bd287ceb69c"
+      "sha256": "d0cfd4fa9bef0c466baafe75a326154abaeabf2b99e30f99f43633e50d786691"
     },
     {
       "bytes": 2392,
@@ -342,9 +342,9 @@
       "sha256": "714210c9e646f342576abfff9c5678ff78202c1f117703a70d51344b8e932130"
     },
     {
-      "bytes": 2205,
+      "bytes": 2323,
       "path": "docs/RELEASE_PROCESS.md",
-      "sha256": "b09b055aacebe9b52cf955022853bd04e6a3b286c8ede5c4d8d13e84bc7852a4"
+      "sha256": "b5751bebe6a0e9b3bd24e1cab0cdb60447dfabbc9d03ea049bcbd9abc0fe91b6"
     },
     {
       "bytes": 5283,
@@ -367,9 +367,9 @@
       "sha256": "2f5a089a3c05fea6c0e3669c80559f1cb5a1f29bbf34ffc8f0525d9cef8bbf0d"
     },
     {
-      "bytes": 5686,
+      "bytes": 5725,
       "path": "docs/SKILL_AUTHORING_GUIDE.md",
-      "sha256": "dccd446190546cdea90d07dba6d3a0160a82865db1e39a310fd5613984ef2af2"
+      "sha256": "9b16d315de6d3b0f41807c83db9d8437a231ca286e4a36c2e07ac38ef4cc9274"
     },
     {
       "bytes": 6199,
@@ -407,9 +407,9 @@
       "sha256": "36550ed1df344ba99fda5b631c9e188c004ef4dd1c504e6a19338f16d69bf10e"
     },
     {
-      "bytes": 794,
+      "bytes": 867,
       "path": "pyproject.toml",
-      "sha256": "5cfb756d18dc1e76244d46003da8eb948dbc71300636caec4c1c61fde5cde0ee"
+      "sha256": "154ad18564a482d118326f2a0e3acafb3ee4ff2e738bb883c1ba819ada11cbcc"
     },
     {
       "bytes": 7357,
@@ -437,9 +437,9 @@
       "sha256": "b0ebbf3e800275f5fae399f16e5df26673a80aedaf069b6ece3335d793070ccb"
     },
     {
-      "bytes": 506,
+      "bytes": 568,
       "path": "setup.py",
-      "sha256": "a3995979b85eacc4ca6b5bd1a644885c3fd42de5b2124d967af69446d61f9d7f"
+      "sha256": "0ae6ecedc114c0b160c8e12d2aed812372053ecd6450865674755bc590fc2b80"
     },
     {
       "bytes": 757,
@@ -1657,9 +1657,19 @@
       "sha256": "5df4b1b570320598364cc38dd20a398ace8b5ba0c71792c47a3bbb6443edd121"
     },
     {
-      "bytes": 23751,
+      "bytes": 24575,
       "path": "src/hpc_skill_hub/cli.py",
-      "sha256": "7036da038c00f78aeb7b53e8bb78a40ef9d773e0be220130d597c58fac15050e"
+      "sha256": "e98635c6044821567bd15ad8844d0cdaf4fffe9b1738d868a8ecca74a5c1e292"
+    },
+    {
+      "bytes": 7357,
+      "path": "src/hpc_skill_hub/data/registry/health.json",
+      "sha256": "c0ede33533fda0aed74f6e89378bc511088232a826447beba975863830941892"
+    },
+    {
+      "bytes": 112044,
+      "path": "src/hpc_skill_hub/data/registry/index.json",
+      "sha256": "397ef325e3709caa0e6be08998b3d278d6025834a931677c434f72023ec92aa1"
     },
     {
       "bytes": 5774,
@@ -1702,9 +1712,9 @@
       "sha256": "09c57b74cd2a4426fd284b9af25f9c0d4af638cd1aa86ae70d41ec57d1edfead"
     },
     {
-      "bytes": 11569,
+      "bytes": 12626,
       "path": "tests/test_registry.py",
-      "sha256": "65c86023031664ba7b73d3b38ffd4c4a1f416c571075987bfca9c8e1852a8d35"
+      "sha256": "a9a6f5f16cee129088865e1d9a90adfc5d9c2a9fecaf4a2ea0ec2fe1b56fb434"
     },
     {
       "bytes": 6867,
@@ -1725,6 +1735,11 @@
       "bytes": 9863,
       "path": "tools/build_index.py",
       "sha256": "178ad7dda6813462265d4ffe71de9a8038eabac770b4cfea8bd49de0b056ea11"
+    },
+    {
+      "bytes": 2116,
+      "path": "tools/build_package_data.py",
+      "sha256": "1d166ec38e617ec2a8ee28d4dcd755c14545f8ae57412bbe54a5e748d0623a84"
     },
     {
       "bytes": 5250,
@@ -1772,9 +1787,9 @@
       "sha256": "f40297733b779b3c8f2ff8ab62fdc6af5e5e63da495c096c93940dda6fb8a01e"
     },
     {
-      "bytes": 8333,
+      "bytes": 8461,
       "path": "tools/launch_readiness.py",
-      "sha256": "b4b0f04cce5b01923fa273e1e024915ae7b249ef8876c7c76a781a8b04b3132d"
+      "sha256": "069bbd2f43ce88356957a6de0ac4e2cc484560eff51932aef33f5f052803b024"
     },
     {
       "bytes": 18164,
@@ -1804,6 +1819,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 887638,
+  "total_bytes": 1012772,
   "version": "v0.1.0"
 }

@@ -88,6 +88,7 @@ def required_files_check() -> Check:
         ".github/pull_request_template.md",
         "tools/github_publish_plan.py",
         "tools/build_compatibility.py",
+        "tools/build_package_data.py",
         "tools/build_release_manifest.py",
     ]
     missing = [path for path in required if not (ROOT / path).exists()]
@@ -118,6 +119,7 @@ def generated_artifacts_check() -> List[Check]:
         ("registry-index-current", ["python3", "tools/build_index.py", "--check"]),
         ("registry-health-current", ["python3", "tools/build_health.py", "--check"]),
         ("compatibility-current", ["python3", "tools/build_compatibility.py", "--check"]),
+        ("package-data-current", ["python3", "tools/build_package_data.py", "--check"]),
         (
             "release-manifest-current",
             ["python3", "tools/build_release_manifest.py", "v0.1.0", "--check"],

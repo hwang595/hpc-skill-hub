@@ -1,0 +1,3875 @@
+{
+  "categories": {
+    "admin": 4,
+    "containers": 2,
+    "data": 12,
+    "debugging": 17,
+    "education": 1,
+    "gpu": 7,
+    "interactive": 2,
+    "mpi": 8,
+    "performance": 9,
+    "scheduler": 40,
+    "software": 15,
+    "workflow": 9
+  },
+  "collection_count": 11,
+  "collections": [
+    {
+      "audience": [
+        "AI/HPC users",
+        "machine learning researchers",
+        "research software engineers",
+        "HPC support teams"
+      ],
+      "id": "ai-hpc",
+      "name": "AI/HPC",
+      "path": "collections/ai-hpc.json",
+      "skill_ids": [
+        "gpu-sanity-check",
+        "ray-on-slurm",
+        "dask-jobqueue-on-slurm",
+        "pytorch-ddp-on-slurm",
+        "deepspeed-on-slurm",
+        "nccl-diagnostics",
+        "gpu-memory-triage",
+        "apptainer-run-container",
+        "dataset-staging-to-scratch",
+        "checkpoint-restart-workflow",
+        "reproducible-run-capture",
+        "slurm-efficiency-report"
+      ],
+      "status": "draft",
+      "summary": "Skills for launching, validating, and troubleshooting distributed AI workloads on Slurm-backed HPC systems."
+    },
+    {
+      "audience": [
+        "bioinformatics teams",
+        "core facilities",
+        "genomics platform engineers"
+      ],
+      "id": "bioinformatics-workflows",
+      "name": "Bioinformatics Workflows",
+      "path": "collections/bioinformatics-workflows.json",
+      "skill_ids": [
+        "nf-core-on-slurm",
+        "gatk-workflow-on-hpc",
+        "blast-on-slurm",
+        "nextflow-on-slurm",
+        "snakemake-on-slurm",
+        "dataset-staging-to-scratch",
+        "checksum-manifest-create"
+      ],
+      "status": "draft",
+      "summary": "Domain skills for running reviewed nf-core, GATK, and BLAST bioinformatics workflows on Slurm-backed HPC systems."
+    },
+    {
+      "audience": [
+        "research software engineers",
+        "container users",
+        "HPC support teams"
+      ],
+      "id": "containers",
+      "name": "Containers",
+      "path": "collections/containers.json",
+      "skill_ids": [
+        "container-build-for-hpc",
+        "apptainer-run-container",
+        "gpu-sanity-check",
+        "dataset-staging-to-scratch",
+        "checksum-manifest-create",
+        "reproducible-run-capture"
+      ],
+      "status": "draft",
+      "summary": "Skills for building, validating, running, and staging data for containerized HPC workloads."
+    },
+    {
+      "audience": [
+        "new HPC users",
+        "research software engineers",
+        "support teams"
+      ],
+      "id": "core-hpc",
+      "name": "Core HPC",
+      "path": "collections/core-hpc.json",
+      "skill_ids": [
+        "slurm-submit-job",
+        "slurm-job-array-patterns",
+        "slurm-job-dependency-chain",
+        "slurm-pending-reason-triage",
+        "slurm-monitor-job",
+        "slurm-resource-estimator",
+        "slurm-efficiency-report",
+        "checkpoint-restart-workflow",
+        "job-failure-triage",
+        "interactive-session",
+        "jupyter-on-slurm",
+        "openmp-thread-affinity",
+        "quota-and-filesystem-triage",
+        "scratch-storage-management"
+      ],
+      "status": "draft",
+      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, efficiency review, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage."
+    },
+    {
+      "audience": [
+        "data stewards",
+        "research groups",
+        "facility support teams"
+      ],
+      "id": "data-movement",
+      "name": "Data Movement",
+      "path": "collections/data-movement.json",
+      "skill_ids": [
+        "globus-transfer-dataset",
+        "rsync-data-transfer",
+        "checksum-manifest-create",
+        "dataset-staging-to-scratch",
+        "large-file-archive-prepare",
+        "scratch-storage-management",
+        "quota-and-filesystem-triage"
+      ],
+      "status": "draft",
+      "summary": "Skills for staging, transferring, validating, and managing research data on HPC storage."
+    },
+    {
+      "audience": [
+        "HPC support teams",
+        "facility maintainers",
+        "research computing operators"
+      ],
+      "id": "facility-ops",
+      "name": "Facility Operations",
+      "path": "collections/facility-ops.json",
+      "skill_ids": [
+        "cluster-usage-report-readonly",
+        "slurm-pending-reason-triage",
+        "node-health-readonly-triage",
+        "module-tree-health-check"
+      ],
+      "status": "draft",
+      "summary": "Read-only operational skills for usage reporting, pending reason triage, node triage, and module tree health."
+    },
+    {
+      "audience": [
+        "AI/HPC users",
+        "simulation teams",
+        "performance engineers"
+      ],
+      "id": "gpu-mpi-performance",
+      "name": "GPU, MPI, And Performance",
+      "path": "collections/gpu-mpi-performance.json",
+      "skill_ids": [
+        "mpi-hello-and-benchmark",
+        "compiler-mpi-matrix",
+        "mpi4py-on-slurm",
+        "gpu-sanity-check",
+        "ray-on-slurm",
+        "pytorch-ddp-on-slurm",
+        "nccl-diagnostics",
+        "gpu-memory-triage",
+        "deepspeed-on-slurm",
+        "openmp-thread-affinity",
+        "slurm-efficiency-report",
+        "performance-profile-basic"
+      ],
+      "status": "draft",
+      "summary": "Skills for validating GPU allocations, GPU memory failures, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence."
+    },
+    {
+      "audience": [
+        "simulation teams",
+        "computational scientists",
+        "performance engineers"
+      ],
+      "id": "simulation-workflows",
+      "name": "Simulation Workflows",
+      "path": "collections/simulation-workflows.json",
+      "skill_ids": [
+        "gromacs-on-slurm",
+        "lammps-on-slurm",
+        "quantum-espresso-on-slurm",
+        "openfoam-on-slurm",
+        "wrf-on-slurm",
+        "mpi-hello-and-benchmark",
+        "openmp-thread-affinity",
+        "performance-profile-basic",
+        "reproducible-run-capture",
+        "checkpoint-restart-workflow"
+      ],
+      "status": "draft",
+      "summary": "Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, and weather workloads on Slurm-backed HPC systems."
+    },
+    {
+      "audience": [
+        "research software engineers",
+        "HPC support teams",
+        "tool maintainers"
+      ],
+      "id": "software-stacks",
+      "name": "Software Stacks",
+      "path": "collections/software-stacks.json",
+      "skill_ids": [
+        "module-environment-debug",
+        "module-tree-health-check",
+        "compiler-mpi-matrix",
+        "reproducible-run-capture",
+        "python-virtualenv-on-hpc",
+        "ray-on-slurm",
+        "dask-jobqueue-on-slurm",
+        "mpi4py-on-slurm",
+        "rscript-on-slurm",
+        "julia-on-slurm",
+        "matlab-batch-on-slurm",
+        "conda-mamba-on-hpc",
+        "container-build-for-hpc",
+        "apptainer-run-container",
+        "spack-environment-create",
+        "easybuild-install-software"
+      ],
+      "status": "draft",
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks."
+    },
+    {
+      "audience": [
+        "instructors",
+        "new HPC users",
+        "training cluster maintainers"
+      ],
+      "id": "training-onboarding",
+      "name": "Training And Onboarding",
+      "path": "collections/training-onboarding.json",
+      "skill_ids": [
+        "training-cluster-reset-checklist",
+        "slurm-submit-job",
+        "interactive-session",
+        "jupyter-on-slurm",
+        "python-virtualenv-on-hpc",
+        "rscript-on-slurm",
+        "julia-on-slurm",
+        "matlab-batch-on-slurm",
+        "conda-mamba-on-hpc",
+        "module-environment-debug",
+        "dataset-staging-to-scratch",
+        "job-failure-triage"
+      ],
+      "status": "draft",
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, notebooks, Python, R, Julia, and MATLAB workloads, and workshop environments."
+    },
+    {
+      "audience": [
+        "pipeline authors",
+        "bioinformatics teams",
+        "workflow platform maintainers"
+      ],
+      "id": "workflow-engines",
+      "name": "Workflow Engines",
+      "path": "collections/workflow-engines.json",
+      "skill_ids": [
+        "slurm-job-dependency-chain",
+        "cwl-on-slurm",
+        "wdl-on-slurm",
+        "dask-jobqueue-on-slurm",
+        "nextflow-on-slurm",
+        "snakemake-on-slurm",
+        "nf-core-on-slurm"
+      ],
+      "status": "draft",
+      "summary": "Skills for launching portable workflow engines, CWL/WDL runs, Dask worker clusters, and lightweight Slurm dependency chains."
+    }
+  ],
+  "generated_by": "tools/build_index.py",
+  "schedulers": {
+    "slurm": 41
+  },
+  "schema_version": "0.1.0",
+  "site_adapter_count": 1,
+  "site_adapters": [
+    {
+      "id": "example-campus-cluster",
+      "institution_type": "example",
+      "name": "Example Campus Cluster",
+      "partitions": [
+        "debug",
+        "cpu",
+        "gpu"
+      ],
+      "path": "site-adapters/example-campus-cluster",
+      "readme": "site-adapters/example-campus-cluster/README.md",
+      "scheduler": "slurm",
+      "skill_overrides": [
+        "slurm-submit-job",
+        "gpu-sanity-check",
+        "globus-transfer-dataset"
+      ],
+      "status": "example",
+      "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
+    }
+  ],
+  "skill_count": 57,
+  "skills": [
+    {
+      "categories": [
+        "containers",
+        "scheduler"
+      ],
+      "description": "This skill provides templates for executing Apptainer or Singularity images under Slurm with explicit bind mounts, working directories, and optional GPU support.",
+      "examples": [
+        {
+          "path": "skills/apptainer-run-container/examples/run-container.sbatch",
+          "title": "Run a container job under Slurm"
+        },
+        {
+          "path": "skills/apptainer-run-container/examples/inspect-image.sh",
+          "title": "Inspect a container image"
+        }
+      ],
+      "id": "apptainer-run-container",
+      "maturity": "seed",
+      "name": "Apptainer Run Container",
+      "path": "skills/apptainer-run-container",
+      "readme": "skills/apptainer-run-container/README.md",
+      "references": [
+        {
+          "title": "Apptainer documentation",
+          "url": "https://apptainer.org/documentation/"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run Apptainer containers safely on shared HPC systems.",
+      "tags": [
+        "apptainer",
+        "singularity",
+        "container",
+        "slurm",
+        "gpu"
+      ],
+      "tools": [
+        "apptainer",
+        "sbatch"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler",
+        "data"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for local BLAST+ searches, including a tiny FASTA smoke test, local database creation with makeblastdb, explicit CPU and output bounds, and dry-run-first launch records.",
+      "examples": [
+        {
+          "path": "skills/blast-on-slurm/examples/blast-smoke.sbatch",
+          "title": "Plan or run a local BLAST+ smoke test on Slurm"
+        },
+        {
+          "path": "skills/blast-on-slurm/examples/query.fasta",
+          "title": "Tiny nucleotide query FASTA"
+        },
+        {
+          "path": "skills/blast-on-slurm/examples/reference.fasta",
+          "title": "Tiny nucleotide reference FASTA"
+        }
+      ],
+      "id": "blast-on-slurm",
+      "maturity": "seed",
+      "name": "BLAST On Slurm",
+      "path": "skills/blast-on-slurm",
+      "readme": "skills/blast-on-slurm/README.md",
+      "references": [
+        {
+          "title": "BLAST Command Line Applications User Manual",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK279690/"
+        },
+        {
+          "title": "NCBI BLAST+ executables and databases",
+          "url": "https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run local BLAST+ searches on Slurm with bounded smoke-test defaults.",
+      "tags": [
+        "blast",
+        "blastn",
+        "blastp",
+        "makeblastdb",
+        "fasta",
+        "bioinformatics",
+        "slurm"
+      ],
+      "tools": [
+        "blastn",
+        "makeblastdb",
+        "sbatch",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
+        "debugging"
+      ],
+      "description": "This skill helps users wrap long-running work with checkpoint directories, restart detection, progress state, and Slurm signal handling patterns that make reruns safer and less wasteful.",
+      "examples": [
+        {
+          "path": "skills/checkpoint-restart-workflow/examples/checkpoint-wrapper.sbatch",
+          "title": "Checkpoint-aware Slurm wrapper"
+        },
+        {
+          "path": "skills/checkpoint-restart-workflow/examples/resume-progress.sh",
+          "title": "Toy resumable progress command"
+        }
+      ],
+      "id": "checkpoint-restart-workflow",
+      "maturity": "seed",
+      "name": "Checkpoint Restart Workflow",
+      "path": "skills/checkpoint-restart-workflow",
+      "readme": "skills/checkpoint-restart-workflow/README.md",
+      "references": [
+        {
+          "title": "Slurm sbatch signal option",
+          "url": "https://slurm.schedmd.com/sbatch.html#OPT_signal"
+        },
+        {
+          "title": "Slurm preemption documentation",
+          "url": "https://slurm.schedmd.com/preempt.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Structure long HPC jobs so they can resume after time limits or preemption.",
+      "tags": [
+        "checkpoint",
+        "restart",
+        "slurm",
+        "preemption",
+        "timeout",
+        "state"
+      ],
+      "tools": [
+        "sbatch",
+        "bash",
+        "mkdir",
+        "date",
+        "cat",
+        "sleep"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "data"
+      ],
+      "description": "This skill helps users create read-only checksum manifests for selected input or output files before transfer, archival, or support handoff.",
+      "examples": [
+        {
+          "path": "skills/checksum-manifest-create/examples/files.txt",
+          "title": "Input file manifest template"
+        },
+        {
+          "path": "skills/checksum-manifest-create/examples/create-checksums.sh",
+          "title": "Create checksum manifest"
+        }
+      ],
+      "id": "checksum-manifest-create",
+      "maturity": "seed",
+      "name": "Checksum Manifest Create",
+      "path": "skills/checksum-manifest-create",
+      "readme": "skills/checksum-manifest-create/README.md",
+      "references": [
+        {
+          "title": "GNU coreutils sha2 utilities",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/sha2-utilities.html"
+        },
+        {
+          "title": "BagIt file packaging format",
+          "url": "https://datatracker.ietf.org/doc/html/rfc8493"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Create checksum manifests for transfer validation and reproducibility.",
+      "tags": [
+        "checksum",
+        "sha256",
+        "manifest",
+        "transfer",
+        "validation",
+        "archive"
+      ],
+      "tools": [
+        "sha256sum",
+        "shasum",
+        "cksum",
+        "mkdir",
+        "dirname",
+        "date"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "admin",
+        "scheduler"
+      ],
+      "description": "This skill helps HPC support teams collect portable, read-only Slurm accounting, queue, and partition evidence for usage reviews without changing scheduler or cluster state.",
+      "examples": [
+        {
+          "path": "skills/cluster-usage-report-readonly/examples/cluster-usage-report.sh",
+          "title": "Collect a read-only Slurm usage report"
+        }
+      ],
+      "id": "cluster-usage-report-readonly",
+      "maturity": "seed",
+      "name": "Cluster Usage Report Readonly",
+      "path": "skills/cluster-usage-report-readonly",
+      "readme": "skills/cluster-usage-report-readonly/README.md",
+      "references": [
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        },
+        {
+          "title": "Slurm sreport documentation",
+          "url": "https://slurm.schedmd.com/sreport.html"
+        },
+        {
+          "title": "Slurm squeue documentation",
+          "url": "https://slurm.schedmd.com/squeue.html"
+        },
+        {
+          "title": "Slurm sinfo documentation",
+          "url": "https://slurm.schedmd.com/sinfo.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect read-only Slurm usage evidence for facility support reports.",
+      "tags": [
+        "slurm",
+        "sacct",
+        "sreport",
+        "squeue",
+        "sinfo",
+        "usage",
+        "reporting"
+      ],
+      "tools": [
+        "sacct",
+        "sreport",
+        "squeue",
+        "sinfo"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "mpi",
+        "debugging"
+      ],
+      "description": "This skill gathers read-only evidence about loaded modules, compiler paths, MPI wrapper commands, and optional MPI smoke compilation so users can avoid mismatched compiler and MPI stacks.",
+      "examples": [
+        {
+          "path": "skills/compiler-mpi-matrix/examples/compiler-mpi-report.sh",
+          "title": "Collect compiler and MPI wrapper report"
+        },
+        {
+          "path": "skills/compiler-mpi-matrix/examples/hello-mpi.c",
+          "title": "MPI hello-world smoke source"
+        }
+      ],
+      "id": "compiler-mpi-matrix",
+      "maturity": "seed",
+      "name": "Compiler MPI Matrix",
+      "path": "skills/compiler-mpi-matrix",
+      "readme": "skills/compiler-mpi-matrix/README.md",
+      "references": [
+        {
+          "title": "MPI Forum",
+          "url": "https://www.mpi-forum.org/"
+        },
+        {
+          "title": "Lmod documentation",
+          "url": "https://lmod.readthedocs.io/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Check compiler, MPI wrapper, and module compatibility before building HPC codes.",
+      "tags": [
+        "compiler",
+        "mpi",
+        "modules",
+        "mpicc",
+        "wrapper",
+        "compatibility"
+      ],
+      "tools": [
+        "module",
+        "command",
+        "mkdir",
+        "hostname",
+        "head",
+        "mpicc",
+        "mpicxx",
+        "mpifort",
+        "gcc",
+        "clang",
+        "ldd"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software"
+      ],
+      "description": "This skill helps users create Conda/Mamba environments in explicit prefixes, manage package caches, export environment metadata, and avoid common HPC filesystem and module conflicts.",
+      "examples": [
+        {
+          "path": "skills/conda-mamba-on-hpc/examples/environment.yml",
+          "title": "Starter Conda environment file"
+        },
+        {
+          "path": "skills/conda-mamba-on-hpc/examples/create-conda-env.sh",
+          "title": "Create a prefixed Conda/Mamba environment"
+        }
+      ],
+      "id": "conda-mamba-on-hpc",
+      "maturity": "seed",
+      "name": "Conda Mamba On HPC",
+      "path": "skills/conda-mamba-on-hpc",
+      "readme": "skills/conda-mamba-on-hpc/README.md",
+      "references": [
+        {
+          "title": "Conda managing environments",
+          "url": "https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html"
+        },
+        {
+          "title": "Mamba documentation",
+          "url": "https://mamba.readthedocs.io/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Create Conda or Mamba environments while protecting shared HPC filesystems.",
+      "tags": [
+        "conda",
+        "mamba",
+        "micromamba",
+        "environment",
+        "filesystem",
+        "reproducibility"
+      ],
+      "tools": [
+        "conda",
+        "mamba",
+        "micromamba",
+        "mkdir",
+        "env",
+        "grep",
+        "sort"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "containers",
+        "software"
+      ],
+      "description": "This skill helps users prepare reproducible container definitions, choose site-approved build locations, record build metadata, and avoid expensive or policy-sensitive image builds on shared login filesystems.",
+      "examples": [
+        {
+          "path": "skills/container-build-for-hpc/examples/Container.def",
+          "title": "Starter Apptainer definition"
+        },
+        {
+          "path": "skills/container-build-for-hpc/examples/build-plan.sh",
+          "title": "Record or run a container build plan"
+        }
+      ],
+      "id": "container-build-for-hpc",
+      "maturity": "seed",
+      "name": "Container Build For HPC",
+      "path": "skills/container-build-for-hpc",
+      "readme": "skills/container-build-for-hpc/README.md",
+      "references": [
+        {
+          "title": "Apptainer build documentation",
+          "url": "https://apptainer.org/docs/user/latest/build_a_container.html"
+        },
+        {
+          "title": "Apptainer definition files",
+          "url": "https://apptainer.org/docs/user/latest/definition_files.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Plan and build Apptainer-compatible images for shared HPC systems.",
+      "tags": [
+        "apptainer",
+        "singularity",
+        "container",
+        "sif",
+        "definition",
+        "oci"
+      ],
+      "tools": [
+        "apptainer",
+        "singularity",
+        "command",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler",
+        "data"
+      ],
+      "description": "This skill provides a conservative pattern for running Common Workflow Language workflows with cwltool inside a Slurm allocation, including output, cache, and temporary directory controls, a tiny CommandLineTool smoke test, and dry-run-first launch records.",
+      "examples": [
+        {
+          "path": "skills/cwl-on-slurm/examples/cwl-smoke.sbatch",
+          "title": "Plan or run a CWL smoke test in Slurm"
+        },
+        {
+          "path": "skills/cwl-on-slurm/examples/wordcount.cwl",
+          "title": "Tiny CWL CommandLineTool"
+        },
+        {
+          "path": "skills/cwl-on-slurm/examples/job.yml",
+          "title": "CWL input object"
+        },
+        {
+          "path": "skills/cwl-on-slurm/examples/sample.txt",
+          "title": "Tiny text input"
+        }
+      ],
+      "id": "cwl-on-slurm",
+      "maturity": "seed",
+      "name": "CWL On Slurm",
+      "path": "skills/cwl-on-slurm",
+      "readme": "skills/cwl-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Common Workflow Language User Guide",
+          "url": "https://www.commonwl.org/user_guide/"
+        },
+        {
+          "title": "cwltool reference implementation documentation",
+          "url": "https://cwltool.readthedocs.io/en/stable/"
+        },
+        {
+          "title": "CWL CommandLineTool v1.2 specification",
+          "url": "https://www.commonwl.org/v1.2/CommandLineTool.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run small CWL workflows inside Slurm allocations with cwltool.",
+      "tags": [
+        "cwl",
+        "cwltool",
+        "workflow",
+        "slurm",
+        "bioinformatics",
+        "reproducibility"
+      ],
+      "tools": [
+        "cwltool",
+        "sbatch",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "workflow",
+        "scheduler"
+      ],
+      "description": "This skill helps users configure Dask Jobqueue for Slurm-backed Python workloads while keeping worker resources, queue settings, logs, temporary directories, and scale limits explicit.",
+      "examples": [
+        {
+          "path": "skills/dask-jobqueue-on-slurm/examples/dask-slurm-demo.sh",
+          "title": "Dry-run or launch a Dask Jobqueue Slurm demo"
+        },
+        {
+          "path": "skills/dask-jobqueue-on-slurm/examples/dask_jobqueue_demo.py",
+          "title": "Dask Jobqueue Python driver"
+        },
+        {
+          "path": "skills/dask-jobqueue-on-slurm/examples/requirements.txt",
+          "title": "Minimal Python dependency list"
+        }
+      ],
+      "id": "dask-jobqueue-on-slurm",
+      "maturity": "seed",
+      "name": "Dask Jobqueue On Slurm",
+      "path": "skills/dask-jobqueue-on-slurm",
+      "readme": "skills/dask-jobqueue-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Dask Jobqueue SLURMCluster",
+          "url": "https://jobqueue.dask.org/en/stable/generated/dask_jobqueue.SLURMCluster.html"
+        },
+        {
+          "title": "Dask Jobqueue configuration",
+          "url": "https://jobqueue.dask.org/en/stable/clusters-configuration.html"
+        },
+        {
+          "title": "Dask distributed Client",
+          "url": "https://distributed.dask.org/en/latest/client.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults.",
+      "tags": [
+        "dask",
+        "dask-jobqueue",
+        "distributed",
+        "python",
+        "slurm",
+        "workers",
+        "workflow"
+      ],
+      "tools": [
+        "python",
+        "dask",
+        "distributed",
+        "dask_jobqueue",
+        "sbatch",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "data",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative Slurm staging wrapper that copies declared inputs to a job scratch directory, runs a workload there, and copies selected outputs back to durable storage.",
+      "examples": [
+        {
+          "path": "skills/dataset-staging-to-scratch/examples/stage-to-scratch.sbatch",
+          "title": "Slurm staging wrapper"
+        },
+        {
+          "path": "skills/dataset-staging-to-scratch/examples/input-manifest.txt",
+          "title": "Input manifest template"
+        }
+      ],
+      "id": "dataset-staging-to-scratch",
+      "maturity": "seed",
+      "name": "Dataset Staging To Scratch",
+      "path": "skills/dataset-staging-to-scratch",
+      "readme": "skills/dataset-staging-to-scratch/README.md",
+      "references": [
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        },
+        {
+          "title": "rsync manual page",
+          "url": "https://download.samba.org/pub/rsync/rsync.1"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Stage inputs to scratch, run work, and collect outputs from Slurm jobs.",
+      "tags": [
+        "scratch",
+        "staging",
+        "slurm",
+        "rsync",
+        "outputs",
+        "workflow"
+      ],
+      "tools": [
+        "sbatch",
+        "rsync",
+        "mkdir",
+        "date",
+        "hostname",
+        "find",
+        "sort",
+        "pwd"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "gpu",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative Slurm wrapper for DeepSpeed jobs, including environment capture, storage and checkpoint reminders, a reviewable launch plan, and an optional tiny DeepSpeed smoke test.",
+      "examples": [
+        {
+          "path": "skills/deepspeed-on-slurm/examples/deepspeed-slurm.sbatch",
+          "title": "Plan or run a DeepSpeed smoke test on Slurm"
+        },
+        {
+          "path": "skills/deepspeed-on-slurm/examples/deepspeed_smoke.py",
+          "title": "Tiny DeepSpeed smoke script"
+        },
+        {
+          "path": "skills/deepspeed-on-slurm/examples/ds_config_zero2.json",
+          "title": "Conservative ZeRO-2 config template"
+        }
+      ],
+      "id": "deepspeed-on-slurm",
+      "maturity": "seed",
+      "name": "DeepSpeed On Slurm",
+      "path": "skills/deepspeed-on-slurm",
+      "readme": "skills/deepspeed-on-slurm/README.md",
+      "references": [
+        {
+          "title": "DeepSpeed getting started",
+          "url": "https://www.deepspeed.ai/getting-started/"
+        },
+        {
+          "title": "DeepSpeed configuration JSON",
+          "url": "https://www.deepspeed.ai/docs/config-json/"
+        },
+        {
+          "title": "DeepSpeed training setup",
+          "url": "https://deepspeed.readthedocs.io/en/stable/initialize.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Plan and smoke test DeepSpeed launches on Slurm GPU allocations.",
+      "tags": [
+        "deepspeed",
+        "pytorch",
+        "slurm",
+        "zero",
+        "checkpoint",
+        "gpu"
+      ],
+      "tools": [
+        "sbatch",
+        "srun",
+        "scontrol",
+        "python3",
+        "deepspeed",
+        "nvidia-smi",
+        "mkdir",
+        "date",
+        "hostname",
+        "env",
+        "sort",
+        "grep",
+        "head",
+        "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software"
+      ],
+      "description": "This skill provides a cautious EasyBuild workflow for searching easyconfigs, dry-running dependency resolution, and installing software into a user-controlled prefix.",
+      "examples": [
+        {
+          "path": "skills/easybuild-install-software/examples/easybuild-dry-run.sh",
+          "title": "Dry-run an EasyBuild install"
+        }
+      ],
+      "id": "easybuild-install-software",
+      "maturity": "seed",
+      "name": "EasyBuild Install Software",
+      "path": "skills/easybuild-install-software",
+      "readme": "skills/easybuild-install-software/README.md",
+      "references": [
+        {
+          "title": "EasyBuild documentation",
+          "url": "https://docs.easybuild.io/"
+        },
+        {
+          "title": "EasyBuild project",
+          "url": "https://easybuild.io/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Install scientific software with EasyBuild and generated modules.",
+      "tags": [
+        "easybuild",
+        "modules",
+        "software",
+        "easyconfig",
+        "lmod"
+      ],
+      "tools": [
+        "eb",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler",
+        "data"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for GATK workflows, including Java memory and temporary directory controls, reference and input checks, data staging reminders, and a dry-run-first HaplotypeCaller example.",
+      "examples": [
+        {
+          "path": "skills/gatk-workflow-on-hpc/examples/gatk-haplotypecaller.sbatch",
+          "title": "Plan or run GATK HaplotypeCaller on Slurm"
+        },
+        {
+          "path": "skills/gatk-workflow-on-hpc/examples/inputs.env",
+          "title": "Input environment template"
+        },
+        {
+          "path": "skills/gatk-workflow-on-hpc/examples/workflow-checklist.md",
+          "title": "GATK workflow checklist"
+        }
+      ],
+      "id": "gatk-workflow-on-hpc",
+      "maturity": "seed",
+      "name": "GATK Workflow On HPC",
+      "path": "skills/gatk-workflow-on-hpc",
+      "readme": "skills/gatk-workflow-on-hpc/README.md",
+      "references": [
+        {
+          "title": "GATK germline short variant discovery",
+          "url": "https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels"
+        },
+        {
+          "title": "GATK local temporary directory setup",
+          "url": "https://gatk.broadinstitute.org/hc/en-us/articles/18965297287067-How-to-setup-and-use-temporary-folder-for-GATK-local-execution"
+        },
+        {
+          "title": "GATK GenomicsDBImport",
+          "url": "https://gatk.broadinstitute.org/hc/en-us/articles/30332006200603-GenomicsDBImport"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Plan and run GATK variant-calling workflows on shared HPC systems.",
+      "tags": [
+        "gatk",
+        "genomics",
+        "haplotypecaller",
+        "java",
+        "slurm",
+        "variant-calling"
+      ],
+      "tools": [
+        "gatk",
+        "sbatch",
+        "mkdir",
+        "pwd",
+        "date",
+        "hostname",
+        "tee",
+        "test"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "data"
+      ],
+      "description": "This skill provides a Globus CLI workflow for checking endpoints, submitting recursive transfers, and recording task ids for reliable HPC data movement.",
+      "examples": [
+        {
+          "path": "skills/globus-transfer-dataset/examples/transfer-and-watch.sh",
+          "title": "Submit and watch a Globus transfer"
+        }
+      ],
+      "id": "globus-transfer-dataset",
+      "maturity": "seed",
+      "name": "Globus Transfer Dataset",
+      "path": "skills/globus-transfer-dataset",
+      "readme": "skills/globus-transfer-dataset/README.md",
+      "references": [
+        {
+          "title": "Globus Transfer API documentation",
+          "url": "https://docs.globus.org/api/transfer/"
+        },
+        {
+          "title": "Globus CLI documentation",
+          "url": "https://docs.globus.org/cli/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Stage large datasets with Globus transfer and verification steps.",
+      "tags": [
+        "globus",
+        "transfer",
+        "dataset",
+        "checksum",
+        "staging"
+      ],
+      "tools": [
+        "globus"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "debugging",
+        "gpu"
+      ],
+      "description": "This skill collects read-only evidence for GPU memory failures, including scheduler GPU allocation, device memory visibility, framework memory summaries, and common out-of-memory log signals.",
+      "examples": [
+        {
+          "path": "skills/gpu-memory-triage/examples/gpu-memory-triage.sbatch",
+          "title": "Collect GPU memory triage evidence"
+        },
+        {
+          "path": "skills/gpu-memory-triage/examples/memory-signals.md",
+          "title": "GPU memory signal reference"
+        }
+      ],
+      "id": "gpu-memory-triage",
+      "maturity": "seed",
+      "name": "GPU Memory Triage",
+      "path": "skills/gpu-memory-triage",
+      "readme": "skills/gpu-memory-triage/README.md",
+      "references": [
+        {
+          "title": "NVIDIA System Management Interface",
+          "url": "https://developer.nvidia.com/nvidia-system-management-interface"
+        },
+        {
+          "title": "PyTorch CUDA memory management",
+          "url": "https://pytorch.org/docs/stable/notes/cuda.html#memory-management"
+        },
+        {
+          "title": "ROCm SMI documentation",
+          "url": "https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Distinguish GPU allocation, framework, and model memory failures.",
+      "tags": [
+        "gpu",
+        "memory",
+        "oom",
+        "cuda",
+        "rocm",
+        "pytorch",
+        "triage"
+      ],
+      "tools": [
+        "sbatch",
+        "python3",
+        "nvidia-smi",
+        "rocm-smi",
+        "grep",
+        "tail",
+        "date",
+        "hostname"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "gpu",
+        "scheduler",
+        "debugging"
+      ],
+      "description": "This skill provides a Slurm GPU smoke test for NVIDIA or AMD GPU nodes, including device visibility, scheduler allocation variables, and optional Python framework checks.",
+      "examples": [
+        {
+          "path": "skills/gpu-sanity-check/examples/gpu-sanity.sbatch",
+          "title": "Submit a GPU sanity job"
+        }
+      ],
+      "id": "gpu-sanity-check",
+      "maturity": "seed",
+      "name": "GPU Sanity Check",
+      "path": "skills/gpu-sanity-check",
+      "readme": "skills/gpu-sanity-check/README.md",
+      "references": [
+        {
+          "title": "NVIDIA System Management Interface",
+          "url": "https://developer.nvidia.com/nvidia-system-management-interface"
+        },
+        {
+          "title": "ROCm SMI documentation",
+          "url": "https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Verify GPU allocation, runtime visibility, and basic framework access.",
+      "tags": [
+        "gpu",
+        "cuda",
+        "rocm",
+        "nvidia",
+        "amd",
+        "slurm"
+      ],
+      "tools": [
+        "sbatch",
+        "nvidia-smi",
+        "rocm-smi"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "gpu",
+        "mpi",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides a conservative Slurm wrapper for GROMACS simulations, including executable naming, MPI/OpenMP layout, optional GPU offload flags, checkpoint/restart controls, and a dry-run-first smoke test.",
+      "examples": [
+        {
+          "path": "skills/gromacs-on-slurm/examples/gromacs-smoke.sbatch",
+          "title": "Plan or run a GROMACS smoke test on Slurm"
+        },
+        {
+          "path": "skills/gromacs-on-slurm/examples/smoke.mdp",
+          "title": "Tiny MDP file"
+        },
+        {
+          "path": "skills/gromacs-on-slurm/examples/conf.gro",
+          "title": "Tiny coordinate file"
+        },
+        {
+          "path": "skills/gromacs-on-slurm/examples/topol.top",
+          "title": "Tiny topology file"
+        },
+        {
+          "path": "skills/gromacs-on-slurm/examples/checkpoint-checklist.md",
+          "title": "GROMACS checkpoint checklist"
+        }
+      ],
+      "id": "gromacs-on-slurm",
+      "maturity": "seed",
+      "name": "GROMACS On Slurm",
+      "path": "skills/gromacs-on-slurm",
+      "readme": "skills/gromacs-on-slurm/README.md",
+      "references": [
+        {
+          "title": "GROMACS command-line reference",
+          "url": "https://manual.gromacs.org/current/user-guide/cmdline.html"
+        },
+        {
+          "title": "GROMACS mdrun reference",
+          "url": "https://manual.gromacs.org/current/onlinehelp/gmx-mdrun.html"
+        },
+        {
+          "title": "Getting good performance from mdrun",
+          "url": "https://manual.gromacs.org/2023/user-guide/mdrun-performance.html"
+        },
+        {
+          "title": "Managing long simulations",
+          "url": "https://manual.gromacs.org/2018-current/user-guide/managing-simulations.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning.",
+      "tags": [
+        "gromacs",
+        "molecular-dynamics",
+        "mpi",
+        "openmp",
+        "gpu",
+        "checkpoint"
+      ],
+      "tools": [
+        "gmx",
+        "gmx_mpi",
+        "sbatch",
+        "srun",
+        "mkdir",
+        "pwd",
+        "date",
+        "hostname",
+        "tee",
+        "test"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "interactive",
+        "scheduler"
+      ],
+      "description": "This skill provides conservative Slurm interactive session recipes for shell debugging, Jupyter, RStudio, and IDE tunnels.",
+      "examples": [
+        {
+          "path": "skills/interactive-session/examples/slurm-shell.sh",
+          "title": "Start an interactive shell"
+        },
+        {
+          "path": "skills/interactive-session/examples/jupyter-on-node.sh",
+          "title": "Start Jupyter on a compute node"
+        }
+      ],
+      "id": "interactive-session",
+      "maturity": "seed",
+      "name": "Interactive Session",
+      "path": "skills/interactive-session",
+      "readme": "skills/interactive-session/README.md",
+      "references": [
+        {
+          "title": "Slurm salloc documentation",
+          "url": "https://slurm.schedmd.com/salloc.html"
+        },
+        {
+          "title": "Open OnDemand",
+          "url": "https://www.openondemand.org/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Start short interactive compute sessions for debugging and notebooks.",
+      "tags": [
+        "slurm",
+        "salloc",
+        "srun",
+        "jupyter",
+        "debugging"
+      ],
+      "tools": [
+        "salloc",
+        "srun",
+        "ssh"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "debugging",
+        "scheduler"
+      ],
+      "description": "This skill provides a first-pass checklist for failed jobs, including out-of-memory events, time limits, missing modules, permission errors, and node failures.",
+      "examples": [
+        {
+          "path": "skills/job-failure-triage/examples/triage-slurm-job.sh",
+          "title": "Triage a failed Slurm job"
+        }
+      ],
+      "id": "job-failure-triage",
+      "maturity": "seed",
+      "name": "Job Failure Triage",
+      "path": "skills/job-failure-triage",
+      "readme": "skills/job-failure-triage/README.md",
+      "references": [
+        {
+          "title": "Slurm job state codes",
+          "url": "https://slurm.schedmd.com/job_state_codes.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Diagnose common HPC job failures from scheduler and log evidence.",
+      "tags": [
+        "slurm",
+        "failure",
+        "oom",
+        "timeout",
+        "logs",
+        "triage"
+      ],
+      "tools": [
+        "sacct",
+        "grep",
+        "tail"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "scheduler"
+      ],
+      "description": "This skill helps users run Julia batch workloads through Slurm while keeping package depots, project environments, thread counts, logs, and output paths explicit on shared HPC systems.",
+      "examples": [
+        {
+          "path": "skills/julia-on-slurm/examples/julia-slurm.sbatch",
+          "title": "Submit a small Julia batch job"
+        },
+        {
+          "path": "skills/julia-on-slurm/examples/analysis.jl",
+          "title": "Base Julia analysis script with reproducibility output"
+        },
+        {
+          "path": "skills/julia-on-slurm/examples/Project.toml",
+          "title": "Minimal Julia project file"
+        }
+      ],
+      "id": "julia-on-slurm",
+      "maturity": "seed",
+      "name": "Julia On Slurm",
+      "path": "skills/julia-on-slurm",
+      "readme": "skills/julia-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Julia command-line interface",
+          "url": "https://docs.julialang.org/en/v1/manual/command-line-interface/"
+        },
+        {
+          "title": "Julia environment variables",
+          "url": "https://docs.julialang.org/en/v1/manual/environment-variables/"
+        },
+        {
+          "title": "Julia multi-threading",
+          "url": "https://docs.julialang.org/en/v1/manual/multi-threading/"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run Julia scripts on Slurm with explicit depot, project, and thread settings.",
+      "tags": [
+        "julia",
+        "slurm",
+        "depot",
+        "packages",
+        "threads",
+        "batch",
+        "reproducibility"
+      ],
+      "tools": [
+        "julia",
+        "sbatch",
+        "module",
+        "mkdir"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "interactive",
+        "scheduler"
+      ],
+      "description": "This skill provides a scheduler-backed Jupyter workflow with conservative resources, explicit port and token handling, and tunnel instructions that avoid running notebooks on login nodes.",
+      "examples": [
+        {
+          "path": "skills/jupyter-on-slurm/examples/jupyter-lab.sbatch",
+          "title": "Jupyter Lab Slurm job"
+        },
+        {
+          "path": "skills/jupyter-on-slurm/examples/tunnel-template.sh",
+          "title": "Tunnel command template"
+        }
+      ],
+      "id": "jupyter-on-slurm",
+      "maturity": "seed",
+      "name": "Jupyter On Slurm",
+      "path": "skills/jupyter-on-slurm",
+      "readme": "skills/jupyter-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Jupyter Server security",
+          "url": "https://jupyter-server.readthedocs.io/en/latest/operators/security.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Launch Jupyter notebooks inside short Slurm compute allocations.",
+      "tags": [
+        "jupyter",
+        "notebook",
+        "lab",
+        "slurm",
+        "tunnel",
+        "interactive"
+      ],
+      "tools": [
+        "sbatch",
+        "jupyter",
+        "module",
+        "ssh",
+        "hostname",
+        "python3"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "mpi",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for LAMMPS jobs, including MPI task layout, optional GPU/KOKKOS notes, restart and log controls, and a dry-run-first Lennard-Jones smoke test.",
+      "examples": [
+        {
+          "path": "skills/lammps-on-slurm/examples/lammps-smoke.sbatch",
+          "title": "Plan or run a LAMMPS smoke test on Slurm"
+        },
+        {
+          "path": "skills/lammps-on-slurm/examples/in.lj",
+          "title": "Tiny Lennard-Jones input"
+        },
+        {
+          "path": "skills/lammps-on-slurm/examples/restart-checklist.md",
+          "title": "LAMMPS restart checklist"
+        }
+      ],
+      "id": "lammps-on-slurm",
+      "maturity": "seed",
+      "name": "LAMMPS On Slurm",
+      "path": "skills/lammps-on-slurm",
+      "readme": "skills/lammps-on-slurm/README.md",
+      "references": [
+        {
+          "title": "LAMMPS running basics",
+          "url": "https://docs.lammps.org/Run_basics.html"
+        },
+        {
+          "title": "LAMMPS command-line options",
+          "url": "https://docs.lammps.org/Run_options.html"
+        },
+        {
+          "title": "LAMMPS restart command",
+          "url": "https://docs.lammps.org/restart.html"
+        },
+        {
+          "title": "LAMMPS GPU package",
+          "url": "https://docs.lammps.org/Speed_gpu.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run LAMMPS molecular dynamics jobs on Slurm with MPI, GPU, and restart planning.",
+      "tags": [
+        "lammps",
+        "molecular-dynamics",
+        "mpi",
+        "slurm",
+        "restart",
+        "gpu"
+      ],
+      "tools": [
+        "lmp",
+        "sbatch",
+        "srun",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "test"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "data"
+      ],
+      "description": "This skill helps users create a conservative archive plan with a file manifest, size summary, and optional tar.gz creation step for user-owned datasets.",
+      "examples": [
+        {
+          "path": "skills/large-file-archive-prepare/examples/prepare-archive.sh",
+          "title": "Prepare archive plan"
+        },
+        {
+          "path": "skills/large-file-archive-prepare/examples/archive-checklist.md",
+          "title": "Archive review checklist"
+        }
+      ],
+      "id": "large-file-archive-prepare",
+      "maturity": "seed",
+      "name": "Large File Archive Prepare",
+      "path": "skills/large-file-archive-prepare",
+      "readme": "skills/large-file-archive-prepare/README.md",
+      "references": [
+        {
+          "title": "GNU tar manual",
+          "url": "https://www.gnu.org/software/tar/manual/tar.html"
+        },
+        {
+          "title": "BagIt file packaging format",
+          "url": "https://datatracker.ietf.org/doc/html/rfc8493"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Prepare large HPC datasets for archival, publication, or handoff.",
+      "tags": [
+        "archive",
+        "tar",
+        "manifest",
+        "publication",
+        "dataset",
+        "metadata"
+      ],
+      "tools": [
+        "find",
+        "sort",
+        "du",
+        "wc",
+        "tar",
+        "mkdir",
+        "dirname",
+        "basename",
+        "pwd",
+        "date",
+        "awk",
+        "tr",
+        "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "scheduler"
+      ],
+      "description": "This skill helps users run MATLAB scripts or functions through Slurm using batch startup options while keeping license requirements, working directories, logs, and outputs explicit on shared HPC systems.",
+      "examples": [
+        {
+          "path": "skills/matlab-batch-on-slurm/examples/matlab-slurm.sbatch",
+          "title": "Submit a small MATLAB batch job"
+        },
+        {
+          "path": "skills/matlab-batch-on-slurm/examples/analysis.m",
+          "title": "MATLAB function with reproducibility output"
+        }
+      ],
+      "id": "matlab-batch-on-slurm",
+      "maturity": "seed",
+      "name": "MATLAB Batch On Slurm",
+      "path": "skills/matlab-batch-on-slurm",
+      "readme": "skills/matlab-batch-on-slurm/README.md",
+      "references": [
+        {
+          "title": "MATLAB startup options",
+          "url": "https://www.mathworks.com/help/matlab/matlab_env/startup-options.html"
+        },
+        {
+          "title": "MATLAB run function",
+          "url": "https://www.mathworks.com/help/matlab/ref/run.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run non-interactive MATLAB workloads on Slurm with explicit logs and license notes.",
+      "tags": [
+        "matlab",
+        "slurm",
+        "license",
+        "batch",
+        "logs",
+        "m-files",
+        "reproducibility"
+      ],
+      "tools": [
+        "matlab",
+        "sbatch",
+        "module",
+        "mkdir"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "debugging"
+      ],
+      "description": "This skill gathers read-only environment evidence to debug broken software stacks, conflicting modules, missing libraries, and compiler or MPI mismatches.",
+      "examples": [
+        {
+          "path": "skills/module-environment-debug/examples/env-report.sh",
+          "title": "Collect environment report"
+        }
+      ],
+      "id": "module-environment-debug",
+      "maturity": "seed",
+      "name": "Module Environment Debug",
+      "path": "skills/module-environment-debug",
+      "readme": "skills/module-environment-debug/README.md",
+      "references": [
+        {
+          "title": "Lmod documentation",
+          "url": "https://lmod.readthedocs.io/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Diagnose module, compiler, MPI, and library path conflicts.",
+      "tags": [
+        "modules",
+        "lmod",
+        "environment",
+        "compiler",
+        "mpi",
+        "ld_library_path"
+      ],
+      "tools": [
+        "module",
+        "which",
+        "ldd"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "debugging",
+        "admin"
+      ],
+      "description": "This skill helps HPC support teams and software-stack maintainers collect read-only evidence about MODULEPATH, visible modules, module metadata, and common compiler or MPI command paths without loading, unloading, or modifying user environments.",
+      "examples": [
+        {
+          "path": "skills/module-tree-health-check/examples/module-tree-health.sh",
+          "title": "Collect module tree health evidence"
+        }
+      ],
+      "id": "module-tree-health-check",
+      "maturity": "seed",
+      "name": "Module Tree Health Check",
+      "path": "skills/module-tree-health-check",
+      "readme": "skills/module-tree-health-check/README.md",
+      "references": [
+        {
+          "title": "Lmod documentation",
+          "url": "https://lmod.readthedocs.io/"
+        },
+        {
+          "title": "Environment Modules documentation",
+          "url": "https://modules.readthedocs.io/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Collect read-only evidence about visible HPC module tree health.",
+      "tags": [
+        "modules",
+        "lmod",
+        "environment-modules",
+        "modulepath",
+        "compiler",
+        "mpi",
+        "software-stack"
+      ],
+      "tools": [
+        "module",
+        "which",
+        "printenv"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "mpi",
+        "scheduler",
+        "debugging"
+      ],
+      "description": "This skill provides a minimal MPI hello-world program and Slurm batch script to verify compiler, launcher, and node-to-node execution.",
+      "examples": [
+        {
+          "path": "skills/mpi-hello-and-benchmark/examples/hello_mpi.c",
+          "title": "MPI hello-world source"
+        },
+        {
+          "path": "skills/mpi-hello-and-benchmark/examples/run-mpi.sbatch",
+          "title": "Run MPI under Slurm"
+        }
+      ],
+      "id": "mpi-hello-and-benchmark",
+      "maturity": "seed",
+      "name": "MPI Hello And Benchmark",
+      "path": "skills/mpi-hello-and-benchmark",
+      "readme": "skills/mpi-hello-and-benchmark/README.md",
+      "references": [
+        {
+          "title": "MPI Forum",
+          "url": "https://www.mpi-forum.org/"
+        },
+        {
+          "title": "Slurm MPI guide",
+          "url": "https://slurm.schedmd.com/mpi_guide.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Compile and run MPI sanity checks across allocated nodes.",
+      "tags": [
+        "mpi",
+        "slurm",
+        "srun",
+        "mpicc",
+        "benchmark"
+      ],
+      "tools": [
+        "mpicc",
+        "srun"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "mpi",
+        "scheduler"
+      ],
+      "description": "This skill helps users run mpi4py workloads through Slurm while checking that the Python environment, MPI module, launcher, logs, and output paths are aligned on shared HPC systems.",
+      "examples": [
+        {
+          "path": "skills/mpi4py-on-slurm/examples/mpi4py-slurm.sbatch",
+          "title": "Submit a small mpi4py job"
+        },
+        {
+          "path": "skills/mpi4py-on-slurm/examples/hello_mpi4py.py",
+          "title": "mpi4py hello-world and rank report"
+        },
+        {
+          "path": "skills/mpi4py-on-slurm/examples/requirements.txt",
+          "title": "Minimal Python dependency list"
+        }
+      ],
+      "id": "mpi4py-on-slurm",
+      "maturity": "seed",
+      "name": "mpi4py On Slurm",
+      "path": "skills/mpi4py-on-slurm",
+      "readme": "skills/mpi4py-on-slurm/README.md",
+      "references": [
+        {
+          "title": "mpi4py installation documentation",
+          "url": "https://mpi4py.github.io/mpi4py/stable/html/install.html"
+        },
+        {
+          "title": "mpi4py overview",
+          "url": "https://mpi4py.github.io/mpi4py/stable/html/overview.html"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run mpi4py Python programs on Slurm with matching MPI and Python environments.",
+      "tags": [
+        "python",
+        "mpi4py",
+        "mpi",
+        "slurm",
+        "srun",
+        "mpiexec",
+        "modules",
+        "reproducibility"
+      ],
+      "tools": [
+        "python",
+        "mpi4py",
+        "srun",
+        "sbatch",
+        "module",
+        "mpiexec"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "gpu",
+        "debugging",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative Slurm diagnostics wrapper for NCCL-related failures, including GPU topology, selected communication environment variables, NCCL debug settings, and an optional small nccl-tests run.",
+      "examples": [
+        {
+          "path": "skills/nccl-diagnostics/examples/nccl-diagnostics.sbatch",
+          "title": "Submit NCCL diagnostics job"
+        },
+        {
+          "path": "skills/nccl-diagnostics/examples/nccl-env-notes.md",
+          "title": "NCCL environment notes"
+        }
+      ],
+      "id": "nccl-diagnostics",
+      "maturity": "seed",
+      "name": "NCCL Diagnostics",
+      "path": "skills/nccl-diagnostics",
+      "readme": "skills/nccl-diagnostics/README.md",
+      "references": [
+        {
+          "title": "NVIDIA NCCL documentation",
+          "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html"
+        },
+        {
+          "title": "NCCL environment variables",
+          "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html"
+        },
+        {
+          "title": "NVIDIA nccl-tests",
+          "url": "https://github.com/NVIDIA/nccl-tests"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect NCCL communication evidence for multi-GPU and multi-node jobs.",
+      "tags": [
+        "nccl",
+        "gpu",
+        "distributed",
+        "slurm",
+        "all-reduce",
+        "network"
+      ],
+      "tools": [
+        "sbatch",
+        "srun",
+        "nvidia-smi",
+        "all_reduce_perf",
+        "mkdir",
+        "date",
+        "hostname",
+        "env",
+        "sort",
+        "grep",
+        "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler"
+      ],
+      "description": "This skill provides a Nextflow profile and launch wrapper for running portable workflows on Slurm-backed HPC clusters.",
+      "examples": [
+        {
+          "path": "skills/nextflow-on-slurm/examples/nextflow.config",
+          "title": "Slurm Nextflow profile"
+        },
+        {
+          "path": "skills/nextflow-on-slurm/examples/run-nextflow.sh",
+          "title": "Launch Nextflow with profile"
+        }
+      ],
+      "id": "nextflow-on-slurm",
+      "maturity": "seed",
+      "name": "Nextflow On Slurm",
+      "path": "skills/nextflow-on-slurm",
+      "readme": "skills/nextflow-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Nextflow executor documentation",
+          "url": "https://nextflow.io/docs/latest/executor.html"
+        },
+        {
+          "title": "Nextflow configuration documentation",
+          "url": "https://nextflow.io/docs/latest/config.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Configure Nextflow pipelines to run through the Slurm executor.",
+      "tags": [
+        "nextflow",
+        "slurm",
+        "workflow",
+        "nf-core"
+      ],
+      "tools": [
+        "nextflow",
+        "sbatch"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler",
+        "data"
+      ],
+      "description": "This skill provides a reviewed pattern for launching nf-core pipelines on Slurm-backed HPC systems, including a site config, sample sheet placeholder, container cache guidance, work directory controls, and a dry-run-first launch wrapper.",
+      "examples": [
+        {
+          "path": "skills/nf-core-on-slurm/examples/nfcore-slurm.config",
+          "title": "nf-core Slurm config"
+        },
+        {
+          "path": "skills/nf-core-on-slurm/examples/run-nfcore.sh",
+          "title": "Plan or run an nf-core pipeline"
+        },
+        {
+          "path": "skills/nf-core-on-slurm/examples/samplesheet.csv",
+          "title": "Sample sheet placeholder"
+        }
+      ],
+      "id": "nf-core-on-slurm",
+      "maturity": "seed",
+      "name": "nf-core On Slurm",
+      "path": "skills/nf-core-on-slurm",
+      "readme": "skills/nf-core-on-slurm/README.md",
+      "references": [
+        {
+          "title": "nf-core usage introduction",
+          "url": "https://nf-co.re/docs/usage/introduction"
+        },
+        {
+          "title": "nf-core institutional profiles",
+          "url": "https://nf-co.re/docs/tutorials/use_nf-core_pipelines/writing_institutional_profiles"
+        },
+        {
+          "title": "Nextflow Slurm executor",
+          "url": "https://nextflow.io/docs/latest/executor.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults.",
+      "tags": [
+        "nf-core",
+        "nextflow",
+        "slurm",
+        "bioinformatics",
+        "singularity",
+        "samplesheet"
+      ],
+      "tools": [
+        "nextflow",
+        "sbatch",
+        "mkdir",
+        "pwd",
+        "date",
+        "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "admin",
+        "scheduler",
+        "debugging"
+      ],
+      "description": "This skill helps HPC support teams collect user-visible Slurm node, queue, and recent accounting evidence so they can distinguish job-level failures from possible node or partition incidents without changing scheduler state.",
+      "examples": [
+        {
+          "path": "skills/node-health-readonly-triage/examples/node-health-triage.sh",
+          "title": "Collect read-only node triage evidence"
+        }
+      ],
+      "id": "node-health-readonly-triage",
+      "maturity": "seed",
+      "name": "Node Health Readonly Triage",
+      "path": "skills/node-health-readonly-triage",
+      "readme": "skills/node-health-readonly-triage/README.md",
+      "references": [
+        {
+          "title": "Slurm sinfo documentation",
+          "url": "https://slurm.schedmd.com/sinfo.html"
+        },
+        {
+          "title": "Slurm scontrol documentation",
+          "url": "https://slurm.schedmd.com/scontrol.html"
+        },
+        {
+          "title": "Slurm squeue documentation",
+          "url": "https://slurm.schedmd.com/squeue.html"
+        },
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect read-only Slurm node evidence for support triage.",
+      "tags": [
+        "slurm",
+        "sinfo",
+        "scontrol",
+        "squeue",
+        "sacct",
+        "node-health",
+        "triage"
+      ],
+      "tools": [
+        "sinfo",
+        "scontrol",
+        "squeue",
+        "sacct"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "mpi",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides a conservative Slurm wrapper for OpenFOAM cases, including case staging, domain decomposition, solver launch with -parallel, reconstruction, output records, and a dry-run-first cavity smoke case.",
+      "examples": [
+        {
+          "path": "skills/openfoam-on-slurm/examples/openfoam-smoke.sbatch",
+          "title": "Plan or run an OpenFOAM cavity smoke case on Slurm"
+        },
+        {
+          "path": "skills/openfoam-on-slurm/examples/decomposition-checklist.md",
+          "title": "OpenFOAM decomposition checklist"
+        },
+        {
+          "path": "skills/openfoam-on-slurm/examples/cavity-smoke/system/controlDict",
+          "title": "Tiny cavity smoke case"
+        }
+      ],
+      "id": "openfoam-on-slurm",
+      "maturity": "seed",
+      "name": "OpenFOAM On Slurm",
+      "path": "skills/openfoam-on-slurm",
+      "readme": "skills/openfoam-on-slurm/README.md",
+      "references": [
+        {
+          "title": "OpenFOAM parallel running",
+          "url": "https://www.openfoam.com/documentation/user-guide/3-running-applications/3.2-running-applications-in-parallel"
+        },
+        {
+          "title": "OpenFOAM tutorials",
+          "url": "https://www.openfoam.com/documentation/user-guide/2-openfoam-cases/2.1-file-structure-of-openfoam-cases"
+        },
+        {
+          "title": "OpenFOAM command line documentation",
+          "url": "https://www.openfoam.com/documentation/guides/latest/doc/openfoam-guide-command-line.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning.",
+      "tags": [
+        "openfoam",
+        "cfd",
+        "mpi",
+        "slurm",
+        "decomposition",
+        "reconstruction"
+      ],
+      "tools": [
+        "blockMesh",
+        "decomposePar",
+        "reconstructPar",
+        "icoFoam",
+        "sbatch",
+        "srun",
+        "mkdir",
+        "cp",
+        "cat",
+        "pwd",
+        "date",
+        "hostname",
+        "tee",
+        "test"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "performance",
+        "scheduler"
+      ],
+      "description": "This skill helps users request CPUs per task, set OpenMP environment variables, inspect thread placement hints, and avoid oversubscription in threaded HPC jobs.",
+      "examples": [
+        {
+          "path": "skills/openmp-thread-affinity/examples/openmp-affinity.sbatch",
+          "title": "OpenMP affinity Slurm job"
+        },
+        {
+          "path": "skills/openmp-thread-affinity/examples/inspect-thread-env.sh",
+          "title": "Inspect thread environment"
+        }
+      ],
+      "id": "openmp-thread-affinity",
+      "maturity": "seed",
+      "name": "OpenMP Thread Affinity",
+      "path": "skills/openmp-thread-affinity",
+      "readme": "skills/openmp-thread-affinity/README.md",
+      "references": [
+        {
+          "title": "OpenMP environment variables",
+          "url": "https://www.openmp.org/spec-html/5.0/openmpch6.html"
+        },
+        {
+          "title": "Slurm CPU management guide",
+          "url": "https://slurm.schedmd.com/cpu_management.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Align OpenMP threads with Slurm CPU allocations and affinity settings.",
+      "tags": [
+        "openmp",
+        "threads",
+        "affinity",
+        "slurm",
+        "cpu-bind",
+        "omp-num-threads"
+      ],
+      "tools": [
+        "sbatch",
+        "bash",
+        "srun",
+        "env",
+        "hostname",
+        "date",
+        "grep",
+        "nproc",
+        "lscpu"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "performance",
+        "debugging"
+      ],
+      "description": "This skill wraps a command with basic timing, resource, I/O, and optional GPU telemetry so users can decide what to profile more deeply next.",
+      "examples": [
+        {
+          "path": "skills/performance-profile-basic/examples/profile-command.sh",
+          "title": "Profile one command"
+        }
+      ],
+      "id": "performance-profile-basic",
+      "maturity": "seed",
+      "name": "Performance Profile Basic",
+      "path": "skills/performance-profile-basic",
+      "readme": "skills/performance-profile-basic/README.md",
+      "references": [
+        {
+          "title": "GNU time manual",
+          "url": "https://www.gnu.org/software/time/"
+        },
+        {
+          "title": "Linux perf wiki",
+          "url": "https://perf.wiki.kernel.org/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Collect first-pass performance evidence for an HPC workload.",
+      "tags": [
+        "profiling",
+        "time",
+        "memory",
+        "io",
+        "gpu",
+        "perf"
+      ],
+      "tools": [
+        "time",
+        "nvidia-smi",
+        "perf"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software"
+      ],
+      "description": "This skill helps users build user-owned Python virtual environments on HPC systems while recording module state, Python version, package inputs, and activation steps for reproducible jobs.",
+      "examples": [
+        {
+          "path": "skills/python-virtualenv-on-hpc/examples/create-venv.sh",
+          "title": "Create a Python virtual environment"
+        },
+        {
+          "path": "skills/python-virtualenv-on-hpc/examples/requirements.txt",
+          "title": "Starter requirements file"
+        }
+      ],
+      "id": "python-virtualenv-on-hpc",
+      "maturity": "seed",
+      "name": "Python Virtualenv On HPC",
+      "path": "skills/python-virtualenv-on-hpc",
+      "readme": "skills/python-virtualenv-on-hpc/README.md",
+      "references": [
+        {
+          "title": "Python venv documentation",
+          "url": "https://docs.python.org/3/library/venv.html"
+        },
+        {
+          "title": "pip requirements file format",
+          "url": "https://pip.pypa.io/en/stable/reference/requirements-file-format/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Create lightweight Python virtual environments with explicit HPC module assumptions.",
+      "tags": [
+        "python",
+        "virtualenv",
+        "venv",
+        "pip",
+        "modules",
+        "reproducibility"
+      ],
+      "tools": [
+        "python3",
+        "pip",
+        "module",
+        "mkdir",
+        "env",
+        "grep",
+        "sort"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "gpu",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative Slurm smoke test for PyTorch DistributedDataParallel environments, including rank variables, GPU visibility, process group initialization, and a small all-reduce check.",
+      "examples": [
+        {
+          "path": "skills/pytorch-ddp-on-slurm/examples/ddp-smoke.sbatch",
+          "title": "Submit a PyTorch DDP smoke test"
+        },
+        {
+          "path": "skills/pytorch-ddp-on-slurm/examples/ddp_smoke.py",
+          "title": "PyTorch distributed smoke script"
+        }
+      ],
+      "id": "pytorch-ddp-on-slurm",
+      "maturity": "seed",
+      "name": "PyTorch DDP On Slurm",
+      "path": "skills/pytorch-ddp-on-slurm",
+      "readme": "skills/pytorch-ddp-on-slurm/README.md",
+      "references": [
+        {
+          "title": "PyTorch Distributed overview",
+          "url": "https://pytorch.org/docs/stable/distributed.html"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Launch and verify PyTorch distributed data parallel jobs on Slurm.",
+      "tags": [
+        "pytorch",
+        "ddp",
+        "distributed",
+        "slurm",
+        "gpu",
+        "nccl"
+      ],
+      "tools": [
+        "sbatch",
+        "srun",
+        "scontrol",
+        "python3",
+        "nvidia-smi",
+        "hostname",
+        "date",
+        "head"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "mpi",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for Quantum ESPRESSO pw.x jobs, including MPI task layout, generated input from a template, pseudopotential path checks, scratch and wavefunction directories, restart planning, and dry-run-first SCF smoke-test controls.",
+      "examples": [
+        {
+          "path": "skills/quantum-espresso-on-slurm/examples/qe-pwscf-smoke.sbatch",
+          "title": "Plan or run a Quantum ESPRESSO pw.x smoke test on Slurm"
+        },
+        {
+          "path": "skills/quantum-espresso-on-slurm/examples/si.scf.in.template",
+          "title": "Silicon SCF input template"
+        },
+        {
+          "path": "skills/quantum-espresso-on-slurm/examples/restart-checklist.md",
+          "title": "Quantum ESPRESSO restart checklist"
+        }
+      ],
+      "id": "quantum-espresso-on-slurm",
+      "maturity": "seed",
+      "name": "Quantum ESPRESSO On Slurm",
+      "path": "skills/quantum-espresso-on-slurm",
+      "readme": "skills/quantum-espresso-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Quantum ESPRESSO documentation",
+          "url": "https://www.quantum-espresso.org/documentation/"
+        },
+        {
+          "title": "PWscf user guide",
+          "url": "https://www.quantum-espresso.org/Doc/pw_user_guide/"
+        },
+        {
+          "title": "pw.x input description",
+          "url": "https://www.quantum-espresso.org/Doc/INPUT_PW.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run Quantum ESPRESSO PWscf jobs on Slurm with MPI sizing and restart planning.",
+      "tags": [
+        "quantum-espresso",
+        "qe",
+        "pw.x",
+        "pwscf",
+        "dft",
+        "mpi",
+        "slurm",
+        "pseudopotential",
+        "restart"
+      ],
+      "tools": [
+        "pw.x",
+        "sbatch",
+        "srun",
+        "sed",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "test",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "debugging",
+        "data"
+      ],
+      "description": "This skill gives users and support teams a read-only checklist for storage-related failures such as full filesystems, quota limits, inode exhaustion, and path permission errors.",
+      "examples": [
+        {
+          "path": "skills/quota-and-filesystem-triage/examples/filesystem-triage.sh",
+          "title": "Triage filesystem and quota signals"
+        }
+      ],
+      "id": "quota-and-filesystem-triage",
+      "maturity": "seed",
+      "name": "Quota And Filesystem Triage",
+      "path": "skills/quota-and-filesystem-triage",
+      "readme": "skills/quota-and-filesystem-triage/README.md",
+      "references": [
+        {
+          "title": "GNU coreutils df invocation",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/df-invocation.html"
+        },
+        {
+          "title": "Linux quota tools project",
+          "url": "https://sourceforge.net/projects/linuxquota/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Diagnose quota, inode, and filesystem-space failures from user-visible evidence.",
+      "tags": [
+        "quota",
+        "inode",
+        "filesystem",
+        "storage",
+        "enospc",
+        "permission",
+        "triage"
+      ],
+      "tools": [
+        "df",
+        "quota",
+        "find",
+        "grep",
+        "tail",
+        "dirname"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "gpu",
+        "scheduler"
+      ],
+      "description": "This skill helps users start Ray across Slurm-allocated nodes while keeping head-node selection, the head port, CPU/GPU resources, temporary directories, logs, and smoke-test execution explicit.",
+      "examples": [
+        {
+          "path": "skills/ray-on-slurm/examples/ray-slurm.sbatch",
+          "title": "Plan or launch a Ray cluster in Slurm"
+        },
+        {
+          "path": "skills/ray-on-slurm/examples/ray_smoke.py",
+          "title": "Ray task smoke test"
+        },
+        {
+          "path": "skills/ray-on-slurm/examples/requirements.txt",
+          "title": "Minimal Python dependency list"
+        }
+      ],
+      "id": "ray-on-slurm",
+      "maturity": "seed",
+      "name": "Ray On Slurm",
+      "path": "skills/ray-on-slurm",
+      "readme": "skills/ray-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Ray deploying on Slurm",
+          "url": "https://docs.ray.io/en/latest/cluster/vms/user-guides/community/slurm.html"
+        },
+        {
+          "title": "Ray starting Ray",
+          "url": "https://docs.ray.io/en/latest/ray-core/starting-ray.html"
+        },
+        {
+          "title": "Ray configuration",
+          "url": "https://docs.ray.io/en/latest/ray-core/configure.html"
+        },
+        {
+          "title": "Slurm scontrol documentation",
+          "url": "https://slurm.schedmd.com/scontrol.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Launch resource-bounded Ray clusters inside Slurm allocations.",
+      "tags": [
+        "ray",
+        "python",
+        "distributed",
+        "slurm",
+        "ai",
+        "gpu",
+        "ports",
+        "srun"
+      ],
+      "tools": [
+        "ray",
+        "python",
+        "srun",
+        "sbatch",
+        "scontrol",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "debugging",
+        "software"
+      ],
+      "description": "This skill wraps a user command with metadata capture so support teams and collaborators can see command arguments, working directory, modules, environment, git state, optional input checksums, stdout, stderr, and exit code.",
+      "examples": [
+        {
+          "path": "skills/reproducible-run-capture/examples/capture-run.sh",
+          "title": "Capture one command run"
+        },
+        {
+          "path": "skills/reproducible-run-capture/examples/input-files.txt",
+          "title": "Input manifest template"
+        }
+      ],
+      "id": "reproducible-run-capture",
+      "maturity": "seed",
+      "name": "Reproducible Run Capture",
+      "path": "skills/reproducible-run-capture",
+      "readme": "skills/reproducible-run-capture/README.md",
+      "references": [
+        {
+          "title": "Software Heritage reproducibility overview",
+          "url": "https://www.softwareheritage.org/reproducibility/"
+        },
+        {
+          "title": "Git documentation",
+          "url": "https://git-scm.com/doc"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Capture command, environment, provenance, and logs for reproducible HPC runs.",
+      "tags": [
+        "reproducibility",
+        "provenance",
+        "environment",
+        "logs",
+        "git",
+        "checksum"
+      ],
+      "tools": [
+        "env",
+        "mkdir",
+        "date",
+        "hostname",
+        "uname",
+        "sort",
+        "git",
+        "module",
+        "sha256sum",
+        "shasum",
+        "cksum"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "scheduler"
+      ],
+      "description": "This skill helps users run Rscript workloads through Slurm while keeping package libraries, working directories, logs, and output paths explicit and portable on shared HPC systems.",
+      "examples": [
+        {
+          "path": "skills/rscript-on-slurm/examples/rscript-slurm.sbatch",
+          "title": "Submit a small Rscript batch job"
+        },
+        {
+          "path": "skills/rscript-on-slurm/examples/analysis.R",
+          "title": "Base R analysis script with reproducibility output"
+        }
+      ],
+      "id": "rscript-on-slurm",
+      "maturity": "seed",
+      "name": "Rscript On Slurm",
+      "path": "skills/rscript-on-slurm",
+      "readme": "skills/rscript-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Rscript documentation",
+          "url": "https://stat.ethz.ch/R-manual/R-devel/library/utils/html/Rscript.html"
+        },
+        {
+          "title": "R Installation and Administration: Managing libraries",
+          "url": "https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Managing-libraries"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run R scripts on Slurm with explicit package-library and output controls.",
+      "tags": [
+        "r",
+        "rscript",
+        "slurm",
+        "cran",
+        "rlibs",
+        "packages",
+        "batch",
+        "reproducibility"
+      ],
+      "tools": [
+        "Rscript",
+        "sbatch",
+        "module",
+        "mkdir"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "data"
+      ],
+      "description": "This skill helps users plan and run rsync transfers with conservative defaults, dry-run review, log capture, checksum-aware options, and a post-transfer validation checklist.",
+      "examples": [
+        {
+          "path": "skills/rsync-data-transfer/examples/rsync-plan.sh",
+          "title": "Plan or run an rsync transfer"
+        }
+      ],
+      "id": "rsync-data-transfer",
+      "maturity": "seed",
+      "name": "Rsync Data Transfer",
+      "path": "skills/rsync-data-transfer",
+      "readme": "skills/rsync-data-transfer/README.md",
+      "references": [
+        {
+          "title": "rsync project",
+          "url": "https://rsync.samba.org/"
+        },
+        {
+          "title": "rsync manual page",
+          "url": "https://download.samba.org/pub/rsync/rsync.1"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Transfer datasets with rsync dry-runs, resumable options, and validation hooks.",
+      "tags": [
+        "rsync",
+        "transfer",
+        "checksum",
+        "resume",
+        "data",
+        "logs"
+      ],
+      "tools": [
+        "rsync",
+        "mkdir",
+        "date",
+        "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "data",
+        "debugging"
+      ],
+      "description": "This skill helps users inventory user-owned storage, identify large files and directories, and prepare a safe cleanup or staging plan before running storage-sensitive HPC workloads.",
+      "examples": [
+        {
+          "path": "skills/scratch-storage-management/examples/storage-inventory.sh",
+          "title": "Inventory a user-owned storage path"
+        }
+      ],
+      "id": "scratch-storage-management",
+      "maturity": "seed",
+      "name": "Scratch Storage Management",
+      "path": "skills/scratch-storage-management",
+      "readme": "skills/scratch-storage-management/README.md",
+      "references": [
+        {
+          "title": "GNU coreutils du invocation",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/du-invocation.html"
+        },
+        {
+          "title": "GNU find manual",
+          "url": "https://www.gnu.org/software/findutils/manual/html_mono/find.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Inspect scratch, project, and working-directory usage before HPC jobs.",
+      "tags": [
+        "scratch",
+        "storage",
+        "quota",
+        "filesystem",
+        "cleanup",
+        "staging"
+      ],
+      "tools": [
+        "df",
+        "du",
+        "find",
+        "sort",
+        "head",
+        "tail"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
+        "performance",
+        "debugging"
+      ],
+      "description": "This skill helps users and support teams review CPU, memory, elapsed time, and requested resource signals for a completed Slurm job using read-only accounting commands.",
+      "examples": [
+        {
+          "path": "skills/slurm-efficiency-report/examples/slurm-efficiency-report.sh",
+          "title": "Collect a Slurm job efficiency report"
+        }
+      ],
+      "id": "slurm-efficiency-report",
+      "maturity": "seed",
+      "name": "Slurm Efficiency Report",
+      "path": "skills/slurm-efficiency-report",
+      "readme": "skills/slurm-efficiency-report/README.md",
+      "references": [
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        },
+        {
+          "title": "Sheffield HPC seff documentation",
+          "url": "https://docs.hpc.shef.ac.uk/en/latest/referenceinfo/scheduler/SLURM/Common-commands/seff.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Summarize completed Slurm job efficiency from accounting data.",
+      "tags": [
+        "slurm",
+        "seff",
+        "sacct",
+        "efficiency",
+        "cpu",
+        "memory",
+        "walltime"
+      ],
+      "tools": [
+        "sacct",
+        "seff",
+        "bash"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler"
+      ],
+      "description": "This skill helps users turn a manifest of independent inputs into a bounded Slurm job array with per-task logging, concurrency limits, and restart-friendly task selection.",
+      "examples": [
+        {
+          "path": "skills/slurm-job-array-patterns/examples/manifest-array.sbatch",
+          "title": "Manifest-driven Slurm array"
+        },
+        {
+          "path": "skills/slurm-job-array-patterns/examples/array-manifest.tsv",
+          "title": "Example array manifest"
+        }
+      ],
+      "id": "slurm-job-array-patterns",
+      "maturity": "seed",
+      "name": "Slurm Job Array Patterns",
+      "path": "skills/slurm-job-array-patterns",
+      "readme": "skills/slurm-job-array-patterns/README.md",
+      "references": [
+        {
+          "title": "Slurm job array documentation",
+          "url": "https://slurm.schedmd.com/job_array.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run parameter sweeps and many independent tasks with Slurm job arrays.",
+      "tags": [
+        "slurm",
+        "array",
+        "manifest",
+        "parameter-sweep",
+        "throughput",
+        "rerun"
+      ],
+      "tools": [
+        "sbatch",
+        "sed",
+        "awk",
+        "mkdir"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
+        "workflow"
+      ],
+      "description": "This skill helps users plan and optionally submit small Slurm dependency chains for preprocessing, analysis, and postprocessing stages using afterok, afterany, and singleton patterns.",
+      "examples": [
+        {
+          "path": "skills/slurm-job-dependency-chain/examples/dependency-chain.sh",
+          "title": "Plan or submit a three-stage dependency chain"
+        }
+      ],
+      "id": "slurm-job-dependency-chain",
+      "maturity": "seed",
+      "name": "Slurm Job Dependency Chain",
+      "path": "skills/slurm-job-dependency-chain",
+      "readme": "skills/slurm-job-dependency-chain/README.md",
+      "references": [
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        },
+        {
+          "title": "Slurm job array dependency notes",
+          "url": "https://slurm.schedmd.com/job_array.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Chain multi-stage Slurm jobs with explicit dependencies.",
+      "tags": [
+        "slurm",
+        "sbatch",
+        "dependency",
+        "afterok",
+        "afterany",
+        "singleton",
+        "pipeline"
+      ],
+      "tools": [
+        "sbatch",
+        "squeue",
+        "bash",
+        "mkdir"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
+        "debugging"
+      ],
+      "description": "This skill provides read-only commands for checking queued, running, completed, and failed Slurm jobs using squeue, sacct, scontrol, and log files.",
+      "examples": [
+        {
+          "path": "skills/slurm-monitor-job/examples/monitor-job.sh",
+          "title": "Monitor one Slurm job"
+        }
+      ],
+      "id": "slurm-monitor-job",
+      "maturity": "seed",
+      "name": "Slurm Monitor Job",
+      "path": "skills/slurm-monitor-job",
+      "readme": "skills/slurm-monitor-job/README.md",
+      "references": [
+        {
+          "title": "Slurm squeue documentation",
+          "url": "https://slurm.schedmd.com/squeue.html"
+        },
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Inspect Slurm job state, accounting records, and output paths.",
+      "tags": [
+        "slurm",
+        "squeue",
+        "sacct",
+        "scontrol",
+        "logs"
+      ],
+      "tools": [
+        "squeue",
+        "sacct",
+        "scontrol"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
+        "debugging"
+      ],
+      "description": "This skill helps users and support teams inspect pending Slurm jobs with squeue, scontrol, and optional sprio output so they can distinguish dependency, priority, resource, partition, reservation, and policy-related wait reasons.",
+      "examples": [
+        {
+          "path": "skills/slurm-pending-reason-triage/examples/pending-reason-triage.sh",
+          "title": "Inspect pending Slurm reasons"
+        }
+      ],
+      "id": "slurm-pending-reason-triage",
+      "maturity": "seed",
+      "name": "Slurm Pending Reason Triage",
+      "path": "skills/slurm-pending-reason-triage",
+      "readme": "skills/slurm-pending-reason-triage/README.md",
+      "references": [
+        {
+          "title": "Slurm squeue documentation",
+          "url": "https://slurm.schedmd.com/squeue.html"
+        },
+        {
+          "title": "Slurm scontrol documentation",
+          "url": "https://slurm.schedmd.com/scontrol.html"
+        },
+        {
+          "title": "Slurm sprio documentation",
+          "url": "https://slurm.schedmd.com/sprio.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Explain why Slurm jobs are pending using read-only scheduler signals.",
+      "tags": [
+        "slurm",
+        "pending",
+        "squeue",
+        "scontrol",
+        "sprio",
+        "priority",
+        "fairshare",
+        "reason"
+      ],
+      "tools": [
+        "squeue",
+        "scontrol",
+        "sprio",
+        "bash"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill uses sacct output to help users choose safer memory, CPU, and wall-time requests for similar Slurm jobs.",
+      "examples": [
+        {
+          "path": "skills/slurm-resource-estimator/examples/resource-history.sh",
+          "title": "Collect recent accounting records"
+        }
+      ],
+      "id": "slurm-resource-estimator",
+      "maturity": "seed",
+      "name": "Slurm Resource Estimator",
+      "path": "skills/slurm-resource-estimator",
+      "readme": "skills/slurm-resource-estimator/README.md",
+      "references": [
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Estimate future Slurm resource requests from accounting history.",
+      "tags": [
+        "slurm",
+        "sacct",
+        "resources",
+        "memory",
+        "walltime"
+      ],
+      "tools": [
+        "sacct",
+        "awk"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler"
+      ],
+      "description": "This skill helps users create Slurm sbatch scripts for CPU, GPU, MPI, and array workloads with conservative defaults and clear placeholders.",
+      "examples": [
+        {
+          "path": "skills/slurm-submit-job/examples/cpu.sbatch",
+          "title": "CPU batch job"
+        },
+        {
+          "path": "skills/slurm-submit-job/examples/mpi.sbatch",
+          "title": "MPI batch job"
+        },
+        {
+          "path": "skills/slurm-submit-job/examples/gpu.sbatch",
+          "title": "GPU batch job"
+        },
+        {
+          "path": "skills/slurm-submit-job/examples/array.sbatch",
+          "title": "Array batch job"
+        }
+      ],
+      "id": "slurm-submit-job",
+      "maturity": "seed",
+      "name": "Slurm Submit Job",
+      "path": "skills/slurm-submit-job",
+      "readme": "skills/slurm-submit-job/README.md",
+      "references": [
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Generate safe Slurm batch scripts for common HPC job shapes.",
+      "tags": [
+        "slurm",
+        "sbatch",
+        "cpu",
+        "gpu",
+        "mpi",
+        "array"
+      ],
+      "tools": [
+        "sbatch",
+        "srun"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler"
+      ],
+      "description": "This skill provides a starter Snakemake Slurm profile and launch wrapper for cluster execution with conservative default resources.",
+      "examples": [
+        {
+          "path": "skills/snakemake-on-slurm/examples/slurm-profile/config.yaml",
+          "title": "Snakemake Slurm profile"
+        },
+        {
+          "path": "skills/snakemake-on-slurm/examples/run-snakemake.sh",
+          "title": "Launch Snakemake with profile"
+        }
+      ],
+      "id": "snakemake-on-slurm",
+      "maturity": "seed",
+      "name": "Snakemake On Slurm",
+      "path": "skills/snakemake-on-slurm",
+      "readme": "skills/snakemake-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Snakemake documentation",
+          "url": "https://snakemake.readthedocs.io/"
+        },
+        {
+          "title": "Snakemake executor plugin slurm",
+          "url": "https://snakemake.github.io/snakemake-plugin-catalog/plugins/executor/slurm.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Configure Snakemake workflows to submit jobs through Slurm.",
+      "tags": [
+        "snakemake",
+        "slurm",
+        "workflow",
+        "profile"
+      ],
+      "tools": [
+        "snakemake",
+        "sbatch"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software"
+      ],
+      "description": "This skill provides a starter spack.yaml and commands for concretizing, installing, and loading a user-owned scientific software environment.",
+      "examples": [
+        {
+          "path": "skills/spack-environment-create/examples/spack.yaml",
+          "title": "Starter Spack environment"
+        },
+        {
+          "path": "skills/spack-environment-create/examples/create-env.sh",
+          "title": "Create and concretize environment"
+        }
+      ],
+      "id": "spack-environment-create",
+      "maturity": "seed",
+      "name": "Spack Environment Create",
+      "path": "skills/spack-environment-create",
+      "readme": "skills/spack-environment-create/README.md",
+      "references": [
+        {
+          "title": "Spack environments documentation",
+          "url": "https://spack.readthedocs.io/en/latest/environments.html"
+        },
+        {
+          "title": "Spack project",
+          "url": "https://spack.io/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Create reproducible Spack environments for HPC software stacks.",
+      "tags": [
+        "spack",
+        "environment",
+        "modules",
+        "software",
+        "reproducibility"
+      ],
+      "tools": [
+        "spack"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "education",
+        "admin",
+        "scheduler"
+      ],
+      "description": "This skill helps instructors and HPC support teams run read-only preflight checks and follow a human-reviewed reset checklist for workshops, courses, and training clusters without embedding private site policy or destructive cleanup commands.",
+      "examples": [
+        {
+          "path": "skills/training-cluster-reset-checklist/examples/training-preflight.sh",
+          "title": "Collect a read-only training preflight report"
+        },
+        {
+          "path": "skills/training-cluster-reset-checklist/examples/reset-checklist.md",
+          "title": "Review the training reset checklist"
+        }
+      ],
+      "id": "training-cluster-reset-checklist",
+      "maturity": "seed",
+      "name": "Training Cluster Reset Checklist",
+      "path": "skills/training-cluster-reset-checklist",
+      "readme": "skills/training-cluster-reset-checklist/README.md",
+      "references": [
+        {
+          "title": "Slurm sinfo documentation",
+          "url": "https://slurm.schedmd.com/sinfo.html"
+        },
+        {
+          "title": "Slurm squeue documentation",
+          "url": "https://slurm.schedmd.com/squeue.html"
+        },
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Prepare and review HPC training environments before and after workshops.",
+      "tags": [
+        "training",
+        "workshop",
+        "slurm",
+        "preflight",
+        "checklist",
+        "onboarding"
+      ],
+      "tools": [
+        "sinfo",
+        "squeue",
+        "sacct",
+        "module",
+        "df"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler",
+        "data"
+      ],
+      "description": "This skill provides a conservative pattern for running Workflow Description Language workflows with miniwdl inside a Slurm allocation, including output and run directory controls, a tiny word-count smoke test, input JSON handling, and dry-run-first launch records.",
+      "examples": [
+        {
+          "path": "skills/wdl-on-slurm/examples/wdl-smoke.sbatch",
+          "title": "Plan or run a WDL smoke test in Slurm"
+        },
+        {
+          "path": "skills/wdl-on-slurm/examples/wordcount.wdl",
+          "title": "Tiny WDL workflow"
+        },
+        {
+          "path": "skills/wdl-on-slurm/examples/inputs.json",
+          "title": "miniwdl input JSON"
+        },
+        {
+          "path": "skills/wdl-on-slurm/examples/sample.txt",
+          "title": "Tiny text input"
+        }
+      ],
+      "id": "wdl-on-slurm",
+      "maturity": "seed",
+      "name": "WDL On Slurm",
+      "path": "skills/wdl-on-slurm",
+      "readme": "skills/wdl-on-slurm/README.md",
+      "references": [
+        {
+          "title": "OpenWDL overview",
+          "url": "https://docs.openwdl.org/overview.html"
+        },
+        {
+          "title": "OpenWDL tasks guide",
+          "url": "https://docs.openwdl.org/language-guide/tasks.html"
+        },
+        {
+          "title": "OpenWDL workflows guide",
+          "url": "https://docs.openwdl.org/language-guide/workflows.html"
+        },
+        {
+          "title": "miniwdl run command line",
+          "url": "https://miniwdl.readthedocs.io/en/latest/runner_cli.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run small WDL workflows inside Slurm allocations with miniwdl.",
+      "tags": [
+        "wdl",
+        "miniwdl",
+        "workflow",
+        "slurm",
+        "bioinformatics",
+        "reproducibility"
+      ],
+      "tools": [
+        "miniwdl",
+        "sbatch",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "mpi",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides a conservative Slurm wrapper for WRF real-data cases, including run-directory staging, met_em linking, real.exe and wrf.exe MPI launch planning, RSL log capture, restart interval review, and dry-run-first execution.",
+      "examples": [
+        {
+          "path": "skills/wrf-on-slurm/examples/wrf-realdata.sbatch",
+          "title": "Plan or run a WRF real-data Slurm case"
+        },
+        {
+          "path": "skills/wrf-on-slurm/examples/namelist.input.template",
+          "title": "WRF namelist.input template"
+        },
+        {
+          "path": "skills/wrf-on-slurm/examples/restart-io-checklist.md",
+          "title": "WRF restart and I/O checklist"
+        }
+      ],
+      "id": "wrf-on-slurm",
+      "maturity": "seed",
+      "name": "WRF On Slurm",
+      "path": "skills/wrf-on-slurm",
+      "readme": "skills/wrf-on-slurm/README.md",
+      "references": [
+        {
+          "title": "WRF Users Guide: Running WRF",
+          "url": "https://www2.mmm.ucar.edu/wrf/users/wrf_users_guide/build/html/running_wrf.html"
+        },
+        {
+          "title": "WRF Users Guide: WRF Software and Computation",
+          "url": "https://www2.mmm.ucar.edu/wrf/users/wrf_users_guide/build/html/wrf_software.html"
+        },
+        {
+          "title": "WRF Users Guide: Namelist Variables",
+          "url": "https://www2.mmm.ucar.edu/wrf/users/wrf_users_guide/build/html/namelist_variables.html"
+        },
+        {
+          "title": "WRF namelist.input best practices",
+          "url": "https://www2.mmm.ucar.edu/wrf/site/documentation/namelist.input_best_practices.html"
+        },
+        {
+          "title": "WRF online tutorial: Run the model for a single domain",
+          "url": "https://www2.mmm.ucar.edu/wrf/site/online_tutorial/single_domain_exercise.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run WRF real-data jobs on Slurm with MPI sizing, real.exe staging, restart, and I/O planning.",
+      "tags": [
+        "wrf",
+        "weather",
+        "climate",
+        "mpi",
+        "slurm",
+        "restart",
+        "netcdf"
+      ],
+      "tools": [
+        "real.exe",
+        "wrf.exe",
+        "ncdump",
+        "sbatch",
+        "srun",
+        "mkdir",
+        "cp",
+        "ln",
+        "pwd",
+        "date",
+        "hostname",
+        "tee",
+        "test"
+      ],
+      "version": "0.1.0"
+    }
+  ],
+  "tags": {
+    "affinity": 1,
+    "afterany": 1,
+    "afterok": 1,
+    "ai": 1,
+    "all-reduce": 1,
+    "amd": 1,
+    "apptainer": 2,
+    "archive": 2,
+    "array": 2,
+    "batch": 3,
+    "benchmark": 1,
+    "bioinformatics": 4,
+    "blast": 1,
+    "blastn": 1,
+    "blastp": 1,
+    "cfd": 1,
+    "checklist": 1,
+    "checkpoint": 3,
+    "checksum": 4,
+    "cleanup": 1,
+    "climate": 1,
+    "compatibility": 1,
+    "compiler": 3,
+    "conda": 1,
+    "container": 2,
+    "cpu": 2,
+    "cpu-bind": 1,
+    "cran": 1,
+    "cuda": 2,
+    "cwl": 1,
+    "cwltool": 1,
+    "dask": 1,
+    "dask-jobqueue": 1,
+    "data": 1,
+    "dataset": 2,
+    "ddp": 1,
+    "debugging": 1,
+    "decomposition": 1,
+    "deepspeed": 1,
+    "definition": 1,
+    "dependency": 1,
+    "depot": 1,
+    "dft": 1,
+    "distributed": 4,
+    "easybuild": 1,
+    "easyconfig": 1,
+    "efficiency": 1,
+    "enospc": 1,
+    "environment": 4,
+    "environment-modules": 1,
+    "failure": 1,
+    "fairshare": 1,
+    "fasta": 1,
+    "filesystem": 3,
+    "gatk": 1,
+    "genomics": 1,
+    "git": 1,
+    "globus": 1,
+    "gpu": 11,
+    "gromacs": 1,
+    "haplotypecaller": 1,
+    "inode": 1,
+    "interactive": 1,
+    "io": 1,
+    "java": 1,
+    "julia": 1,
+    "jupyter": 2,
+    "lab": 1,
+    "lammps": 1,
+    "ld_library_path": 1,
+    "license": 1,
+    "lmod": 3,
+    "logs": 5,
+    "m-files": 1,
+    "makeblastdb": 1,
+    "mamba": 1,
+    "manifest": 3,
+    "matlab": 1,
+    "memory": 4,
+    "metadata": 1,
+    "micromamba": 1,
+    "miniwdl": 1,
+    "modulepath": 1,
+    "modules": 7,
+    "molecular-dynamics": 2,
+    "mpi": 11,
+    "mpi4py": 1,
+    "mpicc": 2,
+    "mpiexec": 1,
+    "nccl": 2,
+    "netcdf": 1,
+    "network": 1,
+    "nextflow": 2,
+    "nf-core": 2,
+    "node-health": 1,
+    "notebook": 1,
+    "nvidia": 1,
+    "oci": 1,
+    "omp-num-threads": 1,
+    "onboarding": 1,
+    "oom": 2,
+    "openfoam": 1,
+    "openmp": 2,
+    "outputs": 1,
+    "packages": 2,
+    "parameter-sweep": 1,
+    "pending": 1,
+    "perf": 1,
+    "permission": 1,
+    "pip": 1,
+    "pipeline": 1,
+    "ports": 1,
+    "preemption": 1,
+    "preflight": 1,
+    "priority": 1,
+    "profile": 1,
+    "profiling": 1,
+    "provenance": 1,
+    "pseudopotential": 1,
+    "publication": 1,
+    "pw.x": 1,
+    "pwscf": 1,
+    "python": 4,
+    "pytorch": 3,
+    "qe": 1,
+    "quantum-espresso": 1,
+    "quota": 2,
+    "r": 1,
+    "ray": 1,
+    "reason": 1,
+    "reconstruction": 1,
+    "reporting": 1,
+    "reproducibility": 10,
+    "rerun": 1,
+    "resources": 1,
+    "restart": 4,
+    "resume": 1,
+    "rlibs": 1,
+    "rocm": 2,
+    "rscript": 1,
+    "rsync": 2,
+    "sacct": 5,
+    "salloc": 1,
+    "samplesheet": 1,
+    "sbatch": 2,
+    "scontrol": 3,
+    "scratch": 2,
+    "seff": 1,
+    "sha256": 1,
+    "sif": 1,
+    "sinfo": 2,
+    "singleton": 1,
+    "singularity": 3,
+    "slurm": 39,
+    "snakemake": 1,
+    "software": 2,
+    "software-stack": 1,
+    "spack": 1,
+    "sprio": 1,
+    "squeue": 4,
+    "sreport": 1,
+    "srun": 4,
+    "staging": 3,
+    "state": 1,
+    "storage": 2,
+    "tar": 1,
+    "threads": 2,
+    "throughput": 1,
+    "time": 1,
+    "timeout": 2,
+    "training": 1,
+    "transfer": 3,
+    "triage": 4,
+    "tunnel": 1,
+    "usage": 1,
+    "validation": 1,
+    "variant-calling": 1,
+    "venv": 1,
+    "virtualenv": 1,
+    "walltime": 2,
+    "wdl": 1,
+    "weather": 1,
+    "workers": 1,
+    "workflow": 6,
+    "workshop": 1,
+    "wrapper": 1,
+    "wrf": 1,
+    "zero": 1
+  },
+  "tools": {
+    "Rscript": 1,
+    "all_reduce_perf": 1,
+    "apptainer": 2,
+    "awk": 3,
+    "basename": 1,
+    "bash": 5,
+    "blastn": 1,
+    "blockMesh": 1,
+    "cat": 2,
+    "cksum": 2,
+    "clang": 1,
+    "command": 2,
+    "conda": 1,
+    "cp": 2,
+    "cwltool": 1,
+    "dask": 1,
+    "dask_jobqueue": 1,
+    "date": 22,
+    "decomposePar": 1,
+    "deepspeed": 1,
+    "df": 3,
+    "dirname": 3,
+    "distributed": 1,
+    "du": 2,
+    "eb": 1,
+    "env": 6,
+    "find": 4,
+    "gatk": 1,
+    "gcc": 1,
+    "git": 1,
+    "globus": 1,
+    "gmx": 1,
+    "gmx_mpi": 1,
+    "grep": 8,
+    "head": 4,
+    "hostname": 19,
+    "icoFoam": 1,
+    "julia": 1,
+    "jupyter": 1,
+    "ldd": 2,
+    "lmp": 1,
+    "ln": 1,
+    "lscpu": 1,
+    "makeblastdb": 1,
+    "mamba": 1,
+    "matlab": 1,
+    "micromamba": 1,
+    "miniwdl": 1,
+    "mkdir": 27,
+    "module": 18,
+    "mpi4py": 1,
+    "mpicc": 2,
+    "mpicxx": 1,
+    "mpiexec": 1,
+    "mpifort": 1,
+    "ncdump": 1,
+    "nextflow": 2,
+    "nproc": 1,
+    "nvidia-smi": 6,
+    "perf": 1,
+    "pip": 1,
+    "printenv": 1,
+    "pw.x": 1,
+    "pwd": 7,
+    "python": 3,
+    "python3": 5,
+    "quota": 1,
+    "ray": 1,
+    "real.exe": 1,
+    "reconstructPar": 1,
+    "rocm-smi": 2,
+    "rsync": 2,
+    "sacct": 7,
+    "salloc": 1,
+    "sbatch": 31,
+    "scontrol": 6,
+    "sed": 2,
+    "seff": 1,
+    "sha256sum": 2,
+    "shasum": 2,
+    "sinfo": 3,
+    "singularity": 1,
+    "sleep": 1,
+    "snakemake": 1,
+    "sort": 8,
+    "spack": 1,
+    "sprio": 1,
+    "squeue": 6,
+    "sreport": 1,
+    "srun": 14,
+    "ssh": 2,
+    "tail": 4,
+    "tar": 1,
+    "tee": 15,
+    "test": 6,
+    "time": 1,
+    "tr": 1,
+    "uname": 1,
+    "wc": 1,
+    "which": 2,
+    "wrf.exe": 1
+  }
+}

@@ -20,6 +20,7 @@ The stable seed-stage surfaces are:
 | `collections/*.json` | Curated adoption paths for users, domains, or roles. |
 | `site-adapters/*/site.json` | Public local policy mappings for clusters, training environments, or public cloud HPC. |
 | `python3 tools/hpc_skill.py ... --json` | Local CLI access for tools that prefer command output over direct file reads. |
+| `hpc-skill ... --json` | Installed package access to the packaged registry snapshot for read-only discovery. |
 
 Prefer `registry/index.json` for search and discovery. Load individual skill
 manifests only when you need full metadata beyond the compact index.
@@ -54,6 +55,12 @@ manifests only when you need full metadata beyond the compact index.
    and example paths before suggesting commands.
 6. Rebuild or refresh your cache only when the repository commit, release tag,
    or `schema_version` changes.
+
+If your integration only needs read-only discovery, the Python package can be
+used as a pinned registry snapshot. The installed `hpc-skill` command supports
+JSON output for list, search, show, collection, adapter, and health commands
+without requiring a checkout at runtime. Contribution, validation, scaffolding,
+and release workflows should still use a full repository checkout.
 
 Minimal Python example:
 
