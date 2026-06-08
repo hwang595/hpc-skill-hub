@@ -227,7 +227,6 @@ def build_catalog(index: Dict[str, Any]) -> str:
             "- Open OnDemand app templates.",
             "- PyTorch distributed training on Slurm.",
             "- NCCL multi-node diagnostics.",
-            "- Large-file archive preparation.",
             "- Transfer verification across storage tiers.",
             "- WRF, GROMACS, LAMMPS, OpenFOAM, and Quantum ESPRESSO starter skills.",
             "- Bioinformatics workflows for nf-core, GATK, BLAST, and AlphaFold.",

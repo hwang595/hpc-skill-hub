@@ -1,0 +1,147 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "large-file-archive-prepare",
+  "name": "Large File Archive Prepare",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Prepare large HPC datasets for archival, publication, or handoff.",
+  "description": "This skill helps users create a conservative archive plan with a file manifest, size summary, and optional tar.gz creation step for user-owned datasets.",
+  "categories": ["data"],
+  "tags": ["archive", "tar", "manifest", "publication", "dataset", "metadata"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "tools": [
+    {
+      "name": "find",
+      "required": true
+    },
+    {
+      "name": "sort",
+      "required": true
+    },
+    {
+      "name": "du",
+      "required": true
+    },
+    {
+      "name": "wc",
+      "required": true
+    },
+    {
+      "name": "tar",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "dirname",
+      "required": true
+    },
+    {
+      "name": "basename",
+      "required": true
+    },
+    {
+      "name": "pwd",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "awk",
+      "required": true
+    },
+    {
+      "name": "tr",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "source_path",
+      "type": "path",
+      "required": true,
+      "description": "User-owned file or directory to prepare for archival."
+    },
+    {
+      "name": "archive_stem",
+      "type": "string",
+      "required": false,
+      "description": "Short archive name used for generated record files."
+    },
+    {
+      "name": "create_archive",
+      "type": "boolean",
+      "required": false,
+      "description": "Opt-in flag that creates the tar.gz archive after reviewing the plan."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "file_manifest",
+      "description": "Sorted file list for the archive contents."
+    },
+    {
+      "name": "archive_summary",
+      "description": "Record of source path, file count, size estimate, and intended archive path."
+    },
+    {
+      "name": "archive_plan",
+      "description": "Reviewable tar command and checklist before archival or publication."
+    },
+    {
+      "name": "archive_file",
+      "description": "Optional tar.gz archive created only when CREATE_ARCHIVE=1."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/prepare-archive.sh",
+    "examples/archive-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Prepare archive plan",
+      "path": "examples/prepare-archive.sh"
+    },
+    {
+      "title": "Archive review checklist",
+      "path": "examples/archive-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill large-file-archive-prepare",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run against a small user-owned directory, inspect the plan, then rerun with CREATE_ARCHIVE=1 and validate the archive manifest."
+    }
+  ],
+  "references": [
+    {
+      "title": "GNU tar manual",
+      "url": "https://www.gnu.org/software/tar/manual/tar.html"
+    },
+    {
+      "title": "BagIt file packaging format",
+      "url": "https://datatracker.ietf.org/doc/html/rfc8493"
+    }
+  ]
+}

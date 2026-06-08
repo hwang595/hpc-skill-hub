@@ -1,7 +1,7 @@
 {
   "categories": {
     "containers": 2,
-    "data": 6,
+    "data": 7,
     "debugging": 11,
     "gpu": 1,
     "interactive": 2,
@@ -52,6 +52,7 @@
         "rsync-data-transfer",
         "checksum-manifest-create",
         "dataset-staging-to-scratch",
+        "large-file-archive-prepare",
         "scratch-storage-management",
         "quota-and-filesystem-triage"
       ],
@@ -145,7 +146,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 29,
+  "skill_count": 30,
   "skills": [
     {
       "categories": [
@@ -808,6 +809,65 @@
         "ssh",
         "hostname",
         "python3"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "data"
+      ],
+      "description": "This skill helps users create a conservative archive plan with a file manifest, size summary, and optional tar.gz creation step for user-owned datasets.",
+      "examples": [
+        {
+          "path": "skills/large-file-archive-prepare/examples/prepare-archive.sh",
+          "title": "Prepare archive plan"
+        },
+        {
+          "path": "skills/large-file-archive-prepare/examples/archive-checklist.md",
+          "title": "Archive review checklist"
+        }
+      ],
+      "id": "large-file-archive-prepare",
+      "maturity": "seed",
+      "name": "Large File Archive Prepare",
+      "path": "skills/large-file-archive-prepare",
+      "readme": "skills/large-file-archive-prepare/README.md",
+      "references": [
+        {
+          "title": "GNU tar manual",
+          "url": "https://www.gnu.org/software/tar/manual/tar.html"
+        },
+        {
+          "title": "BagIt file packaging format",
+          "url": "https://datatracker.ietf.org/doc/html/rfc8493"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Prepare large HPC datasets for archival, publication, or handoff.",
+      "tags": [
+        "archive",
+        "tar",
+        "manifest",
+        "publication",
+        "dataset",
+        "metadata"
+      ],
+      "tools": [
+        "find",
+        "sort",
+        "du",
+        "wc",
+        "tar",
+        "mkdir",
+        "dirname",
+        "basename",
+        "pwd",
+        "date",
+        "awk",
+        "tr",
+        "tee"
       ],
       "version": "0.1.0"
     },
@@ -1612,7 +1672,7 @@
     "affinity": 1,
     "amd": 1,
     "apptainer": 2,
-    "archive": 1,
+    "archive": 2,
     "array": 2,
     "benchmark": 1,
     "checkpoint": 1,
@@ -1626,7 +1686,7 @@
     "cpu-bind": 1,
     "cuda": 1,
     "data": 1,
-    "dataset": 1,
+    "dataset": 2,
     "debugging": 1,
     "definition": 1,
     "easybuild": 1,
@@ -1647,8 +1707,9 @@
     "lmod": 2,
     "logs": 4,
     "mamba": 1,
-    "manifest": 2,
+    "manifest": 3,
     "memory": 2,
+    "metadata": 1,
     "micromamba": 1,
     "modules": 5,
     "mpi": 4,
@@ -1670,6 +1731,7 @@
     "profile": 1,
     "profiling": 1,
     "provenance": 1,
+    "publication": 1,
     "python": 1,
     "quota": 2,
     "reproducibility": 4,
@@ -1696,6 +1758,7 @@
     "staging": 3,
     "state": 1,
     "storage": 2,
+    "tar": 1,
     "threads": 1,
     "throughput": 1,
     "time": 1,
@@ -1712,20 +1775,21 @@
   },
   "tools": {
     "apptainer": 2,
-    "awk": 2,
+    "awk": 3,
+    "basename": 1,
     "bash": 2,
     "cat": 1,
     "cksum": 2,
     "clang": 1,
     "command": 2,
     "conda": 1,
-    "date": 7,
+    "date": 8,
     "df": 2,
-    "dirname": 2,
-    "du": 1,
+    "dirname": 3,
+    "du": 2,
     "eb": 1,
     "env": 4,
-    "find": 3,
+    "find": 4,
     "gcc": 1,
     "git": 1,
     "globus": 1,
@@ -1737,7 +1801,7 @@
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 10,
+    "mkdir": 11,
     "module": 6,
     "mpicc": 2,
     "mpicxx": 1,
@@ -1747,7 +1811,7 @@
     "nvidia-smi": 2,
     "perf": 1,
     "pip": 1,
-    "pwd": 1,
+    "pwd": 2,
     "python3": 2,
     "quota": 1,
     "rocm-smi": 1,
@@ -1762,15 +1826,18 @@
     "singularity": 1,
     "sleep": 1,
     "snakemake": 1,
-    "sort": 5,
+    "sort": 6,
     "spack": 1,
     "squeue": 1,
     "srun": 4,
     "ssh": 2,
     "tail": 3,
-    "tee": 2,
+    "tar": 1,
+    "tee": 3,
     "time": 1,
+    "tr": 1,
     "uname": 1,
+    "wc": 1,
     "which": 1
   }
 }

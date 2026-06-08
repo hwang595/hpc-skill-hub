@@ -22,6 +22,7 @@ new collections.
 | `checksum-manifest-create` | data | low | Seed skill added to `data-movement`. |
 | `rsync-data-transfer` | data | medium | Seed skill added to `data-movement`. |
 | `dataset-staging-to-scratch` | data | medium | Seed skill added to `data-movement`. |
+| `large-file-archive-prepare` | data | medium | Seed skill added to `data-movement`. |
 
 ## Priority 1: Core User Workflows
 
@@ -35,9 +36,9 @@ requests should be proposed through skill request issues.
 
 ## Priority 3: Data Movement And Data Lifecycle
 
-| Skill id | Category | Risk | Why it matters |
-| --- | --- | --- | --- |
-| `large-file-archive-prepare` | data | medium | Users need packaging and manifest patterns before archival or publication. |
+Priority 3 is implemented in the seed registry. New transfer, archive,
+publication, and data lifecycle requests should be proposed through skill
+request issues.
 
 ## Priority 4: AI/HPC And Accelerators
 

@@ -2,14 +2,14 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 29 skills.
+Current registry size: 30 skills.
 
 ## Categories
 
 | Category | Skills |
 | --- | ---: |
 | `containers` | 2 |
-| `data` | 6 |
+| `data` | 7 |
 | `debugging` | 11 |
 | `gpu` | 1 |
 | `interactive` | 2 |
@@ -35,6 +35,7 @@ Current registry size: 29 skills.
 | [`checksum-manifest-create`](../skills/checksum-manifest-create/README.md) | low | seed | Create checksum manifests for transfer validation and reproducibility. |
 | [`dataset-staging-to-scratch`](../skills/dataset-staging-to-scratch/README.md) | medium | seed | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
 | [`globus-transfer-dataset`](../skills/globus-transfer-dataset/README.md) | medium | seed | Stage large datasets with Globus transfer and verification steps. |
+| [`large-file-archive-prepare`](../skills/large-file-archive-prepare/README.md) | medium | seed | Prepare large HPC datasets for archival, publication, or handoff. |
 | [`quota-and-filesystem-triage`](../skills/quota-and-filesystem-triage/README.md) | low | seed | Diagnose quota, inode, and filesystem-space failures from user-visible evidence. |
 | [`rsync-data-transfer`](../skills/rsync-data-transfer/README.md) | medium | seed | Transfer datasets with rsync dry-runs, resumable options, and validation hooks. |
 | [`scratch-storage-management`](../skills/scratch-storage-management/README.md) | low | seed | Inspect scratch, project, and working-directory usage before HPC jobs. |
@@ -128,7 +129,7 @@ Current registry size: 29 skills.
 | Collection | Status | Skills | Audience | Description |
 | --- | --- | ---: | --- | --- |
 | [`core-hpc`](../collections/core-hpc.json) | draft | 11 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage. |
-| [`data-movement`](../collections/data-movement.json) | draft | 6 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
+| [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 5 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, compiler/MPI compatibility, MPI launches, OpenMP placement, and first-pass performance evidence. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 9 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 2 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines on Slurm-backed HPC clusters. |
@@ -144,7 +145,6 @@ Current registry size: 29 skills.
 - Open OnDemand app templates.
 - PyTorch distributed training on Slurm.
 - NCCL multi-node diagnostics.
-- Large-file archive preparation.
 - Transfer verification across storage tiers.
 - WRF, GROMACS, LAMMPS, OpenFOAM, and Quantum ESPRESSO starter skills.
 - Bioinformatics workflows for nf-core, GATK, BLAST, and AlphaFold.

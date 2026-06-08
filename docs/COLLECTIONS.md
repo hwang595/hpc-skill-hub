@@ -17,7 +17,7 @@ research software engineer building software stacks may start with
   runtime, Spack, and EasyBuild.
 - `workflow-engines`: Nextflow and Snakemake on Slurm.
 - `data-movement`: Globus and rsync transfers, checksum manifests, scratch
-  staging, scratch inventory, and filesystem quota triage.
+  staging, archive preparation, scratch inventory, and filesystem quota triage.
 - `gpu-mpi-performance`: MPI launch checks, compiler/MPI compatibility, GPU
   sanity checks, OpenMP placement, and basic profiling.
 

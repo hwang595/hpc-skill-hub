@@ -10,6 +10,7 @@
     "rsync-data-transfer",
     "checksum-manifest-create",
     "dataset-staging-to-scratch",
+    "large-file-archive-prepare",
     "scratch-storage-management",
     "quota-and-filesystem-triage"
   ],

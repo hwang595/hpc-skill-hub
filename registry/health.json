@@ -1,7 +1,7 @@
 {
   "category_counts": {
     "containers": 2,
-    "data": 6,
+    "data": 7,
     "debugging": 11,
     "gpu": 1,
     "interactive": 2,
@@ -32,12 +32,13 @@
     },
     {
       "id": "data-movement",
-      "skill_count": 6,
+      "skill_count": 7,
       "skill_ids": [
         "globus-transfer-dataset",
         "rsync-data-transfer",
         "checksum-manifest-create",
         "dataset-staging-to-scratch",
+        "large-file-archive-prepare",
         "scratch-storage-management",
         "quota-and-filesystem-triage"
       ]
@@ -79,7 +80,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 29
+    "seed": 30
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -95,6 +96,7 @@
     "interactive-session": "medium",
     "job-failure-triage": "low",
     "jupyter-on-slurm": "medium",
+    "large-file-archive-prepare": "medium",
     "module-environment-debug": "low",
     "mpi-hello-and-benchmark": "medium",
     "nextflow-on-slurm": "medium",
@@ -114,13 +116,13 @@
   },
   "risk_counts": {
     "low": 11,
-    "medium": 18
+    "medium": 19
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 29,
+  "skill_count": 30,
   "status_counts": {
-    "draft": 29
+    "draft": 30
   },
   "uncollected_skill_ids": []
 }
