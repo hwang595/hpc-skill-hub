@@ -1,0 +1,140 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-oom-memory-triage",
+  "name": "Slurm OOM Memory Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect Slurm memory evidence for out-of-memory jobs.",
+  "description": "This skill collects read-only Slurm accounting, job-state, optional efficiency, and log evidence for jobs that failed with out-of-memory or killed-process symptoms.",
+  "categories": ["debugging", "scheduler", "performance"],
+  "tags": ["slurm", "oom", "memory", "sacct", "maxrss", "reqmem", "cgroup", "triage"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "sacct",
+      "required": false,
+      "notes": "Required for completed-job accounting evidence when Slurm accounting is available."
+    },
+    {
+      "name": "scontrol",
+      "required": false,
+      "notes": "Optional job record evidence when the job is still visible to Slurm."
+    },
+    {
+      "name": "seff",
+      "required": false,
+      "notes": "Optional efficiency summary when provided by the site."
+    },
+    {
+      "name": "grep",
+      "required": false
+    },
+    {
+      "name": "tail",
+      "required": false
+    },
+    {
+      "name": "date",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "job_id",
+      "type": "string",
+      "required": false,
+      "description": "Slurm job id, array task id, or job step id to inspect."
+    },
+    {
+      "name": "log_file",
+      "type": "path",
+      "required": false,
+      "description": "Optional Slurm stdout, stderr, or application log to scan for memory clues."
+    },
+    {
+      "name": "report_dir",
+      "type": "path",
+      "required": false,
+      "description": "Directory where the read-only evidence bundle should be written."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "accounting_report",
+      "description": "Slurm sacct table with job and step states, requested memory, maximum RSS, elapsed time, and allocated resources."
+    },
+    {
+      "name": "job_record",
+      "description": "Optional scontrol job record for still-visible jobs."
+    },
+    {
+      "name": "log_memory_signals",
+      "description": "Matching log lines for OOM, killed process, cgroup, allocator, data-loader, and memory-limit symptoms."
+    },
+    {
+      "name": "triage_summary",
+      "description": "Human-readable prompts for deciding whether to increase memory, reduce concurrency, stage data differently, or gather stronger profiling evidence."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/slurm-oom-triage.sh",
+    "examples/memory-request-review.md"
+  ],
+  "examples": [
+    {
+      "title": "Collect Slurm OOM evidence",
+      "path": "examples/slurm-oom-triage.sh"
+    },
+    {
+      "title": "Review memory request choices after triage",
+      "path": "examples/memory-request-review.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-oom-memory-triage",
+      "description": "Validate the manifest and example files."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/slurm-oom-memory-triage/examples/slurm-oom-triage.sh",
+      "description": "Check shell syntax for the evidence collection script."
+    },
+    {
+      "type": "manual",
+      "description": "Run against a completed Slurm job with OUT_OF_MEMORY or killed-process symptoms and confirm the report stays read-only."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sacct documentation",
+      "url": "https://slurm.schedmd.com/sacct.html"
+    },
+    {
+      "title": "Slurm job state codes",
+      "url": "https://slurm.schedmd.com/job_state_codes.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

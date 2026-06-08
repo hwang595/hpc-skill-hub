@@ -4,13 +4,13 @@
     "admin": 5,
     "containers": 3,
     "data": 17,
-    "debugging": 28,
+    "debugging": 29,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
-    "performance": 20,
-    "scheduler": 64,
+    "performance": 21,
+    "scheduler": 65,
     "software": 27,
     "workflow": 11
   },
@@ -68,7 +68,7 @@
     },
     {
       "id": "core-hpc",
-      "skill_count": 19,
+      "skill_count": 20,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
@@ -77,6 +77,7 @@
         "slurm-qos-account-limit-triage",
         "slurm-monitor-job",
         "slurm-resource-estimator",
+        "slurm-oom-memory-triage",
         "slurm-efficiency-report",
         "license-aware-slurm-job",
         "checkpoint-restart-workflow",
@@ -110,11 +111,12 @@
     },
     {
       "id": "facility-ops",
-      "skill_count": 5,
+      "skill_count": 6,
       "skill_ids": [
         "cluster-usage-report-readonly",
         "slurm-pending-reason-triage",
         "slurm-qos-account-limit-triage",
+        "slurm-oom-memory-triage",
         "node-health-readonly-triage",
         "module-tree-health-check"
       ]
@@ -153,7 +155,7 @@
     },
     {
       "id": "scheduler-basics",
-      "skill_count": 7,
+      "skill_count": 8,
       "skill_ids": [
         "slurm-submit-job",
         "pbs-submit-job",
@@ -161,6 +163,7 @@
         "htcondor-submit-job",
         "grid-engine-submit-job",
         "job-failure-triage",
+        "slurm-oom-memory-triage",
         "reproducible-run-capture"
       ]
     },
@@ -227,7 +230,7 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 19,
+      "skill_count": 20,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
@@ -247,6 +250,7 @@
         "conda-mamba-on-hpc",
         "module-environment-debug",
         "dataset-staging-to-scratch",
+        "slurm-oom-memory-triage",
         "job-failure-triage"
       ]
     },
@@ -267,7 +271,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 86
+    "seed": 87
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -342,6 +346,7 @@
     "slurm-job-array-patterns": "medium",
     "slurm-job-dependency-chain": "medium",
     "slurm-monitor-job": "low",
+    "slurm-oom-memory-triage": "low",
     "slurm-pending-reason-triage": "low",
     "slurm-preemption-requeue": "medium",
     "slurm-qos-account-limit-triage": "low",
@@ -358,14 +363,14 @@
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
-    "low": 19,
+    "low": 20,
     "medium": 67
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 86,
+  "skill_count": 87,
   "status_counts": {
-    "draft": 86
+    "draft": 87
   },
   "uncollected_skill_ids": []
 }

@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 86.
+- Skills: 87.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -25,7 +25,8 @@ request missing workflows, or contribute public site adapters.
 
 - Core HPC and schedulers: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
   submission, Slurm and Grid Engine arrays, dependency chains, pending reason
-  triage, QOS/account limit evidence, monitoring, resource estimation, efficiency review,
+  triage, QOS/account limit evidence, monitoring, resource estimation, OOM
+  memory triage, efficiency review,
   license-aware jobs, checkpoint/restart, preemption/requeue handling, failure triage, interactive sessions, Open OnDemand Batch
   Connect templates, Jupyter, RStudio, VS Code tunnels, OpenMP placement, quota
   triage, and scratch management.
@@ -76,8 +77,8 @@ request missing workflows, or contribute public site adapters.
   placement, restart planning, profiling, storage smoke evidence, and
   reproducibility.
 - Facility operations: read-only Slurm usage reporting, pending reason triage,
-  QOS/account limit evidence, node-health triage, and module tree health checks
-  for support teams and facility maintainers.
+  QOS/account limit evidence, OOM memory triage, node-health triage, and module
+  tree health checks for support teams and facility maintainers.
 
 ## Tooling
 

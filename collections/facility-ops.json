@@ -3,12 +3,13 @@
   "id": "facility-ops",
   "name": "Facility Operations",
   "status": "draft",
-  "summary": "Read-only operational skills for usage reporting, pending reason triage, QOS/account limit evidence, node triage, and module tree health.",
+  "summary": "Read-only operational skills for usage reporting, pending reason triage, QOS/account limit evidence, OOM memory triage, node triage, and module tree health.",
   "audience": ["HPC support teams", "facility maintainers", "research computing operators"],
   "skill_ids": [
     "cluster-usage-report-readonly",
     "slurm-pending-reason-triage",
     "slurm-qos-account-limit-triage",
+    "slurm-oom-memory-triage",
     "node-health-readonly-triage",
     "module-tree-health-check"
   ],

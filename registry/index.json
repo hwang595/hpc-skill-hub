@@ -4,13 +4,13 @@
     "admin": 5,
     "containers": 3,
     "data": 17,
-    "debugging": 28,
+    "debugging": 29,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
-    "performance": 20,
-    "scheduler": 64,
+    "performance": 21,
+    "scheduler": 65,
     "software": 27,
     "workflow": 11
   },
@@ -108,6 +108,7 @@
         "slurm-qos-account-limit-triage",
         "slurm-monitor-job",
         "slurm-resource-estimator",
+        "slurm-oom-memory-triage",
         "slurm-efficiency-report",
         "license-aware-slurm-job",
         "checkpoint-restart-workflow",
@@ -122,7 +123,7 @@
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, QOS/account limit evidence, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage."
     },
     {
       "audience": [
@@ -162,11 +163,12 @@
         "cluster-usage-report-readonly",
         "slurm-pending-reason-triage",
         "slurm-qos-account-limit-triage",
+        "slurm-oom-memory-triage",
         "node-health-readonly-triage",
         "module-tree-health-check"
       ],
       "status": "draft",
-      "summary": "Read-only operational skills for usage reporting, pending reason triage, QOS/account limit evidence, node triage, and module tree health."
+      "summary": "Read-only operational skills for usage reporting, pending reason triage, QOS/account limit evidence, OOM memory triage, node triage, and module tree health."
     },
     {
       "audience": [
@@ -225,10 +227,11 @@
         "htcondor-submit-job",
         "grid-engine-submit-job",
         "job-failure-triage",
+        "slurm-oom-memory-triage",
         "reproducible-run-capture"
       ],
       "status": "draft",
-      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers."
+      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers, including common failure and memory triage."
     },
     {
       "audience": [
@@ -335,10 +338,11 @@
         "conda-mamba-on-hpc",
         "module-environment-debug",
         "dataset-staging-to-scratch",
+        "slurm-oom-memory-triage",
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, OOM memory triage, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -372,7 +376,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 62,
+    "slurm": 63,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -425,7 +429,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 86,
+  "skill_count": 87,
   "skills": [
     {
       "categories": [
@@ -4789,6 +4793,70 @@
     },
     {
       "categories": [
+        "debugging",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill collects read-only Slurm accounting, job-state, optional efficiency, and log evidence for jobs that failed with out-of-memory or killed-process symptoms.",
+      "examples": [
+        {
+          "path": "skills/slurm-oom-memory-triage/examples/slurm-oom-triage.sh",
+          "title": "Collect Slurm OOM evidence"
+        },
+        {
+          "path": "skills/slurm-oom-memory-triage/examples/memory-request-review.md",
+          "title": "Review memory request choices after triage"
+        }
+      ],
+      "id": "slurm-oom-memory-triage",
+      "maturity": "seed",
+      "name": "Slurm OOM Memory Triage",
+      "path": "skills/slurm-oom-memory-triage",
+      "readme": "skills/slurm-oom-memory-triage/README.md",
+      "references": [
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        },
+        {
+          "title": "Slurm job state codes",
+          "url": "https://slurm.schedmd.com/job_state_codes.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect Slurm memory evidence for out-of-memory jobs.",
+      "tags": [
+        "slurm",
+        "oom",
+        "memory",
+        "sacct",
+        "maxrss",
+        "reqmem",
+        "cgroup",
+        "triage"
+      ],
+      "tools": [
+        "bash",
+        "sacct",
+        "scontrol",
+        "seff",
+        "grep",
+        "tail",
+        "date",
+        "mkdir"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "scheduler",
         "debugging"
       ],
@@ -5687,6 +5755,7 @@
     "bsub": 1,
     "build": 1,
     "cfd": 1,
+    "cgroup": 1,
     "charm++": 1,
     "checklist": 1,
     "checkpoint": 4,
@@ -5786,8 +5855,9 @@
     "mamba": 1,
     "manifest": 3,
     "matlab": 1,
+    "maxrss": 1,
     "mdtest": 1,
-    "memory": 4,
+    "memory": 5,
     "metadata": 2,
     "micromamba": 1,
     "miniwdl": 1,
@@ -5817,7 +5887,7 @@
     "ofi": 1,
     "omp-num-threads": 2,
     "onboarding": 1,
-    "oom": 2,
+    "oom": 3,
     "openfoam": 1,
     "openmp": 4,
     "openmpi": 1,
@@ -5874,6 +5944,7 @@
     "remote-tunnels": 1,
     "reporting": 1,
     "reproducibility": 11,
+    "reqmem": 1,
     "requeue": 1,
     "rerun": 1,
     "resources": 1,
@@ -5886,7 +5957,7 @@
     "rstudio": 1,
     "rsync": 2,
     "s3": 1,
-    "sacct": 5,
+    "sacct": 6,
     "sacctmgr": 1,
     "salloc": 1,
     "samplesheet": 1,
@@ -5901,7 +5972,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 59,
+    "slurm": 60,
     "slurmprovider": 1,
     "smoke-test": 1,
     "snakemake": 1,
@@ -5931,7 +6002,7 @@
     "training": 2,
     "transfer": 4,
     "transformers": 1,
-    "triage": 4,
+    "triage": 5,
     "tunnel": 4,
     "ucx": 1,
     "uge": 1,
@@ -5964,7 +6035,7 @@
     "awk": 3,
     "aws": 1,
     "basename": 1,
-    "bash": 13,
+    "bash": 14,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -5991,7 +6062,7 @@
     "darshan-summary-per-file.sh": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 34,
+    "date": 35,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 4,
@@ -6008,7 +6079,7 @@
     "globus": 1,
     "gmx": 1,
     "gmx_mpi": 1,
-    "grep": 9,
+    "grep": 10,
     "h5cc": 1,
     "h5dump": 1,
     "h5pcc": 1,
@@ -6033,7 +6104,7 @@
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 37,
+    "mkdir": 38,
     "module": 25,
     "mpi4py": 1,
     "mpicc": 7,
@@ -6070,14 +6141,14 @@
     "rocm-smi": 3,
     "rserver": 1,
     "rsync": 2,
-    "sacct": 7,
+    "sacct": 8,
     "sacctmgr": 1,
     "salloc": 1,
     "sbatch": 47,
     "scancel": 1,
-    "scontrol": 12,
+    "scontrol": 13,
     "sed": 4,
-    "seff": 1,
+    "seff": 2,
     "sha256sum": 2,
     "shasum": 2,
     "sinfo": 3,
@@ -6094,7 +6165,7 @@
     "sshare": 1,
     "stat": 1,
     "streamlit": 1,
-    "tail": 5,
+    "tail": 6,
     "tar": 1,
     "tee": 23,
     "tensorboard": 1,

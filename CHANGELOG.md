@@ -7,6 +7,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a Slurm OOM memory triage seed skill for read-only `sacct`, optional
+  `scontrol`/`seff`, and log evidence around `OUT_OF_MEMORY`, killed workers,
+  cgroup memory limits, and follow-up memory request review.
 - Add a CMake HPC build preflight seed skill for capturing compiler, MPI,
   module, build-directory, test, and install-prefix assumptions before guarded
   CMake configure/build/test/install phases.
@@ -164,9 +167,9 @@ Initial public seed release.
 
 ### Added
 
-- 86 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 87 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, dependency chains, pending reason triage, monitoring, resource
-  estimation, QOS/account limit evidence, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
+  estimation, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
   preemption and requeue-safe restart behavior,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,

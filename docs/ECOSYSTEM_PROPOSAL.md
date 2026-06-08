@@ -39,8 +39,8 @@ owner handoffs, and ecosystem sponsor discussions.
 ## Current And Proposed Community Collections
 
 - `core-hpc`: Slurm, QOS/account limit evidence, license-aware jobs,
-  preemption/requeue handling, modules, shell, storage, interactive sessions,
-  RStudio, and IDE tunnels.
+  OOM memory triage, preemption/requeue handling, modules, shell, storage,
+  interactive sessions, RStudio, and IDE tunnels.
 - `containers`: Apptainer-compatible image builds, runtime execution,
   containerized MPI, GPU checks, data staging, checksums, and reproducible run
   capture.
@@ -53,8 +53,8 @@ owner handoffs, and ecosystem sponsor discussions.
   storage smoke evidence, archive preparation, and quota triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, Open OnDemand
   templates, notebooks, TensorBoard, Streamlit, RStudio, IDE tunnels, Python
-  environments, requeue-safe restart behavior, licensed software use, and
-  common learner failure modes.
+  environments, requeue-safe restart behavior, licensed software use, OOM
+  memory triage, and common learner failure modes.
 - `ai-hpc`: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX, Hugging
   Face Accelerate, TensorFlow, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU
   memory triage, TensorBoard monitors, Streamlit demos, container runtime
@@ -67,9 +67,9 @@ owner handoffs, and ecosystem sponsor discussions.
   MPI/OpenMP layouts, CMake build preflight, parallel HDF5/NetCDF preflight,
   Darshan I/O profile analysis, Lustre striping layout planning, restart
   planning, profiling, and storage smoke evidence.
-- `facility-ops`: read-only usage reporting, QOS/account limit evidence, node
-  triage, module tree health checks, support handoffs, and public operational
-  patterns.
+- `facility-ops`: read-only usage reporting, QOS/account limit evidence, OOM
+  memory triage, node triage, module tree health checks, support handoffs, and
+  public operational patterns.
 
 ## Governance Direction
 
