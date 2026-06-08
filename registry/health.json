@@ -4,15 +4,15 @@
     "admin": 8,
     "containers": 3,
     "data": 21,
-    "debugging": 38,
+    "debugging": 39,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
-    "performance": 22,
-    "scheduler": 71,
-    "software": 28,
-    "workflow": 14
+    "performance": 23,
+    "scheduler": 72,
+    "software": 29,
+    "workflow": 15
   },
   "collection_count": 12,
   "collection_coverage": [
@@ -192,8 +192,9 @@
     },
     {
       "id": "simulation-workflows",
-      "skill_count": 20,
+      "skill_count": 21,
       "skill_ids": [
+        "scientific-simulation-workflows",
         "gromacs-on-slurm",
         "lammps-on-slurm",
         "namd-on-slurm",
@@ -307,7 +308,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 96
+    "seed": 97
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -379,6 +380,7 @@
     "rscript-on-slurm": "medium",
     "rstudio-on-slurm": "medium",
     "rsync-data-transfer": "medium",
+    "scientific-simulation-workflows": "medium",
     "scratch-storage-management": "low",
     "shared-project-permissions-triage": "low",
     "slurm-array-retry-plan": "medium",
@@ -409,13 +411,13 @@
   },
   "risk_counts": {
     "low": 27,
-    "medium": 69
+    "medium": 70
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 96,
+  "skill_count": 97,
   "status_counts": {
-    "draft": 96
+    "draft": 97
   },
   "uncollected_skill_ids": []
 }

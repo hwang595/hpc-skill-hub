@@ -7,6 +7,10 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a scientific simulation workflows seed skill for issue #12, covering
+  plan-only run packets, input checks, reproducibility notes, scheduler context,
+  log triage, and post-processing review for common HPC simulation software.
+- 97 seed HPC skills are now included in the current registry baseline.
 - Start `v0.2.0` reviewed-skill pilot development.
 - Add `tools/review_packet.py` for generating and checking the reviewed-skill
   pilot packet from the current registry.

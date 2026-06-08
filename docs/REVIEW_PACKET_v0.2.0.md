@@ -8,12 +8,12 @@ review without promoting maturity automatically.
 
 - Target version: `v0.2.0`
 - Milestone: `v0.2.0 reviewed-skill pilot`
-- Skills: 96
-- Seed skills: 96
-- Candidate pool: 96
+- Skills: 97
+- Seed skills: 97
+- Candidate pool: 97
 - Display limit: 12
 - Collection filter: `all`
-- Risk counts: {"low": 27, "medium": 69}
+- Risk counts: {"low": 27, "medium": 70}
 
 ## Promotion Gate
 

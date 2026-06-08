@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 96 seed skills.
+- 97 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
