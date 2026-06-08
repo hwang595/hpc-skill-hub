@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 61
+- Skills: 62
 - Site adapters: 1
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 44 |
+| `medium` | 45 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 61 |
+| `seed` | 62 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 61 |
+| `draft` | 62 |
 
 ## Collection Coverage
 
@@ -39,7 +39,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `data-movement` | 7 |
 | `facility-ops` | 4 |
 | `gpu-mpi-performance` | 12 |
-| `scheduler-basics` | 5 |
+| `scheduler-basics` | 6 |
 | `simulation-workflows` | 12 |
 | `software-stacks` | 16 |
 | `training-onboarding` | 12 |
@@ -72,6 +72,7 @@ All skills are included in at least one collection.
 | `gpu-memory-triage` | low |
 | `gpu-sanity-check` | medium |
 | `gromacs-on-slurm` | medium |
+| `htcondor-submit-job` | medium |
 | `interactive-session` | medium |
 | `job-failure-triage` | low |
 | `julia-on-slurm` | medium |

@@ -13,9 +13,9 @@ research software engineer building software stacks may start with
   triage, monitoring, resource estimation, efficiency review,
   checkpoint/restart, failure triage, storage triage, OpenMP placement,
   notebooks, and interactive sessions.
-- `scheduler-basics`: Slurm, PBS/OpenPBS, and LSF starter submission patterns
-  plus failure triage and reproducible run capture for sites comparing or
-  teaching scheduler basics.
+- `scheduler-basics`: Slurm, PBS/OpenPBS, LSF, and HTCondor starter submission
+  patterns plus failure triage and reproducible run capture for sites comparing
+  or teaching scheduler basics.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
   reproducible run capture, Python virtual environments, Ray clusters, Dask
   Jobqueue, mpi4py jobs, Rscript jobs, Julia jobs, MATLAB batch jobs, Conda/Mamba,

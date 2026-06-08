@@ -1,0 +1,18 @@
+# HTCondor many-task smoke example.
+# Each process writes separate stdout/stderr files using $(Process).
+
+universe = vanilla
+executable = /bin/echo
+arguments = process $(Process) of cluster $(Cluster)
+
+request_cpus = 1
+request_memory = 512MB
+request_disk = 256MB
+
+output = condor-output/array.$(Cluster).$(Process).out
+error = condor-output/array.$(Cluster).$(Process).err
+log = condor-output/array.$(Cluster).log
+
+# Keep this small until file transfer, output volume, and site fair-share policy
+# have been reviewed.
+queue 4

@@ -10,9 +10,9 @@
     "interactive": 2,
     "mpi": 10,
     "performance": 11,
-    "scheduler": 44,
+    "scheduler": 45,
     "software": 15,
-    "workflow": 9
+    "workflow": 10
   },
   "collection_count": 12,
   "collections": [
@@ -191,11 +191,12 @@
         "slurm-submit-job",
         "pbs-submit-job",
         "lsf-submit-job",
+        "htcondor-submit-job",
         "job-failure-triage",
         "reproducible-run-capture"
       ],
       "status": "draft",
-      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, and LSF schedulers."
+      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, and HTCondor schedulers."
     },
     {
       "audience": [
@@ -303,6 +304,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
+    "htcondor": 1,
     "lsf": 1,
     "openpbs": 1,
     "pbs": 1,
@@ -333,7 +335,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 61,
+  "skill_count": 62,
   "skills": [
     {
       "categories": [
@@ -1472,6 +1474,67 @@
         "hostname",
         "tee",
         "test"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
+        "workflow"
+      ],
+      "description": "This skill helps users create HTCondor submit description files for single jobs, many-task queues, and GPU smoke tests with conservative resource requests, explicit logs, clear placeholders, and safe notes about file transfer and site policy.",
+      "examples": [
+        {
+          "path": "skills/htcondor-submit-job/examples/cpu.sub",
+          "title": "Single CPU smoke job"
+        },
+        {
+          "path": "skills/htcondor-submit-job/examples/array.sub",
+          "title": "Many-task queue example"
+        },
+        {
+          "path": "skills/htcondor-submit-job/examples/gpu.sub",
+          "title": "GPU smoke job"
+        }
+      ],
+      "id": "htcondor-submit-job",
+      "maturity": "seed",
+      "name": "HTCondor Submit Job",
+      "path": "skills/htcondor-submit-job",
+      "readme": "skills/htcondor-submit-job/README.md",
+      "references": [
+        {
+          "title": "HTCondor condor_submit manual",
+          "url": "https://htcondor.readthedocs.io/en/latest/man-pages/condor_submit.html"
+        },
+        {
+          "title": "HTCondor submitting a job",
+          "url": "https://htcondor.readthedocs.io/en/main/users-manual/submitting-a-job.html"
+        },
+        {
+          "title": "HTCondor submit configuration",
+          "url": "https://htcondor.readthedocs.io/en/main/admin-manual/configuration/submit.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "htcondor"
+      ],
+      "status": "draft",
+      "summary": "Generate safe HTCondor submit descriptions for common high-throughput job shapes.",
+      "tags": [
+        "htcondor",
+        "condor-submit",
+        "condor-q",
+        "high-throughput",
+        "cpu",
+        "gpu",
+        "queue"
+      ],
+      "tools": [
+        "condor_submit",
+        "condor_q",
+        "condor_rm"
       ],
       "version": "0.1.0"
     },
@@ -3904,9 +3967,11 @@
     "compatibility": 1,
     "compiler": 3,
     "conda": 1,
+    "condor-q": 1,
+    "condor-submit": 1,
     "container": 2,
     "cp2k": 1,
-    "cpu": 4,
+    "cpu": 5,
     "cpu-bind": 1,
     "cran": 1,
     "cuda": 2,
@@ -3939,9 +4004,11 @@
     "genomics": 1,
     "git": 1,
     "globus": 1,
-    "gpu": 14,
+    "gpu": 15,
     "gromacs": 1,
     "haplotypecaller": 1,
+    "high-throughput": 1,
+    "htcondor": 1,
     "inode": 1,
     "interactive": 1,
     "io": 1,
@@ -4015,7 +4082,7 @@
     "qsub": 1,
     "quantum-chemistry": 1,
     "quantum-espresso": 1,
-    "queue": 1,
+    "queue": 2,
     "quota": 2,
     "r": 1,
     "ray": 1,
@@ -4096,6 +4163,9 @@
     "clang": 1,
     "command": 2,
     "conda": 1,
+    "condor_q": 1,
+    "condor_rm": 1,
+    "condor_submit": 1,
     "cp": 2,
     "cp2k.psmp": 1,
     "cwltool": 1,

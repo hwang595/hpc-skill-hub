@@ -1,0 +1,124 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "htcondor-submit-job",
+  "name": "HTCondor Submit Job",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Generate safe HTCondor submit descriptions for common high-throughput job shapes.",
+  "description": "This skill helps users create HTCondor submit description files for single jobs, many-task queues, and GPU smoke tests with conservative resource requests, explicit logs, clear placeholders, and safe notes about file transfer and site policy.",
+  "categories": ["scheduler", "workflow"],
+  "tags": ["htcondor", "condor-submit", "condor-q", "high-throughput", "cpu", "gpu", "queue"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["htcondor"],
+  "tools": [
+    {
+      "name": "condor_submit",
+      "required": true
+    },
+    {
+      "name": "condor_q",
+      "required": false
+    },
+    {
+      "name": "condor_rm",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "submit_description",
+      "type": "path",
+      "required": true,
+      "description": "HTCondor submit description file defining executable, arguments, logs, resource requests, transfers, and queue statement."
+    },
+    {
+      "name": "executable",
+      "type": "path",
+      "required": true,
+      "description": "Executable or script referenced by the submit description file."
+    },
+    {
+      "name": "resources",
+      "type": "object",
+      "required": true,
+      "description": "Requested CPUs, memory, disk, GPUs, queue count, and file transfer needs."
+    },
+    {
+      "name": "site_policy",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific accounting group, container, filesystem, or transfer policy."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "submit_file",
+      "description": "A reviewable HTCondor submit description file."
+    },
+    {
+      "name": "cluster_id",
+      "description": "The cluster or job id printed by condor_submit after submission."
+    },
+    {
+      "name": "condor_logs",
+      "description": "Log, stdout, and stderr files with per-cluster and per-process paths."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/cpu.sub",
+    "examples/array.sub",
+    "examples/gpu.sub"
+  ],
+  "examples": [
+    {
+      "title": "Single CPU smoke job",
+      "path": "examples/cpu.sub"
+    },
+    {
+      "title": "Many-task queue example",
+      "path": "examples/array.sub"
+    },
+    {
+      "title": "GPU smoke job",
+      "path": "examples/gpu.sub"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill htcondor-submit-job",
+      "description": "Validate the manifest and referenced artifacts."
+    },
+    {
+      "type": "dry-run",
+      "command": "test -s skills/htcondor-submit-job/examples/cpu.sub",
+      "description": "Check that the starter submit description exists and is non-empty."
+    },
+    {
+      "type": "manual",
+      "description": "Run condor_submit -dry-run against a starter submit file if supported by the local HTCondor version, then submit a one-process smoke job after confirming site file-transfer policy."
+    }
+  ],
+  "references": [
+    {
+      "title": "HTCondor condor_submit manual",
+      "url": "https://htcondor.readthedocs.io/en/latest/man-pages/condor_submit.html"
+    },
+    {
+      "title": "HTCondor submitting a job",
+      "url": "https://htcondor.readthedocs.io/en/main/users-manual/submitting-a-job.html"
+    },
+    {
+      "title": "HTCondor submit configuration",
+      "url": "https://htcondor.readthedocs.io/en/main/admin-manual/configuration/submit.html"
+    }
+  ]
+}

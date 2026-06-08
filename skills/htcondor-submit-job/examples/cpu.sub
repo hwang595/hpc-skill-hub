@@ -1,0 +1,20 @@
+# HTCondor single-process CPU smoke job.
+# Submit from the repository root or adapt paths before running:
+# condor_submit skills/htcondor-submit-job/examples/cpu.sub
+
+universe = vanilla
+executable = /bin/hostname
+
+request_cpus = 1
+request_memory = 512MB
+request_disk = 256MB
+
+# Replace or uncomment site-specific accounting or container policy only after
+# checking public local documentation.
+# accounting_group = <accounting-group>
+
+output = condor-output/cpu.$(Cluster).$(Process).out
+error = condor-output/cpu.$(Cluster).$(Process).err
+log = condor-output/cpu.$(Cluster).log
+
+queue 1

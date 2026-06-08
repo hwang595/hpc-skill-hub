@@ -1,0 +1,19 @@
+# HTCondor GPU smoke job.
+# GPU resource names and policies vary by pool; confirm local policy first.
+
+universe = vanilla
+executable = /bin/hostname
+
+request_cpus = 1
+request_memory = 1GB
+request_disk = 256MB
+request_gpus = 1
+
+# Replace or add Requirements only when a site documents GPU attributes.
+# Requirements = (TARGET.CUDACapability >= 7.0)
+
+output = condor-output/gpu.$(Cluster).$(Process).out
+error = condor-output/gpu.$(Cluster).$(Process).err
+log = condor-output/gpu.$(Cluster).log
+
+queue 1

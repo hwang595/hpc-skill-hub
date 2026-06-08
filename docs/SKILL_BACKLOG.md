@@ -10,6 +10,7 @@ new collections.
 | --- | --- | --- | --- |
 | `pbs-submit-job` | scheduler | medium | Seed skill added to `scheduler-basics`. |
 | `lsf-submit-job` | scheduler | medium | Seed skill added to `scheduler-basics`. |
+| `htcondor-submit-job` | scheduler | medium | Seed skill added to `scheduler-basics`. |
 | `scratch-storage-management` | data | low | Seed skill added to `core-hpc` and `data-movement`. |
 | `quota-and-filesystem-triage` | debugging | low | Seed skill added to `core-hpc` and `data-movement`. |
 | `slurm-job-array-patterns` | scheduler | medium | Seed skill added to `core-hpc`. |

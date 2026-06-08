@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 61 skills.
+Current registry size: 62 skills.
 
 ## Categories
 
@@ -17,9 +17,9 @@ Current registry size: 61 skills.
 | `interactive` | 2 |
 | `mpi` | 10 |
 | `performance` | 11 |
-| `scheduler` | 44 |
+| `scheduler` | 45 |
 | `software` | 15 |
-| `workflow` | 9 |
+| `workflow` | 10 |
 
 ## Skills By Category
 
@@ -152,6 +152,7 @@ Current registry size: 61 skills.
 | [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
 | [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
+| [`htcondor-submit-job`](../skills/htcondor-submit-job/README.md) | medium | seed | Generate safe HTCondor submit descriptions for common high-throughput job shapes. |
 | [`interactive-session`](../skills/interactive-session/README.md) | medium | seed | Start short interactive compute sessions for debugging and notebooks. |
 | [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
 | [`julia-on-slurm`](../skills/julia-on-slurm/README.md) | medium | seed | Run Julia scripts on Slurm with explicit depot, project, and thread settings. |
@@ -213,6 +214,7 @@ Current registry size: 61 skills.
 | [`cwl-on-slurm`](../skills/cwl-on-slurm/README.md) | medium | seed | Run small CWL workflows inside Slurm allocations with cwltool. |
 | [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md) | medium | seed | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |
 | [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
+| [`htcondor-submit-job`](../skills/htcondor-submit-job/README.md) | medium | seed | Generate safe HTCondor submit descriptions for common high-throughput job shapes. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
 | [`nf-core-on-slurm`](../skills/nf-core-on-slurm/README.md) | medium | seed | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
 | [`slurm-job-dependency-chain`](../skills/slurm-job-dependency-chain/README.md) | medium | seed | Chain multi-stage Slurm jobs with explicit dependencies. |
@@ -230,7 +232,7 @@ Current registry size: 61 skills.
 | [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
 | [`facility-ops`](../collections/facility-ops.json) | draft | 4 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, pending reason triage, node triage, and module tree health. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 12 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence. |
-| [`scheduler-basics`](../collections/scheduler-basics.json) | draft | 5 | new HPC users, training instructors, support teams, sites with mixed schedulers | Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, and LSF schedulers. |
+| [`scheduler-basics`](../collections/scheduler-basics.json) | draft | 6 | new HPC users, training instructors, support teams, sites with mixed schedulers | Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, and HTCondor schedulers. |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 12 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, and weather workloads on Slurm-backed HPC systems. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 16 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks. |
 | [`training-onboarding`](../collections/training-onboarding.json) | draft | 12 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, Python, R, Julia, and MATLAB workloads, and workshop environments. |

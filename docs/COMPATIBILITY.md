@@ -7,17 +7,18 @@ This document is generated from `registry/index.json` by
 
 | Signal | Count |
 | --- | ---: |
-| Skills | 61 |
+| Skills | 62 |
 | Collections | 12 |
 | Site adapters | 1 |
-| Schedulers | 5 |
+| Schedulers | 6 |
 | Categories | 12 |
-| Tools | 109 |
+| Tools | 112 |
 
 ## Scheduler Coverage
 
 | Scheduler | Skills | Categories | Collections |
 | --- | ---: | --- | --- |
+| `htcondor` | 1 | `scheduler`, `workflow` | `scheduler-basics` |
 | `lsf` | 1 | `scheduler` | `scheduler-basics` |
 | `openpbs` | 1 | `scheduler` | `scheduler-basics` |
 | `pbs` | 1 | `scheduler` | `scheduler-basics` |
@@ -38,7 +39,7 @@ Counts show how many skills in each collection include each category.
 | [`data-movement`](../collections/data-movement.json) | 7 | 0 | 0 | 7 | 2 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
 | [`facility-ops`](../collections/facility-ops.json) | 4 | 3 | 0 | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 3 | 1 | 0 |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | 12 | 0 | 0 | 0 | 7 | 0 | 6 | 0 | 3 | 3 | 9 | 3 | 0 |
-| [`scheduler-basics`](../collections/scheduler-basics.json) | 5 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 1 | 0 |
+| [`scheduler-basics`](../collections/scheduler-basics.json) | 6 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 5 | 1 | 1 |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | 12 | 0 | 0 | 0 | 4 | 0 | 3 | 0 | 8 | 9 | 10 | 1 | 0 |
 | [`software-stacks`](../collections/software-stacks.json) | 16 | 1 | 2 | 0 | 4 | 0 | 1 | 0 | 2 | 0 | 7 | 15 | 1 |
 | [`training-onboarding`](../collections/training-onboarding.json) | 12 | 1 | 0 | 1 | 2 | 1 | 0 | 2 | 0 | 0 | 9 | 6 | 0 |
@@ -134,4 +135,4 @@ they show where examples and wrappers expect a command or library.
 
 ### Specialized Single-Skill Tools
 
-`all_reduce_perf`, `basename`, `bjobs`, `blastn`, `blockMesh`, `bsub`, `charmrun`, `clang`, `conda`, `cp2k.psmp`, `cwltool`, `dask`, `dask_jobqueue`, `decomposePar`, `deepspeed`, `distributed`, `eb`, `gatk`, `gcc`, `git`, `globus`, `gmx`, `gmx_mpi`, `icoFoam`, `julia`, `jupyter`, `lmp`, `ln`, `lscpu`, `makeblastdb`, `mamba`, `matlab`, `micromamba`, `miniwdl`, `mpi4py`, `mpicxx`, `mpiexec`, `mpifort`, `namd2`, `ncdump`, `nproc`, `perf`, `pip`, `printenv`, `pw.x`, `qstat`, `qsub`, `quota`, `ray`, `real.exe`, `reconstructPar`, `Rscript`, `salloc`, `seff`, `singularity`, `sleep`, `snakemake`, `spack`, `sprio`, `sreport`, `tar`, `time`, `tr`, `uname`, `wc`, `wrf.exe`.
+`all_reduce_perf`, `basename`, `bjobs`, `blastn`, `blockMesh`, `bsub`, `charmrun`, `clang`, `conda`, `condor_q`, `condor_rm`, `condor_submit`, `cp2k.psmp`, `cwltool`, `dask`, `dask_jobqueue`, `decomposePar`, `deepspeed`, `distributed`, `eb`, `gatk`, `gcc`, `git`, `globus`, `gmx`, `gmx_mpi`, `icoFoam`, `julia`, `jupyter`, `lmp`, `ln`, `lscpu`, `makeblastdb`, `mamba`, `matlab`, `micromamba`, `miniwdl`, `mpi4py`, `mpicxx`, `mpiexec`, `mpifort`, `namd2`, `ncdump`, `nproc`, `perf`, `pip`, `printenv`, `pw.x`, `qstat`, `qsub`, `quota`, `ray`, `real.exe`, `reconstructPar`, `Rscript`, `salloc`, `seff`, `singularity`, `sleep`, `snakemake`, `spack`, `sprio`, `sreport`, `tar`, `time`, `tr`, `uname`, `wc`, `wrf.exe`.

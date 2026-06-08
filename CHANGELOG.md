@@ -46,6 +46,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   starter workloads.
 - Add an LSF submit job skill for IBM Spectrum LSF CPU, MPI, and GPU starter
   workloads.
+- Add an HTCondor submit job skill for high-throughput single-job, many-task,
+  and GPU starter workloads.
 - Add a NAMD on Slurm skill for molecular dynamics jobs with CPU/GPU layout and
   restart planning.
 - Add a CP2K on Slurm skill for MPI/OpenMP electronic-structure and molecular
@@ -81,10 +83,10 @@ Initial public seed release.
 
 ### Added
 
-- 61 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, job arrays, dependency
-  chains, pending reason triage, monitoring, resource estimation, efficiency
-  review, failure triage, checkpoint/restart, interactive sessions, notebooks,
-  OpenMP
+- 62 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, job arrays,
+  dependency chains, pending reason triage, monitoring, resource estimation,
+  efficiency review, failure triage, checkpoint/restart, interactive sessions,
+  notebooks, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
   Ray, Dask Jobqueue, mpi4py, containers, Spack, EasyBuild, data movement,
   CWL/WDL, workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
