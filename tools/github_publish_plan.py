@@ -85,7 +85,9 @@ def main() -> int:
         if issue.get("pin"):
             print(f"# Pin the issue created from {issue['body']}.")
 
-    print_section("5. Apply branch rulesets after first green Validate workflow")
+    print_section(
+        "5. Apply branch rulesets after first green Validate and Package workflows"
+    )
     for path in iter_ruleset_paths():
         load_ruleset(path)
         print(shell_join(command_for_ruleset(path, repo)))

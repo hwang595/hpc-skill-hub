@@ -273,6 +273,10 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("gh repo create example/hpc-skill-hub", result.stdout)
         self.assertIn("gh label create safety-review", result.stdout)
         self.assertIn("gh issue create", result.stdout)
+        self.assertIn(
+            "Apply branch rulesets after first green Validate and Package workflows",
+            result.stdout,
+        )
         self.assertIn("repos/example/hpc-skill-hub/rulesets", result.stdout)
         self.assertIn("gh release create v0.1.0", result.stdout)
 
