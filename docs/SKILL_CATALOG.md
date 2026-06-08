@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 56 skills.
+Current registry size: 57 skills.
 
 ## Categories
 
@@ -10,16 +10,16 @@ Current registry size: 56 skills.
 | --- | ---: |
 | `admin` | 4 |
 | `containers` | 2 |
-| `data` | 11 |
+| `data` | 12 |
 | `debugging` | 17 |
 | `education` | 1 |
 | `gpu` | 7 |
 | `interactive` | 2 |
 | `mpi` | 8 |
 | `performance` | 9 |
-| `scheduler` | 39 |
+| `scheduler` | 40 |
 | `software` | 15 |
-| `workflow` | 8 |
+| `workflow` | 9 |
 
 ## Skills By Category
 
@@ -54,6 +54,7 @@ Current registry size: 56 skills.
 | [`quota-and-filesystem-triage`](../skills/quota-and-filesystem-triage/README.md) | low | seed | Diagnose quota, inode, and filesystem-space failures from user-visible evidence. |
 | [`rsync-data-transfer`](../skills/rsync-data-transfer/README.md) | medium | seed | Transfer datasets with rsync dry-runs, resumable options, and validation hooks. |
 | [`scratch-storage-management`](../skills/scratch-storage-management/README.md) | low | seed | Inspect scratch, project, and working-directory usage before HPC jobs. |
+| [`wdl-on-slurm`](../skills/wdl-on-slurm/README.md) | medium | seed | Run small WDL workflows inside Slurm allocations with miniwdl. |
 
 ### Debugging
 
@@ -171,6 +172,7 @@ Current registry size: 56 skills.
 | [`slurm-submit-job`](../skills/slurm-submit-job/README.md) | medium | seed | Generate safe Slurm batch scripts for common HPC job shapes. |
 | [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
 | [`training-cluster-reset-checklist`](../skills/training-cluster-reset-checklist/README.md) | medium | seed | Prepare and review HPC training environments before and after workshops. |
+| [`wdl-on-slurm`](../skills/wdl-on-slurm/README.md) | medium | seed | Run small WDL workflows inside Slurm allocations with miniwdl. |
 | [`wrf-on-slurm`](../skills/wrf-on-slurm/README.md) | medium | seed | Run WRF real-data jobs on Slurm with MPI sizing, real.exe staging, restart, and I/O planning. |
 
 ### Software
@@ -205,6 +207,7 @@ Current registry size: 56 skills.
 | [`nf-core-on-slurm`](../skills/nf-core-on-slurm/README.md) | medium | seed | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
 | [`slurm-job-dependency-chain`](../skills/slurm-job-dependency-chain/README.md) | medium | seed | Chain multi-stage Slurm jobs with explicit dependencies. |
 | [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
+| [`wdl-on-slurm`](../skills/wdl-on-slurm/README.md) | medium | seed | Run small WDL workflows inside Slurm allocations with miniwdl. |
 
 ## Collections
 
@@ -220,7 +223,7 @@ Current registry size: 56 skills.
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 10 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, and weather workloads on Slurm-backed HPC systems. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 16 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks. |
 | [`training-onboarding`](../collections/training-onboarding.json) | draft | 12 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, Python, R, Julia, and MATLAB workloads, and workshop environments. |
-| [`workflow-engines`](../collections/workflow-engines.json) | draft | 6 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL runs, Dask worker clusters, and lightweight Slurm dependency chains. |
+| [`workflow-engines`](../collections/workflow-engines.json) | draft | 7 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL/WDL runs, Dask worker clusters, and lightweight Slurm dependency chains. |
 
 ## Site Adapters
 

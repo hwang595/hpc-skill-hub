@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 56.
+- Skills: 57.
 - Collections: 11.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -33,8 +33,9 @@ request missing workflows, or contribute public site adapters.
 - Containers: Apptainer-compatible image build planning, container runtime
   execution, GPU visibility checks, scratch staging, checksum manifests, and
   reproducible run capture.
-- Workflow engines: lightweight Slurm dependency chains, CWL runs inside Slurm
-  allocations, Dask worker clusters, Nextflow, Snakemake, and nf-core on Slurm.
+- Workflow engines: lightweight Slurm dependency chains, CWL and WDL runs
+  inside Slurm allocations, Dask worker clusters, Nextflow, Snakemake, and
+  nf-core on Slurm.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm
   workflows, notebooks, Python/Conda environments, Rscript, Julia, and MATLAB
   batch jobs, and common learner triage.

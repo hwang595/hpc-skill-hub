@@ -2,16 +2,16 @@
   "categories": {
     "admin": 4,
     "containers": 2,
-    "data": 11,
+    "data": 12,
     "debugging": 17,
     "education": 1,
     "gpu": 7,
     "interactive": 2,
     "mpi": 8,
     "performance": 9,
-    "scheduler": 39,
+    "scheduler": 40,
     "software": 15,
-    "workflow": 8
+    "workflow": 9
   },
   "collection_count": 11,
   "collections": [
@@ -268,18 +268,19 @@
       "skill_ids": [
         "slurm-job-dependency-chain",
         "cwl-on-slurm",
+        "wdl-on-slurm",
         "dask-jobqueue-on-slurm",
         "nextflow-on-slurm",
         "snakemake-on-slurm",
         "nf-core-on-slurm"
       ],
       "status": "draft",
-      "summary": "Skills for launching portable workflow engines, CWL runs, Dask worker clusters, and lightweight Slurm dependency chains."
+      "summary": "Skills for launching portable workflow engines, CWL/WDL runs, Dask worker clusters, and lightweight Slurm dependency chains."
     }
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 40
+    "slurm": 41
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -305,7 +306,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 56,
+  "skill_count": 57,
   "skills": [
     {
       "categories": [
@@ -3422,6 +3423,83 @@
     },
     {
       "categories": [
+        "workflow",
+        "scheduler",
+        "data"
+      ],
+      "description": "This skill provides a conservative pattern for running Workflow Description Language workflows with miniwdl inside a Slurm allocation, including output and run directory controls, a tiny word-count smoke test, input JSON handling, and dry-run-first launch records.",
+      "examples": [
+        {
+          "path": "skills/wdl-on-slurm/examples/wdl-smoke.sbatch",
+          "title": "Plan or run a WDL smoke test in Slurm"
+        },
+        {
+          "path": "skills/wdl-on-slurm/examples/wordcount.wdl",
+          "title": "Tiny WDL workflow"
+        },
+        {
+          "path": "skills/wdl-on-slurm/examples/inputs.json",
+          "title": "miniwdl input JSON"
+        },
+        {
+          "path": "skills/wdl-on-slurm/examples/sample.txt",
+          "title": "Tiny text input"
+        }
+      ],
+      "id": "wdl-on-slurm",
+      "maturity": "seed",
+      "name": "WDL On Slurm",
+      "path": "skills/wdl-on-slurm",
+      "readme": "skills/wdl-on-slurm/README.md",
+      "references": [
+        {
+          "title": "OpenWDL overview",
+          "url": "https://docs.openwdl.org/overview.html"
+        },
+        {
+          "title": "OpenWDL tasks guide",
+          "url": "https://docs.openwdl.org/language-guide/tasks.html"
+        },
+        {
+          "title": "OpenWDL workflows guide",
+          "url": "https://docs.openwdl.org/language-guide/workflows.html"
+        },
+        {
+          "title": "miniwdl run command line",
+          "url": "https://miniwdl.readthedocs.io/en/latest/runner_cli.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run small WDL workflows inside Slurm allocations with miniwdl.",
+      "tags": [
+        "wdl",
+        "miniwdl",
+        "workflow",
+        "slurm",
+        "bioinformatics",
+        "reproducibility"
+      ],
+      "tools": [
+        "miniwdl",
+        "sbatch",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "mpi",
         "scheduler",
         "performance"
@@ -3513,7 +3591,7 @@
     "array": 2,
     "batch": 3,
     "benchmark": 1,
-    "bioinformatics": 3,
+    "bioinformatics": 4,
     "blast": 1,
     "blastn": 1,
     "blastp": 1,
@@ -3583,6 +3661,7 @@
     "memory": 4,
     "metadata": 1,
     "micromamba": 1,
+    "miniwdl": 1,
     "modulepath": 1,
     "modules": 7,
     "molecular-dynamics": 2,
@@ -3633,7 +3712,7 @@
     "reason": 1,
     "reconstruction": 1,
     "reporting": 1,
-    "reproducibility": 9,
+    "reproducibility": 10,
     "rerun": 1,
     "resources": 1,
     "restart": 4,
@@ -3654,7 +3733,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 38,
+    "slurm": 39,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -3681,9 +3760,10 @@
     "venv": 1,
     "virtualenv": 1,
     "walltime": 2,
+    "wdl": 1,
     "weather": 1,
     "workers": 1,
-    "workflow": 5,
+    "workflow": 6,
     "workshop": 1,
     "wrapper": 1,
     "wrf": 1,
@@ -3707,7 +3787,7 @@
     "cwltool": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 21,
+    "date": 22,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -3725,7 +3805,7 @@
     "gmx_mpi": 1,
     "grep": 8,
     "head": 4,
-    "hostname": 18,
+    "hostname": 19,
     "icoFoam": 1,
     "julia": 1,
     "jupyter": 1,
@@ -3737,8 +3817,9 @@
     "mamba": 1,
     "matlab": 1,
     "micromamba": 1,
-    "mkdir": 26,
-    "module": 17,
+    "miniwdl": 1,
+    "mkdir": 27,
+    "module": 18,
     "mpi4py": 1,
     "mpicc": 2,
     "mpicxx": 1,
@@ -3763,7 +3844,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 30,
+    "sbatch": 31,
     "scontrol": 6,
     "sed": 2,
     "seff": 1,
@@ -3782,7 +3863,7 @@
     "ssh": 2,
     "tail": 4,
     "tar": 1,
-    "tee": 14,
+    "tee": 15,
     "test": 6,
     "time": 1,
     "tr": 1,

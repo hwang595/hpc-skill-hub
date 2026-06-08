@@ -54,6 +54,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   scratch paths, restart planning, and a PWscf input template.
 - Add a CWL on Slurm skill with cwltool cache, output, temporary directory, and
   smoke-test controls.
+- Add a WDL on Slurm skill with miniwdl input, run directory, output JSON, and
+  smoke-test controls.
 
 ## v0.1.0 - Planned
 
@@ -61,12 +63,12 @@ Initial public seed release.
 
 ### Added
 
-- 56 seed HPC skills covering Slurm, job arrays, dependency chains, pending
+- 57 seed HPC skills covering Slurm, job arrays, dependency chains, pending
   reason triage, monitoring, resource estimation, efficiency review, failure
   triage, checkpoint/restart, interactive sessions, notebooks, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
   Ray, Dask Jobqueue, mpi4py, containers, Spack, EasyBuild, data movement,
-  CWL, workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
+  CWL/WDL, workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
   workflows including local BLAST+, molecular dynamics, electronic-structure,
   CFD, weather workloads, read-only facility operations, and training
   onboarding.

@@ -33,6 +33,7 @@ new collections.
 | `dataset-staging-to-scratch` | data | medium | Seed skill added to `data-movement`. |
 | `large-file-archive-prepare` | data | medium | Seed skill added to `data-movement`. |
 | `cwl-on-slurm` | workflow | medium | Seed skill added to `workflow-engines`. |
+| `wdl-on-slurm` | workflow | medium | Seed skill added to `workflow-engines`. |
 | `pytorch-ddp-on-slurm` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
 | `nccl-diagnostics` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
 | `gpu-memory-triage` | debugging | low | Seed skill added to `gpu-mpi-performance`. |

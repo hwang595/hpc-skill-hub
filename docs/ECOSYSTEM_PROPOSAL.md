@@ -33,7 +33,7 @@ The project is not only a documentation site. It combines:
 - `containers`: Apptainer-compatible image builds, runtime execution, GPU
   checks, data staging, checksums, and reproducible run capture.
 - `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices.
-- `workflow-engines`: CWL, Nextflow, Snakemake, and WDL.
+- `workflow-engines`: CWL, WDL, Nextflow, and Snakemake.
 - `training-onboarding`: workshop preflight, intro Slurm skills, notebooks,
   Python environments, and common learner failure modes.
 - `ai-hpc`: GPU allocation checks, Ray clusters, Dask workers, PyTorch DDP,

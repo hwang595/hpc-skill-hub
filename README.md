@@ -70,6 +70,7 @@ tools.
 | `dataset-staging-to-scratch` | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
 | `large-file-archive-prepare` | Prepare large HPC datasets for archival, publication, or handoff. |
 | `cwl-on-slurm` | Run small CWL workflows inside Slurm allocations with cwltool. |
+| `wdl-on-slurm` | Run small WDL workflows inside Slurm allocations with miniwdl. |
 | `nextflow-on-slurm` | Configure Nextflow pipelines for Slurm-backed execution. |
 | `snakemake-on-slurm` | Configure Snakemake workflows for Slurm profiles. |
 | `nf-core-on-slurm` | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |

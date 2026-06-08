@@ -11,7 +11,8 @@ Good next-wave skills should be:
 
 Candidate areas:
 
-- `wdl-on-slurm`: conservative WDL execution patterns for Slurm-backed HPC.
+- _None currently listed_; please open new skill request issues for focused,
+  public-reference-backed next-wave work.
 
 Please open separate skill request issues when claiming one so scope, risk, and
 validation can be discussed before implementation.

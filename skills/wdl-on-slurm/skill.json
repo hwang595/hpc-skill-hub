@@ -1,0 +1,153 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "wdl-on-slurm",
+  "name": "WDL On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run small WDL workflows inside Slurm allocations with miniwdl.",
+  "description": "This skill provides a conservative pattern for running Workflow Description Language workflows with miniwdl inside a Slurm allocation, including output and run directory controls, a tiny word-count smoke test, input JSON handling, and dry-run-first launch records.",
+  "categories": ["workflow", "scheduler", "data"],
+  "tags": ["wdl", "miniwdl", "workflow", "slurm", "bioinformatics", "reproducibility"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "miniwdl",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "wdl_document",
+      "type": "path",
+      "required": true,
+      "description": "WDL workflow or task document."
+    },
+    {
+      "name": "input_json",
+      "type": "path",
+      "required": true,
+      "description": "miniwdl-compatible input JSON file."
+    },
+    {
+      "name": "run_dir",
+      "type": "path",
+      "required": true,
+      "description": "Directory under which miniwdl creates the workflow run directory."
+    },
+    {
+      "name": "runtime_policy",
+      "type": "object",
+      "required": false,
+      "description": "Optional local policy for containers, runtime defaults, copy-input behavior, and scheduler allocation limits."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "wdl_launch_plan",
+      "description": "Reviewable miniwdl command, input paths, run directory, output JSON path, and Slurm allocation details."
+    },
+    {
+      "name": "wdl_outputs",
+      "description": "miniwdl output JSON and run directory when RUN_WDL=1."
+    },
+    {
+      "name": "run_record",
+      "description": "Log file with miniwdl version, command provenance, and selected runtime options."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/wdl-smoke.sbatch",
+    "examples/wordcount.wdl",
+    "examples/inputs.json",
+    "examples/sample.txt"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run a WDL smoke test in Slurm",
+      "path": "examples/wdl-smoke.sbatch"
+    },
+    {
+      "title": "Tiny WDL workflow",
+      "path": "examples/wordcount.wdl"
+    },
+    {
+      "title": "miniwdl input JSON",
+      "path": "examples/inputs.json"
+    },
+    {
+      "title": "Tiny text input",
+      "path": "examples/sample.txt"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill wdl-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/wdl-on-slurm/examples/wdl-smoke.sbatch",
+      "description": "Check the Slurm wrapper shell syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Run the wrapper in default dry-run mode, then set RUN_WDL=1 on a short allocation after loading a site-approved miniwdl environment."
+    }
+  ],
+  "references": [
+    {
+      "title": "OpenWDL overview",
+      "url": "https://docs.openwdl.org/overview.html"
+    },
+    {
+      "title": "OpenWDL tasks guide",
+      "url": "https://docs.openwdl.org/language-guide/tasks.html"
+    },
+    {
+      "title": "OpenWDL workflows guide",
+      "url": "https://docs.openwdl.org/language-guide/workflows.html"
+    },
+    {
+      "title": "miniwdl run command line",
+      "url": "https://miniwdl.readthedocs.io/en/latest/runner_cli.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}
