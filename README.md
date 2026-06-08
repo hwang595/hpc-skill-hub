@@ -99,6 +99,7 @@ tools.
 | `openfoam-on-slurm` | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |
 | `wrf-on-slurm` | Run WRF real-data jobs on Slurm with MPI sizing, real.exe staging, restart, and I/O planning. |
 | `mpi-hello-and-benchmark` | Compile and run MPI sanity checks and simple communication benchmarks. |
+| `hybrid-mpi-openmp-slurm` | Plan and verify hybrid MPI/OpenMP task and thread layouts on Slurm. |
 | `gpu-sanity-check` | Verify GPU allocation, CUDA/ROCm visibility, and multi-GPU communication. |
 | `jax-distributed-on-slurm` | Plan and smoke test distributed JAX jobs on Slurm GPU allocations. |
 | `huggingface-accelerate-on-slurm` | Plan and smoke test Hugging Face Accelerate launches on Slurm. |

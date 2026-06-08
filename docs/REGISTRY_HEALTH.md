@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 77
+- Skills: 78
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 60 |
+| `medium` | 61 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 77 |
+| `seed` | 78 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 77 |
+| `draft` | 78 |
 
 ## Collection Coverage
 
@@ -38,9 +38,9 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `core-hpc` | 17 |
 | `data-movement` | 9 |
 | `facility-ops` | 4 |
-| `gpu-mpi-performance` | 19 |
+| `gpu-mpi-performance` | 20 |
 | `scheduler-basics` | 7 |
-| `simulation-workflows` | 14 |
+| `simulation-workflows` | 15 |
 | `software-stacks` | 27 |
 | `training-onboarding` | 18 |
 | `workflow-engines` | 8 |
@@ -76,6 +76,7 @@ All skills are included in at least one collection.
 | `gromacs-on-slurm` | medium |
 | `htcondor-submit-job` | medium |
 | `huggingface-accelerate-on-slurm` | medium |
+| `hybrid-mpi-openmp-slurm` | medium |
 | `interactive-session` | medium |
 | `ior-mdtest-storage-smoke` | medium |
 | `jax-distributed-on-slurm` | medium |

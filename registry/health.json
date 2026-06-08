@@ -4,13 +4,13 @@
     "admin": 4,
     "containers": 3,
     "data": 14,
-    "debugging": 20,
+    "debugging": 21,
     "education": 2,
     "gpu": 12,
     "interactive": 7,
-    "mpi": 13,
-    "performance": 14,
-    "scheduler": 59,
+    "mpi": 14,
+    "performance": 15,
+    "scheduler": 60,
     "software": 25,
     "workflow": 11
   },
@@ -115,12 +115,13 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 19,
+      "skill_count": 20,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
         "mpi4py-on-slurm",
         "mpi-rank-binding-diagnostics",
+        "hybrid-mpi-openmp-slurm",
         "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
         "ray-on-slurm",
@@ -153,7 +154,7 @@
     },
     {
       "id": "simulation-workflows",
-      "skill_count": 14,
+      "skill_count": 15,
       "skill_ids": [
         "gromacs-on-slurm",
         "lammps-on-slurm",
@@ -164,6 +165,7 @@
         "wrf-on-slurm",
         "mpi-hello-and-benchmark",
         "mpi-rank-binding-diagnostics",
+        "hybrid-mpi-openmp-slurm",
         "openmp-thread-affinity",
         "ior-mdtest-storage-smoke",
         "performance-profile-basic",
@@ -245,7 +247,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 77
+    "seed": 78
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -271,6 +273,7 @@
     "gromacs-on-slurm": "medium",
     "htcondor-submit-job": "medium",
     "huggingface-accelerate-on-slurm": "medium",
+    "hybrid-mpi-openmp-slurm": "medium",
     "interactive-session": "medium",
     "ior-mdtest-storage-smoke": "medium",
     "jax-distributed-on-slurm": "medium",
@@ -328,13 +331,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 60
+    "medium": 61
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 77,
+  "skill_count": 78,
   "status_counts": {
-    "draft": 77
+    "draft": 78
   },
   "uncollected_skill_ids": []
 }

@@ -1,0 +1,147 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "hybrid-mpi-openmp-slurm",
+  "name": "Hybrid MPI/OpenMP On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Plan and verify hybrid MPI/OpenMP task and thread layouts on Slurm.",
+  "description": "This skill helps users and support teams choose a small Slurm task shape for hybrid MPI/OpenMP applications, align cpus-per-task with OMP_NUM_THREADS, and collect evidence about rank, thread, and CPU binding before scaling simulation or performance workloads.",
+  "categories": ["mpi", "scheduler", "performance", "debugging"],
+  "tags": ["mpi", "openmp", "slurm", "cpus-per-task", "omp-num-threads", "cpu-bind", "hybrid-parallel"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "mpicc",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "lscpu",
+      "required": false
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "account",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific Slurm account or allocation for the short hybrid layout job."
+    },
+    {
+      "name": "partition",
+      "type": "string",
+      "required": false,
+      "description": "Slurm partition or queue for the short hybrid layout job."
+    },
+    {
+      "name": "task_shape",
+      "type": "object",
+      "required": true,
+      "description": "Nodes, tasks per node, cpus per task, total MPI tasks, and OpenMP threads per rank."
+    },
+    {
+      "name": "mpi_module",
+      "type": "string",
+      "required": false,
+      "description": "Optional MPI compiler/runtime module to load before compiling the probe."
+    },
+    {
+      "name": "openmp_policy",
+      "type": "object",
+      "required": false,
+      "description": "OMP_NUM_THREADS, OMP_PLACES, OMP_PROC_BIND, and Slurm --cpu-bind policy for the small probe."
+    },
+    {
+      "name": "application_command",
+      "type": "string",
+      "required": false,
+      "description": "Real hybrid application command to substitute after the probe layout is reviewed."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "hybrid_layout_plan",
+      "description": "Dry-run compile and srun command lines plus Slurm and OpenMP environment settings."
+    },
+    {
+      "name": "topology_report",
+      "description": "Node, Slurm, MPI, OpenMP, and CPU topology evidence written before launch."
+    },
+    {
+      "name": "rank_thread_report",
+      "description": "TSV report mapping MPI ranks and OpenMP threads to host, CPU, visible affinity, and OpenMP settings."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/hybrid-mpi-openmp.sbatch",
+    "examples/hybrid_mpi_openmp_probe.c"
+  ],
+  "examples": [
+    {
+      "title": "Hybrid MPI/OpenMP Slurm layout job",
+      "path": "examples/hybrid-mpi-openmp.sbatch"
+    },
+    {
+      "title": "Hybrid rank and thread probe",
+      "path": "examples/hybrid_mpi_openmp_probe.c"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill hybrid-mpi-openmp-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/hybrid-mpi-openmp-slurm/examples/hybrid-mpi-openmp.sbatch",
+      "description": "Check the Slurm wrapper syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Submit the wrapper with RUN_HYBRID_PROBE=0 to review the plan, then set RUN_HYBRID_PROBE=1 on a short test partition and confirm rank-thread-affinity.tsv has one row per rank/thread pair."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm srun documentation",
+      "url": "https://slurm.schedmd.com/srun.html"
+    },
+    {
+      "title": "Slurm multi-core support",
+      "url": "https://slurm.schedmd.com/mc_support.html"
+    },
+    {
+      "title": "Slurm resource binding",
+      "url": "https://slurm.schedmd.com/resource_binding.html"
+    },
+    {
+      "title": "OpenMP OMP_PLACES",
+      "url": "https://www.openmp.org/spec-html/5.0/openmpse53.html"
+    },
+    {
+      "title": "OpenMP 5.1 specification",
+      "url": "https://www.openmp.org/spec-html/5.1/openmp.html"
+    }
+  ]
+}

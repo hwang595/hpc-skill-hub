@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a hybrid MPI/OpenMP on Slurm seed skill for aligning MPI task shape,
+  `cpus-per-task`, OpenMP thread settings, and CPU binding evidence.
 - Add a license-aware Slurm job seed skill for planning `--licenses` requests,
   visible license evidence, and guarded licensed application dry-runs.
 - Add an MPI rank binding diagnostics seed skill for collecting Slurm task
@@ -143,14 +145,14 @@ Initial public seed release.
 
 ### Added
 
-- 77 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 78 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, dependency chains, pending reason triage, monitoring, resource
   estimation, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
   TensorBoard, Streamlit, Ray, Dask Jobqueue, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, containers, containerized MPI, Spack, EasyBuild, object storage, data movement,
   storage smoke benchmarks, CWL/WDL, workflow engines, MPI/GPU diagnostics,
-  MPI rank binding diagnostics,
+  MPI rank binding diagnostics, hybrid MPI/OpenMP layouts,
   AI/HPC launches, bioinformatics workflows including local BLAST+, molecular dynamics including NAMD,
   electronic-structure and quantum chemistry including CP2K, CFD, weather
   workloads, read-only facility operations, and training onboarding.
