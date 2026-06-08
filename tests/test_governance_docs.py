@@ -41,6 +41,20 @@ class GovernanceDocsTests(unittest.TestCase):
         self.assertIn("rfc", labels)
         self.assertIn("decision-record", labels)
 
+    def test_maturity_review_template_and_docs(self):
+        labels_path = ROOT / ".github" / "labels.json"
+        labels = {label["name"] for label in json.loads(labels_path.read_text())}
+        template = (
+            ROOT / ".github" / "ISSUE_TEMPLATE" / "maturity_review.md"
+        ).read_text(encoding="utf-8")
+        guide = (ROOT / "docs" / "MATURITY_REVIEW.md").read_text(encoding="utf-8")
+
+        self.assertIn("labels: [\"maturity-review\"]", template)
+        self.assertIn("maturity-review", labels)
+        for maturity in ["seed", "reviewed", "field-tested", "maintained"]:
+            self.assertIn(maturity, guide)
+        self.assertIn("make check", guide)
+
 
 if __name__ == "__main__":
     unittest.main()

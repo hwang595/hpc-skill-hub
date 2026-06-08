@@ -41,6 +41,8 @@ Review:
 - New skills have README files, examples, tests, and references.
 - Medium and high-risk entries explain impact and safety notes.
 - Site adapters contain only public, non-sensitive information.
+- Any maturity promotions link a maturity review issue or public review
+  evidence.
 - GitHub Actions are green on `main`.
 
 ## Release Notes Template

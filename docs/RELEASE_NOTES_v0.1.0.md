@@ -63,6 +63,7 @@ request missing workflows, or contribute public site adapters.
 - Dependabot configuration for GitHub Actions and Python packaging.
 - Issue templates for bugs, docs, skill requests, site adapters, and safety
   review.
+- Maturity review template and guidance for promoting skills beyond seed.
 - Pull request template with validation, risk, privacy, and reviewer prompts.
 - Repository metadata, labels, and starter ruleset files.
 - Seed community issues for launch coordination.

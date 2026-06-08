@@ -15,3 +15,5 @@ Reviewer areas we would like to cover:
 
 Reviewers can help by checking portability, risk labels, examples, references,
 and whether a skill needs a site adapter note instead of a core registry change.
+Use the maturity review template when a skill is ready to move from `seed` to
+`reviewed`, `field-tested`, or `maintained`.

@@ -17,6 +17,7 @@ skills keep their own `version` field in `skills/*/skill.json`.
   facility operations support.
 - Add a training and onboarding collection with a workshop preflight and reset
   checklist skill.
+- Add maturity review guidance and issue template for promoting seed skills.
 
 ## v0.1.0 - Planned
 

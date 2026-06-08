@@ -2,7 +2,8 @@
 
 For maintainer rotation, role ownership, and operational continuity, see
 [Maintainer Handoff](MAINTAINER_HANDOFF.md). For project-level review policy,
-domain ownership, and maturity promotion, see [Governance](GOVERNANCE.md).
+domain ownership, and maturity promotion, see [Governance](GOVERNANCE.md) and
+[Maturity Review](MATURITY_REVIEW.md).
 
 ## Review Checklist
 
@@ -34,3 +35,10 @@ Suggested release notes sections:
 Each skill should eventually have at least one domain maintainer. Facility
 operations, admin, and security-sensitive skills should require review from a
 maintainer with production HPC experience.
+
+## Maturity Promotion
+
+Use the maturity review issue template before changing a skill from `seed` to a
+higher maturity level. Promotion pull requests should update the manifest,
+refresh generated registry files, link public evidence, and keep private site
+details out of the repository.

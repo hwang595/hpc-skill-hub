@@ -30,6 +30,11 @@
     "description": "Needs review for risk, privacy, shared-system impact, or high-risk behavior."
   },
   {
+    "name": "maturity-review",
+    "color": "0E8A16",
+    "description": "Review request for promoting a skill from seed to reviewed, field-tested, or maintained."
+  },
+  {
     "name": "high-risk-skill",
     "color": "B60205",
     "description": "Skill may affect shared systems, admin state, security, or facility operations."

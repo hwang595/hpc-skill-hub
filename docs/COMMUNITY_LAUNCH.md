@@ -50,6 +50,8 @@ We are looking for:
   AI/HPC, bioinformatics, molecular dynamics, CFD, climate/weather, and
   facility operations.
 - Feedback on schema fields, risk labels, and review policy.
+- Maturity review evidence for skills that should move from seed to reviewed or
+  field-tested.
 
 Please avoid sharing private hostnames, usernames, allocation names, internal
 project identifiers, unpublished security procedures, or private dataset paths.

@@ -39,6 +39,10 @@ One person may hold more than one role during the seed stage.
 Promotion should be evidence-based. A passing validator is necessary, but not
 enough by itself for higher maturity.
 
+Use [Maturity Review](MATURITY_REVIEW.md) and the maturity review issue
+template when requesting promotion from `seed` to `reviewed`, `field-tested`,
+or `maintained`.
+
 ## Decision Process
 
 Most decisions should happen in pull requests and issues. Maintainers should
