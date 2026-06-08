@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 41.
+- Skills: 42.
 - Collections: 8.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -38,8 +38,8 @@ request missing workflows, or contribute public site adapters.
   checksum practices.
 - Simulation: LAMMPS, GROMACS, OpenFOAM, WRF, MPI launch checks, OpenMP
   placement, restart planning, profiling, and reproducibility.
-- Facility operations: read-only Slurm usage reporting for support teams and
-  facility maintainers.
+- Facility operations: read-only Slurm usage reporting and node-health triage
+  for support teams and facility maintainers.
 
 ## Tooling
 

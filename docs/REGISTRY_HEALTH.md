@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 41
+- Skills: 42
 - Site adapters: 1
 - Collections: 8
 - Uncollected skills: 0
@@ -13,20 +13,20 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 13 |
+| `low` | 14 |
 | `medium` | 28 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 41 |
+| `seed` | 42 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 41 |
+| `draft` | 42 |
 
 ## Collection Coverage
 
@@ -35,7 +35,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `bioinformatics-workflows` | 6 |
 | `core-hpc` | 11 |
 | `data-movement` | 7 |
-| `facility-ops` | 1 |
+| `facility-ops` | 2 |
 | `gpu-mpi-performance` | 9 |
 | `simulation-workflows` | 9 |
 | `software-stacks` | 9 |
@@ -74,6 +74,7 @@ All skills are included in at least one collection.
 | `nccl-diagnostics` | medium |
 | `nextflow-on-slurm` | medium |
 | `nf-core-on-slurm` | medium |
+| `node-health-readonly-triage` | low |
 | `openfoam-on-slurm` | medium |
 | `openmp-thread-affinity` | medium |
 | `performance-profile-basic` | low |

@@ -26,8 +26,8 @@ research software engineer building software stacks may start with
 - `simulation-workflows`: GROMACS, LAMMPS, OpenFOAM, WRF, MPI launch checks,
   OpenMP placement, profiling, restart planning, and reproducible run capture
   for simulation teams.
-- `facility-ops`: read-only usage reporting for HPC support teams and facility
-  maintainers.
+- `facility-ops`: read-only usage reporting and node triage for HPC support
+  teams and facility maintainers.
 
 ## Contribution Guidance
 

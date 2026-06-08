@@ -6,7 +6,8 @@
   "summary": "Read-only operational skills for HPC support teams and facility maintainers.",
   "audience": ["HPC support teams", "facility maintainers", "research computing operators"],
   "skill_ids": [
-    "cluster-usage-report-readonly"
+    "cluster-usage-report-readonly",
+    "node-health-readonly-triage"
   ],
   "maintainers": [
     {

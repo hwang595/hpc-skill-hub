@@ -1,0 +1,111 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "node-health-readonly-triage",
+  "name": "Node Health Readonly Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect read-only Slurm node evidence for support triage.",
+  "description": "This skill helps HPC support teams collect user-visible Slurm node, queue, and recent accounting evidence so they can distinguish job-level failures from possible node or partition incidents without changing scheduler state.",
+  "categories": ["admin", "scheduler", "debugging"],
+  "tags": ["slurm", "sinfo", "scontrol", "squeue", "sacct", "node-health", "triage"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sinfo",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": false,
+      "notes": "Some sites restrict node details to support staff."
+    },
+    {
+      "name": "squeue",
+      "required": false
+    },
+    {
+      "name": "sacct",
+      "required": false,
+      "notes": "Useful when accounting visibility includes recent jobs on a node."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "node_name",
+      "type": "string",
+      "required": false,
+      "description": "Optional Slurm node name to inspect."
+    },
+    {
+      "name": "days",
+      "type": "integer",
+      "required": false,
+      "description": "Number of recent days to include in optional accounting reports."
+    },
+    {
+      "name": "output_dir",
+      "type": "string",
+      "required": false,
+      "description": "Directory where the triage report should be written."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "node_triage_report",
+      "description": "A local directory containing read-only node state, queue, and recent accounting snapshots."
+    },
+    {
+      "name": "summary",
+      "description": "A summary file describing scope, generated files, and safe handoff guidance."
+    }
+  ],
+  "artifacts": ["README.md", "examples/node-health-triage.sh"],
+  "examples": [
+    {
+      "title": "Collect read-only node triage evidence",
+      "path": "examples/node-health-triage.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill node-health-readonly-triage",
+      "description": "Validate the manifest and report script reference."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/node-health-readonly-triage/examples/node-health-triage.sh",
+      "description": "Check shell syntax without contacting a scheduler."
+    },
+    {
+      "type": "manual",
+      "description": "Run on a Slurm site with a known node name and confirm the report contains only approved operational details before sharing."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sinfo documentation",
+      "url": "https://slurm.schedmd.com/sinfo.html"
+    },
+    {
+      "title": "Slurm scontrol documentation",
+      "url": "https://slurm.schedmd.com/scontrol.html"
+    },
+    {
+      "title": "Slurm squeue documentation",
+      "url": "https://slurm.schedmd.com/squeue.html"
+    },
+    {
+      "title": "Slurm sacct documentation",
+      "url": "https://slurm.schedmd.com/sacct.html"
+    }
+  ]
+}

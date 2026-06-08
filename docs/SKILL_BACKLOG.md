@@ -34,6 +34,7 @@ new collections.
 | `openfoam-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `wrf-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `cluster-usage-report-readonly` | admin | low | Seed skill added to `facility-ops`. |
+| `node-health-readonly-triage` | admin | low | Seed skill added to `facility-ops`. |
 
 ## Priority 1: Core User Workflows
 
@@ -68,7 +69,6 @@ maintainer explicitly reviews them as high risk.
 
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
-| `node-health-readonly-triage` | admin | low | Read-only node evidence helps separate user errors from system incidents. |
 | `module-tree-health-check` | software | low | Broken module paths and stale dependencies are common support issues. |
 | `training-cluster-reset-checklist` | education | medium | Workshops need repeatable preflight and cleanup guidance. |
 

@@ -11,8 +11,6 @@ Good next-wave skills should be:
 
 Candidate areas:
 
-- `node-health-readonly-triage`: collect read-only node evidence for support
-  handoff and user-visible incident triage.
 - `module-tree-health-check`: inspect broken modules, missing dependencies, and
   stale compiler/MPI combinations.
 - `training-cluster-reset-checklist`: repeatable public preflight and cleanup

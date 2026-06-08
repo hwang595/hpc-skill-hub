@@ -36,7 +36,7 @@ The project is not only a documentation site. It combines:
 - `bioinformatics-workflows`: nf-core, GATK, BLAST, AlphaFold, single-cell
   workflows, and genomics data staging.
 - `simulation-workflows`: LAMMPS, GROMACS, NAMD, OpenFOAM, WRF.
-- `facility-ops`: read-only usage reporting, health checks, support handoffs,
+- `facility-ops`: read-only usage reporting, node triage, support handoffs,
   and public operational patterns.
 
 ## Governance Direction

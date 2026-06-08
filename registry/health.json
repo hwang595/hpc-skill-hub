@@ -1,14 +1,14 @@
 {
   "category_counts": {
-    "admin": 1,
+    "admin": 2,
     "containers": 2,
     "data": 9,
-    "debugging": 13,
+    "debugging": 14,
     "gpu": 6,
     "interactive": 2,
     "mpi": 6,
     "performance": 7,
-    "scheduler": 25,
+    "scheduler": 26,
     "software": 8,
     "workflow": 4
   },
@@ -58,9 +58,10 @@
     },
     {
       "id": "facility-ops",
-      "skill_count": 1,
+      "skill_count": 2,
       "skill_ids": [
-        "cluster-usage-report-readonly"
+        "cluster-usage-report-readonly",
+        "node-health-readonly-triage"
       ]
     },
     {
@@ -120,7 +121,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 41
+    "seed": 42
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -148,6 +149,7 @@
     "nccl-diagnostics": "medium",
     "nextflow-on-slurm": "medium",
     "nf-core-on-slurm": "medium",
+    "node-health-readonly-triage": "low",
     "openfoam-on-slurm": "medium",
     "openmp-thread-affinity": "medium",
     "performance-profile-basic": "low",
@@ -166,14 +168,14 @@
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
-    "low": 13,
+    "low": 14,
     "medium": 28
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 41,
+  "skill_count": 42,
   "status_counts": {
-    "draft": 41
+    "draft": 42
   },
   "uncollected_skill_ids": []
 }

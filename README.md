@@ -74,6 +74,7 @@ tools.
 | `deepspeed-on-slurm` | Plan and smoke test DeepSpeed launches on Slurm GPU allocations. |
 | `performance-profile-basic` | Collect first-pass CPU, memory, I/O, and GPU profiling evidence. |
 | `cluster-usage-report-readonly` | Collect read-only Slurm usage evidence for facility support reports. |
+| `node-health-readonly-triage` | Collect read-only Slurm node evidence for support triage. |
 
 ## Quick Start
 
