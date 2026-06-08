@@ -26,6 +26,7 @@ new collections.
 | `pytorch-ddp-on-slurm` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
 | `nccl-diagnostics` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
 | `gpu-memory-triage` | debugging | low | Seed skill added to `gpu-mpi-performance`. |
+| `deepspeed-on-slurm` | gpu | medium | Seed skill added to `gpu-mpi-performance`. |
 
 ## Priority 1: Core User Workflows
 
@@ -45,9 +46,8 @@ request issues.
 
 ## Priority 4: AI/HPC And Accelerators
 
-| Skill id | Category | Risk | Why it matters |
-| --- | --- | --- | --- |
-| `deepspeed-on-slurm` | gpu | medium | Large model training needs conservative Slurm and storage patterns. |
+Priority 4 is implemented in the seed registry. New AI/HPC and accelerator
+requests should be proposed through skill request issues.
 
 ## Priority 5: Domain Collections
 

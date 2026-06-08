@@ -31,8 +31,8 @@ The project is not only a documentation site. It combines:
 - `containers`: Apptainer, OCI image conversion, GPU containers.
 - `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices.
 - `workflow-engines`: Nextflow, Snakemake, CWL, WDL.
-- `ai-hpc`: PyTorch DDP, NCCL diagnostics, GPU memory triage, DeepSpeed,
-  GPU performance triage.
+- `ai-hpc`: PyTorch DDP, NCCL diagnostics, GPU memory triage, DeepSpeed launch
+  checks, GPU performance triage.
 - `biohpc`: nf-core, GATK, BLAST, AlphaFold, single-cell workflows.
 - `simulation`: LAMMPS, GROMACS, NAMD, OpenFOAM, WRF.
 - `facility-ops`: read-only reporting, health checks, usage reports, portals.

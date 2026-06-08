@@ -3,11 +3,11 @@
     "containers": 2,
     "data": 7,
     "debugging": 13,
-    "gpu": 4,
+    "gpu": 5,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
-    "scheduler": 17,
+    "scheduler": 18,
     "software": 8,
     "workflow": 2
   },
@@ -75,11 +75,12 @@
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
+        "deepspeed-on-slurm",
         "openmp-thread-affinity",
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, NCCL communication, compiler/MPI compatibility, PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -123,7 +124,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 18
+    "slurm": 19
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -149,7 +150,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 33,
+  "skill_count": 34,
   "skills": [
     {
       "categories": [
@@ -528,6 +529,77 @@
         "find",
         "sort",
         "pwd"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "gpu",
+        "scheduler"
+      ],
+      "description": "This skill provides a conservative Slurm wrapper for DeepSpeed jobs, including environment capture, storage and checkpoint reminders, a reviewable launch plan, and an optional tiny DeepSpeed smoke test.",
+      "examples": [
+        {
+          "path": "skills/deepspeed-on-slurm/examples/deepspeed-slurm.sbatch",
+          "title": "Plan or run a DeepSpeed smoke test on Slurm"
+        },
+        {
+          "path": "skills/deepspeed-on-slurm/examples/deepspeed_smoke.py",
+          "title": "Tiny DeepSpeed smoke script"
+        },
+        {
+          "path": "skills/deepspeed-on-slurm/examples/ds_config_zero2.json",
+          "title": "Conservative ZeRO-2 config template"
+        }
+      ],
+      "id": "deepspeed-on-slurm",
+      "maturity": "seed",
+      "name": "DeepSpeed On Slurm",
+      "path": "skills/deepspeed-on-slurm",
+      "readme": "skills/deepspeed-on-slurm/README.md",
+      "references": [
+        {
+          "title": "DeepSpeed getting started",
+          "url": "https://www.deepspeed.ai/getting-started/"
+        },
+        {
+          "title": "DeepSpeed configuration JSON",
+          "url": "https://www.deepspeed.ai/docs/config-json/"
+        },
+        {
+          "title": "DeepSpeed training setup",
+          "url": "https://deepspeed.readthedocs.io/en/stable/initialize.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Plan and smoke test DeepSpeed launches on Slurm GPU allocations.",
+      "tags": [
+        "deepspeed",
+        "pytorch",
+        "slurm",
+        "zero",
+        "checkpoint",
+        "gpu"
+      ],
+      "tools": [
+        "sbatch",
+        "srun",
+        "scontrol",
+        "python3",
+        "deepspeed",
+        "nvidia-smi",
+        "mkdir",
+        "date",
+        "hostname",
+        "env",
+        "sort",
+        "grep",
+        "head",
+        "tee"
       ],
       "version": "0.1.0"
     },
@@ -1863,7 +1935,7 @@
     "archive": 2,
     "array": 2,
     "benchmark": 1,
-    "checkpoint": 1,
+    "checkpoint": 2,
     "checksum": 4,
     "cleanup": 1,
     "compatibility": 1,
@@ -1877,6 +1949,7 @@
     "dataset": 2,
     "ddp": 1,
     "debugging": 1,
+    "deepspeed": 1,
     "definition": 1,
     "distributed": 2,
     "easybuild": 1,
@@ -1887,7 +1960,7 @@
     "filesystem": 3,
     "git": 1,
     "globus": 1,
-    "gpu": 7,
+    "gpu": 8,
     "inode": 1,
     "interactive": 1,
     "io": 1,
@@ -1925,7 +1998,7 @@
     "provenance": 1,
     "publication": 1,
     "python": 1,
-    "pytorch": 2,
+    "pytorch": 3,
     "quota": 2,
     "reproducibility": 4,
     "rerun": 1,
@@ -1942,7 +2015,7 @@
     "sha256": 1,
     "sif": 1,
     "singularity": 2,
-    "slurm": 17,
+    "slurm": 18,
     "snakemake": 1,
     "software": 2,
     "spack": 1,
@@ -1964,7 +2037,8 @@
     "virtualenv": 1,
     "walltime": 1,
     "workflow": 3,
-    "wrapper": 1
+    "wrapper": 1,
+    "zero": 1
   },
   "tools": {
     "all_reduce_perf": 1,
@@ -1977,57 +2051,58 @@
     "clang": 1,
     "command": 2,
     "conda": 1,
-    "date": 11,
+    "date": 12,
+    "deepspeed": 1,
     "df": 2,
     "dirname": 3,
     "du": 2,
     "eb": 1,
-    "env": 5,
+    "env": 6,
     "find": 4,
     "gcc": 1,
     "git": 1,
     "globus": 1,
-    "grep": 7,
-    "head": 3,
-    "hostname": 9,
+    "grep": 8,
+    "head": 4,
+    "hostname": 10,
     "jupyter": 1,
     "ldd": 2,
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 12,
+    "mkdir": 13,
     "module": 6,
     "mpicc": 2,
     "mpicxx": 1,
     "mpifort": 1,
     "nextflow": 1,
     "nproc": 1,
-    "nvidia-smi": 5,
+    "nvidia-smi": 6,
     "perf": 1,
     "pip": 1,
     "pwd": 2,
-    "python3": 4,
+    "python3": 5,
     "quota": 1,
     "rocm-smi": 2,
     "rsync": 2,
     "sacct": 3,
     "salloc": 1,
-    "sbatch": 13,
-    "scontrol": 2,
+    "sbatch": 14,
+    "scontrol": 3,
     "sed": 1,
     "sha256sum": 2,
     "shasum": 2,
     "singularity": 1,
     "sleep": 1,
     "snakemake": 1,
-    "sort": 7,
+    "sort": 8,
     "spack": 1,
     "squeue": 1,
-    "srun": 6,
+    "srun": 7,
     "ssh": 2,
     "tail": 4,
     "tar": 1,
-    "tee": 4,
+    "tee": 5,
     "time": 1,
     "tr": 1,
     "uname": 1,

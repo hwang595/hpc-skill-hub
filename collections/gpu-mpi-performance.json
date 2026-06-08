@@ -3,7 +3,7 @@
   "id": "gpu-mpi-performance",
   "name": "GPU, MPI, And Performance",
   "status": "draft",
-  "summary": "Skills for validating GPU allocations, GPU memory failures, NCCL communication, compiler/MPI compatibility, PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence.",
+  "summary": "Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence.",
   "audience": ["AI/HPC users", "simulation teams", "performance engineers"],
   "skill_ids": [
     "mpi-hello-and-benchmark",
@@ -12,6 +12,7 @@
     "pytorch-ddp-on-slurm",
     "nccl-diagnostics",
     "gpu-memory-triage",
+    "deepspeed-on-slurm",
     "openmp-thread-affinity",
     "performance-profile-basic"
   ],

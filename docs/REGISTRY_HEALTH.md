@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 33
+- Skills: 34
 - Site adapters: 1
 - Collections: 5
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 12 |
-| `medium` | 21 |
+| `medium` | 22 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 33 |
+| `seed` | 34 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 33 |
+| `draft` | 34 |
 
 ## Collection Coverage
 
@@ -34,7 +34,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | --- | ---: |
 | `core-hpc` | 11 |
 | `data-movement` | 7 |
-| `gpu-mpi-performance` | 8 |
+| `gpu-mpi-performance` | 9 |
 | `software-stacks` | 9 |
 | `workflow-engines` | 2 |
 
@@ -53,6 +53,7 @@ All skills are included in at least one collection.
 | `conda-mamba-on-hpc` | medium |
 | `container-build-for-hpc` | medium |
 | `dataset-staging-to-scratch` | medium |
+| `deepspeed-on-slurm` | medium |
 | `easybuild-install-software` | medium |
 | `globus-transfer-dataset` | medium |
 | `gpu-memory-triage` | low |

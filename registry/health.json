@@ -3,11 +3,11 @@
     "containers": 2,
     "data": 7,
     "debugging": 13,
-    "gpu": 4,
+    "gpu": 5,
     "interactive": 2,
     "mpi": 2,
     "performance": 3,
-    "scheduler": 17,
+    "scheduler": 18,
     "software": 8,
     "workflow": 2
   },
@@ -45,7 +45,7 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 8,
+      "skill_count": 9,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
@@ -53,6 +53,7 @@
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
+        "deepspeed-on-slurm",
         "openmp-thread-affinity",
         "performance-profile-basic"
       ]
@@ -83,7 +84,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 33
+    "seed": 34
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -93,6 +94,7 @@
     "conda-mamba-on-hpc": "medium",
     "container-build-for-hpc": "medium",
     "dataset-staging-to-scratch": "medium",
+    "deepspeed-on-slurm": "medium",
     "easybuild-install-software": "medium",
     "globus-transfer-dataset": "medium",
     "gpu-memory-triage": "low",
@@ -122,13 +124,13 @@
   },
   "risk_counts": {
     "low": 12,
-    "medium": 21
+    "medium": 22
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 33,
+  "skill_count": 34,
   "status_counts": {
-    "draft": 33
+    "draft": 34
   },
   "uncollected_skill_ids": []
 }

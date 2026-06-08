@@ -1,0 +1,171 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "deepspeed-on-slurm",
+  "name": "DeepSpeed On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Plan and smoke test DeepSpeed launches on Slurm GPU allocations.",
+  "description": "This skill provides a conservative Slurm wrapper for DeepSpeed jobs, including environment capture, storage and checkpoint reminders, a reviewable launch plan, and an optional tiny DeepSpeed smoke test.",
+  "categories": ["gpu", "scheduler"],
+  "tags": ["deepspeed", "pytorch", "slurm", "zero", "checkpoint", "gpu"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": false,
+      "notes": "Used to derive MASTER_ADDR from Slurm node lists when available."
+    },
+    {
+      "name": "python3",
+      "required": true
+    },
+    {
+      "name": "deepspeed",
+      "required": false,
+      "notes": "Required for smoke tests and real training, but not for plan-only mode."
+    },
+    {
+      "name": "nvidia-smi",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "env",
+      "required": true
+    },
+    {
+      "name": "sort",
+      "required": true
+    },
+    {
+      "name": "grep",
+      "required": true
+    },
+    {
+      "name": "head",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "gpu_partition",
+      "type": "string",
+      "required": true,
+      "description": "Slurm partition or queue that provides GPU nodes."
+    },
+    {
+      "name": "nodes",
+      "type": "integer",
+      "required": false,
+      "description": "Number of nodes to allocate for the smoke test or training job."
+    },
+    {
+      "name": "gpus_per_node",
+      "type": "integer",
+      "required": false,
+      "description": "Number of GPUs requested per node."
+    },
+    {
+      "name": "deepspeed_config",
+      "type": "path",
+      "required": false,
+      "description": "DeepSpeed JSON configuration file to review or use."
+    },
+    {
+      "name": "run_deepspeed_smoke",
+      "type": "boolean",
+      "required": false,
+      "description": "Opt-in flag that runs a tiny DeepSpeed smoke test."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "launch_plan",
+      "description": "Captured Slurm layout, environment evidence, and reviewable DeepSpeed launch command."
+    },
+    {
+      "name": "deepspeed_smoke_report",
+      "description": "Optional import, distributed initialization, and one-step tiny model training report."
+    },
+    {
+      "name": "storage_checklist",
+      "description": "Checkpoint, scratch, log, and data staging reminders for large model training."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/deepspeed-slurm.sbatch",
+    "examples/deepspeed_smoke.py",
+    "examples/ds_config_zero2.json"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run a DeepSpeed smoke test on Slurm",
+      "path": "examples/deepspeed-slurm.sbatch"
+    },
+    {
+      "title": "Tiny DeepSpeed smoke script",
+      "path": "examples/deepspeed_smoke.py"
+    },
+    {
+      "title": "Conservative ZeRO-2 config template",
+      "path": "examples/ds_config_zero2.json"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill deepspeed-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run plan-only mode on a login node or short GPU allocation, then set RUN_DEEPSPEED_SMOKE=1 on a debug GPU partition with a known DeepSpeed environment."
+    }
+  ],
+  "references": [
+    {
+      "title": "DeepSpeed getting started",
+      "url": "https://www.deepspeed.ai/getting-started/"
+    },
+    {
+      "title": "DeepSpeed configuration JSON",
+      "url": "https://www.deepspeed.ai/docs/config-json/"
+    },
+    {
+      "title": "DeepSpeed training setup",
+      "url": "https://deepspeed.readthedocs.io/en/stable/initialize.html"
+    }
+  ]
+}
