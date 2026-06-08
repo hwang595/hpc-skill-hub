@@ -56,6 +56,7 @@ Create these starter labels:
 - `schema-change`
 - `safety-review`
 - `high-risk-skill`
+- `governance`
 - `good-first-issue`
 - `help-wanted`
 - `dependencies`

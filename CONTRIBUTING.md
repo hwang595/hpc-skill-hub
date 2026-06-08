@@ -78,6 +78,9 @@ python3 tools/hpc_skill.py scaffold site-adapter your-site-id --name "Your Site"
 High-risk skills require explicit maintainer review before they can be marked
 as reviewed or field-tested.
 
+For maintainer roles, maturity promotion, and site-policy boundaries, see
+[Governance](docs/GOVERNANCE.md).
+
 ## Style
 
 - Prefer POSIX shell examples unless a scheduler or tool requires otherwise.

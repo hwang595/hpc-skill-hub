@@ -163,6 +163,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Site adapters](docs/SITE_ADAPTERS.md)
 - [Adoption guide](docs/ADOPTION_GUIDE.md)
 - [Safety model](docs/SAFETY_MODEL.md)
+- [Governance](docs/GOVERNANCE.md)
 - [Maintainer guide](docs/MAINTAINER_GUIDE.md)
 - [Maintainer handoff](docs/MAINTAINER_HANDOFF.md)
 - [Open ecosystem proposal](docs/ECOSYSTEM_PROPOSAL.md)

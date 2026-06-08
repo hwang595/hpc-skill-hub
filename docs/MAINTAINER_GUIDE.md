@@ -1,7 +1,8 @@
 # Maintainer Guide
 
 For maintainer rotation, role ownership, and operational continuity, see
-[Maintainer Handoff](MAINTAINER_HANDOFF.md).
+[Maintainer Handoff](MAINTAINER_HANDOFF.md). For project-level review policy,
+domain ownership, and maturity promotion, see [Governance](GOVERNANCE.md).
 
 ## Review Checklist
 
