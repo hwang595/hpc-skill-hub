@@ -26,6 +26,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   assignment.
 - Add triage runbook and starter labels for public issue and pull request
   intake.
+- Add integration guide, integration request template, and starter label for
+  downstream registry consumers.
 
 ## v0.1.0 - Planned
 

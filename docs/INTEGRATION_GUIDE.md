@@ -1,0 +1,141 @@
+# Integration Guide
+
+This guide is for downstream tools, portals, assistants, training platforms,
+and workflow projects that want to consume HPC Skill Hub as a public registry.
+
+Use this together with [Skill Specification](SKILL_SPEC.md),
+[Site Adapters](SITE_ADAPTERS.md), and [Safety Model](SAFETY_MODEL.md).
+
+## Integration Surfaces
+
+The stable seed-stage surfaces are:
+
+| Surface | Purpose |
+| --- | --- |
+| `registry/index.json` | Machine-readable registry summary for skills, collections, site adapters, categories, risk, maturity, and paths. |
+| `schemas/*.schema.json` | Validation contracts for skill manifests, collections, and site adapters. |
+| `skills/*/README.md` | Human-readable operating notes, assumptions, safety notes, and examples. |
+| `skills/*/examples/` | Reviewable example scripts, batch files, configs, and checklists. |
+| `collections/*.json` | Curated adoption paths for users, domains, or roles. |
+| `site-adapters/*/site.json` | Public local policy mappings for clusters, training environments, or public cloud HPC. |
+| `python3 tools/hpc_skill.py ... --json` | Local CLI access for tools that prefer command output over direct file reads. |
+
+Prefer `registry/index.json` for search and discovery. Load individual skill
+manifests only when you need full metadata beyond the compact index.
+
+## Consumption Contract
+
+- Treat all paths in `registry/index.json` as repository-relative paths.
+- Treat `schema_version` as the registry contract version, not an individual
+  skill version.
+- Treat skill `version` as local to one skill package.
+- Treat `risk_level` and `maturity` as user-facing signals that should be shown
+  before recommending commands.
+- Treat `status: draft` and `maturity: seed` as reviewable starting points, not
+  production guarantees.
+- Do not execute example commands automatically. Present them for review, adapt
+  placeholders, and require explicit user intent.
+- Do not invent local cluster policy. Use site adapters when public local
+  policy exists; otherwise ask the user to confirm scheduler, account,
+  partition, storage, module, and container assumptions.
+- Preserve links back to the source skill README and examples so users can audit
+  the guidance.
+
+## Recommended Flow
+
+1. Clone or fetch the repository at a release tag or pinned commit.
+2. Run `python3 tools/validate_skills.py` or `make check` before packaging the
+   registry into another tool.
+3. Parse `registry/index.json`.
+4. Filter by `categories`, `tags`, `schedulers`, `tools`, `risk_level`,
+   `maturity`, collection membership, or site adapter overrides.
+5. Show the user the skill summary, risk, maturity, assumptions, source README,
+   and example paths before suggesting commands.
+6. Rebuild or refresh your cache only when the repository commit, release tag,
+   or `schema_version` changes.
+
+Minimal Python example:
+
+```python
+import json
+from pathlib import Path
+
+index = json.loads(Path("registry/index.json").read_text(encoding="utf-8"))
+slurm_skills = [
+    skill
+    for skill in index["skills"]
+    if "slurm" in skill.get("schedulers", [])
+    and skill["risk_level"] in {"low", "medium"}
+]
+for skill in slurm_skills:
+    print(skill["id"], skill["risk_level"], skill["maturity"], skill["readme"])
+```
+
+## Assistant And Agent Integrations
+
+When using skills inside an assistant, IDE, workflow helper, or agent:
+
+- Cite the skill id, version, maturity, and source path used for the
+  recommendation.
+- Show risk and site assumptions before proposing a command.
+- Prefer dry-run, read-only, static, or short smoke-test examples first.
+- Ask for explicit confirmation before submitting jobs, moving data, installing
+  software, launching containers, or consuming GPU allocations.
+- Keep private cluster details outside prompts, logs, examples, and public
+  issues.
+- Prefer a site adapter over hard-coding local policy into the integration.
+
+## Portal And Search Integrations
+
+Search portals can safely index:
+
+- Skill id, name, summary, description, categories, tags, scheduler, tools,
+  risk level, maturity, README path, and example titles.
+- Collection id, audience, status, summary, and skill ids.
+- Site adapter id, status, institution type, scheduler, public partitions, and
+  skill override ids.
+
+Avoid indexing private deployment notes or local user data. Site adapters in
+this repository should be public-safe, but downstream deployments may layer
+private policy outside the public registry.
+
+## Site Adapter Use
+
+Use site adapters to adapt portable skills to public local policy:
+
+- Map generic scheduler guidance to public partitions or queues.
+- Link public module, container, storage, and data transfer documentation.
+- Add public warnings for skills that need local constraints.
+- Keep private hostnames, allocation names, usernames, internal project ids,
+  and unpublished security procedures out of the adapter.
+
+If no site adapter exists, tools should keep recommendations generic and ask
+users to fill in local values.
+
+## Compatibility And Change Management
+
+During the seed stage, integrations should pin to a release tag or commit. The
+project uses RFCs for changes that affect schemas, generated registry output,
+validation behavior, risk policy, maturity policy, or downstream tooling.
+
+Open an integration request issue when:
+
+- A field needed by downstream tooling is missing.
+- A schema change would make integration safer or easier.
+- A site adapter needs additional public metadata.
+- A CLI `--json` command would avoid ad hoc parsing.
+- A new collection would help a specific user journey.
+
+Use [RFC Process](RFC_PROCESS.md) for project-level compatibility changes.
+
+## Validation Checklist
+
+Before publishing a downstream integration:
+
+- [ ] Pin the repository tag or commit used by the integration.
+- [ ] Confirm `registry/index.json` is current.
+- [ ] Confirm schemas validate in your build or release process.
+- [ ] Confirm risk and maturity are visible in the user experience.
+- [ ] Confirm commands are not executed without explicit user intent.
+- [ ] Confirm site-specific values come from public site adapters or user input.
+- [ ] Confirm your integration has a path for reporting bugs or missing skills.

@@ -69,6 +69,8 @@ request missing workflows, or contribute public site adapters.
 - Review routing guidance and CODEOWNERS placeholder for maintainers and domain
   reviewers.
 - Triage runbook and starter labels for issue intake and domain-review queues.
+- Integration guide, integration request template, and starter label for
+  downstream tools, portals, assistants, and workflow projects.
 - Repository metadata, labels, and starter ruleset files.
 - Seed community issues for launch coordination.
 - Support and citation metadata for public project use.

@@ -110,6 +110,30 @@ class GovernanceDocsTests(unittest.TestCase):
             self.assertIn(label, labels)
             self.assertIn(label, runbook)
 
+    def test_integration_guide_and_template(self):
+        labels_path = ROOT / ".github" / "labels.json"
+        labels = {label["name"] for label in json.loads(labels_path.read_text())}
+        template = (
+            ROOT / ".github" / "ISSUE_TEMPLATE" / "integration_request.md"
+        ).read_text(encoding="utf-8")
+        guide = (ROOT / "docs" / "INTEGRATION_GUIDE.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("labels: [\"integration\"]", template)
+        self.assertIn("integration", labels)
+        for heading in [
+            "## Integration Surfaces",
+            "## Consumption Contract",
+            "## Assistant And Agent Integrations",
+            "## Compatibility And Change Management",
+            "## Validation Checklist",
+        ]:
+            self.assertIn(heading, guide)
+        self.assertIn("registry/index.json", guide)
+        self.assertIn("risk_level", guide)
+        self.assertIn("site adapter", guide)
+
 
 if __name__ == "__main__":
     unittest.main()

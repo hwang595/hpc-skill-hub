@@ -165,6 +165,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Skill backlog](docs/SKILL_BACKLOG.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Site adapters](docs/SITE_ADAPTERS.md)
+- [Integration guide](docs/INTEGRATION_GUIDE.md)
 - [Adoption guide](docs/ADOPTION_GUIDE.md)
 - [Adopter playbook](docs/ADOPTER_PLAYBOOK.md)
 - [Safety model](docs/SAFETY_MODEL.md)

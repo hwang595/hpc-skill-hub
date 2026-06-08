@@ -24,6 +24,8 @@ The project is not only a documentation site. It combines:
 - Site adapters for local cluster policy without core registry forks.
 - Curated collections that help users enter the registry by workflow or role.
 - A path to CLI and agent integrations.
+- An integration contract for downstream tools, portals, assistants, and
+  workflow projects.
 
 ## Proposed Community Collections
 
@@ -56,3 +58,5 @@ smoke test. The easiest first contribution from a tool maintainer is an
 integration skill that shows safe scheduler, container, and workflow usage.
 Use [Adopter Playbook](ADOPTER_PLAYBOOK.md) to turn those first contributions
 into public-safe pilot reports, maturity reviews, and follow-up requests.
+Use [Integration Guide](INTEGRATION_GUIDE.md) when a downstream tool wants to
+consume the registry directly.

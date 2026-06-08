@@ -59,6 +59,7 @@ Use labels to make the review queue visible:
 | `maturity-review` | Domain reviewer with evidence from an actual review, pilot, or public run. |
 | `adoption` | Maintainer plus the adopting site or research group contact. |
 | `schema-change` | Registry and tooling maintainers. |
+| `integration` | Tooling reviewer plus the downstream tool or workflow maintainer. |
 | `release` | Release maintainer. |
 | `governance` | Maintainers responsible for policy, review, and community process. |
 | `needs-triage` | Registry maintainer should confirm scope, sensitivity, and next action. |

@@ -50,6 +50,11 @@
     "description": "Request for comments on a project-level design or policy change."
   },
   {
+    "name": "integration",
+    "color": "1D76DB",
+    "description": "Downstream tool, portal, assistant, workflow, or registry integration."
+  },
+  {
     "name": "decision-record",
     "color": "5319E7",
     "description": "Accepted project-level decision or architecture record."

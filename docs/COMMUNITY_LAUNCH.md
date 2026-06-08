@@ -55,6 +55,8 @@ We are looking for:
   field-tested.
 - Adoption reports from centers, research groups, tool maintainers, and
   training programs that tried the seed registry.
+- Integration requests from portals, assistants, workflow tools, and other
+  downstream consumers.
 
 Please avoid sharing private hostnames, usernames, allocation names, internal
 project identifiers, unpublished security procedures, or private dataset paths.
@@ -79,6 +81,8 @@ help-wanted, good-first-issue, governance
   from seed to reviewed?"
 - Adoption reports: "What worked during a 30-60-90 day pilot, and what needed
   a site adapter or new skill?"
+- Integrations: "What metadata would a portal, assistant, or workflow tool need
+  to consume this registry safely?"
 
 ## Launch Checklist
 

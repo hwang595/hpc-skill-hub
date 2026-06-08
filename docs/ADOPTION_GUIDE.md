@@ -38,6 +38,10 @@ Tool maintainers can contribute integration skills that show safe HPC usage for
 their tool. Prefer generic patterns first, then add site adapters when a center
 has public local conventions.
 
+Use [Integration Guide](INTEGRATION_GUIDE.md) when consuming
+`registry/index.json`, CLI JSON output, collections, or site adapters in a
+downstream tool, portal, assistant, or workflow project.
+
 ## For Instructors
 
 Teaching skills should be low-risk, short-running, and explicit about what the

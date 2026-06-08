@@ -14,7 +14,7 @@ public launch:
 2. Remove or ask reporters to remove private cluster details before deeper
    discussion.
 3. Apply one primary type label such as `skill-request`, `site-adapter`, `bug`,
-   `documentation`, `adoption`, `rfc`, or `maturity-review`.
+   `documentation`, `adoption`, `integration`, `rfc`, or `maturity-review`.
 4. Add state labels such as `needs-triage`, `needs-domain-review`,
    `safety-review`, `good-first-issue`, or `help-wanted` when useful.
 5. Route domain-sensitive work through [Review Routing](REVIEW_ROUTING.md).
@@ -29,6 +29,7 @@ public launch:
 | Bug report | Reproduce with public-safe steps or ask for a smaller example. | `bug`, `needs-triage` |
 | Documentation request | Identify whether it affects contributor, adopter, or maintainer docs. | `documentation`, `good-first-issue` |
 | Adoption report | Capture public-safe results and follow-up requests. | `adoption`, `needs-domain-review` |
+| Integration request | Identify the registry surface, compatibility needs, and safety model. | `integration`, `needs-triage` |
 | Safety concern | Move sensitive details out of public view and request operations review. | `safety-review`, `high-risk-skill` |
 | Schema or policy proposal | Decide whether normal PR review is enough or an RFC is needed. | `schema-change`, `rfc`, `governance` |
 
@@ -62,6 +63,8 @@ For each pull request:
   high-risk behavior.
 - `maturity-review`: evidence is being reviewed before a skill moves beyond
   `seed`.
+- `integration`: a downstream tool, portal, assistant, workflow project, or
+  registry consumer needs maintainer input.
 
 Remove `needs-triage` after the next action is clear. Remove
 `needs-domain-review` only after the relevant reviewer has commented or the
