@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If HPC Skill Hub helps your work, please cite the repository release you used."
+title: "HPC Skill Hub"
+type: software
+abstract: "An open registry of reusable, reviewable skills for high performance computing workflows."
+authors:
+  - name: "HPC Skill Hub Maintainers"
+license: "MIT"
+version: "0.1.0"
+keywords:
+  - hpc
+  - slurm
+  - research-computing
+  - reproducibility
+  - workflows
+  - training

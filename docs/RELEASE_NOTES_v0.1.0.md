@@ -68,6 +68,7 @@ request missing workflows, or contribute public site adapters.
 - Pull request template with validation, risk, privacy, and reviewer prompts.
 - Repository metadata, labels, and starter ruleset files.
 - Seed community issues for launch coordination.
+- Support and citation metadata for public project use.
 - Local launch readiness audit for GitHub publishing.
 - Command generators for repository setup, labels, starter issues, rulesets,
   and release publication.

@@ -38,6 +38,7 @@ Expected warnings before the first push include:
 - `git-remote`: no `origin` remote has been configured yet.
 - `gh-cli`: GitHub CLI is not available in the current environment.
 - `make-check`: omitted unless `--run-check` is passed.
+- `git-remote`: remains a warning until the public GitHub remote is configured.
 
 ## Related Commands
 

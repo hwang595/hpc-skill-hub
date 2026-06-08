@@ -77,6 +77,13 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertTrue(repository["features"]["discussions"])
         self.assertFalse(repository["features"]["wiki"])
 
+    def test_citation_metadata_exists(self):
+        citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
+        self.assertIn("cff-version: 1.2.0", citation)
+        self.assertIn('title: "HPC Skill Hub"', citation)
+        self.assertIn('license: "MIT"', citation)
+        self.assertIn("HPC Skill Hub Maintainers", citation)
+
     def test_label_command_generator(self):
         result = subprocess.run(
             [

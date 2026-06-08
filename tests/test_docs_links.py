@@ -11,6 +11,7 @@ def iter_markdown_files():
     top_level = [
         ROOT / "README.md",
         ROOT / "CONTRIBUTING.md",
+        ROOT / "SUPPORT.md",
         ROOT / "SECURITY.md",
         ROOT / "CODE_OF_CONDUCT.md",
         ROOT / "ROADMAP.md",

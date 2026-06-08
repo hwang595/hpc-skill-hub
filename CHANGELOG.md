@@ -21,6 +21,7 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Add adopter playbook and adoption report issue template for public pilot
   feedback.
 - Add local launch readiness audit for GitHub publishing preparation.
+- Add support and citation metadata for public project use.
 
 ## v0.1.0 - Planned
 

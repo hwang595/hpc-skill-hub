@@ -182,6 +182,8 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [GitHub publishing guide](docs/GITHUB_PUBLISHING.md)
 - [GitHub repository setup](docs/GITHUB_REPOSITORY_SETUP.md)
 - [Launch readiness](docs/LAUNCH_READINESS.md)
+- [Support](SUPPORT.md)
+- [Citation](docs/CITATION.md)
 
 ## License
 
