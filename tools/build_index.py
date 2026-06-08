@@ -13,6 +13,7 @@ from typing import Any, Dict, Iterable, List
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_DIR = ROOT / "skills"
+SITE_ADAPTERS_DIR = ROOT / "site-adapters"
 REGISTRY_DIR = ROOT / "registry"
 INDEX_JSON = REGISTRY_DIR / "index.json"
 CATALOG_MD = ROOT / "docs" / "SKILL_CATALOG.md"
@@ -29,6 +30,14 @@ def iter_manifests() -> Iterable[Dict[str, Any]]:
         skill_dir = manifest_path.parent
         manifest["_path"] = str(skill_dir.relative_to(ROOT))
         yield manifest
+
+
+def iter_site_adapters() -> Iterable[Dict[str, Any]]:
+    for adapter_path in sorted(SITE_ADAPTERS_DIR.glob("*/site.json")):
+        adapter = load_manifest(adapter_path)
+        adapter_dir = adapter_path.parent
+        adapter["_path"] = str(adapter_dir.relative_to(ROOT))
+        yield adapter
 
 
 def compact_skill(manifest: Dict[str, Any]) -> Dict[str, Any]:
@@ -58,7 +67,24 @@ def compact_skill(manifest: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def build_index(skills: List[Dict[str, Any]]) -> Dict[str, Any]:
+def compact_site_adapter(adapter: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "id": adapter["id"],
+        "name": adapter["name"],
+        "summary": adapter["summary"],
+        "status": adapter["status"],
+        "institution_type": adapter["institution_type"],
+        "scheduler": adapter["scheduler"].get("type"),
+        "partitions": [partition.get("name") for partition in adapter["partitions"]],
+        "skill_overrides": [
+            override["skill_id"] for override in adapter.get("skill_overrides", [])
+        ],
+        "path": adapter["_path"],
+        "readme": f"{adapter['_path']}/README.md",
+    }
+
+
+def build_index(skills: List[Dict[str, Any]], site_adapters: List[Dict[str, Any]]) -> Dict[str, Any]:
     category_counts: Dict[str, int] = defaultdict(int)
     tag_counts: Dict[str, int] = defaultdict(int)
     scheduler_counts: Dict[str, int] = defaultdict(int)
@@ -78,11 +104,13 @@ def build_index(skills: List[Dict[str, Any]]) -> Dict[str, Any]:
         "schema_version": "0.1.0",
         "generated_by": "tools/build_index.py",
         "skill_count": len(skills),
+        "site_adapter_count": len(site_adapters),
         "categories": dict(sorted(category_counts.items())),
         "tags": dict(sorted(tag_counts.items())),
         "schedulers": dict(sorted(scheduler_counts.items())),
         "tools": dict(sorted(tool_counts.items())),
         "skills": skills,
+        "site_adapters": site_adapters,
     }
 
 
@@ -139,6 +167,20 @@ def build_catalog(index: Dict[str, Any]) -> str:
 
     lines.extend(
         [
+            "## Site Adapters",
+            "",
+            "| Adapter | Status | Scheduler | Description |",
+            "| --- | --- | --- | --- |",
+        ]
+    )
+    for adapter in index["site_adapters"]:
+        lines.append(
+            f"| [`{adapter['id']}`](../{adapter['readme']}) | "
+            f"{adapter['status']} | {adapter['scheduler']} | {adapter['summary']} |"
+        )
+    lines.extend(
+        [
+            "",
             "## Next Candidates",
             "",
             "- Open OnDemand app templates.",
@@ -184,7 +226,8 @@ def main() -> int:
     args = parser.parse_args()
 
     skills = [compact_skill(manifest) for manifest in iter_manifests()]
-    index = build_index(skills)
+    site_adapters = [compact_site_adapter(adapter) for adapter in iter_site_adapters()]
+    index = build_index(skills, site_adapters)
 
     if args.check:
         errors = check_outputs(index)
@@ -192,7 +235,10 @@ def main() -> int:
             for error in errors:
                 print(f"ERROR: {error}", file=sys.stderr)
             return 1
-        print(f"Registry index is current for {len(skills)} skill(s).")
+        print(
+            f"Registry index is current for {len(skills)} skill(s) "
+            f"and {len(site_adapters)} site adapter(s)."
+        )
         return 0
 
     write_outputs(index)

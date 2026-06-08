@@ -14,6 +14,8 @@
 - Publish static documentation from the registry.
 - Add compatibility tables for schedulers, containers, workflow engines, and
   scientific domains.
+- Add site adapters so HPC centers can publish public local policy without
+  forking core skills.
 - Introduce skill quality levels: `seed`, `reviewed`, `field-tested`, and
   `maintained`.
 
@@ -44,6 +46,8 @@
 - Add signed releases and provenance for reviewed skills.
 - Add a lightweight review board for high-risk or site-admin skills.
 - Encourage HPC centers to contribute site adapters instead of private forks.
+- Publish adapter contribution guidelines and examples for training clusters,
+  campus clusters, national facilities, and cloud HPC environments.
 
 ## Design Principles
 

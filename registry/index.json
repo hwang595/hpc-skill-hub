@@ -16,6 +16,29 @@
     "slurm": 10
   },
   "schema_version": "0.1.0",
+  "site_adapter_count": 1,
+  "site_adapters": [
+    {
+      "id": "example-campus-cluster",
+      "institution_type": "example",
+      "name": "Example Campus Cluster",
+      "partitions": [
+        "debug",
+        "cpu",
+        "gpu"
+      ],
+      "path": "site-adapters/example-campus-cluster",
+      "readme": "site-adapters/example-campus-cluster/README.md",
+      "scheduler": "slurm",
+      "skill_overrides": [
+        "slurm-submit-job",
+        "gpu-sanity-check",
+        "globus-transfer-dataset"
+      ],
+      "status": "example",
+      "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
+    }
+  ],
   "skill_count": 15,
   "skills": [
     {

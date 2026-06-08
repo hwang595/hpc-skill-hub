@@ -21,6 +21,7 @@ tools.
 ```text
 .
 ├── skills/                 # Skill packages, one directory per skill
+├── site-adapters/          # Optional local cluster policy adapters
 ├── schemas/                # JSON Schemas for skill metadata
 ├── tools/                  # Local validation and maintenance scripts
 ├── docs/                   # Architecture, specification, and governance docs
@@ -94,6 +95,8 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Machine-readable registry index](registry/index.json)
 - [Skill specification](docs/SKILL_SPEC.md)
 - [Architecture](docs/ARCHITECTURE.md)
+- [Site adapters](docs/SITE_ADAPTERS.md)
+- [Adoption guide](docs/ADOPTION_GUIDE.md)
 - [Maintainer guide](docs/MAINTAINER_GUIDE.md)
 - [Open ecosystem proposal](docs/ECOSYSTEM_PROPOSAL.md)
 - [GitHub publishing guide](docs/GITHUB_PUBLISHING.md)

@@ -16,6 +16,16 @@ The manifest is intentionally simple JSON so it can be validated without
 language-specific dependencies. A future CLI can render templates, index skills,
 or expose the registry as an API.
 
+## Site Adapter Package
+
+A site adapter under `site-adapters/<adapter-id>/` contains:
+
+- `site.json`: public local policy and infrastructure metadata.
+- `README.md`: human-facing notes for adapting skills to the site.
+
+Site adapters are optional. They let HPC centers document partitions, modules,
+storage conventions, and policy notes without editing or forking generic skills.
+
 ## Registry Index
 
 `tools/build_index.py` generates:

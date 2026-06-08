@@ -10,6 +10,7 @@ HPC Skill Hub can become a shared ecosystem for operational HPC knowledge.
   practices.
 - Tool vendors and open-source projects contribute integration skills.
 - Instructors contribute teaching-oriented skills for onboarding.
+- HPC centers contribute site adapters that map portable skills to local policy.
 
 ## What Makes This Different
 
@@ -20,6 +21,7 @@ The project is not only a documentation site. It combines:
 - Reviewable examples.
 - Risk classification.
 - CI validation.
+- Site adapters for local cluster policy without core registry forks.
 - A path to CLI and agent integrations.
 
 ## Proposed Community Collections
@@ -39,3 +41,10 @@ Start simple with repository maintainers and CODEOWNERS. As adoption grows, add
 domain maintainers and a review path for high-risk skills. Avoid centralizing
 site-specific policy in the core registry; encourage adapters and clear
 metadata instead.
+
+## Adoption Path
+
+The easiest first contribution from an HPC center is a public site adapter. The
+easiest first contribution from a research group is a domain skill with a small
+smoke test. The easiest first contribution from a tool maintainer is an
+integration skill that shows safe scheduler, container, and workflow usage.

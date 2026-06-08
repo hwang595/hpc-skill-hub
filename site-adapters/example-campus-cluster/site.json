@@ -1,0 +1,108 @@
+{
+  "$schema": "../../schemas/site-adapter.schema.json",
+  "id": "example-campus-cluster",
+  "name": "Example Campus Cluster",
+  "status": "example",
+  "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy.",
+  "institution_type": "example",
+  "contacts": [
+    {
+      "name": "Example HPC Help Desk",
+      "url": "https://example.edu/hpc"
+    }
+  ],
+  "scheduler": {
+    "type": "slurm",
+    "account_placeholder": "<account>",
+    "default_partition": "debug",
+    "job_submit_notes": [
+      "Use the debug partition for smoke tests.",
+      "Production work should use a project-approved account."
+    ]
+  },
+  "partitions": [
+    {
+      "name": "debug",
+      "purpose": "Short smoke tests and interactive debugging.",
+      "max_walltime": "00:30:00",
+      "gpu": false
+    },
+    {
+      "name": "cpu",
+      "purpose": "General CPU batch work.",
+      "max_walltime": "24:00:00",
+      "gpu": false
+    },
+    {
+      "name": "gpu",
+      "purpose": "GPU-accelerated workloads.",
+      "max_walltime": "12:00:00",
+      "gpu": true
+    }
+  ],
+  "modules": {
+    "system": "lmod",
+    "recommended": [
+      {
+        "purpose": "MPI examples",
+        "module": "<mpi-module>"
+      },
+      {
+        "purpose": "CUDA examples",
+        "module": "<cuda-module>"
+      },
+      {
+        "purpose": "Python notebooks",
+        "module": "<python-module>"
+      }
+    ]
+  },
+  "storage": [
+    {
+      "name": "home",
+      "path": "$HOME",
+      "intended_use": "Small source files, scripts, and configuration.",
+      "backed_up": true
+    },
+    {
+      "name": "project",
+      "path": "/project/<project>",
+      "intended_use": "Shared project data and durable workflow outputs.",
+      "backed_up": true
+    },
+    {
+      "name": "scratch",
+      "path": "/scratch/<user>",
+      "intended_use": "Temporary high-throughput job working directories.",
+      "backed_up": false
+    }
+  ],
+  "policies": [
+    {
+      "topic": "login-nodes",
+      "summary": "Compile and submit jobs from login nodes, but run compute-heavy work through Slurm."
+    },
+    {
+      "topic": "containers",
+      "summary": "Use Apptainer images stored in project or scratch space; avoid writing large image caches to home."
+    },
+    {
+      "topic": "data-transfer",
+      "summary": "Use Globus for large external transfers and record task ids with analysis outputs."
+    }
+  ],
+  "skill_overrides": [
+    {
+      "skill_id": "slurm-submit-job",
+      "notes": "Replace <partition> with debug, cpu, or gpu and keep smoke tests under 30 minutes."
+    },
+    {
+      "skill_id": "gpu-sanity-check",
+      "notes": "Use the gpu partition and confirm local CUDA or ROCm modules before submitting."
+    },
+    {
+      "skill_id": "globus-transfer-dataset",
+      "notes": "Confirm endpoint names and project storage permissions with the local help desk."
+    }
+  ]
+}

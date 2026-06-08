@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/site-adapter.schema.json",
+  "title": "HPC Skill Hub Site Adapter",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "status",
+    "summary",
+    "institution_type",
+    "contacts",
+    "scheduler",
+    "partitions",
+    "modules",
+    "storage",
+    "policies",
+    "skill_overrides"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["example", "draft", "reviewed", "deprecated"]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "institution_type": {
+      "type": "string",
+      "enum": ["example", "university", "national-lab", "company", "cloud", "other"]
+    },
+    "contacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "scheduler": {
+      "type": "object"
+    },
+    "partitions": {
+      "type": "array"
+    },
+    "modules": {
+      "type": "object"
+    },
+    "storage": {
+      "type": "array"
+    },
+    "policies": {
+      "type": "array"
+    },
+    "skill_overrides": {
+      "type": "array"
+    }
+  }
+}

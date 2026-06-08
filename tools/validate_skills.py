@@ -13,8 +13,9 @@ from typing import Any, Dict, Iterable, List
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_DIR = ROOT / "skills"
+SITE_ADAPTERS_DIR = ROOT / "site-adapters"
 
-REQUIRED_FIELDS = {
+SKILL_REQUIRED_FIELDS = {
     "id",
     "name",
     "version",
@@ -36,9 +37,9 @@ REQUIRED_FIELDS = {
     "references",
 }
 
-OPTIONAL_FIELDS = {"$schema", "schedulers"}
-ALLOWED_FIELDS = REQUIRED_FIELDS | OPTIONAL_FIELDS
-ALLOWED_STATUS = {"draft", "reviewed", "deprecated"}
+SKILL_OPTIONAL_FIELDS = {"$schema", "schedulers"}
+SKILL_ALLOWED_FIELDS = SKILL_REQUIRED_FIELDS | SKILL_OPTIONAL_FIELDS
+SKILL_ALLOWED_STATUS = {"draft", "reviewed", "deprecated"}
 ALLOWED_MATURITY = {"seed", "reviewed", "field-tested", "maintained"}
 ALLOWED_RISK = {"low", "medium", "high"}
 ALLOWED_CATEGORIES = {
@@ -56,6 +57,31 @@ ALLOWED_CATEGORIES = {
     "education",
 }
 ALLOWED_TEST_TYPES = {"static", "dry-run", "manual", "integration"}
+ADAPTER_REQUIRED_FIELDS = {
+    "id",
+    "name",
+    "status",
+    "summary",
+    "institution_type",
+    "contacts",
+    "scheduler",
+    "partitions",
+    "modules",
+    "storage",
+    "policies",
+    "skill_overrides",
+}
+ADAPTER_OPTIONAL_FIELDS = {"$schema"}
+ADAPTER_ALLOWED_FIELDS = ADAPTER_REQUIRED_FIELDS | ADAPTER_OPTIONAL_FIELDS
+ADAPTER_ALLOWED_STATUS = {"example", "draft", "reviewed", "deprecated"}
+ADAPTER_ALLOWED_INSTITUTION_TYPES = {
+    "example",
+    "university",
+    "national-lab",
+    "company",
+    "cloud",
+    "other",
+}
 ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+$")
 TAG_RE = re.compile(r"^[a-z0-9][a-z0-9.+_-]*$")
@@ -108,15 +134,25 @@ def validate_manifest(skill_dir: Path) -> List[str]:
     if not manifest:
         return errors
 
-    missing = sorted(REQUIRED_FIELDS - set(manifest))
+    missing = sorted(SKILL_REQUIRED_FIELDS - set(manifest))
     for field in missing:
         errors.append(f"{context}: missing required field '{field}'")
 
-    unknown = sorted(set(manifest) - ALLOWED_FIELDS)
+    unknown = sorted(set(manifest) - SKILL_ALLOWED_FIELDS)
     for field in unknown:
         errors.append(f"{context}: unknown field '{field}'")
 
-    for field in ["id", "name", "version", "status", "summary", "description", "license", "maturity", "risk_level"]:
+    for field in [
+        "id",
+        "name",
+        "version",
+        "status",
+        "summary",
+        "description",
+        "license",
+        "maturity",
+        "risk_level",
+    ]:
         require_non_empty_string(manifest, field, errors, context)
 
     skill_id = manifest.get("id")
@@ -131,8 +167,8 @@ def validate_manifest(skill_dir: Path) -> List[str]:
         errors.append(f"{context}: version must use MAJOR.MINOR.PATCH")
 
     status = manifest.get("status")
-    if isinstance(status, str) and status not in ALLOWED_STATUS:
-        errors.append(f"{context}: status must be one of {sorted(ALLOWED_STATUS)}")
+    if isinstance(status, str) and status not in SKILL_ALLOWED_STATUS:
+        errors.append(f"{context}: status must be one of {sorted(SKILL_ALLOWED_STATUS)}")
 
     maturity = manifest.get("maturity")
     if isinstance(maturity, str) and maturity not in ALLOWED_MATURITY:
@@ -224,6 +260,93 @@ def validate_manifest(skill_dir: Path) -> List[str]:
     return errors
 
 
+def validate_adapter(adapter_dir: Path, skill_ids: set[str]) -> List[str]:
+    errors: List[str] = []
+    adapter_path = adapter_dir / "site.json"
+    context = str(adapter_path.relative_to(ROOT))
+
+    if not adapter_path.exists():
+        return [f"{adapter_dir.relative_to(ROOT)}: missing site.json"]
+
+    adapter = load_json(adapter_path, errors)
+    if not adapter:
+        return errors
+
+    missing = sorted(ADAPTER_REQUIRED_FIELDS - set(adapter))
+    for field in missing:
+        errors.append(f"{context}: missing required field '{field}'")
+
+    unknown = sorted(set(adapter) - ADAPTER_ALLOWED_FIELDS)
+    for field in unknown:
+        errors.append(f"{context}: unknown field '{field}'")
+
+    for field in ["id", "name", "status", "summary", "institution_type"]:
+        require_non_empty_string(adapter, field, errors, context)
+
+    adapter_id = adapter.get("id")
+    if isinstance(adapter_id, str):
+        if not ID_RE.match(adapter_id):
+            errors.append(f"{context}: id must be lowercase kebab-case")
+        if adapter_id != adapter_dir.name:
+            errors.append(f"{context}: id '{adapter_id}' must match directory '{adapter_dir.name}'")
+
+    status = adapter.get("status")
+    if isinstance(status, str) and status not in ADAPTER_ALLOWED_STATUS:
+        errors.append(f"{context}: status must be one of {sorted(ADAPTER_ALLOWED_STATUS)}")
+
+    institution_type = adapter.get("institution_type")
+    if (
+        isinstance(institution_type, str)
+        and institution_type not in ADAPTER_ALLOWED_INSTITUTION_TYPES
+    ):
+        errors.append(
+            f"{context}: institution_type must be one of "
+            f"{sorted(ADAPTER_ALLOWED_INSTITUTION_TYPES)}"
+        )
+
+    readme = adapter_dir / "README.md"
+    if not readme.exists():
+        errors.append(f"{adapter_dir.relative_to(ROOT)}: missing README.md")
+
+    contacts = require_list(adapter, "contacts", errors, context)
+    for index, contact in enumerate(contacts):
+        if not isinstance(contact, dict) or not contact.get("name"):
+            errors.append(f"{context}: contacts[{index}] must include a name")
+
+    scheduler = adapter.get("scheduler")
+    if not isinstance(scheduler, dict) or not scheduler.get("type"):
+        errors.append(f"{context}: scheduler must include a type")
+
+    for field in ["partitions", "storage", "policies", "skill_overrides"]:
+        require_list(adapter, field, errors, context)
+
+    modules = adapter.get("modules")
+    if not isinstance(modules, dict):
+        errors.append(f"{context}: modules must be an object")
+
+    for index, partition in enumerate(adapter.get("partitions", [])):
+        if not isinstance(partition, dict) or not partition.get("name"):
+            errors.append(f"{context}: partitions[{index}] must include a name")
+
+    for index, storage in enumerate(adapter.get("storage", [])):
+        if not isinstance(storage, dict) or not storage.get("name") or not storage.get("path"):
+            errors.append(f"{context}: storage[{index}] must include name and path")
+
+    for index, policy in enumerate(adapter.get("policies", [])):
+        if not isinstance(policy, dict) or not policy.get("topic") or not policy.get("summary"):
+            errors.append(f"{context}: policies[{index}] must include topic and summary")
+
+    for index, override in enumerate(adapter.get("skill_overrides", [])):
+        if not isinstance(override, dict) or not override.get("skill_id") or not override.get("notes"):
+            errors.append(f"{context}: skill_overrides[{index}] must include skill_id and notes")
+            continue
+        skill_id = override["skill_id"]
+        if skill_id not in skill_ids:
+            errors.append(f"{context}: skill_overrides[{index}] references unknown skill '{skill_id}'")
+
+    return errors
+
+
 def discover_skill_dirs(selected: str | None) -> Iterable[Path]:
     if selected:
         yield SKILLS_DIR / selected
@@ -235,8 +358,16 @@ def discover_skill_dirs(selected: str | None) -> Iterable[Path]:
             yield path
 
 
+def discover_adapter_dirs() -> Iterable[Path]:
+    if not SITE_ADAPTERS_DIR.exists():
+        return
+    for path in sorted(SITE_ADAPTERS_DIR.iterdir()):
+        if path.is_dir() and not path.name.startswith("."):
+            yield path
+
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Validate HPC Skill Hub manifests")
+    parser = argparse.ArgumentParser(description="Validate HPC Skill Hub registry metadata")
     parser.add_argument("--skill", help="Validate one skill id")
     args = parser.parse_args()
 
@@ -251,13 +382,21 @@ def main() -> int:
             continue
         errors.extend(validate_manifest(skill_dir))
 
+    skill_ids = {skill_dir.name for skill_dir in skill_dirs if skill_dir.exists()}
+    adapter_dirs = list(discover_adapter_dirs()) if not args.skill else []
+    for adapter_dir in adapter_dirs:
+        errors.extend(validate_adapter(adapter_dir, skill_ids))
+
     if errors:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
         print(f"Validation failed with {len(errors)} error(s).", file=sys.stderr)
         return 1
 
-    print(f"Validated {len(skill_dirs)} skill(s).")
+    if adapter_dirs:
+        print(f"Validated {len(skill_dirs)} skill(s) and {len(adapter_dirs)} site adapter(s).")
+    else:
+        print(f"Validated {len(skill_dirs)} skill(s).")
     return 0
 
 

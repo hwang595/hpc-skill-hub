@@ -27,6 +27,24 @@ A skill should be:
 6. Open a pull request with a short explanation of the target users, expected
    cluster environment, and known risks.
 
+## Add A Site Adapter
+
+Site adapters live under `site-adapters/<adapter-id>/` and describe public,
+non-sensitive local policy for one HPC site or training environment.
+
+1. Copy `site-adapters/example-campus-cluster/`.
+2. Replace example values with public site information or placeholders.
+3. Keep private hostnames, allocation names, users, and internal security
+   details out of the repository.
+4. Run:
+
+   ```bash
+   python3 tools/validate_skills.py
+   ```
+
+Adapters should clarify local usage without changing the portable meaning of a
+core skill.
+
 ## Skill Risk Levels
 
 - `low`: Read-only guidance, templates, or diagnostics.

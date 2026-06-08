@@ -99,6 +99,12 @@ Current registry size: 15 skills.
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
 | [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
 
+## Site Adapters
+
+| Adapter | Status | Scheduler | Description |
+| --- | --- | --- | --- |
+| [`example-campus-cluster`](../site-adapters/example-campus-cluster/README.md) | example | slurm | A non-production adapter showing how a site can map generic skills to local HPC policy. |
+
 ## Next Candidates
 
 - Open OnDemand app templates.
