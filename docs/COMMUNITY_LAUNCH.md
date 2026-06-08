@@ -26,7 +26,10 @@ requests.
 ## Starter Issues
 
 Use `.github/seed_issues.json` and `.github/seed-issues/*.md` as the source of
-truth for launch issues. After labels are created, inspect the commands:
+truth for launch issues. These include the pinned community call, public site
+adapter recruitment, domain reviewer recruitment, the first reviewed-skill
+pilot, and next-wave skill requests. After labels are created, inspect the
+commands:
 
 ```bash
 python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
@@ -106,6 +109,8 @@ the discussion forms under `.github/DISCUSSION_TEMPLATE/`.
 - Apply labels from `.github/labels.json`.
 - Create milestones from `.github/milestones.json`.
 - Create starter issues from `.github/seed_issues.json`.
+- Run `python3 tools/review_candidates.py --limit 12` and use the reviewed-skill
+  pilot issue to route the first maturity reviews.
 - Pin the first community issue.
 - Create the recommended Discussion categories and confirm their forms load.
 - Run the first weekly triage loop from [Triage Runbook](TRIAGE_RUNBOOK.md).

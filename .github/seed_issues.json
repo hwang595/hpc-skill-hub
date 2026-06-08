@@ -21,6 +21,13 @@
     "pin": false
   },
   {
+    "id": "reviewed-skill-pilot",
+    "title": "Reviewed skill pilot: promote the first seed skills",
+    "labels": ["maturity-review", "needs-domain-review", "help-wanted"],
+    "body": ".github/seed-issues/reviewed-skill-pilot.md",
+    "pin": false
+  },
+  {
     "id": "next-wave-skill-requests",
     "title": "Next wave skill requests: facility ops, workflow engines, and domains",
     "labels": ["skill-request", "help-wanted", "good-first-issue"],

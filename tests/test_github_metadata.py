@@ -323,6 +323,11 @@ class GitHubMetadataTests(unittest.TestCase):
         )
         self.assertIn("gh issue create", result.stdout)
         self.assertIn("--body-file .github/seed-issues/community-call.md", result.stdout)
+        self.assertIn(
+            "--body-file .github/seed-issues/reviewed-skill-pilot.md",
+            result.stdout,
+        )
+        self.assertIn("--label maturity-review", result.stdout)
         self.assertIn("--label help-wanted", result.stdout)
         self.assertIn("--repo example/hpc-skill-hub", result.stdout)
         self.assertIn(
@@ -348,6 +353,7 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("# Repository: example/hpc-skill-hub", result.stdout)
         self.assertIn("python3 tools/launch_readiness.py", result.stdout)
         self.assertIn("python3 tools/launch_evidence.py", result.stdout)
+        self.assertIn("python3 tools/review_candidates.py --limit 12", result.stdout)
         self.assertIn("Review public launch packet and owner checklist", result.stdout)
         self.assertIn("docs/PUBLIC_LAUNCH_PACKET.md", result.stdout)
         self.assertIn("docs/GITHUB_OWNER_CHECKLIST.md", result.stdout)

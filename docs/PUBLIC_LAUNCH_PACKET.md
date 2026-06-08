@@ -27,6 +27,8 @@ to publish HPC Skill Hub as an open-source seed registry.
 - GitHub workflows for validation, package checks, and Pages publishing.
 - GitHub issue templates, discussion templates, labels, milestones, repository
   metadata, starter ruleset, and seed community issues.
+- A reviewed-skill pilot starter issue for turning the first review candidate
+  report into public maturity-review work.
 - Governance, safety, contributor, review, maturity, release, adoption, and
   integration documentation.
 - Local review candidate reporting for the first `reviewed` skill pilot queue.
@@ -81,7 +83,8 @@ steps.
 6. Open starter community issues and pin the community call issue.
 7. Apply the `main` branch ruleset after workflow status checks are visible.
 8. Generate the review candidate report and invite initial domain reviewers and
-   site-adapter reviewers.
+   site-adapter reviewers through the reviewed-skill pilot and domain reviewer
+   starter issues.
 9. Tag and publish `v0.1.0` with `registry/releases/v0.1.0.json` attached.
 
 ## First Outreach Targets

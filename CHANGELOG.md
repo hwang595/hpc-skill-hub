@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a reviewed-skill pilot starter issue for routing the first seed skill
+  maturity reviews from the local review candidate report.
 - Add a review candidate report generator for ranking seed skills that are
   ready for first domain review routing and `reviewed` maturity pilot planning.
 - Add a launch evidence report generator for maintainer handoff, launch issues,

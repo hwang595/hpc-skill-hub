@@ -107,6 +107,8 @@ uncommitted export rather than this maintained local repository.
   expected milestone commands.
 - `python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes`
   prints the expected starter issue commands.
+- The starter issue commands include the reviewed-skill pilot issue for the
+  first `maturity-review` queue.
 - `python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub` prints the
   expected branch ruleset command after the first `Validate` and `Package`
   workflow runs.

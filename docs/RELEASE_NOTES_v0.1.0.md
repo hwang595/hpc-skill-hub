@@ -103,6 +103,8 @@ request missing workflows, or contribute public site adapters.
 - Review routing guidance and CODEOWNERS placeholder for maintainers and domain
   reviewers.
 - Triage runbook and starter labels for issue intake and domain-review queues.
+- Reviewed-skill pilot starter issue for turning the first review candidate
+  report into public maturity-review work.
 - Skill lifecycle guidance for moving requests through seed, review,
   field-testing, maintenance, and deprecation.
 - GitHub milestone metadata and command generator for launch, reviewed-skill

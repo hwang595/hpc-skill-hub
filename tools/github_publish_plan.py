@@ -89,6 +89,7 @@ def main() -> int:
     if args.run_check:
         evidence_command.append("--run-check")
     print(shell_join(evidence_command))
+    print(shell_join(["python3", "tools/review_candidates.py", "--limit", "12"]))
     print()
     for check in launch_checks(args.run_check, args.owner):
         print(f"# {check.status:4} {check.name}: {check.detail}")
