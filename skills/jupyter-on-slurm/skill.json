@@ -1,0 +1,112 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "jupyter-on-slurm",
+  "name": "Jupyter On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Launch Jupyter notebooks inside short Slurm compute allocations.",
+  "description": "This skill provides a scheduler-backed Jupyter workflow with conservative resources, explicit port and token handling, and tunnel instructions that avoid running notebooks on login nodes.",
+  "categories": ["interactive", "scheduler"],
+  "tags": ["jupyter", "notebook", "lab", "slurm", "tunnel", "interactive"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "jupyter",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    },
+    {
+      "name": "ssh",
+      "required": false
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "python3",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "port",
+      "type": "integer",
+      "required": false,
+      "description": "Notebook port, defaulting to a user-selected value such as 8888."
+    },
+    {
+      "name": "account",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific Slurm account or allocation."
+    },
+    {
+      "name": "partition",
+      "type": "string",
+      "required": false,
+      "description": "Interactive, debug, CPU, or GPU partition suitable for notebooks."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "jupyter_log",
+      "description": "Slurm output containing compute host, selected port, and Jupyter URL."
+    },
+    {
+      "name": "tunnel_command",
+      "description": "Template SSH port-forwarding command to run from the user's laptop."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/jupyter-lab.sbatch",
+    "examples/tunnel-template.sh"
+  ],
+  "examples": [
+    {
+      "title": "Jupyter Lab Slurm job",
+      "path": "examples/jupyter-lab.sbatch"
+    },
+    {
+      "title": "Tunnel command template",
+      "path": "examples/tunnel-template.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill jupyter-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Submit a short notebook job, confirm the log prints a compute hostname and tunnel template, then cancel the job."
+    }
+  ],
+  "references": [
+    {
+      "title": "Jupyter Server security",
+      "url": "https://jupyter-server.readthedocs.io/en/latest/operators/security.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

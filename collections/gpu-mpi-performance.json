@@ -3,11 +3,12 @@
   "id": "gpu-mpi-performance",
   "name": "GPU, MPI, And Performance",
   "status": "draft",
-  "summary": "Skills for validating GPU allocations, MPI launches, and first-pass performance evidence.",
+  "summary": "Skills for validating GPU allocations, MPI launches, OpenMP placement, and first-pass performance evidence.",
   "audience": ["AI/HPC users", "simulation teams", "performance engineers"],
   "skill_ids": [
     "mpi-hello-and-benchmark",
     "gpu-sanity-check",
+    "openmp-thread-affinity",
     "performance-profile-basic"
   ],
   "maintainers": [

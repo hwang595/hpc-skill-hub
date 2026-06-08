@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 19
+- Skills: 21
 - Site adapters: 1
 - Collections: 5
 - Uncollected skills: 0
@@ -14,27 +14,27 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 7 |
-| `medium` | 12 |
+| `medium` | 14 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 19 |
+| `seed` | 21 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 19 |
+| `draft` | 21 |
 
 ## Collection Coverage
 
 | Collection | Skills |
 | --- | ---: |
-| `core-hpc` | 9 |
+| `core-hpc` | 11 |
 | `data-movement` | 3 |
-| `gpu-mpi-performance` | 3 |
+| `gpu-mpi-performance` | 4 |
 | `software-stacks` | 4 |
 | `workflow-engines` | 2 |
 
@@ -53,9 +53,11 @@ All skills are included in at least one collection.
 | `gpu-sanity-check` | medium |
 | `interactive-session` | medium |
 | `job-failure-triage` | low |
+| `jupyter-on-slurm` | medium |
 | `module-environment-debug` | low |
 | `mpi-hello-and-benchmark` | medium |
 | `nextflow-on-slurm` | medium |
+| `openmp-thread-affinity` | medium |
 | `performance-profile-basic` | low |
 | `quota-and-filesystem-triage` | low |
 | `scratch-storage-management` | low |

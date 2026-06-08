@@ -12,13 +12,13 @@ new collections.
 | `quota-and-filesystem-triage` | debugging | low | Seed skill added to `core-hpc` and `data-movement`. |
 | `slurm-job-array-patterns` | scheduler | medium | Seed skill added to `core-hpc`. |
 | `checkpoint-restart-workflow` | scheduler | medium | Seed skill added to `core-hpc`. |
+| `openmp-thread-affinity` | performance | medium | Seed skill added to `core-hpc` and `gpu-mpi-performance`. |
+| `jupyter-on-slurm` | interactive | medium | Seed skill added to `core-hpc`. |
 
 ## Priority 1: Core User Workflows
 
-| Skill id | Category | Risk | Why it matters |
-| --- | --- | --- | --- |
-| `openmp-thread-affinity` | performance | medium | Thread placement mistakes waste CPU allocations and distort benchmarks. |
-| `jupyter-on-slurm` | interactive | medium | Notebook workflows need scheduler-backed sessions and clear tunnel guidance. |
+Priority 1 is implemented in the seed registry. New core workflow requests
+should be proposed through skill request issues.
 
 ## Priority 2: Software And Reproducibility
 

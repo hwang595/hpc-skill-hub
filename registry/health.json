@@ -4,10 +4,10 @@
     "data": 3,
     "debugging": 9,
     "gpu": 1,
-    "interactive": 1,
+    "interactive": 2,
     "mpi": 1,
-    "performance": 2,
-    "scheduler": 12,
+    "performance": 3,
+    "scheduler": 14,
     "software": 3,
     "workflow": 2
   },
@@ -15,7 +15,7 @@
   "collection_coverage": [
     {
       "id": "core-hpc",
-      "skill_count": 9,
+      "skill_count": 11,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
@@ -24,6 +24,8 @@
         "checkpoint-restart-workflow",
         "job-failure-triage",
         "interactive-session",
+        "jupyter-on-slurm",
+        "openmp-thread-affinity",
         "quota-and-filesystem-triage",
         "scratch-storage-management"
       ]
@@ -39,10 +41,11 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 3,
+      "skill_count": 4,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "gpu-sanity-check",
+        "openmp-thread-affinity",
         "performance-profile-basic"
       ]
     },
@@ -67,7 +70,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 19
+    "seed": 21
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -77,9 +80,11 @@
     "gpu-sanity-check": "medium",
     "interactive-session": "medium",
     "job-failure-triage": "low",
+    "jupyter-on-slurm": "medium",
     "module-environment-debug": "low",
     "mpi-hello-and-benchmark": "medium",
     "nextflow-on-slurm": "medium",
+    "openmp-thread-affinity": "medium",
     "performance-profile-basic": "low",
     "quota-and-filesystem-triage": "low",
     "scratch-storage-management": "low",
@@ -92,13 +97,13 @@
   },
   "risk_counts": {
     "low": 7,
-    "medium": 12
+    "medium": 14
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 19,
+  "skill_count": 21,
   "status_counts": {
-    "draft": 19
+    "draft": 21
   },
   "uncollected_skill_ids": []
 }

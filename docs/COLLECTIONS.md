@@ -10,12 +10,14 @@ research software engineer building software stacks may start with
 ## Seed Collections
 
 - `core-hpc`: Slurm submission, arrays, monitoring, resource estimation,
-  checkpoint/restart, failure triage, storage triage, and interactive sessions.
+  checkpoint/restart, failure triage, storage triage, OpenMP placement,
+  notebooks, and interactive sessions.
 - `software-stacks`: modules, containers, Spack, and EasyBuild.
 - `workflow-engines`: Nextflow and Snakemake on Slurm.
 - `data-movement`: Globus dataset transfer, scratch inventory, and filesystem
   quota triage.
-- `gpu-mpi-performance`: MPI, GPU sanity checks, and basic profiling.
+- `gpu-mpi-performance`: MPI, GPU sanity checks, OpenMP placement, and basic
+  profiling.
 
 ## Contribution Guidance
 

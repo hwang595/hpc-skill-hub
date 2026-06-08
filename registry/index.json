@@ -4,10 +4,10 @@
     "data": 3,
     "debugging": 9,
     "gpu": 1,
-    "interactive": 1,
+    "interactive": 2,
     "mpi": 1,
-    "performance": 2,
-    "scheduler": 12,
+    "performance": 3,
+    "scheduler": 14,
     "software": 3,
     "workflow": 2
   },
@@ -30,11 +30,13 @@
         "checkpoint-restart-workflow",
         "job-failure-triage",
         "interactive-session",
+        "jupyter-on-slurm",
+        "openmp-thread-affinity",
         "quota-and-filesystem-triage",
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, restartable workflows, debugging, storage triage, and interactive sessions."
+      "summary": "Starter skills for Slurm jobs, arrays, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage."
     },
     {
       "audience": [
@@ -65,10 +67,11 @@
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "gpu-sanity-check",
+        "openmp-thread-affinity",
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, MPI launches, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, MPI launches, OpenMP placement, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -107,7 +110,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 12
+    "slurm": 14
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -133,7 +136,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 19,
+  "skill_count": 21,
   "skills": [
     {
       "categories": [
@@ -471,6 +474,61 @@
     },
     {
       "categories": [
+        "interactive",
+        "scheduler"
+      ],
+      "description": "This skill provides a scheduler-backed Jupyter workflow with conservative resources, explicit port and token handling, and tunnel instructions that avoid running notebooks on login nodes.",
+      "examples": [
+        {
+          "path": "skills/jupyter-on-slurm/examples/jupyter-lab.sbatch",
+          "title": "Jupyter Lab Slurm job"
+        },
+        {
+          "path": "skills/jupyter-on-slurm/examples/tunnel-template.sh",
+          "title": "Tunnel command template"
+        }
+      ],
+      "id": "jupyter-on-slurm",
+      "maturity": "seed",
+      "name": "Jupyter On Slurm",
+      "path": "skills/jupyter-on-slurm",
+      "readme": "skills/jupyter-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Jupyter Server security",
+          "url": "https://jupyter-server.readthedocs.io/en/latest/operators/security.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Launch Jupyter notebooks inside short Slurm compute allocations.",
+      "tags": [
+        "jupyter",
+        "notebook",
+        "lab",
+        "slurm",
+        "tunnel",
+        "interactive"
+      ],
+      "tools": [
+        "sbatch",
+        "jupyter",
+        "module",
+        "ssh",
+        "hostname",
+        "python3"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "software",
         "debugging"
       ],
@@ -608,6 +666,64 @@
       "tools": [
         "nextflow",
         "sbatch"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "performance",
+        "scheduler"
+      ],
+      "description": "This skill helps users request CPUs per task, set OpenMP environment variables, inspect thread placement hints, and avoid oversubscription in threaded HPC jobs.",
+      "examples": [
+        {
+          "path": "skills/openmp-thread-affinity/examples/openmp-affinity.sbatch",
+          "title": "OpenMP affinity Slurm job"
+        },
+        {
+          "path": "skills/openmp-thread-affinity/examples/inspect-thread-env.sh",
+          "title": "Inspect thread environment"
+        }
+      ],
+      "id": "openmp-thread-affinity",
+      "maturity": "seed",
+      "name": "OpenMP Thread Affinity",
+      "path": "skills/openmp-thread-affinity",
+      "readme": "skills/openmp-thread-affinity/README.md",
+      "references": [
+        {
+          "title": "OpenMP environment variables",
+          "url": "https://www.openmp.org/spec-html/5.0/openmpch6.html"
+        },
+        {
+          "title": "Slurm CPU management guide",
+          "url": "https://slurm.schedmd.com/cpu_management.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Align OpenMP threads with Slurm CPU allocations and affinity settings.",
+      "tags": [
+        "openmp",
+        "threads",
+        "affinity",
+        "slurm",
+        "cpu-bind",
+        "omp-num-threads"
+      ],
+      "tools": [
+        "sbatch",
+        "bash",
+        "srun",
+        "env",
+        "hostname",
+        "date",
+        "grep",
+        "nproc",
+        "lscpu"
       ],
       "version": "0.1.0"
     },
@@ -1052,6 +1168,7 @@
     }
   ],
   "tags": {
+    "affinity": 1,
     "amd": 1,
     "apptainer": 1,
     "array": 2,
@@ -1062,6 +1179,7 @@
     "compiler": 1,
     "container": 1,
     "cpu": 1,
+    "cpu-bind": 1,
     "cuda": 1,
     "dataset": 1,
     "debugging": 1,
@@ -1074,8 +1192,10 @@
     "globus": 1,
     "gpu": 4,
     "inode": 1,
+    "interactive": 1,
     "io": 1,
-    "jupyter": 1,
+    "jupyter": 2,
+    "lab": 1,
     "ld_library_path": 1,
     "lmod": 2,
     "logs": 2,
@@ -1086,8 +1206,11 @@
     "mpicc": 1,
     "nextflow": 1,
     "nf-core": 1,
+    "notebook": 1,
     "nvidia": 1,
+    "omp-num-threads": 1,
     "oom": 1,
+    "openmp": 1,
     "parameter-sweep": 1,
     "perf": 1,
     "permission": 1,
@@ -1106,7 +1229,7 @@
     "scontrol": 1,
     "scratch": 1,
     "singularity": 1,
-    "slurm": 12,
+    "slurm": 14,
     "snakemake": 1,
     "software": 2,
     "spack": 1,
@@ -1115,40 +1238,48 @@
     "staging": 2,
     "state": 1,
     "storage": 2,
+    "threads": 1,
     "throughput": 1,
     "time": 1,
     "timeout": 2,
     "transfer": 1,
     "triage": 2,
+    "tunnel": 1,
     "walltime": 1,
     "workflow": 2
   },
   "tools": {
     "apptainer": 1,
     "awk": 2,
-    "bash": 1,
+    "bash": 2,
     "cat": 1,
-    "date": 1,
+    "date": 2,
     "df": 2,
     "dirname": 1,
     "du": 1,
     "eb": 1,
+    "env": 1,
     "find": 2,
     "globus": 1,
-    "grep": 2,
+    "grep": 3,
     "head": 1,
+    "hostname": 2,
+    "jupyter": 1,
     "ldd": 1,
+    "lscpu": 1,
     "mkdir": 2,
-    "module": 2,
+    "module": 3,
     "mpicc": 1,
     "nextflow": 1,
+    "nproc": 1,
     "nvidia-smi": 2,
     "perf": 1,
+    "python3": 1,
     "quota": 1,
     "rocm-smi": 1,
     "sacct": 3,
     "salloc": 1,
-    "sbatch": 7,
+    "sbatch": 9,
     "scontrol": 1,
     "sed": 1,
     "sleep": 1,
@@ -1156,8 +1287,8 @@
     "sort": 1,
     "spack": 1,
     "squeue": 1,
-    "srun": 3,
-    "ssh": 1,
+    "srun": 4,
+    "ssh": 2,
     "tail": 3,
     "time": 1,
     "which": 1

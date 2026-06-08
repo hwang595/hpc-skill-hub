@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 19 skills.
+Current registry size: 21 skills.
 
 ## Categories
 
@@ -12,10 +12,10 @@ Current registry size: 19 skills.
 | `data` | 3 |
 | `debugging` | 9 |
 | `gpu` | 1 |
-| `interactive` | 1 |
+| `interactive` | 2 |
 | `mpi` | 1 |
-| `performance` | 2 |
-| `scheduler` | 12 |
+| `performance` | 3 |
+| `scheduler` | 14 |
 | `software` | 3 |
 | `workflow` | 2 |
 
@@ -60,6 +60,7 @@ Current registry size: 19 skills.
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
 | [`interactive-session`](../skills/interactive-session/README.md) | medium | seed | Start short interactive compute sessions for debugging and notebooks. |
+| [`jupyter-on-slurm`](../skills/jupyter-on-slurm/README.md) | medium | seed | Launch Jupyter notebooks inside short Slurm compute allocations. |
 
 ### MPI
 
@@ -71,6 +72,7 @@ Current registry size: 19 skills.
 
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
+| [`openmp-thread-affinity`](../skills/openmp-thread-affinity/README.md) | medium | seed | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
 | [`performance-profile-basic`](../skills/performance-profile-basic/README.md) | low | seed | Collect first-pass performance evidence for an HPC workload. |
 | [`slurm-resource-estimator`](../skills/slurm-resource-estimator/README.md) | low | seed | Estimate future Slurm resource requests from accounting history. |
 
@@ -83,8 +85,10 @@ Current registry size: 19 skills.
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
 | [`interactive-session`](../skills/interactive-session/README.md) | medium | seed | Start short interactive compute sessions for debugging and notebooks. |
 | [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
+| [`jupyter-on-slurm`](../skills/jupyter-on-slurm/README.md) | medium | seed | Launch Jupyter notebooks inside short Slurm compute allocations. |
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
+| [`openmp-thread-affinity`](../skills/openmp-thread-affinity/README.md) | medium | seed | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
 | [`slurm-job-array-patterns`](../skills/slurm-job-array-patterns/README.md) | medium | seed | Run parameter sweeps and many independent tasks with Slurm job arrays. |
 | [`slurm-monitor-job`](../skills/slurm-monitor-job/README.md) | low | seed | Inspect Slurm job state, accounting records, and output paths. |
 | [`slurm-resource-estimator`](../skills/slurm-resource-estimator/README.md) | low | seed | Estimate future Slurm resource requests from accounting history. |
@@ -110,9 +114,9 @@ Current registry size: 19 skills.
 
 | Collection | Status | Skills | Audience | Description |
 | --- | --- | ---: | --- | --- |
-| [`core-hpc`](../collections/core-hpc.json) | draft | 9 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, restartable workflows, debugging, storage triage, and interactive sessions. |
+| [`core-hpc`](../collections/core-hpc.json) | draft | 11 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, restartable workflows, notebooks, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 3 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
-| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 3 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, MPI launches, and first-pass performance evidence. |
+| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 4 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, MPI launches, OpenMP placement, and first-pass performance evidence. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 4 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, running containers, and creating reproducible HPC software environments. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 2 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines on Slurm-backed HPC clusters. |
 

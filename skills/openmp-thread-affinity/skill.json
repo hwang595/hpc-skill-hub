@@ -1,0 +1,118 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "openmp-thread-affinity",
+  "name": "OpenMP Thread Affinity",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Align OpenMP threads with Slurm CPU allocations and affinity settings.",
+  "description": "This skill helps users request CPUs per task, set OpenMP environment variables, inspect thread placement hints, and avoid oversubscription in threaded HPC jobs.",
+  "categories": ["performance", "scheduler"],
+  "tags": ["openmp", "threads", "affinity", "slurm", "cpu-bind", "omp-num-threads"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": false
+    },
+    {
+      "name": "env",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "grep",
+      "required": true
+    },
+    {
+      "name": "nproc",
+      "required": false
+    },
+    {
+      "name": "lscpu",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "cpus_per_task",
+      "type": "integer",
+      "required": true,
+      "description": "Number of CPU cores allocated to one threaded task."
+    },
+    {
+      "name": "threaded_command",
+      "type": "string",
+      "required": true,
+      "description": "OpenMP or threaded application command to run inside the allocation."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "thread_environment_report",
+      "description": "Log of Slurm CPU allocation, OpenMP variables, and optional CPU topology."
+    },
+    {
+      "name": "threaded_job_output",
+      "description": "Output from the threaded application using bounded thread settings."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/openmp-affinity.sbatch",
+    "examples/inspect-thread-env.sh"
+  ],
+  "examples": [
+    {
+      "title": "OpenMP affinity Slurm job",
+      "path": "examples/openmp-affinity.sbatch"
+    },
+    {
+      "title": "Inspect thread environment",
+      "path": "examples/inspect-thread-env.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill openmp-thread-affinity",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Submit the smoke job with a short wall time and confirm OMP_NUM_THREADS equals SLURM_CPUS_PER_TASK."
+    }
+  ],
+  "references": [
+    {
+      "title": "OpenMP environment variables",
+      "url": "https://www.openmp.org/spec-html/5.0/openmpch6.html"
+    },
+    {
+      "title": "Slurm CPU management guide",
+      "url": "https://slurm.schedmd.com/cpu_management.html"
+    }
+  ]
+}
