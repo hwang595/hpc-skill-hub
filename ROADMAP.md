@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 82 seed skills.
+- 83 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -126,6 +126,8 @@ Priority integration tracks:
 - Apptainer: image execution, bind mounts, GPU pass-through, MPI launch, and
   reproducibility.
 - Spack and EasyBuild: scientific software stack creation and module generation.
+- HDF5 and NetCDF: parallel I/O build preflight, wrapper evidence, and tiny
+  MPI-IO smoke tests.
 - Globus and data lifecycle tools: reliable transfer, checksums, staging,
   archival, and publication handoff.
 - Workflow engines: Nextflow, Snakemake, CWL, WDL, Dask, Parsl, and Ray.
@@ -171,7 +173,8 @@ The first wave emphasizes recurring support and onboarding workflows:
 - Storage and data movement: scratch, quota, staging, checksums, rsync, Globus,
   object storage, archive preparation, and IOR/MDTest smoke evidence.
 - Software stacks: modules, compiler/MPI matrices, Conda, virtualenv, Spack,
-  EasyBuild, containers, and reproducible run capture.
+  EasyBuild, parallel HDF5/NetCDF preflight, containers, and reproducible run
+  capture.
 - Interactive and teaching workflows: Open OnDemand Batch Connect templates,
   Jupyter, TensorBoard, Streamlit, RStudio, VS Code tunnels, workshop reset
   checks, and language-specific batch jobs.
@@ -179,7 +182,7 @@ The first wave emphasizes recurring support and onboarding workflows:
   Hugging Face Accelerate, TensorFlow, and monitoring.
 - Domain workflows: bioinformatics, molecular dynamics, electronic structure,
   CFD, weather, workflow engines including Parsl, MPI, OpenMP, and performance
-  evidence.
+  evidence, including parallel HDF5/NetCDF preflight for data-heavy codes.
 - Facility support: read-only usage, node, module tree, pending reason, and
   efficiency triage.
 

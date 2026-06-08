@@ -3,15 +3,15 @@
   "categories": {
     "admin": 5,
     "containers": 3,
-    "data": 14,
+    "data": 15,
     "debugging": 25,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
-    "mpi": 15,
-    "performance": 17,
+    "mpi": 16,
+    "performance": 18,
     "scheduler": 64,
-    "software": 25,
+    "software": 26,
     "workflow": 11
   },
   "collection_count": 12,
@@ -182,6 +182,7 @@
         "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
+        "parallel-hdf5-netcdf-preflight",
         "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
         "slurm-gpu-binding-diagnostics",
@@ -200,7 +201,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -245,6 +246,7 @@
         "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
+        "parallel-hdf5-netcdf-preflight",
         "openmp-thread-affinity",
         "ior-mdtest-storage-smoke",
         "performance-profile-basic",
@@ -252,7 +254,7 @@
         "checkpoint-restart-workflow"
       ],
       "status": "draft",
-      "summary": "Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
+      "summary": "Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, parallel HDF5/NetCDF preflight, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -267,6 +269,7 @@
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
+        "parallel-hdf5-netcdf-preflight",
         "license-aware-slurm-job",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
@@ -293,7 +296,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, licensed software jobs, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, parallel HDF5/NetCDF preflight, licensed software jobs, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -360,7 +363,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 61,
+    "slurm": 62,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -413,7 +416,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 82,
+  "skill_count": 83,
   "skills": [
     {
       "categories": [
@@ -3483,6 +3486,76 @@
     {
       "categories": [
         "software",
+        "mpi",
+        "data",
+        "performance"
+      ],
+      "description": "This skill helps users and support teams verify whether HDF5, NetCDF, MPI compiler wrappers, and MPI-IO launch settings are aligned before running data-intensive simulation, weather, climate, or analysis workloads on shared HPC filesystems.",
+      "examples": [
+        {
+          "path": "skills/parallel-hdf5-netcdf-preflight/examples/parallel-io-preflight.sh",
+          "title": "Collect parallel HDF5 and NetCDF preflight evidence"
+        },
+        {
+          "path": "skills/parallel-hdf5-netcdf-preflight/examples/hdf5_mpi_smoke.c",
+          "title": "Tiny parallel HDF5 smoke source"
+        },
+        {
+          "path": "skills/parallel-hdf5-netcdf-preflight/examples/netcdf_parallel_smoke.c",
+          "title": "Tiny NetCDF parallel smoke source"
+        }
+      ],
+      "id": "parallel-hdf5-netcdf-preflight",
+      "maturity": "seed",
+      "name": "Parallel HDF5 NetCDF Preflight",
+      "path": "skills/parallel-hdf5-netcdf-preflight",
+      "readme": "skills/parallel-hdf5-netcdf-preflight/README.md",
+      "references": [
+        {
+          "title": "HDF Group parallel HDF5 documentation",
+          "url": "https://support.hdfgroup.org/documentation/hdf5-docs/hdf5_topics/ParallelHDF5.html"
+        },
+        {
+          "title": "Unidata NetCDF-C parallel I/O documentation",
+          "url": "https://docs.unidata.ucar.edu/netcdf-c/4.9.3/parallel_io.html"
+        },
+        {
+          "title": "PnetCDF project overview",
+          "url": "https://parallel-netcdf.github.io/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Check parallel HDF5 and NetCDF MPI-IO build and runtime assumptions.",
+      "tags": [
+        "hdf5",
+        "netcdf",
+        "mpi",
+        "mpi-io",
+        "parallel-io",
+        "smoke-test",
+        "preflight"
+      ],
+      "tools": [
+        "bash",
+        "mpicc",
+        "h5pcc",
+        "h5cc",
+        "nc-config",
+        "h5dump",
+        "ncdump",
+        "srun",
+        "mkdir",
+        "date"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
         "workflow",
         "scheduler"
       ],
@@ -5468,6 +5541,7 @@
     "grid-engine": 1,
     "gromacs": 1,
     "haplotypecaller": 1,
+    "hdf5": 1,
     "high-throughput": 1,
     "htcondor": 1,
     "htex": 1,
@@ -5510,7 +5584,8 @@
     "modules": 7,
     "molecular-dynamics": 4,
     "monitoring": 1,
-    "mpi": 20,
+    "mpi": 21,
+    "mpi-io": 1,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
@@ -5518,7 +5593,7 @@
     "multiworker": 1,
     "namd": 1,
     "nccl": 2,
-    "netcdf": 1,
+    "netcdf": 2,
     "network": 1,
     "nextflow": 2,
     "nf-core": 2,
@@ -5541,6 +5616,7 @@
     "packages": 2,
     "parallel": 1,
     "parallel-environment": 1,
+    "parallel-io": 1,
     "parameter-sweep": 1,
     "parsl": 1,
     "pbs": 1,
@@ -5556,7 +5632,7 @@
     "ports": 1,
     "posit": 1,
     "preemption": 2,
-    "preflight": 1,
+    "preflight": 2,
     "priority": 1,
     "profile": 1,
     "profiling": 1,
@@ -5613,6 +5689,7 @@
     "singularity": 4,
     "slurm": 59,
     "slurmprovider": 1,
+    "smoke-test": 1,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -5672,7 +5749,7 @@
     "awk": 3,
     "aws": 1,
     "basename": 1,
-    "bash": 9,
+    "bash": 10,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -5692,7 +5769,7 @@
     "cwltool": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 30,
+    "date": 31,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -5710,6 +5787,9 @@
     "gmx": 1,
     "gmx_mpi": 1,
     "grep": 9,
+    "h5cc": 1,
+    "h5dump": 1,
+    "h5pcc": 1,
     "head": 4,
     "hostname": 24,
     "hwloc-ls": 1,
@@ -5729,16 +5809,17 @@
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 33,
+    "mkdir": 34,
     "module": 25,
     "mpi4py": 1,
-    "mpicc": 5,
+    "mpicc": 6,
     "mpicxx": 1,
     "mpiexec": 1,
     "mpifort": 1,
     "mpirun": 4,
     "namd2": 1,
-    "ncdump": 1,
+    "nc-config": 1,
+    "ncdump": 2,
     "nextflow": 2,
     "nproc": 1,
     "numactl": 1,
@@ -5783,7 +5864,7 @@
     "sprio": 2,
     "squeue": 10,
     "sreport": 1,
-    "srun": 25,
+    "srun": 26,
     "ssh": 5,
     "sshare": 1,
     "streamlit": 1,

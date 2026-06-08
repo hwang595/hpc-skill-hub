@@ -1,0 +1,148 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "parallel-hdf5-netcdf-preflight",
+  "name": "Parallel HDF5 NetCDF Preflight",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Check parallel HDF5 and NetCDF MPI-IO build and runtime assumptions.",
+  "description": "This skill helps users and support teams verify whether HDF5, NetCDF, MPI compiler wrappers, and MPI-IO launch settings are aligned before running data-intensive simulation, weather, climate, or analysis workloads on shared HPC filesystems.",
+  "categories": ["software", "mpi", "data", "performance"],
+  "tags": ["hdf5", "netcdf", "mpi", "mpi-io", "parallel-io", "smoke-test", "preflight"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "mpicc",
+      "required": false,
+      "notes": "Used to compile the optional NetCDF parallel I/O smoke test."
+    },
+    {
+      "name": "h5pcc",
+      "required": false,
+      "notes": "Preferred HDF5 MPI compiler wrapper when available."
+    },
+    {
+      "name": "h5cc",
+      "required": false
+    },
+    {
+      "name": "nc-config",
+      "required": false
+    },
+    {
+      "name": "h5dump",
+      "required": false
+    },
+    {
+      "name": "ncdump",
+      "required": false
+    },
+    {
+      "name": "srun",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": false,
+      "description": "Local directory where preflight reports and build plans should be written."
+    },
+    {
+      "name": "scratch_dir",
+      "type": "path",
+      "required": false,
+      "description": "Approved test directory on a filesystem suitable for tiny parallel I/O smoke outputs."
+    },
+    {
+      "name": "mpi_tasks",
+      "type": "integer",
+      "required": false,
+      "description": "Small MPI task count for optional smoke tests."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "parallel_io_preflight_report",
+      "description": "Report with HDF5, NetCDF, MPI wrapper, and optional launcher evidence."
+    },
+    {
+      "name": "build_and_run_plan",
+      "description": "Reviewable commands for compiling and running tiny parallel HDF5 and NetCDF smoke tests."
+    },
+    {
+      "name": "smoke_test_sources",
+      "description": "Small C source files for HDF5 MPIO and NetCDF parallel access tests."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/parallel-io-preflight.sh",
+    "examples/hdf5_mpi_smoke.c",
+    "examples/netcdf_parallel_smoke.c"
+  ],
+  "examples": [
+    {
+      "title": "Collect parallel HDF5 and NetCDF preflight evidence",
+      "path": "examples/parallel-io-preflight.sh"
+    },
+    {
+      "title": "Tiny parallel HDF5 smoke source",
+      "path": "examples/hdf5_mpi_smoke.c"
+    },
+    {
+      "title": "Tiny NetCDF parallel smoke source",
+      "path": "examples/netcdf_parallel_smoke.c"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill parallel-hdf5-netcdf-preflight",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/parallel-hdf5-netcdf-preflight/examples/parallel-io-preflight.sh",
+      "description": "Check shell syntax without compiling or running MPI jobs."
+    },
+    {
+      "type": "manual",
+      "description": "On a test partition, compile with site HDF5/NetCDF modules and run each smoke test with a tiny task count on an approved scratch path."
+    }
+  ],
+  "references": [
+    {
+      "title": "HDF Group parallel HDF5 documentation",
+      "url": "https://support.hdfgroup.org/documentation/hdf5-docs/hdf5_topics/ParallelHDF5.html"
+    },
+    {
+      "title": "Unidata NetCDF-C parallel I/O documentation",
+      "url": "https://docs.unidata.ucar.edu/netcdf-c/4.9.3/parallel_io.html"
+    },
+    {
+      "title": "PnetCDF project overview",
+      "url": "https://parallel-netcdf.github.io/"
+    }
+  ]
+}

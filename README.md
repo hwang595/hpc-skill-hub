@@ -62,6 +62,7 @@ tools.
 | `module-environment-debug` | Debug module, compiler, MPI, and library path conflicts. |
 | `module-tree-health-check` | Collect read-only evidence about visible HPC module tree health. |
 | `compiler-mpi-matrix` | Check compiler, MPI wrapper, and module compatibility before building HPC codes. |
+| `parallel-hdf5-netcdf-preflight` | Check parallel HDF5 and NetCDF MPI-IO build and runtime assumptions. |
 | `reproducible-run-capture` | Capture command, environment, provenance, and logs for reproducible HPC runs. |
 | `python-virtualenv-on-hpc` | Create lightweight Python virtual environments with explicit HPC module assumptions. |
 | `tensorboard-on-slurm` | Run policy-aware TensorBoard monitors from short Slurm allocations. |

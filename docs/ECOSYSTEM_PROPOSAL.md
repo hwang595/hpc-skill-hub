@@ -45,8 +45,8 @@ owner handoffs, and ecosystem sponsor discussions.
   containerized MPI, GPU checks, data staging, checksums, and reproducible run
   capture.
 - `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices,
-  licensed software jobs, Open OnDemand templates, TensorBoard, Streamlit,
-  RStudio, and IDE tunnels.
+  parallel HDF5/NetCDF preflight, licensed software jobs, Open OnDemand
+  templates, TensorBoard, Streamlit, RStudio, and IDE tunnels.
 - `workflow-engines`: CWL, WDL, Nextflow, Snakemake, Dask, and Parsl.
 - `data-movement`: Globus, rsync, object storage, checksums, scratch staging,
   IOR/MDTest storage smoke evidence, archive preparation, and quota triage.
@@ -63,7 +63,8 @@ owner handoffs, and ecosystem sponsor discussions.
   single-cell workflows, and genomics data staging.
 - `simulation-workflows`: LAMMPS, GROMACS, Quantum ESPRESSO, NAMD, OpenFOAM,
   WRF, MPI fabric diagnostics, MPI rank binding diagnostics, hybrid
-  MPI/OpenMP layouts, restart planning, profiling, and storage smoke evidence.
+  MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, restart planning,
+  profiling, and storage smoke evidence.
 - `facility-ops`: read-only usage reporting, QOS/account limit evidence, node
   triage, module tree health checks, support handoffs, and public operational
   patterns.

@@ -3,15 +3,15 @@
   "category_counts": {
     "admin": 5,
     "containers": 3,
-    "data": 14,
+    "data": 15,
     "debugging": 25,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
-    "mpi": 15,
-    "performance": 17,
+    "mpi": 16,
+    "performance": 18,
     "scheduler": 64,
-    "software": 25,
+    "software": 26,
     "workflow": 11
   },
   "collection_count": 12,
@@ -119,7 +119,7 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 22,
+      "skill_count": 23,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
@@ -127,6 +127,7 @@
         "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
+        "parallel-hdf5-netcdf-preflight",
         "apptainer-mpi-on-slurm",
         "gpu-sanity-check",
         "slurm-gpu-binding-diagnostics",
@@ -160,7 +161,7 @@
     },
     {
       "id": "simulation-workflows",
-      "skill_count": 16,
+      "skill_count": 17,
       "skill_ids": [
         "gromacs-on-slurm",
         "lammps-on-slurm",
@@ -173,6 +174,7 @@
         "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
+        "parallel-hdf5-netcdf-preflight",
         "openmp-thread-affinity",
         "ior-mdtest-storage-smoke",
         "performance-profile-basic",
@@ -182,11 +184,12 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 27,
+      "skill_count": 28,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
+        "parallel-hdf5-netcdf-preflight",
         "license-aware-slurm-job",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
@@ -255,7 +258,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 82
+    "seed": 83
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -308,6 +311,7 @@
     "open-ondemand-batch-connect": "medium",
     "openfoam-on-slurm": "medium",
     "openmp-thread-affinity": "medium",
+    "parallel-hdf5-netcdf-preflight": "medium",
     "parsl-on-slurm": "medium",
     "pbs-submit-job": "medium",
     "performance-profile-basic": "low",
@@ -343,13 +347,13 @@
   },
   "risk_counts": {
     "low": 18,
-    "medium": 64
+    "medium": 65
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 82,
+  "skill_count": 83,
   "status_counts": {
-    "draft": 82
+    "draft": 83
   },
   "uncollected_skill_ids": []
 }

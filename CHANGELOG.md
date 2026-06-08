@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a parallel HDF5 and NetCDF preflight seed skill for MPI-IO wrapper,
+  build-configuration, and tiny smoke-test planning.
 - Add a Slurm QOS and account limit triage seed skill for read-only
   association, QOS, fairshare, and pending reason evidence.
 - Add a Slurm preemption and requeue seed skill for signal-aware jobs,
@@ -153,12 +155,13 @@ Initial public seed release.
 
 ### Added
 
-- 82 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 83 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, dependency chains, pending reason triage, monitoring, resource
   estimation, QOS/account limit evidence, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
   preemption and requeue-safe restart behavior,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
+  parallel HDF5/NetCDF preflight,
   TensorBoard, Streamlit, Ray, Dask Jobqueue, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, containers, containerized MPI, Spack, EasyBuild, object storage, data movement,
   storage smoke benchmarks, CWL/WDL, workflow engines, GPU binding diagnostics, MPI fabric diagnostics, MPI/GPU diagnostics,
   MPI rank binding diagnostics, hybrid MPI/OpenMP layouts,

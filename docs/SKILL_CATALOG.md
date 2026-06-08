@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 82 skills.
+Current registry size: 83 skills.
 
 ## Categories
 
@@ -10,15 +10,15 @@ Current registry size: 82 skills.
 | --- | ---: |
 | `admin` | 5 |
 | `containers` | 3 |
-| `data` | 14 |
+| `data` | 15 |
 | `debugging` | 25 |
 | `education` | 2 |
 | `gpu` | 13 |
 | `interactive` | 7 |
-| `mpi` | 15 |
-| `performance` | 17 |
+| `mpi` | 16 |
+| `performance` | 18 |
 | `scheduler` | 64 |
-| `software` | 25 |
+| `software` | 26 |
 | `workflow` | 11 |
 
 ## Skills By Category
@@ -55,6 +55,7 @@ Current registry size: 82 skills.
 | [`large-file-archive-prepare`](../skills/large-file-archive-prepare/README.md) | medium | seed | Prepare large HPC datasets for archival, publication, or handoff. |
 | [`nf-core-on-slurm`](../skills/nf-core-on-slurm/README.md) | medium | seed | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
 | [`object-storage-transfer`](../skills/object-storage-transfer/README.md) | medium | seed | Plan object-storage transfers between HPC filesystems and cloud remotes. |
+| [`parallel-hdf5-netcdf-preflight`](../skills/parallel-hdf5-netcdf-preflight/README.md) | medium | seed | Check parallel HDF5 and NetCDF MPI-IO build and runtime assumptions. |
 | [`quota-and-filesystem-triage`](../skills/quota-and-filesystem-triage/README.md) | low | seed | Diagnose quota, inode, and filesystem-space failures from user-visible evidence. |
 | [`rsync-data-transfer`](../skills/rsync-data-transfer/README.md) | medium | seed | Transfer datasets with rsync dry-runs, resumable options, and validation hooks. |
 | [`scratch-storage-management`](../skills/scratch-storage-management/README.md) | low | seed | Inspect scratch, project, and working-directory usage before HPC jobs. |
@@ -144,6 +145,7 @@ Current registry size: 82 skills.
 | [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md) | medium | seed | Run mpi4py Python programs on Slurm with matching MPI and Python environments. |
 | [`namd-on-slurm`](../skills/namd-on-slurm/README.md) | medium | seed | Run NAMD molecular dynamics jobs on Slurm with CPU/GPU and restart planning. |
 | [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md) | medium | seed | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |
+| [`parallel-hdf5-netcdf-preflight`](../skills/parallel-hdf5-netcdf-preflight/README.md) | medium | seed | Check parallel HDF5 and NetCDF MPI-IO build and runtime assumptions. |
 | [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md) | medium | seed | Run Quantum ESPRESSO PWscf jobs on Slurm with MPI sizing and restart planning. |
 | [`wrf-on-slurm`](../skills/wrf-on-slurm/README.md) | medium | seed | Run WRF real-data jobs on Slurm with MPI sizing, real.exe staging, restart, and I/O planning. |
 
@@ -162,6 +164,7 @@ Current registry size: 82 skills.
 | [`namd-on-slurm`](../skills/namd-on-slurm/README.md) | medium | seed | Run NAMD molecular dynamics jobs on Slurm with CPU/GPU and restart planning. |
 | [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md) | medium | seed | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |
 | [`openmp-thread-affinity`](../skills/openmp-thread-affinity/README.md) | medium | seed | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
+| [`parallel-hdf5-netcdf-preflight`](../skills/parallel-hdf5-netcdf-preflight/README.md) | medium | seed | Check parallel HDF5 and NetCDF MPI-IO build and runtime assumptions. |
 | [`performance-profile-basic`](../skills/performance-profile-basic/README.md) | low | seed | Collect first-pass performance evidence for an HPC workload. |
 | [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md) | medium | seed | Run Quantum ESPRESSO PWscf jobs on Slurm with MPI sizing and restart planning. |
 | [`slurm-efficiency-report`](../skills/slurm-efficiency-report/README.md) | low | seed | Summarize completed Slurm job efficiency from accounting data. |
@@ -256,6 +259,7 @@ Current registry size: 82 skills.
 | [`module-tree-health-check`](../skills/module-tree-health-check/README.md) | low | seed | Collect read-only evidence about visible HPC module tree health. |
 | [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md) | medium | seed | Run mpi4py Python programs on Slurm with matching MPI and Python environments. |
 | [`open-ondemand-batch-connect`](../skills/open-ondemand-batch-connect/README.md) | medium | seed | Prepare reviewable Open OnDemand Batch Connect app templates. |
+| [`parallel-hdf5-netcdf-preflight`](../skills/parallel-hdf5-netcdf-preflight/README.md) | medium | seed | Check parallel HDF5 and NetCDF MPI-IO build and runtime assumptions. |
 | [`parsl-on-slurm`](../skills/parsl-on-slurm/README.md) | medium | seed | Run small Parsl workflows on Slurm with explicit provider and executor limits. |
 | [`python-virtualenv-on-hpc`](../skills/python-virtualenv-on-hpc/README.md) | low | seed | Create lightweight Python virtual environments with explicit HPC module assumptions. |
 | [`ray-on-slurm`](../skills/ray-on-slurm/README.md) | medium | seed | Launch resource-bounded Ray clusters inside Slurm allocations. |
@@ -294,10 +298,10 @@ Current registry size: 82 skills.
 | [`core-hpc`](../collections/core-hpc.json) | draft | 19 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, QOS/account limit evidence, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 9 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, benchmarking, and managing research data across HPC filesystems and object storage. |
 | [`facility-ops`](../collections/facility-ops.json) | draft | 5 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, pending reason triage, QOS/account limit evidence, node triage, and module tree health. |
-| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 22 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence. |
+| [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 23 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence. |
 | [`scheduler-basics`](../collections/scheduler-basics.json) | draft | 7 | new HPC users, training instructors, support teams, sites with mixed schedulers | Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers. |
-| [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 16 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems. |
-| [`software-stacks`](../collections/software-stacks.json) | draft | 27 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, licensed software jobs, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks. |
+| [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 17 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, parallel HDF5/NetCDF preflight, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems. |
+| [`software-stacks`](../collections/software-stacks.json) | draft | 28 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, parallel HDF5/NetCDF preflight, licensed software jobs, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks. |
 | [`training-onboarding`](../collections/training-onboarding.json) | draft | 19 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 8 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL/WDL runs, Dask and Parsl worker pools, and lightweight Slurm dependency chains. |
 

@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 82.
+- Skills: 83.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -30,7 +30,7 @@ request missing workflows, or contribute public site adapters.
   Connect templates, Jupyter, RStudio, VS Code tunnels, OpenMP placement, quota
   triage, and scratch management.
 - Software stacks: module debugging, module tree health, compiler/MPI
-  compatibility, license-aware jobs, reproducible run capture, Python virtualenv, Open OnDemand
+  compatibility, parallel HDF5/NetCDF preflight, license-aware jobs, reproducible run capture, Python virtualenv, Open OnDemand
   Batch Connect templates, Ray on Slurm, Dask Jobqueue, Parsl, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke tests,
   mpi4py on Slurm, TensorBoard
@@ -52,7 +52,7 @@ request missing workflows, or contribute public site adapters.
   scratch inventory, and filesystem quota triage.
 - GPU/MPI performance: MPI sanity checks, GPU binding diagnostics, MPI fabric
   diagnostics, rank binding diagnostics, hybrid MPI/OpenMP layout checks,
-  containerized MPI, mpi4py launch checks, GPU sanity checks, Ray cluster smoke
+  parallel HDF5/NetCDF preflight, containerized MPI, mpi4py launch checks, GPU sanity checks, Ray cluster smoke
   tests, JAX distributed smoke tests, Hugging Face Accelerate launches,
   TensorFlow multi-worker smoke tests,
   PyTorch DDP, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
@@ -67,8 +67,8 @@ request missing workflows, or contribute public site adapters.
   staging and checksum practices.
 - Simulation: LAMMPS, GROMACS, NAMD, Quantum ESPRESSO, CP2K, OpenFOAM, WRF, MPI
   launch checks, MPI fabric diagnostics, rank binding diagnostics, hybrid
-  MPI/OpenMP layouts, OpenMP placement, restart planning, profiling, storage
-  smoke evidence, and reproducibility.
+  MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, OpenMP placement,
+  restart planning, profiling, storage smoke evidence, and reproducibility.
 - Facility operations: read-only Slurm usage reporting, pending reason triage,
   QOS/account limit evidence, node-health triage, and module tree health checks
   for support teams and facility maintainers.
