@@ -4,13 +4,13 @@
     "admin": 4,
     "containers": 3,
     "data": 14,
-    "debugging": 22,
+    "debugging": 23,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
-    "mpi": 14,
-    "performance": 16,
-    "scheduler": 61,
+    "mpi": 15,
+    "performance": 17,
+    "scheduler": 62,
     "software": 25,
     "workflow": 11
   },
@@ -176,6 +176,7 @@
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
         "mpi4py-on-slurm",
+        "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
         "apptainer-mpi-on-slurm",
@@ -196,7 +197,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI rank binding, hybrid MPI/OpenMP layouts, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -238,6 +239,7 @@
         "openfoam-on-slurm",
         "wrf-on-slurm",
         "mpi-hello-and-benchmark",
+        "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
         "openmp-thread-affinity",
@@ -247,7 +249,7 @@
         "checkpoint-restart-workflow"
       ],
       "status": "draft",
-      "summary": "Domain skills for MPI/GPU-heavy simulation, hybrid MPI/OpenMP layouts, rank binding diagnostics, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
+      "summary": "Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -354,7 +356,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 58,
+    "slurm": 59,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -407,7 +409,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 79,
+  "skill_count": 80,
   "skills": [
     {
       "categories": [
@@ -2634,6 +2636,79 @@
         "module",
         "which",
         "printenv"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "mpi",
+        "performance",
+        "debugging",
+        "scheduler"
+      ],
+      "description": "This skill helps users and support teams diagnose MPI communication setup by recording MPI launcher details, Open MPI MCA hints, UCX and libfabric provider evidence, optional InfiniBand device visibility, and a tiny multi-node MPI communication probe.",
+      "examples": [
+        {
+          "path": "skills/mpi-fabric-diagnostics/examples/mpi-fabric-diagnostics.sbatch",
+          "title": "MPI fabric diagnostic Slurm job"
+        },
+        {
+          "path": "skills/mpi-fabric-diagnostics/examples/mpi_fabric_probe.c",
+          "title": "Tiny MPI communication probe"
+        }
+      ],
+      "id": "mpi-fabric-diagnostics",
+      "maturity": "seed",
+      "name": "MPI Fabric Diagnostics",
+      "path": "skills/mpi-fabric-diagnostics",
+      "readme": "skills/mpi-fabric-diagnostics/README.md",
+      "references": [
+        {
+          "title": "Open MPI network support",
+          "url": "https://docs.open-mpi.org/en/v5.0.x/release-notes/networks.html"
+        },
+        {
+          "title": "Open MPI InfiniBand and RoCE support",
+          "url": "https://docs.open-mpi.org/en/v5.0.7/tuning-apps/networking/ib-and-roce.html"
+        },
+        {
+          "title": "OpenUCX running UCX",
+          "url": "https://openucx.readthedocs.io/en/master/running.html"
+        },
+        {
+          "title": "libfabric fi_info manual",
+          "url": "https://ofiwg.github.io/libfabric/v1.18.0/man/fi_info.1.html"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Collect MPI transport and fabric evidence for multi-node Slurm jobs.",
+      "tags": [
+        "mpi",
+        "slurm",
+        "ucx",
+        "libfabric",
+        "ofi",
+        "openmpi",
+        "pmix",
+        "interconnect",
+        "pingpong"
+      ],
+      "tools": [
+        "mpicc",
+        "srun",
+        "ucx_info",
+        "fi_info",
+        "ompi_info",
+        "ibv_devinfo",
+        "module"
       ],
       "version": "0.1.0"
     },
@@ -5253,6 +5328,7 @@
     "ide": 1,
     "inode": 1,
     "interactive": 5,
+    "interconnect": 1,
     "io": 2,
     "ior": 1,
     "java": 1,
@@ -5263,6 +5339,7 @@
     "lab": 1,
     "lammps": 1,
     "ld_library_path": 1,
+    "libfabric": 1,
     "license": 1,
     "licensed-software": 1,
     "licenses": 1,
@@ -5284,7 +5361,7 @@
     "modules": 7,
     "molecular-dynamics": 4,
     "monitoring": 1,
-    "mpi": 19,
+    "mpi": 20,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
@@ -5302,11 +5379,13 @@
     "nvidia-smi": 1,
     "object-storage": 1,
     "oci": 1,
+    "ofi": 1,
     "omp-num-threads": 2,
     "onboarding": 1,
     "oom": 2,
     "openfoam": 1,
     "openmp": 4,
+    "openmpi": 1,
     "openondemand": 1,
     "openpbs": 1,
     "outputs": 1,
@@ -5320,9 +5399,10 @@
     "pending": 1,
     "perf": 1,
     "permission": 1,
+    "pingpong": 1,
     "pip": 1,
     "pipeline": 1,
-    "pmix": 1,
+    "pmix": 2,
     "portal": 1,
     "ports": 1,
     "posit": 1,
@@ -5378,7 +5458,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 56,
+    "slurm": 57,
     "slurmprovider": 1,
     "snakemake": 1,
     "software": 2,
@@ -5407,6 +5487,7 @@
     "transformers": 1,
     "triage": 4,
     "tunnel": 4,
+    "ucx": 1,
     "uge": 1,
     "usage": 1,
     "validation": 1,
@@ -5466,6 +5547,7 @@
     "du": 2,
     "eb": 1,
     "env": 6,
+    "fi_info": 1,
     "find": 5,
     "gatk": 1,
     "gcc": 1,
@@ -5477,6 +5559,7 @@
     "head": 4,
     "hostname": 24,
     "hwloc-ls": 1,
+    "ibv_devinfo": 1,
     "icoFoam": 1,
     "ior": 1,
     "julia": 1,
@@ -5493,9 +5576,9 @@
     "micromamba": 1,
     "miniwdl": 1,
     "mkdir": 31,
-    "module": 24,
+    "module": 25,
     "mpi4py": 1,
-    "mpicc": 4,
+    "mpicc": 5,
     "mpicxx": 1,
     "mpiexec": 1,
     "mpifort": 1,
@@ -5506,6 +5589,7 @@
     "nproc": 1,
     "numactl": 1,
     "nvidia-smi": 10,
+    "ompi_info": 1,
     "parsl": 1,
     "perf": 1,
     "pip": 1,
@@ -5544,7 +5628,7 @@
     "sprio": 1,
     "squeue": 8,
     "sreport": 1,
-    "srun": 24,
+    "srun": 25,
     "ssh": 5,
     "streamlit": 1,
     "tail": 4,
@@ -5554,6 +5638,7 @@
     "test": 8,
     "time": 1,
     "tr": 1,
+    "ucx_info": 1,
     "uname": 1,
     "wc": 1,
     "which": 2,

@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 79.
+- Skills: 80.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -50,8 +50,8 @@ request missing workflows, or contribute public site adapters.
 - Data movement: Globus, rsync, object-storage transfers, checksum manifests,
   scratch staging, archive preparation, IOR/MDTest storage smoke benchmarks,
   scratch inventory, and filesystem quota triage.
-- GPU/MPI performance: MPI sanity checks, GPU binding diagnostics, rank binding
-  diagnostics, hybrid MPI/OpenMP layout checks,
+- GPU/MPI performance: MPI sanity checks, GPU binding diagnostics, MPI fabric
+  diagnostics, rank binding diagnostics, hybrid MPI/OpenMP layout checks,
   containerized MPI, mpi4py launch checks, GPU sanity checks, Ray cluster smoke
   tests, JAX distributed smoke tests, Hugging Face Accelerate launches,
   TensorFlow multi-worker smoke tests,
@@ -66,9 +66,9 @@ request missing workflows, or contribute public site adapters.
 - Bioinformatics: nf-core, GATK, and local BLAST+ workflow patterns with data
   staging and checksum practices.
 - Simulation: LAMMPS, GROMACS, NAMD, Quantum ESPRESSO, CP2K, OpenFOAM, WRF, MPI
-  launch checks, rank binding diagnostics, hybrid MPI/OpenMP layouts, OpenMP
-  placement, restart planning, profiling, storage smoke evidence, and
-  reproducibility.
+  launch checks, MPI fabric diagnostics, rank binding diagnostics, hybrid
+  MPI/OpenMP layouts, OpenMP placement, restart planning, profiling, storage
+  smoke evidence, and reproducibility.
 - Facility operations: read-only Slurm usage reporting, pending reason triage,
   node-health triage, and module tree health checks for support teams and
   facility maintainers.

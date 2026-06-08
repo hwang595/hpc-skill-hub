@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add an MPI fabric diagnostics seed skill for collecting MPI, UCX,
+  libfabric, Open MPI MCA, PMIx, and tiny communication probe evidence.
 - Add a Slurm GPU binding diagnostics seed skill for collecting per-task
   `CUDA_VISIBLE_DEVICES`, Slurm GPU variables, and optional vendor telemetry.
 - Add a hybrid MPI/OpenMP on Slurm seed skill for aligning MPI task shape,
@@ -147,13 +149,13 @@ Initial public seed release.
 
 ### Added
 
-- 79 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 80 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, dependency chains, pending reason triage, monitoring, resource
   estimation, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
   TensorBoard, Streamlit, Ray, Dask Jobqueue, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, containers, containerized MPI, Spack, EasyBuild, object storage, data movement,
-  storage smoke benchmarks, CWL/WDL, workflow engines, GPU binding diagnostics, MPI/GPU diagnostics,
+  storage smoke benchmarks, CWL/WDL, workflow engines, GPU binding diagnostics, MPI fabric diagnostics, MPI/GPU diagnostics,
   MPI rank binding diagnostics, hybrid MPI/OpenMP layouts,
   AI/HPC launches, bioinformatics workflows including local BLAST+, molecular dynamics including NAMD,
   electronic-structure and quantum chemistry including CP2K, CFD, weather

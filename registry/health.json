@@ -4,13 +4,13 @@
     "admin": 4,
     "containers": 3,
     "data": 14,
-    "debugging": 22,
+    "debugging": 23,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
-    "mpi": 14,
-    "performance": 16,
-    "scheduler": 61,
+    "mpi": 15,
+    "performance": 17,
+    "scheduler": 62,
     "software": 25,
     "workflow": 11
   },
@@ -116,11 +116,12 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 21,
+      "skill_count": 22,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
         "mpi4py-on-slurm",
+        "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
         "apptainer-mpi-on-slurm",
@@ -156,7 +157,7 @@
     },
     {
       "id": "simulation-workflows",
-      "skill_count": 15,
+      "skill_count": 16,
       "skill_ids": [
         "gromacs-on-slurm",
         "lammps-on-slurm",
@@ -166,6 +167,7 @@
         "openfoam-on-slurm",
         "wrf-on-slurm",
         "mpi-hello-and-benchmark",
+        "mpi-fabric-diagnostics",
         "mpi-rank-binding-diagnostics",
         "hybrid-mpi-openmp-slurm",
         "openmp-thread-affinity",
@@ -249,7 +251,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 79
+    "seed": 80
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -289,6 +291,7 @@
     "matlab-batch-on-slurm": "medium",
     "module-environment-debug": "low",
     "module-tree-health-check": "low",
+    "mpi-fabric-diagnostics": "medium",
     "mpi-hello-and-benchmark": "medium",
     "mpi-rank-binding-diagnostics": "medium",
     "mpi4py-on-slurm": "medium",
@@ -334,13 +337,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 62
+    "medium": 63
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 79,
+  "skill_count": 80,
   "status_counts": {
-    "draft": 79
+    "draft": 80
   },
   "uncollected_skill_ids": []
 }

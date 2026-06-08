@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 79
+- Skills: 80
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 62 |
+| `medium` | 63 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 79 |
+| `seed` | 80 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 79 |
+| `draft` | 80 |
 
 ## Collection Coverage
 
@@ -38,9 +38,9 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `core-hpc` | 17 |
 | `data-movement` | 9 |
 | `facility-ops` | 4 |
-| `gpu-mpi-performance` | 21 |
+| `gpu-mpi-performance` | 22 |
 | `scheduler-basics` | 7 |
-| `simulation-workflows` | 15 |
+| `simulation-workflows` | 16 |
 | `software-stacks` | 27 |
 | `training-onboarding` | 18 |
 | `workflow-engines` | 8 |
@@ -90,6 +90,7 @@ All skills are included in at least one collection.
 | `matlab-batch-on-slurm` | medium |
 | `module-environment-debug` | low |
 | `module-tree-health-check` | low |
+| `mpi-fabric-diagnostics` | medium |
 | `mpi-hello-and-benchmark` | medium |
 | `mpi-rank-binding-diagnostics` | medium |
 | `mpi4py-on-slurm` | medium |

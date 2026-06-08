@@ -1,0 +1,149 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "mpi-fabric-diagnostics",
+  "name": "MPI Fabric Diagnostics",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect MPI transport and fabric evidence for multi-node Slurm jobs.",
+  "description": "This skill helps users and support teams diagnose MPI communication setup by recording MPI launcher details, Open MPI MCA hints, UCX and libfabric provider evidence, optional InfiniBand device visibility, and a tiny multi-node MPI communication probe.",
+  "categories": ["mpi", "performance", "debugging", "scheduler"],
+  "tags": ["mpi", "slurm", "ucx", "libfabric", "ofi", "openmpi", "pmix", "interconnect", "pingpong"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "mpicc",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "ucx_info",
+      "required": false
+    },
+    {
+      "name": "fi_info",
+      "required": false
+    },
+    {
+      "name": "ompi_info",
+      "required": false
+    },
+    {
+      "name": "ibv_devinfo",
+      "required": false
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "account",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific Slurm account or allocation for the short MPI fabric diagnostic job."
+    },
+    {
+      "name": "partition",
+      "type": "string",
+      "required": false,
+      "description": "Slurm partition or queue for the diagnostic job."
+    },
+    {
+      "name": "mpi_module",
+      "type": "string",
+      "required": false,
+      "description": "Optional MPI module to load before collecting tool and runtime evidence."
+    },
+    {
+      "name": "task_shape",
+      "type": "object",
+      "required": true,
+      "description": "Nodes, tasks per node, and total MPI ranks for a small communication probe."
+    },
+    {
+      "name": "transport_hints",
+      "type": "object",
+      "required": false,
+      "description": "Optional reviewed environment hints such as UCX_TLS, UCX_NET_DEVICES, FI_PROVIDER, or Open MPI MCA settings."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "fabric_environment_report",
+      "description": "MPI, UCX, libfabric, PMIx, Slurm, and optional InfiniBand evidence captured before launch."
+    },
+    {
+      "name": "mpi_probe_plan",
+      "description": "Dry-run compile and srun command lines for the tiny MPI fabric probe."
+    },
+    {
+      "name": "mpi_probe_report",
+      "description": "Small MPI communication timing and rank placement evidence written only when RUN_MPI_FABRIC_PROBE=1."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/mpi-fabric-diagnostics.sbatch",
+    "examples/mpi_fabric_probe.c"
+  ],
+  "examples": [
+    {
+      "title": "MPI fabric diagnostic Slurm job",
+      "path": "examples/mpi-fabric-diagnostics.sbatch"
+    },
+    {
+      "title": "Tiny MPI communication probe",
+      "path": "examples/mpi_fabric_probe.c"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill mpi-fabric-diagnostics",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/mpi-fabric-diagnostics/examples/mpi-fabric-diagnostics.sbatch",
+      "description": "Check the Slurm wrapper syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Submit the wrapper with RUN_MPI_FABRIC_PROBE=0 to review tool evidence and the launch plan, then set RUN_MPI_FABRIC_PROBE=1 on a short multi-node partition and confirm mpi-fabric-probe.tsv is written."
+    }
+  ],
+  "references": [
+    {
+      "title": "Open MPI network support",
+      "url": "https://docs.open-mpi.org/en/v5.0.x/release-notes/networks.html"
+    },
+    {
+      "title": "Open MPI InfiniBand and RoCE support",
+      "url": "https://docs.open-mpi.org/en/v5.0.7/tuning-apps/networking/ib-and-roce.html"
+    },
+    {
+      "title": "OpenUCX running UCX",
+      "url": "https://openucx.readthedocs.io/en/master/running.html"
+    },
+    {
+      "title": "libfabric fi_info manual",
+      "url": "https://ofiwg.github.io/libfabric/v1.18.0/man/fi_info.1.html"
+    },
+    {
+      "title": "Slurm srun documentation",
+      "url": "https://slurm.schedmd.com/srun.html"
+    }
+  ]
+}
