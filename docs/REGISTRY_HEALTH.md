@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 84
+- Skills: 85
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 19 |
-| `medium` | 65 |
+| `medium` | 66 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 84 |
+| `seed` | 85 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 84 |
+| `draft` | 85 |
 
 ## Collection Coverage
 
@@ -36,11 +36,11 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `bioinformatics-workflows` | 7 |
 | `containers` | 7 |
 | `core-hpc` | 19 |
-| `data-movement` | 10 |
+| `data-movement` | 11 |
 | `facility-ops` | 5 |
-| `gpu-mpi-performance` | 24 |
+| `gpu-mpi-performance` | 25 |
 | `scheduler-basics` | 7 |
-| `simulation-workflows` | 18 |
+| `simulation-workflows` | 19 |
 | `software-stacks` | 28 |
 | `training-onboarding` | 19 |
 | `workflow-engines` | 8 |
@@ -88,6 +88,7 @@ All skills are included in at least one collection.
 | `large-file-archive-prepare` | medium |
 | `license-aware-slurm-job` | medium |
 | `lsf-submit-job` | medium |
+| `lustre-striping-layout-planning` | medium |
 | `matlab-batch-on-slurm` | medium |
 | `module-environment-debug` | low |
 | `module-tree-health-check` | low |

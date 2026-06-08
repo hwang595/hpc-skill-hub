@@ -3,7 +3,7 @@
   "id": "data-movement",
   "name": "Data Movement",
   "status": "draft",
-  "summary": "Skills for staging, transferring, validating, profiling, benchmarking, and managing research data across HPC filesystems and object storage.",
+  "summary": "Skills for staging, transferring, validating, profiling, layout planning, benchmarking, and managing research data across HPC filesystems and object storage.",
   "audience": ["data stewards", "research groups", "facility support teams"],
   "skill_ids": [
     "globus-transfer-dataset",
@@ -12,6 +12,7 @@
     "checksum-manifest-create",
     "dataset-staging-to-scratch",
     "darshan-io-profile-analysis",
+    "lustre-striping-layout-planning",
     "ior-mdtest-storage-smoke",
     "large-file-archive-prepare",
     "scratch-storage-management",

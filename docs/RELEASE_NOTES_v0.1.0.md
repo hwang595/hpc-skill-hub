@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 84.
+- Skills: 85.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -48,17 +48,18 @@ request missing workflows, or contribute public site adapters.
   Streamlit apps, RStudio, VS Code tunnels, Python/Conda environments, Rscript,
   Julia, MATLAB batch jobs, license-aware software use, and common learner triage.
 - Data movement: Globus, rsync, object-storage transfers, checksum manifests,
-  scratch staging, archive preparation, Darshan I/O profile analysis,
-  IOR/MDTest storage smoke benchmarks, scratch inventory, and filesystem quota
-  triage.
+  scratch staging, archive preparation, Darshan I/O profile analysis, Lustre
+  striping layout planning, IOR/MDTest storage smoke benchmarks, scratch
+  inventory, and filesystem quota triage.
 - GPU/MPI performance: MPI sanity checks, GPU binding diagnostics, MPI fabric
   diagnostics, rank binding diagnostics, hybrid MPI/OpenMP layout checks,
   parallel HDF5/NetCDF preflight, containerized MPI, mpi4py launch checks, GPU sanity checks, Ray cluster smoke
   tests, JAX distributed smoke tests, Hugging Face Accelerate launches,
   TensorFlow multi-worker smoke tests,
   PyTorch DDP, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
-  DeepSpeed, OpenMP placement, Slurm efficiency review, storage smoke benchmarks,
-  Darshan I/O profile analysis, and basic profiling.
+  DeepSpeed, OpenMP placement, Slurm efficiency review, storage smoke
+  benchmarks, Darshan I/O profile analysis, Lustre striping layout planning,
+  and basic profiling.
 - AI/HPC: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke
   tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
@@ -69,7 +70,7 @@ request missing workflows, or contribute public site adapters.
 - Simulation: LAMMPS, GROMACS, NAMD, Quantum ESPRESSO, CP2K, OpenFOAM, WRF, MPI
   launch checks, MPI fabric diagnostics, rank binding diagnostics, hybrid
   MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, Darshan I/O profile
-  analysis, OpenMP placement,
+  analysis, Lustre striping layout planning, OpenMP placement,
   restart planning, profiling, storage smoke evidence, and reproducibility.
 - Facility operations: read-only Slurm usage reporting, pending reason triage,
   QOS/account limit evidence, node-health triage, and module tree health checks

@@ -33,11 +33,11 @@ recruitment and ownership map for these areas:
 | Domain | Examples |
 | --- | --- |
 | Scheduler and allocation | Slurm submission, arrays, accounting, QOS/account limits, fairshare, time limits, partitions, reservations, preemption, and requeue behavior. |
-| Storage and data movement | Quotas, scratch, archival staging, rsync, Globus, object storage, checksum workflows, Darshan I/O profile analysis. |
+| Storage and data movement | Quotas, scratch, archival staging, rsync, Globus, object storage, checksum workflows, Darshan I/O profile analysis, Lustre striping layout planning. |
 | Software environments | Modules, compiler/MPI stacks, parallel HDF5/NetCDF builds, licensed software jobs, Conda, Python virtualenvs, Spack, EasyBuild. |
 | Containers | Apptainer/Singularity build and runtime patterns, image portability, bind paths. |
 | Workflow engines | Nextflow, Snakemake, nf-core, checkpoint/restart, staging plans. |
-| MPI, GPU, and performance | MPI launch, MPI fabric diagnostics, GPU binding diagnostics, rank binding diagnostics, hybrid MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, OpenMP affinity, CUDA/ROCm visibility, NCCL, profiling, AI training launchers. |
+| MPI, GPU, and performance | MPI launch, MPI fabric diagnostics, GPU binding diagnostics, rank binding diagnostics, hybrid MPI/OpenMP layouts, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, OpenMP affinity, CUDA/ROCm visibility, NCCL, profiling, AI training launchers. |
 | Scientific domains | Bioinformatics, molecular dynamics, CFD, weather, or other domain-specific workflows. |
 | Facility operations | Node health, usage reporting, QOS/account evidence, module tree health, training cluster preparation, support triage. |
 

@@ -1,0 +1,141 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "lustre-striping-layout-planning",
+  "name": "Lustre Striping Layout Planning",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Inspect and plan Lustre stripe layouts for data-intensive HPC workloads.",
+  "description": "This skill helps users and support teams collect read-only Lustre layout evidence with lfs commands and prepare reviewable stripe-count, stripe-size, pool, and progressive-file-layout plans before changing directories, creating large files, or migrating existing data.",
+  "categories": ["data", "performance", "debugging"],
+  "tags": ["lustre", "striping", "lfs", "filesystem", "io", "layout", "ost", "pfl"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "lfs",
+      "required": true,
+      "notes": "Used for read-only getstripe and filesystem layout inspection; setstripe commands are generated for review only."
+    },
+    {
+      "name": "df",
+      "required": true
+    },
+    {
+      "name": "stat",
+      "required": true
+    },
+    {
+      "name": "find",
+      "required": false,
+      "notes": "Optionally samples large files in a target directory with bounded depth."
+    },
+    {
+      "name": "head",
+      "required": false,
+      "notes": "Bounds optional file samples."
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "target_path",
+      "type": "path",
+      "required": true,
+      "description": "Existing Lustre file or directory whose current layout and filesystem state should be inspected."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": false,
+      "description": "Local directory where read-only evidence and the reviewable layout plan should be written."
+    },
+    {
+      "name": "expected_io_pattern",
+      "type": "string",
+      "required": false,
+      "description": "Expected workload pattern, such as many small files, one large shared checkpoint, per-rank outputs, or staged analysis reads."
+    },
+    {
+      "name": "site_policy",
+      "type": "string",
+      "required": true,
+      "description": "Local policy confirming whether users may set Lustre stripe layouts, pools, PFL templates, or migrate existing files."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "lustre_layout_report",
+      "description": "Read-only report with lfs getstripe, lfs df, df, stat, and bounded directory sample evidence."
+    },
+    {
+      "name": "stripe_layout_plan",
+      "description": "Reviewable notes and placeholder lfs setstripe commands that are not executed by the example script."
+    },
+    {
+      "name": "site_policy_checklist",
+      "description": "Checklist for storage policy, existing data, pools, PFL support, and rollback expectations."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/lustre-layout-report.sh",
+    "examples/site-policy-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Collect read-only Lustre layout evidence",
+      "path": "examples/lustre-layout-report.sh"
+    },
+    {
+      "title": "Review local Lustre striping policy before changes",
+      "path": "examples/site-policy-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill lustre-striping-layout-planning",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/lustre-striping-layout-planning/examples/lustre-layout-report.sh",
+      "description": "Check shell syntax without requiring a Lustre filesystem."
+    },
+    {
+      "type": "manual",
+      "description": "Run the report script against a public-safe Lustre path and confirm it writes evidence and a review-only stripe plan without modifying the target path."
+    }
+  ],
+  "references": [
+    {
+      "title": "Lustre documentation",
+      "url": "https://www.lustre.org/documentation/"
+    },
+    {
+      "title": "Configuring Lustre File Striping",
+      "url": "https://wiki.lustre.org/index.php/Configuring_Lustre_File_Striping"
+    },
+    {
+      "title": "lfs setstripe manual page",
+      "url": "https://wiki.lustre.org/Pfl2-lfs-setstripe.1"
+    }
+  ]
+}

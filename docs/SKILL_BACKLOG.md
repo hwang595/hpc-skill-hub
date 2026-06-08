@@ -42,6 +42,7 @@ new collections.
 | `hybrid-mpi-openmp-slurm` | mpi | medium | Seed skill added to `gpu-mpi-performance` and `simulation-workflows`. |
 | `parallel-hdf5-netcdf-preflight` | software | medium | Seed skill added to `software-stacks`, `gpu-mpi-performance`, and `simulation-workflows`. |
 | `darshan-io-profile-analysis` | performance | low | Seed skill added to `data-movement`, `gpu-mpi-performance`, and `simulation-workflows`. |
+| `lustre-striping-layout-planning` | performance | medium | Seed skill added to `data-movement`, `gpu-mpi-performance`, and `simulation-workflows`. |
 | `rscript-on-slurm` | software | medium | Seed skill added to `software-stacks` and `training-onboarding`. |
 | `julia-on-slurm` | software | medium | Seed skill added to `software-stacks` and `training-onboarding`. |
 | `matlab-batch-on-slurm` | software | medium | Seed skill added to `software-stacks` and `training-onboarding`. |

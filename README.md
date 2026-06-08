@@ -64,6 +64,7 @@ tools.
 | `compiler-mpi-matrix` | Check compiler, MPI wrapper, and module compatibility before building HPC codes. |
 | `parallel-hdf5-netcdf-preflight` | Check parallel HDF5 and NetCDF MPI-IO build and runtime assumptions. |
 | `darshan-io-profile-analysis` | Analyze Darshan logs for HPC I/O behavior and bottleneck evidence. |
+| `lustre-striping-layout-planning` | Inspect and plan Lustre stripe layouts for data-intensive HPC workloads. |
 | `reproducible-run-capture` | Capture command, environment, provenance, and logs for reproducible HPC runs. |
 | `python-virtualenv-on-hpc` | Create lightweight Python virtual environments with explicit HPC module assumptions. |
 | `tensorboard-on-slurm` | Run policy-aware TensorBoard monitors from short Slurm allocations. |
