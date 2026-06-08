@@ -5,12 +5,12 @@
     "data": 9,
     "debugging": 17,
     "education": 1,
-    "gpu": 6,
+    "gpu": 7,
     "interactive": 2,
     "mpi": 7,
     "performance": 8,
-    "scheduler": 35,
-    "software": 14,
+    "scheduler": 36,
+    "software": 15,
     "workflow": 6
   },
   "collection_count": 9,
@@ -72,12 +72,13 @@
     },
     {
       "id": "gpu-mpi-performance",
-      "skill_count": 11,
+      "skill_count": 12,
       "skill_ids": [
         "mpi-hello-and-benchmark",
         "compiler-mpi-matrix",
         "mpi4py-on-slurm",
         "gpu-sanity-check",
+        "ray-on-slurm",
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
@@ -104,13 +105,14 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 15,
+      "skill_count": 16,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "mpi4py-on-slurm",
         "rscript-on-slurm",
@@ -155,7 +157,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 52
+    "seed": 53
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -195,6 +197,7 @@
     "python-virtualenv-on-hpc": "low",
     "pytorch-ddp-on-slurm": "medium",
     "quota-and-filesystem-triage": "low",
+    "ray-on-slurm": "medium",
     "reproducible-run-capture": "low",
     "rscript-on-slurm": "medium",
     "rsync-data-transfer": "medium",
@@ -213,13 +216,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 35
+    "medium": 36
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 52,
+  "skill_count": 53,
   "status_counts": {
-    "draft": 52
+    "draft": 53
   },
   "uncollected_skill_ids": []
 }

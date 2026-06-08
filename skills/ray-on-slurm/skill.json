@@ -1,0 +1,140 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ray-on-slurm",
+  "name": "Ray On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Launch resource-bounded Ray clusters inside Slurm allocations.",
+  "description": "This skill helps users start Ray across Slurm-allocated nodes while keeping head-node selection, the head port, CPU/GPU resources, temporary directories, logs, and smoke-test execution explicit.",
+  "categories": ["software", "gpu", "scheduler"],
+  "tags": ["ray", "python", "distributed", "slurm", "ai", "gpu", "ports", "srun"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "ray",
+      "required": true
+    },
+    {
+      "name": "python",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "scontrol",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "python_script",
+      "type": "path",
+      "required": true,
+      "description": "Python script to run on the Ray head node after the cluster starts."
+    },
+    {
+      "name": "ray_port_policy",
+      "type": "object",
+      "required": false,
+      "description": "Optional site policy for the head port and, when using a manual ray start pattern, non-overlapping Ray service and worker ports."
+    },
+    {
+      "name": "python_environment",
+      "type": "path",
+      "required": false,
+      "description": "Optional virtualenv or Conda/Mamba environment containing ray."
+    },
+    {
+      "name": "resources",
+      "type": "object",
+      "required": true,
+      "description": "Slurm nodes, tasks, CPUs, GPUs, memory, and wall time requested for the Ray smoke test."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "slurm_log",
+      "description": "Slurm stdout/stderr log for the Ray job."
+    },
+    {
+      "name": "ray_record",
+      "description": "Launch plan, selected head node, address, Ray version, optional port policy, and smoke-test status."
+    },
+    {
+      "name": "ray_result",
+      "description": "Small JSON result report from the Ray demonstration workload."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/ray-slurm.sbatch",
+    "examples/ray_smoke.py",
+    "examples/requirements.txt"
+  ],
+  "examples": [
+    {
+      "title": "Plan or launch a Ray cluster in Slurm",
+      "path": "examples/ray-slurm.sbatch"
+    },
+    {
+      "title": "Ray task smoke test",
+      "path": "examples/ray_smoke.py"
+    },
+    {
+      "title": "Minimal Python dependency list",
+      "path": "examples/requirements.txt"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill ray-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/ray-on-slurm/examples/ray-slurm.sbatch",
+      "description": "Check the Slurm wrapper shell syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Replace account, partition, and environment placeholders, submit with RUN_RAY_SMOKE=0 to review the launch plan, then submit with RUN_RAY_SMOKE=1 on a short test allocation and confirm the result JSON is written."
+    }
+  ],
+  "references": [
+    {
+      "title": "Ray deploying on Slurm",
+      "url": "https://docs.ray.io/en/latest/cluster/vms/user-guides/community/slurm.html"
+    },
+    {
+      "title": "Ray starting Ray",
+      "url": "https://docs.ray.io/en/latest/ray-core/starting-ray.html"
+    },
+    {
+      "title": "Ray configuration",
+      "url": "https://docs.ray.io/en/latest/ray-core/configure.html"
+    },
+    {
+      "title": "Slurm scontrol documentation",
+      "url": "https://slurm.schedmd.com/scontrol.html"
+    }
+  ]
+}

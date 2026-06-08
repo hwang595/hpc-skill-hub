@@ -42,6 +42,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   and Python environment checks.
 - Add a Dask Jobqueue on Slurm skill with dry-run worker job script review and
   bounded worker scaling.
+- Add a Ray on Slurm skill with explicit head node selection, resource bounds,
+  launch records, and smoke test controls.
 
 ## v0.1.0 - Planned
 
@@ -49,14 +51,14 @@ Initial public seed release.
 
 ### Added
 
-- 52 seed HPC skills covering Slurm, job arrays, dependency chains, pending
+- 53 seed HPC skills covering Slurm, job arrays, dependency chains, pending
   reason triage, monitoring, resource estimation, efficiency review, failure
   triage, checkpoint/restart, interactive sessions, notebooks, OpenMP
   placement, storage triage, Python/R/Julia/MATLAB software environments,
-  Dask Jobqueue, mpi4py, containers, Spack, EasyBuild, data movement, workflow
-  engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics workflows,
-  molecular dynamics, CFD, weather workloads, read-only facility operations,
-  and training onboarding.
+  Ray, Dask Jobqueue, mpi4py, containers, Spack, EasyBuild, data movement,
+  workflow engines, MPI/GPU diagnostics, AI/HPC launches, bioinformatics
+  workflows, molecular dynamics, CFD, weather workloads, read-only facility
+  operations, and training onboarding.
 - 9 curated collections: `core-hpc`, `software-stacks`, `workflow-engines`,
   `data-movement`, `gpu-mpi-performance`, `bioinformatics-workflows`, and
   `simulation-workflows`, `facility-ops`, and `training-onboarding`.

@@ -5,12 +5,12 @@
     "data": 9,
     "debugging": 17,
     "education": 1,
-    "gpu": 6,
+    "gpu": 7,
     "interactive": 2,
     "mpi": 7,
     "performance": 8,
-    "scheduler": 35,
-    "software": 14,
+    "scheduler": 36,
+    "software": 15,
     "workflow": 6
   },
   "collection_count": 9,
@@ -116,6 +116,7 @@
         "compiler-mpi-matrix",
         "mpi4py-on-slurm",
         "gpu-sanity-check",
+        "ray-on-slurm",
         "pytorch-ddp-on-slurm",
         "nccl-diagnostics",
         "gpu-memory-triage",
@@ -125,7 +126,7 @@
         "performance-profile-basic"
       ],
       "status": "draft",
-      "summary": "Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence."
+      "summary": "Skills for validating GPU allocations, GPU memory failures, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence."
     },
     {
       "audience": [
@@ -165,6 +166,7 @@
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "mpi4py-on-slurm",
         "rscript-on-slurm",
@@ -177,7 +179,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Dask, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -227,7 +229,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 36
+    "slurm": 37
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -253,7 +255,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 52,
+  "skill_count": 53,
   "skills": [
     {
       "categories": [
@@ -2365,6 +2367,76 @@
     },
     {
       "categories": [
+        "software",
+        "gpu",
+        "scheduler"
+      ],
+      "description": "This skill helps users start Ray across Slurm-allocated nodes while keeping head-node selection, the head port, CPU/GPU resources, temporary directories, logs, and smoke-test execution explicit.",
+      "examples": [
+        {
+          "path": "skills/ray-on-slurm/examples/ray-slurm.sbatch",
+          "title": "Plan or launch a Ray cluster in Slurm"
+        },
+        {
+          "path": "skills/ray-on-slurm/examples/ray_smoke.py",
+          "title": "Ray task smoke test"
+        },
+        {
+          "path": "skills/ray-on-slurm/examples/requirements.txt",
+          "title": "Minimal Python dependency list"
+        }
+      ],
+      "id": "ray-on-slurm",
+      "maturity": "seed",
+      "name": "Ray On Slurm",
+      "path": "skills/ray-on-slurm",
+      "readme": "skills/ray-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Ray deploying on Slurm",
+          "url": "https://docs.ray.io/en/latest/cluster/vms/user-guides/community/slurm.html"
+        },
+        {
+          "title": "Ray starting Ray",
+          "url": "https://docs.ray.io/en/latest/ray-core/starting-ray.html"
+        },
+        {
+          "title": "Ray configuration",
+          "url": "https://docs.ray.io/en/latest/ray-core/configure.html"
+        },
+        {
+          "title": "Slurm scontrol documentation",
+          "url": "https://slurm.schedmd.com/scontrol.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Launch resource-bounded Ray clusters inside Slurm allocations.",
+      "tags": [
+        "ray",
+        "python",
+        "distributed",
+        "slurm",
+        "ai",
+        "gpu",
+        "ports",
+        "srun"
+      ],
+      "tools": [
+        "ray",
+        "python",
+        "srun",
+        "sbatch",
+        "scontrol",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "debugging",
         "software"
       ],
@@ -3168,6 +3240,7 @@
     "affinity": 1,
     "afterany": 1,
     "afterok": 1,
+    "ai": 1,
     "all-reduce": 1,
     "amd": 1,
     "apptainer": 2,
@@ -3201,7 +3274,7 @@
     "definition": 1,
     "dependency": 1,
     "depot": 1,
-    "distributed": 3,
+    "distributed": 4,
     "easybuild": 1,
     "easyconfig": 1,
     "efficiency": 1,
@@ -3215,7 +3288,7 @@
     "genomics": 1,
     "git": 1,
     "globus": 1,
-    "gpu": 10,
+    "gpu": 11,
     "gromacs": 1,
     "haplotypecaller": 1,
     "inode": 1,
@@ -3266,6 +3339,7 @@
     "permission": 1,
     "pip": 1,
     "pipeline": 1,
+    "ports": 1,
     "preemption": 1,
     "preflight": 1,
     "priority": 1,
@@ -3273,10 +3347,11 @@
     "profiling": 1,
     "provenance": 1,
     "publication": 1,
-    "python": 3,
+    "python": 4,
     "pytorch": 3,
     "quota": 2,
     "r": 1,
+    "ray": 1,
     "reason": 1,
     "reconstruction": 1,
     "reporting": 1,
@@ -3301,7 +3376,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 34,
+    "slurm": 35,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -3309,7 +3384,7 @@
     "sprio": 1,
     "squeue": 4,
     "sreport": 1,
-    "srun": 3,
+    "srun": 4,
     "staging": 3,
     "state": 1,
     "storage": 2,
@@ -3382,7 +3457,7 @@
     "matlab": 1,
     "micromamba": 1,
     "mkdir": 23,
-    "module": 13,
+    "module": 14,
     "mpi4py": 1,
     "mpicc": 2,
     "mpicxx": 1,
@@ -3396,17 +3471,18 @@
     "pip": 1,
     "printenv": 1,
     "pwd": 7,
-    "python": 2,
+    "python": 3,
     "python3": 5,
     "quota": 1,
+    "ray": 1,
     "real.exe": 1,
     "reconstructPar": 1,
     "rocm-smi": 2,
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 26,
-    "scontrol": 5,
+    "sbatch": 27,
+    "scontrol": 6,
     "sed": 1,
     "seff": 1,
     "sha256sum": 2,
@@ -3420,7 +3496,7 @@
     "sprio": 1,
     "squeue": 6,
     "sreport": 1,
-    "srun": 12,
+    "srun": 13,
     "ssh": 2,
     "tail": 4,
     "tar": 1,

@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 52.
+- Skills: 53.
 - Collections: 9.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -27,9 +27,9 @@ request missing workflows, or contribute public site adapters.
   failure triage, interactive sessions, Jupyter, OpenMP placement, quota
   triage, and scratch management.
 - Software stacks: module debugging, module tree health, compiler/MPI
-  compatibility, reproducible run capture, Python virtualenv, Dask Jobqueue,
-  mpi4py on Slurm, Rscript on Slurm, Julia on Slurm, MATLAB batch jobs,
-  Conda/Mamba, Apptainer builds and runtime, Spack, and EasyBuild.
+  compatibility, reproducible run capture, Python virtualenv, Ray on Slurm,
+  Dask Jobqueue, mpi4py on Slurm, Rscript on Slurm, Julia on Slurm, MATLAB
+  batch jobs, Conda/Mamba, Apptainer builds and runtime, Spack, and EasyBuild.
 - Workflow engines: lightweight Slurm dependency chains, Dask worker clusters,
   Nextflow, Snakemake, and nf-core on Slurm.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm
@@ -38,8 +38,9 @@ request missing workflows, or contribute public site adapters.
 - Data movement: Globus, rsync, checksum manifests, scratch staging, archive
   preparation, scratch inventory, and filesystem quota triage.
 - GPU/MPI performance: MPI sanity checks, mpi4py launch checks, GPU sanity
-  checks, PyTorch DDP, NCCL diagnostics, GPU memory triage, DeepSpeed, OpenMP
-  placement, Slurm efficiency review, and basic profiling.
+  checks, Ray cluster smoke tests, PyTorch DDP, NCCL diagnostics, GPU memory
+  triage, DeepSpeed, OpenMP placement, Slurm efficiency review, and basic
+  profiling.
 - Bioinformatics: nf-core and GATK workflow patterns with data staging and
   checksum practices.
 - Simulation: LAMMPS, GROMACS, OpenFOAM, WRF, MPI launch checks, OpenMP
