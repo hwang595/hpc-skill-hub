@@ -158,9 +158,9 @@
       "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
     },
     {
-      "bytes": 7176,
+      "bytes": 7436,
       "path": "CHANGELOG.md",
-      "sha256": "41fa1b799457f2f4e720ff3805e52b85e7df096216bd14796bf50f4b569dd5c4"
+      "sha256": "5f3845ddb040a5e2e8d2c8e0715ed5b77ca83226c5b3db4ee72c552d2cd8d571"
     },
     {
       "bytes": 426,
@@ -188,14 +188,14 @@
       "sha256": "dea798cae34c09327203664ff6b3e488ce7eb4ceff5e6d0f89bc31462fea8825"
     },
     {
-      "bytes": 11979,
+      "bytes": 12003,
       "path": "README.md",
-      "sha256": "a2283c02252584ffb13cd858bb2ae1cf9df2d9cfc3264b1e8a0e0f64e41ecabb"
+      "sha256": "51197a1d168f4233a7f6558e3eb05c3c8505b7cd206ddca172c9c5cd72fe7824"
     },
     {
-      "bytes": 2982,
+      "bytes": 7737,
       "path": "ROADMAP.md",
-      "sha256": "4a78e31b215b9222fba809fa312e53ae1eb790fc0eaa232d2558db162fc82bb7"
+      "sha256": "5db1f5aa6630c96a7fc41dc6fe3cc0e83b98ede135cf789361368a115965b45c"
     },
     {
       "bytes": 1442,
@@ -388,9 +388,9 @@
       "sha256": "0ad227f0b658e75903e68e2803da8ed1911d91c75fc39acbeff9592d9b8d4924"
     },
     {
-      "bytes": 6934,
+      "bytes": 7067,
       "path": "docs/RELEASE_NOTES_v0.1.0.md",
-      "sha256": "5513721b294c9bb4acf5104e0a6d3bc1cd8dc277220c4fd5fc2a1eb0200e9b4e"
+      "sha256": "13543e005f7c54c8338ffd34bb6d01fbdf31a26298959928f0bbc6c1d708fe27"
     },
     {
       "bytes": 2778,
@@ -2235,6 +2235,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1265021,
+  "total_bytes": 1270193,
   "version": "v0.1.0"
 }

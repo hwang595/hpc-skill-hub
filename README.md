@@ -197,6 +197,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Skill authoring guide](docs/SKILL_AUTHORING_GUIDE.md)
 - [Skill lifecycle](docs/SKILL_LIFECYCLE.md)
 - [Skill backlog](docs/SKILL_BACKLOG.md)
+- [Roadmap](ROADMAP.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Site adapters](docs/SITE_ADAPTERS.md)
 - [Integration guide](docs/INTEGRATION_GUIDE.md)

@@ -106,6 +106,8 @@ request missing workflows, or contribute public site adapters.
 - Repository metadata, labels, and starter ruleset files.
 - Seed community issues for launch coordination.
 - Support and citation metadata for public project use.
+- Technical roadmap covering the seed baseline, GitHub launch gates, registry
+  growth, integrations, and open ecosystem milestones.
 - Local launch readiness audit for GitHub publishing.
 - Command generators for repository setup, labels, starter issues, rulesets,
   and release publication.

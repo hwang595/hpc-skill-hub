@@ -62,6 +62,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   compute allocations.
 - Add an IOR and MDTest storage smoke skill for small, policy-aware filesystem
   benchmark evidence on Slurm.
+- Expand the technical roadmap with current registry baseline, GitHub launch
+  gates, integration tracks, maturity evidence, and open ecosystem milestones.
 - Add a NAMD on Slurm skill for molecular dynamics jobs with CPU/GPU layout and
   restart planning.
 - Add a CP2K on Slurm skill for MPI/OpenMP electronic-structure and molecular
@@ -123,7 +125,8 @@ Initial public seed release.
 - Seed community issues and command generators for launching the public
   contribution queue.
 - Governance, safety, release, maintainer handoff, authoring, publishing, and
-  community launch documentation.
+  community launch documentation, plus a technical roadmap for public launch,
+  registry growth, integrations, and ecosystem stewardship.
 
 ### Safety Notes
 
