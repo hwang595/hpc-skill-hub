@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 87.
+- Skills: 88.
 - Collections: 12.
 - Site adapters: 2, including 1 example adapter and 1 public-doc-backed draft
   adapter.
@@ -24,9 +24,9 @@ request missing workflows, or contribute public site adapters.
 ## Skill Coverage
 
 - Core HPC and schedulers: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
-  submission, Slurm and Grid Engine arrays, dependency chains, pending reason
-  triage, QOS/account limit evidence, monitoring, resource estimation, OOM
-  memory triage, efficiency review,
+  submission, Slurm and Grid Engine arrays, failed-array retry planning,
+  dependency chains, pending reason triage, QOS/account limit evidence,
+  monitoring, resource estimation, OOM memory triage, efficiency review,
   license-aware jobs, checkpoint/restart, preemption/requeue handling, failure triage, interactive sessions, Open OnDemand Batch
   Connect templates, Jupyter, RStudio, VS Code tunnels, OpenMP placement, quota
   triage, and scratch management.
@@ -42,11 +42,11 @@ request missing workflows, or contribute public site adapters.
 - Containers: Apptainer-compatible image build planning, container runtime
   execution, containerized MPI launch checks, GPU visibility checks, scratch
   staging, checksum manifests, and reproducible run capture.
-- Workflow engines: lightweight Slurm dependency chains, CWL and WDL runs
-  inside Slurm allocations, Dask worker clusters, Parsl worker blocks,
-  Nextflow, Snakemake, and nf-core on Slurm.
+- Workflow engines: lightweight Slurm dependency chains, array retry planning,
+  CWL and WDL runs inside Slurm allocations, Dask worker clusters, Parsl worker
+  blocks, Nextflow, Snakemake, and nf-core on Slurm.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm
-  workflows, Open OnDemand templates, notebooks, TensorBoard monitors,
+  workflows, array retry planning, Open OnDemand templates, notebooks, TensorBoard monitors,
   Streamlit apps, RStudio, VS Code tunnels, Python/Conda environments, Rscript,
   Julia, MATLAB batch jobs, license-aware software use, and common learner triage.
 - Data movement: Globus, rsync, object-storage transfers, checksum manifests,

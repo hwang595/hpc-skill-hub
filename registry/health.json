@@ -4,15 +4,15 @@
     "admin": 5,
     "containers": 3,
     "data": 17,
-    "debugging": 29,
+    "debugging": 30,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
     "performance": 21,
-    "scheduler": 65,
+    "scheduler": 66,
     "software": 27,
-    "workflow": 11
+    "workflow": 12
   },
   "collection_count": 12,
   "collection_coverage": [
@@ -68,10 +68,11 @@
     },
     {
       "id": "core-hpc",
-      "skill_count": 20,
+      "skill_count": 21,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
+        "slurm-array-retry-plan",
         "slurm-job-dependency-chain",
         "slurm-pending-reason-triage",
         "slurm-qos-account-limit-triage",
@@ -155,13 +156,14 @@
     },
     {
       "id": "scheduler-basics",
-      "skill_count": 8,
+      "skill_count": 9,
       "skill_ids": [
         "slurm-submit-job",
         "pbs-submit-job",
         "lsf-submit-job",
         "htcondor-submit-job",
         "grid-engine-submit-job",
+        "slurm-array-retry-plan",
         "job-failure-triage",
         "slurm-oom-memory-triage",
         "reproducible-run-capture"
@@ -230,10 +232,11 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 20,
+      "skill_count": 21,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
+        "slurm-array-retry-plan",
         "license-aware-slurm-job",
         "slurm-preemption-requeue",
         "interactive-session",
@@ -256,9 +259,10 @@
     },
     {
       "id": "workflow-engines",
-      "skill_count": 8,
+      "skill_count": 9,
       "skill_ids": [
         "slurm-job-dependency-chain",
+        "slurm-array-retry-plan",
         "cwl-on-slurm",
         "wdl-on-slurm",
         "dask-jobqueue-on-slurm",
@@ -271,7 +275,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 87
+    "seed": 88
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -341,6 +345,7 @@
     "rstudio-on-slurm": "medium",
     "rsync-data-transfer": "medium",
     "scratch-storage-management": "low",
+    "slurm-array-retry-plan": "medium",
     "slurm-efficiency-report": "low",
     "slurm-gpu-binding-diagnostics": "medium",
     "slurm-job-array-patterns": "medium",
@@ -364,13 +369,13 @@
   },
   "risk_counts": {
     "low": 20,
-    "medium": 67
+    "medium": 68
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 87,
+  "skill_count": 88,
   "status_counts": {
-    "draft": 87
+    "draft": 88
   },
   "uncollected_skill_ids": []
 }

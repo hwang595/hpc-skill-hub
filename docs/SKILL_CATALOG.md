@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 87 skills.
+Current registry size: 88 skills.
 
 ## Categories
 
@@ -11,15 +11,15 @@ Current registry size: 87 skills.
 | `admin` | 5 |
 | `containers` | 3 |
 | `data` | 17 |
-| `debugging` | 29 |
+| `debugging` | 30 |
 | `education` | 2 |
 | `gpu` | 13 |
 | `interactive` | 7 |
 | `mpi` | 18 |
 | `performance` | 21 |
-| `scheduler` | 65 |
+| `scheduler` | 66 |
 | `software` | 27 |
-| `workflow` | 11 |
+| `workflow` | 12 |
 
 ## Skills By Category
 
@@ -88,6 +88,7 @@ Current registry size: 87 skills.
 | [`quota-and-filesystem-triage`](../skills/quota-and-filesystem-triage/README.md) | low | seed | Diagnose quota, inode, and filesystem-space failures from user-visible evidence. |
 | [`reproducible-run-capture`](../skills/reproducible-run-capture/README.md) | low | seed | Capture command, environment, provenance, and logs for reproducible HPC runs. |
 | [`scratch-storage-management`](../skills/scratch-storage-management/README.md) | low | seed | Inspect scratch, project, and working-directory usage before HPC jobs. |
+| [`slurm-array-retry-plan`](../skills/slurm-array-retry-plan/README.md) | medium | seed | Plan safe retries for failed Slurm array tasks. |
 | [`slurm-efficiency-report`](../skills/slurm-efficiency-report/README.md) | low | seed | Summarize completed Slurm job efficiency from accounting data. |
 | [`slurm-gpu-binding-diagnostics`](../skills/slurm-gpu-binding-diagnostics/README.md) | medium | seed | Collect per-task GPU binding and visibility evidence from Slurm jobs. |
 | [`slurm-monitor-job`](../skills/slurm-monitor-job/README.md) | low | seed | Inspect Slurm job state, accounting records, and output paths. |
@@ -233,6 +234,7 @@ Current registry size: 87 skills.
 | [`ray-on-slurm`](../skills/ray-on-slurm/README.md) | medium | seed | Launch resource-bounded Ray clusters inside Slurm allocations. |
 | [`rscript-on-slurm`](../skills/rscript-on-slurm/README.md) | medium | seed | Run R scripts on Slurm with explicit package-library and output controls. |
 | [`rstudio-on-slurm`](../skills/rstudio-on-slurm/README.md) | medium | seed | Launch policy-aware RStudio or Posit sessions from Slurm allocations. |
+| [`slurm-array-retry-plan`](../skills/slurm-array-retry-plan/README.md) | medium | seed | Plan safe retries for failed Slurm array tasks. |
 | [`slurm-efficiency-report`](../skills/slurm-efficiency-report/README.md) | low | seed | Summarize completed Slurm job efficiency from accounting data. |
 | [`slurm-gpu-binding-diagnostics`](../skills/slurm-gpu-binding-diagnostics/README.md) | medium | seed | Collect per-task GPU binding and visibility evidence from Slurm jobs. |
 | [`slurm-job-array-patterns`](../skills/slurm-job-array-patterns/README.md) | medium | seed | Run parameter sweeps and many independent tasks with Slurm job arrays. |
@@ -297,6 +299,7 @@ Current registry size: 87 skills.
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
 | [`nf-core-on-slurm`](../skills/nf-core-on-slurm/README.md) | medium | seed | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
 | [`parsl-on-slurm`](../skills/parsl-on-slurm/README.md) | medium | seed | Run small Parsl workflows on Slurm with explicit provider and executor limits. |
+| [`slurm-array-retry-plan`](../skills/slurm-array-retry-plan/README.md) | medium | seed | Plan safe retries for failed Slurm array tasks. |
 | [`slurm-job-dependency-chain`](../skills/slurm-job-dependency-chain/README.md) | medium | seed | Chain multi-stage Slurm jobs with explicit dependencies. |
 | [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
 | [`wdl-on-slurm`](../skills/wdl-on-slurm/README.md) | medium | seed | Run small WDL workflows inside Slurm allocations with miniwdl. |
@@ -308,15 +311,15 @@ Current registry size: 87 skills.
 | [`ai-hpc`](../collections/ai-hpc.json) | draft | 18 | AI/HPC users, machine learning researchers, research software engineers, HPC support teams | Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads, GPU binding, and accelerator visibility on Slurm-backed HPC systems. |
 | [`bioinformatics-workflows`](../collections/bioinformatics-workflows.json) | draft | 7 | bioinformatics teams, core facilities, genomics platform engineers | Domain skills for running reviewed nf-core, GATK, and BLAST bioinformatics workflows on Slurm-backed HPC systems. |
 | [`containers`](../collections/containers.json) | draft | 7 | research software engineers, container users, HPC support teams | Skills for building, validating, running MPI containers, and staging data for containerized HPC workloads. |
-| [`core-hpc`](../collections/core-hpc.json) | draft | 20 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage. |
+| [`core-hpc`](../collections/core-hpc.json) | draft | 21 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage. |
 | [`data-movement`](../collections/data-movement.json) | draft | 11 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, profiling, layout planning, benchmarking, and managing research data across HPC filesystems and object storage. |
 | [`facility-ops`](../collections/facility-ops.json) | draft | 6 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, pending reason triage, QOS/account limit evidence, OOM memory triage, node triage, and module tree health. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 26 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU binding, GPU memory failures, TensorBoard training monitors, Ray, JAX, Hugging Face Accelerate, TensorFlow multi-worker training, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI fabric evidence, MPI rank binding, hybrid MPI/OpenMP layouts, CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, containerized MPI, and mpi4py launches, OpenMP placement, Slurm efficiency review, storage smoke benchmarks, and first-pass performance evidence. |
-| [`scheduler-basics`](../collections/scheduler-basics.json) | draft | 8 | new HPC users, training instructors, support teams, sites with mixed schedulers | Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers, including common failure and memory triage. |
+| [`scheduler-basics`](../collections/scheduler-basics.json) | draft | 9 | new HPC users, training instructors, support teams, sites with mixed schedulers | Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers, including array retry, common failure, and memory triage. |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 20 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, MPI fabric evidence, hybrid MPI/OpenMP layouts, rank binding diagnostics, CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile analysis, Lustre striping layout planning, electronic-structure, CFD, weather, restart, profiling, and storage-smoke workflows on Slurm-backed HPC systems. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 29 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, CMake build preflight, parallel HDF5/NetCDF preflight, licensed software jobs, Python, TensorBoard, Streamlit, Open OnDemand templates, Ray, Dask, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, R, RStudio, Julia, MATLAB, Conda environments, IDE tunnels, containers, containerized MPI, and reproducible HPC software stacks. |
-| [`training-onboarding`](../collections/training-onboarding.json) | draft | 20 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, OOM memory triage, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments. |
-| [`workflow-engines`](../collections/workflow-engines.json) | draft | 8 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL/WDL runs, Dask and Parsl worker pools, and lightweight Slurm dependency chains. |
+| [`training-onboarding`](../collections/training-onboarding.json) | draft | 21 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, array retry planning, OOM memory triage, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments. |
+| [`workflow-engines`](../collections/workflow-engines.json) | draft | 9 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL/WDL runs, Dask and Parsl worker pools, lightweight Slurm dependency chains, and safe array retry planning. |
 
 ## Site Adapters
 

@@ -39,22 +39,23 @@ owner handoffs, and ecosystem sponsor discussions.
 ## Current And Proposed Community Collections
 
 - `core-hpc`: Slurm, QOS/account limit evidence, license-aware jobs,
-  OOM memory triage, preemption/requeue handling, modules, shell, storage,
-  interactive sessions, RStudio, and IDE tunnels.
+  array retry planning, OOM memory triage, preemption/requeue handling,
+  modules, shell, storage, interactive sessions, RStudio, and IDE tunnels.
 - `containers`: Apptainer-compatible image builds, runtime execution,
   containerized MPI, GPU checks, data staging, checksums, and reproducible run
   capture.
 - `software-stacks`: CMake, Spack, EasyBuild, Lmod, compiler and MPI matrices,
   parallel HDF5/NetCDF preflight, licensed software jobs, Open OnDemand
   templates, TensorBoard, Streamlit, RStudio, and IDE tunnels.
-- `workflow-engines`: CWL, WDL, Nextflow, Snakemake, Dask, and Parsl.
+- `workflow-engines`: array retry planning, CWL, WDL, Nextflow, Snakemake,
+  Dask, and Parsl.
 - `data-movement`: Globus, rsync, object storage, checksums, scratch staging,
   Darshan I/O profile analysis, Lustre striping layout planning, IOR/MDTest
   storage smoke evidence, archive preparation, and quota triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, Open OnDemand
   templates, notebooks, TensorBoard, Streamlit, RStudio, IDE tunnels, Python
-  environments, requeue-safe restart behavior, licensed software use, OOM
-  memory triage, and common learner failure modes.
+  environments, array retry planning, requeue-safe restart behavior, licensed
+  software use, OOM memory triage, and common learner failure modes.
 - `ai-hpc`: GPU allocation checks, GPU binding diagnostics, Ray clusters, Dask workers, JAX, Hugging
   Face Accelerate, TensorFlow, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU
   memory triage, TensorBoard monitors, Streamlit demos, container runtime

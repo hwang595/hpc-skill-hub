@@ -9,16 +9,17 @@ research software engineer building software stacks may start with
 
 ## Seed Collections
 
-- `core-hpc`: Slurm submission, arrays, dependency chains, pending reason
-  triage, QOS/account limit evidence, monitoring, resource estimation, OOM
-  memory triage,
+- `core-hpc`: Slurm submission, arrays, failed-array retry planning,
+  dependency chains, pending reason triage, QOS/account limit evidence,
+  monitoring, resource estimation, OOM memory triage,
   efficiency review,
   license-aware jobs, checkpoint/restart, preemption/requeue handling, failure
   triage, storage triage, OpenMP placement, notebooks, RStudio, IDE tunnels,
   and interactive sessions.
 - `scheduler-basics`: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
-  starter submission patterns plus failure triage, OOM memory triage, and
-  reproducible run capture for sites comparing or teaching scheduler basics.
+  starter submission patterns plus array retry planning, failure triage, OOM
+  memory triage, and reproducible run capture for sites comparing or teaching
+  scheduler basics.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
   CMake build preflight, parallel HDF5/NetCDF preflight, license-aware jobs,
   reproducible run capture, Python virtual environments, Open OnDemand
@@ -32,15 +33,15 @@ research software engineer building software stacks may start with
   execution, containerized MPI launch patterns, GPU visibility checks, scratch
   staging, checksum manifests, and reproducible run capture for containerized
   HPC workloads.
-- `workflow-engines`: lightweight Slurm dependency chains, CWL and WDL runs
-  inside Slurm allocations, Dask worker clusters, Parsl worker blocks, Nextflow,
-  Snakemake, and nf-core on Slurm.
-- `training-onboarding`: workshop preflight, Slurm basics, interactive
-  sessions, Open OnDemand templates, notebooks, TensorBoard monitors, Streamlit
-  apps, RStudio, IDE tunnels, Python/Conda environments, Rscript batch jobs,
-  Julia batch jobs, MATLAB batch jobs, license-aware software use, module
-  debugging, requeue-safe restart behavior, data staging, OOM memory triage,
-  and failure triage for new users.
+- `workflow-engines`: lightweight Slurm dependency chains, array retry
+  planning, CWL and WDL runs inside Slurm allocations, Dask worker clusters,
+  Parsl worker blocks, Nextflow, Snakemake, and nf-core on Slurm.
+- `training-onboarding`: workshop preflight, Slurm basics, array retry
+  planning, interactive sessions, Open OnDemand templates, notebooks,
+  TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python/Conda
+  environments, Rscript batch jobs, Julia batch jobs, MATLAB batch jobs,
+  license-aware software use, module debugging, requeue-safe restart behavior,
+  data staging, OOM memory triage, and failure triage for new users.
 - `data-movement`: Globus, rsync, and object-storage transfers, checksum
   manifests, scratch staging, archive preparation, Darshan I/O profile
   analysis, Lustre striping layout planning, IOR/MDTest storage smoke

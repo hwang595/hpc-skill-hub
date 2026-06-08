@@ -4,15 +4,15 @@
     "admin": 5,
     "containers": 3,
     "data": 17,
-    "debugging": 29,
+    "debugging": 30,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
     "mpi": 18,
     "performance": 21,
-    "scheduler": 65,
+    "scheduler": 66,
     "software": 27,
-    "workflow": 11
+    "workflow": 12
   },
   "collection_count": 12,
   "collections": [
@@ -103,6 +103,7 @@
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
+        "slurm-array-retry-plan",
         "slurm-job-dependency-chain",
         "slurm-pending-reason-triage",
         "slurm-qos-account-limit-triage",
@@ -123,7 +124,7 @@
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, and storage triage."
     },
     {
       "audience": [
@@ -226,12 +227,13 @@
         "lsf-submit-job",
         "htcondor-submit-job",
         "grid-engine-submit-job",
+        "slurm-array-retry-plan",
         "job-failure-triage",
         "slurm-oom-memory-triage",
         "reproducible-run-capture"
       ],
       "status": "draft",
-      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers, including common failure and memory triage."
+      "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers, including array retry, common failure, and memory triage."
     },
     {
       "audience": [
@@ -322,6 +324,7 @@
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
+        "slurm-array-retry-plan",
         "license-aware-slurm-job",
         "slurm-preemption-requeue",
         "interactive-session",
@@ -342,7 +345,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, OOM memory triage, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, array retry planning, OOM memory triage, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -355,6 +358,7 @@
       "path": "collections/workflow-engines.json",
       "skill_ids": [
         "slurm-job-dependency-chain",
+        "slurm-array-retry-plan",
         "cwl-on-slurm",
         "wdl-on-slurm",
         "dask-jobqueue-on-slurm",
@@ -364,7 +368,7 @@
         "nf-core-on-slurm"
       ],
       "status": "draft",
-      "summary": "Skills for launching portable workflow engines, CWL/WDL runs, Dask and Parsl worker pools, and lightweight Slurm dependency chains."
+      "summary": "Skills for launching portable workflow engines, CWL/WDL runs, Dask and Parsl worker pools, lightweight Slurm dependency chains, and safe array retry planning."
     }
   ],
   "generated_by": "tools/build_index.py",
@@ -376,7 +380,7 @@
     "pbs": 1,
     "pbs-pro": 1,
     "sge": 1,
-    "slurm": 63,
+    "slurm": 64,
     "uge": 1
   },
   "schema_version": "0.1.0",
@@ -429,7 +433,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 87,
+  "skill_count": 88,
   "skills": [
     {
       "categories": [
@@ -4524,6 +4528,75 @@
     {
       "categories": [
         "scheduler",
+        "debugging",
+        "workflow"
+      ],
+      "description": "This skill uses read-only Slurm accounting or an exported sacct table to identify failed array tasks, produce a compact retry array range, and generate a reviewable sbatch retry plan before resubmission.",
+      "examples": [
+        {
+          "path": "skills/slurm-array-retry-plan/examples/array-retry-plan.sh",
+          "title": "Generate a failed-task retry plan"
+        },
+        {
+          "path": "skills/slurm-array-retry-plan/examples/mock-sacct-array.txt",
+          "title": "Mock sacct array accounting for offline testing"
+        },
+        {
+          "path": "skills/slurm-array-retry-plan/examples/retry-review-checklist.md",
+          "title": "Review checklist before retrying array tasks"
+        }
+      ],
+      "id": "slurm-array-retry-plan",
+      "maturity": "seed",
+      "name": "Slurm Array Retry Plan",
+      "path": "skills/slurm-array-retry-plan",
+      "readme": "skills/slurm-array-retry-plan/README.md",
+      "references": [
+        {
+          "title": "Slurm job array documentation",
+          "url": "https://slurm.schedmd.com/job_array.html"
+        },
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Plan safe retries for failed Slurm array tasks.",
+      "tags": [
+        "slurm",
+        "array",
+        "retry",
+        "sacct",
+        "sbatch",
+        "failed-tasks",
+        "rerun"
+      ],
+      "tools": [
+        "bash",
+        "sacct",
+        "sbatch",
+        "awk",
+        "sort",
+        "cp",
+        "cat",
+        "tee",
+        "mkdir",
+        "date"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
         "performance",
         "debugging"
       ],
@@ -5741,7 +5814,7 @@
     "amd": 1,
     "apptainer": 3,
     "archive": 2,
-    "array": 3,
+    "array": 4,
     "association": 1,
     "aws": 1,
     "batch": 3,
@@ -5803,6 +5876,7 @@
     "environment": 4,
     "environment-modules": 1,
     "erb": 1,
+    "failed-tasks": 1,
     "failure": 1,
     "fairshare": 2,
     "fasta": 1,
@@ -5946,10 +6020,11 @@
     "reproducibility": 11,
     "reqmem": 1,
     "requeue": 1,
-    "rerun": 1,
+    "rerun": 2,
     "resources": 1,
     "restart": 7,
     "resume": 1,
+    "retry": 1,
     "rlibs": 1,
     "rocm": 2,
     "rocm-smi": 1,
@@ -5957,11 +6032,11 @@
     "rstudio": 1,
     "rsync": 2,
     "s3": 1,
-    "sacct": 6,
+    "sacct": 7,
     "sacctmgr": 1,
     "salloc": 1,
     "samplesheet": 1,
-    "sbatch": 3,
+    "sbatch": 4,
     "scontrol": 4,
     "scratch": 2,
     "seff": 1,
@@ -5972,7 +6047,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 4,
-    "slurm": 60,
+    "slurm": 61,
     "slurmprovider": 1,
     "smoke-test": 1,
     "snakemake": 1,
@@ -6032,15 +6107,15 @@
     "accelerate": 1,
     "all_reduce_perf": 1,
     "apptainer": 3,
-    "awk": 3,
+    "awk": 4,
     "aws": 1,
     "basename": 1,
-    "bash": 14,
+    "bash": 15,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
     "bsub": 1,
-    "cat": 2,
+    "cat": 3,
     "charmrun": 1,
     "cksum": 2,
     "clang": 1,
@@ -6051,7 +6126,7 @@
     "condor_q": 1,
     "condor_rm": 1,
     "condor_submit": 1,
-    "cp": 2,
+    "cp": 3,
     "cp2k.psmp": 1,
     "ctest": 1,
     "cwltool": 1,
@@ -6062,7 +6137,7 @@
     "darshan-summary-per-file.sh": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 35,
+    "date": 36,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 4,
@@ -6104,7 +6179,7 @@
     "mdtest": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 38,
+    "mkdir": 39,
     "module": 25,
     "mpi4py": 1,
     "mpicc": 7,
@@ -6141,10 +6216,10 @@
     "rocm-smi": 3,
     "rserver": 1,
     "rsync": 2,
-    "sacct": 8,
+    "sacct": 9,
     "sacctmgr": 1,
     "salloc": 1,
-    "sbatch": 47,
+    "sbatch": 48,
     "scancel": 1,
     "scontrol": 13,
     "sed": 4,
@@ -6155,7 +6230,7 @@
     "singularity": 1,
     "sleep": 2,
     "snakemake": 1,
-    "sort": 8,
+    "sort": 9,
     "spack": 1,
     "sprio": 2,
     "squeue": 10,
@@ -6167,7 +6242,7 @@
     "streamlit": 1,
     "tail": 6,
     "tar": 1,
-    "tee": 23,
+    "tee": 24,
     "tensorboard": 1,
     "test": 8,
     "time": 1,

@@ -15,6 +15,7 @@ new collections.
 | `scratch-storage-management` | data | low | Seed skill added to `core-hpc` and `data-movement`. |
 | `quota-and-filesystem-triage` | debugging | low | Seed skill added to `core-hpc` and `data-movement`. |
 | `slurm-job-array-patterns` | scheduler | medium | Seed skill added to `core-hpc`. |
+| `slurm-array-retry-plan` | scheduler | medium | Seed skill added to `core-hpc`, `scheduler-basics`, `workflow-engines`, and `training-onboarding`. |
 | `slurm-job-dependency-chain` | scheduler | medium | Seed skill added to `core-hpc` and `workflow-engines`. |
 | `slurm-pending-reason-triage` | scheduler | low | Seed skill added to `core-hpc` and `facility-ops`. |
 | `slurm-qos-account-limit-triage` | scheduler | low | Seed skill added to `core-hpc` and `facility-ops`. |
