@@ -14,8 +14,8 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 43.
-- Collections: 8.
+- Skills: 44.
+- Collections: 9.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
 - Risk labels: low and medium only in the seed registry.
@@ -29,6 +29,8 @@ request missing workflows, or contribute public site adapters.
   compatibility, reproducible run capture, Python virtualenv, Conda/Mamba,
   Apptainer builds and runtime, Spack, and EasyBuild.
 - Workflow engines: Nextflow, Snakemake, and nf-core on Slurm.
+- Training and onboarding: workshop preflight, reset checklists, intro Slurm
+  workflows, notebooks, Python/Conda environments, and common learner triage.
 - Data movement: Globus, rsync, checksum manifests, scratch staging, archive
   preparation, scratch inventory, and filesystem quota triage.
 - GPU/MPI performance: MPI sanity checks, GPU sanity checks, PyTorch DDP,

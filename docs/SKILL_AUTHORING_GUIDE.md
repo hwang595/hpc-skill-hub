@@ -147,6 +147,8 @@ After adding a skill, decide whether it belongs in a collection:
 - `core-hpc`: scheduler basics, modules, debugging, storage, onboarding.
 - `software-stacks`: modules, containers, compilers, package managers.
 - `workflow-engines`: workflow execution patterns and scheduler integration.
+- `training-onboarding`: teaching workflows, workshop setup, and new-user
+  onboarding.
 - `data-movement`: transfer, staging, checksums, and data lifecycle tasks.
 - `gpu-mpi-performance`: GPU, MPI, threading, profiling, and scaling checks.
 

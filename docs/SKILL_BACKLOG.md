@@ -36,6 +36,7 @@ new collections.
 | `cluster-usage-report-readonly` | admin | low | Seed skill added to `facility-ops`. |
 | `node-health-readonly-triage` | admin | low | Seed skill added to `facility-ops`. |
 | `module-tree-health-check` | software | low | Seed skill added to `software-stacks` and `facility-ops`. |
+| `training-cluster-reset-checklist` | education | medium | Seed skill added to `training-onboarding`. |
 
 ## Priority 1: Core User Workflows
 
@@ -63,14 +64,14 @@ requests should be proposed through skill request issues.
 Priority 5 is implemented in the seed registry. New domain workflow requests
 should be proposed through skill request issues.
 
-## Priority 6: Facility Operations
+## Priority 6: Facility Operations And Training
 
 These should start as low-risk, read-only skills unless an operations
 maintainer explicitly reviews them as high risk.
 
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
-| `training-cluster-reset-checklist` | education | medium | Workshops need repeatable preflight and cleanup guidance. |
+| _none currently listed_ | | | New requests should come through skill request issues. |
 
 ## Picking The Next Skill
 

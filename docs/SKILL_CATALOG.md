@@ -2,21 +2,22 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 43 skills.
+Current registry size: 44 skills.
 
 ## Categories
 
 | Category | Skills |
 | --- | ---: |
-| `admin` | 3 |
+| `admin` | 4 |
 | `containers` | 2 |
 | `data` | 9 |
 | `debugging` | 15 |
+| `education` | 1 |
 | `gpu` | 6 |
 | `interactive` | 2 |
 | `mpi` | 6 |
 | `performance` | 7 |
-| `scheduler` | 26 |
+| `scheduler` | 27 |
 | `software` | 9 |
 | `workflow` | 4 |
 
@@ -29,6 +30,7 @@ Current registry size: 43 skills.
 | [`cluster-usage-report-readonly`](../skills/cluster-usage-report-readonly/README.md) | low | seed | Collect read-only Slurm usage evidence for facility support reports. |
 | [`module-tree-health-check`](../skills/module-tree-health-check/README.md) | low | seed | Collect read-only evidence about visible HPC module tree health. |
 | [`node-health-readonly-triage`](../skills/node-health-readonly-triage/README.md) | low | seed | Collect read-only Slurm node evidence for support triage. |
+| [`training-cluster-reset-checklist`](../skills/training-cluster-reset-checklist/README.md) | medium | seed | Prepare and review HPC training environments before and after workshops. |
 
 ### Containers
 
@@ -70,6 +72,12 @@ Current registry size: 43 skills.
 | [`reproducible-run-capture`](../skills/reproducible-run-capture/README.md) | low | seed | Capture command, environment, provenance, and logs for reproducible HPC runs. |
 | [`scratch-storage-management`](../skills/scratch-storage-management/README.md) | low | seed | Inspect scratch, project, and working-directory usage before HPC jobs. |
 | [`slurm-monitor-job`](../skills/slurm-monitor-job/README.md) | low | seed | Inspect Slurm job state, accounting records, and output paths. |
+
+### Education
+
+| Skill | Risk | Maturity | Description |
+| --- | --- | --- | --- |
+| [`training-cluster-reset-checklist`](../skills/training-cluster-reset-checklist/README.md) | medium | seed | Prepare and review HPC training environments before and after workshops. |
 
 ### GPU
 
@@ -141,6 +149,7 @@ Current registry size: 43 skills.
 | [`slurm-resource-estimator`](../skills/slurm-resource-estimator/README.md) | low | seed | Estimate future Slurm resource requests from accounting history. |
 | [`slurm-submit-job`](../skills/slurm-submit-job/README.md) | medium | seed | Generate safe Slurm batch scripts for common HPC job shapes. |
 | [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
+| [`training-cluster-reset-checklist`](../skills/training-cluster-reset-checklist/README.md) | medium | seed | Prepare and review HPC training environments before and after workshops. |
 | [`wrf-on-slurm`](../skills/wrf-on-slurm/README.md) | medium | seed | Run WRF real-data jobs on Slurm with MPI sizing, real.exe staging, restart, and I/O planning. |
 
 ### Software
@@ -177,6 +186,7 @@ Current registry size: 43 skills.
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 9 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI launches, OpenMP placement, and first-pass performance evidence. |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 9 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, CFD, and weather workloads on Slurm-backed HPC systems. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 10 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python and Conda environments, containers, and reproducible HPC software stacks. |
+| [`training-onboarding`](../collections/training-onboarding.json) | draft | 9 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users and preparing workshop environments. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 3 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines on Slurm-backed HPC clusters. |
 
 ## Site Adapters

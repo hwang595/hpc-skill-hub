@@ -1,18 +1,19 @@
 {
   "categories": {
-    "admin": 3,
+    "admin": 4,
     "containers": 2,
     "data": 9,
     "debugging": 15,
+    "education": 1,
     "gpu": 6,
     "interactive": 2,
     "mpi": 6,
     "performance": 7,
-    "scheduler": 26,
+    "scheduler": 27,
     "software": 9,
     "workflow": 4
   },
-  "collection_count": 8,
+  "collection_count": 9,
   "collections": [
     {
       "audience": [
@@ -169,6 +170,29 @@
     },
     {
       "audience": [
+        "instructors",
+        "new HPC users",
+        "training cluster maintainers"
+      ],
+      "id": "training-onboarding",
+      "name": "Training And Onboarding",
+      "path": "collections/training-onboarding.json",
+      "skill_ids": [
+        "training-cluster-reset-checklist",
+        "slurm-submit-job",
+        "interactive-session",
+        "jupyter-on-slurm",
+        "python-virtualenv-on-hpc",
+        "conda-mamba-on-hpc",
+        "module-environment-debug",
+        "dataset-staging-to-scratch",
+        "job-failure-triage"
+      ],
+      "status": "draft",
+      "summary": "Skills for teaching new HPC users and preparing workshop environments."
+    },
+    {
+      "audience": [
         "pipeline authors",
         "bioinformatics teams",
         "workflow platform maintainers"
@@ -187,7 +211,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 27
+    "slurm": 28
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -213,7 +237,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 43,
+  "skill_count": 44,
   "skills": [
     {
       "categories": [
@@ -2509,6 +2533,65 @@
     },
     {
       "categories": [
+        "education",
+        "admin",
+        "scheduler"
+      ],
+      "description": "This skill helps instructors and HPC support teams run read-only preflight checks and follow a human-reviewed reset checklist for workshops, courses, and training clusters without embedding private site policy or destructive cleanup commands.",
+      "examples": [
+        {
+          "path": "skills/training-cluster-reset-checklist/examples/training-preflight.sh",
+          "title": "Collect a read-only training preflight report"
+        },
+        {
+          "path": "skills/training-cluster-reset-checklist/examples/reset-checklist.md",
+          "title": "Review the training reset checklist"
+        }
+      ],
+      "id": "training-cluster-reset-checklist",
+      "maturity": "seed",
+      "name": "Training Cluster Reset Checklist",
+      "path": "skills/training-cluster-reset-checklist",
+      "readme": "skills/training-cluster-reset-checklist/README.md",
+      "references": [
+        {
+          "title": "Slurm sinfo documentation",
+          "url": "https://slurm.schedmd.com/sinfo.html"
+        },
+        {
+          "title": "Slurm squeue documentation",
+          "url": "https://slurm.schedmd.com/squeue.html"
+        },
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Prepare and review HPC training environments before and after workshops.",
+      "tags": [
+        "training",
+        "workshop",
+        "slurm",
+        "preflight",
+        "checklist",
+        "onboarding"
+      ],
+      "tools": [
+        "sinfo",
+        "squeue",
+        "sacct",
+        "module",
+        "df"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "mpi",
         "scheduler",
         "performance"
@@ -2598,6 +2681,7 @@
     "benchmark": 1,
     "bioinformatics": 1,
     "cfd": 1,
+    "checklist": 1,
     "checkpoint": 3,
     "checksum": 4,
     "cleanup": 1,
@@ -2661,6 +2745,7 @@
     "nvidia": 1,
     "oci": 1,
     "omp-num-threads": 1,
+    "onboarding": 1,
     "oom": 2,
     "openfoam": 1,
     "openmp": 2,
@@ -2670,6 +2755,7 @@
     "permission": 1,
     "pip": 1,
     "preemption": 1,
+    "preflight": 1,
     "profile": 1,
     "profiling": 1,
     "provenance": 1,
@@ -2696,7 +2782,7 @@
     "sif": 1,
     "sinfo": 2,
     "singularity": 3,
-    "slurm": 25,
+    "slurm": 26,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -2712,6 +2798,7 @@
     "throughput": 1,
     "time": 1,
     "timeout": 2,
+    "training": 1,
     "transfer": 3,
     "triage": 4,
     "tunnel": 1,
@@ -2723,6 +2810,7 @@
     "walltime": 1,
     "weather": 1,
     "workflow": 3,
+    "workshop": 1,
     "wrapper": 1,
     "wrf": 1,
     "zero": 1
@@ -2743,7 +2831,7 @@
     "date": 18,
     "decomposePar": 1,
     "deepspeed": 1,
-    "df": 2,
+    "df": 3,
     "dirname": 3,
     "du": 2,
     "eb": 1,
@@ -2767,7 +2855,7 @@
     "mamba": 1,
     "micromamba": 1,
     "mkdir": 19,
-    "module": 7,
+    "module": 8,
     "mpicc": 2,
     "mpicxx": 1,
     "mpifort": 1,
@@ -2785,20 +2873,20 @@
     "reconstructPar": 1,
     "rocm-smi": 2,
     "rsync": 2,
-    "sacct": 5,
+    "sacct": 6,
     "salloc": 1,
     "sbatch": 20,
     "scontrol": 4,
     "sed": 1,
     "sha256sum": 2,
     "shasum": 2,
-    "sinfo": 2,
+    "sinfo": 3,
     "singularity": 1,
     "sleep": 1,
     "snakemake": 1,
     "sort": 8,
     "spack": 1,
-    "squeue": 3,
+    "squeue": 4,
     "sreport": 1,
     "srun": 11,
     "ssh": 2,

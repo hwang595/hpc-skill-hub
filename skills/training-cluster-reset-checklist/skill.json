@@ -1,0 +1,117 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "training-cluster-reset-checklist",
+  "name": "Training Cluster Reset Checklist",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Prepare and review HPC training environments before and after workshops.",
+  "description": "This skill helps instructors and HPC support teams run read-only preflight checks and follow a human-reviewed reset checklist for workshops, courses, and training clusters without embedding private site policy or destructive cleanup commands.",
+  "categories": ["education", "admin", "scheduler"],
+  "tags": ["training", "workshop", "slurm", "preflight", "checklist", "onboarding"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sinfo",
+      "required": false
+    },
+    {
+      "name": "squeue",
+      "required": false
+    },
+    {
+      "name": "sacct",
+      "required": false
+    },
+    {
+      "name": "module",
+      "required": false
+    },
+    {
+      "name": "df",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "workshop_id",
+      "type": "string",
+      "required": false,
+      "description": "Public workshop, course, or event identifier to include in report names."
+    },
+    {
+      "name": "partition",
+      "type": "string",
+      "required": false,
+      "description": "Optional training or debug partition to inspect."
+    },
+    {
+      "name": "output_dir",
+      "type": "string",
+      "required": false,
+      "description": "Directory where the preflight report should be written."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "training_preflight_report",
+      "description": "A local directory containing read-only queue, partition, module, and filesystem snapshots for a training event."
+    },
+    {
+      "name": "reset_checklist",
+      "description": "A human-reviewed checklist for preparing, running, and closing a training environment."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/training-preflight.sh",
+    "examples/reset-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Collect a read-only training preflight report",
+      "path": "examples/training-preflight.sh"
+    },
+    {
+      "title": "Review the training reset checklist",
+      "path": "examples/reset-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill training-cluster-reset-checklist",
+      "description": "Validate the manifest and example references."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/training-cluster-reset-checklist/examples/training-preflight.sh",
+      "description": "Check shell syntax without contacting a scheduler."
+    },
+    {
+      "type": "manual",
+      "description": "Run the preflight script before a workshop and confirm any cleanup actions remain human-reviewed and site-approved."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sinfo documentation",
+      "url": "https://slurm.schedmd.com/sinfo.html"
+    },
+    {
+      "title": "Slurm squeue documentation",
+      "url": "https://slurm.schedmd.com/squeue.html"
+    },
+    {
+      "title": "Slurm sacct documentation",
+      "url": "https://slurm.schedmd.com/sacct.html"
+    }
+  ]
+}

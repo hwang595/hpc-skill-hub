@@ -1,18 +1,19 @@
 {
   "category_counts": {
-    "admin": 3,
+    "admin": 4,
     "containers": 2,
     "data": 9,
     "debugging": 15,
+    "education": 1,
     "gpu": 6,
     "interactive": 2,
     "mpi": 6,
     "performance": 7,
-    "scheduler": 26,
+    "scheduler": 27,
     "software": 9,
     "workflow": 4
   },
-  "collection_count": 8,
+  "collection_count": 9,
   "collection_coverage": [
     {
       "id": "bioinformatics-workflows",
@@ -112,6 +113,21 @@
       ]
     },
     {
+      "id": "training-onboarding",
+      "skill_count": 9,
+      "skill_ids": [
+        "training-cluster-reset-checklist",
+        "slurm-submit-job",
+        "interactive-session",
+        "jupyter-on-slurm",
+        "python-virtualenv-on-hpc",
+        "conda-mamba-on-hpc",
+        "module-environment-debug",
+        "dataset-staging-to-scratch",
+        "job-failure-triage"
+      ]
+    },
+    {
       "id": "workflow-engines",
       "skill_count": 3,
       "skill_ids": [
@@ -123,7 +139,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 43
+    "seed": 44
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -168,17 +184,18 @@
     "slurm-submit-job": "medium",
     "snakemake-on-slurm": "medium",
     "spack-environment-create": "medium",
+    "training-cluster-reset-checklist": "medium",
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
     "low": 15,
-    "medium": 28
+    "medium": 29
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 43,
+  "skill_count": 44,
   "status_counts": {
-    "draft": 43
+    "draft": 44
   },
   "uncollected_skill_ids": []
 }

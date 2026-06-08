@@ -1,0 +1,24 @@
+{
+  "$schema": "../schemas/collection.schema.json",
+  "id": "training-onboarding",
+  "name": "Training And Onboarding",
+  "status": "draft",
+  "summary": "Skills for teaching new HPC users and preparing workshop environments.",
+  "audience": ["instructors", "new HPC users", "training cluster maintainers"],
+  "skill_ids": [
+    "training-cluster-reset-checklist",
+    "slurm-submit-job",
+    "interactive-session",
+    "jupyter-on-slurm",
+    "python-virtualenv-on-hpc",
+    "conda-mamba-on-hpc",
+    "module-environment-debug",
+    "dataset-staging-to-scratch",
+    "job-failure-triage"
+  ],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ]
+}

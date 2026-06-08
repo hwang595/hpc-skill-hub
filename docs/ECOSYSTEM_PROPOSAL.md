@@ -31,6 +31,8 @@ The project is not only a documentation site. It combines:
 - `containers`: Apptainer, OCI image conversion, GPU containers.
 - `software-stacks`: Spack, EasyBuild, Lmod, compiler and MPI matrices.
 - `workflow-engines`: Nextflow, Snakemake, CWL, WDL.
+- `training-onboarding`: workshop preflight, intro Slurm skills, notebooks,
+  Python environments, and common learner failure modes.
 - `ai-hpc`: PyTorch DDP, NCCL diagnostics, GPU memory triage, DeepSpeed launch
   checks, GPU performance triage.
 - `bioinformatics-workflows`: nf-core, GATK, BLAST, AlphaFold, single-cell

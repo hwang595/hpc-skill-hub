@@ -11,8 +11,6 @@ Good next-wave skills should be:
 
 Candidate areas:
 
-- `training-cluster-reset-checklist`: repeatable public preflight and cleanup
-  guidance for workshops.
 - `cwl-on-slurm`: conservative CWL execution patterns for Slurm-backed HPC.
 - `wdl-on-slurm`: conservative WDL execution patterns for Slurm-backed HPC.
 - `quantum-espresso-on-slurm`: starter simulation skill with MPI sizing and

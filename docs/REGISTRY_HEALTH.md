@@ -4,9 +4,9 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 43
+- Skills: 44
 - Site adapters: 1
-- Collections: 8
+- Collections: 9
 - Uncollected skills: 0
 
 ## Risk Distribution
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 15 |
-| `medium` | 28 |
+| `medium` | 29 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 43 |
+| `seed` | 44 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 43 |
+| `draft` | 44 |
 
 ## Collection Coverage
 
@@ -39,6 +39,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `gpu-mpi-performance` | 9 |
 | `simulation-workflows` | 9 |
 | `software-stacks` | 10 |
+| `training-onboarding` | 9 |
 | `workflow-engines` | 3 |
 
 ## Uncollected Skills
@@ -91,4 +92,5 @@ All skills are included in at least one collection.
 | `slurm-submit-job` | medium |
 | `snakemake-on-slurm` | medium |
 | `spack-environment-create` | medium |
+| `training-cluster-reset-checklist` | medium |
 | `wrf-on-slurm` | medium |
