@@ -45,6 +45,7 @@ Expected warnings before the first push include:
 The readiness audit complements the command generators:
 
 ```bash
+python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/github_repo.py --owner <owner>
 python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
 python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
@@ -54,3 +55,7 @@ python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub
 
 Review generated commands before running them. They are meant to be executed in
 an authenticated GitHub environment after the local checks are clean.
+
+`tools/github_publish_plan.py` is the safest first command because it prints the
+ordered launch path and embeds the current readiness summary without taking any
+networked action.

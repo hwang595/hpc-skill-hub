@@ -1,6 +1,7 @@
 .PHONY: audit check health test validate index site cli clean
 
 PYTHON ?= python3
+SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
 
 validate:
 	$(PYTHON) tools/validate_skills.py
@@ -15,7 +16,7 @@ audit:
 	$(PYTHON) tools/audit_safety.py
 
 site:
-	$(PYTHON) tools/build_site.py --output /tmp/hpc-skill-hub-site/index.html
+	$(PYTHON) tools/build_site.py --output $(SITE_OUTPUT)
 
 cli:
 	$(PYTHON) tools/hpc_skill.py list

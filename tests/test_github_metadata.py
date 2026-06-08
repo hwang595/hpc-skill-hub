@@ -207,6 +207,29 @@ class GitHubMetadataTests(unittest.TestCase):
             result.stdout,
         )
 
+    def test_publish_plan_generator(self):
+        result = subprocess.run(
+            [
+                "python3",
+                "tools/github_publish_plan.py",
+                "--owner",
+                "example",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        self.assertIn("# HPC Skill Hub GitHub Publish Plan", result.stdout)
+        self.assertIn("# Repository: example/hpc-skill-hub", result.stdout)
+        self.assertIn("python3 tools/launch_readiness.py", result.stdout)
+        self.assertIn("gh repo create example/hpc-skill-hub", result.stdout)
+        self.assertIn("gh label create safety-review", result.stdout)
+        self.assertIn("gh issue create", result.stdout)
+        self.assertIn("repos/example/hpc-skill-hub/rulesets", result.stdout)
+        self.assertIn("gh release create v0.1.0", result.stdout)
+
     def test_launch_readiness_audit(self):
         result = subprocess.run(
             [

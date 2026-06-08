@@ -155,6 +155,12 @@ Run the standard local checks:
 make check
 ```
 
+Prepare GitHub publication commands without taking networked action:
+
+```bash
+python3 tools/github_publish_plan.py --owner <owner> --run-check
+```
+
 ## Project Status
 
 This repository is in the seed stage. The initial focus is on:

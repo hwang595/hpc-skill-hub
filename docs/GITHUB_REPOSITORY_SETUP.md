@@ -8,6 +8,13 @@ repository. It turns the seed project into a maintainable open-source registry.
 Use `.github/repository.json` as the source of truth for repository name,
 visibility, default branch, description, topics, and feature settings.
 
+To inspect the full ordered publication plan before making any networked GitHub
+changes, run:
+
+```bash
+python3 tools/github_publish_plan.py --owner <owner> --run-check
+```
+
 After installing and authenticating GitHub CLI, inspect the repository setup
 commands:
 

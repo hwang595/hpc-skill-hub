@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, List
@@ -22,10 +24,17 @@ class Check:
     detail: str
 
 
-def run_command(parts: List[str]) -> subprocess.CompletedProcess[str]:
+def run_command(
+    parts: List[str], env: dict[str, str] | None = None
+) -> subprocess.CompletedProcess[str]:
+    command_env = None
+    if env:
+        command_env = os.environ.copy()
+        command_env.update(env)
     return subprocess.run(
         parts,
         cwd=str(ROOT),
+        env=command_env,
         text=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
@@ -72,6 +81,7 @@ def required_files_check() -> Check:
         ".github/workflows/validate.yml",
         ".github/workflows/pages.yml",
         ".github/pull_request_template.md",
+        "tools/github_publish_plan.py",
     ]
     missing = [path for path in required if not (ROOT / path).exists()]
     if missing:
@@ -177,7 +187,9 @@ def gh_cli_check() -> Check:
 def make_check(run_check: bool) -> Check:
     if not run_check:
         return warn("make-check", "not run; pass --run-check to execute make check")
-    result = run_command(["make", "check"])
+    with tempfile.TemporaryDirectory(prefix="hpc-skill-hub-check-") as tmpdir:
+        site_output = str(Path(tmpdir) / "site" / "index.html")
+        result = run_command(["make", "check"], env={"SITE_OUTPUT": site_output})
     if result.returncode == 0:
         return ok("make-check", "make check passed")
     detail = (result.stderr or result.stdout).strip()

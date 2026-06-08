@@ -22,6 +22,7 @@ and `.github/labels.json` as the source of truth for starter labels.
 Install and authenticate `gh`, then run from the repository root:
 
 ```bash
+python3 tools/github_publish_plan.py --owner <owner>
 python3 tools/launch_readiness.py
 python3 tools/github_repo.py --owner <owner>
 python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
@@ -30,6 +31,18 @@ python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
 
 Review the printed commands before running them. They are generated from the
 versioned metadata files so future edits stay in one place.
+
+For a single ordered publication plan that includes local readiness, repository
+creation, labels, starter issues, branch rulesets, and the first release
+commands, run:
+
+```bash
+python3 tools/github_publish_plan.py --owner <owner> --run-check
+```
+
+This plan is read-only: it prints commands and current local readiness, but it
+does not create a repository, push commits, edit settings, open issues, or cut a
+release.
 
 ## Publish With An Existing Empty GitHub Repository
 
@@ -66,6 +79,8 @@ git push -u origin main
   expected branch ruleset command after the first `Validate` workflow run.
 - `python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub` prints
   the expected release commands after Pages and Actions are green.
+- `python3 tools/github_publish_plan.py --owner <owner> --run-check` prints the
+  expected end-to-end publication plan.
 - Branch protection requires the validation workflow.
 - GitHub Pages is enabled with the `Publish Pages` workflow.
 - Dependabot, issue templates, and pull request templates are present.
