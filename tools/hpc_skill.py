@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import textwrap
 from pathlib import Path
@@ -13,6 +14,7 @@ from typing import Any, Dict, Iterable, List, Optional
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_PATH = ROOT / "registry" / "index.json"
+ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
 def load_index() -> Dict[str, Any]:
@@ -28,6 +30,10 @@ def emit_json(data: Any) -> None:
 
 def wrap(value: str, width: int = 76) -> str:
     return "\n".join(textwrap.wrap(value, width=width)) if value else ""
+
+
+def title_from_id(value: str) -> str:
+    return " ".join(part.capitalize() for part in value.split("-"))
 
 
 def table(rows: List[List[str]], headers: List[str]) -> str:
@@ -189,6 +195,197 @@ def cmd_adapter(args: argparse.Namespace) -> int:
     return 0
 
 
+def ensure_id(value: str) -> None:
+    if not ID_RE.match(value):
+        raise SystemExit(f"Invalid id '{value}'; use lowercase kebab-case")
+
+
+def ensure_new_dir(path: Path, force: bool) -> None:
+    if path.exists() and not force:
+        raise SystemExit(f"{path} already exists; pass --force to overwrite scaffold files")
+    path.mkdir(parents=True, exist_ok=True)
+
+
+def write_json(path: Path, data: Dict[str, Any]) -> None:
+    path.write_text(json.dumps(data, indent=2, sort_keys=False) + "\n", encoding="utf-8")
+
+
+def cmd_scaffold_skill(args: argparse.Namespace) -> int:
+    ensure_id(args.skill_id)
+    root = Path(args.root).resolve() if args.root else ROOT
+    skill_dir = root / "skills" / args.skill_id
+    ensure_new_dir(skill_dir, args.force)
+    examples_dir = skill_dir / "examples"
+    examples_dir.mkdir(parents=True, exist_ok=True)
+
+    name = args.name or title_from_id(args.skill_id)
+    summary = args.summary or f"Draft skill scaffold for {name}."
+    tool = args.tool or "bash"
+    category = args.category
+
+    manifest = {
+        "$schema": "../../schemas/skill.schema.json",
+        "id": args.skill_id,
+        "name": name,
+        "version": "0.1.0",
+        "status": "draft",
+        "summary": summary,
+        "description": f"Describe the HPC task, target users, assumptions, and expected outcome for {name}.",
+        "categories": [category],
+        "tags": [category, "draft"],
+        "maintainers": [{"name": "HPC Skill Hub Maintainers"}],
+        "license": "MIT",
+        "maturity": "seed",
+        "risk_level": args.risk,
+        "tools": [{"name": tool, "required": True}],
+        "inputs": [
+            {
+                "name": "input",
+                "type": "string",
+                "required": False,
+                "description": "Describe user-provided input.",
+            }
+        ],
+        "outputs": [{"name": "output", "description": "Describe produced output."}],
+        "artifacts": ["README.md", "examples/example.sh"],
+        "examples": [{"title": "Example command", "path": "examples/example.sh"}],
+        "tests": [
+            {
+                "type": "static",
+                "command": f"python3 tools/validate_skills.py --skill {args.skill_id}",
+                "description": "Validate the manifest and referenced artifacts.",
+            }
+        ],
+        "references": [
+            {
+                "title": "HPC Skill Hub skill specification",
+                "url": "https://github.com/hpc-skill-hub/hpc-skill-hub",
+            }
+        ],
+    }
+
+    readme = f"""# {name}
+
+Use this skill when a user needs help with a specific HPC task.
+
+## Assumptions
+
+- Replace this section with scheduler, module, storage, container, or workflow assumptions.
+- Use placeholders for site-specific values such as `<account>` and `<partition>`.
+
+## Example
+
+```bash
+bash examples/example.sh
+```
+
+## Safety Notes
+
+This scaffold is marked `{args.risk}` risk. Update the risk level before review.
+
+## Success Criteria
+
+- Define what the user should see when the skill works.
+- Add manual or integration tests as the skill matures.
+"""
+
+    example = """#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Replace this scaffold with a safe, reviewable HPC example."
+"""
+
+    write_json(skill_dir / "skill.json", manifest)
+    (skill_dir / "README.md").write_text(readme, encoding="utf-8")
+    example_path = examples_dir / "example.sh"
+    example_path.write_text(example, encoding="utf-8")
+    example_path.chmod(0o755)
+    print(f"Created skill scaffold: {skill_dir}")
+    return 0
+
+
+def cmd_scaffold_adapter(args: argparse.Namespace) -> int:
+    ensure_id(args.adapter_id)
+    root = Path(args.root).resolve() if args.root else ROOT
+    adapter_dir = root / "site-adapters" / args.adapter_id
+    ensure_new_dir(adapter_dir, args.force)
+
+    name = args.name or title_from_id(args.adapter_id)
+    scheduler = args.scheduler
+    manifest = {
+        "$schema": "../../schemas/site-adapter.schema.json",
+        "id": args.adapter_id,
+        "name": name,
+        "status": "draft",
+        "summary": f"Draft site adapter for {name}.",
+        "institution_type": args.institution_type,
+        "contacts": [{"name": "Public HPC support contact", "url": "https://example.edu/hpc"}],
+        "scheduler": {
+            "type": scheduler,
+            "account_placeholder": "<account>",
+            "default_partition": "<partition>",
+            "job_submit_notes": ["Replace these notes with public local policy."],
+        },
+        "partitions": [
+            {
+                "name": "<partition>",
+                "purpose": "Describe intended use.",
+                "max_walltime": "00:30:00",
+                "gpu": False,
+            }
+        ],
+        "modules": {
+            "system": "lmod",
+            "recommended": [{"purpose": "MPI examples", "module": "<mpi-module>"}],
+        },
+        "storage": [
+            {
+                "name": "scratch",
+                "path": "/scratch/<user>",
+                "intended_use": "Temporary job working directories.",
+                "backed_up": False,
+            }
+        ],
+        "policies": [
+            {
+                "topic": "login-nodes",
+                "summary": "Run compute-heavy work through the scheduler.",
+            }
+        ],
+        "skill_overrides": [
+            {
+                "skill_id": "slurm-submit-job",
+                "notes": "Replace placeholders with public local policy.",
+            }
+        ],
+    }
+
+    readme = f"""# {name} Adapter
+
+This draft site adapter maps portable HPC Skill Hub entries to public local
+policy for `{name}`.
+
+## What To Replace
+
+- Public support URL.
+- Scheduler partition names.
+- Module names.
+- Storage path placeholders.
+- Skill override notes.
+
+## Safety Check
+
+- Do not include private hostnames.
+- Do not include usernames, tokens, allocation names, or internal project ids.
+- Do not include unpublished security procedures.
+"""
+
+    write_json(adapter_dir / "site.json", manifest)
+    (adapter_dir / "README.md").write_text(readme, encoding="utf-8")
+    print(f"Created site adapter scaffold: {adapter_dir}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Explore HPC Skill Hub skills and site adapters"
@@ -222,6 +419,53 @@ def build_parser() -> argparse.ArgumentParser:
     adapter_parser.add_argument("adapter_id", help="Site adapter id")
     adapter_parser.add_argument("--json", action="store_true", help="Emit JSON")
     adapter_parser.set_defaults(func=cmd_adapter)
+
+    scaffold_parser = subparsers.add_parser("scaffold", help="Create new registry entries")
+    scaffold_subparsers = scaffold_parser.add_subparsers(dest="scaffold_type", required=True)
+
+    scaffold_skill = scaffold_subparsers.add_parser("skill", help="Create a skill scaffold")
+    scaffold_skill.add_argument("skill_id", help="New skill id in lowercase kebab-case")
+    scaffold_skill.add_argument("--name", help="Human-readable skill name")
+    scaffold_skill.add_argument("--summary", help="One-sentence summary")
+    scaffold_skill.add_argument(
+        "--category",
+        default="education",
+        choices=[
+            "scheduler",
+            "containers",
+            "software",
+            "workflow",
+            "data",
+            "debugging",
+            "performance",
+            "gpu",
+            "mpi",
+            "interactive",
+            "admin",
+            "education",
+        ],
+        help="Primary skill category",
+    )
+    scaffold_skill.add_argument("--risk", default="low", choices=["low", "medium", "high"])
+    scaffold_skill.add_argument("--tool", help="Primary tool used by the skill")
+    scaffold_skill.add_argument("--root", help="Repository root to write into")
+    scaffold_skill.add_argument("--force", action="store_true", help="Overwrite scaffold files")
+    scaffold_skill.set_defaults(func=cmd_scaffold_skill)
+
+    scaffold_adapter = scaffold_subparsers.add_parser(
+        "site-adapter", help="Create a site adapter scaffold"
+    )
+    scaffold_adapter.add_argument("adapter_id", help="New adapter id in lowercase kebab-case")
+    scaffold_adapter.add_argument("--name", help="Human-readable site or training environment name")
+    scaffold_adapter.add_argument("--scheduler", default="slurm", help="Scheduler type")
+    scaffold_adapter.add_argument(
+        "--institution-type",
+        default="other",
+        choices=["example", "university", "national-lab", "company", "cloud", "other"],
+    )
+    scaffold_adapter.add_argument("--root", help="Repository root to write into")
+    scaffold_adapter.add_argument("--force", action="store_true", help="Overwrite scaffold files")
+    scaffold_adapter.set_defaults(func=cmd_scaffold_adapter)
 
     return parser
 

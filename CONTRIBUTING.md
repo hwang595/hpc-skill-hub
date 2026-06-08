@@ -27,6 +27,12 @@ A skill should be:
 6. Open a pull request with a short explanation of the target users, expected
    cluster environment, and known risks.
 
+You can generate the starter files with:
+
+```bash
+python3 tools/hpc_skill.py scaffold skill your-skill-id --category education --tool bash
+```
+
 ## Add A Site Adapter
 
 Site adapters live under `site-adapters/<adapter-id>/` and describe public,
@@ -44,6 +50,12 @@ non-sensitive local policy for one HPC site or training environment.
 
 Adapters should clarify local usage without changing the portable meaning of a
 core skill.
+
+You can generate the starter files with:
+
+```bash
+python3 tools/hpc_skill.py scaffold site-adapter your-site-id --name "Your Site"
+```
 
 ## Skill Risk Levels
 

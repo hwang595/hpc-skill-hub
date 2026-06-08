@@ -65,6 +65,13 @@ python3 tools/hpc_skill.py search slurm
 python3 tools/hpc_skill.py show slurm-submit-job --examples
 ```
 
+Scaffold new contributions:
+
+```bash
+python3 tools/hpc_skill.py scaffold skill my-new-skill --category education --tool bash
+python3 tools/hpc_skill.py scaffold site-adapter my-campus-cluster --name "My Campus Cluster"
+```
+
 Validate one skill:
 
 ```bash
@@ -74,8 +81,7 @@ python3 tools/validate_skills.py --skill slurm-submit-job
 Create a new skill:
 
 ```bash
-mkdir -p skills/my-new-skill/examples
-cp docs/examples/skill.json skills/my-new-skill/skill.json
+python3 tools/hpc_skill.py scaffold skill my-new-skill --category education --tool bash
 ```
 
 Then update the manifest, add `README.md`, add examples, and run the validator.

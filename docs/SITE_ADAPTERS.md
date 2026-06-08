@@ -23,6 +23,12 @@ site-adapters/
 `site.json` is machine-readable metadata. `README.md` explains local assumptions
 in human terms.
 
+Generate starter files with:
+
+```bash
+python3 tools/hpc_skill.py scaffold site-adapter my-campus-cluster --name "My Campus Cluster"
+```
+
 ## Adapter Status
 
 - `example`: Demonstrates format only.

@@ -3,6 +3,12 @@
 Each skill lives under `skills/<skill-id>/` and must contain `skill.json` and
 `README.md`.
 
+Generate starter files with:
+
+```bash
+python3 tools/hpc_skill.py scaffold skill my-new-skill --category education --tool bash
+```
+
 ## Required Manifest Fields
 
 - `id`: lowercase kebab-case identifier matching the directory name.

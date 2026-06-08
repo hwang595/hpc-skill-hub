@@ -13,6 +13,34 @@ python3 tools/hpc_skill.py adapters
 python3 tools/hpc_skill.py adapter example-campus-cluster
 ```
 
+## Scaffolding Contributions
+
+Create a draft skill:
+
+```bash
+python3 tools/hpc_skill.py scaffold skill my-new-skill --category education --tool bash
+```
+
+Create a draft site adapter:
+
+```bash
+python3 tools/hpc_skill.py scaffold site-adapter my-campus-cluster --name "My Campus Cluster"
+```
+
+Scaffolds are written into the current repository by default. Use `--root` for
+experiments or CI smoke tests:
+
+```bash
+python3 tools/hpc_skill.py scaffold skill ci-test-skill --root /tmp/hpc-skill-hub-scaffold
+```
+
+After editing scaffolded files, run:
+
+```bash
+python3 tools/validate_skills.py
+python3 tools/build_index.py
+```
+
 ## Filtering Skills
 
 ```bash
