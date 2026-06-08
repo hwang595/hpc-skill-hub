@@ -366,6 +366,8 @@ class GitHubMetadataTests(unittest.TestCase):
         by_name = {check["name"]: check for check in payload}
         self.assertEqual(by_name["required-files"]["status"], "OK")
         self.assertEqual(by_name["github-metadata"]["status"], "OK")
+        self.assertEqual(by_name["discussion-templates"]["status"], "OK")
+        self.assertEqual(by_name["github-milestones"]["status"], "OK")
         self.assertEqual(by_name["registry-index-current"]["status"], "OK")
         self.assertEqual(by_name["registry-health-current"]["status"], "OK")
         self.assertEqual(by_name["registry-artifact-contracts"]["status"], "OK")

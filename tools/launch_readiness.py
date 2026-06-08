@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -175,6 +176,34 @@ def github_metadata_check() -> Check:
     )
 
 
+def milestones_check() -> Check:
+    milestone_path = ROOT / ".github" / "milestones.json"
+    milestones = json.loads(milestone_path.read_text(encoding="utf-8"))
+    if not isinstance(milestones, list) or not milestones:
+        return fail(
+            "github-milestones",
+            ".github/milestones.json must contain milestones",
+        )
+
+    titles = [milestone.get("title") for milestone in milestones]
+    if len(titles) != len(set(titles)):
+        return fail("github-milestones", "milestone titles must be unique")
+    for milestone in milestones:
+        title = milestone.get("title")
+        description = milestone.get("description", "")
+        state = milestone.get("state")
+        if not isinstance(title, str) or not title.strip():
+            return fail("github-milestones", "milestone title must be non-empty")
+        if not isinstance(description, str) or len(description.strip()) < 20:
+            return fail(
+                "github-milestones",
+                f"milestone {title!r} has a short description",
+            )
+        if state not in {"open", "closed"}:
+            return fail("github-milestones", f"milestone {title!r} has invalid state")
+    return ok("github-milestones", f"{len(milestones)} milestones configured")
+
+
 def issue_templates_check() -> Check:
     template_dir = ROOT / ".github" / "ISSUE_TEMPLATE"
     templates = sorted(path.name for path in template_dir.glob("*.md"))
@@ -193,6 +222,45 @@ def issue_templates_check() -> Check:
     if missing:
         return fail("issue-templates", "missing: " + ", ".join(missing))
     return ok("issue-templates", f"{len(templates)} issue templates present")
+
+
+def discussion_templates_check() -> Check:
+    labels = json.loads((ROOT / ".github" / "labels.json").read_text(encoding="utf-8"))
+    label_names = {label["name"] for label in labels}
+    template_dir = ROOT / ".github" / "DISCUSSION_TEMPLATE"
+    templates = sorted(path.name for path in template_dir.glob("*.yml"))
+    expected = {
+        "adoption.yml",
+        "integrations.yml",
+        "review-process.yml",
+        "site-adapters.yml",
+        "skill-coverage.yml",
+    }
+    missing = sorted(expected - set(templates))
+    if missing:
+        return fail("discussion-templates", "missing: " + ", ".join(missing))
+
+    label_pattern = re.compile(r'^labels:\s*\[(.*?)\]\s*$', re.MULTILINE)
+    for template_path in template_dir.glob("*.yml"):
+        text = template_path.read_text(encoding="utf-8")
+        if "body:" not in text or "validations:" not in text:
+            return fail(
+                "discussion-templates",
+                f"{template_path.name} is missing form body or validations",
+            )
+        match = label_pattern.search(text)
+        if not match:
+            return fail("discussion-templates", f"{template_path.name} is missing labels")
+        labels_in_template = [
+            item.strip().strip("\"'") for item in match.group(1).split(",")
+        ]
+        missing_labels = sorted(set(labels_in_template) - label_names)
+        if missing_labels:
+            return fail(
+                "discussion-templates",
+                f"{template_path.name} references missing labels: {', '.join(missing_labels)}",
+            )
+    return ok("discussion-templates", f"{len(templates)} discussion templates present")
 
 
 def git_status_check() -> Check:
@@ -235,6 +303,8 @@ def launch_checks(run_make_check: bool) -> List[Check]:
         registry_health_check(),
         github_metadata_check(),
         issue_templates_check(),
+        discussion_templates_check(),
+        milestones_check(),
         git_status_check(),
         git_remote_check(),
         gh_cli_check(),

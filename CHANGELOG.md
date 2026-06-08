@@ -34,6 +34,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
   coverage, site adapters, review process, and integrations.
 - Add GitHub milestone metadata and command generator for launch, reviewed-skill
   pilot, integration, adapter, and ecosystem backlog planning.
+- Add launch readiness checks for GitHub Discussion forms and milestone
+  metadata.
 - Add integration guide, integration request template, and starter label for
   downstream registry consumers.
 - Add a read-only Slurm efficiency report skill for completed job resource
