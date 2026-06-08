@@ -3,7 +3,7 @@
   "id": "data-movement",
   "name": "Data Movement",
   "status": "draft",
-  "summary": "Skills for staging, transferring, validating, profiling, layout planning, benchmarking, permissions triage, and managing research data across HPC filesystems, node-local scratch, and object storage.",
+  "summary": "Skills for staging, transferring, validating, profiling, layout planning, benchmarking, permissions and file descriptor triage, and managing research data across HPC filesystems, node-local scratch, and object storage.",
   "audience": ["data stewards", "research groups", "facility support teams"],
   "skill_ids": [
     "globus-transfer-dataset",
@@ -18,7 +18,8 @@
     "large-file-archive-prepare",
     "scratch-storage-management",
     "quota-and-filesystem-triage",
-    "shared-project-permissions-triage"
+    "shared-project-permissions-triage",
+    "file-descriptor-limit-triage"
   ],
   "maintainers": [
     {

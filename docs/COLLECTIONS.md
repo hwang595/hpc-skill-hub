@@ -13,9 +13,9 @@ research software engineer building software stacks may start with
   dependency chains, pending reason and maintenance reservation triage,
   QOS/account limit evidence, monitoring, resource estimation, OOM memory triage,
   efficiency review,
-  license-aware jobs, checkpoint/restart, preemption/requeue handling, failure
-  triage, node-local scratch staging, shared project permissions, storage
-  triage, OpenMP placement,
+  file descriptor triage, license-aware jobs, checkpoint/restart,
+  preemption/requeue handling, failure triage, node-local scratch staging,
+  shared project permissions, storage triage, OpenMP placement,
   notebooks, RStudio, IDE tunnels, and interactive sessions.
 - `scheduler-basics`: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
   starter submission patterns plus array retry planning, failure triage, OOM
@@ -36,10 +36,11 @@ research software engineer building software stacks may start with
   HPC workloads.
 - `workflow-engines`: lightweight Slurm dependency chains, array retry
   planning, CWL and WDL runs inside Slurm allocations, Dask worker clusters,
-  Parsl worker blocks, Nextflow, Snakemake, and nf-core on Slurm.
+  Parsl worker blocks, file descriptor triage, Nextflow, Snakemake, and nf-core
+  on Slurm.
 - `training-onboarding`: workshop preflight, Slurm basics, maintenance and
-  reservation triage, array retry planning, BLAS/OpenMP thread pools,
-  interactive sessions, Open OnDemand templates, notebooks,
+  reservation triage, array retry planning, file descriptor limits,
+  BLAS/OpenMP thread pools, interactive sessions, Open OnDemand templates, notebooks,
   TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python/Conda
   environments, Rscript batch jobs, Julia batch jobs, MATLAB batch jobs,
   license-aware software use, module debugging, requeue-safe restart behavior,
@@ -48,10 +49,10 @@ research software engineer building software stacks may start with
 - `data-movement`: Globus, rsync, and object-storage transfers, checksum
   manifests, scratch staging, node-local scratch staging, archive preparation,
   Darshan I/O profile analysis, Lustre striping layout planning, IOR/MDTest
-  storage smoke benchmarks, scratch inventory, filesystem quota triage, and
-  shared project permissions triage.
+  storage smoke benchmarks, scratch inventory, filesystem quota triage, file
+  descriptor triage, and shared project permissions triage.
 - `ai-hpc`: GPU allocation checks, GPU binding diagnostics, CPU thread-pool
-  control, Ray clusters, Dask workers, JAX distributed
+  control, file descriptor pressure, Ray clusters, Dask workers, JAX distributed
   smoke tests, Hugging Face Accelerate launches, TensorFlow multi-worker smoke
   tests, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU memory triage, TensorBoard monitors,
   Streamlit demos, container runtime execution, data staging, checkpoint/restart
@@ -78,9 +79,9 @@ research software engineer building software stacks may start with
   storage smoke evidence, and
   reproducible run capture for simulation teams.
 - `facility-ops`: read-only usage reporting, pending reason and maintenance
-  triage, node triage, QOS/account limit evidence, OOM memory triage, shared
-  project permissions, and module tree health checks for HPC support teams and
-  facility maintainers.
+  triage, node triage, QOS/account limit evidence, OOM memory triage, file
+  descriptor pressure, shared project permissions, and module tree health
+  checks for HPC support teams and facility maintainers.
 
 ## Contribution Guidance
 

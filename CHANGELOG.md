@@ -7,6 +7,10 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a file descriptor limit triage seed skill for read-only `ulimit`,
+  `/proc` limits, optional `lsof`, fd count, and log evidence around `EMFILE`,
+  `Too many open files`, workflow fan-out, data loaders, and many-small-file
+  workloads.
 - Add a BLAS/OpenMP thread-control seed skill for read-only environment
   reports, optional Python threadpool metadata, and reviewed export blocks for
   OpenMP, oneMKL, OpenBLAS, BLIS, vecLib, NumExpr, R, and Julia thread pools.
@@ -183,12 +187,12 @@ Initial public seed release.
 
 ### Added
 
-- 92 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
+- 93 seed HPC skills covering Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine,
   job arrays, array retry planning, dependency chains, pending reason and maintenance reservation triage, monitoring, resource
   estimation, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, failure triage, checkpoint/restart,
   preemption and requeue-safe restart behavior,
   interactive sessions, Open OnDemand Batch Connect templates, notebooks, RStudio, IDE tunnels, OpenMP
-  placement, BLAS/OpenMP thread pool control, storage triage, shared project permissions and ACL triage, node-local scratch staging, Python/R/Julia/MATLAB software environments,
+  placement, BLAS/OpenMP thread pool control, file descriptor triage, storage triage, shared project permissions and ACL triage, node-local scratch staging, Python/R/Julia/MATLAB software environments,
   CMake build preflight, parallel HDF5/NetCDF preflight, Darshan I/O profile
   analysis, Lustre striping layout planning,
   TensorBoard, Streamlit, Ray, Dask Jobqueue, Parsl, JAX, Hugging Face Accelerate, TensorFlow, mpi4py, containers, containerized MPI, Spack, EasyBuild, object storage, data movement, node-local scratch staging,

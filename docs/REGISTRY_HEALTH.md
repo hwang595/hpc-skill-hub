@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 92
+- Skills: 93
 - Site adapters: 2
 - Collections: 12
 - Uncollected skills: 0
@@ -13,37 +13,37 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 23 |
+| `low` | 24 |
 | `medium` | 69 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 92 |
+| `seed` | 93 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 92 |
+| `draft` | 93 |
 
 ## Collection Coverage
 
 | Collection | Skills |
 | --- | ---: |
-| `ai-hpc` | 19 |
+| `ai-hpc` | 20 |
 | `bioinformatics-workflows` | 7 |
 | `containers` | 7 |
-| `core-hpc` | 24 |
-| `data-movement` | 13 |
-| `facility-ops` | 8 |
+| `core-hpc` | 25 |
+| `data-movement` | 14 |
+| `facility-ops` | 9 |
 | `gpu-mpi-performance` | 27 |
 | `scheduler-basics` | 9 |
 | `simulation-workflows` | 20 |
 | `software-stacks` | 30 |
-| `training-onboarding` | 25 |
-| `workflow-engines` | 9 |
+| `training-onboarding` | 26 |
+| `workflow-engines` | 10 |
 
 ## Uncollected Skills
 
@@ -71,6 +71,7 @@ All skills are included in at least one collection.
 | `dataset-staging-to-scratch` | medium |
 | `deepspeed-on-slurm` | medium |
 | `easybuild-install-software` | medium |
+| `file-descriptor-limit-triage` | low |
 | `gatk-workflow-on-hpc` | medium |
 | `globus-transfer-dataset` | medium |
 | `gpu-memory-triage` | low |

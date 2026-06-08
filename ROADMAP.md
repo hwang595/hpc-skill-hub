@@ -7,7 +7,7 @@ reviewable ecosystem for reusable HPC operational knowledge.
 
 The seed repository currently includes:
 
-- 92 seed skills.
+- 93 seed skills.
 - 12 curated collections.
 - 2 site adapters: 1 example adapter and 1 public-doc-backed draft adapter.
 - JSON schemas for skills, collections, site adapters, registry health, and
@@ -178,9 +178,10 @@ The first wave emphasizes recurring support and onboarding workflows:
 - Scheduler basics across Slurm, PBS/OpenPBS, LSF, HTCondor, Grid Engine, and
   failed-array retry planning.
 - Storage and data movement: scratch, node-local temporary storage, quota,
-  shared project permissions and ACLs, staging, checksums, rsync, Globus,
-  object storage, archive preparation, Darshan I/O profile analysis, Lustre
-  striping layout planning, and IOR/MDTest smoke evidence.
+  shared project permissions and ACLs, file descriptor pressure, staging,
+  checksums, rsync, Globus, object storage, archive preparation, Darshan I/O
+  profile analysis, Lustre striping layout planning, and IOR/MDTest smoke
+  evidence.
 - Software stacks: modules, compiler/MPI matrices, CMake build preflight,
   Conda, virtualenv, Spack, EasyBuild, parallel HDF5/NetCDF preflight,
   BLAS/OpenMP thread pools, containers, and reproducible run capture.
@@ -188,16 +189,16 @@ The first wave emphasizes recurring support and onboarding workflows:
   Jupyter, TensorBoard, Streamlit, RStudio, VS Code tunnels, workshop reset
   checks, and language-specific batch jobs.
 - AI/HPC: GPU sanity checks, CPU thread-pool control, PyTorch DDP, NCCL,
-  DeepSpeed, Ray, Dask, JAX, Hugging Face Accelerate, TensorFlow, and
-  monitoring.
+  DeepSpeed, Ray, Dask, JAX, file descriptor pressure in data loaders,
+  Hugging Face Accelerate, TensorFlow, and monitoring.
 - Domain workflows: bioinformatics, molecular dynamics, electronic structure,
   CFD, weather, workflow engines including Parsl, MPI, OpenMP, and performance
   evidence, including CMake build preflight, parallel HDF5/NetCDF preflight,
   Darshan I/O profile analysis, and Lustre striping layout planning for
   data-heavy codes.
 - Facility support: read-only usage, node, module tree, pending reason,
-  maintenance/reservation, OOM memory, shared directory permissions, and
-  efficiency triage.
+  maintenance/reservation, OOM memory, file descriptor pressure, shared
+  directory permissions, and efficiency triage.
 
 Future skills should be prioritized when they reduce repeated support tickets,
 have public references, can be validated without private cluster access, and

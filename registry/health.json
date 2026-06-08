@@ -3,8 +3,8 @@
   "category_counts": {
     "admin": 7,
     "containers": 3,
-    "data": 19,
-    "debugging": 34,
+    "data": 20,
+    "debugging": 35,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
@@ -12,19 +12,20 @@
     "performance": 22,
     "scheduler": 68,
     "software": 28,
-    "workflow": 12
+    "workflow": 13
   },
   "collection_count": 12,
   "collection_coverage": [
     {
       "id": "ai-hpc",
-      "skill_count": 19,
+      "skill_count": 20,
       "skill_ids": [
         "gpu-sanity-check",
         "slurm-gpu-binding-diagnostics",
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "blas-openmp-thread-control",
+        "file-descriptor-limit-triage",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
         "tensorflow-multiworker-on-slurm",
@@ -69,7 +70,7 @@
     },
     {
       "id": "core-hpc",
-      "skill_count": 24,
+      "skill_count": 25,
       "skill_ids": [
         "slurm-submit-job",
         "slurm-job-array-patterns",
@@ -82,6 +83,7 @@
         "slurm-resource-estimator",
         "slurm-oom-memory-triage",
         "slurm-efficiency-report",
+        "file-descriptor-limit-triage",
         "license-aware-slurm-job",
         "checkpoint-restart-workflow",
         "slurm-preemption-requeue",
@@ -99,7 +101,7 @@
     },
     {
       "id": "data-movement",
-      "skill_count": 13,
+      "skill_count": 14,
       "skill_ids": [
         "globus-transfer-dataset",
         "rsync-data-transfer",
@@ -113,18 +115,20 @@
         "large-file-archive-prepare",
         "scratch-storage-management",
         "quota-and-filesystem-triage",
-        "shared-project-permissions-triage"
+        "shared-project-permissions-triage",
+        "file-descriptor-limit-triage"
       ]
     },
     {
       "id": "facility-ops",
-      "skill_count": 8,
+      "skill_count": 9,
       "skill_ids": [
         "cluster-usage-report-readonly",
         "slurm-pending-reason-triage",
         "slurm-maintenance-reservation-triage",
         "slurm-qos-account-limit-triage",
         "slurm-oom-memory-triage",
+        "file-descriptor-limit-triage",
         "node-health-readonly-triage",
         "shared-project-permissions-triage",
         "module-tree-health-check"
@@ -242,7 +246,7 @@
     },
     {
       "id": "training-onboarding",
-      "skill_count": 25,
+      "skill_count": 26,
       "skill_ids": [
         "training-cluster-reset-checklist",
         "slurm-submit-job",
@@ -263,6 +267,7 @@
         "matlab-batch-on-slurm",
         "conda-mamba-on-hpc",
         "blas-openmp-thread-control",
+        "file-descriptor-limit-triage",
         "module-environment-debug",
         "dataset-staging-to-scratch",
         "node-local-scratch-staging",
@@ -273,12 +278,13 @@
     },
     {
       "id": "workflow-engines",
-      "skill_count": 9,
+      "skill_count": 10,
       "skill_ids": [
         "slurm-job-dependency-chain",
         "slurm-array-retry-plan",
         "cwl-on-slurm",
         "wdl-on-slurm",
+        "file-descriptor-limit-triage",
         "dask-jobqueue-on-slurm",
         "parsl-on-slurm",
         "nextflow-on-slurm",
@@ -289,7 +295,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 92
+    "seed": 93
   },
   "risk_by_skill": {
     "apptainer-mpi-on-slurm": "medium",
@@ -310,6 +316,7 @@
     "dataset-staging-to-scratch": "medium",
     "deepspeed-on-slurm": "medium",
     "easybuild-install-software": "medium",
+    "file-descriptor-limit-triage": "low",
     "gatk-workflow-on-hpc": "medium",
     "globus-transfer-dataset": "medium",
     "gpu-memory-triage": "low",
@@ -386,14 +393,14 @@
     "wrf-on-slurm": "medium"
   },
   "risk_counts": {
-    "low": 23,
+    "low": 24,
     "medium": 69
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 2,
-  "skill_count": 92,
+  "skill_count": 93,
   "status_counts": {
-    "draft": 92
+    "draft": 93
   },
   "uncollected_skill_ids": []
 }

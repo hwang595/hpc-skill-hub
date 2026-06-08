@@ -50,19 +50,19 @@ owner handoffs, and ecosystem sponsor discussions.
   jobs, Open OnDemand templates, TensorBoard, Streamlit, RStudio, and IDE
   tunnels.
 - `workflow-engines`: array retry planning, CWL, WDL, Nextflow, Snakemake,
-  Dask, and Parsl.
+  Dask, Parsl, and file descriptor triage for worker fan-out.
 - `data-movement`: Globus, rsync, object storage, checksums, scratch staging,
   node-local scratch staging, Darshan I/O profile analysis, Lustre striping
   layout planning, IOR/MDTest storage smoke evidence, archive preparation, and
-  quota and shared permission triage.
+  quota, file descriptor, and shared permission triage.
 - `training-onboarding`: workshop preflight, intro Slurm skills, maintenance
-  and reservation triage, BLAS/OpenMP thread pools, Open OnDemand templates,
-  notebooks, TensorBoard, Streamlit, RStudio, IDE tunnels, Python environments,
-  array retry planning, node-local scratch staging,
+  and reservation triage, file descriptor limits, BLAS/OpenMP thread pools,
+  Open OnDemand templates, notebooks, TensorBoard, Streamlit, RStudio, IDE
+  tunnels, Python environments, array retry planning, node-local scratch staging,
   shared project permissions, requeue-safe restart behavior, licensed software
   use, OOM memory triage, and common learner failure modes.
 - `ai-hpc`: GPU allocation checks, GPU binding diagnostics, CPU thread-pool
-  control, Ray clusters, Dask workers, JAX, Hugging
+  control, file descriptor pressure, Ray clusters, Dask workers, JAX, Hugging
   Face Accelerate, TensorFlow, PyTorch DDP, DeepSpeed, NCCL diagnostics, GPU
   memory triage, TensorBoard monitors, Streamlit demos, container runtime
   execution, data staging, checkpoint/restart planning, reproducible run
@@ -75,9 +75,9 @@ owner handoffs, and ecosystem sponsor discussions.
   Darshan I/O profile analysis, Lustre striping layout planning, restart
   planning, profiling, and storage smoke evidence.
 - `facility-ops`: read-only usage reporting, QOS/account limit evidence, OOM
-  memory triage, maintenance and reservation evidence, node triage, shared
-  project permission evidence, module tree health checks, support handoffs, and
-  public operational patterns.
+  memory triage, file descriptor pressure, maintenance and reservation evidence,
+  node triage, shared project permission evidence, module tree health checks,
+  support handoffs, and public operational patterns.
 
 ## Governance Direction
 

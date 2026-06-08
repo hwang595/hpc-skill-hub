@@ -1,0 +1,120 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "file-descriptor-limit-triage",
+  "name": "File Descriptor Limit Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect read-only evidence for too-many-open-files failures.",
+  "description": "This skill helps HPC users and support teams diagnose EMFILE, too many open files, file descriptor pressure, and nofile limit mismatches in batch jobs, workflow engines, data loaders, MPI runs, and many-small-file workloads without changing process or system limits.",
+  "categories": ["debugging", "data", "workflow"],
+  "tags": ["emfile", "ulimit", "nofile", "file-descriptor", "lsof", "dataloader", "workflow", "small-files"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "ulimit",
+      "required": true,
+      "notes": "Shell builtin used to report the current process nofile limit."
+    },
+    {
+      "name": "ls",
+      "required": true
+    },
+    {
+      "name": "wc",
+      "required": true
+    },
+    {
+      "name": "grep",
+      "required": false
+    },
+    {
+      "name": "tail",
+      "required": false
+    },
+    {
+      "name": "lsof",
+      "required": false,
+      "notes": "Useful when permitted for per-process open file summaries."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "pid",
+      "type": "integer",
+      "required": false,
+      "description": "Optional process id for a running job step, worker, workflow engine, or data loader to inspect."
+    },
+    {
+      "name": "log_file",
+      "type": "path",
+      "required": false,
+      "description": "Optional job or application log with too-many-open-files symptoms."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "file_descriptor_triage_report",
+      "description": "Read-only report with shell nofile limits, optional process limits, open fd counts, optional lsof summary, and log clues."
+    },
+    {
+      "name": "review_checklist",
+      "description": "Checklist for deciding whether the issue is per-process limits, worker fan-out, many small files, leaked descriptors, or workflow-engine staging."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/fd-limit-triage.sh",
+    "examples/fd-review-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Collect file descriptor limit evidence",
+      "path": "examples/fd-limit-triage.sh"
+    },
+    {
+      "title": "Review file descriptor evidence",
+      "path": "examples/fd-review-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill file-descriptor-limit-triage",
+      "description": "Validate the manifest and example artifacts."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash skills/file-descriptor-limit-triage/examples/fd-limit-triage.sh",
+      "description": "Collect a read-only report for the current shell process."
+    },
+    {
+      "type": "manual",
+      "description": "Run against a user-owned process or job log that shows EMFILE and confirm no limits, process state, files, or scheduler state are changed."
+    }
+  ],
+  "references": [
+    {
+      "title": "Linux getrlimit manual page",
+      "url": "https://man7.org/linux/man-pages/man2/getrlimit.2.html"
+    },
+    {
+      "title": "GNU Bash ulimit builtin",
+      "url": "https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html"
+    },
+    {
+      "title": "Linux lsof manual page",
+      "url": "https://man7.org/linux/man-pages/man8/lsof.8.html"
+    }
+  ]
+}

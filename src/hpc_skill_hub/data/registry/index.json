@@ -3,8 +3,8 @@
   "categories": {
     "admin": 7,
     "containers": 3,
-    "data": 19,
-    "debugging": 34,
+    "data": 20,
+    "debugging": 35,
     "education": 2,
     "gpu": 13,
     "interactive": 7,
@@ -12,7 +12,7 @@
     "performance": 22,
     "scheduler": 68,
     "software": 28,
-    "workflow": 12
+    "workflow": 13
   },
   "collection_count": 12,
   "collections": [
@@ -32,6 +32,7 @@
         "ray-on-slurm",
         "dask-jobqueue-on-slurm",
         "blas-openmp-thread-control",
+        "file-descriptor-limit-triage",
         "jax-distributed-on-slurm",
         "huggingface-accelerate-on-slurm",
         "tensorflow-multiworker-on-slurm",
@@ -48,7 +49,7 @@
         "slurm-efficiency-report"
       ],
       "status": "draft",
-      "summary": "Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads, CPU thread pools, GPU binding, and accelerator visibility on Slurm-backed HPC systems."
+      "summary": "Skills for launching, validating, monitoring, demoing, and troubleshooting distributed AI workloads, CPU thread pools, file descriptor pressure, GPU binding, and accelerator visibility on Slurm-backed HPC systems."
     },
     {
       "audience": [
@@ -113,6 +114,7 @@
         "slurm-resource-estimator",
         "slurm-oom-memory-triage",
         "slurm-efficiency-report",
+        "file-descriptor-limit-triage",
         "license-aware-slurm-job",
         "checkpoint-restart-workflow",
         "slurm-preemption-requeue",
@@ -128,7 +130,7 @@
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason and maintenance triage, QOS/account limit evidence, OOM memory triage, efficiency review, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, shared project permissions, and storage triage."
+      "summary": "Starter skills for Slurm jobs, arrays, array retry planning, dependency chains, pending reason and maintenance triage, QOS/account limit evidence, OOM memory triage, efficiency review, file descriptor triage, license-aware jobs, restartable and requeue-safe workflows, notebooks, RStudio, IDE tunnels, OpenMP placement, debugging, node-local scratch staging, shared project permissions, and storage triage."
     },
     {
       "audience": [
@@ -152,10 +154,11 @@
         "large-file-archive-prepare",
         "scratch-storage-management",
         "quota-and-filesystem-triage",
-        "shared-project-permissions-triage"
+        "shared-project-permissions-triage",
+        "file-descriptor-limit-triage"
       ],
       "status": "draft",
-      "summary": "Skills for staging, transferring, validating, profiling, layout planning, benchmarking, permissions triage, and managing research data across HPC filesystems, node-local scratch, and object storage."
+      "summary": "Skills for staging, transferring, validating, profiling, layout planning, benchmarking, permissions and file descriptor triage, and managing research data across HPC filesystems, node-local scratch, and object storage."
     },
     {
       "audience": [
@@ -172,12 +175,13 @@
         "slurm-maintenance-reservation-triage",
         "slurm-qos-account-limit-triage",
         "slurm-oom-memory-triage",
+        "file-descriptor-limit-triage",
         "node-health-readonly-triage",
         "shared-project-permissions-triage",
         "module-tree-health-check"
       ],
       "status": "draft",
-      "summary": "Read-only operational skills for usage reporting, pending reason and maintenance triage, QOS/account limit evidence, OOM memory triage, node triage, shared project permissions, and module tree health."
+      "summary": "Read-only operational skills for usage reporting, pending reason and maintenance triage, QOS/account limit evidence, OOM memory triage, file descriptor pressure, node triage, shared project permissions, and module tree health."
     },
     {
       "audience": [
@@ -351,6 +355,7 @@
         "matlab-batch-on-slurm",
         "conda-mamba-on-hpc",
         "blas-openmp-thread-control",
+        "file-descriptor-limit-triage",
         "module-environment-debug",
         "dataset-staging-to-scratch",
         "node-local-scratch-staging",
@@ -359,7 +364,7 @@
         "job-failure-triage"
       ],
       "status": "draft",
-      "summary": "Skills for teaching new HPC users, including Slurm jobs, maintenance and reservation triage, array retry planning, OOM memory triage, BLAS/OpenMP thread pools, node-local scratch staging, shared project permissions, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
+      "summary": "Skills for teaching new HPC users, including Slurm jobs, maintenance and reservation triage, array retry planning, OOM memory triage, file descriptor limits, BLAS/OpenMP thread pools, node-local scratch staging, shared project permissions, requeue-safe restart behavior, license-aware software use, notebooks, Open OnDemand templates, TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python, R, Julia, and MATLAB workloads, and workshop environments."
     },
     {
       "audience": [
@@ -375,6 +380,7 @@
         "slurm-array-retry-plan",
         "cwl-on-slurm",
         "wdl-on-slurm",
+        "file-descriptor-limit-triage",
         "dask-jobqueue-on-slurm",
         "parsl-on-slurm",
         "nextflow-on-slurm",
@@ -382,7 +388,7 @@
         "nf-core-on-slurm"
       ],
       "status": "draft",
-      "summary": "Skills for launching portable workflow engines, CWL/WDL runs, Dask and Parsl worker pools, lightweight Slurm dependency chains, and safe array retry planning."
+      "summary": "Skills for launching portable workflow engines, CWL/WDL runs, Dask and Parsl worker pools, file descriptor triage, lightweight Slurm dependency chains, and safe array retry planning."
     }
   ],
   "generated_by": "tools/build_index.py",
@@ -447,7 +453,7 @@
       "summary": "A public-doc-backed draft adapter for mapping portable skills to NERSC Perlmutter conventions."
     }
   ],
-  "skill_count": 92,
+  "skill_count": 93,
   "skills": [
     {
       "categories": [
@@ -1546,6 +1552,67 @@
       "tools": [
         "eb",
         "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "debugging",
+        "data",
+        "workflow"
+      ],
+      "description": "This skill helps HPC users and support teams diagnose EMFILE, too many open files, file descriptor pressure, and nofile limit mismatches in batch jobs, workflow engines, data loaders, MPI runs, and many-small-file workloads without changing process or system limits.",
+      "examples": [
+        {
+          "path": "skills/file-descriptor-limit-triage/examples/fd-limit-triage.sh",
+          "title": "Collect file descriptor limit evidence"
+        },
+        {
+          "path": "skills/file-descriptor-limit-triage/examples/fd-review-checklist.md",
+          "title": "Review file descriptor evidence"
+        }
+      ],
+      "id": "file-descriptor-limit-triage",
+      "maturity": "seed",
+      "name": "File Descriptor Limit Triage",
+      "path": "skills/file-descriptor-limit-triage",
+      "readme": "skills/file-descriptor-limit-triage/README.md",
+      "references": [
+        {
+          "title": "Linux getrlimit manual page",
+          "url": "https://man7.org/linux/man-pages/man2/getrlimit.2.html"
+        },
+        {
+          "title": "GNU Bash ulimit builtin",
+          "url": "https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html"
+        },
+        {
+          "title": "Linux lsof manual page",
+          "url": "https://man7.org/linux/man-pages/man8/lsof.8.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Collect read-only evidence for too-many-open-files failures.",
+      "tags": [
+        "emfile",
+        "ulimit",
+        "nofile",
+        "file-descriptor",
+        "lsof",
+        "dataloader",
+        "workflow",
+        "small-files"
+      ],
+      "tools": [
+        "bash",
+        "ulimit",
+        "ls",
+        "wc",
+        "grep",
+        "tail",
+        "lsof"
       ],
       "version": "0.1.0"
     },
@@ -6148,6 +6215,7 @@
     "dask": 1,
     "dask-jobqueue": 1,
     "data": 1,
+    "dataloader": 1,
     "dataset": 2,
     "ddp": 1,
     "debugging": 1,
@@ -6163,6 +6231,7 @@
     "easybuild": 1,
     "easyconfig": 1,
     "efficiency": 1,
+    "emfile": 1,
     "enospc": 1,
     "environment": 4,
     "environment-modules": 1,
@@ -6171,6 +6240,7 @@
     "failure": 1,
     "fairshare": 2,
     "fasta": 1,
+    "file-descriptor": 1,
     "filesystem": 6,
     "gatk": 1,
     "genomics": 1,
@@ -6215,6 +6285,7 @@
     "lmutil": 1,
     "logs": 6,
     "lsf": 1,
+    "lsof": 1,
     "lustre": 1,
     "m-files": 1,
     "maintenance": 1,
@@ -6248,6 +6319,7 @@
     "nf-core": 2,
     "node-health": 1,
     "node-local": 1,
+    "nofile": 1,
     "notebook": 1,
     "numexpr": 1,
     "nvidia": 1,
@@ -6351,6 +6423,7 @@
     "singularity": 4,
     "slurm": 63,
     "slurmprovider": 1,
+    "small-files": 1,
     "smoke-test": 1,
     "snakemake": 1,
     "software": 2,
@@ -6384,6 +6457,7 @@
     "tunnel": 4,
     "ucx": 1,
     "uge": 1,
+    "ulimit": 1,
     "usage": 1,
     "validation": 1,
     "variant-calling": 1,
@@ -6395,7 +6469,7 @@
     "weather": 1,
     "web-app": 1,
     "workers": 1,
-    "workflow": 7,
+    "workflow": 8,
     "workshop": 1,
     "wrapper": 1,
     "wrf": 1,
@@ -6413,7 +6487,7 @@
     "awk": 4,
     "aws": 1,
     "basename": 1,
-    "bash": 18,
+    "bash": 19,
     "bjobs": 1,
     "blastn": 1,
     "blockMesh": 1,
@@ -6458,7 +6532,7 @@
     "globus": 1,
     "gmx": 1,
     "gmx_mpi": 1,
-    "grep": 12,
+    "grep": 13,
     "h5cc": 1,
     "h5dump": 1,
     "h5pcc": 1,
@@ -6476,8 +6550,9 @@
     "lmp": 1,
     "lmutil": 1,
     "ln": 1,
-    "ls": 1,
+    "ls": 2,
     "lscpu": 3,
+    "lsof": 1,
     "make": 1,
     "makeblastdb": 1,
     "mamba": 1,
@@ -6548,7 +6623,7 @@
     "sshare": 1,
     "stat": 2,
     "streamlit": 1,
-    "tail": 7,
+    "tail": 8,
     "tar": 1,
     "tee": 24,
     "tensorboard": 1,
@@ -6557,8 +6632,9 @@
     "touch": 1,
     "tr": 1,
     "ucx_info": 1,
+    "ulimit": 1,
     "uname": 1,
-    "wc": 1,
+    "wc": 2,
     "which": 2,
     "wrf.exe": 1
   }
