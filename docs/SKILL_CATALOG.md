@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 57 skills.
+Current registry size: 58 skills.
 
 ## Categories
 
@@ -13,11 +13,11 @@ Current registry size: 57 skills.
 | `data` | 12 |
 | `debugging` | 17 |
 | `education` | 1 |
-| `gpu` | 7 |
+| `gpu` | 8 |
 | `interactive` | 2 |
-| `mpi` | 8 |
-| `performance` | 9 |
-| `scheduler` | 40 |
+| `mpi` | 9 |
+| `performance` | 10 |
+| `scheduler` | 41 |
 | `software` | 15 |
 | `workflow` | 9 |
 
@@ -92,6 +92,7 @@ Current registry size: 57 skills.
 | [`gpu-memory-triage`](../skills/gpu-memory-triage/README.md) | low | seed | Distinguish GPU allocation, framework, and model memory failures. |
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
 | [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
+| [`namd-on-slurm`](../skills/namd-on-slurm/README.md) | medium | seed | Run NAMD molecular dynamics jobs on Slurm with CPU/GPU and restart planning. |
 | [`nccl-diagnostics`](../skills/nccl-diagnostics/README.md) | medium | seed | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
 | [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md) | medium | seed | Launch and verify PyTorch distributed data parallel jobs on Slurm. |
 | [`ray-on-slurm`](../skills/ray-on-slurm/README.md) | medium | seed | Launch resource-bounded Ray clusters inside Slurm allocations. |
@@ -112,6 +113,7 @@ Current registry size: 57 skills.
 | [`lammps-on-slurm`](../skills/lammps-on-slurm/README.md) | medium | seed | Run LAMMPS molecular dynamics jobs on Slurm with MPI, GPU, and restart planning. |
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
 | [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md) | medium | seed | Run mpi4py Python programs on Slurm with matching MPI and Python environments. |
+| [`namd-on-slurm`](../skills/namd-on-slurm/README.md) | medium | seed | Run NAMD molecular dynamics jobs on Slurm with CPU/GPU and restart planning. |
 | [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md) | medium | seed | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |
 | [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md) | medium | seed | Run Quantum ESPRESSO PWscf jobs on Slurm with MPI sizing and restart planning. |
 | [`wrf-on-slurm`](../skills/wrf-on-slurm/README.md) | medium | seed | Run WRF real-data jobs on Slurm with MPI sizing, real.exe staging, restart, and I/O planning. |
@@ -122,6 +124,7 @@ Current registry size: 57 skills.
 | --- | --- | --- | --- |
 | [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md) | medium | seed | Run GROMACS jobs on Slurm with MPI, OpenMP, GPU, and checkpoint planning. |
 | [`lammps-on-slurm`](../skills/lammps-on-slurm/README.md) | medium | seed | Run LAMMPS molecular dynamics jobs on Slurm with MPI, GPU, and restart planning. |
+| [`namd-on-slurm`](../skills/namd-on-slurm/README.md) | medium | seed | Run NAMD molecular dynamics jobs on Slurm with CPU/GPU and restart planning. |
 | [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md) | medium | seed | Run OpenFOAM CFD cases on Slurm with decomposition, MPI launch, and reconstruction planning. |
 | [`openmp-thread-affinity`](../skills/openmp-thread-affinity/README.md) | medium | seed | Align OpenMP threads with Slurm CPU allocations and affinity settings. |
 | [`performance-profile-basic`](../skills/performance-profile-basic/README.md) | low | seed | Collect first-pass performance evidence for an HPC workload. |
@@ -153,6 +156,7 @@ Current registry size: 57 skills.
 | [`matlab-batch-on-slurm`](../skills/matlab-batch-on-slurm/README.md) | medium | seed | Run non-interactive MATLAB workloads on Slurm with explicit logs and license notes. |
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
 | [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md) | medium | seed | Run mpi4py Python programs on Slurm with matching MPI and Python environments. |
+| [`namd-on-slurm`](../skills/namd-on-slurm/README.md) | medium | seed | Run NAMD molecular dynamics jobs on Slurm with CPU/GPU and restart planning. |
 | [`nccl-diagnostics`](../skills/nccl-diagnostics/README.md) | medium | seed | Collect NCCL communication evidence for multi-GPU and multi-node jobs. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
 | [`nf-core-on-slurm`](../skills/nf-core-on-slurm/README.md) | medium | seed | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
@@ -220,7 +224,7 @@ Current registry size: 57 skills.
 | [`data-movement`](../collections/data-movement.json) | draft | 7 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
 | [`facility-ops`](../collections/facility-ops.json) | draft | 4 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, pending reason triage, node triage, and module tree health. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 12 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, Ray, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence. |
-| [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 10 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, and weather workloads on Slurm-backed HPC systems. |
+| [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 11 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, electronic-structure, CFD, and weather workloads on Slurm-backed HPC systems. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 16 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Ray, Dask, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks. |
 | [`training-onboarding`](../collections/training-onboarding.json) | draft | 12 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, Python, R, Julia, and MATLAB workloads, and workshop environments. |
 | [`workflow-engines`](../collections/workflow-engines.json) | draft | 7 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, CWL/WDL runs, Dask worker clusters, and lightweight Slurm dependency chains. |

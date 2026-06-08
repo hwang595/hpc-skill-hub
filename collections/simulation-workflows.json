@@ -8,6 +8,7 @@
   "skill_ids": [
     "gromacs-on-slurm",
     "lammps-on-slurm",
+    "namd-on-slurm",
     "quantum-espresso-on-slurm",
     "openfoam-on-slurm",
     "wrf-on-slurm",

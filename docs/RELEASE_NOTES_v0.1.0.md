@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 57.
+- Skills: 58.
 - Collections: 11.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -51,7 +51,7 @@ request missing workflows, or contribute public site adapters.
   Slurm efficiency review.
 - Bioinformatics: nf-core, GATK, and local BLAST+ workflow patterns with data
   staging and checksum practices.
-- Simulation: LAMMPS, GROMACS, Quantum ESPRESSO, OpenFOAM, WRF, MPI launch
+- Simulation: LAMMPS, GROMACS, NAMD, Quantum ESPRESSO, OpenFOAM, WRF, MPI launch
   checks, OpenMP placement, restart planning, profiling, and reproducibility.
 - Facility operations: read-only Slurm usage reporting, pending reason triage,
   node-health triage, and module tree health checks for support teams and

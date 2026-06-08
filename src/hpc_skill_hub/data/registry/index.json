@@ -6,11 +6,11 @@
     "data": 12,
     "debugging": 17,
     "education": 1,
-    "gpu": 7,
+    "gpu": 8,
     "interactive": 2,
-    "mpi": 8,
-    "performance": 9,
-    "scheduler": 40,
+    "mpi": 9,
+    "performance": 10,
+    "scheduler": 41,
     "software": 15,
     "workflow": 9
   },
@@ -189,6 +189,7 @@
       "skill_ids": [
         "gromacs-on-slurm",
         "lammps-on-slurm",
+        "namd-on-slurm",
         "quantum-espresso-on-slurm",
         "openfoam-on-slurm",
         "wrf-on-slurm",
@@ -281,7 +282,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 41
+    "slurm": 42
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -307,7 +308,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 57,
+  "skill_count": 58,
   "skills": [
     {
       "categories": [
@@ -1986,6 +1987,74 @@
     },
     {
       "categories": [
+        "mpi",
+        "gpu",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for NAMD simulations, including site-approved launcher selection, CPU/GPU layout notes, configuration and output review, restart controls, and a plan-only default before running production molecular dynamics.",
+      "examples": [
+        {
+          "path": "skills/namd-on-slurm/examples/namd-smoke.sbatch",
+          "title": "Plan or run a NAMD smoke test on Slurm"
+        },
+        {
+          "path": "skills/namd-on-slurm/examples/namd-smoke.conf",
+          "title": "NAMD configuration template"
+        },
+        {
+          "path": "skills/namd-on-slurm/examples/restart-checklist.md",
+          "title": "NAMD restart checklist"
+        }
+      ],
+      "id": "namd-on-slurm",
+      "maturity": "seed",
+      "name": "NAMD On Slurm",
+      "path": "skills/namd-on-slurm",
+      "readme": "skills/namd-on-slurm/README.md",
+      "references": [
+        {
+          "title": "NAMD documentation",
+          "url": "https://www.ks.uiuc.edu/Research/namd/documentation.html"
+        },
+        {
+          "title": "NAMD 3.0 User's Guide",
+          "url": "https://www.ks.uiuc.edu/Research/namd/3.0/ug/"
+        },
+        {
+          "title": "NAMD homepage",
+          "url": "https://www.ks.uiuc.edu/Research/namd/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run NAMD molecular dynamics jobs on Slurm with CPU/GPU and restart planning.",
+      "tags": [
+        "namd",
+        "molecular-dynamics",
+        "charm++",
+        "slurm",
+        "gpu",
+        "restart"
+      ],
+      "tools": [
+        "namd2",
+        "charmrun",
+        "sbatch",
+        "srun",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "test"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "gpu",
         "debugging",
         "scheduler"
@@ -3597,6 +3666,7 @@
     "blastn": 1,
     "blastp": 1,
     "cfd": 1,
+    "charm++": 1,
     "checklist": 1,
     "checkpoint": 3,
     "checksum": 4,
@@ -3639,7 +3709,7 @@
     "genomics": 1,
     "git": 1,
     "globus": 1,
-    "gpu": 11,
+    "gpu": 12,
     "gromacs": 1,
     "haplotypecaller": 1,
     "inode": 1,
@@ -3665,11 +3735,12 @@
     "miniwdl": 1,
     "modulepath": 1,
     "modules": 7,
-    "molecular-dynamics": 2,
+    "molecular-dynamics": 3,
     "mpi": 11,
     "mpi4py": 1,
     "mpicc": 2,
     "mpiexec": 1,
+    "namd": 1,
     "nccl": 2,
     "netcdf": 1,
     "network": 1,
@@ -3716,7 +3787,7 @@
     "reproducibility": 10,
     "rerun": 1,
     "resources": 1,
-    "restart": 4,
+    "restart": 5,
     "resume": 1,
     "rlibs": 1,
     "rocm": 2,
@@ -3734,7 +3805,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 39,
+    "slurm": 40,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -3780,6 +3851,7 @@
     "blastn": 1,
     "blockMesh": 1,
     "cat": 2,
+    "charmrun": 1,
     "cksum": 2,
     "clang": 1,
     "command": 2,
@@ -3788,7 +3860,7 @@
     "cwltool": 1,
     "dask": 1,
     "dask_jobqueue": 1,
-    "date": 22,
+    "date": 23,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
@@ -3806,7 +3878,7 @@
     "gmx_mpi": 1,
     "grep": 8,
     "head": 4,
-    "hostname": 19,
+    "hostname": 20,
     "icoFoam": 1,
     "julia": 1,
     "jupyter": 1,
@@ -3819,13 +3891,14 @@
     "matlab": 1,
     "micromamba": 1,
     "miniwdl": 1,
-    "mkdir": 27,
+    "mkdir": 28,
     "module": 18,
     "mpi4py": 1,
     "mpicc": 2,
     "mpicxx": 1,
     "mpiexec": 1,
     "mpifort": 1,
+    "namd2": 1,
     "ncdump": 1,
     "nextflow": 2,
     "nproc": 1,
@@ -3845,7 +3918,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 31,
+    "sbatch": 32,
     "scontrol": 6,
     "sed": 2,
     "seff": 1,
@@ -3860,12 +3933,12 @@
     "sprio": 1,
     "squeue": 6,
     "sreport": 1,
-    "srun": 14,
+    "srun": 15,
     "ssh": 2,
     "tail": 4,
     "tar": 1,
-    "tee": 15,
-    "test": 6,
+    "tee": 16,
+    "test": 7,
     "time": 1,
     "tr": 1,
     "uname": 1,

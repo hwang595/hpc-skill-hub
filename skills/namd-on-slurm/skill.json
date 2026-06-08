@@ -1,0 +1,145 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "namd-on-slurm",
+  "name": "NAMD On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run NAMD molecular dynamics jobs on Slurm with CPU/GPU and restart planning.",
+  "description": "This skill provides a conservative Slurm pattern for NAMD simulations, including site-approved launcher selection, CPU/GPU layout notes, configuration and output review, restart controls, and a plan-only default before running production molecular dynamics.",
+  "categories": ["mpi", "gpu", "scheduler", "performance"],
+  "tags": ["namd", "molecular-dynamics", "charm++", "slurm", "gpu", "restart"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "namd2",
+      "required": false,
+      "notes": "Common NAMD executable name; some sites use namd3, namd2-mpi, charmrun wrappers, or container entrypoints."
+    },
+    {
+      "name": "charmrun",
+      "required": false,
+      "notes": "Some multi-node NAMD builds use charmrun; follow site module or container guidance."
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "srun",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "required": true
+    },
+    {
+      "name": "tee",
+      "required": true
+    },
+    {
+      "name": "test",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "namd_config",
+      "type": "path",
+      "required": true,
+      "description": "NAMD configuration file such as a small smoke-test .conf or reviewed production input."
+    },
+    {
+      "name": "namd_executable",
+      "type": "string",
+      "required": false,
+      "description": "NAMD executable or wrapper command available in the job environment."
+    },
+    {
+      "name": "cpu_gpu_layout",
+      "type": "string",
+      "required": false,
+      "description": "Site-reviewed CPU, GPU, +p, +ppn, +devices, or launcher settings."
+    },
+    {
+      "name": "output_dir",
+      "type": "path",
+      "required": true,
+      "description": "Durable output directory for logs, restart files, and run records."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "namd_launch_plan",
+      "description": "Reviewable Slurm, launcher, CPU/GPU layout, configuration, output, and restart plan."
+    },
+    {
+      "name": "namd_log",
+      "description": "NAMD output log captured with a deterministic path."
+    },
+    {
+      "name": "restart_files",
+      "description": "Optional restart coordinate, velocity, and extended-system files from the NAMD configuration."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/namd-smoke.sbatch",
+    "examples/namd-smoke.conf",
+    "examples/restart-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Plan or run a NAMD smoke test on Slurm",
+      "path": "examples/namd-smoke.sbatch"
+    },
+    {
+      "title": "NAMD configuration template",
+      "path": "examples/namd-smoke.conf"
+    },
+    {
+      "title": "NAMD restart checklist",
+      "path": "examples/restart-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill namd-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run plan-only mode first, then set RUN_NAMD=1 on a short debug partition with a site-approved NAMD module, container, or launcher wrapper."
+    }
+  ],
+  "references": [
+    {
+      "title": "NAMD documentation",
+      "url": "https://www.ks.uiuc.edu/Research/namd/documentation.html"
+    },
+    {
+      "title": "NAMD 3.0 User's Guide",
+      "url": "https://www.ks.uiuc.edu/Research/namd/3.0/ug/"
+    },
+    {
+      "title": "NAMD homepage",
+      "url": "https://www.ks.uiuc.edu/Research/namd/"
+    }
+  ]
+}

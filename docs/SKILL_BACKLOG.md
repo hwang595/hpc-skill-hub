@@ -43,6 +43,7 @@ new collections.
 | `blast-on-slurm` | workflow | medium | Seed skill added to `bioinformatics-workflows`. |
 | `lammps-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `gromacs-on-slurm` | gpu | medium | Seed skill added to `simulation-workflows`. |
+| `namd-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `quantum-espresso-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `openfoam-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
 | `wrf-on-slurm` | mpi | medium | Seed skill added to `simulation-workflows`. |
