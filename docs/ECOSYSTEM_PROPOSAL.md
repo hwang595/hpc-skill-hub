@@ -35,7 +35,7 @@ The project is not only a documentation site. It combines:
   checks, GPU performance triage.
 - `bioinformatics-workflows`: nf-core, GATK, BLAST, AlphaFold, single-cell
   workflows, and genomics data staging.
-- `simulation`: LAMMPS, GROMACS, NAMD, OpenFOAM, WRF.
+- `simulation-workflows`: LAMMPS, GROMACS, NAMD, OpenFOAM, WRF.
 - `facility-ops`: read-only reporting, health checks, usage reports, portals.
 
 ## Governance Direction

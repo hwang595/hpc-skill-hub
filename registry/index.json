@@ -5,13 +5,13 @@
     "debugging": 13,
     "gpu": 5,
     "interactive": 2,
-    "mpi": 2,
-    "performance": 3,
-    "scheduler": 20,
+    "mpi": 3,
+    "performance": 4,
+    "scheduler": 21,
     "software": 8,
     "workflow": 4
   },
-  "collection_count": 6,
+  "collection_count": 7,
   "collections": [
     {
       "audience": [
@@ -104,6 +104,26 @@
     },
     {
       "audience": [
+        "simulation teams",
+        "computational scientists",
+        "performance engineers"
+      ],
+      "id": "simulation-workflows",
+      "name": "Simulation Workflows",
+      "path": "collections/simulation-workflows.json",
+      "skill_ids": [
+        "lammps-on-slurm",
+        "mpi-hello-and-benchmark",
+        "openmp-thread-affinity",
+        "performance-profile-basic",
+        "reproducible-run-capture",
+        "checkpoint-restart-workflow"
+      ],
+      "status": "draft",
+      "summary": "Domain skills for MPI-heavy simulation workloads on Slurm-backed HPC systems."
+    },
+    {
+      "audience": [
         "research software engineers",
         "HPC support teams",
         "tool maintainers"
@@ -145,7 +165,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 21
+    "slurm": 22
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -171,7 +191,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 36,
+  "skill_count": 37,
   "skills": [
     {
       "categories": [
@@ -1033,6 +1053,76 @@
         "ssh",
         "hostname",
         "python3"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "mpi",
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill provides a conservative Slurm pattern for LAMMPS jobs, including MPI task layout, optional GPU/KOKKOS notes, restart and log controls, and a dry-run-first Lennard-Jones smoke test.",
+      "examples": [
+        {
+          "path": "skills/lammps-on-slurm/examples/lammps-smoke.sbatch",
+          "title": "Plan or run a LAMMPS smoke test on Slurm"
+        },
+        {
+          "path": "skills/lammps-on-slurm/examples/in.lj",
+          "title": "Tiny Lennard-Jones input"
+        },
+        {
+          "path": "skills/lammps-on-slurm/examples/restart-checklist.md",
+          "title": "LAMMPS restart checklist"
+        }
+      ],
+      "id": "lammps-on-slurm",
+      "maturity": "seed",
+      "name": "LAMMPS On Slurm",
+      "path": "skills/lammps-on-slurm",
+      "readme": "skills/lammps-on-slurm/README.md",
+      "references": [
+        {
+          "title": "LAMMPS running basics",
+          "url": "https://docs.lammps.org/Run_basics.html"
+        },
+        {
+          "title": "LAMMPS command-line options",
+          "url": "https://docs.lammps.org/Run_options.html"
+        },
+        {
+          "title": "LAMMPS restart command",
+          "url": "https://docs.lammps.org/restart.html"
+        },
+        {
+          "title": "LAMMPS GPU package",
+          "url": "https://docs.lammps.org/Speed_gpu.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run LAMMPS molecular dynamics jobs on Slurm with MPI, GPU, and restart planning.",
+      "tags": [
+        "lammps",
+        "molecular-dynamics",
+        "mpi",
+        "slurm",
+        "restart",
+        "gpu"
+      ],
+      "tools": [
+        "lmp",
+        "sbatch",
+        "srun",
+        "mkdir",
+        "date",
+        "hostname",
+        "tee",
+        "test"
       ],
       "version": "0.1.0"
     },
@@ -2114,7 +2204,7 @@
     "genomics": 1,
     "git": 1,
     "globus": 1,
-    "gpu": 8,
+    "gpu": 9,
     "haplotypecaller": 1,
     "inode": 1,
     "interactive": 1,
@@ -2122,6 +2212,7 @@
     "java": 1,
     "jupyter": 2,
     "lab": 1,
+    "lammps": 1,
     "ld_library_path": 1,
     "lmod": 2,
     "logs": 4,
@@ -2131,7 +2222,8 @@
     "metadata": 1,
     "micromamba": 1,
     "modules": 5,
-    "mpi": 4,
+    "molecular-dynamics": 1,
+    "mpi": 5,
     "mpicc": 2,
     "nccl": 2,
     "network": 1,
@@ -2159,7 +2251,7 @@
     "reproducibility": 4,
     "rerun": 1,
     "resources": 1,
-    "restart": 1,
+    "restart": 2,
     "resume": 1,
     "rocm": 2,
     "rsync": 2,
@@ -2172,7 +2264,7 @@
     "sha256": 1,
     "sif": 1,
     "singularity": 3,
-    "slurm": 20,
+    "slurm": 21,
     "snakemake": 1,
     "software": 2,
     "spack": 1,
@@ -2209,7 +2301,7 @@
     "clang": 1,
     "command": 2,
     "conda": 1,
-    "date": 14,
+    "date": 15,
     "deepspeed": 1,
     "df": 2,
     "dirname": 3,
@@ -2223,13 +2315,14 @@
     "globus": 1,
     "grep": 8,
     "head": 4,
-    "hostname": 11,
+    "hostname": 12,
     "jupyter": 1,
     "ldd": 2,
+    "lmp": 1,
     "lscpu": 1,
     "mamba": 1,
     "micromamba": 1,
-    "mkdir": 15,
+    "mkdir": 16,
     "module": 6,
     "mpicc": 2,
     "mpicxx": 1,
@@ -2246,7 +2339,7 @@
     "rsync": 2,
     "sacct": 3,
     "salloc": 1,
-    "sbatch": 16,
+    "sbatch": 17,
     "scontrol": 3,
     "sed": 1,
     "sha256sum": 2,
@@ -2257,12 +2350,12 @@
     "sort": 8,
     "spack": 1,
     "squeue": 1,
-    "srun": 7,
+    "srun": 8,
     "ssh": 2,
     "tail": 4,
     "tar": 1,
-    "tee": 7,
-    "test": 1,
+    "tee": 8,
+    "test": 2,
     "time": 1,
     "tr": 1,
     "uname": 1,

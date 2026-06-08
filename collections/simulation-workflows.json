@@ -1,0 +1,21 @@
+{
+  "$schema": "../schemas/collection.schema.json",
+  "id": "simulation-workflows",
+  "name": "Simulation Workflows",
+  "status": "draft",
+  "summary": "Domain skills for MPI-heavy simulation workloads on Slurm-backed HPC systems.",
+  "audience": ["simulation teams", "computational scientists", "performance engineers"],
+  "skill_ids": [
+    "lammps-on-slurm",
+    "mpi-hello-and-benchmark",
+    "openmp-thread-affinity",
+    "performance-profile-basic",
+    "reproducible-run-capture",
+    "checkpoint-restart-workflow"
+  ],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ]
+}

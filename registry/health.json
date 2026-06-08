@@ -5,13 +5,13 @@
     "debugging": 13,
     "gpu": 5,
     "interactive": 2,
-    "mpi": 2,
-    "performance": 3,
-    "scheduler": 20,
+    "mpi": 3,
+    "performance": 4,
+    "scheduler": 21,
     "software": 8,
     "workflow": 4
   },
-  "collection_count": 6,
+  "collection_count": 7,
   "collection_coverage": [
     {
       "id": "bioinformatics-workflows",
@@ -71,6 +71,18 @@
       ]
     },
     {
+      "id": "simulation-workflows",
+      "skill_count": 6,
+      "skill_ids": [
+        "lammps-on-slurm",
+        "mpi-hello-and-benchmark",
+        "openmp-thread-affinity",
+        "performance-profile-basic",
+        "reproducible-run-capture",
+        "checkpoint-restart-workflow"
+      ]
+    },
+    {
       "id": "software-stacks",
       "skill_count": 9,
       "skill_ids": [
@@ -97,7 +109,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 36
+    "seed": 37
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -116,6 +128,7 @@
     "interactive-session": "medium",
     "job-failure-triage": "low",
     "jupyter-on-slurm": "medium",
+    "lammps-on-slurm": "medium",
     "large-file-archive-prepare": "medium",
     "module-environment-debug": "low",
     "mpi-hello-and-benchmark": "medium",
@@ -139,13 +152,13 @@
   },
   "risk_counts": {
     "low": 12,
-    "medium": 24
+    "medium": 25
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 36,
+  "skill_count": 37,
   "status_counts": {
-    "draft": 36
+    "draft": 37
   },
   "uncollected_skill_ids": []
 }
