@@ -1,0 +1,159 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-node-failure-triage",
+  "name": "Slurm Node Failure Triage",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Collect read-only evidence for Slurm node-related job failures.",
+  "description": "This skill helps users and support teams diagnose Slurm NODE_FAIL, BOOT_FAIL, launch-failure, and node-related job failures by collecting accounting, job, node, partition, unavailable-node reason, and log evidence without changing scheduler or node state.",
+  "categories": ["scheduler", "debugging", "admin"],
+  "tags": ["slurm", "node-fail", "boot-fail", "sacct", "scontrol", "sinfo", "nodelist", "hardware", "triage"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "sacct",
+      "required": false,
+      "notes": "Required for completed-job accounting evidence when Slurm accounting is available."
+    },
+    {
+      "name": "scontrol",
+      "required": false,
+      "notes": "Optional job and node record evidence; some sites restrict node details."
+    },
+    {
+      "name": "sinfo",
+      "required": false,
+      "notes": "Optional partition, node-state, and unavailable-node reason evidence."
+    },
+    {
+      "name": "squeue",
+      "required": false,
+      "notes": "Optional current job-state evidence when the job is still visible."
+    },
+    {
+      "name": "grep",
+      "required": false
+    },
+    {
+      "name": "tail",
+      "required": false
+    },
+    {
+      "name": "date",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "job_id",
+      "type": "string",
+      "required": false,
+      "description": "Slurm job id, array task id, or job step id to inspect."
+    },
+    {
+      "name": "node_name",
+      "type": "string",
+      "required": false,
+      "description": "Optional Slurm node name or hostlist to inspect when known."
+    },
+    {
+      "name": "log_file",
+      "type": "path",
+      "required": false,
+      "description": "Optional Slurm stdout, stderr, or application log to scan for node-failure clues."
+    },
+    {
+      "name": "report_dir",
+      "type": "path",
+      "required": false,
+      "description": "Directory where the read-only evidence bundle should be written."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "accounting_report",
+      "description": "Slurm sacct table with job and step states, exit codes, elapsed time, resources, and node lists."
+    },
+    {
+      "name": "job_record",
+      "description": "Optional scontrol and squeue job records for jobs still visible to Slurm."
+    },
+    {
+      "name": "node_state_report",
+      "description": "Optional sinfo and scontrol node evidence for selected nodes or visible unavailable-node reasons."
+    },
+    {
+      "name": "log_node_signals",
+      "description": "Matching log lines for node failure, boot failure, launch failure, transport, filesystem, and lost-task symptoms."
+    },
+    {
+      "name": "triage_summary",
+      "description": "Human-readable prompts for deciding whether to retry, reroute to support, compare array tasks, or pair with restart/requeue workflows."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/slurm-node-failure-triage.sh",
+    "examples/node-failure-review-checklist.md"
+  ],
+  "examples": [
+    {
+      "title": "Collect Slurm node-failure evidence",
+      "path": "examples/slurm-node-failure-triage.sh"
+    },
+    {
+      "title": "Review node-failure evidence",
+      "path": "examples/node-failure-review-checklist.md"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-node-failure-triage",
+      "description": "Validate the manifest and example files."
+    },
+    {
+      "type": "static",
+      "command": "bash -n skills/slurm-node-failure-triage/examples/slurm-node-failure-triage.sh",
+      "description": "Check shell syntax for the evidence collection script."
+    },
+    {
+      "type": "manual",
+      "description": "Run against a completed Slurm job with NODE_FAIL, BOOT_FAIL, launch-failure, or node-related symptoms and confirm the report stays read-only."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sacct documentation",
+      "url": "https://slurm.schedmd.com/sacct.html"
+    },
+    {
+      "title": "Slurm job state codes",
+      "url": "https://slurm.schedmd.com/job_state_codes.html"
+    },
+    {
+      "title": "Slurm sinfo documentation",
+      "url": "https://slurm.schedmd.com/sinfo.html"
+    },
+    {
+      "title": "Slurm scontrol documentation",
+      "url": "https://slurm.schedmd.com/scontrol.html"
+    }
+  ]
+}

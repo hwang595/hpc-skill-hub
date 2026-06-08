@@ -3,7 +3,7 @@
   "id": "scheduler-basics",
   "name": "Scheduler Basics",
   "status": "draft",
-  "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers, including array retry, common failure, memory triage, and time-limit triage.",
+  "summary": "Starter skills for submitting and comparing basic jobs across Slurm, PBS-style, LSF, HTCondor, and Grid Engine schedulers, including array retry, common failure, memory triage, time-limit triage, and node-failure triage.",
   "audience": ["new HPC users", "training instructors", "support teams", "sites with mixed schedulers"],
   "skill_ids": [
     "slurm-submit-job",
@@ -15,6 +15,7 @@
     "job-failure-triage",
     "slurm-oom-memory-triage",
     "slurm-time-limit-triage",
+    "slurm-node-failure-triage",
     "reproducible-run-capture"
   ],
   "maintainers": [

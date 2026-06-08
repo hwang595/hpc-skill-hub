@@ -11,8 +11,8 @@ research software engineer building software stacks may start with
 
 - `core-hpc`: Slurm submission, arrays, failed-array retry planning,
   dependency chains, pending reason and maintenance reservation triage,
-  QOS/account limit evidence, monitoring, resource estimation, OOM memory and
-  time-limit triage,
+  QOS/account limit evidence, monitoring, resource estimation, OOM memory,
+  time-limit, and node-failure triage,
   efficiency review,
   file descriptor triage, license-aware jobs, checkpoint/restart,
   preemption/requeue handling, failure triage, node-local scratch staging,
@@ -20,8 +20,8 @@ research software engineer building software stacks may start with
   notebooks, RStudio, IDE tunnels, and interactive sessions.
 - `scheduler-basics`: Slurm, PBS/OpenPBS, LSF, HTCondor, and Grid Engine
   starter submission patterns plus array retry planning, failure triage, OOM
-  memory triage, time-limit triage, and reproducible run capture for sites
-  comparing or teaching scheduler basics.
+  memory triage, time-limit triage, node-failure triage, and reproducible run
+  capture for sites comparing or teaching scheduler basics.
 - `software-stacks`: modules, module tree health, compiler/MPI compatibility,
   CMake build preflight, parallel HDF5/NetCDF preflight, BLAS/OpenMP thread
   pools, license-aware jobs, reproducible run capture, Python virtual environments, Open OnDemand
@@ -40,7 +40,7 @@ research software engineer building software stacks may start with
   Parsl worker blocks, file descriptor and time-limit triage, Nextflow,
   Snakemake, and nf-core on Slurm.
 - `training-onboarding`: workshop preflight, Slurm basics, maintenance and
-  reservation triage, array retry planning, time-limit triage, file descriptor limits,
+  reservation triage, array retry planning, time-limit and node-failure triage, file descriptor limits,
   BLAS/OpenMP thread pools, interactive sessions, Open OnDemand templates, notebooks,
   TensorBoard monitors, Streamlit apps, RStudio, IDE tunnels, Python/Conda
   environments, Rscript batch jobs, Julia batch jobs, MATLAB batch jobs,
@@ -81,8 +81,9 @@ research software engineer building software stacks may start with
   reproducible run capture for simulation teams.
 - `facility-ops`: read-only usage reporting, pending reason and maintenance
   triage, node triage, QOS/account limit evidence, OOM memory and time-limit
-  triage, file descriptor pressure, shared project permissions, and module tree
-  health checks for HPC support teams and facility maintainers.
+  triage, node-failure triage, file descriptor pressure, shared project
+  permissions, and module tree health checks for HPC support teams and facility
+  maintainers.
 
 ## Contribution Guidance
 

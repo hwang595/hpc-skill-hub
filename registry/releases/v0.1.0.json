@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/release-manifest.schema.json",
-  "file_count": 565,
+  "file_count": 569,
   "files": [
     {
       "bytes": 489,
@@ -163,9 +163,9 @@
       "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
     },
     {
-      "bytes": 14337,
+      "bytes": 14607,
       "path": "CHANGELOG.md",
-      "sha256": "36be0bb26c129a1bfc006ffb7ab5a0ff358f388f3a71c1cbc7a684f920ad3167"
+      "sha256": "f02963fb71875da07378783ad69da6596d080c83b1254c73b4b35e6c9ea88d8a"
     },
     {
       "bytes": 426,
@@ -193,14 +193,14 @@
       "sha256": "dea798cae34c09327203664ff6b3e488ce7eb4ceff5e6d0f89bc31462fea8825"
     },
     {
-      "bytes": 15228,
+      "bytes": 15326,
       "path": "README.md",
-      "sha256": "db1412c6a5f8feb27f64258f4423e50c484de92fbd88682fa8144f38c2e6960d"
+      "sha256": "6ea4e7943f6651f1619f32870fd1dbffd4582f7f727e1106edbbd7f3cedd47f8"
     },
     {
-      "bytes": 9256,
+      "bytes": 9329,
       "path": "ROADMAP.md",
-      "sha256": "1c37f9aa1683604663281a88aa895ae512bf7870e49d18f9695cec602bd1878d"
+      "sha256": "4dcd916c83a42a530b1b2a98b692945c7460647df5059f0d5505734542d1ca44"
     },
     {
       "bytes": 1442,
@@ -228,9 +228,9 @@
       "sha256": "c40b80cdb0ba60c8069cf7c6ae5ea26e60ffd9c08b6cd21eebe089d863d1ffca"
     },
     {
-      "bytes": 1553,
+      "bytes": 1601,
       "path": "collections/core-hpc.json",
-      "sha256": "e6e4b98c5e401252687d09d30bbf9f32e2920ed147b4a0d314e6b087b327bd8a"
+      "sha256": "d3647681f6ade76cd0ff8d8512a78eb9fa283514b4aa1b3200a57d707e4a9798"
     },
     {
       "bytes": 1013,
@@ -238,9 +238,9 @@
       "sha256": "8929e2425637e1371172c9dcbef0c23b3d457532c5123be7d9f79501ee53d79d"
     },
     {
-      "bytes": 941,
+      "bytes": 989,
       "path": "collections/facility-ops.json",
-      "sha256": "ec7ed3fd8cdaa6f26e4d4447259fbe6cd0115a30f38c0ecdd48a3ed2bfec8736"
+      "sha256": "35f6b8d9d97cf67a512e61a4d39f14a80f8fd0181fb5a952a2e2cd02ab64b218"
     },
     {
       "bytes": 1756,
@@ -248,9 +248,9 @@
       "sha256": "4d70b61476492778ed5365e8fc1d00b0e25edbcd00197d7b5298bc0b9831bbeb"
     },
     {
-      "bytes": 827,
+      "bytes": 881,
       "path": "collections/scheduler-basics.json",
-      "sha256": "be27d653c06d55bba1a539cc6f10652fb0e93b9f105e2f289d3087b65aab292c"
+      "sha256": "8aeca74c6619bba35025232a96f7faead3c2ab9685ed371363d5a8569f7b8e12"
     },
     {
       "bytes": 1295,
@@ -263,9 +263,9 @@
       "sha256": "dd5b3df4a821afc471083b16c937439cd816453ed69ababac556d5eb7feef8f6"
     },
     {
-      "bytes": 1641,
+      "bytes": 1689,
       "path": "collections/training-onboarding.json",
-      "sha256": "df08dbcf8f9b94cc9e804a0fb26960fd0127b26fd7a736c3590dab829e73e6a1"
+      "sha256": "a3d392dba9e5a39d7ac5a2cb793096c3df8d4e0b3f4dd1c1e11cd118b0ed53e0"
     },
     {
       "bytes": 836,
@@ -303,9 +303,9 @@
       "sha256": "0edd76544bf3a2ce6bbb90af2a99c92cf47da4396630393e83b9c75ff36c3480"
     },
     {
-      "bytes": 5656,
+      "bytes": 5732,
       "path": "docs/COLLECTIONS.md",
-      "sha256": "bc2fe4b8b12d46bcea6d2472e19554d6a8b0b29edb693b991f6be89d00e22cc6"
+      "sha256": "8353dcde63531cf7b150af923176eaa52ee684d1069af55cf79bd4f904d29db4"
     },
     {
       "bytes": 4868,
@@ -313,9 +313,9 @@
       "sha256": "e79805cee0d52ca864948f25de91fa9a0ea1c2781fca36a36714cb3f244b79ca"
     },
     {
-      "bytes": 11420,
+      "bytes": 11424,
       "path": "docs/COMPATIBILITY.md",
-      "sha256": "650b8aa9254197ff8d424f96a8f85edb05852877448db28fe937508a2f5819e8"
+      "sha256": "8a7ca80735050eed067f3208fd96e91eb94ff5978570515208b5f7fbb9ac86bf"
     },
     {
       "bytes": 4430,
@@ -323,14 +323,14 @@
       "sha256": "58abb3149d2cd5bf73f9e3ee19cd7ceaa402c6c8f726b3a593cba3c6ba766c89"
     },
     {
-      "bytes": 9880,
+      "bytes": 9967,
       "path": "docs/DOMAIN_REVIEWERS.md",
-      "sha256": "5a392d1db11aa0b4585b4438444543a1249468ed02aac0513c6941fe479c00c9"
+      "sha256": "917a326d03c5367932827c5e8f1f06eba33270317ab4b541eac5780967dcdbca"
     },
     {
-      "bytes": 5244,
+      "bytes": 5299,
       "path": "docs/ECOSYSTEM_PROPOSAL.md",
-      "sha256": "e37f21c07daf7e93e149e03c554d06cf39199bb10ccc12cf7dd2669dbba11829"
+      "sha256": "232c746b8a42b2ac3ed1c18188095ad118e9da8ea660c25f14d5aafab83011f7"
     },
     {
       "bytes": 2401,
@@ -388,9 +388,9 @@
       "sha256": "caeebd39a29a72242a9d4134c597eedc910dc761e2e2be5e52eeae0f36c58f76"
     },
     {
-      "bytes": 4370,
+      "bytes": 4397,
       "path": "docs/OPEN_SOURCE_PROPOSAL.md",
-      "sha256": "e5853534a9099539938216661116868d876861b2f3128cd28927d5bde952913d"
+      "sha256": "be60e1a1384bb0a7fd13e539225ca9d3fa625c9f20d22798a00c067f657d3f43"
     },
     {
       "bytes": 2716,
@@ -400,17 +400,17 @@
     {
       "bytes": 5990,
       "path": "docs/PUBLIC_LAUNCH_PACKET.md",
-      "sha256": "492d3afcffa3b1e98496eab4a7a4c0671f48d047e37acb79e0c3b17c4879cda2"
+      "sha256": "08df8306e2fdde5397b33cdd0d46da859de4d41ccd477c5e0da869a7599d87f1"
     },
     {
-      "bytes": 4420,
+      "bytes": 4458,
       "path": "docs/REGISTRY_HEALTH.md",
-      "sha256": "892b55cdf1414a3169b868c076274596f8bc38ce3d8beeaa3354d1bc66a60f70"
+      "sha256": "b673ddc029c8269b634b7c410eec7eb3ccb0c6b7a0728227ac6cc947780820bd"
     },
     {
-      "bytes": 10414,
+      "bytes": 10473,
       "path": "docs/RELEASE_NOTES_v0.1.0.md",
-      "sha256": "ed49cbd08633f117c477e0486ff349482f0920a5edc1f6f6822a95c6c1af6f04"
+      "sha256": "3bda2af87013992952558882b12c13d078d5ab315f070364ae2d56ac3814206b"
     },
     {
       "bytes": 2827,
@@ -418,9 +418,9 @@
       "sha256": "c6d0c9f09088c0d49c1f8ebadfb82b086601b7be7a531f78461fa4795ea827ec"
     },
     {
-      "bytes": 6378,
+      "bytes": 6416,
       "path": "docs/REVIEW_ROUTING.md",
-      "sha256": "26a31fc39d169a197fe02361c798be746ce68388b3476db296f04a5d5e9d7cbb"
+      "sha256": "085f76386b287fe9414d02b543e2a88bde765cb4efc3c454bd8fb496fe7a6ae4"
     },
     {
       "bytes": 2184,
@@ -443,14 +443,14 @@
       "sha256": "ead7fbd8016afb1fc046535d8fff55790f087ce973315be7a11b5145892d2b83"
     },
     {
-      "bytes": 11000,
+      "bytes": 11147,
       "path": "docs/SKILL_BACKLOG.md",
-      "sha256": "61fde42d68207a2f3d572c214f636aa4eb2a72a1d7fc6798df8f75f5de8cd0e0"
+      "sha256": "b41ea92a9282a52bc34820252d6d6c61b6be854c889a757702b1f430831e4b89"
     },
     {
-      "bytes": 46250,
+      "bytes": 46796,
       "path": "docs/SKILL_CATALOG.md",
-      "sha256": "a3a8a38f1fe3d822e2d31f0a857ae781d333360a18ebbfbb5ca01852be85291a"
+      "sha256": "8b0532356fc5208129542dbcb7e278dbdb50dafd41a70aab327afd46c16f8b65"
     },
     {
       "bytes": 5949,
@@ -488,14 +488,14 @@
       "sha256": "154ad18564a482d118326f2a0e3acafb3ee4ff2e738bb883c1ba819ada11cbcc"
     },
     {
-      "bytes": 12766,
+      "bytes": 12954,
       "path": "registry/health.json",
-      "sha256": "d2aa9e7d373f55f28bb5a12a1c25c36037fa56bd18b85188ac60e0604ed31bbb"
+      "sha256": "201a0276f4cadbd2672f294ae4ad065d9a617076b16a413bf4d07ffc3f69274f"
     },
     {
-      "bytes": 201545,
+      "bytes": 203930,
       "path": "registry/index.json",
-      "sha256": "7a321f7c2e46e369fcc9112817121d44d3582c76e7fc4079596d5525b901ad49"
+      "sha256": "fc2cbd80e699c028c24d66abce713e7a1b60cf3a7f5b28a92c335d8e973d61d6"
     },
     {
       "bytes": 1145,
@@ -2268,6 +2268,26 @@
       "sha256": "1a0646a124124c8a9fa48398e3e8baa5f3cea6c45721deb75ab8a6e3435898af"
     },
     {
+      "bytes": 2701,
+      "path": "skills/slurm-node-failure-triage/README.md",
+      "sha256": "f6296a496da1cfef8c91c0d074b03b140cd8d12459637ee30808a2a173be3db0"
+    },
+    {
+      "bytes": 1506,
+      "path": "skills/slurm-node-failure-triage/examples/node-failure-review-checklist.md",
+      "sha256": "65ef15193f7c1c7c467117b6348822af3ce33db9ebb3aa95d2379bd18d352aff"
+    },
+    {
+      "bytes": 5291,
+      "path": "skills/slurm-node-failure-triage/examples/slurm-node-failure-triage.sh",
+      "sha256": "07b1a1ebda2f555ed036c64d33c96dcca0fa98050ad8f61ae32ca742ad5574be"
+    },
+    {
+      "bytes": 4866,
+      "path": "skills/slurm-node-failure-triage/skill.json",
+      "sha256": "154e753dc5672ad51c79d747858d700e1d9709fe40b92b23587f42c3fb406957"
+    },
+    {
       "bytes": 2375,
       "path": "skills/slurm-oom-memory-triage/README.md",
       "sha256": "0e4a947fcde6fe56d9fe331564f9f748df63892df30fff80aec372fc7f7275ba"
@@ -2658,14 +2678,14 @@
       "sha256": "e98635c6044821567bd15ad8844d0cdaf4fffe9b1738d868a8ecca74a5c1e292"
     },
     {
-      "bytes": 12766,
+      "bytes": 12954,
       "path": "src/hpc_skill_hub/data/registry/health.json",
-      "sha256": "d2aa9e7d373f55f28bb5a12a1c25c36037fa56bd18b85188ac60e0604ed31bbb"
+      "sha256": "201a0276f4cadbd2672f294ae4ad065d9a617076b16a413bf4d07ffc3f69274f"
     },
     {
-      "bytes": 201545,
+      "bytes": 203930,
       "path": "src/hpc_skill_hub/data/registry/index.json",
-      "sha256": "7a321f7c2e46e369fcc9112817121d44d3582c76e7fc4079596d5525b901ad49"
+      "sha256": "fc2cbd80e699c028c24d66abce713e7a1b60cf3a7f5b28a92c335d8e973d61d6"
     },
     {
       "bytes": 5774,
@@ -2833,23 +2853,23 @@
     "category_count": 12,
     "collection_count": 12,
     "maturity_counts": {
-      "seed": 94
+      "seed": 95
     },
     "risk_counts": {
-      "low": 25,
+      "low": 26,
       "medium": 69
     },
     "scheduler_count": 9,
     "schema_version": "0.1.0",
     "site_adapter_count": 2,
-    "skill_count": 94,
+    "skill_count": 95,
     "status_counts": {
-      "draft": 94
+      "draft": 95
     },
     "tool_count": 159,
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 1849888,
+  "total_bytes": 1871114,
   "version": "v0.1.0"
 }
