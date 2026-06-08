@@ -11,27 +11,20 @@ discussion prompts, and public adopter invitation.
 
 ## Recommended Repository Settings
 
-- Visibility: public.
-- Default branch: `main`.
-- License: MIT.
-- Topics: `hpc`, `slurm`, `apptainer`, `spack`, `easybuild`, `globus`,
-  `nextflow`, `snakemake`, `mpi`, `gpu`, `research-computing`.
-- Description: Open registry of validated, reusable skills for HPC workflows.
-- Issues: enabled.
-- Discussions: enabled once there are external users.
-- Wiki: disabled; keep docs in the repository.
+Use `.github/repository.json` as the source of truth for repository settings
+and `.github/labels.json` as the source of truth for starter labels.
 
 ## Publish With GitHub CLI
 
 Install and authenticate `gh`, then run from the repository root:
 
 ```bash
-git branch -M main
-git add .
-git commit -m "Seed HPC Skill Hub registry"
-gh repo create hpc-skill-hub --public --source=. --remote=origin --push \
-  --description "Open registry of validated, reusable skills for HPC workflows"
+python3 tools/github_repo.py --owner <owner>
+python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
 ```
+
+Review the printed commands before running them. They are generated from the
+versioned metadata files so future edits stay in one place.
 
 ## Publish With An Existing Empty GitHub Repository
 
@@ -55,6 +48,8 @@ git push -u origin main
 - Repository topics and description are set.
 - Repository metadata matches `.github/repository.json`.
 - Labels are created from `.github/labels.json`.
+- `python3 tools/github_repo.py --owner <owner>` prints the expected repository
+  creation and metadata commands.
 - `python3 tools/github_labels.py --repo <owner>/hpc-skill-hub` prints the
   expected label commands.
 - Branch protection requires the validation workflow.

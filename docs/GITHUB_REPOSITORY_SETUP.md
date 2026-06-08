@@ -8,6 +8,15 @@ repository. It turns the seed project into a maintainable open-source registry.
 Use `.github/repository.json` as the source of truth for repository name,
 visibility, default branch, description, topics, and feature settings.
 
+After installing and authenticating GitHub CLI, inspect the repository setup
+commands:
+
+```bash
+python3 tools/github_repo.py --owner <owner>
+```
+
+Run the printed commands when they look correct.
+
 ## Branch Protection
 
 Create a branch protection rule or ruleset for `main`:

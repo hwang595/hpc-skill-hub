@@ -74,6 +74,27 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("--repo example/hpc-skill-hub", result.stdout)
         self.assertIn("--force", result.stdout)
 
+    def test_repository_command_generator(self):
+        result = subprocess.run(
+            [
+                "python3",
+                "tools/github_repo.py",
+                "--owner",
+                "example",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        self.assertIn("git branch -M main", result.stdout)
+        self.assertIn("gh repo create example/hpc-skill-hub", result.stdout)
+        self.assertIn("--public", result.stdout)
+        self.assertIn("--remote=origin", result.stdout)
+        self.assertIn("--push", result.stdout)
+        self.assertIn("has_discussions=true", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()
