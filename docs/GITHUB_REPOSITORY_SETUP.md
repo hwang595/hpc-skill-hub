@@ -132,3 +132,15 @@ Cut `v0.1.0` after:
 - The generated registry site is published.
 - At least one external contributor can validate a skill locally.
 - Maintainers agree the skill schema is stable enough for early adopters.
+
+## Post-Launch Verification
+
+After repository settings, labels, milestones, starter issues, Pages, rulesets,
+and the release are live, run:
+
+```bash
+python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --version v0.1.0
+```
+
+Use [Post-Launch Verification](POST_LAUNCH_VERIFICATION.md) to interpret the
+report and attach it to the launch issue or release handoff.

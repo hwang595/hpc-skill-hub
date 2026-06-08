@@ -136,6 +136,20 @@ def main() -> int:
     print_section("9. Publish first release after CI and Pages are green")
     print_commands(release_commands(args.version, repo))
 
+    print_section("10. Verify published repository state")
+    print(
+        shell_join(
+            [
+                "python3",
+                "tools/github_post_launch_check.py",
+                "--repo",
+                repo,
+                "--version",
+                args.version,
+            ]
+        )
+    )
+
     return 0
 
 

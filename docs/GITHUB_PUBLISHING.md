@@ -38,6 +38,7 @@ python3 tools/github_repo.py --owner <owner>
 python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
 python3 tools/github_milestones.py --repo <owner>/hpc-skill-hub
 python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
+python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --dry-run
 ```
 
 Review the printed commands before running them. They are generated from the
@@ -120,6 +121,8 @@ uncommitted export rather than this maintained local repository.
 - `python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub` prints
   the expected release commands and manifest attachment after Pages and Actions
   are green.
+- `python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub`
+  verifies the published repository state after launch.
 - `python3 tools/github_publish_plan.py --owner <owner> --run-check` prints the
   expected end-to-end publication plan.
 - The GitHub owner has completed [GitHub Owner Checklist](GITHUB_OWNER_CHECKLIST.md).
@@ -131,6 +134,8 @@ uncommitted export rather than this maintained local repository.
 - A pinned issue invites external HPC centers to propose skills and adapters.
 - A triage owner knows how to apply `needs-triage` and
   `needs-domain-review`.
+- Post-launch verification passes or has documented follow-up for each warning
+  or failure.
 
 ## Publish GitHub Pages
 

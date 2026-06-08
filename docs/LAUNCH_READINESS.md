@@ -89,6 +89,7 @@ python3 tools/github_milestones.py --repo <owner>/hpc-skill-hub
 python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
 python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub
 python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub
+python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --dry-run
 ```
 
 Review generated commands before running them. They are meant to be executed in

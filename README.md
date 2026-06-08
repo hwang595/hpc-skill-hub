@@ -181,6 +181,7 @@ python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/launch_evidence.py --owner <owner> --run-check
 python3 tools/proposal_evidence.py --owner <owner> --run-check
 python3 tools/review_candidates.py --limit 12
+python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --dry-run
 ```
 
 ## Project Status
@@ -235,6 +236,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Changelog](CHANGELOG.md)
 - [GitHub publishing guide](docs/GITHUB_PUBLISHING.md)
 - [GitHub repository setup](docs/GITHUB_REPOSITORY_SETUP.md)
+- [Post-launch verification](docs/POST_LAUNCH_VERIFICATION.md)
 - [Launch readiness](docs/LAUNCH_READINESS.md)
 - [Support](SUPPORT.md)
 - [Citation](docs/CITATION.md)

@@ -78,6 +78,7 @@ python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/launch_evidence.py --owner <owner> --run-check
 python3 tools/proposal_evidence.py --owner <owner> --run-check
 python3 tools/review_candidates.py --limit 12
+python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --dry-run
 ```
 
 Then follow [GitHub Publishing Guide](GITHUB_PUBLISHING.md) and

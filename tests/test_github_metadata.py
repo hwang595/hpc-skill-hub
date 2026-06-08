@@ -372,6 +372,29 @@ class GitHubMetadataTests(unittest.TestCase):
         )
         self.assertIn("repos/example/hpc-skill-hub/rulesets", result.stdout)
         self.assertIn("gh release create v0.1.0", result.stdout)
+        self.assertIn("Verify published repository state", result.stdout)
+        self.assertIn("python3 tools/github_post_launch_check.py", result.stdout)
+
+    def test_post_launch_check_dry_run(self):
+        result = subprocess.run(
+            [
+                "python3",
+                "tools/github_post_launch_check.py",
+                "--repo",
+                "example/hpc-skill-hub",
+                "--dry-run",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        self.assertIn("# HPC Skill Hub Post-Launch Check Commands", result.stdout)
+        self.assertIn("gh api repos/example/hpc-skill-hub", result.stdout)
+        self.assertIn("gh label list --repo example/hpc-skill-hub", result.stdout)
+        self.assertIn("gh api repos/example/hpc-skill-hub/actions/workflows", result.stdout)
+        self.assertIn("gh release view v0.1.0", result.stdout)
 
     def test_proposal_evidence_generator(self):
         markdown = subprocess.run(
@@ -466,6 +489,14 @@ class GitHubMetadataTests(unittest.TestCase):
         )
         self.assertIn(
             "docs/GITHUB_OWNER_CHECKLIST.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "docs/POST_LAUNCH_VERIFICATION.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "tools/github_post_launch_check.py",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
 

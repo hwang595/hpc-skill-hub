@@ -60,6 +60,7 @@ python3 tools/github_publish_plan.py --owner <owner> --run-check
 python3 tools/launch_evidence.py --owner <owner> --run-check
 python3 tools/proposal_evidence.py --owner <owner> --run-check
 python3 tools/review_candidates.py --limit 12
+python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --dry-run
 ```
 
 Attach the launch evidence report to the launch issue or owner handoff. If the
@@ -90,6 +91,7 @@ steps.
    site-adapter reviewers through the reviewed-skill pilot and domain reviewer
    starter issues.
 9. Tag and publish `v0.1.0` with `registry/releases/v0.1.0.json` attached.
+10. Run post-launch verification and attach the report to the launch issue.
 
 ## First Outreach Targets
 
@@ -112,6 +114,8 @@ steps.
   domain reviewers.
 - At least one external reviewer can run `make check` locally and inspect a
   skill, collection, and site adapter through the CLI.
+- Post-launch verification reports no `FAIL` entries, or every remaining
+  warning or failure has a documented owner and follow-up issue.
 
 ## Do Not Publish
 

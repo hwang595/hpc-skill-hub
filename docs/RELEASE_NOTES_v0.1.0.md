@@ -84,6 +84,7 @@ request missing workflows, or contribute public site adapters.
 - `python3 tools/hpc_skill.py health`
 - `python3 tools/review_candidates.py --limit 12`
 - `python3 tools/proposal_evidence.py --owner <owner> --run-check`
+- `python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub`
 
 ## GitHub Launch Readiness
 
@@ -110,6 +111,8 @@ request missing workflows, or contribute public site adapters.
   field-testing, maintenance, and deprecation.
 - GitHub milestone metadata and command generator for launch, reviewed-skill
   pilot, integration, adapter, and ecosystem backlog planning.
+- Post-launch verification for repository metadata, labels, milestones,
+  starter issues, workflows, Pages, rulesets, and releases.
 - Launch readiness checks for Discussion forms and milestone metadata.
 - Launch evidence report generation for maintainer handoff, owner checklists,
   and public launch issue evidence.

@@ -7,6 +7,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a post-launch GitHub verification tool for checking published repository
+  metadata, labels, milestones, starter issues, workflows, Pages, rulesets, and
+  releases.
 - Add a proposal evidence report generator for owner handoffs, open-source
   review packets, and ecosystem sponsor discussions.
 - Add a reviewed-skill pilot starter issue for routing the first seed skill
