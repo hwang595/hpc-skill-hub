@@ -143,6 +143,16 @@ class RegistryTests(unittest.TestCase):
             self.assertIn("issue_title", candidate)
             self.assertIn("suggested_labels", candidate)
 
+        bad_collection = run_cmd_no_check(
+            "python3",
+            "tools/review_packet.py",
+            "--collection",
+            "missing-collection",
+            "--check",
+        )
+        self.assertNotEqual(bad_collection.returncode, 0)
+        self.assertIn("unknown collection: missing-collection", bad_collection.stderr)
+
     def test_review_candidates_report(self):
         result = run_cmd("python3", "tools/review_candidates.py", "--limit", "5")
         self.assertIn("# HPC Skill Hub Review Candidates", result.stdout)

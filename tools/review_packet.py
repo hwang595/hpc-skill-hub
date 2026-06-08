@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
 
-from review_candidates import build_payload
+from review_candidates import INDEX_JSON, build_payload, load_json
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -92,6 +92,15 @@ def build_review_packet(
             "make check passes locally and in GitHub Actions.",
         ],
     }
+
+
+def validate_collection(collection: str | None) -> None:
+    if collection is None:
+        return
+    index = load_json(INDEX_JSON)
+    collection_ids = {item["id"] for item in index["collections"]}
+    if collection not in collection_ids:
+        raise SystemExit(f"unknown collection: {collection}")
 
 
 def escape_table(value: str) -> str:
@@ -248,6 +257,7 @@ def main() -> int:
     if args.limit < 1:
         parser.error("--limit must be at least 1")
 
+    validate_collection(args.collection)
     packet = build_review_packet(args.target_version, args.limit, args.collection)
     if args.json:
         print(json.dumps(packet, indent=2, sort_keys=True))

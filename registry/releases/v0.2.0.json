@@ -2743,9 +2743,9 @@
       "sha256": "4a625d36f1145fb3ea4be9bacabc9c8b315ce130520bc15419be6ec4eac10d01"
     },
     {
-      "bytes": 17061,
+      "bytes": 17406,
       "path": "tests/test_registry.py",
-      "sha256": "3a9f98697f516fbac976be569b13e0a1e5b45500098d3a7bd97425ab501bc221"
+      "sha256": "8205d3199f709955fd2afc98d53c919ae6d365cc088f652a6af7409e89bf1e11"
     },
     {
       "bytes": 6879,
@@ -2853,9 +2853,9 @@
       "sha256": "b9eb2838fcbe60f776f4a9582c3c63b87d0723659f961bafb7a89bae48c4c619"
     },
     {
-      "bytes": 9804,
+      "bytes": 10173,
       "path": "tools/review_packet.py",
-      "sha256": "8b2e1e5458d11f73827b9f467f65a230c13a855fa9190b21093274343b193f2f"
+      "sha256": "28c9cb9352ee45253cab8352f1b81b3314ab7ab639bfb9b591d54e6bc5e4b842"
     },
     {
       "bytes": 13345,
@@ -2890,6 +2890,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 2849058,
+  "total_bytes": 2849772,
   "version": "v0.2.0"
 }
