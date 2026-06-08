@@ -89,6 +89,8 @@ Examples should be conservative and inspectable:
 - Use short wall times and modest resource requests.
 - Use placeholders such as `<account>`, `<partition>`, `<project>`, and
   `<dataset>`.
+- Keep Slurm account, WCKEY, reservation, login host, service endpoint, and
+  scratch/project path examples in placeholder form.
 - Write outputs to user-owned working directories.
 - Print enough context for users to understand success or failure.
 - Avoid private hostnames, usernames, allocation names, tokens, and internal

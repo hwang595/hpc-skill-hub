@@ -19,6 +19,12 @@ operational risk.
 - Private key blocks.
 - Token-shaped secrets.
 - AWS key-shaped secrets.
+- Jupyter token-shaped URLs.
+- Private network addresses.
+- SSH commands or HPC service URLs with real-looking hostnames.
+- Slurm account, WCKEY, or reservation values that are not placeholders.
+- Private-looking HPC storage paths such as non-placeholder scratch, project,
+  GPFS, Lustre, NFS, or home paths.
 - Recursive remove against filesystem root.
 - `chmod 777`.
 - `sudo` in user-facing examples.
@@ -30,8 +36,10 @@ Run:
 python3 tools/audit_safety.py
 ```
 
-The audit is deliberately conservative. It is not a full static analyzer and it
-does not replace maintainer review.
+The audit allows public-safe placeholders such as `<account>`, `<partition>`,
+`<login-node>`, `/project/<project>`, and `/scratch/<user>`, plus localhost and
+example domains for runnable templates. The audit is deliberately conservative.
+It is not a full static analyzer and it does not replace maintainer review.
 
 ## Review Expectations
 

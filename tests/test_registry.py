@@ -19,6 +19,17 @@ def run_cmd(*args, cwd=ROOT):
     )
 
 
+def run_cmd_no_check(*args, cwd=ROOT):
+    return subprocess.run(
+        args,
+        cwd=str(cwd),
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+
+
 def run_cmd_with_env(*args, cwd=ROOT, env=None):
     merged_env = None
     if env is not None:
@@ -91,6 +102,61 @@ class RegistryTests(unittest.TestCase):
     def test_safety_audit_passes(self):
         result = run_cmd("python3", "tools/audit_safety.py")
         self.assertIn("Safety audit passed", result.stdout)
+
+    def test_safety_audit_rejects_public_safety_leaks(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            leaky = Path(tmpdir) / "leaky.md"
+            leaky.write_text(
+                "\n".join(
+                    [
+                        "ssh " + "alice" + "@login." + "private-center.edu",
+                        "#SBATCH --account=" + "real_alloc_123",
+                        "#SBATCH --reservation=" + "priority_window",
+                        "scratch=/scratch/" + "alice/project-data",
+                        "dashboard=http://192.168." + "1.20:8888",
+                        "notebook=http://127.0.0.1:8888/lab?to"
+                        + "ken=abc123def456ghi789",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            result = run_cmd_no_check("python3", "tools/audit_safety.py", str(leaky))
+
+            self.assertNotEqual(result.returncode, 0)
+            for rule in [
+                "private-ssh-hostname",
+                "slurm-account-literal",
+                "slurm-reservation-literal",
+                "private-storage-path",
+                "private-ip",
+                "jupyter-token",
+            ]:
+                self.assertIn(rule, result.stderr)
+
+    def test_safety_audit_allows_public_safe_placeholders(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            safe = Path(tmpdir) / "safe.md"
+            safe.write_text(
+                "\n".join(
+                    [
+                        "ssh -N -L 8888:<compute-node>:8888 <user>@<login-node>",
+                        "ssh -N -L 8888:node:8888 <user>@login.example.edu",
+                        "#SBATCH --account=<account>",
+                        "#SBATCH --reservation=<reservation>",
+                        "scratch=/scratch/<user>/demo",
+                        "project=/project/${PROJECT}/demo",
+                        "MASTER_ADDR=127.0.0.1",
+                        "jupyter lab --ip=0.0.0.0",
+                        "https://www2.mmm.ucar.edu/wrf/users/wrf_users_guide/",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            result = run_cmd("python3", "tools/audit_safety.py", str(safe))
+
+            self.assertIn("Safety audit passed", result.stdout)
 
     def test_index_matches_skill_manifests(self):
         index = self.load_index()

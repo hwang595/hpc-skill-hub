@@ -302,9 +302,9 @@
       "sha256": "0c8f2cf50cef46310d74d698304d6c220320dac340a23075cbfe5bd287ceb69c"
     },
     {
-      "bytes": 2207,
+      "bytes": 2392,
       "path": "docs/MAINTAINER_GUIDE.md",
-      "sha256": "556d69ee484c3a0e35fbd7b04858dbae602d06143ade8899ec1c03cd5153a413"
+      "sha256": "db7f6b1784e4c490a5383cddccca2622119227f7bc4c37971fdbd59dc554384a"
     },
     {
       "bytes": 2977,
@@ -347,9 +347,9 @@
       "sha256": "3808a4872dab1d84fe4d15f112c3bea23e7dbdd2615512ee99ce67bc7be9513f"
     },
     {
-      "bytes": 1340,
+      "bytes": 1847,
       "path": "docs/SAFETY_MODEL.md",
-      "sha256": "746aa078b584e39b3213f9b611ace1f2e62bfff04eb7ad3a912adbbbde9da64a"
+      "sha256": "25eeb33ce8ec064a114bf6a1e0b59d2cd4fca81e59c2df917ce79c97a0d068fb"
     },
     {
       "bytes": 1971,
@@ -357,9 +357,9 @@
       "sha256": "2f5a089a3c05fea6c0e3669c80559f1cb5a1f29bbf34ffc8f0525d9cef8bbf0d"
     },
     {
-      "bytes": 5557,
+      "bytes": 5686,
       "path": "docs/SKILL_AUTHORING_GUIDE.md",
-      "sha256": "2efa0fbb0c7efca5d0e7f8885e3c6be76a7116bcd06f82ed69323b0d975cc595"
+      "sha256": "dccd446190546cdea90d07dba6d3a0160a82865db1e39a310fd5613984ef2af2"
     },
     {
       "bytes": 6199,
@@ -1692,14 +1692,14 @@
       "sha256": "060247794ee1b3fd56c6e10dea81e7c09e834f125076e3e1ba676e0ccaeb018d"
     },
     {
-      "bytes": 9052,
+      "bytes": 11569,
       "path": "tests/test_registry.py",
-      "sha256": "7817c92b776c90c23266f0c66e167a795441ab6df4572913e217a13112e86fe6"
+      "sha256": "65c86023031664ba7b73d3b38ffd4c4a1f416c571075987bfca9c8e1852a8d35"
     },
     {
-      "bytes": 4257,
+      "bytes": 6867,
       "path": "tools/audit_safety.py",
-      "sha256": "0a72db498c33231c5bf1e5da4ca4d265efc277e6467636a4f1e5dea7b2fb68a1"
+      "sha256": "9b9120dd6aa506f1b062999a9609b7fad5002105177a5cc101c8bd55f12f4aa1"
     },
     {
       "bytes": 9763,
@@ -1794,6 +1794,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 868214,
+  "total_bytes": 874162,
   "version": "v0.1.0"
 }

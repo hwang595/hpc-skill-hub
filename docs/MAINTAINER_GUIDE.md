@@ -13,6 +13,9 @@ issue and pull request intake, see [Triage Runbook](TRIAGE_RUNBOOK.md).
 - The README explains target users, assumptions, and risks.
 - Examples avoid private hostnames, usernames, accounts, tokens, and dataset
   paths.
+- `python3 tools/audit_safety.py` passes, including public-safe checks for
+  hostnames, Slurm accounts, reservations, notebook tokens, private IPs, and
+  non-placeholder storage paths.
 - Resource requests are conservative.
 - Medium and high-risk skills explain cost, side effects, and rollback or
   cleanup expectations.

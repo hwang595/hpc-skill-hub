@@ -49,7 +49,15 @@ class Rule:
     name: str
     pattern: re.Pattern[str]
     message: str
+    strip_urls: bool = False
+    ignore_patterns: tuple[re.Pattern[str], ...] = ()
 
+
+EXAMPLE_DOMAIN = re.compile(
+    r"\b(?:example\.(?:com|edu|net|org)|[A-Za-z0-9-]+\.example\.(?:com|edu|net|org))\b"
+)
+PUBLIC_DOC_DOMAIN = re.compile(r"\b(?:readthedocs\.io|docs\.[A-Za-z0-9.-]+)\b")
+URL = re.compile(r"https?://\S+")
 
 RULES = [
     Rule(
@@ -71,6 +79,67 @@ RULES = [
         "slack-token",
         re.compile(r"\bxox[baprs]-[A-Za-z0-9-]{20,}\b"),
         "Slack token-shaped secret detected",
+    ),
+    Rule(
+        "jupyter-token",
+        re.compile(r"\btoken=[A-Za-z0-9][A-Za-z0-9_-]{15,}\b"),
+        "Jupyter token-shaped secret detected",
+    ),
+    Rule(
+        "private-ip",
+        re.compile(
+            r"\b(?:10\.(?:[0-9]{1,3}\.){2}[0-9]{1,3}"
+            r"|172\.(?:1[6-9]|2[0-9]|3[01])\.(?:[0-9]{1,3}\.)[0-9]{1,3}"
+            r"|192\.168\.[0-9]{1,3}\.[0-9]{1,3})\b"
+        ),
+        "private network address must not be committed",
+    ),
+    Rule(
+        "private-ssh-hostname",
+        re.compile(
+            r"\bssh\b[^\n#]*\b[A-Za-z0-9._%+-]+@"
+            r"(?!<|localhost\b|127\.0\.0\.1\b)"
+            r"[A-Za-z0-9][A-Za-z0-9.-]*\.[A-Za-z]{2,}\b"
+        ),
+        "private SSH hostname or username must use placeholders",
+        ignore_patterns=(EXAMPLE_DOMAIN,),
+    ),
+    Rule(
+        "private-hpc-endpoint",
+        re.compile(
+            r"https?://(?:login|submit|head|ood|ondemand|jupyter|portal|transfer)"
+            r"[A-Za-z0-9-]*(?:\.[A-Za-z0-9-]+)+\.[A-Za-z]{2,}\b"
+        ),
+        "private HPC service endpoint must use placeholders or public docs",
+        ignore_patterns=(EXAMPLE_DOMAIN, PUBLIC_DOC_DOMAIN),
+    ),
+    Rule(
+        "slurm-account-literal",
+        re.compile(
+            r"(?<![A-Za-z0-9_-])--(?:account|account-name|wckey)(?:=|\s+)"
+            r"(?!<|\$\{|\$)[A-Za-z0-9][A-Za-z0-9_.-]*\b"
+        ),
+        "Slurm account-like values must use placeholders",
+    ),
+    Rule(
+        "slurm-reservation-literal",
+        re.compile(
+            r"(?<![A-Za-z0-9_-])--reservation(?:=|\s+)"
+            r"(?!<|\$\{|\$)[A-Za-z0-9][A-Za-z0-9_.-]*\b"
+        ),
+        "Slurm reservation names must use placeholders",
+    ),
+    Rule(
+        "private-storage-path",
+        re.compile(
+            r"(?<![A-Za-z0-9_.-])"
+            r"/(?:home|users|scratch|project|gpfs|lustre|nfs|work|global|fsx|mmfs)/"
+            r"(?!(?:<[^>]+>|\$\{?[A-Za-z_][A-Za-z0-9_]*\}?|path/to)"
+            r"(?:/|$|[ \t\r\n`'\"),;]))"
+            r"[^ \t\r\n`'\"),;]+"
+        ),
+        "private HPC storage paths must use placeholders",
+        strip_urls=True,
     ),
     Rule(
         "danger-rm-root",
@@ -124,7 +193,10 @@ def audit_file(path: Path) -> List[str]:
     text = read_text(path)
     for line_number, line in enumerate(text.splitlines(), start=1):
         for rule in RULES:
-            if rule.pattern.search(line):
+            target = URL.sub("", line) if rule.strip_urls else line
+            if rule.pattern.search(target) and not any(
+                ignore.search(line) for ignore in rule.ignore_patterns
+            ):
                 try:
                     relative = path.relative_to(ROOT)
                 except ValueError:
