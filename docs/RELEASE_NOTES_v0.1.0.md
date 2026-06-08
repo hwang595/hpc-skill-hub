@@ -14,7 +14,7 @@ request missing workflows, or contribute public site adapters.
 
 ## Registry Contents
 
-- Skills: 51.
+- Skills: 52.
 - Collections: 9.
 - Site adapters: 1 example adapter.
 - Skill maturity: all seed.
@@ -27,11 +27,11 @@ request missing workflows, or contribute public site adapters.
   failure triage, interactive sessions, Jupyter, OpenMP placement, quota
   triage, and scratch management.
 - Software stacks: module debugging, module tree health, compiler/MPI
-  compatibility, reproducible run capture, Python virtualenv, mpi4py on Slurm,
-  Rscript on Slurm, Julia on Slurm, MATLAB batch jobs, Conda/Mamba, Apptainer
-  builds and runtime, Spack, and EasyBuild.
-- Workflow engines: lightweight Slurm dependency chains, Nextflow, Snakemake,
-  and nf-core on Slurm.
+  compatibility, reproducible run capture, Python virtualenv, Dask Jobqueue,
+  mpi4py on Slurm, Rscript on Slurm, Julia on Slurm, MATLAB batch jobs,
+  Conda/Mamba, Apptainer builds and runtime, Spack, and EasyBuild.
+- Workflow engines: lightweight Slurm dependency chains, Dask worker clusters,
+  Nextflow, Snakemake, and nf-core on Slurm.
 - Training and onboarding: workshop preflight, reset checklists, intro Slurm
   workflows, notebooks, Python/Conda environments, Rscript, Julia, and MATLAB
   batch jobs, and common learner triage.

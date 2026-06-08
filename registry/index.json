@@ -9,9 +9,9 @@
     "interactive": 2,
     "mpi": 7,
     "performance": 8,
-    "scheduler": 34,
-    "software": 13,
-    "workflow": 5
+    "scheduler": 35,
+    "software": 14,
+    "workflow": 6
   },
   "collection_count": 9,
   "collections": [
@@ -165,6 +165,7 @@
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "dask-jobqueue-on-slurm",
         "mpi4py-on-slurm",
         "rscript-on-slurm",
         "julia-on-slurm",
@@ -176,7 +177,7 @@
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks."
+      "summary": "Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Dask, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -215,17 +216,18 @@
       "path": "collections/workflow-engines.json",
       "skill_ids": [
         "slurm-job-dependency-chain",
+        "dask-jobqueue-on-slurm",
         "nextflow-on-slurm",
         "snakemake-on-slurm",
         "nf-core-on-slurm"
       ],
       "status": "draft",
-      "summary": "Skills for launching portable workflow engines and lightweight Slurm dependency chains."
+      "summary": "Skills for launching portable workflow engines, Dask worker clusters, and lightweight Slurm dependency chains."
     }
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 35
+    "slurm": 36
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -251,7 +253,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 51,
+  "skill_count": 52,
   "skills": [
     {
       "categories": [
@@ -631,6 +633,75 @@
         "date",
         "hostname",
         "tee"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "workflow",
+        "scheduler"
+      ],
+      "description": "This skill helps users configure Dask Jobqueue for Slurm-backed Python workloads while keeping worker resources, queue settings, logs, temporary directories, and scale limits explicit.",
+      "examples": [
+        {
+          "path": "skills/dask-jobqueue-on-slurm/examples/dask-slurm-demo.sh",
+          "title": "Dry-run or launch a Dask Jobqueue Slurm demo"
+        },
+        {
+          "path": "skills/dask-jobqueue-on-slurm/examples/dask_jobqueue_demo.py",
+          "title": "Dask Jobqueue Python driver"
+        },
+        {
+          "path": "skills/dask-jobqueue-on-slurm/examples/requirements.txt",
+          "title": "Minimal Python dependency list"
+        }
+      ],
+      "id": "dask-jobqueue-on-slurm",
+      "maturity": "seed",
+      "name": "Dask Jobqueue On Slurm",
+      "path": "skills/dask-jobqueue-on-slurm",
+      "readme": "skills/dask-jobqueue-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Dask Jobqueue SLURMCluster",
+          "url": "https://jobqueue.dask.org/en/stable/generated/dask_jobqueue.SLURMCluster.html"
+        },
+        {
+          "title": "Dask Jobqueue configuration",
+          "url": "https://jobqueue.dask.org/en/stable/clusters-configuration.html"
+        },
+        {
+          "title": "Dask distributed Client",
+          "url": "https://distributed.dask.org/en/latest/client.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults.",
+      "tags": [
+        "dask",
+        "dask-jobqueue",
+        "distributed",
+        "python",
+        "slurm",
+        "workers",
+        "workflow"
+      ],
+      "tools": [
+        "python",
+        "dask",
+        "distributed",
+        "dask_jobqueue",
+        "sbatch",
+        "module"
       ],
       "version": "0.1.0"
     },
@@ -3119,6 +3190,8 @@
     "cpu-bind": 1,
     "cran": 1,
     "cuda": 2,
+    "dask": 1,
+    "dask-jobqueue": 1,
     "data": 1,
     "dataset": 2,
     "ddp": 1,
@@ -3128,7 +3201,7 @@
     "definition": 1,
     "dependency": 1,
     "depot": 1,
-    "distributed": 2,
+    "distributed": 3,
     "easybuild": 1,
     "easyconfig": 1,
     "efficiency": 1,
@@ -3200,7 +3273,7 @@
     "profiling": 1,
     "provenance": 1,
     "publication": 1,
-    "python": 2,
+    "python": 3,
     "pytorch": 3,
     "quota": 2,
     "r": 1,
@@ -3228,7 +3301,7 @@
     "sinfo": 2,
     "singleton": 1,
     "singularity": 3,
-    "slurm": 33,
+    "slurm": 34,
     "snakemake": 1,
     "software": 2,
     "software-stack": 1,
@@ -3256,7 +3329,8 @@
     "virtualenv": 1,
     "walltime": 2,
     "weather": 1,
-    "workflow": 3,
+    "workers": 1,
+    "workflow": 4,
     "workshop": 1,
     "wrapper": 1,
     "wrf": 1,
@@ -3276,11 +3350,14 @@
     "command": 2,
     "conda": 1,
     "cp": 2,
+    "dask": 1,
+    "dask_jobqueue": 1,
     "date": 18,
     "decomposePar": 1,
     "deepspeed": 1,
     "df": 3,
     "dirname": 3,
+    "distributed": 1,
     "du": 2,
     "eb": 1,
     "env": 6,
@@ -3305,7 +3382,7 @@
     "matlab": 1,
     "micromamba": 1,
     "mkdir": 23,
-    "module": 12,
+    "module": 13,
     "mpi4py": 1,
     "mpicc": 2,
     "mpicxx": 1,
@@ -3319,7 +3396,7 @@
     "pip": 1,
     "printenv": 1,
     "pwd": 7,
-    "python": 1,
+    "python": 2,
     "python3": 5,
     "quota": 1,
     "real.exe": 1,
@@ -3328,7 +3405,7 @@
     "rsync": 2,
     "sacct": 7,
     "salloc": 1,
-    "sbatch": 25,
+    "sbatch": 26,
     "scontrol": 5,
     "sed": 1,
     "seff": 1,

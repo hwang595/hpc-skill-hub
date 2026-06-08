@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 51 skills.
+Current registry size: 52 skills.
 
 ## Categories
 
@@ -17,9 +17,9 @@ Current registry size: 51 skills.
 | `interactive` | 2 |
 | `mpi` | 7 |
 | `performance` | 8 |
-| `scheduler` | 34 |
-| `software` | 13 |
-| `workflow` | 5 |
+| `scheduler` | 35 |
+| `software` | 14 |
+| `workflow` | 6 |
 
 ## Skills By Category
 
@@ -131,6 +131,7 @@ Current registry size: 51 skills.
 | [`apptainer-run-container`](../skills/apptainer-run-container/README.md) | medium | seed | Run Apptainer containers safely on shared HPC systems. |
 | [`checkpoint-restart-workflow`](../skills/checkpoint-restart-workflow/README.md) | medium | seed | Structure long HPC jobs so they can resume after time limits or preemption. |
 | [`cluster-usage-report-readonly`](../skills/cluster-usage-report-readonly/README.md) | low | seed | Collect read-only Slurm usage evidence for facility support reports. |
+| [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md) | medium | seed | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |
 | [`dataset-staging-to-scratch`](../skills/dataset-staging-to-scratch/README.md) | medium | seed | Stage inputs to scratch, run work, and collect outputs from Slurm jobs. |
 | [`deepspeed-on-slurm`](../skills/deepspeed-on-slurm/README.md) | medium | seed | Plan and smoke test DeepSpeed launches on Slurm GPU allocations. |
 | [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
@@ -170,6 +171,7 @@ Current registry size: 51 skills.
 | [`compiler-mpi-matrix`](../skills/compiler-mpi-matrix/README.md) | low | seed | Check compiler, MPI wrapper, and module compatibility before building HPC codes. |
 | [`conda-mamba-on-hpc`](../skills/conda-mamba-on-hpc/README.md) | medium | seed | Create Conda or Mamba environments while protecting shared HPC filesystems. |
 | [`container-build-for-hpc`](../skills/container-build-for-hpc/README.md) | medium | seed | Plan and build Apptainer-compatible images for shared HPC systems. |
+| [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md) | medium | seed | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |
 | [`easybuild-install-software`](../skills/easybuild-install-software/README.md) | medium | seed | Install scientific software with EasyBuild and generated modules. |
 | [`julia-on-slurm`](../skills/julia-on-slurm/README.md) | medium | seed | Run Julia scripts on Slurm with explicit depot, project, and thread settings. |
 | [`matlab-batch-on-slurm`](../skills/matlab-batch-on-slurm/README.md) | medium | seed | Run non-interactive MATLAB workloads on Slurm with explicit logs and license notes. |
@@ -185,6 +187,7 @@ Current registry size: 51 skills.
 
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
+| [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md) | medium | seed | Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults. |
 | [`gatk-workflow-on-hpc`](../skills/gatk-workflow-on-hpc/README.md) | medium | seed | Plan and run GATK variant-calling workflows on shared HPC systems. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
 | [`nf-core-on-slurm`](../skills/nf-core-on-slurm/README.md) | medium | seed | Run nf-core Nextflow pipelines on Slurm with conservative HPC defaults. |
@@ -201,9 +204,9 @@ Current registry size: 51 skills.
 | [`facility-ops`](../collections/facility-ops.json) | draft | 4 | HPC support teams, facility maintainers, research computing operators | Read-only operational skills for usage reporting, pending reason triage, node triage, and module tree health. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 11 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, GPU memory failures, NCCL communication, DeepSpeed and PyTorch DDP launches, MPI and mpi4py launches, OpenMP placement, Slurm efficiency review, and first-pass performance evidence. |
 | [`simulation-workflows`](../collections/simulation-workflows.json) | draft | 9 | simulation teams, computational scientists, performance engineers | Domain skills for MPI/GPU-heavy simulation, CFD, and weather workloads on Slurm-backed HPC systems. |
-| [`software-stacks`](../collections/software-stacks.json) | draft | 14 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks. |
+| [`software-stacks`](../collections/software-stacks.json) | draft | 15 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, checking module tree health, compiler/MPI compatibility, Python, Dask, mpi4py, R, Julia, MATLAB, and Conda environments, containers, and reproducible HPC software stacks. |
 | [`training-onboarding`](../collections/training-onboarding.json) | draft | 12 | instructors, new HPC users, training cluster maintainers | Skills for teaching new HPC users, including Slurm jobs, notebooks, Python, R, Julia, and MATLAB workloads, and workshop environments. |
-| [`workflow-engines`](../collections/workflow-engines.json) | draft | 4 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines and lightweight Slurm dependency chains. |
+| [`workflow-engines`](../collections/workflow-engines.json) | draft | 5 | pipeline authors, bioinformatics teams, workflow platform maintainers | Skills for launching portable workflow engines, Dask worker clusters, and lightweight Slurm dependency chains. |
 
 ## Site Adapters
 

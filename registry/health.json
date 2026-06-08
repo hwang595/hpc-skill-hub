@@ -9,9 +9,9 @@
     "interactive": 2,
     "mpi": 7,
     "performance": 8,
-    "scheduler": 34,
-    "software": 13,
-    "workflow": 5
+    "scheduler": 35,
+    "software": 14,
+    "workflow": 6
   },
   "collection_count": 9,
   "collection_coverage": [
@@ -104,13 +104,14 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 14,
+      "skill_count": 15,
       "skill_ids": [
         "module-environment-debug",
         "module-tree-health-check",
         "compiler-mpi-matrix",
         "reproducible-run-capture",
         "python-virtualenv-on-hpc",
+        "dask-jobqueue-on-slurm",
         "mpi4py-on-slurm",
         "rscript-on-slurm",
         "julia-on-slurm",
@@ -142,9 +143,10 @@
     },
     {
       "id": "workflow-engines",
-      "skill_count": 4,
+      "skill_count": 5,
       "skill_ids": [
         "slurm-job-dependency-chain",
+        "dask-jobqueue-on-slurm",
         "nextflow-on-slurm",
         "snakemake-on-slurm",
         "nf-core-on-slurm"
@@ -153,7 +155,7 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 51
+    "seed": 52
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
@@ -163,6 +165,7 @@
     "compiler-mpi-matrix": "low",
     "conda-mamba-on-hpc": "medium",
     "container-build-for-hpc": "medium",
+    "dask-jobqueue-on-slurm": "medium",
     "dataset-staging-to-scratch": "medium",
     "deepspeed-on-slurm": "medium",
     "easybuild-install-software": "medium",
@@ -210,13 +213,13 @@
   },
   "risk_counts": {
     "low": 17,
-    "medium": 34
+    "medium": 35
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 51,
+  "skill_count": 52,
   "status_counts": {
-    "draft": 51
+    "draft": 52
   },
   "uncollected_skill_ids": []
 }

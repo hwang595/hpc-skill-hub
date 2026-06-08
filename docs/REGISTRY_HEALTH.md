@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 51
+- Skills: 52
 - Site adapters: 1
 - Collections: 9
 - Uncollected skills: 0
@@ -14,19 +14,19 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 17 |
-| `medium` | 34 |
+| `medium` | 35 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 51 |
+| `seed` | 52 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 51 |
+| `draft` | 52 |
 
 ## Collection Coverage
 
@@ -38,9 +38,9 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `facility-ops` | 4 |
 | `gpu-mpi-performance` | 11 |
 | `simulation-workflows` | 9 |
-| `software-stacks` | 14 |
+| `software-stacks` | 15 |
 | `training-onboarding` | 12 |
-| `workflow-engines` | 4 |
+| `workflow-engines` | 5 |
 
 ## Uncollected Skills
 
@@ -57,6 +57,7 @@ All skills are included in at least one collection.
 | `compiler-mpi-matrix` | low |
 | `conda-mamba-on-hpc` | medium |
 | `container-build-for-hpc` | medium |
+| `dask-jobqueue-on-slurm` | medium |
 | `dataset-staging-to-scratch` | medium |
 | `deepspeed-on-slurm` | medium |
 | `easybuild-install-software` | medium |

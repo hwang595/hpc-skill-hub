@@ -1,0 +1,144 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "dask-jobqueue-on-slurm",
+  "name": "Dask Jobqueue On Slurm",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Launch Dask workers through Slurm with dask-jobqueue and bounded dry-run defaults.",
+  "description": "This skill helps users configure Dask Jobqueue for Slurm-backed Python workloads while keeping worker resources, queue settings, logs, temporary directories, and scale limits explicit.",
+  "categories": ["software", "workflow", "scheduler"],
+  "tags": ["dask", "dask-jobqueue", "distributed", "python", "slurm", "workers", "workflow"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "python",
+      "required": true
+    },
+    {
+      "name": "dask",
+      "required": true
+    },
+    {
+      "name": "distributed",
+      "required": true
+    },
+    {
+      "name": "dask_jobqueue",
+      "required": true
+    },
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "account",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific Slurm allocation or account for Dask worker jobs."
+    },
+    {
+      "name": "queue",
+      "type": "string",
+      "required": false,
+      "description": "Slurm partition or queue for Dask worker jobs."
+    },
+    {
+      "name": "worker_shape",
+      "type": "object",
+      "required": true,
+      "description": "Cores, processes, memory, walltime, and job count for each Dask worker job."
+    },
+    {
+      "name": "python_environment",
+      "type": "path",
+      "required": false,
+      "description": "Optional virtualenv or Conda/Mamba environment containing dask, distributed, and dask-jobqueue."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "worker_job_script",
+      "description": "Generated Slurm worker job script from Dask Jobqueue."
+    },
+    {
+      "name": "scheduler_address",
+      "description": "Dask scheduler address printed when RUN_DASK=1."
+    },
+    {
+      "name": "dask_result",
+      "description": "Small JSON result report from the demonstration workload."
+    },
+    {
+      "name": "worker_logs",
+      "description": "Slurm and Dask worker logs written under the configured log directory."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/dask-slurm-demo.sh",
+    "examples/dask_jobqueue_demo.py",
+    "examples/requirements.txt"
+  ],
+  "examples": [
+    {
+      "title": "Dry-run or launch a Dask Jobqueue Slurm demo",
+      "path": "examples/dask-slurm-demo.sh"
+    },
+    {
+      "title": "Dask Jobqueue Python driver",
+      "path": "examples/dask_jobqueue_demo.py"
+    },
+    {
+      "title": "Minimal Python dependency list",
+      "path": "examples/requirements.txt"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill dask-jobqueue-on-slurm",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "dry-run",
+      "command": "bash -n skills/dask-jobqueue-on-slurm/examples/dask-slurm-demo.sh",
+      "description": "Check the shell wrapper syntax."
+    },
+    {
+      "type": "manual",
+      "description": "Run the wrapper with RUN_DASK=0 to inspect the generated worker job script, then set RUN_DASK=1 with a small job count on a test partition and confirm the result JSON is written."
+    }
+  ],
+  "references": [
+    {
+      "title": "Dask Jobqueue SLURMCluster",
+      "url": "https://jobqueue.dask.org/en/stable/generated/dask_jobqueue.SLURMCluster.html"
+    },
+    {
+      "title": "Dask Jobqueue configuration",
+      "url": "https://jobqueue.dask.org/en/stable/clusters-configuration.html"
+    },
+    {
+      "title": "Dask distributed Client",
+      "url": "https://distributed.dask.org/en/latest/client.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}
