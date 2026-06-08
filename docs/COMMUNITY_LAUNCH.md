@@ -14,6 +14,11 @@ update these labels before inviting external contributors so issue templates and
 triage labels line up. Use [Triage Runbook](TRIAGE_RUNBOOK.md) for the first
 week of issue and pull request intake after launch.
 
+Use `.github/milestones.json` as the source of truth for launch and ecosystem
+planning milestones. Use [GitHub Milestones](GITHUB_MILESTONES.md) to group
+seed launch work, reviewed-skill pilots, integrations, adapters, and backlog
+requests.
+
 ## Starter Issues
 
 Use `.github/seed_issues.json` and `.github/seed-issues/*.md` as the source of
@@ -95,6 +100,7 @@ the discussion forms under `.github/DISCUSSION_TEMPLATE/`.
 - Apply repository description, topics, and feature settings from
   `.github/repository.json`.
 - Apply labels from `.github/labels.json`.
+- Create milestones from `.github/milestones.json`.
 - Create starter issues from `.github/seed_issues.json`.
 - Pin the first community issue.
 - Create the recommended Discussion categories and confirm their forms load.

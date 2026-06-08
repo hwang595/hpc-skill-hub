@@ -1,0 +1,22 @@
+[
+  {
+    "title": "v0.1.0 seed launch",
+    "description": "Publish the first public registry snapshot, generated site, release manifest, and community launch queue.",
+    "state": "open"
+  },
+  {
+    "title": "v0.2.0 reviewed-skill pilot",
+    "description": "Promote the first reviewed skills, collect public adoption reports, and recruit domain reviewers.",
+    "state": "open"
+  },
+  {
+    "title": "v0.3.0 integrations and adapters",
+    "description": "Expand site adapters, downstream registry integrations, and machine-readable compatibility contracts.",
+    "state": "open"
+  },
+  {
+    "title": "ecosystem backlog",
+    "description": "Track longer-running community requests that need owners, RFCs, site evidence, or domain review.",
+    "state": "open"
+  }
+]

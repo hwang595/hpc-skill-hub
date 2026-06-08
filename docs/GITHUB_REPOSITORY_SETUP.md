@@ -80,6 +80,19 @@ python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
 
 Run the printed commands when they look correct.
 
+## Milestones
+
+Create milestones from `.github/milestones.json` after labels exist:
+
+```bash
+python3 tools/github_milestones.py --repo <owner>/hpc-skill-hub
+```
+
+Run the printed commands when they look correct. Use
+[GitHub Milestones](GITHUB_MILESTONES.md) to decide where launch issues,
+maturity review work, adapter requests, and longer-running ecosystem tasks
+belong.
+
 ## Starter Issues
 
 Create launch issues from `.github/seed_issues.json` after labels exist:

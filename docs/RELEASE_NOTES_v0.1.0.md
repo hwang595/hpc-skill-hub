@@ -91,6 +91,8 @@ request missing workflows, or contribute public site adapters.
 - Triage runbook and starter labels for issue intake and domain-review queues.
 - Skill lifecycle guidance for moving requests through seed, review,
   field-testing, maintenance, and deprecation.
+- GitHub milestone metadata and command generator for launch, reviewed-skill
+  pilot, integration, adapter, and ecosystem backlog planning.
 - Integration guide, integration request template, and starter label for
   downstream tools, portals, assistants, and workflow projects.
 - Repository metadata, labels, and starter ruleset files.

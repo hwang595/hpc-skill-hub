@@ -54,6 +54,7 @@ python3 -m build --sdist --wheel
 python3 -m twine check dist/*
 python3 tools/github_repo.py --owner <owner>
 python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
+python3 tools/github_milestones.py --repo <owner>/hpc-skill-hub
 python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
 python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub
 python3 tools/github_release.py v0.1.0 --repo <owner>/hpc-skill-hub

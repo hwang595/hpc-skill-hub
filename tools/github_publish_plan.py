@@ -8,6 +8,7 @@ from typing import Iterable, List
 
 from github_issues import command_for_issue, load_seed_issues
 from github_labels import command_for_label, load_labels
+from github_milestones import command_for_milestone, load_milestones
 from github_release import release_commands
 from github_repo import create_command, edit_commands, load_repository, shell_join
 from github_rulesets import command_for_ruleset, iter_ruleset_paths, load_ruleset
@@ -96,25 +97,30 @@ def main() -> int:
     print_section("3. Configure labels")
     print_commands(command_for_label(label, repo) for label in load_labels())
 
-    print_section("4. Configure discussion categories")
+    print_section("4. Configure milestones")
+    print_commands(
+        command_for_milestone(milestone, repo) for milestone in load_milestones()
+    )
+
+    print_section("5. Configure discussion categories")
     print("# Create GitHub Discussions categories matching these template slugs:")
     for name, slug, path in DISCUSSION_FORMS:
         print(f"# - {name}: slug `{slug}`, form {path}")
 
-    print_section("5. Open starter issues")
+    print_section("6. Open starter issues")
     for issue in load_seed_issues():
         print(shell_join(command_for_issue(issue, repo)))
         if issue.get("pin"):
             print(f"# Pin the issue created from {issue['body']}.")
 
     print_section(
-        "6. Apply branch rulesets after first green Validate and Package workflows"
+        "7. Apply branch rulesets after first green Validate and Package workflows"
     )
     for path in iter_ruleset_paths():
         load_ruleset(path)
         print(shell_join(command_for_ruleset(path, repo)))
 
-    print_section("7. Publish first release after CI and Pages are green")
+    print_section("8. Publish first release after CI and Pages are green")
     print_commands(release_commands(args.version, repo))
 
     return 0

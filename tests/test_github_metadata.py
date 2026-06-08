@@ -21,6 +21,10 @@ class GitHubMetadataTests(unittest.TestCase):
         with (ROOT / ".github" / "seed_issues.json").open(encoding="utf-8") as handle:
             return json.load(handle)
 
+    def load_milestones(self):
+        with (ROOT / ".github" / "milestones.json").open(encoding="utf-8") as handle:
+            return json.load(handle)
+
     def test_labels_are_unique_and_complete(self):
         labels = self.load_labels()
         names = [label["name"] for label in labels]
@@ -93,6 +97,17 @@ class GitHubMetadataTests(unittest.TestCase):
             self.assertTrue(body_path.exists(), issue["body"])
             self.assertGreaterEqual(len(body_path.read_text(encoding="utf-8")), 200)
 
+    def test_milestones_are_publishable(self):
+        milestones = self.load_milestones()
+        titles = [milestone["title"] for milestone in milestones]
+        self.assertEqual(len(titles), len(set(titles)))
+        self.assertIn("v0.1.0 seed launch", titles)
+        self.assertIn("ecosystem backlog", titles)
+
+        for milestone in milestones:
+            self.assertIn(milestone["state"], {"open", "closed"})
+            self.assertGreaterEqual(len(milestone["description"]), 40)
+
     def test_repository_metadata_is_publishable(self):
         repository = self.load_repository()
         self.assertEqual(repository["name"], "hpc-skill-hub")
@@ -129,6 +144,27 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("gh label create safety-review", result.stdout)
         self.assertIn("--repo example/hpc-skill-hub", result.stdout)
         self.assertIn("--force", result.stdout)
+
+    def test_milestone_command_generator(self):
+        result = subprocess.run(
+            [
+                "python3",
+                "tools/github_milestones.py",
+                "--repo",
+                "example/hpc-skill-hub",
+            ],
+            cwd=str(ROOT),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        self.assertIn(
+            "gh api -X POST repos/example/hpc-skill-hub/milestones",
+            result.stdout,
+        )
+        self.assertIn("title=v0.1.0 seed launch", result.stdout)
+        self.assertIn("title=ecosystem backlog", result.stdout)
 
     def test_repository_command_generator(self):
         result = subprocess.run(
@@ -300,6 +336,8 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("python3 tools/launch_readiness.py", result.stdout)
         self.assertIn("gh repo create example/hpc-skill-hub", result.stdout)
         self.assertIn("gh label create safety-review", result.stdout)
+        self.assertIn("Configure milestones", result.stdout)
+        self.assertIn("repos/example/hpc-skill-hub/milestones", result.stdout)
         self.assertIn("Configure discussion categories", result.stdout)
         self.assertIn(".github/DISCUSSION_TEMPLATE/adoption.yml", result.stdout)
         self.assertIn("skill-coverage", result.stdout)

@@ -26,6 +26,7 @@ python3 tools/github_publish_plan.py --owner <owner>
 python3 tools/launch_readiness.py
 python3 tools/github_repo.py --owner <owner>
 python3 tools/github_labels.py --repo <owner>/hpc-skill-hub
+python3 tools/github_milestones.py --repo <owner>/hpc-skill-hub
 python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
 ```
 
@@ -33,8 +34,8 @@ Review the printed commands before running them. They are generated from the
 versioned metadata files so future edits stay in one place.
 
 For a single ordered publication plan that includes local readiness, repository
-creation, labels, starter issues, branch rulesets, and the first release
-commands, run:
+creation, labels, milestones, starter issues, branch rulesets, and the first
+release commands, run:
 
 ```bash
 python3 tools/github_publish_plan.py --owner <owner> --run-check
@@ -74,6 +75,7 @@ git push -u origin main
 - Repository topics and description are set.
 - Repository metadata matches `.github/repository.json`.
 - Labels are created from `.github/labels.json`.
+- Milestones are created from `.github/milestones.json`.
 - GitHub Discussions categories match `.github/DISCUSSION_TEMPLATE/` and
   [GitHub Discussions](GITHUB_DISCUSSIONS.md).
 - `python3 tools/launch_readiness.py` reports no local `FAIL` entries.
@@ -81,6 +83,8 @@ git push -u origin main
   creation and metadata commands.
 - `python3 tools/github_labels.py --repo <owner>/hpc-skill-hub` prints the
   expected label commands.
+- `python3 tools/github_milestones.py --repo <owner>/hpc-skill-hub` prints the
+  expected milestone commands.
 - `python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes`
   prints the expected starter issue commands.
 - `python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub` prints the

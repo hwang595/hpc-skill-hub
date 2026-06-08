@@ -204,6 +204,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Open source proposal](docs/OPEN_SOURCE_PROPOSAL.md)
 - [Community launch](docs/COMMUNITY_LAUNCH.md)
 - [GitHub Discussions](docs/GITHUB_DISCUSSIONS.md)
+- [GitHub milestones](docs/GITHUB_MILESTONES.md)
 - [Release process](docs/RELEASE_PROCESS.md)
 - [v0.1.0 release notes](docs/RELEASE_NOTES_v0.1.0.md)
 - [Changelog](CHANGELOG.md)
