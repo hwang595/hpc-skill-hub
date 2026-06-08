@@ -45,6 +45,8 @@ tools.
 | `quota-and-filesystem-triage` | Diagnose quota, inode, capacity, and permission failures. |
 | `scratch-storage-management` | Inventory user-owned scratch, project, and workflow storage usage. |
 | `module-environment-debug` | Debug module, compiler, MPI, and library path conflicts. |
+| `python-virtualenv-on-hpc` | Create lightweight Python virtual environments with explicit HPC module assumptions. |
+| `conda-mamba-on-hpc` | Create Conda or Mamba environments while protecting shared HPC filesystems. |
 | `apptainer-run-container` | Run Apptainer/Singularity containers safely on shared HPC systems. |
 | `spack-environment-create` | Create reproducible Spack environments for scientific software stacks. |
 | `easybuild-install-software` | Install scientific software with EasyBuild recipes and module output. |

@@ -1,0 +1,115 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "conda-mamba-on-hpc",
+  "name": "Conda Mamba On HPC",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Create Conda or Mamba environments while protecting shared HPC filesystems.",
+  "description": "This skill helps users create Conda/Mamba environments in explicit prefixes, manage package caches, export environment metadata, and avoid common HPC filesystem and module conflicts.",
+  "categories": ["software"],
+  "tags": ["conda", "mamba", "micromamba", "environment", "filesystem", "reproducibility"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "tools": [
+    {
+      "name": "conda",
+      "required": false
+    },
+    {
+      "name": "mamba",
+      "required": false
+    },
+    {
+      "name": "micromamba",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "env",
+      "required": true
+    },
+    {
+      "name": "grep",
+      "required": true
+    },
+    {
+      "name": "sort",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "environment_prefix",
+      "type": "path",
+      "required": true,
+      "description": "User-owned prefix where the Conda/Mamba environment should be created."
+    },
+    {
+      "name": "environment_file",
+      "type": "path",
+      "required": true,
+      "description": "YAML environment specification with channels and dependencies."
+    },
+    {
+      "name": "package_cache",
+      "type": "path",
+      "required": false,
+      "description": "Optional user-owned package cache path suitable for local site policy."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "conda_environment",
+      "description": "A Conda/Mamba environment created under an explicit prefix."
+    },
+    {
+      "name": "environment_export",
+      "description": "Exported YAML and package list for reproducibility and support."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/environment.yml",
+    "examples/create-conda-env.sh"
+  ],
+  "examples": [
+    {
+      "title": "Starter Conda environment file",
+      "path": "examples/environment.yml"
+    },
+    {
+      "title": "Create a prefixed Conda/Mamba environment",
+      "path": "examples/create-conda-env.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill conda-mamba-on-hpc",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run the script with a small environment file on a site-approved package cache and prefix."
+    }
+  ],
+  "references": [
+    {
+      "title": "Conda managing environments",
+      "url": "https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html"
+    },
+    {
+      "title": "Mamba documentation",
+      "url": "https://mamba.readthedocs.io/"
+    }
+  ]
+}

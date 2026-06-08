@@ -14,6 +14,8 @@ new collections.
 | `checkpoint-restart-workflow` | scheduler | medium | Seed skill added to `core-hpc`. |
 | `openmp-thread-affinity` | performance | medium | Seed skill added to `core-hpc` and `gpu-mpi-performance`. |
 | `jupyter-on-slurm` | interactive | medium | Seed skill added to `core-hpc`. |
+| `python-virtualenv-on-hpc` | software | low | Seed skill added to `software-stacks`. |
+| `conda-mamba-on-hpc` | software | medium | Seed skill added to `software-stacks`. |
 
 ## Priority 1: Core User Workflows
 
@@ -24,8 +26,6 @@ should be proposed through skill request issues.
 
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
-| `python-virtualenv-on-hpc` | software | low | Python environments are common and need clean module/compiler assumptions. |
-| `conda-mamba-on-hpc` | software | medium | Conda environments can overload shared filesystems without careful guidance. |
 | `compiler-mpi-matrix` | software | low | Users need to match compiler, MPI, modules, and application binaries. |
 | `reproducible-run-capture` | debugging | low | Capturing modules, environment, git SHA, and inputs improves supportability. |
 | `container-build-for-hpc` | containers | medium | Users need safe image build and conversion patterns before running containers. |

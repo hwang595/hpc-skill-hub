@@ -1,0 +1,115 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "python-virtualenv-on-hpc",
+  "name": "Python Virtualenv On HPC",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Create lightweight Python virtual environments with explicit HPC module assumptions.",
+  "description": "This skill helps users build user-owned Python virtual environments on HPC systems while recording module state, Python version, package inputs, and activation steps for reproducible jobs.",
+  "categories": ["software"],
+  "tags": ["python", "virtualenv", "venv", "pip", "modules", "reproducibility"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "low",
+  "tools": [
+    {
+      "name": "python3",
+      "required": true
+    },
+    {
+      "name": "pip",
+      "required": true
+    },
+    {
+      "name": "module",
+      "required": false
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "env",
+      "required": true
+    },
+    {
+      "name": "grep",
+      "required": true
+    },
+    {
+      "name": "sort",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "venv_path",
+      "type": "path",
+      "required": true,
+      "description": "User-owned virtual environment path, preferably on project or software storage."
+    },
+    {
+      "name": "requirements_file",
+      "type": "path",
+      "required": false,
+      "description": "Pinned pip requirements file to install after environment creation."
+    },
+    {
+      "name": "python_module",
+      "type": "string",
+      "required": false,
+      "description": "Site-specific Python module loaded before creating the virtual environment."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "virtual_environment",
+      "description": "A user-owned Python virtual environment with activation instructions."
+    },
+    {
+      "name": "environment_record",
+      "description": "Text record of Python, pip, loaded modules, and package freeze output."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/create-venv.sh",
+    "examples/requirements.txt"
+  ],
+  "examples": [
+    {
+      "title": "Create a Python virtual environment",
+      "path": "examples/create-venv.sh"
+    },
+    {
+      "title": "Starter requirements file",
+      "path": "examples/requirements.txt"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill python-virtualenv-on-hpc",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Create a small virtual environment in a temporary user-owned directory and confirm the environment record is written."
+    }
+  ],
+  "references": [
+    {
+      "title": "Python venv documentation",
+      "url": "https://docs.python.org/3/library/venv.html"
+    },
+    {
+      "title": "pip requirements file format",
+      "url": "https://pip.pypa.io/en/stable/reference/requirements-file-format/"
+    }
+  ]
+}

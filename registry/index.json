@@ -8,7 +8,7 @@
     "mpi": 1,
     "performance": 3,
     "scheduler": 14,
-    "software": 3,
+    "software": 5,
     "workflow": 2
   },
   "collection_count": 5,
@@ -84,12 +84,14 @@
       "path": "collections/software-stacks.json",
       "skill_ids": [
         "module-environment-debug",
+        "python-virtualenv-on-hpc",
+        "conda-mamba-on-hpc",
         "apptainer-run-container",
         "spack-environment-create",
         "easybuild-install-software"
       ],
       "status": "draft",
-      "summary": "Skills for debugging modules, running containers, and creating reproducible HPC software environments."
+      "summary": "Skills for debugging modules, Python and Conda environments, containers, and reproducible HPC software stacks."
     },
     {
       "audience": [
@@ -136,7 +138,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 21,
+  "skill_count": 23,
   "skills": [
     {
       "categories": [
@@ -240,6 +242,59 @@
         "date",
         "cat",
         "sleep"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software"
+      ],
+      "description": "This skill helps users create Conda/Mamba environments in explicit prefixes, manage package caches, export environment metadata, and avoid common HPC filesystem and module conflicts.",
+      "examples": [
+        {
+          "path": "skills/conda-mamba-on-hpc/examples/environment.yml",
+          "title": "Starter Conda environment file"
+        },
+        {
+          "path": "skills/conda-mamba-on-hpc/examples/create-conda-env.sh",
+          "title": "Create a prefixed Conda/Mamba environment"
+        }
+      ],
+      "id": "conda-mamba-on-hpc",
+      "maturity": "seed",
+      "name": "Conda Mamba On HPC",
+      "path": "skills/conda-mamba-on-hpc",
+      "readme": "skills/conda-mamba-on-hpc/README.md",
+      "references": [
+        {
+          "title": "Conda managing environments",
+          "url": "https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html"
+        },
+        {
+          "title": "Mamba documentation",
+          "url": "https://mamba.readthedocs.io/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Create Conda or Mamba environments while protecting shared HPC filesystems.",
+      "tags": [
+        "conda",
+        "mamba",
+        "micromamba",
+        "environment",
+        "filesystem",
+        "reproducibility"
+      ],
+      "tools": [
+        "conda",
+        "mamba",
+        "micromamba",
+        "mkdir",
+        "env",
+        "grep",
+        "sort"
       ],
       "version": "0.1.0"
     },
@@ -775,6 +830,59 @@
     },
     {
       "categories": [
+        "software"
+      ],
+      "description": "This skill helps users build user-owned Python virtual environments on HPC systems while recording module state, Python version, package inputs, and activation steps for reproducible jobs.",
+      "examples": [
+        {
+          "path": "skills/python-virtualenv-on-hpc/examples/create-venv.sh",
+          "title": "Create a Python virtual environment"
+        },
+        {
+          "path": "skills/python-virtualenv-on-hpc/examples/requirements.txt",
+          "title": "Starter requirements file"
+        }
+      ],
+      "id": "python-virtualenv-on-hpc",
+      "maturity": "seed",
+      "name": "Python Virtualenv On HPC",
+      "path": "skills/python-virtualenv-on-hpc",
+      "readme": "skills/python-virtualenv-on-hpc/README.md",
+      "references": [
+        {
+          "title": "Python venv documentation",
+          "url": "https://docs.python.org/3/library/venv.html"
+        },
+        {
+          "title": "pip requirements file format",
+          "url": "https://pip.pypa.io/en/stable/reference/requirements-file-format/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Create lightweight Python virtual environments with explicit HPC module assumptions.",
+      "tags": [
+        "python",
+        "virtualenv",
+        "venv",
+        "pip",
+        "modules",
+        "reproducibility"
+      ],
+      "tools": [
+        "python3",
+        "pip",
+        "module",
+        "mkdir",
+        "env",
+        "grep",
+        "sort"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "debugging",
         "data"
       ],
@@ -1177,6 +1285,7 @@
     "checksum": 1,
     "cleanup": 1,
     "compiler": 1,
+    "conda": 1,
     "container": 1,
     "cpu": 1,
     "cpu-bind": 1,
@@ -1186,9 +1295,9 @@
     "easybuild": 1,
     "easyconfig": 1,
     "enospc": 1,
-    "environment": 2,
+    "environment": 3,
     "failure": 1,
-    "filesystem": 2,
+    "filesystem": 3,
     "globus": 1,
     "gpu": 4,
     "inode": 1,
@@ -1199,9 +1308,11 @@
     "ld_library_path": 1,
     "lmod": 2,
     "logs": 2,
+    "mamba": 1,
     "manifest": 1,
     "memory": 2,
-    "modules": 3,
+    "micromamba": 1,
+    "modules": 4,
     "mpi": 3,
     "mpicc": 1,
     "nextflow": 1,
@@ -1214,11 +1325,13 @@
     "parameter-sweep": 1,
     "perf": 1,
     "permission": 1,
+    "pip": 1,
     "preemption": 1,
     "profile": 1,
     "profiling": 1,
+    "python": 1,
     "quota": 2,
-    "reproducibility": 1,
+    "reproducibility": 3,
     "rerun": 1,
     "resources": 1,
     "restart": 1,
@@ -1245,6 +1358,8 @@
     "transfer": 1,
     "triage": 2,
     "tunnel": 1,
+    "venv": 1,
+    "virtualenv": 1,
     "walltime": 1,
     "workflow": 2
   },
@@ -1253,28 +1368,32 @@
     "awk": 2,
     "bash": 2,
     "cat": 1,
+    "conda": 1,
     "date": 2,
     "df": 2,
     "dirname": 1,
     "du": 1,
     "eb": 1,
-    "env": 1,
+    "env": 3,
     "find": 2,
     "globus": 1,
-    "grep": 3,
+    "grep": 5,
     "head": 1,
     "hostname": 2,
     "jupyter": 1,
     "ldd": 1,
     "lscpu": 1,
-    "mkdir": 2,
-    "module": 3,
+    "mamba": 1,
+    "micromamba": 1,
+    "mkdir": 4,
+    "module": 4,
     "mpicc": 1,
     "nextflow": 1,
     "nproc": 1,
     "nvidia-smi": 2,
     "perf": 1,
-    "python3": 1,
+    "pip": 1,
+    "python3": 2,
     "quota": 1,
     "rocm-smi": 1,
     "sacct": 3,
@@ -1284,7 +1403,7 @@
     "sed": 1,
     "sleep": 1,
     "snakemake": 1,
-    "sort": 1,
+    "sort": 3,
     "spack": 1,
     "squeue": 1,
     "srun": 4,

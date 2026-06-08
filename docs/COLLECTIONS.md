@@ -12,7 +12,8 @@ research software engineer building software stacks may start with
 - `core-hpc`: Slurm submission, arrays, monitoring, resource estimation,
   checkpoint/restart, failure triage, storage triage, OpenMP placement,
   notebooks, and interactive sessions.
-- `software-stacks`: modules, containers, Spack, and EasyBuild.
+- `software-stacks`: modules, Python virtual environments, Conda/Mamba,
+  containers, Spack, and EasyBuild.
 - `workflow-engines`: Nextflow and Snakemake on Slurm.
 - `data-movement`: Globus dataset transfer, scratch inventory, and filesystem
   quota triage.

@@ -8,7 +8,7 @@
     "mpi": 1,
     "performance": 3,
     "scheduler": 14,
-    "software": 3,
+    "software": 5,
     "workflow": 2
   },
   "collection_count": 5,
@@ -51,9 +51,11 @@
     },
     {
       "id": "software-stacks",
-      "skill_count": 4,
+      "skill_count": 6,
       "skill_ids": [
         "module-environment-debug",
+        "python-virtualenv-on-hpc",
+        "conda-mamba-on-hpc",
         "apptainer-run-container",
         "spack-environment-create",
         "easybuild-install-software"
@@ -70,11 +72,12 @@
   ],
   "generated_by": "tools/build_health.py",
   "maturity_counts": {
-    "seed": 21
+    "seed": 23
   },
   "risk_by_skill": {
     "apptainer-run-container": "medium",
     "checkpoint-restart-workflow": "medium",
+    "conda-mamba-on-hpc": "medium",
     "easybuild-install-software": "medium",
     "globus-transfer-dataset": "medium",
     "gpu-sanity-check": "medium",
@@ -86,6 +89,7 @@
     "nextflow-on-slurm": "medium",
     "openmp-thread-affinity": "medium",
     "performance-profile-basic": "low",
+    "python-virtualenv-on-hpc": "low",
     "quota-and-filesystem-triage": "low",
     "scratch-storage-management": "low",
     "slurm-job-array-patterns": "medium",
@@ -96,14 +100,14 @@
     "spack-environment-create": "medium"
   },
   "risk_counts": {
-    "low": 7,
-    "medium": 14
+    "low": 8,
+    "medium": 15
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
-  "skill_count": 21,
+  "skill_count": 23,
   "status_counts": {
-    "draft": 21
+    "draft": 23
   },
   "uncollected_skill_ids": []
 }

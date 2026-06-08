@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 21
+- Skills: 23
 - Site adapters: 1
 - Collections: 5
 - Uncollected skills: 0
@@ -13,20 +13,20 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 | Risk | Count |
 | --- | ---: |
-| `low` | 7 |
-| `medium` | 14 |
+| `low` | 8 |
+| `medium` | 15 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 21 |
+| `seed` | 23 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 21 |
+| `draft` | 23 |
 
 ## Collection Coverage
 
@@ -35,7 +35,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | `core-hpc` | 11 |
 | `data-movement` | 3 |
 | `gpu-mpi-performance` | 4 |
-| `software-stacks` | 4 |
+| `software-stacks` | 6 |
 | `workflow-engines` | 2 |
 
 ## Uncollected Skills
@@ -48,6 +48,7 @@ All skills are included in at least one collection.
 | --- | --- |
 | `apptainer-run-container` | medium |
 | `checkpoint-restart-workflow` | medium |
+| `conda-mamba-on-hpc` | medium |
 | `easybuild-install-software` | medium |
 | `globus-transfer-dataset` | medium |
 | `gpu-sanity-check` | medium |
@@ -59,6 +60,7 @@ All skills are included in at least one collection.
 | `nextflow-on-slurm` | medium |
 | `openmp-thread-affinity` | medium |
 | `performance-profile-basic` | low |
+| `python-virtualenv-on-hpc` | low |
 | `quota-and-filesystem-triage` | low |
 | `scratch-storage-management` | low |
 | `slurm-job-array-patterns` | medium |

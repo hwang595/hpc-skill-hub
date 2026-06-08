@@ -1,0 +1,6 @@
+name: hpc-example
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
