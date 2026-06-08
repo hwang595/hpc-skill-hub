@@ -1,41 +1,103 @@
 # Skill Catalog
 
-This catalog summarizes the seed skills currently maintained in the registry.
+This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-## Scheduler And Job Operations
+Current registry size: 15 skills.
 
-| Skill | Risk | Description |
-| --- | --- | --- |
-| `slurm-submit-job` | medium | Create Slurm batch scripts for CPU, GPU, MPI, and array jobs. |
-| `slurm-monitor-job` | low | Inspect queue, accounting, and controller state for Slurm jobs. |
-| `slurm-resource-estimator` | low | Use accounting history to choose memory, CPU, and wall-time requests. |
-| `job-failure-triage` | low | Diagnose failed jobs from scheduler state and logs. |
-| `interactive-session` | medium | Start short interactive compute sessions for shells and notebooks. |
+## Categories
 
-## Environments, Containers, And Software
+| Category | Skills |
+| --- | ---: |
+| `containers` | 1 |
+| `data` | 1 |
+| `debugging` | 6 |
+| `gpu` | 1 |
+| `interactive` | 1 |
+| `mpi` | 1 |
+| `performance` | 2 |
+| `scheduler` | 10 |
+| `software` | 3 |
+| `workflow` | 2 |
 
-| Skill | Risk | Description |
-| --- | --- | --- |
-| `module-environment-debug` | low | Gather evidence for module, compiler, MPI, and library conflicts. |
-| `apptainer-run-container` | medium | Run Apptainer/Singularity images under Slurm with explicit binds. |
-| `spack-environment-create` | medium | Create reproducible Spack environments. |
-| `easybuild-install-software` | medium | Dry-run and install scientific software with EasyBuild. |
+## Skills By Category
 
-## Data And Workflow Engines
+### Containers
 
-| Skill | Risk | Description |
-| --- | --- | --- |
-| `globus-transfer-dataset` | medium | Submit and watch reliable Globus transfers for large datasets. |
-| `nextflow-on-slurm` | medium | Configure Nextflow pipelines for Slurm execution. |
-| `snakemake-on-slurm` | medium | Configure Snakemake workflows with a Slurm profile. |
+| Skill | Risk | Maturity | Description |
+| --- | --- | --- | --- |
+| [`apptainer-run-container`](../skills/apptainer-run-container/README.md) | medium | seed | Run Apptainer containers safely on shared HPC systems. |
 
-## MPI, GPU, And Performance
+### Data
 
-| Skill | Risk | Description |
-| --- | --- | --- |
-| `mpi-hello-and-benchmark` | medium | Compile and run an MPI hello-world sanity check across nodes. |
-| `gpu-sanity-check` | medium | Verify GPU allocation and runtime visibility. |
-| `performance-profile-basic` | low | Wrap a command with basic timing, environment, and telemetry capture. |
+| Skill | Risk | Maturity | Description |
+| --- | --- | --- | --- |
+| [`globus-transfer-dataset`](../skills/globus-transfer-dataset/README.md) | medium | seed | Stage large datasets with Globus transfer and verification steps. |
+
+### Debugging
+
+| Skill | Risk | Maturity | Description |
+| --- | --- | --- | --- |
+| [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
+| [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
+| [`module-environment-debug`](../skills/module-environment-debug/README.md) | low | seed | Diagnose module, compiler, MPI, and library path conflicts. |
+| [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
+| [`performance-profile-basic`](../skills/performance-profile-basic/README.md) | low | seed | Collect first-pass performance evidence for an HPC workload. |
+| [`slurm-monitor-job`](../skills/slurm-monitor-job/README.md) | low | seed | Inspect Slurm job state, accounting records, and output paths. |
+
+### GPU
+
+| Skill | Risk | Maturity | Description |
+| --- | --- | --- | --- |
+| [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
+
+### Interactive
+
+| Skill | Risk | Maturity | Description |
+| --- | --- | --- | --- |
+| [`interactive-session`](../skills/interactive-session/README.md) | medium | seed | Start short interactive compute sessions for debugging and notebooks. |
+
+### MPI
+
+| Skill | Risk | Maturity | Description |
+| --- | --- | --- | --- |
+| [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
+
+### Performance
+
+| Skill | Risk | Maturity | Description |
+| --- | --- | --- | --- |
+| [`performance-profile-basic`](../skills/performance-profile-basic/README.md) | low | seed | Collect first-pass performance evidence for an HPC workload. |
+| [`slurm-resource-estimator`](../skills/slurm-resource-estimator/README.md) | low | seed | Estimate future Slurm resource requests from accounting history. |
+
+### Scheduler
+
+| Skill | Risk | Maturity | Description |
+| --- | --- | --- | --- |
+| [`apptainer-run-container`](../skills/apptainer-run-container/README.md) | medium | seed | Run Apptainer containers safely on shared HPC systems. |
+| [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
+| [`interactive-session`](../skills/interactive-session/README.md) | medium | seed | Start short interactive compute sessions for debugging and notebooks. |
+| [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
+| [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
+| [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
+| [`slurm-monitor-job`](../skills/slurm-monitor-job/README.md) | low | seed | Inspect Slurm job state, accounting records, and output paths. |
+| [`slurm-resource-estimator`](../skills/slurm-resource-estimator/README.md) | low | seed | Estimate future Slurm resource requests from accounting history. |
+| [`slurm-submit-job`](../skills/slurm-submit-job/README.md) | medium | seed | Generate safe Slurm batch scripts for common HPC job shapes. |
+| [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
+
+### Software
+
+| Skill | Risk | Maturity | Description |
+| --- | --- | --- | --- |
+| [`easybuild-install-software`](../skills/easybuild-install-software/README.md) | medium | seed | Install scientific software with EasyBuild and generated modules. |
+| [`module-environment-debug`](../skills/module-environment-debug/README.md) | low | seed | Diagnose module, compiler, MPI, and library path conflicts. |
+| [`spack-environment-create`](../skills/spack-environment-create/README.md) | medium | seed | Create reproducible Spack environments for HPC software stacks. |
+
+### Workflow
+
+| Skill | Risk | Maturity | Description |
+| --- | --- | --- | --- |
+| [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
+| [`snakemake-on-slurm`](../skills/snakemake-on-slurm/README.md) | medium | seed | Configure Snakemake workflows to submit jobs through Slurm. |
 
 ## Next Candidates
 

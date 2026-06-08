@@ -1,0 +1,813 @@
+{
+  "categories": {
+    "containers": 1,
+    "data": 1,
+    "debugging": 6,
+    "gpu": 1,
+    "interactive": 1,
+    "mpi": 1,
+    "performance": 2,
+    "scheduler": 10,
+    "software": 3,
+    "workflow": 2
+  },
+  "generated_by": "tools/build_index.py",
+  "schedulers": {
+    "slurm": 10
+  },
+  "schema_version": "0.1.0",
+  "skill_count": 15,
+  "skills": [
+    {
+      "categories": [
+        "containers",
+        "scheduler"
+      ],
+      "description": "This skill provides templates for executing Apptainer or Singularity images under Slurm with explicit bind mounts, working directories, and optional GPU support.",
+      "examples": [
+        {
+          "path": "skills/apptainer-run-container/examples/run-container.sbatch",
+          "title": "Run a container job under Slurm"
+        },
+        {
+          "path": "skills/apptainer-run-container/examples/inspect-image.sh",
+          "title": "Inspect a container image"
+        }
+      ],
+      "id": "apptainer-run-container",
+      "maturity": "seed",
+      "name": "Apptainer Run Container",
+      "path": "skills/apptainer-run-container",
+      "readme": "skills/apptainer-run-container/README.md",
+      "references": [
+        {
+          "title": "Apptainer documentation",
+          "url": "https://apptainer.org/documentation/"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run Apptainer containers safely on shared HPC systems.",
+      "tags": [
+        "apptainer",
+        "singularity",
+        "container",
+        "slurm",
+        "gpu"
+      ],
+      "tools": [
+        "apptainer",
+        "sbatch"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software"
+      ],
+      "description": "This skill provides a cautious EasyBuild workflow for searching easyconfigs, dry-running dependency resolution, and installing software into a user-controlled prefix.",
+      "examples": [
+        {
+          "path": "skills/easybuild-install-software/examples/easybuild-dry-run.sh",
+          "title": "Dry-run an EasyBuild install"
+        }
+      ],
+      "id": "easybuild-install-software",
+      "maturity": "seed",
+      "name": "EasyBuild Install Software",
+      "path": "skills/easybuild-install-software",
+      "readme": "skills/easybuild-install-software/README.md",
+      "references": [
+        {
+          "title": "EasyBuild documentation",
+          "url": "https://docs.easybuild.io/"
+        },
+        {
+          "title": "EasyBuild project",
+          "url": "https://easybuild.io/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Install scientific software with EasyBuild and generated modules.",
+      "tags": [
+        "easybuild",
+        "modules",
+        "software",
+        "easyconfig",
+        "lmod"
+      ],
+      "tools": [
+        "eb",
+        "module"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "data"
+      ],
+      "description": "This skill provides a Globus CLI workflow for checking endpoints, submitting recursive transfers, and recording task ids for reliable HPC data movement.",
+      "examples": [
+        {
+          "path": "skills/globus-transfer-dataset/examples/transfer-and-watch.sh",
+          "title": "Submit and watch a Globus transfer"
+        }
+      ],
+      "id": "globus-transfer-dataset",
+      "maturity": "seed",
+      "name": "Globus Transfer Dataset",
+      "path": "skills/globus-transfer-dataset",
+      "readme": "skills/globus-transfer-dataset/README.md",
+      "references": [
+        {
+          "title": "Globus Transfer API documentation",
+          "url": "https://docs.globus.org/api/transfer/"
+        },
+        {
+          "title": "Globus CLI documentation",
+          "url": "https://docs.globus.org/cli/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Stage large datasets with Globus transfer and verification steps.",
+      "tags": [
+        "globus",
+        "transfer",
+        "dataset",
+        "checksum",
+        "staging"
+      ],
+      "tools": [
+        "globus"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "gpu",
+        "scheduler",
+        "debugging"
+      ],
+      "description": "This skill provides a Slurm GPU smoke test for NVIDIA or AMD GPU nodes, including device visibility, scheduler allocation variables, and optional Python framework checks.",
+      "examples": [
+        {
+          "path": "skills/gpu-sanity-check/examples/gpu-sanity.sbatch",
+          "title": "Submit a GPU sanity job"
+        }
+      ],
+      "id": "gpu-sanity-check",
+      "maturity": "seed",
+      "name": "GPU Sanity Check",
+      "path": "skills/gpu-sanity-check",
+      "readme": "skills/gpu-sanity-check/README.md",
+      "references": [
+        {
+          "title": "NVIDIA System Management Interface",
+          "url": "https://developer.nvidia.com/nvidia-system-management-interface"
+        },
+        {
+          "title": "ROCm SMI documentation",
+          "url": "https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Verify GPU allocation, runtime visibility, and basic framework access.",
+      "tags": [
+        "gpu",
+        "cuda",
+        "rocm",
+        "nvidia",
+        "amd",
+        "slurm"
+      ],
+      "tools": [
+        "sbatch",
+        "nvidia-smi",
+        "rocm-smi"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "interactive",
+        "scheduler"
+      ],
+      "description": "This skill provides conservative Slurm interactive session recipes for shell debugging, Jupyter, RStudio, and IDE tunnels.",
+      "examples": [
+        {
+          "path": "skills/interactive-session/examples/slurm-shell.sh",
+          "title": "Start an interactive shell"
+        },
+        {
+          "path": "skills/interactive-session/examples/jupyter-on-node.sh",
+          "title": "Start Jupyter on a compute node"
+        }
+      ],
+      "id": "interactive-session",
+      "maturity": "seed",
+      "name": "Interactive Session",
+      "path": "skills/interactive-session",
+      "readme": "skills/interactive-session/README.md",
+      "references": [
+        {
+          "title": "Slurm salloc documentation",
+          "url": "https://slurm.schedmd.com/salloc.html"
+        },
+        {
+          "title": "Open OnDemand",
+          "url": "https://www.openondemand.org/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Start short interactive compute sessions for debugging and notebooks.",
+      "tags": [
+        "slurm",
+        "salloc",
+        "srun",
+        "jupyter",
+        "debugging"
+      ],
+      "tools": [
+        "salloc",
+        "srun",
+        "ssh"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "debugging",
+        "scheduler"
+      ],
+      "description": "This skill provides a first-pass checklist for failed jobs, including out-of-memory events, time limits, missing modules, permission errors, and node failures.",
+      "examples": [
+        {
+          "path": "skills/job-failure-triage/examples/triage-slurm-job.sh",
+          "title": "Triage a failed Slurm job"
+        }
+      ],
+      "id": "job-failure-triage",
+      "maturity": "seed",
+      "name": "Job Failure Triage",
+      "path": "skills/job-failure-triage",
+      "readme": "skills/job-failure-triage/README.md",
+      "references": [
+        {
+          "title": "Slurm job state codes",
+          "url": "https://slurm.schedmd.com/job_state_codes.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Diagnose common HPC job failures from scheduler and log evidence.",
+      "tags": [
+        "slurm",
+        "failure",
+        "oom",
+        "timeout",
+        "logs",
+        "triage"
+      ],
+      "tools": [
+        "sacct",
+        "grep",
+        "tail"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software",
+        "debugging"
+      ],
+      "description": "This skill gathers read-only environment evidence to debug broken software stacks, conflicting modules, missing libraries, and compiler or MPI mismatches.",
+      "examples": [
+        {
+          "path": "skills/module-environment-debug/examples/env-report.sh",
+          "title": "Collect environment report"
+        }
+      ],
+      "id": "module-environment-debug",
+      "maturity": "seed",
+      "name": "Module Environment Debug",
+      "path": "skills/module-environment-debug",
+      "readme": "skills/module-environment-debug/README.md",
+      "references": [
+        {
+          "title": "Lmod documentation",
+          "url": "https://lmod.readthedocs.io/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Diagnose module, compiler, MPI, and library path conflicts.",
+      "tags": [
+        "modules",
+        "lmod",
+        "environment",
+        "compiler",
+        "mpi",
+        "ld_library_path"
+      ],
+      "tools": [
+        "module",
+        "which",
+        "ldd"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "mpi",
+        "scheduler",
+        "debugging"
+      ],
+      "description": "This skill provides a minimal MPI hello-world program and Slurm batch script to verify compiler, launcher, and node-to-node execution.",
+      "examples": [
+        {
+          "path": "skills/mpi-hello-and-benchmark/examples/hello_mpi.c",
+          "title": "MPI hello-world source"
+        },
+        {
+          "path": "skills/mpi-hello-and-benchmark/examples/run-mpi.sbatch",
+          "title": "Run MPI under Slurm"
+        }
+      ],
+      "id": "mpi-hello-and-benchmark",
+      "maturity": "seed",
+      "name": "MPI Hello And Benchmark",
+      "path": "skills/mpi-hello-and-benchmark",
+      "readme": "skills/mpi-hello-and-benchmark/README.md",
+      "references": [
+        {
+          "title": "MPI Forum",
+          "url": "https://www.mpi-forum.org/"
+        },
+        {
+          "title": "Slurm MPI guide",
+          "url": "https://slurm.schedmd.com/mpi_guide.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Compile and run MPI sanity checks across allocated nodes.",
+      "tags": [
+        "mpi",
+        "slurm",
+        "srun",
+        "mpicc",
+        "benchmark"
+      ],
+      "tools": [
+        "mpicc",
+        "srun"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler"
+      ],
+      "description": "This skill provides a Nextflow profile and launch wrapper for running portable workflows on Slurm-backed HPC clusters.",
+      "examples": [
+        {
+          "path": "skills/nextflow-on-slurm/examples/nextflow.config",
+          "title": "Slurm Nextflow profile"
+        },
+        {
+          "path": "skills/nextflow-on-slurm/examples/run-nextflow.sh",
+          "title": "Launch Nextflow with profile"
+        }
+      ],
+      "id": "nextflow-on-slurm",
+      "maturity": "seed",
+      "name": "Nextflow On Slurm",
+      "path": "skills/nextflow-on-slurm",
+      "readme": "skills/nextflow-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Nextflow executor documentation",
+          "url": "https://nextflow.io/docs/latest/executor.html"
+        },
+        {
+          "title": "Nextflow configuration documentation",
+          "url": "https://nextflow.io/docs/latest/config.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Configure Nextflow pipelines to run through the Slurm executor.",
+      "tags": [
+        "nextflow",
+        "slurm",
+        "workflow",
+        "nf-core"
+      ],
+      "tools": [
+        "nextflow",
+        "sbatch"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "performance",
+        "debugging"
+      ],
+      "description": "This skill wraps a command with basic timing, resource, I/O, and optional GPU telemetry so users can decide what to profile more deeply next.",
+      "examples": [
+        {
+          "path": "skills/performance-profile-basic/examples/profile-command.sh",
+          "title": "Profile one command"
+        }
+      ],
+      "id": "performance-profile-basic",
+      "maturity": "seed",
+      "name": "Performance Profile Basic",
+      "path": "skills/performance-profile-basic",
+      "readme": "skills/performance-profile-basic/README.md",
+      "references": [
+        {
+          "title": "GNU time manual",
+          "url": "https://www.gnu.org/software/time/"
+        },
+        {
+          "title": "Linux perf wiki",
+          "url": "https://perf.wiki.kernel.org/"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Collect first-pass performance evidence for an HPC workload.",
+      "tags": [
+        "profiling",
+        "time",
+        "memory",
+        "io",
+        "gpu",
+        "perf"
+      ],
+      "tools": [
+        "time",
+        "nvidia-smi",
+        "perf"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
+        "debugging"
+      ],
+      "description": "This skill provides read-only commands for checking queued, running, completed, and failed Slurm jobs using squeue, sacct, scontrol, and log files.",
+      "examples": [
+        {
+          "path": "skills/slurm-monitor-job/examples/monitor-job.sh",
+          "title": "Monitor one Slurm job"
+        }
+      ],
+      "id": "slurm-monitor-job",
+      "maturity": "seed",
+      "name": "Slurm Monitor Job",
+      "path": "skills/slurm-monitor-job",
+      "readme": "skills/slurm-monitor-job/README.md",
+      "references": [
+        {
+          "title": "Slurm squeue documentation",
+          "url": "https://slurm.schedmd.com/squeue.html"
+        },
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Inspect Slurm job state, accounting records, and output paths.",
+      "tags": [
+        "slurm",
+        "squeue",
+        "sacct",
+        "scontrol",
+        "logs"
+      ],
+      "tools": [
+        "squeue",
+        "sacct",
+        "scontrol"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
+        "performance"
+      ],
+      "description": "This skill uses sacct output to help users choose safer memory, CPU, and wall-time requests for similar Slurm jobs.",
+      "examples": [
+        {
+          "path": "skills/slurm-resource-estimator/examples/resource-history.sh",
+          "title": "Collect recent accounting records"
+        }
+      ],
+      "id": "slurm-resource-estimator",
+      "maturity": "seed",
+      "name": "Slurm Resource Estimator",
+      "path": "skills/slurm-resource-estimator",
+      "readme": "skills/slurm-resource-estimator/README.md",
+      "references": [
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        }
+      ],
+      "risk_level": "low",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Estimate future Slurm resource requests from accounting history.",
+      "tags": [
+        "slurm",
+        "sacct",
+        "resources",
+        "memory",
+        "walltime"
+      ],
+      "tools": [
+        "sacct",
+        "awk"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler"
+      ],
+      "description": "This skill helps users create Slurm sbatch scripts for CPU, GPU, MPI, and array workloads with conservative defaults and clear placeholders.",
+      "examples": [
+        {
+          "path": "skills/slurm-submit-job/examples/cpu.sbatch",
+          "title": "CPU batch job"
+        },
+        {
+          "path": "skills/slurm-submit-job/examples/mpi.sbatch",
+          "title": "MPI batch job"
+        },
+        {
+          "path": "skills/slurm-submit-job/examples/gpu.sbatch",
+          "title": "GPU batch job"
+        },
+        {
+          "path": "skills/slurm-submit-job/examples/array.sbatch",
+          "title": "Array batch job"
+        }
+      ],
+      "id": "slurm-submit-job",
+      "maturity": "seed",
+      "name": "Slurm Submit Job",
+      "path": "skills/slurm-submit-job",
+      "readme": "skills/slurm-submit-job/README.md",
+      "references": [
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        },
+        {
+          "title": "Slurm srun documentation",
+          "url": "https://slurm.schedmd.com/srun.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Generate safe Slurm batch scripts for common HPC job shapes.",
+      "tags": [
+        "slurm",
+        "sbatch",
+        "cpu",
+        "gpu",
+        "mpi",
+        "array"
+      ],
+      "tools": [
+        "sbatch",
+        "srun"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "workflow",
+        "scheduler"
+      ],
+      "description": "This skill provides a starter Snakemake Slurm profile and launch wrapper for cluster execution with conservative default resources.",
+      "examples": [
+        {
+          "path": "skills/snakemake-on-slurm/examples/slurm-profile/config.yaml",
+          "title": "Snakemake Slurm profile"
+        },
+        {
+          "path": "skills/snakemake-on-slurm/examples/run-snakemake.sh",
+          "title": "Launch Snakemake with profile"
+        }
+      ],
+      "id": "snakemake-on-slurm",
+      "maturity": "seed",
+      "name": "Snakemake On Slurm",
+      "path": "skills/snakemake-on-slurm",
+      "readme": "skills/snakemake-on-slurm/README.md",
+      "references": [
+        {
+          "title": "Snakemake documentation",
+          "url": "https://snakemake.readthedocs.io/"
+        },
+        {
+          "title": "Snakemake executor plugin slurm",
+          "url": "https://snakemake.github.io/snakemake-plugin-catalog/plugins/executor/slurm.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Configure Snakemake workflows to submit jobs through Slurm.",
+      "tags": [
+        "snakemake",
+        "slurm",
+        "workflow",
+        "profile"
+      ],
+      "tools": [
+        "snakemake",
+        "sbatch"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "software"
+      ],
+      "description": "This skill provides a starter spack.yaml and commands for concretizing, installing, and loading a user-owned scientific software environment.",
+      "examples": [
+        {
+          "path": "skills/spack-environment-create/examples/spack.yaml",
+          "title": "Starter Spack environment"
+        },
+        {
+          "path": "skills/spack-environment-create/examples/create-env.sh",
+          "title": "Create and concretize environment"
+        }
+      ],
+      "id": "spack-environment-create",
+      "maturity": "seed",
+      "name": "Spack Environment Create",
+      "path": "skills/spack-environment-create",
+      "readme": "skills/spack-environment-create/README.md",
+      "references": [
+        {
+          "title": "Spack environments documentation",
+          "url": "https://spack.readthedocs.io/en/latest/environments.html"
+        },
+        {
+          "title": "Spack project",
+          "url": "https://spack.io/"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [],
+      "status": "draft",
+      "summary": "Create reproducible Spack environments for HPC software stacks.",
+      "tags": [
+        "spack",
+        "environment",
+        "modules",
+        "software",
+        "reproducibility"
+      ],
+      "tools": [
+        "spack"
+      ],
+      "version": "0.1.0"
+    }
+  ],
+  "tags": {
+    "amd": 1,
+    "apptainer": 1,
+    "array": 1,
+    "benchmark": 1,
+    "checksum": 1,
+    "compiler": 1,
+    "container": 1,
+    "cpu": 1,
+    "cuda": 1,
+    "dataset": 1,
+    "debugging": 1,
+    "easybuild": 1,
+    "easyconfig": 1,
+    "environment": 2,
+    "failure": 1,
+    "globus": 1,
+    "gpu": 4,
+    "io": 1,
+    "jupyter": 1,
+    "ld_library_path": 1,
+    "lmod": 2,
+    "logs": 2,
+    "memory": 2,
+    "modules": 3,
+    "mpi": 3,
+    "mpicc": 1,
+    "nextflow": 1,
+    "nf-core": 1,
+    "nvidia": 1,
+    "oom": 1,
+    "perf": 1,
+    "profile": 1,
+    "profiling": 1,
+    "reproducibility": 1,
+    "resources": 1,
+    "rocm": 1,
+    "sacct": 2,
+    "salloc": 1,
+    "sbatch": 1,
+    "scontrol": 1,
+    "singularity": 1,
+    "slurm": 10,
+    "snakemake": 1,
+    "software": 2,
+    "spack": 1,
+    "squeue": 1,
+    "srun": 2,
+    "staging": 1,
+    "time": 1,
+    "timeout": 1,
+    "transfer": 1,
+    "triage": 1,
+    "walltime": 1,
+    "workflow": 2
+  },
+  "tools": {
+    "apptainer": 1,
+    "awk": 1,
+    "eb": 1,
+    "globus": 1,
+    "grep": 1,
+    "ldd": 1,
+    "module": 2,
+    "mpicc": 1,
+    "nextflow": 1,
+    "nvidia-smi": 2,
+    "perf": 1,
+    "rocm-smi": 1,
+    "sacct": 3,
+    "salloc": 1,
+    "sbatch": 5,
+    "scontrol": 1,
+    "snakemake": 1,
+    "spack": 1,
+    "squeue": 1,
+    "srun": 3,
+    "ssh": 1,
+    "tail": 1,
+    "time": 1,
+    "which": 1
+  }
+}

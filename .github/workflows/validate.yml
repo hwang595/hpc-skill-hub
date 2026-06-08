@@ -17,3 +17,5 @@ jobs:
           python-version: "3.11"
       - name: Validate skill registry
         run: python3 tools/validate_skills.py
+      - name: Check generated registry index
+        run: python3 tools/build_index.py --check

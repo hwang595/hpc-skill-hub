@@ -16,6 +16,17 @@ The manifest is intentionally simple JSON so it can be validated without
 language-specific dependencies. A future CLI can render templates, index skills,
 or expose the registry as an API.
 
+## Registry Index
+
+`tools/build_index.py` generates:
+
+- `registry/index.json`: machine-readable registry metadata for websites, CLIs,
+  search services, and agent integrations.
+- `docs/SKILL_CATALOG.md`: human-readable catalog grouped by category.
+
+Both generated artifacts are checked in CI so documentation and machine-readable
+metadata stay aligned with the skill manifests.
+
 ## Validation Flow
 
 ```text

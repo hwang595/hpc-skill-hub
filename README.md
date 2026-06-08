@@ -53,6 +53,7 @@ Validate the registry:
 
 ```bash
 python3 tools/validate_skills.py
+python3 tools/build_index.py --check
 ```
 
 Validate one skill:
@@ -70,6 +71,12 @@ cp docs/examples/skill.json skills/my-new-skill/skill.json
 
 Then update the manifest, add `README.md`, add examples, and run the validator.
 
+Rebuild the registry index after adding or editing skills:
+
+```bash
+python3 tools/build_index.py
+```
+
 ## Project Status
 
 This repository is in the seed stage. The initial focus is on:
@@ -84,6 +91,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 ## Documentation
 
 - [Skill catalog](docs/SKILL_CATALOG.md)
+- [Machine-readable registry index](registry/index.json)
 - [Skill specification](docs/SKILL_SPEC.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Maintainer guide](docs/MAINTAINER_GUIDE.md)
