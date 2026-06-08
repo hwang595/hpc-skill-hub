@@ -10,13 +10,13 @@ new collections.
 | --- | --- | --- | --- |
 | `scratch-storage-management` | data | low | Seed skill added to `core-hpc` and `data-movement`. |
 | `quota-and-filesystem-triage` | debugging | low | Seed skill added to `core-hpc` and `data-movement`. |
+| `slurm-job-array-patterns` | scheduler | medium | Seed skill added to `core-hpc`. |
+| `checkpoint-restart-workflow` | scheduler | medium | Seed skill added to `core-hpc`. |
 
 ## Priority 1: Core User Workflows
 
 | Skill id | Category | Risk | Why it matters |
 | --- | --- | --- | --- |
-| `slurm-job-array-patterns` | scheduler | medium | Arrays are essential for parameter sweeps and embarrassingly parallel work. |
-| `checkpoint-restart-workflow` | scheduler | medium | Long jobs need restartable patterns to survive limits and preemption. |
 | `openmp-thread-affinity` | performance | medium | Thread placement mistakes waste CPU allocations and distort benchmarks. |
 | `jupyter-on-slurm` | interactive | medium | Notebook workflows need scheduler-backed sessions and clear tunnel guidance. |
 

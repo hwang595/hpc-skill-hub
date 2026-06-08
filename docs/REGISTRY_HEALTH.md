@@ -4,7 +4,7 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 
 ## Summary
 
-- Skills: 17
+- Skills: 19
 - Site adapters: 1
 - Collections: 5
 - Uncollected skills: 0
@@ -14,25 +14,25 @@ This report is generated from `registry/index.json` by `tools/build_health.py`.
 | Risk | Count |
 | --- | ---: |
 | `low` | 7 |
-| `medium` | 10 |
+| `medium` | 12 |
 
 ## Maturity Distribution
 
 | Maturity | Count |
 | --- | ---: |
-| `seed` | 17 |
+| `seed` | 19 |
 
 ## Status Distribution
 
 | Status | Count |
 | --- | ---: |
-| `draft` | 17 |
+| `draft` | 19 |
 
 ## Collection Coverage
 
 | Collection | Skills |
 | --- | ---: |
-| `core-hpc` | 7 |
+| `core-hpc` | 9 |
 | `data-movement` | 3 |
 | `gpu-mpi-performance` | 3 |
 | `software-stacks` | 4 |
@@ -47,6 +47,7 @@ All skills are included in at least one collection.
 | Skill | Risk |
 | --- | --- |
 | `apptainer-run-container` | medium |
+| `checkpoint-restart-workflow` | medium |
 | `easybuild-install-software` | medium |
 | `globus-transfer-dataset` | medium |
 | `gpu-sanity-check` | medium |
@@ -58,6 +59,7 @@ All skills are included in at least one collection.
 | `performance-profile-basic` | low |
 | `quota-and-filesystem-triage` | low |
 | `scratch-storage-management` | low |
+| `slurm-job-array-patterns` | medium |
 | `slurm-monitor-job` | low |
 | `slurm-resource-estimator` | low |
 | `slurm-submit-job` | medium |

@@ -2,12 +2,12 @@
   "categories": {
     "containers": 1,
     "data": 3,
-    "debugging": 8,
+    "debugging": 9,
     "gpu": 1,
     "interactive": 1,
     "mpi": 1,
     "performance": 2,
-    "scheduler": 10,
+    "scheduler": 12,
     "software": 3,
     "workflow": 2
   },
@@ -24,15 +24,17 @@
       "path": "collections/core-hpc.json",
       "skill_ids": [
         "slurm-submit-job",
+        "slurm-job-array-patterns",
         "slurm-monitor-job",
         "slurm-resource-estimator",
+        "checkpoint-restart-workflow",
         "job-failure-triage",
         "interactive-session",
         "quota-and-filesystem-triage",
         "scratch-storage-management"
       ],
       "status": "draft",
-      "summary": "Starter skills for Slurm jobs, debugging, storage triage, and interactive HPC sessions."
+      "summary": "Starter skills for Slurm jobs, arrays, restartable workflows, debugging, storage triage, and interactive sessions."
     },
     {
       "audience": [
@@ -105,7 +107,7 @@
   ],
   "generated_by": "tools/build_index.py",
   "schedulers": {
-    "slurm": 10
+    "slurm": 12
   },
   "schema_version": "0.1.0",
   "site_adapter_count": 1,
@@ -131,7 +133,7 @@
       "summary": "A non-production adapter showing how a site can map generic skills to local HPC policy."
     }
   ],
-  "skill_count": 17,
+  "skill_count": 19,
   "skills": [
     {
       "categories": [
@@ -180,6 +182,61 @@
       "tools": [
         "apptainer",
         "sbatch"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
+        "scheduler",
+        "debugging"
+      ],
+      "description": "This skill helps users wrap long-running work with checkpoint directories, restart detection, progress state, and Slurm signal handling patterns that make reruns safer and less wasteful.",
+      "examples": [
+        {
+          "path": "skills/checkpoint-restart-workflow/examples/checkpoint-wrapper.sbatch",
+          "title": "Checkpoint-aware Slurm wrapper"
+        },
+        {
+          "path": "skills/checkpoint-restart-workflow/examples/resume-progress.sh",
+          "title": "Toy resumable progress command"
+        }
+      ],
+      "id": "checkpoint-restart-workflow",
+      "maturity": "seed",
+      "name": "Checkpoint Restart Workflow",
+      "path": "skills/checkpoint-restart-workflow",
+      "readme": "skills/checkpoint-restart-workflow/README.md",
+      "references": [
+        {
+          "title": "Slurm sbatch signal option",
+          "url": "https://slurm.schedmd.com/sbatch.html#OPT_signal"
+        },
+        {
+          "title": "Slurm preemption documentation",
+          "url": "https://slurm.schedmd.com/preempt.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Structure long HPC jobs so they can resume after time limits or preemption.",
+      "tags": [
+        "checkpoint",
+        "restart",
+        "slurm",
+        "preemption",
+        "timeout",
+        "state"
+      ],
+      "tools": [
+        "sbatch",
+        "bash",
+        "mkdir",
+        "date",
+        "cat",
+        "sleep"
       ],
       "version": "0.1.0"
     },
@@ -701,6 +758,58 @@
     },
     {
       "categories": [
+        "scheduler"
+      ],
+      "description": "This skill helps users turn a manifest of independent inputs into a bounded Slurm job array with per-task logging, concurrency limits, and restart-friendly task selection.",
+      "examples": [
+        {
+          "path": "skills/slurm-job-array-patterns/examples/manifest-array.sbatch",
+          "title": "Manifest-driven Slurm array"
+        },
+        {
+          "path": "skills/slurm-job-array-patterns/examples/array-manifest.tsv",
+          "title": "Example array manifest"
+        }
+      ],
+      "id": "slurm-job-array-patterns",
+      "maturity": "seed",
+      "name": "Slurm Job Array Patterns",
+      "path": "skills/slurm-job-array-patterns",
+      "readme": "skills/slurm-job-array-patterns/README.md",
+      "references": [
+        {
+          "title": "Slurm job array documentation",
+          "url": "https://slurm.schedmd.com/job_array.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
+        }
+      ],
+      "risk_level": "medium",
+      "schedulers": [
+        "slurm"
+      ],
+      "status": "draft",
+      "summary": "Run parameter sweeps and many independent tasks with Slurm job arrays.",
+      "tags": [
+        "slurm",
+        "array",
+        "manifest",
+        "parameter-sweep",
+        "throughput",
+        "rerun"
+      ],
+      "tools": [
+        "sbatch",
+        "sed",
+        "awk",
+        "mkdir"
+      ],
+      "version": "0.1.0"
+    },
+    {
+      "categories": [
         "scheduler",
         "debugging"
       ],
@@ -945,8 +1054,9 @@
   "tags": {
     "amd": 1,
     "apptainer": 1,
-    "array": 1,
+    "array": 2,
     "benchmark": 1,
+    "checkpoint": 1,
     "checksum": 1,
     "cleanup": 1,
     "compiler": 1,
@@ -969,6 +1079,7 @@
     "ld_library_path": 1,
     "lmod": 2,
     "logs": 2,
+    "manifest": 1,
     "memory": 2,
     "modules": 3,
     "mpi": 3,
@@ -977,13 +1088,17 @@
     "nf-core": 1,
     "nvidia": 1,
     "oom": 1,
+    "parameter-sweep": 1,
     "perf": 1,
     "permission": 1,
+    "preemption": 1,
     "profile": 1,
     "profiling": 1,
     "quota": 2,
     "reproducibility": 1,
+    "rerun": 1,
     "resources": 1,
+    "restart": 1,
     "rocm": 1,
     "sacct": 2,
     "salloc": 1,
@@ -991,16 +1106,18 @@
     "scontrol": 1,
     "scratch": 1,
     "singularity": 1,
-    "slurm": 10,
+    "slurm": 12,
     "snakemake": 1,
     "software": 2,
     "spack": 1,
     "squeue": 1,
     "srun": 2,
     "staging": 2,
+    "state": 1,
     "storage": 2,
+    "throughput": 1,
     "time": 1,
-    "timeout": 1,
+    "timeout": 2,
     "transfer": 1,
     "triage": 2,
     "walltime": 1,
@@ -1008,7 +1125,10 @@
   },
   "tools": {
     "apptainer": 1,
-    "awk": 1,
+    "awk": 2,
+    "bash": 1,
+    "cat": 1,
+    "date": 1,
     "df": 2,
     "dirname": 1,
     "du": 1,
@@ -1018,6 +1138,7 @@
     "grep": 2,
     "head": 1,
     "ldd": 1,
+    "mkdir": 2,
     "module": 2,
     "mpicc": 1,
     "nextflow": 1,
@@ -1027,8 +1148,10 @@
     "rocm-smi": 1,
     "sacct": 3,
     "salloc": 1,
-    "sbatch": 5,
+    "sbatch": 7,
     "scontrol": 1,
+    "sed": 1,
+    "sleep": 1,
     "snakemake": 1,
     "sort": 1,
     "spack": 1,

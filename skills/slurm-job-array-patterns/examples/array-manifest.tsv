@@ -1,0 +1,3 @@
+sample_a	inputs/sample_a.txt	results/sample_a.out
+sample_b	inputs/sample_b.txt	results/sample_b.out
+sample_c	inputs/sample_c.txt	results/sample_c.out

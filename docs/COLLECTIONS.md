@@ -9,8 +9,8 @@ research software engineer building software stacks may start with
 
 ## Seed Collections
 
-- `core-hpc`: Slurm submission, monitoring, resource estimation, failure
-  triage, storage triage, and interactive sessions.
+- `core-hpc`: Slurm submission, arrays, monitoring, resource estimation,
+  checkpoint/restart, failure triage, storage triage, and interactive sessions.
 - `software-stacks`: modules, containers, Spack, and EasyBuild.
 - `workflow-engines`: Nextflow and Snakemake on Slurm.
 - `data-movement`: Globus dataset transfer, scratch inventory, and filesystem

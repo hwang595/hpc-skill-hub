@@ -34,8 +34,10 @@ tools.
 | Skill | Purpose |
 | --- | --- |
 | `slurm-submit-job` | Generate safe Slurm batch scripts for CPU, GPU, MPI, and array jobs. |
+| `slurm-job-array-patterns` | Run parameter sweeps and independent tasks with bounded Slurm arrays. |
 | `slurm-monitor-job` | Inspect queued, running, completed, and failed Slurm jobs. |
 | `slurm-resource-estimator` | Estimate memory, wall time, and CPU needs from accounting history. |
+| `checkpoint-restart-workflow` | Structure long jobs so they can resume after limits or preemption. |
 | `job-failure-triage` | Diagnose common job failures such as OOM, time limits, and missing modules. |
 | `interactive-session` | Start interactive compute sessions for shells, notebooks, and IDE tunnels. |
 | `quota-and-filesystem-triage` | Diagnose quota, inode, capacity, and permission failures. |

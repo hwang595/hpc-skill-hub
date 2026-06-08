@@ -1,0 +1,104 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "slurm-job-array-patterns",
+  "name": "Slurm Job Array Patterns",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Run parameter sweeps and many independent tasks with Slurm job arrays.",
+  "description": "This skill helps users turn a manifest of independent inputs into a bounded Slurm job array with per-task logging, concurrency limits, and restart-friendly task selection.",
+  "categories": ["scheduler"],
+  "tags": ["slurm", "array", "manifest", "parameter-sweep", "throughput", "rerun"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "sed",
+      "required": true
+    },
+    {
+      "name": "awk",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "task_manifest",
+      "type": "path",
+      "required": true,
+      "description": "Tab-separated manifest with one independent task per line."
+    },
+    {
+      "name": "array_range",
+      "type": "string",
+      "required": true,
+      "description": "Slurm array range and optional concurrency cap, such as 1-100%10."
+    },
+    {
+      "name": "resources",
+      "type": "object",
+      "required": true,
+      "description": "Per-task CPU, memory, wall-time, partition, and account requests."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "per_task_logs",
+      "description": "Separate stdout/stderr logs for each array task."
+    },
+    {
+      "name": "task_outputs",
+      "description": "User-defined output files keyed by task id or sample id."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/array-manifest.tsv",
+    "examples/manifest-array.sbatch"
+  ],
+  "examples": [
+    {
+      "title": "Manifest-driven Slurm array",
+      "path": "examples/manifest-array.sbatch"
+    },
+    {
+      "title": "Example array manifest",
+      "path": "examples/array-manifest.tsv"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill slurm-job-array-patterns",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run sbatch --test-only if available, then submit a 1-3 task array on a short test partition."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm job array documentation",
+      "url": "https://slurm.schedmd.com/job_array.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
+    }
+  ]
+}

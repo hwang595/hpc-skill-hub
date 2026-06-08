@@ -2,7 +2,7 @@
 
 This catalog is generated from `skills/*/skill.json` by `tools/build_index.py`.
 
-Current registry size: 17 skills.
+Current registry size: 19 skills.
 
 ## Categories
 
@@ -10,12 +10,12 @@ Current registry size: 17 skills.
 | --- | ---: |
 | `containers` | 1 |
 | `data` | 3 |
-| `debugging` | 8 |
+| `debugging` | 9 |
 | `gpu` | 1 |
 | `interactive` | 1 |
 | `mpi` | 1 |
 | `performance` | 2 |
-| `scheduler` | 10 |
+| `scheduler` | 12 |
 | `software` | 3 |
 | `workflow` | 2 |
 
@@ -39,6 +39,7 @@ Current registry size: 17 skills.
 
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
+| [`checkpoint-restart-workflow`](../skills/checkpoint-restart-workflow/README.md) | medium | seed | Structure long HPC jobs so they can resume after time limits or preemption. |
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
 | [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
 | [`module-environment-debug`](../skills/module-environment-debug/README.md) | low | seed | Diagnose module, compiler, MPI, and library path conflicts. |
@@ -78,11 +79,13 @@ Current registry size: 17 skills.
 | Skill | Risk | Maturity | Description |
 | --- | --- | --- | --- |
 | [`apptainer-run-container`](../skills/apptainer-run-container/README.md) | medium | seed | Run Apptainer containers safely on shared HPC systems. |
+| [`checkpoint-restart-workflow`](../skills/checkpoint-restart-workflow/README.md) | medium | seed | Structure long HPC jobs so they can resume after time limits or preemption. |
 | [`gpu-sanity-check`](../skills/gpu-sanity-check/README.md) | medium | seed | Verify GPU allocation, runtime visibility, and basic framework access. |
 | [`interactive-session`](../skills/interactive-session/README.md) | medium | seed | Start short interactive compute sessions for debugging and notebooks. |
 | [`job-failure-triage`](../skills/job-failure-triage/README.md) | low | seed | Diagnose common HPC job failures from scheduler and log evidence. |
 | [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md) | medium | seed | Compile and run MPI sanity checks across allocated nodes. |
 | [`nextflow-on-slurm`](../skills/nextflow-on-slurm/README.md) | medium | seed | Configure Nextflow pipelines to run through the Slurm executor. |
+| [`slurm-job-array-patterns`](../skills/slurm-job-array-patterns/README.md) | medium | seed | Run parameter sweeps and many independent tasks with Slurm job arrays. |
 | [`slurm-monitor-job`](../skills/slurm-monitor-job/README.md) | low | seed | Inspect Slurm job state, accounting records, and output paths. |
 | [`slurm-resource-estimator`](../skills/slurm-resource-estimator/README.md) | low | seed | Estimate future Slurm resource requests from accounting history. |
 | [`slurm-submit-job`](../skills/slurm-submit-job/README.md) | medium | seed | Generate safe Slurm batch scripts for common HPC job shapes. |
@@ -107,7 +110,7 @@ Current registry size: 17 skills.
 
 | Collection | Status | Skills | Audience | Description |
 | --- | --- | ---: | --- | --- |
-| [`core-hpc`](../collections/core-hpc.json) | draft | 7 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, debugging, storage triage, and interactive HPC sessions. |
+| [`core-hpc`](../collections/core-hpc.json) | draft | 9 | new HPC users, research software engineers, support teams | Starter skills for Slurm jobs, arrays, restartable workflows, debugging, storage triage, and interactive sessions. |
 | [`data-movement`](../collections/data-movement.json) | draft | 3 | data stewards, research groups, facility support teams | Skills for staging, transferring, validating, and managing research data on HPC storage. |
 | [`gpu-mpi-performance`](../collections/gpu-mpi-performance.json) | draft | 3 | AI/HPC users, simulation teams, performance engineers | Skills for validating GPU allocations, MPI launches, and first-pass performance evidence. |
 | [`software-stacks`](../collections/software-stacks.json) | draft | 4 | research software engineers, HPC support teams, tool maintainers | Skills for debugging modules, running containers, and creating reproducible HPC software environments. |
@@ -124,8 +127,8 @@ Current registry size: 17 skills.
 - Open OnDemand app templates.
 - PyTorch distributed training on Slurm.
 - NCCL multi-node diagnostics.
-- Slurm job array patterns.
-- Checkpoint and restart workflows.
+- OpenMP thread affinity patterns.
+- Jupyter sessions on Slurm allocations.
 - WRF, GROMACS, LAMMPS, OpenFOAM, and Quantum ESPRESSO starter skills.
 - Bioinformatics workflows for nf-core, GATK, BLAST, and AlphaFold.
 - Facility read-only reports for fairshare, partitions, and node health.

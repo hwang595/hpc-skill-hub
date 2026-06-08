@@ -1,0 +1,112 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "checkpoint-restart-workflow",
+  "name": "Checkpoint Restart Workflow",
+  "version": "0.1.0",
+  "status": "draft",
+  "summary": "Structure long HPC jobs so they can resume after time limits or preemption.",
+  "description": "This skill helps users wrap long-running work with checkpoint directories, restart detection, progress state, and Slurm signal handling patterns that make reruns safer and less wasteful.",
+  "categories": ["scheduler", "debugging"],
+  "tags": ["checkpoint", "restart", "slurm", "preemption", "timeout", "state"],
+  "maintainers": [
+    {
+      "name": "HPC Skill Hub Maintainers"
+    }
+  ],
+  "license": "MIT",
+  "maturity": "seed",
+  "risk_level": "medium",
+  "schedulers": ["slurm"],
+  "tools": [
+    {
+      "name": "sbatch",
+      "required": true
+    },
+    {
+      "name": "bash",
+      "required": true
+    },
+    {
+      "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "date",
+      "required": true
+    },
+    {
+      "name": "cat",
+      "required": true
+    },
+    {
+      "name": "sleep",
+      "required": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "checkpoint_dir",
+      "type": "path",
+      "required": true,
+      "description": "User-owned directory where restartable state is written."
+    },
+    {
+      "name": "workload_command",
+      "type": "string",
+      "required": true,
+      "description": "Application command or workflow step that can read and write checkpoint state."
+    },
+    {
+      "name": "resources",
+      "type": "object",
+      "required": true,
+      "description": "Slurm account, partition, CPU, memory, and wall-time request."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "checkpoint_state",
+      "description": "Restart marker or application checkpoint files in a durable user-owned directory."
+    },
+    {
+      "name": "restart_log",
+      "description": "Log showing whether the job started fresh or resumed from existing state."
+    }
+  ],
+  "artifacts": [
+    "README.md",
+    "examples/checkpoint-wrapper.sbatch",
+    "examples/resume-progress.sh"
+  ],
+  "examples": [
+    {
+      "title": "Checkpoint-aware Slurm wrapper",
+      "path": "examples/checkpoint-wrapper.sbatch"
+    },
+    {
+      "title": "Toy resumable progress command",
+      "path": "examples/resume-progress.sh"
+    }
+  ],
+  "tests": [
+    {
+      "type": "static",
+      "command": "python3 tools/validate_skills.py --skill checkpoint-restart-workflow",
+      "description": "Validate the manifest and referenced examples."
+    },
+    {
+      "type": "manual",
+      "description": "Run the toy resumable command twice and confirm the second run detects existing progress."
+    }
+  ],
+  "references": [
+    {
+      "title": "Slurm sbatch signal option",
+      "url": "https://slurm.schedmd.com/sbatch.html#OPT_signal"
+    },
+    {
+      "title": "Slurm preemption documentation",
+      "url": "https://slurm.schedmd.com/preempt.html"
+    }
+  ]
+}
