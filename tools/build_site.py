@@ -40,18 +40,95 @@ def badge(value: str, css_class: str = "") -> str:
     return f'<span class="badge{class_attr}">{esc(value)}</span>'
 
 
-def skill_rows(skills: List[Dict[str, Any]]) -> str:
+def skill_collection_membership(index: Dict[str, Any]) -> Dict[str, List[str]]:
+    membership: Dict[str, List[str]] = {}
+    for collection in index.get("collections", []):
+        for skill_id in collection.get("skill_ids", []):
+            membership.setdefault(skill_id, []).append(collection["id"])
+    return {skill_id: sorted(collections) for skill_id, collections in membership.items()}
+
+
+def data_attr_values(values: List[str]) -> str:
+    return "|".join(value.lower() for value in values)
+
+
+def option_tags(values: List[str], label: str) -> str:
+    options = [f'<option value="">{esc(label)}</option>']
+    for value in values:
+        options.append(f'<option value="{esc(value.lower())}">{esc(value)}</option>')
+    return "\n".join(options)
+
+
+def filter_controls(index: Dict[str, Any]) -> str:
+    schedulers = sorted(index["schedulers"])
+    tools = sorted(index["tools"], key=str.lower)
+    collections = sorted(collection["id"] for collection in index["collections"])
+    return f"""
+    <div class="filters" aria-label="Skill filters">
+      <input id="skill-search" type="search" placeholder="Search id, tag, tool, or summary" aria-label="Search skills">
+      <select id="filter-risk" aria-label="Filter by risk">
+        {option_tags(['low', 'medium', 'high'], 'All risk levels')}
+      </select>
+      <select id="filter-maturity" aria-label="Filter by maturity">
+        {option_tags(['seed', 'reviewed', 'field-tested', 'maintained'], 'All maturity')}
+      </select>
+      <select id="filter-category" aria-label="Filter by category">
+        {option_tags(sorted(index['categories']), 'All categories')}
+      </select>
+      <select id="filter-scheduler" aria-label="Filter by scheduler">
+        {option_tags(schedulers, 'All schedulers')}
+      </select>
+      <select id="filter-tool" aria-label="Filter by tool">
+        {option_tags(tools, 'All tools')}
+      </select>
+      <select id="filter-collection" aria-label="Filter by collection">
+        {option_tags(collections, 'All collections')}
+      </select>
+      <button id="clear-filters" type="button">Clear</button>
+    </div>
+    """
+
+
+def skill_rows(skills: List[Dict[str, Any]], membership: Dict[str, List[str]]) -> str:
     rows = []
     for skill in skills:
         categories = " ".join(badge(category) for category in skill["categories"])
         tags = " ".join(badge(tag, "tag") for tag in skill["tags"][:6])
+        schedulers = (
+            " ".join(badge(scheduler) for scheduler in skill["schedulers"])
+            if skill["schedulers"]
+            else '<span class="muted">agnostic</span>'
+        )
+        collections = membership.get(skill["id"], [])
+        search_text = " ".join(
+            [
+                skill["id"],
+                skill["name"],
+                skill["summary"],
+                skill["description"],
+                " ".join(skill["categories"]),
+                " ".join(skill["tags"]),
+                " ".join(skill["tools"]),
+                " ".join(skill["schedulers"]),
+                " ".join(collections),
+            ]
+        ).lower()
         rows.append(
             f"""
-            <tr data-search="{esc(' '.join([skill['id'], skill['name'], skill['summary'], ' '.join(skill['categories']), ' '.join(skill['tags'])]).lower())}">
+            <tr
+              data-search="{esc(search_text)}"
+              data-risk="{esc(skill['risk_level'].lower())}"
+              data-maturity="{esc(skill['maturity'].lower())}"
+              data-status="{esc(skill['status'].lower())}"
+              data-categories="{esc(data_attr_values(skill['categories']))}"
+              data-schedulers="{esc(data_attr_values(skill['schedulers']))}"
+              data-tools="{esc(data_attr_values(skill['tools']))}"
+              data-collections="{esc(data_attr_values(collections))}">
               <td><a href="{esc(skill['readme'])}">{esc(skill['id'])}</a></td>
               <td>{esc(skill['summary'])}</td>
               <td>{badge(skill['risk_level'], skill['risk_level'])}</td>
               <td>{badge(skill['maturity'])}</td>
+              <td>{schedulers}</td>
               <td>{categories}</td>
               <td>{tags}</td>
             </tr>
@@ -194,6 +271,7 @@ def project_status(index: Dict[str, Any]) -> str:
 
 
 def render(index: Dict[str, Any]) -> str:
+    membership = skill_collection_membership(index)
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -320,7 +398,8 @@ def render(index: Dict[str, Any]) -> str:
       gap: 12px;
       margin: 20px 0 10px;
     }}
-    input[type="search"] {{
+    input[type="search"],
+    select {{
       width: min(420px, 100%);
       padding: 9px 11px;
       border: 1px solid var(--line);
@@ -328,6 +407,20 @@ def render(index: Dict[str, Any]) -> str:
       font: inherit;
       background: white;
     }}
+    select {{
+      width: min(210px, 100%);
+      color: var(--text);
+    }}
+    button {{
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 12px;
+      background: #ffffff;
+      color: #1d4ed8;
+      font: inherit;
+      cursor: pointer;
+    }}
+    button:hover {{ background: #f8fafc; }}
     .intro {{
       display: grid;
       grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
@@ -388,6 +481,28 @@ def render(index: Dict[str, Any]) -> str:
       font-size: 1.05rem;
       letter-spacing: 0;
     }}
+    .filters {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 12px;
+    }}
+    .filters input[type="search"] {{
+      flex: 1 1 280px;
+    }}
+    .result-count {{
+      color: var(--muted);
+      font-size: .92rem;
+    }}
+    .empty-state {{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      margin: 0 0 12px;
+      padding: 12px;
+    }}
+    .muted {{ color: var(--muted); }}
     .table-wrap {{
       overflow-x: auto;
       border: 1px solid var(--line);
@@ -412,6 +527,7 @@ def render(index: Dict[str, Any]) -> str:
       font-weight: 650;
     }}
     tr:last-child td {{ border-bottom: 0; }}
+    tr[hidden] {{ display: none; }}
     .badge {{
       display: inline-block;
       border: 1px solid var(--line);
@@ -441,6 +557,8 @@ def render(index: Dict[str, Any]) -> str:
       .path-list {{ grid-template-columns: 1fr; }}
       .stats {{ grid-template-columns: 1fr; }}
       .toolbar {{ align-items: flex-start; flex-direction: column; }}
+      .filters {{ display: grid; grid-template-columns: 1fr; }}
+      .filters input[type="search"], select, button {{ width: 100%; }}
       h1 {{ font-size: 1.2rem; }}
     }}
   </style>
@@ -489,8 +607,10 @@ def render(index: Dict[str, Any]) -> str:
     <section class="section" aria-labelledby="skills-heading">
       <div class="toolbar">
         <h2 id="skills-heading">Skills</h2>
-        <input id="skill-search" type="search" placeholder="Filter skills by id, tag, tool, or summary" aria-label="Filter skills">
+        <span id="skill-count" class="result-count">{index['skill_count']} matching skills</span>
       </div>
+      {filter_controls(index)}
+      <p id="empty-skills" class="empty-state" hidden>No skills match the current filters.</p>
       <div class="table-wrap">
         <table>
           <thead>
@@ -499,12 +619,13 @@ def render(index: Dict[str, Any]) -> str:
               <th>Summary</th>
               <th>Risk</th>
               <th>Maturity</th>
+              <th>Schedulers</th>
               <th>Categories</th>
               <th>Tags</th>
             </tr>
           </thead>
           <tbody id="skill-table">
-            {skill_rows(index['skills'])}
+            {skill_rows(index['skills'], membership)}
           </tbody>
         </table>
       </div>
@@ -558,14 +679,65 @@ def render(index: Dict[str, Any]) -> str:
     </div>
   </footer>
   <script>
-    const input = document.getElementById('skill-search');
     const rows = Array.from(document.querySelectorAll('#skill-table tr'));
-    input.addEventListener('input', () => {{
-      const query = input.value.trim().toLowerCase();
+    const controls = {{
+      search: document.getElementById('skill-search'),
+      risk: document.getElementById('filter-risk'),
+      maturity: document.getElementById('filter-maturity'),
+      category: document.getElementById('filter-category'),
+      scheduler: document.getElementById('filter-scheduler'),
+      tool: document.getElementById('filter-tool'),
+      collection: document.getElementById('filter-collection'),
+    }};
+    const count = document.getElementById('skill-count');
+    const empty = document.getElementById('empty-skills');
+    const clear = document.getElementById('clear-filters');
+
+    function hasToken(row, key, value) {{
+      if (!value) return true;
+      const raw = row.dataset[key] || '';
+      return raw.split('|').includes(value);
+    }}
+
+    function applyFilters() {{
+      const query = controls.search.value.trim().toLowerCase();
+      const active = {{
+        risk: controls.risk.value,
+        maturity: controls.maturity.value,
+        category: controls.category.value,
+        scheduler: controls.scheduler.value,
+        tool: controls.tool.value,
+        collection: controls.collection.value,
+      }};
+      let visible = 0;
       rows.forEach((row) => {{
-        row.hidden = query && !row.dataset.search.includes(query);
+        const matches =
+          (!query || row.dataset.search.includes(query)) &&
+          hasToken(row, 'risk', active.risk) &&
+          hasToken(row, 'maturity', active.maturity) &&
+          hasToken(row, 'categories', active.category) &&
+          hasToken(row, 'schedulers', active.scheduler) &&
+          hasToken(row, 'tools', active.tool) &&
+          hasToken(row, 'collections', active.collection);
+        row.hidden = !matches;
+        if (matches) visible += 1;
       }});
+      count.textContent = `${{visible}} matching skill${{visible === 1 ? '' : 's'}}`;
+      empty.hidden = visible !== 0;
+    }}
+
+    Object.values(controls).forEach((control) => {{
+      control.addEventListener('input', applyFilters);
+      control.addEventListener('change', applyFilters);
     }});
+    clear.addEventListener('click', () => {{
+      controls.search.value = '';
+      Object.values(controls).forEach((control) => {{
+        if (control.tagName === 'SELECT') control.value = '';
+      }});
+      applyFilters();
+    }});
+    applyFilters();
   </script>
 </body>
 </html>

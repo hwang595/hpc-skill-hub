@@ -173,11 +173,14 @@ Explore the registry:
 
 ```bash
 python3 tools/hpc_skill.py list
+python3 tools/hpc_skill.py list --collection simulation-workflows --tool bash --json
 python3 tools/hpc_skill.py search slurm
+python3 tools/hpc_skill.py search simulation --scheduler slurm --risk medium
 python3 tools/hpc_skill.py show slurm-submit-job --examples
 python3 tools/hpc_skill.py collections
 python3 tools/hpc_skill.py collection core-hpc
 python3 tools/hpc_skill.py health
+python3 tools/hpc_skill.py validate --skill slurm-submit-job --json
 python3 tools/review_candidates.py --limit 12
 ```
 
@@ -192,20 +195,21 @@ hpc-skill collection core-hpc
 Scaffold new contributions:
 
 ```bash
-python3 tools/hpc_skill.py scaffold skill my-new-skill --category education --tool bash
-python3 tools/hpc_skill.py scaffold site-adapter my-campus-cluster --name "My Campus Cluster"
+python3 tools/hpc_skill.py new skill my-new-skill --category education --tool bash
+python3 tools/hpc_skill.py new site-adapter my-campus-cluster --name "My Campus Cluster"
 ```
 
 Validate one skill:
 
 ```bash
-python3 tools/validate_skills.py --skill slurm-submit-job
+python3 tools/hpc_skill.py check slurm-submit-job
+python3 tools/hpc_skill.py check slurm-submit-job --json
 ```
 
 Create a new skill:
 
 ```bash
-python3 tools/hpc_skill.py scaffold skill my-new-skill --category education --tool bash
+python3 tools/hpc_skill.py new skill my-new-skill --category education --tool bash
 ```
 
 Then update the manifest, add `README.md`, add examples, and run the validator.
