@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "mpi-hello-static",
+  "name": "MPI hello static checks",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "static",
+  "risk_level": "low",
+  "skill_ids": ["mpi-hello-and-benchmark"],
+  "summary": "Check that the MPI hello example remains reviewable without launching MPI work in CI.",
+  "fixtures": [],
+  "commands": [
+    {
+      "label": "MPI sbatch syntax",
+      "argv": ["bash", "-n", "skills/mpi-hello-and-benchmark/examples/run-mpi.sbatch"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "MPI source has rank and size output",
+      "type": "contains_all",
+      "path": "skills/mpi-hello-and-benchmark/examples/hello_mpi.c",
+      "patterns": ["MPI_Comm_rank", "MPI_Comm_size", "rank %d of %d"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should provide a tiny MPI sanity check that can be reviewed before running on a real allocation.",
+    "The skill should preserve launcher and module assumptions for local site review."
+  ]
+}

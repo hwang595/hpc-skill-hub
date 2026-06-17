@@ -18,6 +18,7 @@ SUPPORT_PATHS = [
     "README.md",
     "LICENSE",
     "assets",
+    "benchmarks",
     "docs",
     "collections",
     "skills",

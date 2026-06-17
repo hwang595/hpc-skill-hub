@@ -1,0 +1,11 @@
+# command
+getfacl -p <project-path>/team/output
+
+# file: <project-path>/team/output
+# owner: <owner>
+# group: project_group
+user::rwx
+group::rwx                  #effective:r--
+group:project_group:rwx     #effective:r--
+mask::r--
+other::---

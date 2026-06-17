@@ -12,7 +12,8 @@
 set -euo pipefail
 
 module purge
-module load <mpi-module>
+# Replace <mpi-module> with a site-approved MPI module before running.
+module load "<mpi-module>"
 
 echo "job=${SLURM_JOB_ID}"
 echo "nodes=${SLURM_JOB_NODELIST}"

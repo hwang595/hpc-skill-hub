@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "slurm-time-limit-fixture",
+  "name": "Slurm time-limit fixture evidence",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "fixture",
+  "risk_level": "low",
+  "skill_ids": ["slurm-time-limit-triage", "checkpoint-restart-workflow"],
+  "summary": "Use public-safe accounting and log snippets to check time-limit triage signals.",
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/slurm/time-limit-sacct.txt",
+      "description": "Synthetic sacct output for a job cancelled at its time limit."
+    },
+    {
+      "path": "benchmarks/fixtures/slurm/time-limit-log.txt",
+      "description": "Synthetic log showing Slurm time-limit cancellation and checkpoint progress."
+    }
+  ],
+  "commands": [
+    {
+      "label": "Time-limit triage script syntax",
+      "argv": ["bash", "-n", "skills/slurm-time-limit-triage/examples/slurm-time-limit-triage.sh"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "Accounting fixture contains timeout state",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/slurm/time-limit-sacct.txt",
+      "patterns": ["TIMEOUT", "Timelimit", "02:00:00"]
+    },
+    {
+      "label": "Log fixture contains cancellation and checkpoint evidence",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/slurm/time-limit-log.txt",
+      "patterns": ["DUE TO TIME LIMIT", "checkpoint"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should distinguish normal progress at time limit from immediate application failure.",
+    "The skill should suggest checkpointing, splitting, or requesting more time only after reviewing progress evidence."
+  ]
+}

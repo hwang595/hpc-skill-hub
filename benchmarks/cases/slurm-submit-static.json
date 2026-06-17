@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "slurm-submit-static",
+  "name": "Slurm submit example syntax",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "static",
+  "risk_level": "low",
+  "skill_ids": ["slurm-submit-job"],
+  "summary": "Check that Slurm submit examples remain shell-parseable and keep placeholders visible.",
+  "fixtures": [],
+  "commands": [
+    {
+      "label": "CPU sbatch syntax",
+      "argv": ["bash", "-n", "skills/slurm-submit-job/examples/cpu.sbatch"],
+      "expect_returncode": 0
+    },
+    {
+      "label": "MPI sbatch syntax",
+      "argv": ["bash", "-n", "skills/slurm-submit-job/examples/mpi.sbatch"],
+      "expect_returncode": 0
+    },
+    {
+      "label": "GPU sbatch syntax",
+      "argv": ["bash", "-n", "skills/slurm-submit-job/examples/gpu.sbatch"],
+      "expect_returncode": 0
+    },
+    {
+      "label": "Array sbatch syntax",
+      "argv": ["bash", "-n", "skills/slurm-submit-job/examples/array.sbatch"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "CPU example keeps site placeholders",
+      "type": "contains_all",
+      "path": "skills/slurm-submit-job/examples/cpu.sbatch",
+      "patterns": ["<account>", "<partition>", "Replace this with the real workload"]
+    }
+  ],
+  "expected_outcomes": [
+    "Examples are parseable as shell scripts without submitting jobs.",
+    "Scheduler account and partition remain placeholders until a site or user supplies values."
+  ]
+}

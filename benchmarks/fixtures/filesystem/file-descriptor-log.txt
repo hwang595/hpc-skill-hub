@@ -1,0 +1,4 @@
+2026-01-15T12:00:03Z worker-07 starting shard fan-out
+2026-01-15T12:00:04Z OSError: [Errno 24] Too many open files: '<dataset-shard>'
+2026-01-15T12:00:04Z EMFILE while opening checkpoint metadata
+2026-01-15T12:00:05Z DataLoader worker exited unexpectedly after file descriptor pressure

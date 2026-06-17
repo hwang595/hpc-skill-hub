@@ -13,7 +13,8 @@
 set -euo pipefail
 
 module purge
-module load <cuda-or-rocm-module>
+# Replace <cuda-or-rocm-module> with a site-approved GPU runtime module before running.
+module load "<cuda-or-rocm-module>"
 
 echo "job=${SLURM_JOB_ID}"
 echo "host=$(hostname)"

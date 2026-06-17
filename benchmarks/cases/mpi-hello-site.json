@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "mpi-hello-site",
+  "name": "MPI hello site smoke test",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "site",
+  "risk_level": "medium",
+  "skill_ids": ["mpi-hello-and-benchmark"],
+  "summary": "Optionally submit the tiny MPI hello job on a reviewed Slurm site allocation.",
+  "fixtures": [],
+  "commands": [
+    {
+      "label": "Submit MPI hello with site-provided Slurm settings",
+      "argv": [
+        "sbatch",
+        "--wait",
+        "--account",
+        "${HPC_SKILL_HUB_SITE_ACCOUNT}",
+        "--partition",
+        "${HPC_SKILL_HUB_SITE_PARTITION}",
+        "skills/mpi-hello-and-benchmark/examples/run-mpi.sbatch"
+      ],
+      "requires_env": [
+        "HPC_SKILL_HUB_SITE_ACCOUNT",
+        "HPC_SKILL_HUB_SITE_PARTITION",
+        "HPC_SKILL_HUB_MPI_MODULE"
+      ],
+      "expect_returncode": 0,
+      "timeout_seconds": 900
+    }
+  ],
+  "checks": [
+    {
+      "label": "MPI site script documents local module opt-in",
+      "type": "contains_all",
+      "path": "skills/mpi-hello-and-benchmark/examples/run-mpi.sbatch",
+      "patterns": ["HPC_SKILL_HUB_MPI_MODULE", "mpicc", "srun ./hello_mpi"]
+    }
+  ],
+  "expected_outcomes": [
+    "The site smoke test should only run after local account, partition, and MPI module values are supplied out of band.",
+    "The submitted job should compile hello_mpi.c and finish within the benchmark timeout on a reviewed Slurm site."
+  ]
+}

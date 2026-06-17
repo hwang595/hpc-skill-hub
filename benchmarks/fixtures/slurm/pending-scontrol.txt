@@ -1,0 +1,4 @@
+JobId=91001 JobName=sim_pipeline UserId=<user>(1000) GroupId=<group>(1000)
+JobState=PENDING Reason=Dependency Dependency=afterok:90990 Priority=1134
+Partition=compute NumNodes=2 NumCPUs=64 TresPerNode=gres/gpu:2
+TimeLimit=02:00:00 SubmitTime=2026-01-15T12:00:00

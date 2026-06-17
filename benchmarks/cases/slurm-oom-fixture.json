@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "slurm-oom-fixture",
+  "name": "Slurm OOM fixture evidence",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "fixture",
+  "risk_level": "low",
+  "skill_ids": ["slurm-oom-memory-triage", "job-failure-triage"],
+  "summary": "Use public-safe accounting and log snippets to check OOM triage signals.",
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/slurm/oom-sacct.txt",
+      "description": "Synthetic sacct output for an out-of-memory Slurm job."
+    },
+    {
+      "path": "benchmarks/fixtures/slurm/oom-log.txt",
+      "description": "Synthetic job log with oom-kill and worker-killed signals."
+    }
+  ],
+  "commands": [
+    {
+      "label": "OOM triage script syntax",
+      "argv": ["bash", "-n", "skills/slurm-oom-memory-triage/examples/slurm-oom-triage.sh"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "Accounting fixture contains OOM state and memory evidence",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/slurm/oom-sacct.txt",
+      "patterns": ["OUT_OF_MEMORY", "ReqMem", "MaxRSS", "15980M"]
+    },
+    {
+      "label": "Log fixture contains application-level memory signals",
+      "type": "contains_any",
+      "path": "benchmarks/fixtures/slurm/oom-log.txt",
+      "patterns": ["oom-kill", "DataLoader worker", "Killed"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should ask the user to compare ReqMem, MaxRSS, job steps, and logs before increasing memory.",
+    "The skill should treat missing or incomplete accounting as possible and preserve application-level evidence."
+  ]
+}

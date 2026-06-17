@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "file-descriptor-limit-fixture",
+  "name": "File descriptor limit fixture evidence",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "fixture",
+  "risk_level": "low",
+  "skill_ids": ["file-descriptor-limit-triage"],
+  "summary": "Use public-safe nofile and log snippets to check file descriptor triage signals.",
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/filesystem/file-descriptor-limits.txt",
+      "description": "Synthetic nofile and procfs limit evidence near the soft limit."
+    },
+    {
+      "path": "benchmarks/fixtures/filesystem/file-descriptor-log.txt",
+      "description": "Synthetic workflow log with EMFILE and too-many-open-files symptoms."
+    }
+  ],
+  "commands": [
+    {
+      "label": "File descriptor triage script syntax",
+      "argv": ["bash", "-n", "skills/file-descriptor-limit-triage/examples/fd-limit-triage.sh"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "Limit fixture contains soft and hard nofile evidence",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/filesystem/file-descriptor-limits.txt",
+      "patterns": ["ulimit_soft_nofile=1024", "Max open files", "proc_fd_count=1008"]
+    },
+    {
+      "label": "Log fixture contains file descriptor failure signals",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/filesystem/file-descriptor-log.txt",
+      "patterns": ["EMFILE", "Too many open files", "DataLoader worker"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should compare open descriptor counts with the soft nofile limit before recommending policy changes.",
+    "The skill should preserve workflow fan-out and many-small-file context as evidence."
+  ]
+}
