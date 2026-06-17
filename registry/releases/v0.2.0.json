@@ -1,7 +1,22 @@
 {
   "$schema": "../../schemas/release-manifest.schema.json",
-  "file_count": 579,
+  "file_count": 586,
   "files": [
+    {
+      "bytes": 2989,
+      "path": ".agents/skills/hpc-skill-hub/SKILL.md",
+      "sha256": "d3709d36938761d5cf6ac12ac8b4e1d85cb6228335597e3afc34b8f20f38fc50"
+    },
+    {
+      "bytes": 237,
+      "path": ".agents/skills/hpc-skill-hub/agents/openai.yaml",
+      "sha256": "541a6f84ee2db43f73f00bd5645ace548a178a57821f4e14d0de155504c8da8e"
+    },
+    {
+      "bytes": 2995,
+      "path": ".claude/skills/hpc-skill-hub/SKILL.md",
+      "sha256": "41b03322c646565aedfeaaa30036ac0ecbb1dc3f0fd6e818c092536468d04cb0"
+    },
     {
       "bytes": 489,
       "path": ".github/CODEOWNERS",
@@ -158,9 +173,14 @@
       "sha256": "1439a2f12c269552c7880632e56f5247e4837b03c4b1dd7940eebb77bd559392"
     },
     {
-      "bytes": 113,
+      "bytes": 157,
       "path": ".gitignore",
-      "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
+      "sha256": "8287c47660525469a9786ae57ded931159333d8ad2b2d9eab2346bafac4e6481"
+    },
+    {
+      "bytes": 3371,
+      "path": "AGENTS.md",
+      "sha256": "ee0aa494bc8bc015048e0e5991ccda8fcc84fae7ea7280edae4982d8db5e2a84"
     },
     {
       "bytes": 16002,
@@ -171,6 +191,11 @@
       "bytes": 426,
       "path": "CITATION.cff",
       "sha256": "372e6ed01df4e58d9b4c5152c3df1a42fcce55f6cf2a2c0e385036df111ef03c"
+    },
+    {
+      "bytes": 456,
+      "path": "CLAUDE.md",
+      "sha256": "eb1f20d6c8b51dcd99144f4074f9ae757ce9cdfa8489be3db79f226b8bfc3c79"
     },
     {
       "bytes": 791,
@@ -188,14 +213,14 @@
       "sha256": "e6674ee41c39ac92f5229d41e9575c0c753fb3025068a191fc5e94c45575e3a0"
     },
     {
-      "bytes": 1616,
+      "bytes": 1712,
       "path": "Makefile",
-      "sha256": "3bf92db7ed2060391948987788ce5dd23f38d26e45046e95865c6e8cfb4741cf"
+      "sha256": "01afb5e4caf4d0f6d15285d350bb8d3367a7f1bb0009e338938c0c2c7dd14817"
     },
     {
-      "bytes": 18467,
+      "bytes": 18516,
       "path": "README.md",
-      "sha256": "f5a8a5c22dc6e979f7f07bd52a1562257acedf9b6ebcba4832ba4d70738c82df"
+      "sha256": "1e68f3def8adb0c881a67f672caa3f55045d0d8a55ce8c60ab40251828032e6c"
     },
     {
       "bytes": 9669,
@@ -296,6 +321,11 @@
       "bytes": 3817,
       "path": "docs/ADOPTION_WORKSHEET.md",
       "sha256": "a8429851eb83711b4f4ce31682574687eafb0069016c36a0508483e2647b5ef9"
+    },
+    {
+      "bytes": 2954,
+      "path": "docs/AGENT_INTEGRATION.md",
+      "sha256": "90eef45c25af371232151df6e6286ba65c718da0982771eddeecf8c92f881121"
     },
     {
       "bytes": 4290,
@@ -2783,6 +2813,11 @@
       "sha256": "957d25835a46d472e5c12ec8476c5fe71d23632d48558416500b2e496d10ab3a"
     },
     {
+      "bytes": 13142,
+      "path": "tools/build_agent_adapters.py",
+      "sha256": "6b02c2162d2c2162853b7f7b10806a6212a93d78d268ff816c246a1655ea05f5"
+    },
+    {
       "bytes": 9763,
       "path": "tools/build_compatibility.py",
       "sha256": "687461e4b4df023bdb75a9f7e1279fe92eaba009b40b171b216410f0906f503f"
@@ -2803,9 +2838,9 @@
       "sha256": "1d166ec38e617ec2a8ee28d4dcd755c14545f8ae57412bbe54a5e748d0623a84"
     },
     {
-      "bytes": 5417,
+      "bytes": 5563,
       "path": "tools/build_release_manifest.py",
-      "sha256": "64153f11bc60f932bdadaaccca2ba885924de57ec718a193f6536fe0a1046402"
+      "sha256": "f712d7e967a83ed8d55d79556aa0fb9919e1577af95c13123f52513fc5cd4335"
     },
     {
       "bytes": 24205,
@@ -2920,6 +2955,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 2902210,
+  "total_bytes": 2928689,
   "version": "v0.2.0"
 }
