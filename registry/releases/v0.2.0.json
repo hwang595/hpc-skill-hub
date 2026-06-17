@@ -163,9 +163,9 @@
       "sha256": "dc860ad618f9cda0de0642f980da6b0825243c51e6f6fcd2f0496c111066344f"
     },
     {
-      "bytes": 15759,
+      "bytes": 16002,
       "path": "CHANGELOG.md",
-      "sha256": "b13d2b780d594a625a311570e248a966209878f6032540bd84b839a739f65f46"
+      "sha256": "3cfd946ee4582b9d1815c253345e81047a86dc240d3a43c736323bac87d23a21"
     },
     {
       "bytes": 426,
@@ -188,14 +188,14 @@
       "sha256": "e6674ee41c39ac92f5229d41e9575c0c753fb3025068a191fc5e94c45575e3a0"
     },
     {
-      "bytes": 1492,
+      "bytes": 1616,
       "path": "Makefile",
-      "sha256": "c2b2dd87a0c39ac49776c4d626c05650ed55bfbbf277bca7495d34dfffdf7443"
+      "sha256": "3bf92db7ed2060391948987788ce5dd23f38d26e45046e95865c6e8cfb4741cf"
     },
     {
-      "bytes": 18203,
+      "bytes": 18467,
       "path": "README.md",
-      "sha256": "bccd0e14212b2b55276e6ee9ccb83abe2e4ec74619287e26d71708f441a9124c"
+      "sha256": "f5a8a5c22dc6e979f7f07bd52a1562257acedf9b6ebcba4832ba4d70738c82df"
     },
     {
       "bytes": 9669,
@@ -373,9 +373,9 @@
       "sha256": "72feaa12690755d5646a096aa3296a2139370411304fc2230a6f805b08eec964"
     },
     {
-      "bytes": 6969,
+      "bytes": 7010,
       "path": "docs/INTEGRATION_GUIDE.md",
-      "sha256": "8bee4236edb8a66d249de8fc05aa65f8057f75ada5cc3d37bf413ec470aef17d"
+      "sha256": "4c078f09cda6a559c68f9d268708d16c3fee1d31af690cd60486e8f0474356a1"
     },
     {
       "bytes": 3646,
@@ -423,9 +423,9 @@
       "sha256": "d38d14b1925a656e0396561e2fe6a92cbf6d5f33d8ec53ee6b1d29c24d6985c6"
     },
     {
-      "bytes": 2774,
+      "bytes": 3005,
       "path": "docs/RELEASE_NOTES_v0.2.0.md",
-      "sha256": "2c45efdcbb814aee5f60fdb576791eec076c5e737179861d90bf1078c8e4bcc7"
+      "sha256": "7fe506db7e82e737d5f14c51c5d7c118be4f3cc9804fda018eb4051bd34cb868"
     },
     {
       "bytes": 3021,
@@ -2738,9 +2738,9 @@
       "sha256": "5df4b1b570320598364cc38dd20a398ace8b5ba0c71792c47a3bbb6443edd121"
     },
     {
-      "bytes": 24575,
+      "bytes": 31289,
       "path": "src/hpc_skill_hub/cli.py",
-      "sha256": "e98635c6044821567bd15ad8844d0cdaf4fffe9b1738d868a8ecca74a5c1e292"
+      "sha256": "c2337ec7626dda5222624fd6aeee24ca9fae6166d93c3c394badff24a19c616b"
     },
     {
       "bytes": 13189,
@@ -2768,9 +2768,9 @@
       "sha256": "4a625d36f1145fb3ea4be9bacabc9c8b315ce130520bc15419be6ec4eac10d01"
     },
     {
-      "bytes": 17406,
+      "bytes": 19845,
       "path": "tests/test_registry.py",
-      "sha256": "8205d3199f709955fd2afc98d53c919ae6d365cc088f652a6af7409e89bf1e11"
+      "sha256": "48d809695a9fe467d7d50834c01b521f794da666f1e567c4f57383812b474200"
     },
     {
       "bytes": 2981,
@@ -2808,9 +2808,9 @@
       "sha256": "64153f11bc60f932bdadaaccca2ba885924de57ec718a193f6536fe0a1046402"
     },
     {
-      "bytes": 17780,
+      "bytes": 24205,
       "path": "tools/build_site.py",
-      "sha256": "17da9b313a34cd7edfbd9fc53000f4d713cc1f4cb877593160bf2afdc3bd6784"
+      "sha256": "ca32814250f76f6433d5b3e5281ac7ae2f08d3512979b042385b43eeac415ad6"
     },
     {
       "bytes": 2692,
@@ -2920,6 +2920,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 2885729,
+  "total_bytes": 2902210,
   "version": "v0.2.0"
 }

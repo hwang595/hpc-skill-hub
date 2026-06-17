@@ -113,7 +113,19 @@ def table(rows: List[List[str]], headers: List[str]) -> str:
     return "\n".join(lines)
 
 
-def skill_matches(skill: Dict[str, Any], args: argparse.Namespace) -> bool:
+def skill_collection_membership(index: Dict[str, Any]) -> Dict[str, List[str]]:
+    membership: Dict[str, List[str]] = {}
+    for collection in index.get("collections", []):
+        for skill_id in collection.get("skill_ids", []):
+            membership.setdefault(skill_id, []).append(collection["id"])
+    return {skill_id: sorted(collections) for skill_id, collections in membership.items()}
+
+
+def skill_matches(
+    skill: Dict[str, Any],
+    args: argparse.Namespace,
+    membership: Optional[Dict[str, List[str]]] = None,
+) -> bool:
     if args.category and args.category not in skill["categories"]:
         return False
     if args.tag and args.tag not in skill["tags"]:
@@ -122,12 +134,23 @@ def skill_matches(skill: Dict[str, Any], args: argparse.Namespace) -> bool:
         return False
     if args.scheduler and args.scheduler not in skill["schedulers"]:
         return False
+    if getattr(args, "maturity", None) and args.maturity != skill["maturity"]:
+        return False
+    if getattr(args, "status", None) and args.status != skill["status"]:
+        return False
+    if getattr(args, "tool", None) and args.tool not in skill["tools"]:
+        return False
+    if getattr(args, "collection", None):
+        collections = membership.get(skill["id"], []) if membership else []
+        if args.collection not in collections:
+            return False
     return True
 
 
 def cmd_list(args: argparse.Namespace) -> int:
     index = load_index()
-    skills = [skill for skill in index["skills"] if skill_matches(skill, args)]
+    membership = skill_collection_membership(index)
+    skills = [skill for skill in index["skills"] if skill_matches(skill, args, membership)]
     if args.json:
         emit_json(skills)
         return 0
@@ -165,8 +188,13 @@ def searchable_text(skill: Dict[str, Any]) -> str:
 
 def cmd_search(args: argparse.Namespace) -> int:
     index = load_index()
+    membership = skill_collection_membership(index)
     query = " ".join(args.query).lower()
-    skills = [skill for skill in index["skills"] if query in searchable_text(skill)]
+    skills = [
+        skill
+        for skill in index["skills"]
+        if query in searchable_text(skill) and skill_matches(skill, args, membership)
+    ]
     if args.json:
         emit_json(skills)
         return 0
@@ -350,6 +378,24 @@ def run_step(label: str, command: List[str], root: Path) -> int:
     return 0
 
 
+def run_step_json(label: str, command: List[str], root: Path) -> Dict[str, Any]:
+    result = subprocess.run(
+        command,
+        cwd=str(root),
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    return {
+        "label": label,
+        "command": command,
+        "returncode": result.returncode,
+        "status": "passed" if result.returncode == 0 else "failed",
+        "stdout": result.stdout,
+        "stderr": result.stderr,
+    }
+
+
 def cmd_validate(args: argparse.Namespace) -> int:
     root = Path(args.root).resolve() if args.root else get_root()
     if args.skill:
@@ -404,6 +450,24 @@ def cmd_validate(args: argparse.Namespace) -> int:
                 )
             )
 
+    if args.json:
+        results = [run_step_json(label, command, root) for label, command in steps]
+        ok = all(result["returncode"] == 0 for result in results)
+        payload = {
+            "ok": ok,
+            "root": str(root),
+            "skill": args.skill,
+            "skip_generated": args.skip_generated,
+            "skip_safety": args.skip_safety,
+            "step_count": len(results),
+            "steps": results,
+        }
+        emit_json(payload)
+        for result in results:
+            if result["returncode"] != 0:
+                return result["returncode"]
+        return 0
+
     for label, command in steps:
         return_code = run_step(label, command, root)
         if return_code:
@@ -411,6 +475,13 @@ def cmd_validate(args: argparse.Namespace) -> int:
 
     print("Validation completed successfully.")
     return 0
+
+
+def cmd_check(args: argparse.Namespace) -> int:
+    ensure_id(args.skill_id)
+    args.skill = args.skill_id
+    args.skip_generated = True
+    return cmd_validate(args)
 
 
 def ensure_id(value: str) -> None:
@@ -440,6 +511,9 @@ def cmd_scaffold_skill(args: argparse.Namespace) -> int:
     summary = args.summary or f"Draft skill scaffold for {name}."
     tool = args.tool or "bash"
     category = args.category
+    tools = [{"name": "bash", "required": True}]
+    if tool != "bash":
+        tools.append({"name": tool, "required": False})
 
     manifest = {
         "$schema": "../../schemas/skill.schema.json",
@@ -455,29 +529,49 @@ def cmd_scaffold_skill(args: argparse.Namespace) -> int:
         "license": "MIT",
         "maturity": "seed",
         "risk_level": args.risk,
-        "tools": [{"name": tool, "required": True}],
+        "tools": tools,
         "inputs": [
             {
-                "name": "input",
+                "name": "working_directory",
+                "type": "path",
+                "required": False,
+                "description": "Directory where the user plans to run or test the workflow.",
+            },
+            {
+                "name": "input_path",
                 "type": "string",
                 "required": False,
                 "description": "Describe user-provided input.",
             }
         ],
         "outputs": [{"name": "output", "description": "Describe produced output."}],
-        "artifacts": ["README.md", "examples/example.sh"],
-        "examples": [{"title": "Example command", "path": "examples/example.sh"}],
+        "artifacts": [
+            "README.md",
+            "examples/example.sh",
+            "examples/check-prereqs.sh",
+            "examples/review-checklist.md",
+        ],
+        "examples": [
+            {"title": "Plan-only example command", "path": "examples/example.sh"},
+            {"title": "Prerequisite check", "path": "examples/check-prereqs.sh"},
+            {"title": "Review checklist", "path": "examples/review-checklist.md"},
+        ],
         "tests": [
             {
                 "type": "static",
                 "command": f"python3 tools/validate_skills.py --skill {args.skill_id}",
                 "description": "Validate the manifest and referenced artifacts.",
+            },
+            {
+                "type": "dry-run",
+                "command": f"bash skills/{args.skill_id}/examples/example.sh",
+                "description": "Run the plan-only example without submitting jobs or moving data.",
             }
         ],
         "references": [
             {
                 "title": "HPC Skill Hub skill specification",
-                "url": "https://github.com/hpc-skill-hub/hpc-skill-hub",
+                "url": "https://github.com/hwang595/hpc-skill-hub",
             }
         ],
     }
@@ -485,6 +579,11 @@ def cmd_scaffold_skill(args: argparse.Namespace) -> int:
     readme = f"""# {name}
 
 Use this skill when a user needs help with a specific HPC task.
+
+## Intended Users
+
+- Replace this list with the users this skill should serve.
+- Keep the first version narrow enough for public review.
 
 ## Assumptions
 
@@ -495,6 +594,12 @@ Use this skill when a user needs help with a specific HPC task.
 
 ```bash
 bash examples/example.sh
+```
+
+Check local prerequisites without submitting work:
+
+```bash
+bash examples/check-prereqs.sh
 ```
 
 ## Safety Notes
@@ -510,7 +615,50 @@ This scaffold is marked `{args.risk}` risk. Update the risk level before review.
     example = """#!/usr/bin/env bash
 set -euo pipefail
 
-echo "Replace this scaffold with a safe, reviewable HPC example."
+OUTPUT_DIR="${OUTPUT_DIR:-skill-scaffold-output}"
+RUN_EXAMPLE="${RUN_EXAMPLE:-0}"
+
+mkdir -p "${OUTPUT_DIR}"
+
+cat > "${OUTPUT_DIR}/plan.txt" <<'PLAN'
+Replace this scaffold with a safe, reviewable HPC example.
+
+Default behavior must stay plan-only. Expensive, destructive, or shared-system
+actions should require an explicit RUN_* environment variable.
+PLAN
+
+if [ "${RUN_EXAMPLE}" = "1" ]; then
+  echo "RUN_EXAMPLE=1 was set. Replace this branch with an explicit guarded action."
+else
+  echo "Plan-only mode. Wrote ${OUTPUT_DIR}/plan.txt"
+fi
+"""
+
+    check_prereqs = f"""#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Checking basic prerequisites for {args.skill_id}..."
+
+if command -v {tool} >/dev/null 2>&1; then
+  echo "found: {tool}"
+else
+  echo "missing or not loaded: {tool}"
+fi
+
+echo "Review site policy, scheduler limits, storage paths, and module/container assumptions before running real work."
+"""
+
+    review_checklist = f"""# {name} Review Checklist
+
+Use this checklist before moving `{args.skill_id}` beyond scaffold status.
+
+- [ ] The README explains the target users and task boundary.
+- [ ] Examples default to plan-only, dry-run, or read-only behavior.
+- [ ] Expensive or destructive actions require explicit opt-in.
+- [ ] Scheduler accounts, partitions, hostnames, and private paths use placeholders.
+- [ ] Inputs, outputs, artifacts, references, and tests match `skill.json`.
+- [ ] Public references are sufficient for an external reviewer.
+- [ ] `python3 tools/validate_skills.py --skill {args.skill_id}` passes.
 """
 
     write_json(skill_dir / "skill.json", manifest)
@@ -518,6 +666,10 @@ echo "Replace this scaffold with a safe, reviewable HPC example."
     example_path = examples_dir / "example.sh"
     example_path.write_text(example, encoding="utf-8")
     example_path.chmod(0o755)
+    check_path = examples_dir / "check-prereqs.sh"
+    check_path.write_text(check_prereqs, encoding="utf-8")
+    check_path.chmod(0o755)
+    (examples_dir / "review-checklist.md").write_text(review_checklist, encoding="utf-8")
     print(f"Created skill scaffold: {skill_dir}")
     return 0
 
@@ -604,6 +756,71 @@ policy for `{name}`.
     return 0
 
 
+def add_skill_filter_options(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("--category", help="Filter by category")
+    parser.add_argument("--tag", help="Filter by tag")
+    parser.add_argument("--risk", choices=["low", "medium", "high"], help="Filter by risk")
+    parser.add_argument(
+        "--maturity",
+        choices=["seed", "reviewed", "field-tested", "maintained"],
+        help="Filter by maturity",
+    )
+    parser.add_argument(
+        "--status",
+        choices=["draft", "reviewed", "deprecated"],
+        help="Filter by status",
+    )
+    parser.add_argument("--scheduler", help="Filter by scheduler")
+    parser.add_argument("--tool", help="Filter by declared tool")
+    parser.add_argument("--collection", help="Filter by collection id")
+
+
+def add_scaffold_subcommands(subparsers: argparse._SubParsersAction) -> None:
+    scaffold_skill = subparsers.add_parser("skill", help="Create a skill scaffold")
+    scaffold_skill.add_argument("skill_id", help="New skill id in lowercase kebab-case")
+    scaffold_skill.add_argument("--name", help="Human-readable skill name")
+    scaffold_skill.add_argument("--summary", help="One-sentence summary")
+    scaffold_skill.add_argument(
+        "--category",
+        default="education",
+        choices=[
+            "scheduler",
+            "containers",
+            "software",
+            "workflow",
+            "data",
+            "debugging",
+            "performance",
+            "gpu",
+            "mpi",
+            "interactive",
+            "admin",
+            "education",
+        ],
+        help="Primary skill category",
+    )
+    scaffold_skill.add_argument("--risk", default="low", choices=["low", "medium", "high"])
+    scaffold_skill.add_argument("--tool", help="Primary tool used by the skill")
+    scaffold_skill.add_argument("--root", help="Repository root to write into")
+    scaffold_skill.add_argument("--force", action="store_true", help="Overwrite scaffold files")
+    scaffold_skill.set_defaults(func=cmd_scaffold_skill)
+
+    scaffold_adapter = subparsers.add_parser(
+        "site-adapter", help="Create a site adapter scaffold"
+    )
+    scaffold_adapter.add_argument("adapter_id", help="New adapter id in lowercase kebab-case")
+    scaffold_adapter.add_argument("--name", help="Human-readable site or training environment name")
+    scaffold_adapter.add_argument("--scheduler", default="slurm", help="Scheduler type")
+    scaffold_adapter.add_argument(
+        "--institution-type",
+        default="other",
+        choices=["example", "university", "national-lab", "company", "cloud", "other"],
+    )
+    scaffold_adapter.add_argument("--root", help="Repository root to write into")
+    scaffold_adapter.add_argument("--force", action="store_true", help="Overwrite scaffold files")
+    scaffold_adapter.set_defaults(func=cmd_scaffold_adapter)
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Explore HPC Skill Hub skills and site adapters"
@@ -611,15 +828,13 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     list_parser = subparsers.add_parser("list", help="List skills")
-    list_parser.add_argument("--category", help="Filter by category")
-    list_parser.add_argument("--tag", help="Filter by tag")
-    list_parser.add_argument("--risk", choices=["low", "medium", "high"], help="Filter by risk")
-    list_parser.add_argument("--scheduler", help="Filter by scheduler")
+    add_skill_filter_options(list_parser)
     list_parser.add_argument("--json", action="store_true", help="Emit JSON")
     list_parser.set_defaults(func=cmd_list)
 
     search_parser = subparsers.add_parser("search", help="Search skills")
     search_parser.add_argument("query", nargs="+", help="Search query")
+    add_skill_filter_options(search_parser)
     search_parser.add_argument("--json", action="store_true", help="Emit JSON")
     search_parser.set_defaults(func=cmd_search)
 
@@ -668,55 +883,30 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Skip safety audit checks",
     )
+    validate_parser.add_argument("--json", action="store_true", help="Emit JSON")
     validate_parser.add_argument("--root", help="Repository root to validate")
     validate_parser.set_defaults(func=cmd_validate)
 
+    check_parser = subparsers.add_parser(
+        "check", help="Validate one skill with optional safety checks"
+    )
+    check_parser.add_argument("skill_id", help="Skill id to validate")
+    check_parser.add_argument(
+        "--skip-safety",
+        action="store_true",
+        help="Skip safety audit checks",
+    )
+    check_parser.add_argument("--json", action="store_true", help="Emit JSON")
+    check_parser.add_argument("--root", help="Repository root to validate")
+    check_parser.set_defaults(func=cmd_check)
+
     scaffold_parser = subparsers.add_parser("scaffold", help="Create new registry entries")
     scaffold_subparsers = scaffold_parser.add_subparsers(dest="scaffold_type", required=True)
+    add_scaffold_subcommands(scaffold_subparsers)
 
-    scaffold_skill = scaffold_subparsers.add_parser("skill", help="Create a skill scaffold")
-    scaffold_skill.add_argument("skill_id", help="New skill id in lowercase kebab-case")
-    scaffold_skill.add_argument("--name", help="Human-readable skill name")
-    scaffold_skill.add_argument("--summary", help="One-sentence summary")
-    scaffold_skill.add_argument(
-        "--category",
-        default="education",
-        choices=[
-            "scheduler",
-            "containers",
-            "software",
-            "workflow",
-            "data",
-            "debugging",
-            "performance",
-            "gpu",
-            "mpi",
-            "interactive",
-            "admin",
-            "education",
-        ],
-        help="Primary skill category",
-    )
-    scaffold_skill.add_argument("--risk", default="low", choices=["low", "medium", "high"])
-    scaffold_skill.add_argument("--tool", help="Primary tool used by the skill")
-    scaffold_skill.add_argument("--root", help="Repository root to write into")
-    scaffold_skill.add_argument("--force", action="store_true", help="Overwrite scaffold files")
-    scaffold_skill.set_defaults(func=cmd_scaffold_skill)
-
-    scaffold_adapter = scaffold_subparsers.add_parser(
-        "site-adapter", help="Create a site adapter scaffold"
-    )
-    scaffold_adapter.add_argument("adapter_id", help="New adapter id in lowercase kebab-case")
-    scaffold_adapter.add_argument("--name", help="Human-readable site or training environment name")
-    scaffold_adapter.add_argument("--scheduler", default="slurm", help="Scheduler type")
-    scaffold_adapter.add_argument(
-        "--institution-type",
-        default="other",
-        choices=["example", "university", "national-lab", "company", "cloud", "other"],
-    )
-    scaffold_adapter.add_argument("--root", help="Repository root to write into")
-    scaffold_adapter.add_argument("--force", action="store_true", help="Overwrite scaffold files")
-    scaffold_adapter.set_defaults(func=cmd_scaffold_adapter)
+    new_parser = subparsers.add_parser("new", help="Create new registry entries")
+    new_subparsers = new_parser.add_subparsers(dest="new_type", required=True)
+    add_scaffold_subcommands(new_subparsers)
 
     return parser
 

@@ -23,6 +23,9 @@ process and generated artifacts needed to make those promotions auditable.
 
 ## Added
 
+- Productization sprint improvements for registry consumers and contributors:
+  structured CLI validation JSON, `check` and `new` shortcuts, richer skill
+  scaffolds, filtered CLI discovery, and multi-filter static catalog search.
 - A generated reviewed-skill pilot packet at
   `docs/REVIEW_PACKET_v0.2.0.md`.
 - A `tools/review_packet.py` command that builds or checks the pilot packet

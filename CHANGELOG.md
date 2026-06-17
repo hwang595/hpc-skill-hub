@@ -7,6 +7,10 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add productization sprint improvements: structured `hpc-skill validate --json`
+  output, `hpc-skill check` and `hpc-skill new` contributor shortcuts,
+  richer skill scaffolds, CLI discovery filters, and multi-filter static
+  catalog search.
 - Add a scientific simulation workflows seed skill for issue #12, covering
   plan-only run packets, input checks, reproducibility notes, scheduler context,
   log triage, and post-processing review for common HPC simulation software.

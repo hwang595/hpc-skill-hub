@@ -19,7 +19,7 @@ The stable seed-stage surfaces are:
 | `skills/*/examples/` | Reviewable example scripts, batch files, configs, and checklists. |
 | `collections/*.json` | Curated adoption paths for users, domains, or roles. |
 | `site-adapters/*/site.json` | Public local policy mappings for clusters, training environments, or public cloud HPC. |
-| `python3 tools/hpc_skill.py ... --json` | Local CLI access for tools that prefer command output over direct file reads. |
+| `python3 tools/hpc_skill.py ... --json` | Local CLI access for tools that prefer command output over direct file reads, including structured validation results. |
 | `hpc-skill ... --json` | Installed package access to the packaged registry snapshot for read-only discovery. |
 
 Prefer `registry/index.json` for search and discovery. Load individual skill

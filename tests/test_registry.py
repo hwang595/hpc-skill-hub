@@ -304,6 +304,28 @@ class RegistryTests(unittest.TestCase):
         self.assertEqual(payload["id"], "slurm-submit-job")
         self.assertIn("scheduler", payload["categories"])
 
+    def test_cli_list_json_filters(self):
+        result = run_cmd(
+            "python3",
+            "tools/hpc_skill.py",
+            "list",
+            "--collection",
+            "simulation-workflows",
+            "--maturity",
+            "seed",
+            "--tool",
+            "bash",
+            "--json",
+        )
+        payload = json.loads(result.stdout)
+        self.assertTrue(payload)
+        self.assertTrue(all(skill["maturity"] == "seed" for skill in payload))
+        self.assertTrue(all("bash" in skill["tools"] for skill in payload))
+        self.assertIn(
+            "scientific-simulation-workflows",
+            {skill["id"] for skill in payload},
+        )
+
     def test_cli_collection_json(self):
         result = run_cmd("python3", "tools/hpc_skill.py", "collection", "core-hpc", "--json")
         payload = json.loads(result.stdout)
@@ -328,6 +350,37 @@ class RegistryTests(unittest.TestCase):
         )
         self.assertIn("Validated 1 skill(s).", result.stdout)
         self.assertIn("Validation completed successfully.", result.stdout)
+
+    def test_cli_validate_json(self):
+        result = run_cmd(
+            "python3",
+            "tools/hpc_skill.py",
+            "validate",
+            "--skill",
+            "slurm-submit-job",
+            "--json",
+        )
+        payload = json.loads(result.stdout)
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["skill"], "slurm-submit-job")
+        self.assertEqual(payload["step_count"], 2)
+        self.assertEqual(
+            [step["status"] for step in payload["steps"]],
+            ["passed", "passed"],
+        )
+
+    def test_cli_check_alias_json(self):
+        result = run_cmd(
+            "python3",
+            "tools/hpc_skill.py",
+            "check",
+            "slurm-submit-job",
+            "--json",
+        )
+        payload = json.loads(result.stdout)
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["skill"], "slurm-submit-job")
+        self.assertTrue(payload["skip_generated"])
 
     def test_cli_validate_full_checks_compatibility(self):
         result = run_cmd(
@@ -401,7 +454,7 @@ class RegistryTests(unittest.TestCase):
             run_cmd(
                 "python3",
                 "tools/hpc_skill.py",
-                "scaffold",
+                "new",
                 "skill",
                 "unit-test-skill",
                 "--category",
@@ -414,7 +467,7 @@ class RegistryTests(unittest.TestCase):
             run_cmd(
                 "python3",
                 "tools/hpc_skill.py",
-                "scaffold",
+                "new",
                 "site-adapter",
                 "unit-test-cluster",
                 "--name",
@@ -424,6 +477,12 @@ class RegistryTests(unittest.TestCase):
             )
             self.assertTrue(Path(tmpdir, "skills/unit-test-skill/skill.json").exists())
             self.assertTrue(Path(tmpdir, "skills/unit-test-skill/examples/example.sh").exists())
+            self.assertTrue(
+                Path(tmpdir, "skills/unit-test-skill/examples/check-prereqs.sh").exists()
+            )
+            self.assertTrue(
+                Path(tmpdir, "skills/unit-test-skill/examples/review-checklist.md").exists()
+            )
             self.assertTrue(Path(tmpdir, "site-adapters/unit-test-cluster/site.json").exists())
 
     def test_static_site_build(self):
@@ -434,6 +493,16 @@ class RegistryTests(unittest.TestCase):
             self.assertIn("HPC Skill Hub Registry", html)
             self.assertIn("Open HPC Skill Ecosystem", html)
             self.assertIn("Contribution Lanes", html)
+            self.assertIn("filter-risk", html)
+            self.assertIn("filter-maturity", html)
+            self.assertIn("filter-category", html)
+            self.assertIn("filter-scheduler", html)
+            self.assertIn("filter-tool", html)
+            self.assertIn("filter-collection", html)
+            self.assertIn("matching skills", html)
+            self.assertIn("No skills match the current filters.", html)
+            self.assertIn("data-tools=", html)
+            self.assertIn("data-collections=", html)
             self.assertIn("docs/SKILL_LIFECYCLE.md", html)
             self.assertIn("docs/ADOPTER_PLAYBOOK.md", html)
             self.assertIn("docs/INTEGRATION_GUIDE.md", html)
