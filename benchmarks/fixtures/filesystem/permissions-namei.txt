@@ -1,0 +1,5 @@
+f: <project-path>/team/output
+ drwxr-xr-x root root /
+ drwxr-x--- root project_parent <project-path>
+ drwxr-s--- <owner> project_group team
+ d--------- <owner> project_group output

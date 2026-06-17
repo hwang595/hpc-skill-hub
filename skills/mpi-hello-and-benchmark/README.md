@@ -9,6 +9,13 @@ and node allocation work together.
 sbatch examples/run-mpi.sbatch
 ```
 
+Before submitting, replace the account and partition placeholders in the batch
+script. Also replace `<mpi-module>` in the script or set:
+
+```bash
+HPC_SKILL_HUB_MPI_MODULE=<mpi-module> sbatch examples/run-mpi.sbatch
+```
+
 ## Success Criteria
 
 - `mpicc` compiles `hello_mpi.c`.

@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/release-manifest.schema.json",
-  "file_count": 586,
+  "file_count": 625,
   "files": [
     {
       "bytes": 2989,
@@ -213,14 +213,14 @@
       "sha256": "e6674ee41c39ac92f5229d41e9575c0c753fb3025068a191fc5e94c45575e3a0"
     },
     {
-      "bytes": 1712,
+      "bytes": 1790,
       "path": "Makefile",
-      "sha256": "01afb5e4caf4d0f6d15285d350bb8d3367a7f1bb0009e338938c0c2c7dd14817"
+      "sha256": "d8198ed3c0d912cb7c02b9b78d6d6e5284afa0389dc87bef356081efac46350f"
     },
     {
-      "bytes": 18516,
+      "bytes": 18551,
       "path": "README.md",
-      "sha256": "1e68f3def8adb0c881a67f672caa3f55045d0d8a55ce8c60ab40251828032e6c"
+      "sha256": "a428c687a6a9d34c4b2ba8fad5bf7226c461529a8bec4df8544e1bb588033b63"
     },
     {
       "bytes": 9669,
@@ -246,6 +246,181 @@
       "bytes": 672514,
       "path": "assets/brand/hpc-skill-hub-social-preview.png",
       "sha256": "cc140bee1594eee4acdf461e057ad865dfbdea13715e79bc9b0af3e46d8a74ba"
+    },
+    {
+      "bytes": 1757,
+      "path": "benchmarks/cases/file-descriptor-limit-fixture.json",
+      "sha256": "b56231d6caabdd9c6beb2898c3ebc2066071fe4d33d5e1437e084a55c627b970"
+    },
+    {
+      "bytes": 1044,
+      "path": "benchmarks/cases/gpu-sanity-static.json",
+      "sha256": "3f576a0404577ca191f3f3b4e345050c163b2a3d5818ffba8041313e4c047acc"
+    },
+    {
+      "bytes": 1456,
+      "path": "benchmarks/cases/ior-mdtest-storage-static.json",
+      "sha256": "e479f70c2391f7d7cf30c1467b33430c86601eaf4dc64820fdd62ab6fd9afc1a"
+    },
+    {
+      "bytes": 1038,
+      "path": "benchmarks/cases/job-failure-triage-static.json",
+      "sha256": "be09b3e851ea8a31be95dfd541334c99c44a732e98767aa30c4ecc6632501c96"
+    },
+    {
+      "bytes": 1467,
+      "path": "benchmarks/cases/mpi-hello-site.json",
+      "sha256": "b73130ddb58488a4c28c399194153b10f200e85eda13504c42f426c015d94e8b"
+    },
+    {
+      "bytes": 1041,
+      "path": "benchmarks/cases/mpi-hello-static.json",
+      "sha256": "c16bf087ce1e3f739006427887ceb6cd246de1d00c68671a2adc1c51af38dfbb"
+    },
+    {
+      "bytes": 1650,
+      "path": "benchmarks/cases/quota-filesystem-fixture.json",
+      "sha256": "5de3cf71dfdbbd4637fa830d1b4b0ccc2b1153fe542b0b36b57fef5479a3b117"
+    },
+    {
+      "bytes": 2182,
+      "path": "benchmarks/cases/shared-permissions-fixture.json",
+      "sha256": "d61068dcf7a213e1caa0aa81b56d238a19b301288cde4cf87d3c165ba938eaa3"
+    },
+    {
+      "bytes": 2080,
+      "path": "benchmarks/cases/slurm-node-failure-fixture.json",
+      "sha256": "341ab8ec24d410847d07d3b591fbea04270893bea0b01993e919c24e5f327446"
+    },
+    {
+      "bytes": 1629,
+      "path": "benchmarks/cases/slurm-oom-fixture.json",
+      "sha256": "0ac79af70d2a7023f924dfcb897d2bd7dbf695c42d1c315b7adb9505bb573d1b"
+    },
+    {
+      "bytes": 1741,
+      "path": "benchmarks/cases/slurm-output-log-fixture.json",
+      "sha256": "6300f9b06484001f91b765a74121b693bc6d8c2343efb9b5e4c09ed34e8adca5"
+    },
+    {
+      "bytes": 1712,
+      "path": "benchmarks/cases/slurm-pending-reason-fixture.json",
+      "sha256": "0086e035db1e1e8f108a4434c52c4464f9a9267fd4f122a337f7168646448bf0"
+    },
+    {
+      "bytes": 1761,
+      "path": "benchmarks/cases/slurm-qos-account-limit-fixture.json",
+      "sha256": "83e7395124c640b5fe31f7d7054dcf4a01a7d802c07860bd2aafaf0490142ae5"
+    },
+    {
+      "bytes": 1475,
+      "path": "benchmarks/cases/slurm-submit-static.json",
+      "sha256": "4c6b87100663be94c3a22c6116894f7d643a0a9c02f82b0ad19e1fa11818a175"
+    },
+    {
+      "bytes": 1693,
+      "path": "benchmarks/cases/slurm-time-limit-fixture.json",
+      "sha256": "5b0d8024cef9520aa9980da831ddc1d3f1581caa0b9ea0437d889ebb9c2ae959"
+    },
+    {
+      "bytes": 410,
+      "path": "benchmarks/fixtures/filesystem/file-descriptor-limits.txt",
+      "sha256": "e5b4b063189018d7ed3901a5248d29e7689a6c2835c567de568c4a5613c00070"
+    },
+    {
+      "bytes": 286,
+      "path": "benchmarks/fixtures/filesystem/file-descriptor-log.txt",
+      "sha256": "eb8c84b14d0d54a004ac3fec49d4ed96c96e645b3a5057685576db9e5762368b"
+    },
+    {
+      "bytes": 241,
+      "path": "benchmarks/fixtures/filesystem/permissions-getfacl.txt",
+      "sha256": "be07bd39b3854284cccb4b125c4d20b3257692124cac51cf2b0c74de558a57bb"
+    },
+    {
+      "bytes": 266,
+      "path": "benchmarks/fixtures/filesystem/permissions-log.txt",
+      "sha256": "d48270447241141a5191e9e994dffa3a6716c3344dda32d7e59c0e1b201bc8a8"
+    },
+    {
+      "bytes": 181,
+      "path": "benchmarks/fixtures/filesystem/permissions-namei.txt",
+      "sha256": "a417190004c1ff7aecfd939d13a822827b1557a6ebaa44ec7489da96ccda5025"
+    },
+    {
+      "bytes": 430,
+      "path": "benchmarks/fixtures/filesystem/quota-df.txt",
+      "sha256": "042b95fd67996db513a99fc4ff4c5d438247cee22f8cc2b4f69267f55f6add59"
+    },
+    {
+      "bytes": 217,
+      "path": "benchmarks/fixtures/filesystem/quota-log.txt",
+      "sha256": "0b43cf3a1c67278058534345458672a3dbe2abfe2b022f8719c2b5127a43e9a8"
+    },
+    {
+      "bytes": 269,
+      "path": "benchmarks/fixtures/slurm/node-failure-log.txt",
+      "sha256": "9aa3f457fa85c1d4a1821ad215240b645e935f34338c0b5eedf0d5829ad0d9fc"
+    },
+    {
+      "bytes": 266,
+      "path": "benchmarks/fixtures/slurm/node-failure-sacct.txt",
+      "sha256": "43ea2dfb85491820a56b352a2ef10f55e4c9cd280ce4bbd074816d2a66d95e2d"
+    },
+    {
+      "bytes": 112,
+      "path": "benchmarks/fixtures/slurm/node-failure-sinfo.txt",
+      "sha256": "65137443ee52b93b78cb2421c07f9635b1073442e876a3bc6090a1332ca7356b"
+    },
+    {
+      "bytes": 246,
+      "path": "benchmarks/fixtures/slurm/oom-log.txt",
+      "sha256": "31f8ce939fa47426b00683d485a9dd2b639c25988f308ec7207be54587453138"
+    },
+    {
+      "bytes": 325,
+      "path": "benchmarks/fixtures/slurm/oom-sacct.txt",
+      "sha256": "0cfa54871c214af1b8428d77c232fd12bbd3b78e2d25f6187d10c685d3895c17"
+    },
+    {
+      "bytes": 262,
+      "path": "benchmarks/fixtures/slurm/output-log-filesystem.txt",
+      "sha256": "fa5d2d20ccb736c2036beada061ee5d65e5d75077e4f4c5ce5c9b5cc5bf4c351"
+    },
+    {
+      "bytes": 349,
+      "path": "benchmarks/fixtures/slurm/output-log-scontrol.txt",
+      "sha256": "ef0c9288cef93a14a34f5d33804f01bbdab4553bab1edbbd0d2055a8ec7dc676"
+    },
+    {
+      "bytes": 262,
+      "path": "benchmarks/fixtures/slurm/pending-scontrol.txt",
+      "sha256": "ad29f446752f7e171523512f6f6c1753f950ef5e7014e35727bb3116c1c18c8b"
+    },
+    {
+      "bytes": 160,
+      "path": "benchmarks/fixtures/slurm/pending-squeue.txt",
+      "sha256": "c5bf12e8510290c9b84a981b4440f478cbe9fa2dc51bd2cd9f020a2f34c258d9"
+    },
+    {
+      "bytes": 479,
+      "path": "benchmarks/fixtures/slurm/qos-account-policy.txt",
+      "sha256": "af34992695a0177c7e7bda3f8d04c7e6b7066e627df996f165c0056441a79460"
+    },
+    {
+      "bytes": 179,
+      "path": "benchmarks/fixtures/slurm/qos-account-squeue.txt",
+      "sha256": "cf635f3834affea646ead5ea7042db45dfe0a003dd958401af8423c3e3ad9df2"
+    },
+    {
+      "bytes": 224,
+      "path": "benchmarks/fixtures/slurm/time-limit-log.txt",
+      "sha256": "147bd0e315b0c0341fab738ee24587d211a1be0ef364c5786beda609cce59b28"
+    },
+    {
+      "bytes": 202,
+      "path": "benchmarks/fixtures/slurm/time-limit-sacct.txt",
+      "sha256": "7db067e69b488ddfcdee5e8ff2f9fc093d37030d1f20a4cabd6487bb98c8d3a7"
     },
     {
       "bytes": 1168,
@@ -331,6 +506,16 @@
       "bytes": 4290,
       "path": "docs/ARCHITECTURE.md",
       "sha256": "f1e33cd8a68c1ffe220c23c138e0178553fcf5e47cb8f0e8141e3d1be3713a3a"
+    },
+    {
+      "bytes": 3080,
+      "path": "docs/BENCHMARKS.md",
+      "sha256": "14233875ab0412b5a6c5e0e26e82053ba31c34b9ccc4b4a52dfcf17763dbc0b9"
+    },
+    {
+      "bytes": 6627,
+      "path": "docs/BENCHMARK_REPORT.md",
+      "sha256": "4c58d977cf4d0f064ddd960e5678182283ae2809df744aefe2a74c48fb17e884"
     },
     {
       "bytes": 1151,
@@ -546,6 +731,11 @@
       "bytes": 209360,
       "path": "registry/index.json",
       "sha256": "dd5878000b9dc806538a074456a2d65be0fb08b59e72a62854c6e5e03ec8cb79"
+    },
+    {
+      "bytes": 3175,
+      "path": "schemas/benchmark.schema.json",
+      "sha256": "86665cfa6820c90104984aa5e6b65daf549d6757b0ac45999754b56afcc87faf"
     },
     {
       "bytes": 1145,
@@ -1288,9 +1478,9 @@
       "sha256": "959854d53ec987b67f5ac96e19ef9a672e9b6122484608921f7e5f261019da0f"
     },
     {
-      "bytes": 699,
+      "bytes": 859,
       "path": "skills/job-failure-triage/README.md",
-      "sha256": "c9e475747fc2de81f654453a406b4a4c443448876f499624df81ef97604b0a79"
+      "sha256": "488cc0c9d586d3e62262eb3085d7bdd5327c23616ddd97da454d73eebccf1df4"
     },
     {
       "bytes": 630,
@@ -1528,9 +1718,9 @@
       "sha256": "69b65e3d5506893ea52fdb686574399e83af4b427e46a9352d26306d5821433b"
     },
     {
-      "bytes": 493,
+      "bytes": 713,
       "path": "skills/mpi-hello-and-benchmark/README.md",
-      "sha256": "46ba72bc48089382dd44f47cbd2d9858357b45fa416707dadac8b2d33f9d7db9"
+      "sha256": "044a8a214974f1ee9e64a31b7df01f97f71f8b714872423aebc1bbd66af69b2a"
     },
     {
       "bytes": 390,
@@ -1538,9 +1728,9 @@
       "sha256": "67b1bdc5047d19f3e9b4a7530a994dad56b6fcccf7da56e9e1c898ac948fc9f4"
     },
     {
-      "bytes": 375,
+      "bytes": 724,
       "path": "skills/mpi-hello-and-benchmark/examples/run-mpi.sbatch",
-      "sha256": "f846410a51b9c7b89f73ffbf5065dc38d451b86090b1eaff73b7ecadba6aff31"
+      "sha256": "7672a6ac2e917cdfb515ee7e1e2402324e09e4bf28e4a980c113b52d910eb962"
     },
     {
       "bytes": 2214,
@@ -2493,14 +2683,14 @@
       "sha256": "46f878dd0f46d93fc68c2383a53d8eaf933d49491d286121d2c1f9ff209651aa"
     },
     {
-      "bytes": 527,
+      "bytes": 617,
       "path": "skills/slurm-submit-job/examples/gpu.sbatch",
-      "sha256": "ade80550565e97341c9f6c11a81c4d388f99bb7ee738afec7696711f2c1dbe07"
+      "sha256": "8cdf1d20b0249e80422718728f819621d8eecc866b5592b6bb47e319a3cc8582"
     },
     {
-      "bytes": 435,
+      "bytes": 508,
       "path": "skills/slurm-submit-job/examples/mpi.sbatch",
-      "sha256": "eca42200c770665a15a9d090f45269421d292f3bc70d15d74cff7944fc49be4e"
+      "sha256": "fa01add5eb31eac41fe57ceb46e50d2afdae3e045852c1b579d77948c7b5ee5b"
     },
     {
       "bytes": 2642,
@@ -2798,9 +2988,9 @@
       "sha256": "4a625d36f1145fb3ea4be9bacabc9c8b315ce130520bc15419be6ec4eac10d01"
     },
     {
-      "bytes": 19845,
+      "bytes": 20582,
       "path": "tests/test_registry.py",
-      "sha256": "48d809695a9fe467d7d50834c01b521f794da666f1e567c4f57383812b474200"
+      "sha256": "87df882987c60f2601e8468ca66daeb274f910e05882503a1b6d2e1b678e1a70"
     },
     {
       "bytes": 2981,
@@ -2838,14 +3028,14 @@
       "sha256": "1d166ec38e617ec2a8ee28d4dcd755c14545f8ae57412bbe54a5e748d0623a84"
     },
     {
-      "bytes": 5563,
+      "bytes": 5581,
       "path": "tools/build_release_manifest.py",
-      "sha256": "f712d7e967a83ed8d55d79556aa0fb9919e1577af95c13123f52513fc5cd4335"
+      "sha256": "2d73ec2f18f761ec3caa09fc343d4bdcebbcca14290588c36d7ecd938bdae8fd"
     },
     {
-      "bytes": 24205,
+      "bytes": 24223,
       "path": "tools/build_site.py",
-      "sha256": "ca32814250f76f6433d5b3e5281ac7ae2f08d3512979b042385b43eeac415ad6"
+      "sha256": "a019336eac21eeab05af376aae1f3bf87b2cfbde4d8c5aa6c6e8cc12bfcc2ec5"
     },
     {
       "bytes": 2692,
@@ -2923,9 +3113,14 @@
       "sha256": "28c9cb9352ee45253cab8352f1b81b3314ab7ab639bfb9b591d54e6bc5e4b842"
     },
     {
-      "bytes": 13345,
+      "bytes": 17319,
+      "path": "tools/run_benchmarks.py",
+      "sha256": "45aa706af6b8200dd7f27ae3b2ce2b5dae8a829937e8f577385efda87f041b47"
+    },
+    {
+      "bytes": 13406,
       "path": "tools/validate_registry_artifacts.py",
-      "sha256": "5fecdc81a1f4232153462c0b962ce8465d9cb6ad89fbd1753ff414c7c3cbf18c"
+      "sha256": "c77b16dd6f69342cebc0bde7eaa2e707fa80b310304205cc5877a10f3f2e5985"
     },
     {
       "bytes": 18164,
@@ -2955,6 +3150,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 2928689,
+  "total_bytes": 2989821,
   "version": "v0.2.0"
 }

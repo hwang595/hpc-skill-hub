@@ -1,0 +1,56 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "slurm-node-failure-fixture",
+  "name": "Slurm node failure fixture evidence",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "fixture",
+  "risk_level": "low",
+  "skill_ids": ["slurm-node-failure-triage", "job-failure-triage"],
+  "summary": "Use public-safe accounting, node-state, and log snippets to check node-failure triage signals.",
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/slurm/node-failure-sacct.txt",
+      "description": "Synthetic sacct output for a NODE_FAIL job."
+    },
+    {
+      "path": "benchmarks/fixtures/slurm/node-failure-sinfo.txt",
+      "description": "Synthetic sinfo reason output for an unavailable node."
+    },
+    {
+      "path": "benchmarks/fixtures/slurm/node-failure-log.txt",
+      "description": "Synthetic job log with node failure and launch-path signals."
+    }
+  ],
+  "commands": [
+    {
+      "label": "Node failure triage script syntax",
+      "argv": ["bash", "-n", "skills/slurm-node-failure-triage/examples/slurm-node-failure-triage.sh"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "Accounting fixture contains node-failure state",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/slurm/node-failure-sacct.txt",
+      "patterns": ["NODE_FAIL", "NodeList", "node004"]
+    },
+    {
+      "label": "Node fixture contains unavailable-node reason",
+      "type": "contains_any",
+      "path": "benchmarks/fixtures/slurm/node-failure-sinfo.txt",
+      "patterns": ["not responding", "down*", "drain"]
+    },
+    {
+      "label": "Log fixture contains launch or node-failure signal",
+      "type": "contains_any",
+      "path": "benchmarks/fixtures/slurm/node-failure-log.txt",
+      "patterns": ["DUE TO NODE FAILURE", "slurmstepd", "launch failed"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should separate application failure evidence from infrastructure or launch-path evidence.",
+    "The skill should recommend support handoff or scoped retry review before repeated large resubmissions."
+  ]
+}

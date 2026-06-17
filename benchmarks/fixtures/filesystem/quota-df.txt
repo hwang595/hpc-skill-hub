@@ -1,0 +1,12 @@
+== filesystem capacity ==
+Filesystem            Size  Used Avail Use% Mounted on
+<project-filesystem>  100T   99T  1.0T  99% <project-path>
+
+== inode usage ==
+Filesystem            Inodes IUsed IFree IUse% Mounted on
+<project-filesystem>    50M   49M   1M   98% <project-path>
+
+== quota, if available ==
+Disk quotas for user <user>:
+blocks quota limit grace files quota limit grace
+980G   900G  1T    none  49M   48M   50M   none

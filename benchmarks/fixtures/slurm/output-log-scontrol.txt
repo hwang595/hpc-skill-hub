@@ -1,0 +1,6 @@
+JobId=34567 JobName=missing-log UserId=<user> GroupId=<group> MCS_label=N/A
+   JobState=COMPLETED Reason=None Dependency=(null)
+   WorkDir=/scratch/<user>/hpc-skill-hub-demo
+   StdOut=/scratch/<user>/hpc-skill-hub-demo/slurm-34567.out
+   StdErr=/scratch/<user>/hpc-skill-hub-demo/slurm-34567.err
+   Command=/scratch/<user>/hpc-skill-hub-demo/run.sh

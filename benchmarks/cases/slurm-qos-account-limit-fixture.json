@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "slurm-qos-account-limit-fixture",
+  "name": "Slurm QOS account limit fixture evidence",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "fixture",
+  "risk_level": "low",
+  "skill_ids": ["slurm-qos-account-limit-triage", "slurm-pending-reason-triage"],
+  "summary": "Use public-safe queue and policy snippets to check association, QOS, and fairshare triage signals.",
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/slurm/qos-account-squeue.txt",
+      "description": "Synthetic squeue output with an association group CPU limit reason."
+    },
+    {
+      "path": "benchmarks/fixtures/slurm/qos-account-policy.txt",
+      "description": "Synthetic sacctmgr and sshare output with visible policy fields."
+    }
+  ],
+  "commands": [
+    {
+      "label": "QOS account limit triage script syntax",
+      "argv": ["bash", "-n", "skills/slurm-qos-account-limit-triage/examples/qos-account-limit-triage.sh"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "Queue fixture contains account and QOS limit evidence",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/slurm/qos-account-squeue.txt",
+      "patterns": ["AssocGrpCpuLimit", "ACCOUNT", "QOS"]
+    },
+    {
+      "label": "Policy fixture contains visible fairshare and TRES fields",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/slurm/qos-account-policy.txt",
+      "patterns": ["Fairshare", "GrpTRES", "sshare"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should map AssocGrp and QOSGrp reasons to aggregate account or QOS limits.",
+    "The skill should compare queue reason, account, QOS, fairshare, and visible TRES policy before suggesting job changes."
+  ]
+}

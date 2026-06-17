@@ -84,6 +84,20 @@ class RegistryTests(unittest.TestCase):
         result = run_cmd("python3", "tools/build_compatibility.py", "--check")
         self.assertIn("Compatibility tables are current", result.stdout)
 
+    def test_generated_benchmark_report_is_current(self):
+        result = run_cmd("python3", "tools/run_benchmarks.py", "--check")
+        self.assertIn("Benchmark report is current", result.stdout)
+
+        json_result = run_cmd("python3", "tools/run_benchmarks.py", "--json")
+        payload = json.loads(json_result.stdout)
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["case_count"], 15)
+        self.assertEqual(payload["counts"], {"passed": 14, "skipped": 1})
+        self.assertEqual(
+            payload["mode_counts"],
+            {"fixture": 9, "site": 1, "static": 5},
+        )
+
     def test_generated_package_data_is_current(self):
         result = run_cmd("python3", "tools/build_package_data.py", "--check")
         self.assertIn("Package registry data is current", result.stdout)
@@ -213,6 +227,8 @@ class RegistryTests(unittest.TestCase):
         paths = {entry["path"] for entry in manifest["files"]}
         self.assertIn("registry/index.json", paths)
         self.assertIn("docs/COMPATIBILITY.md", paths)
+        self.assertIn("docs/BENCHMARK_REPORT.md", paths)
+        self.assertIn("schemas/benchmark.schema.json", paths)
         self.assertIn("skills/slurm-submit-job/skill.json", paths)
         self.assertIn("schemas/registry-index.schema.json", paths)
         self.assertIn("schemas/registry-health.schema.json", paths)

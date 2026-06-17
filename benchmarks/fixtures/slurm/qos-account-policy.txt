@@ -1,0 +1,12 @@
+# sacctmgr association fields
+Cluster|Account|User|Partition|QOS|DefaultQOS|Fairshare|GrpTRES|MaxTRES|MaxWall
+training|<account>|<user>|compute|normal|normal|0.25|cpu=128,mem=512G|cpu=64,mem=256G|08:00:00
+
+# sacctmgr qos fields
+Name|Priority|GrpTRES|MaxTRESPU|MaxWall
+normal|100|cpu=512,mem=2T|cpu=64,mem=256G|08:00:00
+
+# sshare fairshare fields
+sshare --long --users=<user>
+Account|User|RawShares|NormShares|RawUsage|NormUsage|Fairshare
+<account>|<user>|100|0.10|9000|0.30|0.25

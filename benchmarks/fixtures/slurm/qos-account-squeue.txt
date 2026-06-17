@@ -1,0 +1,2 @@
+JOBID ACCOUNT QOS PARTITION NAME USER ST TIME TIME_LIMIT CPUS NODES DEPENDENCY REASON
+91002 <account> normal compute sim_limit <user> PD 0:00 1:00:00 64 1 (null) AssocGrpCpuLimit

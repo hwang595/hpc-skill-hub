@@ -11,8 +11,16 @@
 
 set -euo pipefail
 
-module purge
-module load <mpi-module>
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+mpi_module="${HPC_SKILL_HUB_MPI_MODULE:-<mpi-module>}"
+if [[ "${mpi_module}" == "<mpi-module>" ]]; then
+  echo "ERROR: set HPC_SKILL_HUB_MPI_MODULE or replace <mpi-module> before submitting." >&2
+  exit 2
+fi
 
-mpicc examples/hello_mpi.c -o hello_mpi
+module purge
+# Replace <mpi-module> with a site-approved MPI module before running.
+module load "${mpi_module}"
+
+mpicc "${script_dir}/hello_mpi.c" -o hello_mpi
 srun ./hello_mpi | sort

@@ -1,0 +1,3 @@
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=12345.batch.
+python: RuntimeError: DataLoader worker (pid 4242) is killed by signal: Killed.
+Application hint: reduce workers or request more memory after reviewing MaxRSS and input size.

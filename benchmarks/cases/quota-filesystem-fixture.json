@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "quota-filesystem-fixture",
+  "name": "Quota and filesystem fixture evidence",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "fixture",
+  "risk_level": "low",
+  "skill_ids": ["quota-and-filesystem-triage"],
+  "summary": "Use public-safe storage snippets to check quota, inode, and capacity triage signals.",
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/filesystem/quota-df.txt",
+      "description": "Synthetic df output showing high byte and inode utilization."
+    },
+    {
+      "path": "benchmarks/fixtures/filesystem/quota-log.txt",
+      "description": "Synthetic application log with quota and ENOSPC signals."
+    }
+  ],
+  "commands": [
+    {
+      "label": "Filesystem triage script syntax",
+      "argv": ["bash", "-n", "skills/quota-and-filesystem-triage/examples/filesystem-triage.sh"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "Filesystem fixture contains byte and inode pressure",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/filesystem/quota-df.txt",
+      "patterns": ["Use%", "IUse%", "99%"]
+    },
+    {
+      "label": "Log fixture contains common storage failures",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/filesystem/quota-log.txt",
+      "patterns": ["No space left on device", "Disk quota exceeded", "inode"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should distinguish filesystem fullness, quota, inode exhaustion, and path permission evidence.",
+    "The skill should ask for redacted path and log context before suggesting site-specific remediation."
+  ]
+}

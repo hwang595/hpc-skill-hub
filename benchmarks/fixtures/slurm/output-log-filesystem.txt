@@ -1,0 +1,4 @@
+path|exists|size|mode|note
+/scratch/<user>/hpc-skill-hub-demo/slurm-34567.out|no|0|-|expected stdout path is missing
+/scratch/<user>/hpc-skill-hub-demo/slurm-34567.err|yes|0|-rw-r--r--|stderr exists but is empty
+workdir|yes|-|drwxr-x---|working directory exists

@@ -39,6 +39,7 @@ INCLUDED_DIRS = [
     ".claude",
     ".github",
     "assets",
+    "benchmarks",
     "collections",
     "docs",
     "registry",

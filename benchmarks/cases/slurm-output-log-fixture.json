@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "slurm-output-log-fixture",
+  "name": "Slurm output-log fixture evidence",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "fixture",
+  "risk_level": "low",
+  "skill_ids": ["slurm-output-log-triage"],
+  "summary": "Use public-safe job-record and filesystem snippets to check missing-output-log triage.",
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/slurm/output-log-scontrol.txt",
+      "description": "Synthetic scontrol job record with stdout, stderr, command, and working directory."
+    },
+    {
+      "path": "benchmarks/fixtures/slurm/output-log-filesystem.txt",
+      "description": "Synthetic filesystem evidence for missing stdout and empty stderr."
+    }
+  ],
+  "commands": [
+    {
+      "label": "Output-log triage script syntax",
+      "argv": ["bash", "-n", "skills/slurm-output-log-triage/examples/slurm-output-log-triage.sh"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "Job record fixture includes log paths and workdir",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/slurm/output-log-scontrol.txt",
+      "patterns": ["WorkDir=", "StdOut=", "StdErr=", "Command="]
+    },
+    {
+      "label": "Filesystem fixture captures missing and empty log states",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/slurm/output-log-filesystem.txt",
+      "patterns": ["expected stdout path is missing", "stderr exists but is empty"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should inspect scheduler log paths, working directory, and filesystem state before blaming Slurm.",
+    "The skill should route existing but empty logs toward job-state and application-startup review."
+  ]
+}

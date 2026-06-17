@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "job-failure-triage-static",
+  "name": "Job failure triage static checks",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "static",
+  "risk_level": "low",
+  "skill_ids": ["job-failure-triage"],
+  "summary": "Check that the first-pass failure triage script remains parseable and evidence-oriented.",
+  "fixtures": [],
+  "commands": [
+    {
+      "label": "Failure triage script syntax",
+      "argv": ["bash", "-n", "skills/job-failure-triage/examples/triage-slurm-job.sh"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "Failure triage README points to scheduler and log evidence",
+      "type": "contains_all",
+      "path": "skills/job-failure-triage/README.md",
+      "patterns": ["sacct", "log", "out-of-memory"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should collect evidence before recommending a fix.",
+    "The skill should route common failure classes such as OOM, timeout, modules, permissions, and node failure."
+  ]
+}

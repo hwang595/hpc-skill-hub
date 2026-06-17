@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "slurm-pending-reason-fixture",
+  "name": "Slurm pending reason fixture evidence",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "fixture",
+  "risk_level": "low",
+  "skill_ids": ["slurm-pending-reason-triage"],
+  "summary": "Use public-safe queue and job-record snippets to check pending reason triage signals.",
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/slurm/pending-squeue.txt",
+      "description": "Synthetic squeue output for a dependency-blocked pending job."
+    },
+    {
+      "path": "benchmarks/fixtures/slurm/pending-scontrol.txt",
+      "description": "Synthetic scontrol job record with dependency and priority fields."
+    }
+  ],
+  "commands": [
+    {
+      "label": "Pending reason triage script syntax",
+      "argv": ["bash", "-n", "skills/slurm-pending-reason-triage/examples/pending-reason-triage.sh"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "Queue fixture contains dependency reason",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/slurm/pending-squeue.txt",
+      "patterns": ["Dependency", "afterok:90990", "PRIORITY"]
+    },
+    {
+      "label": "Job record contains scheduler fields used for triage",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/slurm/pending-scontrol.txt",
+      "patterns": ["Reason=Dependency", "Dependency=afterok:90990", "Priority=1134"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should identify dependency waits separately from priority, resources, reservation, and unavailable-node waits.",
+    "The skill should treat scheduler priority values as policy signals, not start-time promises."
+  ]
+}

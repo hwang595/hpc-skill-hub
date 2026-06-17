@@ -17,6 +17,7 @@ HEALTH_JSON = ROOT / "registry" / "health.json"
 RELEASE_MANIFEST = ROOT / "registry" / "releases" / "v0.2.0.json"
 PACKAGE_DATA_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "registry"
 SCHEMAS = {
+    "benchmark": ROOT / "schemas" / "benchmark.schema.json",
     "index": ROOT / "schemas" / "registry-index.schema.json",
     "health": ROOT / "schemas" / "registry-health.schema.json",
     "release": ROOT / "schemas" / "release-manifest.schema.json",

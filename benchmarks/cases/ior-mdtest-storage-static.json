@@ -1,0 +1,41 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "ior-mdtest-storage-static",
+  "name": "IOR and MDTest storage smoke static checks",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "static",
+  "risk_level": "low",
+  "skill_ids": ["ior-mdtest-storage-smoke"],
+  "summary": "Check that storage smoke examples remain parseable and policy-gated.",
+  "fixtures": [],
+  "commands": [
+    {
+      "label": "Storage preflight syntax",
+      "argv": ["bash", "-n", "skills/ior-mdtest-storage-smoke/examples/storage-smoke-preflight.sh"],
+      "expect_returncode": 0
+    },
+    {
+      "label": "Storage smoke sbatch syntax",
+      "argv": ["bash", "-n", "skills/ior-mdtest-storage-smoke/examples/ior-mdtest-smoke.sbatch"],
+      "expect_returncode": 0
+    },
+    {
+      "label": "Storage cleanup syntax",
+      "argv": ["bash", "-n", "skills/ior-mdtest-storage-smoke/examples/cleanup-run.sh"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "Policy checklist warns against broad performance claims",
+      "type": "contains_all",
+      "path": "skills/ior-mdtest-storage-smoke/examples/site-policy-checklist.md",
+      "patterns": ["benchmark-approved", "not as a site-wide performance"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should require local policy review before running storage benchmarks.",
+    "The skill should frame results as support triage evidence, not broad site performance claims."
+  ]
+}

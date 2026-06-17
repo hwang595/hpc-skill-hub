@@ -1,0 +1,56 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "id": "shared-permissions-fixture",
+  "name": "Shared permissions fixture evidence",
+  "version": "0.1.0",
+  "status": "draft",
+  "mode": "fixture",
+  "risk_level": "low",
+  "skill_ids": ["shared-project-permissions-triage"],
+  "summary": "Use public-safe permission snippets to check ACL, group, and traversal triage signals.",
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/filesystem/permissions-namei.txt",
+      "description": "Synthetic namei output showing a blocked traversal component."
+    },
+    {
+      "path": "benchmarks/fixtures/filesystem/permissions-getfacl.txt",
+      "description": "Synthetic ACL output showing an ACL mask that removes effective group write access."
+    },
+    {
+      "path": "benchmarks/fixtures/filesystem/permissions-log.txt",
+      "description": "Synthetic application log with permission-denied signals."
+    }
+  ],
+  "commands": [
+    {
+      "label": "Permission triage script syntax",
+      "argv": ["bash", "-n", "skills/shared-project-permissions-triage/examples/permission-triage.sh"],
+      "expect_returncode": 0
+    }
+  ],
+  "checks": [
+    {
+      "label": "Traversal fixture contains blocked path and group evidence",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/filesystem/permissions-namei.txt",
+      "patterns": ["project_group", "output", "d---------"]
+    },
+    {
+      "label": "ACL fixture contains effective permission mask evidence",
+      "type": "contains_all",
+      "path": "benchmarks/fixtures/filesystem/permissions-getfacl.txt",
+      "patterns": ["getfacl", "mask::r--", "effective:r--"]
+    },
+    {
+      "label": "Log fixture contains permission failure signal",
+      "type": "contains_any",
+      "path": "benchmarks/fixtures/filesystem/permissions-log.txt",
+      "patterns": ["Permission denied", "Operation not permitted", "access denied"]
+    }
+  ],
+  "expected_outcomes": [
+    "The skill should treat traversal, group membership, setgid inheritance, and ACL masks as separate evidence paths.",
+    "The skill should avoid suggesting chmod, chgrp, chown, or setfacl changes without local support review."
+  ]
+}

@@ -1,0 +1,2 @@
+NODELIST REASON USER TIMESTAMP STATE
+node004 not responding to health check <support> 2026-01-15T12:20:00 down*
