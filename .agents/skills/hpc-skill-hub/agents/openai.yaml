@@ -1,0 +1,7 @@
+interface:
+  display_name: "HPC Skill Hub"
+  short_description: "Find safe HPC workflow skills"
+  default_prompt: "Use $hpc-skill-hub to find the safest HPC Skill Hub guidance for my workflow."
+
+policy:
+  allow_implicit_invocation: true

@@ -18,8 +18,10 @@ RELEASE_DIR = ROOT / "registry" / "releases"
 
 ROOT_FILES = [
     ".gitignore",
+    "AGENTS.md",
     "CHANGELOG.md",
     "CITATION.cff",
+    "CLAUDE.md",
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
     "LICENSE",
@@ -33,6 +35,8 @@ ROOT_FILES = [
 ]
 
 INCLUDED_DIRS = [
+    ".agents",
+    ".claude",
     ".github",
     "assets",
     "collections",
@@ -82,6 +86,8 @@ def should_include(path: Path, output_path: Path) -> bool:
     if relative.parts[:2] == ("registry", "releases"):
         return False
     if path.name == ".DS_Store" or path.suffix == ".pyc":
+        return False
+    if relative.parts == (".claude", "settings.local.json"):
         return False
     return path.is_file()
 
