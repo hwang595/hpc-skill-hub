@@ -38,6 +38,7 @@ INCLUDED_DIRS = [
     ".agents",
     ".claude",
     ".github",
+    "agent-bench",
     "assets",
     "benchmarks",
     "collections",

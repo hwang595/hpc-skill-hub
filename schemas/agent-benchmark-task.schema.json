@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/agent-benchmark-task.schema.json",
+  "title": "HPC Skill Hub Agent Benchmark Task",
+  "type": "object",
+  "required": [
+    "$schema",
+    "id",
+    "name",
+    "version",
+    "status",
+    "task_type",
+    "risk_level",
+    "skill_ids",
+    "conditions",
+    "summary",
+    "prompt",
+    "fixtures",
+    "execution",
+    "rubric",
+    "expected_artifacts",
+    "expected_outcomes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"type": "string"},
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "name": {"type": "string", "minLength": 3},
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "deprecated"]
+    },
+    "task_type": {
+      "type": "string",
+      "enum": ["skill-routing", "triage", "safety", "repo-edit", "site-policy"]
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "skill_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": ["baseline", "docs-only", "skill-enabled", "skill-site-adapter"]
+      },
+      "uniqueItems": true
+    },
+    "summary": {"type": "string", "minLength": 12},
+    "prompt": {"type": "string", "minLength": 24},
+    "fixtures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "description", "conditions"],
+        "additionalProperties": false,
+        "properties": {
+          "path": {"type": "string"},
+          "description": {"type": "string"},
+          "conditions": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": ["baseline", "docs-only", "skill-enabled", "skill-site-adapter"]
+            }
+          }
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "required": ["workspace_mode", "network_access", "timeout_seconds", "allowed_write_paths"],
+      "additionalProperties": false,
+      "properties": {
+        "workspace_mode": {
+          "type": "string",
+          "enum": ["read-only", "workspace-write"]
+        },
+        "network_access": {"type": "boolean"},
+        "timeout_seconds": {"type": "integer", "minimum": 1, "maximum": 3600},
+        "allowed_write_paths": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "rubric": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "description", "weight"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$|^[a-z0-9]+(?:_[a-z0-9]+)*$"
+          },
+          "description": {"type": "string"},
+          "weight": {"type": "number", "exclusiveMinimum": 0}
+        }
+      }
+    },
+    "expected_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
+    "expected_outcomes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    }
+  }
+}

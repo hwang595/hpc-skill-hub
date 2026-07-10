@@ -14,7 +14,7 @@
   <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/pages.yml?query=branch%3Amain"><img alt="Pages workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/pages.yml/badge.svg?branch=main"></a>
   <img alt="Version 0.2.0 in development" src="https://img.shields.io/badge/version-0.2.0--dev-0f766e">
   <img alt="Python 3.9+" src="https://img.shields.io/badge/python-3.9%2B-3776ab">
-  <img alt="96 skills" src="https://img.shields.io/badge/skills-96-2563eb">
+  <img alt="97 skills" src="https://img.shields.io/badge/skills-97-2563eb">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-green"></a>
 </p>
 
@@ -51,6 +51,7 @@ tools.
 ├── skills/                 # Skill packages, one directory per skill
 ├── collections/            # Curated groups of skills for adoption paths
 ├── site-adapters/          # Optional local cluster policy adapters
+├── agent-bench/            # Agent benchmark task and result contracts
 ├── schemas/                # JSON Schemas for skill metadata
 ├── tools/                  # Local validation and maintenance scripts
 ├── docs/                   # Architecture, specification, and governance docs
@@ -274,6 +275,9 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Compatibility tables](docs/COMPATIBILITY.md)
 - [CLI](docs/CLI.md)
 - [Agent integration](docs/AGENT_INTEGRATION.md)
+- [Agent benchmarks](docs/AGENT_BENCHMARKS.md)
+- [Agent benchmark calibration plan](docs/AGENT_BENCHMARK_PLAN.md)
+- [Agent benchmark report](docs/AGENT_BENCHMARK_REPORT.md)
 - [Benchmarks](docs/BENCHMARKS.md)
 - [Skill specification](docs/SKILL_SPEC.md)
 - [Skill authoring guide](docs/SKILL_AUTHORING_GUIDE.md)

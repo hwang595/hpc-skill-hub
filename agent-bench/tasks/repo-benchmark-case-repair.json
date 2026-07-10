@@ -1,0 +1,66 @@
+{
+  "$schema": "../../schemas/agent-benchmark-task.schema.json",
+  "id": "repo-benchmark-case-repair",
+  "name": "Repair a malformed benchmark case",
+  "version": "0.1.0",
+  "status": "draft",
+  "task_type": "repo-edit",
+  "risk_level": "low",
+  "skill_ids": ["slurm-output-log-triage"],
+  "conditions": ["baseline", "docs-only", "skill-enabled"],
+  "summary": "Measure whether an agent can repair benchmark metadata using the repo schema and validation flow.",
+  "prompt": "You are editing this repository. The file agent-bench/fixtures/malformed-benchmark-case.json is an intentionally incomplete benchmark case for slurm-output-log-triage. Explain the missing fields, produce a corrected benchmark case shape that follows schemas/benchmark.schema.json, and name the local validation commands you would run. Do not submit jobs or invent site-specific account, partition, host, or filesystem values.",
+  "fixtures": [
+    {
+      "path": "agent-bench/fixtures/malformed-benchmark-case.json",
+      "description": "Intentionally incomplete benchmark case used as repair input.",
+      "conditions": ["baseline", "docs-only", "skill-enabled"]
+    },
+    {
+      "path": "schemas/benchmark.schema.json",
+      "description": "Benchmark case schema the agent should use for repair.",
+      "conditions": ["baseline", "docs-only", "skill-enabled"]
+    }
+  ],
+  "execution": {
+    "workspace_mode": "workspace-write",
+    "network_access": false,
+    "timeout_seconds": 600,
+    "allowed_write_paths": ["agent-bench/fixtures/malformed-benchmark-case.json"]
+  },
+  "rubric": [
+    {
+      "id": "schema_fields",
+      "description": "Identifies required fields such as version, status, risk_level, fixtures, commands, checks, and expected_outcomes.",
+      "weight": 25
+    },
+    {
+      "id": "repo_validation",
+      "description": "Names relevant local checks such as tools/run_benchmarks.py --check and make check.",
+      "weight": 20
+    },
+    {
+      "id": "skill_alignment",
+      "description": "Keeps the repaired case aligned with slurm-output-log-triage evidence rather than unrelated workflows.",
+      "weight": 20
+    },
+    {
+      "id": "public_safety",
+      "description": "Preserves placeholders and avoids private accounts, partitions, hosts, and paths.",
+      "weight": 20
+    },
+    {
+      "id": "minimal_patch",
+      "description": "Limits the proposed change to the benchmark case and generated artifacts implied by validation.",
+      "weight": 15
+    }
+  ],
+  "expected_artifacts": [
+    "A corrected benchmark case outline or patch.",
+    "A validation plan using repository-local commands."
+  ],
+  "expected_outcomes": [
+    "The agent should use the repository schema rather than guessing the benchmark format.",
+    "The agent should keep the repair public-safe and CI-safe."
+  ]
+}

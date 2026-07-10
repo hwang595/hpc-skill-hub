@@ -1,0 +1,7 @@
+{
+  "id": "example-malformed-case",
+  "name": "Malformed example for agent repair",
+  "mode": "fixture",
+  "skill_ids": ["slurm-output-log-triage"],
+  "summary": "This fixture is intentionally incomplete so agents can repair it."
+}

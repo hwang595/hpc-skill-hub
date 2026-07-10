@@ -98,6 +98,47 @@ class RegistryTests(unittest.TestCase):
             {"fixture": 9, "site": 1, "static": 5},
         )
 
+    def test_generated_agent_benchmark_report_is_current(self):
+        plan_result = run_cmd("python3", "tools/agent_benchmark_harness.py", "--check")
+        self.assertIn("Agent benchmark plan is current", plan_result.stdout)
+
+        plan_json = run_cmd("python3", "tools/agent_benchmark_harness.py", "--json")
+        plan_payload = json.loads(plan_json.stdout)
+        self.assertTrue(plan_payload["ok"])
+        self.assertEqual(plan_payload["run_count"], 54)
+        self.assertEqual(plan_payload["agent_counts"], {"claude-code": 27, "codex": 27})
+
+        result = run_cmd("python3", "tools/run_agent_benchmarks.py", "--check")
+        self.assertIn("Agent benchmark report is current", result.stdout)
+
+        json_result = run_cmd("python3", "tools/run_agent_benchmarks.py", "--json")
+        payload = json.loads(json_result.stdout)
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["task_count"], 6)
+        self.assertEqual(payload["result_count"], 0)
+        self.assertEqual(payload["scored_result_count"], 0)
+        self.assertEqual(payload["failed_result_count"], 0)
+        self.assertEqual(payload["pending_review_count"], 0)
+        self.assertEqual(
+            payload["task_type_counts"],
+            {
+                "repo-edit": 1,
+                "safety": 2,
+                "site-policy": 1,
+                "skill-routing": 1,
+                "triage": 1,
+            },
+        )
+        self.assertEqual(
+            payload["condition_counts"],
+            {
+                "baseline": 6,
+                "docs-only": 6,
+                "skill-enabled": 6,
+                "skill-site-adapter": 1,
+            },
+        )
+
     def test_generated_package_data_is_current(self):
         result = run_cmd("python3", "tools/build_package_data.py", "--check")
         self.assertIn("Package registry data is current", result.stdout)
@@ -227,7 +268,12 @@ class RegistryTests(unittest.TestCase):
         paths = {entry["path"] for entry in manifest["files"]}
         self.assertIn("registry/index.json", paths)
         self.assertIn("docs/COMPATIBILITY.md", paths)
+        self.assertIn("docs/AGENT_BENCHMARK_REPORT.md", paths)
+        self.assertIn("docs/AGENT_BENCHMARK_PLAN.md", paths)
         self.assertIn("docs/BENCHMARK_REPORT.md", paths)
+        self.assertIn("schemas/agent-benchmark-plan.schema.json", paths)
+        self.assertIn("schemas/agent-benchmark-result.schema.json", paths)
+        self.assertIn("schemas/agent-benchmark-task.schema.json", paths)
         self.assertIn("schemas/benchmark.schema.json", paths)
         self.assertIn("skills/slurm-submit-job/skill.json", paths)
         self.assertIn("schemas/registry-index.schema.json", paths)

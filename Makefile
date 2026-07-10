@@ -1,4 +1,4 @@
-.PHONY: agent-adapters artifact-contracts audit benchmarks check compatibility health package-data release-manifest review-packet test validate index site cli clean
+.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check compatibility health package-data release-manifest review-packet test validate index site cli clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -17,6 +17,10 @@ compatibility:
 
 agent-adapters:
 	$(PYTHON) tools/build_agent_adapters.py --check
+
+agent-benchmarks:
+	$(PYTHON) tools/agent_benchmark_harness.py --check
+	$(PYTHON) tools/run_agent_benchmarks.py --check
 
 benchmarks:
 	$(PYTHON) tools/run_benchmarks.py --check
@@ -55,7 +59,7 @@ cli:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health compatibility agent-adapters benchmarks package-data release-manifest review-packet artifact-contracts audit test site cli
+check: validate index health compatibility agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit test site cli
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

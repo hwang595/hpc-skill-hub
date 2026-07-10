@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/agent-benchmark-plan.schema.json",
+  "title": "HPC Skill Hub Agent Benchmark Plan",
+  "type": "object",
+  "required": [
+    "$schema",
+    "id",
+    "name",
+    "version",
+    "status",
+    "description",
+    "repository_ref",
+    "task_ids",
+    "conditions",
+    "trials_per_condition",
+    "variants",
+    "execution"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"type": "string"},
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "name": {"type": "string", "minLength": 3},
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "completed"]
+    },
+    "description": {"type": "string", "minLength": 12},
+    "repository_ref": {"type": "string", "minLength": 1},
+    "task_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "conditions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["baseline", "docs-only", "skill-enabled", "skill-site-adapter"]
+      }
+    },
+    "trials_per_condition": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20
+    },
+    "variants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "agent", "harness", "model", "model_parameters"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "agent": {"type": "string"},
+          "harness": {
+            "type": "string",
+            "enum": ["codex-cli", "claude-code"]
+          },
+          "model": {"type": "string"},
+          "model_parameters": {"type": "object"}
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "required": ["max_turns", "max_budget_usd_per_run", "retain_workspaces"],
+      "additionalProperties": false,
+      "properties": {
+        "max_turns": {"type": "integer", "minimum": 1, "maximum": 100},
+        "max_budget_usd_per_run": {
+          "type": ["number", "null"],
+          "exclusiveMinimum": 0
+        },
+        "retain_workspaces": {"type": "boolean"}
+      }
+    }
+  }
+}

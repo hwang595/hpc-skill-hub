@@ -12,6 +12,11 @@ promote skills only after public-safe evidence exists.
 The release does not automatically mark skills as `reviewed`. It adds the
 process and generated artifacts needed to make those promotions auditable.
 
+It also adds the v0.2 Evidence Pilot infrastructure for measuring whether
+Codex and Claude Code improve when repository guidance and registry-backed
+skills are available. The release does not claim measured lift until reviewed
+agent runs are imported.
+
 ## Registry Contents
 
 - Skills: 97.
@@ -36,6 +41,18 @@ process and generated artifacts needed to make those promotions auditable.
   already-published `v0.1.0` snapshot can remain immutable.
 - CI coverage for the reviewed-skill pilot packet and the current release
   manifest.
+- A 15-case static and fixture benchmark suite for representative skill files,
+  public-safe evidence, shell syntax, and site-gated checks.
+- Generated Codex and Claude Code repository adapters and router skills.
+- Six versioned agent benchmark tasks covering routing, triage, safety,
+  repository editing, and public site-adapter behavior.
+- Provenance-aware task, plan, and result schemas with repeated trials,
+  failure visibility, evaluator metadata, metrics, and artifact hashes.
+- A dry-run execution harness that isolates benchmark conditions and expands a
+  balanced 54-run Codex/Claude calibration matrix. Real runs require one run
+  id, an exact model id, and explicit paid-run acknowledgement.
+- Macro-averaged benchmark reporting with failure rate, confidence intervals,
+  cost, time, tokens, and paired skill lift.
 
 ## Maintainer Workflow
 
@@ -45,6 +62,8 @@ Use the packet to start review work:
 python3 tools/review_packet.py --check
 python3 tools/review_packet.py --json --limit 12
 python3 tools/review_candidates.py --collection data-movement --limit 8
+python3 tools/agent_benchmark_harness.py --check
+python3 tools/run_agent_benchmarks.py --check
 ```
 
 For each selected skill:
@@ -65,6 +84,9 @@ For each selected skill:
   explicit maintainer ownership beyond this release.
 - Site adapters remain draft until a real site or training environment reviews
   public policy mappings.
+- The calibration matrix is validated, but no public scored agent runs are
+  bundled yet. Exact models, paid execution, redaction, and blinded review are
+  explicit maintainer operations outside CI.
 
 ## Release Checks
 
@@ -72,6 +94,8 @@ Before tagging `v0.2.0`, maintainers should confirm:
 
 - `make check` passes locally and in GitHub Actions.
 - `docs/REVIEW_PACKET_v0.2.0.md` is current.
+- `docs/AGENT_BENCHMARK_PLAN.md` and `docs/AGENT_BENCHMARK_REPORT.md` are
+  current.
 - `registry/releases/v0.2.0.json` is current and attached to the GitHub
   release.
 - At least the first maturity-review issues are opened or explicitly deferred.
