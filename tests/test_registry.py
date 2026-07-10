@@ -1,4 +1,5 @@
 import importlib.util
+import hashlib
 import json
 import shutil
 import subprocess
@@ -108,6 +109,28 @@ class RegistryTests(unittest.TestCase):
         self.assertEqual(plan_payload["run_count"], 54)
         self.assertEqual(plan_payload["agent_counts"], {"claude-code": 27, "codex": 27})
 
+        smoke_result = run_cmd(
+            "python3",
+            "tools/agent_benchmark_harness.py",
+            "--plan",
+            "agent-bench/plans/smoke-v0.3.json",
+            "--report",
+            "docs/AGENT_BENCHMARK_SMOKE_PLAN.md",
+            "--check",
+        )
+        self.assertIn("Agent benchmark plan is current", smoke_result.stdout)
+
+        smoke_json = run_cmd(
+            "python3",
+            "tools/agent_benchmark_harness.py",
+            "--plan",
+            "agent-bench/plans/smoke-v0.3.json",
+            "--json",
+        )
+        smoke_payload = json.loads(smoke_json.stdout)
+        self.assertTrue(smoke_payload["ok"])
+        self.assertEqual(smoke_payload["run_count"], 6)
+
         result = run_cmd("python3", "tools/run_agent_benchmarks.py", "--check")
         self.assertIn("Agent benchmark report is current", result.stdout)
 
@@ -169,14 +192,13 @@ class RegistryTests(unittest.TestCase):
             bad_errors,
         )
 
-    def test_generated_release_manifest_is_current(self):
+    def test_published_release_snapshots_are_valid(self):
         result = run_cmd(
             "python3",
-            "tools/build_release_manifest.py",
-            "v0.2.0",
-            "--check",
+            "tools/validate_registry_artifacts.py",
+            "--release-only",
         )
-        self.assertIn("Release manifest is current", result.stdout)
+        self.assertIn("immutable release snapshot", result.stdout)
 
     def test_review_packet_is_current(self):
         result = run_cmd("python3", "tools/review_packet.py", "--check")
@@ -254,17 +276,14 @@ class RegistryTests(unittest.TestCase):
 
     def test_release_manifest_summarizes_registry(self):
         manifest_path = ROOT / "registry" / "releases" / "v0.2.0.json"
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        index = self.load_index()
+        data = manifest_path.read_bytes()
+        manifest = json.loads(data)
 
         self.assertEqual(manifest["version"], "v0.2.0")
-        self.assertEqual(manifest["registry"]["skill_count"], index["skill_count"])
-        self.assertEqual(
-            manifest["registry"]["collection_count"], index["collection_count"]
-        )
-        self.assertEqual(
-            manifest["registry"]["site_adapter_count"], index["site_adapter_count"]
-        )
+        self.assertEqual(hashlib.sha256(data).hexdigest(), "f0569776a186da8b919ecd9df37cd765a1ddcc15f6dae977fbe62611d9656501")
+        self.assertEqual(manifest["registry"]["skill_count"], 97)
+        self.assertEqual(manifest["registry"]["collection_count"], 12)
+        self.assertEqual(manifest["registry"]["site_adapter_count"], 2)
         paths = {entry["path"] for entry in manifest["files"]}
         self.assertIn("registry/index.json", paths)
         self.assertIn("docs/COMPATIBILITY.md", paths)
@@ -451,10 +470,10 @@ class RegistryTests(unittest.TestCase):
         payload = json.loads(result.stdout)
         self.assertTrue(payload["ok"])
         self.assertEqual(payload["skill"], "slurm-submit-job")
-        self.assertEqual(payload["step_count"], 2)
+        self.assertEqual(payload["step_count"], 3)
         self.assertEqual(
             [step["status"] for step in payload["steps"]],
-            ["passed", "passed"],
+            ["passed", "passed", "passed"],
         )
 
     def test_cli_check_alias_json(self):

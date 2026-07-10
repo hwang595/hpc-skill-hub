@@ -53,8 +53,19 @@ with deterministic file sizes and SHA-256 checksums for release provenance.
 users can run read-only discovery commands without a repository checkout.
 
 `tools/validate_registry_artifacts.py` checks the generated registry index,
-health report, packaged registry snapshot, release manifest, and public JSON
-Schema pointers used by downstream integrations.
+health report, packaged registry snapshot, immutable historical release
+manifests, and public JSON Schema pointers used by downstream integrations.
+Preparing a new release separately runs `tools/build_release_manifest.py` to
+compare that version's snapshot with the release candidate worktree.
+
+`hpc_skill_hub.security` and `tools/scan_skill_security.py` scan untrusted skill
+packages without executing them. The scanner emits text, JSON, or SARIF and is
+available through the installed `hpc-skill security` command.
+
+`tools/agent_benchmark_harness.py` expands versioned experiment plans into
+condition-isolated run packets. The v0.3 smoke plan uses six runs to verify
+Codex/Claude executable and exact-model preflight, context isolation, resumable
+status, and the paid-execution boundary before the 54-run calibration.
 
 ## Collections
 
@@ -84,6 +95,7 @@ repository is hosted on GitHub.
 
 ```text
 pull request
+  -> tools/scan_skill_security.py
   -> tools/validate_skills.py
   -> manifest structure checks
   -> referenced artifact checks

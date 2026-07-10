@@ -17,6 +17,7 @@ Describe the skill, documentation, or tooling change.
 - [ ] `python3 tools/build_index.py --check`
 - [ ] `python3 tools/build_health.py --check`
 - [ ] `python3 tools/audit_safety.py`
+- [ ] `python3 tools/scan_skill_security.py skills/<skill-id>`
 - [ ] `python3 -m unittest discover -s tests`
 - [ ] `make check`
 - [ ] Generated files are current, if applicable.

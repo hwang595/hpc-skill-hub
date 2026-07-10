@@ -31,6 +31,7 @@ skill, maturity review, field testing, maintenance, and deprecation.
    python3 tools/build_health.py
    python3 tools/build_package_data.py
    python3 tools/validate_registry_artifacts.py
+   python3 tools/scan_skill_security.py skills/your-skill-id
    python3 tools/hpc_skill.py validate
    make check
    ```
@@ -84,6 +85,11 @@ python3 tools/hpc_skill.py scaffold site-adapter your-site-id --name "Your Site"
 
 High-risk skills require explicit maintainer review before they can be marked
 as reviewed or field-tested.
+
+Community skill packages must also pass the security scanner at its default
+`high` threshold. Medium findings require documented reviewer disposition; a
+clean scan does not replace human safety, portability, and provenance review.
+See [Community Skill Security](docs/SKILL_SECURITY.md).
 
 For maintainer roles, maturity promotion, and site-policy boundaries, see
 [Governance](docs/GOVERNANCE.md).

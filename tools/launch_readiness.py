@@ -34,6 +34,8 @@ REQUIRED_LAUNCH_FILES = [
     "docs/GITHUB_MILESTONES.md",
     "docs/POST_LAUNCH_VERIFICATION.md",
     "docs/INTEGRATION_GUIDE.md",
+    "docs/AGENT_BENCHMARK_SMOKE_PLAN.md",
+    "docs/SKILL_SECURITY.md",
     "docs/COMMUNITY_LAUNCH.md",
     "docs/PUBLIC_LAUNCH_PACKET.md",
     "docs/ADOPTION_WORKSHEET.md",
@@ -46,6 +48,8 @@ REQUIRED_LAUNCH_FILES = [
     "schemas/registry-index.schema.json",
     "schemas/registry-health.schema.json",
     "schemas/release-manifest.schema.json",
+    "schemas/skill-security-report.schema.json",
+    "agent-bench/plans/smoke-v0.3.json",
     "registry/releases/v0.1.0.json",
     "registry/releases/v0.2.0.json",
     "docs/REVIEW_ROUTING.md",
@@ -78,6 +82,7 @@ REQUIRED_LAUNCH_FILES = [
     "tools/build_compatibility.py",
     "tools/build_package_data.py",
     "tools/build_release_manifest.py",
+    "tools/scan_skill_security.py",
     "tools/validate_registry_artifacts.py",
 ]
 
@@ -150,8 +155,8 @@ def generated_artifacts_check() -> List[Check]:
         ("compatibility-current", ["python3", "tools/build_compatibility.py", "--check"]),
         ("package-data-current", ["python3", "tools/build_package_data.py", "--check"]),
         (
-            "release-manifest-current",
-            ["python3", "tools/build_release_manifest.py", "v0.2.0", "--check"],
+            "release-snapshots-valid",
+            ["python3", "tools/validate_registry_artifacts.py", "--release-only"],
         ),
         (
             "review-packet-current",

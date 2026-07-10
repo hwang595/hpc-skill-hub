@@ -4,8 +4,8 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Set
@@ -14,7 +14,7 @@ from typing import Any, Dict, Iterable, List, Set
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_JSON = ROOT / "registry" / "index.json"
 HEALTH_JSON = ROOT / "registry" / "health.json"
-RELEASE_MANIFEST = ROOT / "registry" / "releases" / "v0.2.0.json"
+RELEASE_DIR = ROOT / "registry" / "releases"
 PACKAGE_DATA_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "registry"
 SCHEMAS = {
     "agent-benchmark-plan": ROOT / "schemas" / "agent-benchmark-plan.schema.json",
@@ -24,6 +24,7 @@ SCHEMAS = {
     "index": ROOT / "schemas" / "registry-index.schema.json",
     "health": ROOT / "schemas" / "registry-health.schema.json",
     "release": ROOT / "schemas" / "release-manifest.schema.json",
+    "skill-security-report": ROOT / "schemas" / "skill-security-report.schema.json",
 }
 PUBLIC_BASELINE_DOCS = [
     ROOT / "CHANGELOG.md",
@@ -209,10 +210,8 @@ def validate_health(index: Dict[str, Any], health: Dict[str, Any], errors: List[
         )
 
 
-def validate_release(
-    index: Dict[str, Any], health: Dict[str, Any], release: Dict[str, Any], errors: List[str]
-) -> None:
-    context = relative(RELEASE_MANIFEST)
+def validate_release(path: Path, release: Dict[str, Any], errors: List[str]) -> None:
+    context = relative(path)
     require_schema_pointer(
         release,
         "../../schemas/release-manifest.schema.json",
@@ -224,46 +223,66 @@ def validate_release(
         errors,
         f"{context}: generated_by mismatch",
     )
+    require(
+        release.get("version") == path.stem,
+        errors,
+        f"{context}: version must match snapshot filename",
+    )
     registry = release.get("registry", {})
-    require(registry.get("skill_count") == index.get("skill_count"), errors, f"{context}: skill_count mismatch")
-    require(
-        registry.get("collection_count") == index.get("collection_count"),
-        errors,
-        f"{context}: collection_count mismatch",
-    )
-    require(
-        registry.get("site_adapter_count") == index.get("site_adapter_count"),
-        errors,
-        f"{context}: site_adapter_count mismatch",
-    )
-    require(
-        registry.get("risk_counts") == health.get("risk_counts"),
-        errors,
-        f"{context}: risk_counts mismatch",
-    )
+    require(isinstance(registry, dict), errors, f"{context}: registry must be an object")
+    if not isinstance(registry, dict):
+        return
+    for field in (
+        "skill_count",
+        "collection_count",
+        "site_adapter_count",
+        "category_count",
+        "scheduler_count",
+        "tool_count",
+        "uncollected_skill_count",
+    ):
+        require(
+            isinstance(registry.get(field), int) and registry.get(field, -1) >= 0,
+            errors,
+            f"{context}: registry.{field} must be a non-negative integer",
+        )
 
     files = release.get("files", [])
+    require(isinstance(files, list), errors, f"{context}: files must be an array")
+    if not isinstance(files, list):
+        return
     require(release.get("file_count") == len(files), errors, f"{context}: file_count mismatch")
+    byte_total = sum(
+        entry.get("bytes", 0) for entry in files if isinstance(entry, dict)
+    )
     require(
-        release.get("total_bytes") == sum(entry.get("bytes", 0) for entry in files),
+        release.get("total_bytes") == byte_total,
         errors,
         f"{context}: total_bytes mismatch",
     )
+    paths: List[str] = []
     for entry in files:
+        if not isinstance(entry, dict):
+            errors.append(f"{context}: file entry must be an object")
+            continue
         path = entry.get("path")
         if not isinstance(path, str):
             errors.append(f"{context}: file entry missing path")
             continue
-        source = ROOT / path
-        require(source.exists(), errors, f"{context}: listed file missing {path}")
-        if source.exists():
-            data = source.read_bytes()
-            require(entry.get("bytes") == len(data), errors, f"{context}: byte count mismatch for {path}")
-            require(
-                entry.get("sha256") == hashlib.sha256(data).hexdigest(),
-                errors,
-                f"{context}: sha256 mismatch for {path}",
-            )
+        paths.append(path)
+        require(
+            isinstance(entry.get("bytes"), int) and entry.get("bytes", -1) >= 0,
+            errors,
+            f"{context}: invalid byte count for {path}",
+        )
+        require(
+            isinstance(entry.get("sha256"), str)
+            and re.fullmatch(r"[a-f0-9]{64}", entry.get("sha256", "")) is not None,
+            errors,
+            f"{context}: invalid sha256 for {path}",
+        )
+    require(len(paths) == len(set(paths)), errors, f"{context}: duplicate file paths")
+    require(paths == sorted(paths), errors, f"{context}: file paths must be sorted")
 
 
 def validate_package_data(errors: List[str]) -> None:
@@ -355,16 +374,31 @@ def main() -> int:
     parser = argparse.ArgumentParser(
         description="Validate generated registry artifacts and package snapshots"
     )
-    parser.parse_args()
+    parser.add_argument(
+        "--release-only",
+        action="store_true",
+        help="Validate immutable published release snapshots only",
+    )
+    args = parser.parse_args()
 
     errors: List[str] = []
     validate_schemas(errors)
+    releases = sorted(RELEASE_DIR.glob("v*.json"))
+    require(bool(releases), errors, "registry/releases has no versioned snapshots")
+    for release_path in releases:
+        validate_release(release_path, load_json(release_path), errors)
+    if args.release_only:
+        if errors:
+            for error in errors:
+                print(f"ERROR: {error}", file=sys.stderr)
+            return 1
+        print(f"Validated {len(releases)} immutable release snapshot(s).")
+        return 0
+
     index = load_json(INDEX_JSON)
     health = load_json(HEALTH_JSON)
-    release = load_json(RELEASE_MANIFEST)
     validate_index(index, errors)
     validate_health(index, health, errors)
-    validate_release(index, health, release, errors)
     validate_package_data(errors)
     validate_public_count_mentions(index, errors)
 

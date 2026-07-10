@@ -303,7 +303,8 @@ class GitHubMetadataTests(unittest.TestCase):
             "python3 tools/build_health.py --check",
             "python3 tools/build_compatibility.py --check",
             "python3 tools/build_package_data.py --check",
-            "python3 tools/build_release_manifest.py v0.2.0 --check",
+            "python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/smoke-v0.3.json --report docs/AGENT_BENCHMARK_SMOKE_PLAN.md --check",
+            "python3 tools/validate_registry_artifacts.py --release-only",
             "python3 tools/review_packet.py --check",
             "python3 tools/validate_registry_artifacts.py",
             "python3 tools/audit_safety.py",
@@ -465,6 +466,10 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("gh api repos/example/hpc-skill-hub", result.stdout)
         self.assertIn("gh api repos/example/hpc-skill-hub --jq .homepage", result.stdout)
         self.assertIn("gh label list --repo example/hpc-skill-hub", result.stdout)
+        self.assertIn(
+            "gh api -X GET repos/example/hpc-skill-hub/milestones -f state=all",
+            result.stdout,
+        )
         self.assertIn("gh api repos/example/hpc-skill-hub/actions/workflows", result.stdout)
         self.assertIn(
             "gh api repos/example/hpc-skill-hub/pages --jq .html_url",

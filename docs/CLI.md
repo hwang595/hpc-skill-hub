@@ -13,6 +13,7 @@ python3 tools/hpc_skill.py collections
 python3 tools/hpc_skill.py collection core-hpc
 python3 tools/hpc_skill.py health
 python3 tools/hpc_skill.py validate
+python3 tools/hpc_skill.py security skills/slurm-submit-job
 python3 tools/hpc_skill.py adapters
 python3 tools/hpc_skill.py adapter example-campus-cluster
 ```
@@ -23,6 +24,7 @@ Install the package during development to use the `hpc-skill` command:
 python3 -m pip install .
 hpc-skill list
 hpc-skill collection core-hpc
+hpc-skill security ./community-skill --format json
 ```
 
 The installed command can run read-only discovery commands from the packaged
@@ -84,8 +86,23 @@ python3 tools/hpc_skill.py validate
 
 The full command checks manifest metadata, generated registry index freshness,
 registry health freshness, compatibility table freshness, and the safety audit.
-Single-skill validation skips generated registry checks and audits only that
-skill directory.
+It also blocks high or critical community skill security findings. Single-skill
+validation skips generated registry checks and audits/scans only that skill
+directory.
+
+## Scanning Community Skills
+
+Scan an HPC Skill Hub package, agent `SKILL.md` directory, or parent directory
+without executing its content:
+
+```bash
+hpc-skill security ./community-skill
+hpc-skill security ./community-skill --format json
+hpc-skill security ./community-skill --format sarif
+```
+
+The default threshold fails on `high` and `critical`; lower-severity findings
+produce a `review` verdict. See [Community Skill Security](SKILL_SECURITY.md).
 
 ## Filtering Skills
 
@@ -127,5 +144,5 @@ python3 tools/validate_registry_artifacts.py
 ## Future Direction
 
 The CLI is intentionally small and already installable as `hpc-skill`. Next
-steps include richer template rendering and site-aware generation for common
-scheduler and workflow files.
+steps include richer security policy packs, template rendering, and site-aware
+generation for common scheduler and workflow files.
