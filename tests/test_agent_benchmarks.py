@@ -3,6 +3,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -145,6 +146,9 @@ class AgentBenchmarkHarnessTests(unittest.TestCase):
     def setUp(self):
         self.harness = load_tool("agent_benchmark_harness")
         self.payload = self.harness.plan_payload()
+        self.smoke_payload = self.harness.plan_payload(
+            ROOT / "agent-bench" / "plans" / "smoke-v0.3.json"
+        )
 
     def test_calibration_matrix_is_balanced(self):
         self.assertTrue(self.payload["ok"], self.payload["validation_errors"])
@@ -155,6 +159,157 @@ class AgentBenchmarkHarnessTests(unittest.TestCase):
             {"baseline": 18, "docs-only": 18, "skill-enabled": 18},
         )
         self.assertEqual(len({run["run_id"] for run in self.payload["runs"]}), 54)
+
+    def test_smoke_matrix_is_balanced_and_bounded(self):
+        self.assertTrue(
+            self.smoke_payload["ok"], self.smoke_payload["validation_errors"]
+        )
+        self.assertEqual(self.smoke_payload["run_count"], 6)
+        self.assertEqual(
+            self.smoke_payload["agent_counts"], {"claude-code": 3, "codex": 3}
+        )
+        self.assertEqual(
+            self.smoke_payload["condition_counts"],
+            {"baseline": 2, "docs-only": 2, "skill-enabled": 2},
+        )
+        self.assertEqual(self.smoke_payload["task_counts"], {"skill-routing-oom-triage": 6})
+        self.assertEqual(
+            self.smoke_payload["plan"]["execution"]["max_budget_usd_per_run"], 0.5
+        )
+
+    def test_preflight_requires_installed_agents_and_exact_models(self):
+        with mock.patch.object(self.harness.shutil, "which", return_value=None):
+            preflight = self.harness.preflight_payload(self.smoke_payload)
+
+        self.assertFalse(preflight["ok"])
+        self.assertEqual(len(preflight["variants"]), 2)
+        self.assertTrue(any("exact model id" in item for item in preflight["blockers"]))
+        self.assertTrue(any("not installed" in item for item in preflight["blockers"]))
+
+    def test_preflight_accepts_variant_model_overrides(self):
+        overrides = {
+            "codex-smoke": "codex-exact-model",
+            "claude-smoke": "claude-exact-model",
+        }
+        with mock.patch.object(
+            self.harness.shutil, "which", side_effect=lambda executable: f"/bin/{executable}"
+        ), mock.patch.object(
+            self.harness, "command_version", side_effect=lambda executable: f"{executable} 1.0"
+        ), mock.patch.object(
+            self.harness, "repository_state", return_value=("a" * 40, False)
+        ):
+            preflight = self.harness.preflight_payload(self.smoke_payload, overrides)
+
+        self.assertTrue(preflight["ok"], preflight["blockers"])
+        self.assertTrue(all(item["ready"] for item in preflight["variants"]))
+
+    def test_preflight_blocks_dirty_repository_evidence(self):
+        overrides = {
+            "codex-smoke": "codex-exact-model",
+            "claude-smoke": "claude-exact-model",
+        }
+        with mock.patch.object(
+            self.harness.shutil, "which", side_effect=lambda executable: f"/bin/{executable}"
+        ), mock.patch.object(
+            self.harness, "command_version", return_value="agent 1.0"
+        ), mock.patch.object(
+            self.harness, "repository_state", return_value=("a" * 40, True)
+        ):
+            preflight = self.harness.preflight_payload(self.smoke_payload, overrides)
+
+        self.assertFalse(preflight["ok"])
+        self.assertTrue(any("worktree is dirty" in item for item in preflight["blockers"]))
+
+    def test_campaign_status_is_resumable_and_checks_result_identity(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            result_dir = Path(tmpdir) / "private-results"
+            imported_dir = Path(tmpdir) / "imported-results"
+            result_dir.mkdir()
+            imported_dir.mkdir()
+            initial = self.harness.campaign_status(
+                self.smoke_payload, [result_dir, imported_dir]
+            )
+            first = self.smoke_payload["runs"][0]
+            result = {
+                "run_id": first["run_id"],
+                "task_id": first["task_id"],
+                "task_version": first["task_version"],
+                "trial": first["trial"],
+                "agent": first["agent"],
+                "harness": first["harness"],
+                "model": "exact-model-id",
+                "condition": first["condition"],
+                "status": "pending-review",
+            }
+            result_path = result_dir / f"{first['run_id']}.json"
+            result_path.write_text(json.dumps(result), encoding="utf-8")
+            resumed = self.harness.campaign_status(
+                self.smoke_payload, [result_dir, imported_dir]
+            )
+
+            self.assertEqual(initial["state_counts"], {"planned": 6})
+            self.assertEqual(initial["next_run_id"], first["run_id"])
+            self.assertEqual(
+                resumed["state_counts"], {"pending-review": 1, "planned": 5}
+            )
+            self.assertEqual(
+                resumed["next_run_id"], self.smoke_payload["runs"][1]["run_id"]
+            )
+
+            duplicate = imported_dir / result_path.name
+            duplicate.write_text(json.dumps(result), encoding="utf-8")
+            invalid = self.harness.campaign_status(
+                self.smoke_payload, [result_dir, imported_dir]
+            )
+            self.assertFalse(invalid["ok"])
+            self.assertEqual(invalid["state_counts"]["invalid"], 1)
+
+    def test_campaign_status_rejects_configured_default_result_model(self):
+        run = self.smoke_payload["runs"][0]
+        result = {
+            "run_id": run["run_id"],
+            "task_id": run["task_id"],
+            "task_version": run["task_version"],
+            "trial": run["trial"],
+            "agent": run["agent"],
+            "harness": run["harness"],
+            "model": "configured-default",
+            "condition": run["condition"],
+            "status": "pending-review",
+        }
+
+        errors = self.harness.result_identity_errors(run, result)
+
+        self.assertIn("result must record an exact model id", errors)
+
+    def test_timeout_output_bytes_are_decoded_for_artifacts(self):
+        self.assertEqual(self.harness.decoded_text(b"partial output\xff"), "partial output�")
+
+    def test_materialize_all_smoke_contexts_preserves_condition_isolation(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            workspaces = self.harness.materialize_all_runs(
+                self.smoke_payload, Path(tmpdir)
+            )
+
+            self.assertEqual(len(workspaces), 6)
+            for item in workspaces:
+                workspace = Path(item["workspace"])
+                run = next(
+                    run
+                    for run in self.smoke_payload["runs"]
+                    if run["run_id"] == item["run_id"]
+                )
+                if run["condition"] == "baseline":
+                    self.assertFalse((workspace / "AGENTS.md").exists())
+                    self.assertFalse((workspace / "skills").exists())
+                elif run["condition"] == "docs-only":
+                    self.assertTrue((workspace / "AGENTS.md").exists())
+                    self.assertFalse((workspace / "skills").exists())
+                else:
+                    self.assertTrue((workspace / "AGENTS.md").exists())
+                    self.assertTrue(
+                        (workspace / "skills" / "slurm-oom-memory-triage").exists()
+                    )
 
     def test_materialized_contexts_do_not_leak_skills_into_baseline(self):
         baseline_id = (

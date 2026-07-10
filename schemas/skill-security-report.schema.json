@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/skill-security-report.schema.json",
+  "title": "HPC Skill Security Report",
+  "type": "object",
+  "required": ["$schema", "schema_version", "scanner", "target", "policy", "summary", "findings"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://hpc-skill-hub.org/schemas/skill-security-report.schema.json"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "scanner": {
+      "type": "object",
+      "required": ["name", "version"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"const": "hpc-skill-security"},
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}
+      }
+    },
+    "target": {"type": "string", "minLength": 1},
+    "policy": {
+      "type": "object",
+      "required": ["fail_on"],
+      "additionalProperties": false,
+      "properties": {
+        "fail_on": {"enum": ["none", "low", "medium", "high", "critical"]}
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["verdict", "files_scanned", "finding_count", "blocking_count", "severity_counts"],
+      "additionalProperties": false,
+      "properties": {
+        "verdict": {"enum": ["pass", "review", "block"]},
+        "files_scanned": {"type": "integer", "minimum": 0},
+        "finding_count": {"type": "integer", "minimum": 0},
+        "blocking_count": {"type": "integer", "minimum": 0},
+        "severity_counts": {
+          "type": "object",
+          "required": ["low", "medium", "high", "critical"],
+          "additionalProperties": false,
+          "properties": {
+            "low": {"type": "integer", "minimum": 0},
+            "medium": {"type": "integer", "minimum": 0},
+            "high": {"type": "integer", "minimum": 0},
+            "critical": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/finding"}
+    }
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": ["rule_id", "severity", "category", "path", "line", "message", "remediation", "fingerprint", "skill_id"],
+      "additionalProperties": false,
+      "properties": {
+        "rule_id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*(?:\\.[a-z][a-z0-9-]*)+$"},
+        "severity": {"enum": ["low", "medium", "high", "critical"]},
+        "category": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "line": {"type": "integer", "minimum": 1},
+        "message": {"type": "string", "minLength": 1},
+        "remediation": {"type": "string", "minLength": 1},
+        "fingerprint": {"type": "string", "pattern": "^[a-f0-9]{16}$"},
+        "skill_id": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

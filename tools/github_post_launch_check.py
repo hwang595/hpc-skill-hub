@@ -101,7 +101,7 @@ def command_plan(repo: str, version: str) -> List[List[str]]:
         ["gh", "api", f"repos/{repo}"],
         ["gh", "api", f"repos/{repo}", "--jq", ".homepage"],
         ["gh", "label", "list", "--repo", repo, "--limit", "200", "--json", "name"],
-        ["gh", "api", f"repos/{repo}/milestones", "-f", "state=all"],
+        ["gh", "api", "-X", "GET", f"repos/{repo}/milestones", "-f", "state=all"],
         [
             "gh",
             "issue",
@@ -213,7 +213,9 @@ def labels_check(repo: str) -> Check:
 
 def milestones_check(repo: str) -> Check:
     expected = {milestone["title"] for milestone in load_json(MILESTONES_JSON)}
-    payload, error = run_json(["gh", "api", f"repos/{repo}/milestones", "-f", "state=all"])
+    payload, error = run_json(
+        ["gh", "api", "-X", "GET", f"repos/{repo}/milestones", "-f", "state=all"]
+    )
     if error:
         return fail("github-milestones", error)
     actual = {milestone["title"] for milestone in payload}

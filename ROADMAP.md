@@ -34,6 +34,28 @@ The v0.2 Evidence Pilot infrastructure is released. Real agent runs, blinded
 scoring, external adoption evidence, and maturity promotion remain public
 follow-up evidence and inputs to v0.3 planning.
 
+## v0.3 Current Development
+
+Development starts with a security foundation for community-contributed and
+agent-consumed skills:
+
+- Scan untrusted skill packages before loading their instructions into Codex,
+  Claude Code, or another agent context.
+- Emit stable text, JSON, and SARIF findings for CI and downstream portals.
+- Detect prompt-injection, concealed behavior, dangerous execution,
+  persistence, ambient credential access, package-boundary violations, and
+  understated risk declarations without executing skill content.
+- Preserve published release manifests as immutable evidence.
+
+The next v0.3 tranche executes the public-safe agent benchmark calibration. A
+six-run Codex/Claude smoke campaign now gates the 54-run repeated-trial matrix
+with executable/model preflight, condition isolation, resumable status, and
+explicit paid execution. The remaining work is to run from a clean commit with
+exact models, import blinded reviewed results, and publish the first
+evidence-backed comparison without claiming lift from dry-run plans alone.
+Provenance/signing and deeper site-adapter integration remain the following
+tranches.
+
 ## Phase 0: Seed Repository
 
 Status: largely complete locally.

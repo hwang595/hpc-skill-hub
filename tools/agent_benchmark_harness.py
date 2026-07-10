@@ -22,7 +22,7 @@ DEFAULT_PLAN = ROOT / "agent-bench" / "plans" / "calibration-v0.2.json"
 DEFAULT_REPORT = ROOT / "docs" / "AGENT_BENCHMARK_PLAN.md"
 PLAN_SCHEMA = "../../schemas/agent-benchmark-plan.schema.json"
 RESULT_SCHEMA = "../../schemas/agent-benchmark-result.schema.json"
-HARNESS_VERSION = "0.2.0"
+HARNESS_VERSION = "0.3.0"
 ALLOWED_CONDITIONS = {"baseline", "docs-only", "skill-enabled", "skill-site-adapter"}
 ALLOWED_HARNESSES = {"codex-cli", "claude-code"}
 
@@ -46,6 +46,14 @@ def rel(path: Path) -> str:
 
 def sha256_path(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def decoded_text(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, bytes):
+        return value.decode("utf-8", errors="replace")
+    return str(value)
 
 
 def utc_now() -> str:
@@ -220,6 +228,7 @@ def plan_report(payload: Dict[str, Any]) -> str:
         f"| Conditions | {len(plan['conditions'])} |",
         f"| Agent variants | {len(plan['variants'])} |",
         f"| Trials per task and condition | {plan['trials_per_condition']} |",
+        f"| Max budget per run (USD) | {plan['execution']['max_budget_usd_per_run'] if plan['execution']['max_budget_usd_per_run'] is not None else 'not set'} |",
     ]
     for agent, count in payload["agent_counts"].items():
         lines.append(f"| Agent `{agent}` | {count} |")
@@ -263,6 +272,9 @@ def plan_report(payload: Dict[str, Any]) -> str:
             "network use in the task contract, captures output and changed files outside the",
             "repository, and produces a `pending-review` result. No result becomes scored until",
             "a reviewer records rubric and evaluator provenance.",
+            "",
+            "Use `--preflight` with exact per-variant model overrides before execution. Use",
+            "`--status` to find the next planned run and detect duplicate or mismatched results.",
         ]
     )
     return "\n".join(lines)
@@ -407,6 +419,210 @@ def command_version(executable: str) -> str:
     return output[-1]
 
 
+def parse_model_overrides(values: Iterable[str]) -> Dict[str, str]:
+    overrides: Dict[str, str] = {}
+    for value in values:
+        variant_id, separator, model = value.partition("=")
+        if not separator or not variant_id or not model:
+            raise ValueError(
+                f"invalid model override {value!r}; expected <variant-id>=<exact-model-id>"
+            )
+        if variant_id in overrides:
+            raise ValueError(f"duplicate model override for {variant_id}")
+        overrides[variant_id] = model
+    return overrides
+
+
+def preflight_payload(
+    payload: Dict[str, Any], model_overrides: Optional[Dict[str, str]] = None
+) -> Dict[str, Any]:
+    model_overrides = model_overrides or {}
+    try:
+        repository_commit, repository_dirty = repository_state()
+    except (OSError, subprocess.SubprocessError) as exc:
+        repository_commit = None
+        repository_dirty = None
+        blockers = [f"could not read repository state: {exc}"]
+    else:
+        blockers = []
+        if repository_dirty:
+            blockers.append("repository worktree is dirty; public evidence requires a clean commit")
+    known_variants = {variant["id"] for variant in payload["plan"]["variants"]}
+    blockers.extend(
+        f"model override references unknown variant {variant_id}"
+        for variant_id in sorted(set(model_overrides) - known_variants)
+    )
+    if any(run["network_access"] for run in payload["runs"]):
+        blockers.append("benchmark plan contains a run with network access enabled")
+    variants = []
+    for variant in payload["plan"]["variants"]:
+        executable = "codex" if variant["harness"] == "codex-cli" else "claude"
+        executable_path = shutil.which(executable)
+        version = None
+        issues = []
+        if executable_path is None:
+            issues.append(f"required executable is not installed: {executable}")
+        else:
+            try:
+                version = command_version(executable)
+            except (OSError, ValueError, subprocess.SubprocessError) as exc:
+                issues.append(str(exc))
+        model = model_overrides.get(variant["id"], variant["model"])
+        exact_model = bool(model and model != "configured-default")
+        if not exact_model:
+            issues.append("exact model id is required")
+        blockers.extend(f"variant {variant['id']}: {issue}" for issue in issues)
+        variants.append(
+            {
+                "id": variant["id"],
+                "agent": variant["agent"],
+                "harness": variant["harness"],
+                "executable": executable,
+                "executable_path": executable_path,
+                "agent_version": version,
+                "model": model,
+                "exact_model": exact_model,
+                "ready": not issues,
+                "issues": issues,
+            }
+        )
+    return {
+        "ok": not blockers,
+        "plan_id": payload["plan"]["id"],
+        "run_count": payload["run_count"],
+        "repository_commit": repository_commit,
+        "repository_dirty": repository_dirty,
+        "variants": variants,
+        "blockers": blockers,
+    }
+
+
+def preflight_text(preflight: Dict[str, Any]) -> str:
+    lines = [
+        f"Agent benchmark preflight: {'READY' if preflight['ok'] else 'BLOCKED'}",
+        f"Plan: {preflight['plan_id']} ({preflight['run_count']} runs)",
+    ]
+    for variant in preflight["variants"]:
+        state = "READY" if variant["ready"] else "BLOCKED"
+        version = variant["agent_version"] or "unavailable"
+        lines.append(
+            f"{state}: {variant['id']}: {variant['executable']} {version}; model={variant['model']}"
+        )
+        for issue in variant["issues"]:
+            lines.append(f"  - {issue}")
+    if preflight["blockers"]:
+        lines.append("Blockers:")
+        lines.extend(f"- {blocker}" for blocker in preflight["blockers"])
+    return "\n".join(lines)
+
+
+def result_identity_errors(run: Dict[str, Any], result: Dict[str, Any]) -> List[str]:
+    errors = []
+    expected = {
+        "run_id": run["run_id"],
+        "task_id": run["task_id"],
+        "task_version": run["task_version"],
+        "trial": run["trial"],
+        "agent": run["agent"],
+        "harness": run["harness"],
+        "condition": run["condition"],
+    }
+    for field, value in expected.items():
+        if result.get(field) != value:
+            errors.append(f"{field} expected {value!r}, found {result.get(field)!r}")
+    if run["model"] != "configured-default" and result.get("model") != run["model"]:
+        errors.append(f"model expected {run['model']!r}, found {result.get('model')!r}")
+    if not result.get("model") or result.get("model") == "configured-default":
+        errors.append("result must record an exact model id")
+    if result.get("status") not in {"pending-review", "scored", "failed", "skipped"}:
+        errors.append(f"invalid result status {result.get('status')!r}")
+    return errors
+
+
+def campaign_status(payload: Dict[str, Any], result_dirs: Iterable[Path]) -> Dict[str, Any]:
+    result_dirs = list(result_dirs)
+    runs = []
+    counts = Counter()
+    for run in payload["runs"]:
+        candidates = [directory / f"{run['run_id']}.json" for directory in result_dirs]
+        existing = [path for path in candidates if path.exists()]
+        errors = []
+        result_path = None
+        result_model = None
+        if len(existing) > 1:
+            state = "invalid"
+            errors.append("result exists in more than one result directory")
+        elif not existing:
+            state = "planned"
+        else:
+            result_path = existing[0]
+            try:
+                result = load_json(result_path)
+            except (OSError, json.JSONDecodeError) as exc:
+                state = "invalid"
+                errors.append(f"could not load result: {exc}")
+            else:
+                errors.extend(result_identity_errors(run, result))
+                state = "invalid" if errors else result["status"]
+                result_model = result.get("model")
+        counts[state] += 1
+        runs.append(
+            {
+                "run_id": run["run_id"],
+                "variant_id": run["variant_id"],
+                "agent": run["agent"],
+                "task_id": run["task_id"],
+                "condition": run["condition"],
+                "trial": run["trial"],
+                "state": state,
+                "model": result_model,
+                "result_path": str(result_path) if result_path else None,
+                "errors": errors,
+            }
+        )
+    next_run = next((run["run_id"] for run in runs if run["state"] == "planned"), None)
+    execution_complete = not any(run["state"] in {"planned", "invalid"} for run in runs)
+    scoring_complete = execution_complete and all(
+        run["state"] in {"scored", "skipped"} for run in runs
+    )
+    return {
+        "ok": counts["invalid"] == 0,
+        "plan_id": payload["plan"]["id"],
+        "run_count": len(runs),
+        "state_counts": dict(sorted(counts.items())),
+        "next_run_id": next_run,
+        "execution_complete": execution_complete,
+        "scoring_complete": scoring_complete,
+        "runs": runs,
+    }
+
+
+def status_text(status: Dict[str, Any]) -> str:
+    lines = [
+        f"Agent benchmark campaign: {status['plan_id']}",
+        f"Runs: {status['run_count']}",
+    ]
+    for state, count in status["state_counts"].items():
+        lines.append(f"- {state}: {count}")
+    lines.append(f"Next run: {status['next_run_id'] or 'none'}")
+    lines.append(f"Execution complete: {str(status['execution_complete']).lower()}")
+    lines.append(f"Scoring complete: {str(status['scoring_complete']).lower()}")
+    for run in status["runs"]:
+        if run["errors"]:
+            lines.append(f"INVALID: {run['run_id']}: {'; '.join(run['errors'])}")
+    return "\n".join(lines)
+
+
+def materialize_all_runs(
+    payload: Dict[str, Any], workspace_root: Path, force: bool = False
+) -> List[Dict[str, str]]:
+    workspaces = []
+    for item in payload["runs"]:
+        run, workspace = materialize_run(payload, item["run_id"], workspace_root, force=force)
+        workspaces.append({"run_id": run["run_id"], "workspace": str(workspace)})
+    return workspaces
+
+
 def build_command(
     run: Dict[str, Any], workspace: Path, model: str, output_file: Path, plan: Dict[str, Any]
 ) -> List[str]:
@@ -525,9 +741,16 @@ def execute_run(
     output_root: Path,
     workspace_root: Path,
     force: bool,
+    allow_dirty_run: bool = False,
 ) -> Path:
     if not model or model == "configured-default":
         raise ValueError("real execution requires an exact --model value")
+    _commit, dirty = repository_state()
+    if dirty and not allow_dirty_run:
+        raise ValueError(
+            "real execution requires a clean repository; commit the benchmark contract "
+            "or pass --allow-dirty-run for non-public debugging"
+        )
     run, workspace = materialize_run(payload, run_id, workspace_root, force=force)
     before = file_snapshot(workspace)
     task = load_tasks()[run["task_id"]]
@@ -568,8 +791,8 @@ def execute_run(
                 "summary": f"Agent CLI exited with status {completed.returncode}.",
             }
     except subprocess.TimeoutExpired as exc:
-        stdout = exc.stdout or ""
-        stderr = exc.stderr or ""
+        stdout = decoded_text(exc.stdout)
+        stderr = decoded_text(exc.stderr)
         status = "failed"
         failure = {
             "category": "timeout",
@@ -579,11 +802,14 @@ def execute_run(
     wall_time = round(time.monotonic() - started, 3)
     raw_output.write_text(stdout, encoding="utf-8")
     stderr_output.write_text(stderr, encoding="utf-8")
-    if not final_output.exists() and run["harness"] == "claude-code":
-        try:
-            final_output.write_text(json.loads(stdout).get("result", ""), encoding="utf-8")
-        except (json.JSONDecodeError, AttributeError):
-            final_output.write_text("", encoding="utf-8")
+    if not final_output.exists():
+        final_text = ""
+        if run["harness"] == "claude-code":
+            try:
+                final_text = json.loads(stdout).get("result", "")
+            except (json.JSONDecodeError, AttributeError):
+                pass
+        final_output.write_text(decoded_text(final_text), encoding="utf-8")
 
     change_manifest = capture_changes(workspace, before, artifact_dir)
     input_tokens, output_tokens, cost = usage_from_output(run["harness"], stdout)
@@ -657,19 +883,67 @@ def main() -> int:
     parser.add_argument("--check", action="store_true", help="Validate plan and report freshness")
     parser.add_argument("--json", action="store_true", help="Emit the expanded run matrix")
     parser.add_argument("--materialize", metavar="RUN_ID", help="Create one isolated context packet")
+    parser.add_argument(
+        "--materialize-all",
+        action="store_true",
+        help="Create isolated context packets for every planned run without executing agents",
+    )
     parser.add_argument("--execute", metavar="RUN_ID", help="Execute one run")
     parser.add_argument("--model", help="Exact model id for a real run")
     parser.add_argument(
         "--workspace-root", default="/tmp/hpc-skill-hub-agent-bench-workspaces"
     )
     parser.add_argument("--output-root", default="/tmp/hpc-skill-hub-agent-bench-runs")
+    parser.add_argument(
+        "--preflight",
+        action="store_true",
+        help="Check agent executables and exact model ids without running agents",
+    )
+    parser.add_argument(
+        "--status",
+        action="store_true",
+        help="Report resumable run state from private and imported result directories",
+    )
+    parser.add_argument(
+        "--model-override",
+        action="append",
+        default=[],
+        metavar="VARIANT_ID=MODEL",
+        help="Use an exact model id for preflight; repeat for multiple variants",
+    )
     parser.add_argument("--force", action="store_true", help="Replace an existing run workspace")
     parser.add_argument(
         "--allow-paid-run",
         action="store_true",
         help="Acknowledge that executing an external agent may consume paid quota",
     )
+    parser.add_argument(
+        "--allow-dirty-run",
+        action="store_true",
+        help="Allow a non-public debugging run from a dirty worktree",
+    )
     args = parser.parse_args()
+
+    selected_actions = sum(
+        bool(value)
+        for value in [
+            args.preflight,
+            args.status,
+            args.materialize_all,
+            args.materialize,
+            args.execute,
+        ]
+    )
+    if selected_actions > 1:
+        print(
+            "ERROR: choose only one of --preflight, --status, --materialize-all, "
+            "--materialize, or --execute",
+            file=sys.stderr,
+        )
+        return 2
+    if args.model_override and not args.preflight:
+        print("ERROR: --model-override is only valid with --preflight", file=sys.stderr)
+        return 2
 
     payload = plan_payload(Path(args.plan))
     if not payload["ok"]:
@@ -679,6 +953,27 @@ def main() -> int:
     expected_report = plan_report(payload) + "\n"
 
     try:
+        if args.preflight:
+            preflight = preflight_payload(payload, parse_model_overrides(args.model_override))
+            if args.json:
+                print(json.dumps(preflight, indent=2, sort_keys=True))
+            else:
+                print(preflight_text(preflight))
+            return 0 if preflight["ok"] else 1
+        if args.status:
+            status = campaign_status(
+                payload,
+                [Path(args.output_root) / "results", ROOT / "agent-bench" / "results"],
+            )
+            if args.json:
+                print(json.dumps(status, indent=2, sort_keys=True))
+            else:
+                print(status_text(status))
+            return 0 if status["ok"] else 1
+        if args.materialize_all:
+            workspaces = materialize_all_runs(payload, Path(args.workspace_root), force=args.force)
+            print(json.dumps({"run_count": len(workspaces), "workspaces": workspaces}, indent=2, sort_keys=True))
+            return 0
         if args.materialize:
             run, workspace = materialize_run(
                 payload, args.materialize, Path(args.workspace_root), force=args.force
@@ -696,6 +991,7 @@ def main() -> int:
                 Path(args.output_root),
                 Path(args.workspace_root),
                 args.force,
+                args.allow_dirty_run,
             )
             print(f"Wrote pending benchmark result to {result_path}.")
             return 0

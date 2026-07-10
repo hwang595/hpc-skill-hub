@@ -125,8 +125,53 @@ python3 tools/run_agent_benchmarks.py --check
 python3 tools/run_agent_benchmarks.py --json
 ```
 
-See the generated [Calibration Plan](AGENT_BENCHMARK_PLAN.md) and
+See the generated [Calibration Plan](AGENT_BENCHMARK_PLAN.md),
+[v0.3 Smoke Plan](AGENT_BENCHMARK_SMOKE_PLAN.md), and
 [Agent Benchmark Report](AGENT_BENCHMARK_REPORT.md).
+
+## v0.3 Six-Run Smoke Campaign
+
+Before spending quota on the 54-run repeated-trial matrix, validate one paired
+task across both agents and all three core conditions:
+
+```bash
+python3 tools/agent_benchmark_harness.py \
+  --plan agent-bench/plans/smoke-v0.3.json \
+  --preflight \
+  --model-override codex-smoke=<exact-codex-model> \
+  --model-override claude-smoke=<exact-claude-model>
+```
+
+Preflight verifies that each CLI is installed, records its version, blocks
+`configured-default` model aliases, rejects network-enabled task contracts, and
+requires a clean repository commit. It does not call either agent.
+
+Materialize every isolated context without paid execution:
+
+```bash
+python3 tools/agent_benchmark_harness.py \
+  --plan agent-bench/plans/smoke-v0.3.json \
+  --materialize-all \
+  --workspace-root /tmp/hpc-skill-hub-smoke-contexts
+```
+
+Check resumable state and the next pending run:
+
+```bash
+python3 tools/agent_benchmark_harness.py \
+  --plan agent-bench/plans/smoke-v0.3.json \
+  --status --json
+```
+
+Real execution remains one explicit run at a time and requires both an exact
+model id and `--allow-paid-run`. The smoke plan sets a USD 0.50 per-run ceiling
+for Claude Code. Codex CLI does not expose the same hard budget switch, so its
+quota must be approved and monitored outside the harness.
+
+Do not score a dirty-worktree run as public evidence. Commit the benchmark
+contract first, execute from that clean commit, redact artifacts, and then use
+the result importer and blinded rubric process. `--allow-dirty-run` exists only
+for explicitly non-public harness debugging.
 
 ## Publication Gate
 

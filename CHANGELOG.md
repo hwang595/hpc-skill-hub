@@ -7,6 +7,17 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Start the v0.3 security foundation with an installable community skill
+  scanner, structured JSON/SARIF reports, prompt-injection and dangerous-action
+  rules, manifest risk cross-checks, agent adoption guidance, and CI gating.
+- Treat published release manifests as immutable historical snapshots while
+  reserving worktree checksum comparison for explicit release preparation.
+- Fix GitHub post-launch milestone verification to use a GET request instead of
+  accidentally invoking the create-milestone endpoint.
+- Add a six-run v0.3 Codex/Claude smoke calibration with executable/model
+  preflight, condition-isolated bulk materialization, resumable campaign status,
+  and a bounded path to the full repeated-trial benchmark.
+
 ## v0.2.0 - 2026-07-10
 
 - Add the v0.2 Evidence Pilot for Codex and Claude Code with six public-safe

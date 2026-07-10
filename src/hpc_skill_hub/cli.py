@@ -14,6 +14,8 @@ import textwrap
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
+from .security import sarif_report, scan_target, text_report
+
 
 ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 PACKAGE_NAME = "hpc_skill_hub"
@@ -368,6 +370,23 @@ def cmd_health(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_security(args: argparse.Namespace) -> int:
+    target = Path(args.target).expanduser()
+    try:
+        report = scan_target(target, fail_on=args.fail_on)
+    except (FileNotFoundError, OSError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    output_format = "json" if args.json else args.format
+    if output_format == "json":
+        emit_json(report)
+    elif output_format == "sarif":
+        emit_json(sarif_report(report))
+    else:
+        print(text_report(report))
+    return 1 if report["summary"]["verdict"] == "block" else 0
+
+
 def run_step(label: str, command: List[str], root: Path) -> int:
     print(f"==> {label}", flush=True)
     result = subprocess.run(command, cwd=str(root))
@@ -410,15 +429,24 @@ def cmd_validate(args: argparse.Namespace) -> int:
 
     if args.skill:
         if not args.skip_safety:
-            steps.append(
-                (
-                    "Run safety audit for skill",
-                    [
-                        sys.executable,
-                        str(tools_dir / "audit_safety.py"),
-                        str(root / "skills" / args.skill),
-                    ],
-                )
+            skill_path = str(root / "skills" / args.skill)
+            steps.extend(
+                [
+                    (
+                        "Run safety audit for skill",
+                        [sys.executable, str(tools_dir / "audit_safety.py"), skill_path],
+                    ),
+                    (
+                        "Run security scan for skill",
+                        [
+                            sys.executable,
+                            str(tools_dir / "scan_skill_security.py"),
+                            skill_path,
+                            "--fail-on",
+                            "high",
+                        ],
+                    ),
+                ]
             )
     else:
         if not args.skip_generated:
@@ -443,11 +471,23 @@ def cmd_validate(args: argparse.Namespace) -> int:
                 ]
             )
         if not args.skip_safety:
-            steps.append(
-                (
-                    "Run safety audit",
-                    [sys.executable, str(tools_dir / "audit_safety.py")],
-                )
+            steps.extend(
+                [
+                    (
+                        "Run safety audit",
+                        [sys.executable, str(tools_dir / "audit_safety.py")],
+                    ),
+                    (
+                        "Run community skill security scan",
+                        [
+                            sys.executable,
+                            str(tools_dir / "scan_skill_security.py"),
+                            str(root / "skills"),
+                            "--fail-on",
+                            "high",
+                        ],
+                    ),
+                ]
             )
 
     if args.json:
@@ -865,6 +905,27 @@ def build_parser() -> argparse.ArgumentParser:
     health_parser = subparsers.add_parser("health", help="Show registry health summary")
     health_parser.add_argument("--json", action="store_true", help="Emit JSON")
     health_parser.set_defaults(func=cmd_health)
+
+    security_parser = subparsers.add_parser(
+        "security", help="Scan a community skill package for security risks"
+    )
+    security_parser.add_argument(
+        "target", nargs="?", default=".", help="Skill file or directory to scan"
+    )
+    security_parser.add_argument(
+        "--format",
+        choices=["text", "json", "sarif"],
+        default="text",
+        help="Output format",
+    )
+    security_parser.add_argument("--json", action="store_true", help="Alias for --format json")
+    security_parser.add_argument(
+        "--fail-on",
+        choices=["none", "low", "medium", "high", "critical"],
+        default="high",
+        help="Lowest severity that returns a failing exit code",
+    )
+    security_parser.set_defaults(func=cmd_security)
 
     validate_parser = subparsers.add_parser(
         "validate", help="Run registry validation checks"

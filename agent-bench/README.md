@@ -18,6 +18,33 @@ The calibration plan expands to 54 runs across two agent harnesses, three tasks,
 three conditions, and three repeated trials. CI validates that matrix but never
 launches an external agent.
 
+The v0.3 smoke campaign in `plans/smoke-v0.3.json` uses one OOM routing task,
+three conditions, two agents, and one trial per cell for six runs. It validates
+the execution and review pipeline before the 54-run repeated-trial calibration.
+
+Check local agent/model readiness without executing a run:
+
+```bash
+python3 tools/agent_benchmark_harness.py \
+  --plan agent-bench/plans/smoke-v0.3.json \
+  --preflight \
+  --model-override codex-smoke=<exact-codex-model> \
+  --model-override claude-smoke=<exact-claude-model>
+```
+
+Materialize all six isolated contexts or inspect resumable state:
+
+```bash
+python3 tools/agent_benchmark_harness.py \
+  --plan agent-bench/plans/smoke-v0.3.json \
+  --materialize-all \
+  --workspace-root /tmp/hpc-skill-hub-smoke-contexts
+
+python3 tools/agent_benchmark_harness.py \
+  --plan agent-bench/plans/smoke-v0.3.json \
+  --status
+```
+
 Directory roles:
 
 - `tasks/`: versioned task prompts, fixtures, execution limits, and rubrics.

@@ -30,17 +30,20 @@ jobs:
       - name: Check agent benchmark plan and results
         run: |
           python3 tools/agent_benchmark_harness.py --check
+          python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/smoke-v0.3.json --report docs/AGENT_BENCHMARK_SMOKE_PLAN.md --check
           python3 tools/run_agent_benchmarks.py --check
       - name: Check packaged registry data
         run: python3 tools/build_package_data.py --check
-      - name: Check release manifest
-        run: python3 tools/build_release_manifest.py v0.2.0 --check
+      - name: Check immutable release snapshots
+        run: python3 tools/validate_registry_artifacts.py --release-only
       - name: Check reviewed-skill pilot packet
         run: python3 tools/review_packet.py --check
       - name: Validate generated artifact contracts
         run: python3 tools/validate_registry_artifacts.py
       - name: Run safety audit
         run: python3 tools/audit_safety.py
+      - name: Scan community skill packages
+        run: python3 tools/scan_skill_security.py skills --fail-on high
       - name: Run test suite
         run: python3 -m unittest discover -s tests
       - name: Install CLI package
@@ -64,6 +67,7 @@ jobs:
           python3 tools/hpc_skill.py collections
           python3 tools/hpc_skill.py collection core-hpc
           python3 tools/hpc_skill.py adapters
+          hpc-skill security skills/slurm-submit-job --fail-on high
           python3 tools/hpc_skill.py scaffold skill ci-test-skill --name "CI Test Skill" --category education --tool bash --root /tmp/hpc-skill-hub-scaffold --force
           python3 tools/hpc_skill.py scaffold site-adapter ci-test-cluster --name "CI Test Cluster" --root /tmp/hpc-skill-hub-scaffold --force
           test -f /tmp/hpc-skill-hub-scaffold/skills/ci-test-skill/skill.json

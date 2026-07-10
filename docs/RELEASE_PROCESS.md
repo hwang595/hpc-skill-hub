@@ -26,6 +26,7 @@ python3 tools/build_release_manifest.py <version> --check
 python3 tools/review_packet.py --check
 python3 tools/validate_registry_artifacts.py
 python3 tools/audit_safety.py
+python3 tools/scan_skill_security.py skills --fail-on high
 python3 tools/launch_readiness.py
 python3 tools/build_site.py --output /tmp/hpc-skill-hub-site/index.html
 python3 tools/hpc_skill.py list
@@ -55,6 +56,8 @@ Review:
   pass `tools/validate_registry_artifacts.py`.
 - `registry/releases/v<version>.json` is current and attached to the GitHub
   release.
+- Previously published release manifests remain byte-for-byte unchanged;
+  development validation uses `validate_registry_artifacts.py --release-only`.
 - For `v0.2.0` and later reviewed-skill pilot releases,
   `docs/REVIEW_PACKET_v0.2.0.md` or its successor is current.
 - Built source and wheel distributions pass `twine check`, and the `Package`

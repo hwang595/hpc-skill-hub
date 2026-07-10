@@ -249,6 +249,7 @@ The repository is set up as a versioned registry, not just a documentation dump:
 | Gate | What it proves |
 | --- | --- |
 | `Validate` workflow | Skill manifests, generated registry files, safety audit, CLI smoke tests, and unit tests pass on every push and pull request. |
+| `hpc-skill security` | Community skill packages receive deterministic prompt-injection, command, persistence, credential, package, and risk-declaration checks before adoption. |
 | `Package` workflow | Source and wheel distributions build cleanly, metadata passes `twine check`, and the installed wheel can read registry data outside the checkout. |
 | `Publish Pages` workflow | The searchable static registry site builds and deploys from the tracked registry index. |
 | `registry/releases/v0.2.0.json` | Versioned release manifest with file checksums and registry counts for reproducible snapshots. |
@@ -279,6 +280,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Agent integration](docs/AGENT_INTEGRATION.md)
 - [Agent benchmarks](docs/AGENT_BENCHMARKS.md)
 - [Agent benchmark calibration plan](docs/AGENT_BENCHMARK_PLAN.md)
+- [Agent benchmark v0.3 smoke plan](docs/AGENT_BENCHMARK_SMOKE_PLAN.md)
 - [Agent benchmark report](docs/AGENT_BENCHMARK_REPORT.md)
 - [Benchmarks](docs/BENCHMARKS.md)
 - [Skill specification](docs/SKILL_SPEC.md)
@@ -293,6 +295,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Adopter playbook](docs/ADOPTER_PLAYBOOK.md)
 - [Adoption pilot worksheet](docs/ADOPTION_WORKSHEET.md)
 - [Safety model](docs/SAFETY_MODEL.md)
+- [Community skill security](docs/SKILL_SECURITY.md)
 - [Governance](docs/GOVERNANCE.md)
 - [Contributor ladder](docs/CONTRIBUTOR_LADDER.md)
 - [Review routing](docs/REVIEW_ROUTING.md)

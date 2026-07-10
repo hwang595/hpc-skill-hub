@@ -32,6 +32,11 @@ adapters.
 Agents should cite the skill id, version, maturity, risk level, README path, and
 example paths used for a recommendation.
 
+Community-contributed skill packages are a separate trust boundary. Agents
+should run `python3 tools/hpc_skill.py security <skill-path> --json` before
+loading untrusted skill text into context, stop on a `block` verdict, and show
+the user any `review` findings before adoption.
+
 ## Safety Contract
 
 Agents must not execute example commands automatically. They should present
@@ -45,6 +50,9 @@ allocations, or change shared-system state.
 Private hostnames, usernames, allocation names, tokens, internal project ids,
 and unpublished security procedures do not belong in prompts, logs, examples,
 generated docs, site adapters, or public issues.
+
+The scanner is a static review signal, not a safety certification. Agent
+sandboxing, user intent, provenance review, and domain review still apply.
 
 ## Maintaining The Adapters
 

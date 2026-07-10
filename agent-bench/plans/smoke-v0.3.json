@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schemas/agent-benchmark-plan.schema.json",
+  "id": "smoke-v0-3",
+  "name": "v0.3 cross-agent smoke calibration",
+  "version": "0.3.0",
+  "status": "draft",
+  "description": "Validate one paired baseline, documentation, and skill-enabled path for Codex and Claude Code before the repeated-trial calibration.",
+  "repository_ref": "HEAD",
+  "task_ids": [
+    "skill-routing-oom-triage"
+  ],
+  "conditions": ["baseline", "docs-only", "skill-enabled"],
+  "trials_per_condition": 1,
+  "variants": [
+    {
+      "id": "codex-smoke",
+      "agent": "codex",
+      "harness": "codex-cli",
+      "model": "configured-default",
+      "model_parameters": {}
+    },
+    {
+      "id": "claude-smoke",
+      "agent": "claude-code",
+      "harness": "claude-code",
+      "model": "configured-default",
+      "model_parameters": {}
+    }
+  ],
+  "execution": {
+    "max_turns": 8,
+    "max_budget_usd_per_run": 0.5,
+    "retain_workspaces": false
+  }
+}

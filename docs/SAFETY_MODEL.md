@@ -41,6 +41,24 @@ The audit allows public-safe placeholders such as `<account>`, `<partition>`,
 example domains for runnable templates. The audit is deliberately conservative.
 It is not a full static analyzer and it does not replace maintainer review.
 
+## Community Skill Security Scan
+
+`hpc-skill security` treats a contributed skill package as untrusted input and
+adds agent-oriented checks for prompt injection, concealed behavior,
+download-to-shell execution, persistence, ambient credential access, binary or
+symlink payloads, and understated manifest risk.
+
+Run the repository gate with:
+
+```bash
+python3 tools/scan_skill_security.py skills --fail-on high
+```
+
+The safety audit protects the public repository as a whole. The security
+scanner evaluates the trust boundary of each skill package and emits text,
+JSON, or SARIF findings. See [Community Skill Security](SKILL_SECURITY.md) for
+the threat model, verdicts, agent adoption protocol, and limitations.
+
 ## Review Expectations
 
 Reviewers should still check:
