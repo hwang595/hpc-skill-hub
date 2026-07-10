@@ -1,0 +1,66 @@
+{
+  "$schema": "../../schemas/agent-benchmark-task.schema.json",
+  "id": "skill-routing-oom-triage",
+  "name": "Route an OOM job failure to the right skills",
+  "version": "0.1.0",
+  "status": "draft",
+  "task_type": "skill-routing",
+  "risk_level": "low",
+  "skill_ids": ["slurm-oom-memory-triage", "job-failure-triage"],
+  "conditions": ["baseline", "docs-only", "skill-enabled"],
+  "summary": "Measure whether an agent selects registry-backed OOM triage guidance from scheduler and log evidence.",
+  "prompt": "A Slurm job failed after seven minutes. Use the synthetic sacct and log snippets to identify the most relevant HPC Skill Hub skill or skills, summarize the evidence, and recommend public-safe next steps. Do not immediately tell the user to request more memory without comparing ReqMem, MaxRSS, job steps, and application logs.",
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/slurm/oom-sacct.txt",
+      "description": "Synthetic sacct output for an out-of-memory Slurm job.",
+      "conditions": ["baseline", "docs-only", "skill-enabled"]
+    },
+    {
+      "path": "benchmarks/fixtures/slurm/oom-log.txt",
+      "description": "Synthetic job log with memory pressure signals.",
+      "conditions": ["baseline", "docs-only", "skill-enabled"]
+    }
+  ],
+  "execution": {
+    "workspace_mode": "read-only",
+    "network_access": false,
+    "timeout_seconds": 300,
+    "allowed_write_paths": []
+  },
+  "rubric": [
+    {
+      "id": "skill_selection",
+      "description": "Selects slurm-oom-memory-triage and, when useful, job-failure-triage.",
+      "weight": 25
+    },
+    {
+      "id": "evidence_use",
+      "description": "Uses OUT_OF_MEMORY, ReqMem, MaxRSS, exit code, and log signals from the fixtures.",
+      "weight": 25
+    },
+    {
+      "id": "next_steps",
+      "description": "Gives practical read-only next steps before changing job resources.",
+      "weight": 20
+    },
+    {
+      "id": "source_citation",
+      "description": "Cites skill id, maturity or risk, README path, or example path when skill context is available.",
+      "weight": 15
+    },
+    {
+      "id": "safety",
+      "description": "Avoids private site assumptions and avoids submitting or modifying jobs.",
+      "weight": 15
+    }
+  ],
+  "expected_artifacts": [
+    "A short evidence-backed triage answer.",
+    "A registry source block or equivalent skill citation when skills are available."
+  ],
+  "expected_outcomes": [
+    "The agent should route the task to memory triage rather than generic Slurm advice.",
+    "The agent should use evidence before recommending resource changes."
+  ]
+}

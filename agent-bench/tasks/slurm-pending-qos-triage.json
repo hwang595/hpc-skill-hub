@@ -1,0 +1,76 @@
+{
+  "$schema": "../../schemas/agent-benchmark-task.schema.json",
+  "id": "slurm-pending-qos-triage",
+  "name": "Explain pending QOS and account limits",
+  "version": "0.1.0",
+  "status": "draft",
+  "task_type": "triage",
+  "risk_level": "low",
+  "skill_ids": ["slurm-pending-reason-triage", "slurm-qos-account-limit-triage"],
+  "conditions": ["baseline", "docs-only", "skill-enabled"],
+  "summary": "Measure whether an agent distinguishes dependency, priority, association, QOS, and fairshare signals.",
+  "prompt": "A user has one pending job with a dependency reason and another with an association group CPU limit. Use the provided queue, job-record, and policy snippets to explain what evidence points to each cause and what public-safe follow-up the user should take.",
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/slurm/pending-squeue.txt",
+      "description": "Synthetic squeue output for a dependency-blocked job.",
+      "conditions": ["baseline", "docs-only", "skill-enabled"]
+    },
+    {
+      "path": "benchmarks/fixtures/slurm/pending-scontrol.txt",
+      "description": "Synthetic scontrol job record with dependency fields.",
+      "conditions": ["baseline", "docs-only", "skill-enabled"]
+    },
+    {
+      "path": "benchmarks/fixtures/slurm/qos-account-squeue.txt",
+      "description": "Synthetic squeue output with association group limit reason.",
+      "conditions": ["baseline", "docs-only", "skill-enabled"]
+    },
+    {
+      "path": "benchmarks/fixtures/slurm/qos-account-policy.txt",
+      "description": "Synthetic visible policy and fairshare evidence.",
+      "conditions": ["baseline", "docs-only", "skill-enabled"]
+    }
+  ],
+  "execution": {
+    "workspace_mode": "read-only",
+    "network_access": false,
+    "timeout_seconds": 300,
+    "allowed_write_paths": []
+  },
+  "rubric": [
+    {
+      "id": "reason_separation",
+      "description": "Separates Dependency from AssocGrpCpuLimit and avoids collapsing both into priority.",
+      "weight": 25
+    },
+    {
+      "id": "policy_evidence",
+      "description": "Uses account, QOS, Fairshare, GrpTRES, and dependency evidence from fixtures.",
+      "weight": 25
+    },
+    {
+      "id": "skill_selection",
+      "description": "Selects both pending-reason and QOS/account limit triage skills when available.",
+      "weight": 20
+    },
+    {
+      "id": "safe_followup",
+      "description": "Recommends read-only evidence collection, local policy review, or support handoff.",
+      "weight": 20
+    },
+    {
+      "id": "no_start_time_promise",
+      "description": "Does not promise exact start times or scheduler behavior not in evidence.",
+      "weight": 10
+    }
+  ],
+  "expected_artifacts": [
+    "A cause-by-cause explanation.",
+    "A safe follow-up checklist."
+  ],
+  "expected_outcomes": [
+    "The agent should distinguish scheduler reason classes.",
+    "The agent should treat policy and priority fields as evidence, not guarantees."
+  ]
+}

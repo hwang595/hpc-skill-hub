@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schemas/agent-benchmark-plan.schema.json",
+  "id": "calibration-v0-2",
+  "name": "v0.2 agent benchmark calibration",
+  "version": "0.2.0",
+  "status": "draft",
+  "description": "Calibrate paired baseline, documentation, and skill-enabled scoring before publishing a full leaderboard.",
+  "repository_ref": "HEAD",
+  "task_ids": [
+    "repo-benchmark-case-repair",
+    "shared-permissions-safety",
+    "skill-routing-oom-triage"
+  ],
+  "conditions": ["baseline", "docs-only", "skill-enabled"],
+  "trials_per_condition": 3,
+  "variants": [
+    {
+      "id": "codex-current",
+      "agent": "codex",
+      "harness": "codex-cli",
+      "model": "configured-default",
+      "model_parameters": {}
+    },
+    {
+      "id": "claude-current",
+      "agent": "claude-code",
+      "harness": "claude-code",
+      "model": "configured-default",
+      "model_parameters": {}
+    }
+  ],
+  "execution": {
+    "max_turns": 12,
+    "max_budget_usd_per_run": null,
+    "retain_workspaces": false
+  }
+}

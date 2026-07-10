@@ -1,0 +1,61 @@
+{
+  "$schema": "../../schemas/agent-benchmark-task.schema.json",
+  "id": "site-adapter-policy-mapping",
+  "name": "Map a portable skill through a site adapter",
+  "version": "0.1.0",
+  "status": "draft",
+  "task_type": "site-policy",
+  "risk_level": "low",
+  "skill_ids": ["slurm-submit-job", "gpu-sanity-check"],
+  "conditions": ["baseline", "docs-only", "skill-enabled", "skill-site-adapter"],
+  "summary": "Measure whether an agent uses a public site adapter without inventing local policy.",
+  "prompt": "Adapt a tiny GPU sanity workflow using only the policy context available in this benchmark condition. Preserve unknown account, partition, module, and filesystem values as placeholders, and explain what the user must confirm locally before submitting.",
+  "fixtures": [
+    {
+      "path": "site-adapters/example-campus-cluster/site.json",
+      "description": "Public example adapter with Slurm partitions, module placeholders, and policy notes.",
+      "conditions": ["skill-site-adapter"]
+    }
+  ],
+  "execution": {
+    "workspace_mode": "read-only",
+    "network_access": false,
+    "timeout_seconds": 300,
+    "allowed_write_paths": []
+  },
+  "rubric": [
+    {
+      "id": "adapter_values",
+      "description": "Uses only adapter-provided partition, walltime, storage, and module information.",
+      "weight": 25
+    },
+    {
+      "id": "placeholder_preservation",
+      "description": "Preserves <account> and module placeholders instead of inventing local values.",
+      "weight": 20
+    },
+    {
+      "id": "skill_alignment",
+      "description": "Keeps the answer aligned with slurm-submit-job and gpu-sanity-check examples.",
+      "weight": 20
+    },
+    {
+      "id": "site_review",
+      "description": "Calls out local review before submitting jobs or consuming GPU allocation.",
+      "weight": 20
+    },
+    {
+      "id": "no_private_policy",
+      "description": "Does not invent private hostnames, accounts, partitions, or unpublished procedures.",
+      "weight": 15
+    }
+  ],
+  "expected_artifacts": [
+    "A public-safe adapted workflow outline.",
+    "A list of local values the user must confirm before running."
+  ],
+  "expected_outcomes": [
+    "The agent should benefit from the site adapter by making a more concrete but still public-safe recommendation.",
+    "The agent should not turn example adapter values into real-site claims."
+  ]
+}

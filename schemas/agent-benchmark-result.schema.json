@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/agent-benchmark-result.schema.json",
+  "title": "HPC Skill Hub Agent Benchmark Result",
+  "type": "object",
+  "required": [
+    "$schema",
+    "run_id",
+    "task_id",
+    "task_version",
+    "trial",
+    "agent",
+    "harness",
+    "model",
+    "condition",
+    "started_at",
+    "completed_at",
+    "status",
+    "provenance",
+    "metrics",
+    "criteria_scores",
+    "evaluation",
+    "failure",
+    "artifacts",
+    "notes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "task_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "trial": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "agent": {
+      "type": "string"
+    },
+    "harness": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "condition": {
+      "type": "string",
+      "enum": ["baseline", "docs-only", "skill-enabled", "skill-site-adapter"]
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending-review", "scored", "failed", "skipped"]
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "repository_commit",
+        "repository_dirty",
+        "skill_snapshot",
+        "task_sha256",
+        "agent_version",
+        "harness_version",
+        "invocation_mode",
+        "model_parameters",
+        "network_access",
+        "workspace_mode"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "repository_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "repository_dirty": {
+          "type": "boolean"
+        },
+        "skill_snapshot": {
+          "type": "string",
+          "minLength": 1
+        },
+        "task_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "agent_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "harness_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "invocation_mode": {
+          "type": "string",
+          "enum": ["cli", "api", "manual", "import"]
+        },
+        "model_parameters": {
+          "type": "object"
+        },
+        "network_access": {
+          "type": "boolean"
+        },
+        "workspace_mode": {
+          "type": "string",
+          "enum": ["read-only", "workspace-write"]
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["wall_time_seconds", "input_tokens", "output_tokens", "cost_usd"],
+      "additionalProperties": false,
+      "properties": {
+        "wall_time_seconds": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "input_tokens": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "cost_usd": {
+          "type": ["number", "null"],
+          "minimum": 0
+        }
+      }
+    },
+    "criteria_scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["criterion_id", "score"],
+        "additionalProperties": false,
+        "properties": {
+          "criterion_id": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "evaluation": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "required": ["rubric_version", "evaluator_type", "evaluator_ids", "blinded", "scored_at"],
+          "additionalProperties": false,
+          "properties": {
+            "rubric_version": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            },
+            "evaluator_type": {
+              "type": "string",
+              "enum": ["human", "deterministic", "llm-assisted"]
+            },
+            "evaluator_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {"type": "string"}
+            },
+            "blinded": {"type": "boolean"},
+            "scored_at": {"type": "string", "format": "date-time"}
+          }
+        }
+      ]
+    },
+    "failure": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "required": ["category", "summary"],
+          "additionalProperties": false,
+          "properties": {
+            "category": {
+              "type": "string",
+              "enum": ["agent-error", "timeout", "harness-error", "policy-blocked", "invalid-output", "unknown"]
+            },
+            "summary": {"type": "string"}
+          }
+        }
+      ]
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "description", "sha256"],
+        "additionalProperties": false,
+        "properties": {
+          "path": {"type": "string"},
+          "description": {"type": "string"},
+          "sha256": {
+            "type": ["string", "null"],
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

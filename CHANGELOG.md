@@ -7,6 +7,14 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add the v0.2 Evidence Pilot for Codex and Claude Code with six public-safe
+  tasks, condition-scoped context isolation, task/plan/result schemas, a
+  54-run calibration matrix, and an explicit paid-execution gate.
+- Add repeated-trial agent benchmark aggregation with macro task scores,
+  terminal failure rates, confidence intervals, cost/time/token metrics,
+  paired skill lift, and blinded evaluator provenance.
+- Add static and public-safe fixture benchmarks for 15 representative skill
+  workflows and include benchmark freshness checks in local and GitHub CI.
 - Add productization sprint improvements: structured `hpc-skill validate --json`
   output, `hpc-skill check` and `hpc-skill new` contributor shortcuts,
   richer skill scaffolds, CLI discovery filters, and multi-filter static

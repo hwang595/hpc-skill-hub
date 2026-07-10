@@ -23,6 +23,14 @@ jobs:
         run: python3 tools/build_health.py --check
       - name: Check generated compatibility tables
         run: python3 tools/build_compatibility.py --check
+      - name: Check generated agent adapters
+        run: python3 tools/build_agent_adapters.py --check
+      - name: Check skill benchmarks
+        run: python3 tools/run_benchmarks.py --check
+      - name: Check agent benchmark plan and results
+        run: |
+          python3 tools/agent_benchmark_harness.py --check
+          python3 tools/run_agent_benchmarks.py --check
       - name: Check packaged registry data
         run: python3 tools/build_package_data.py --check
       - name: Check release manifest

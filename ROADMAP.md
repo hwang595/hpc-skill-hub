@@ -14,6 +14,10 @@ The seed repository currently includes:
   release manifests.
 - An installable `hpc-skill` CLI for discovery, validation, scaffolding,
   collection browsing, site adapter browsing, and registry health.
+- Generated Codex and Claude Code adapter surfaces, plus static and fixture
+  benchmark coverage for selected skills.
+- An evidence-pilot agent benchmark contract with six public-safe tasks and a
+  dry-run 54-run Codex/Claude calibration matrix.
 - Generated catalog, compatibility, registry health, package data, static site,
   and deterministic release manifest artifacts.
 - GitHub metadata for labels, issue templates, discussion templates,
@@ -24,6 +28,10 @@ The seed repository currently includes:
 The public GitHub launch is complete. Current development focuses on turning
 seed skills into reviewed skills through public-safe evidence and domain
 review.
+
+The v0.2 Evidence Pilot implementation is complete locally. Real agent runs,
+blinded scoring, external adoption evidence, and maturity promotion remain
+release evidence rather than CI work.
 
 ## Phase 0: Seed Repository
 
@@ -86,6 +94,8 @@ Technical gates:
 - Promote selected skills from `seed` to `reviewed` only after domain review.
 - Generate and keep current a reviewed-skill pilot packet for reviewer routing,
   issue labels, promotion gates, and public evidence checklists.
+- Run the agent benchmark calibration with exact model versions and reviewed,
+  public-safe result records before making comparative effectiveness claims.
 
 Exit evidence:
 
@@ -94,6 +104,9 @@ Exit evidence:
   training environment.
 - At least five skills complete maturity review and move to `reviewed`.
 - `docs/REVIEW_PACKET_v0.2.0.md` is current and linked from the release notes.
+- The calibration report includes paired baseline and skill-enabled trials, or
+  the release notes explicitly defer real agent execution without claiming
+  measured skill lift.
 
 ## Phase 3: CLI And Developer Experience
 
@@ -120,7 +133,8 @@ Exit evidence:
 
 ## Phase 4: Integrations
 
-Status: skill coverage exists; deeper integrations are future work.
+Status: Codex and Claude Code file-based adapters exist; deeper integrations
+and scored cross-agent evidence are in progress.
 
 Priority integration tracks:
 

@@ -17,6 +17,7 @@ DEFAULT_OUTPUT = ROOT / "site" / "index.html"
 SUPPORT_PATHS = [
     "README.md",
     "LICENSE",
+    "agent-bench",
     "assets",
     "benchmarks",
     "docs",
