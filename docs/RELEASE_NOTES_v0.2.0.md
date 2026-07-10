@@ -1,6 +1,6 @@
 # v0.2.0 Release Notes
 
-Status: in development.
+Status: released on 2026-07-10.
 
 ## Summary
 
@@ -16,6 +16,15 @@ It also adds the v0.2 Evidence Pilot infrastructure for measuring whether
 Codex and Claude Code improve when repository guidance and registry-backed
 skills are available. The release does not claim measured lift until reviewed
 agent runs are imported.
+
+## Release Scope
+
+This is an infrastructure and contract release. All 97 skills remain `draft`
+and `seed`; no site adapter is promoted to `reviewed`; and the agent benchmark
+report contains no scored external-agent runs. Those are explicit evidence
+gaps, not implicit maturity claims. Adoption reports, domain review, real site
+adapter review, paid agent execution, redaction, and blinded scoring continue
+through public follow-up work.
 
 ## Registry Contents
 
@@ -88,15 +97,16 @@ For each selected skill:
   bundled yet. Exact models, paid execution, redaction, and blinded review are
   explicit maintainer operations outside CI.
 
-## Release Checks
+## Release Verification
 
-Before tagging `v0.2.0`, maintainers should confirm:
+The release candidate was verified with:
 
-- `make check` passes locally and in GitHub Actions.
+- `make check` passing locally.
+- `Validate`, `Package`, and `Publish Pages` passing on the release commit.
 - `docs/REVIEW_PACKET_v0.2.0.md` is current.
 - `docs/AGENT_BENCHMARK_PLAN.md` and `docs/AGENT_BENCHMARK_REPORT.md` are
   current.
-- `registry/releases/v0.2.0.json` is current and attached to the GitHub
+- `registry/releases/v0.2.0.json` is current and published with the GitHub
   release.
-- At least the first maturity-review issues are opened or explicitly deferred.
-- No maturity promotion lacks public review evidence.
+- The maturity-review queue is open and no maturity promotion is claimed
+  without public review evidence.

@@ -45,6 +45,8 @@ Review:
 
 - `CHANGELOG.md` includes the release.
 - `docs/RELEASE_NOTES_v<version>.md` is ready for GitHub release notes.
+- `pyproject.toml`, `setup.py`, `src/hpc_skill_hub/__init__.py`,
+  `CITATION.cff`, and the README badge agree on the repository version.
 - `registry/index.json` is current.
 - `docs/SKILL_CATALOG.md` is current.
 - `docs/COMPATIBILITY.md` is current.

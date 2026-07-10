@@ -158,9 +158,9 @@
       "sha256": "8e354d5f981c66d0f9a8f5eba9da657e2f8a257f8c5c548cb82b21706ad414a8"
     },
     {
-      "bytes": 1237,
+      "bytes": 1410,
       "path": ".github/workflows/package.yml",
-      "sha256": "cf674a644130bd8a6d4128665e9a517ab998ee6bbb36159efff4f9e121f5b557"
+      "sha256": "f692055f54a7ce7cd45c837cae90cc6a86dbad4707ae58c2db16bc27a0dea930"
     },
     {
       "bytes": 1045,
@@ -183,14 +183,14 @@
       "sha256": "ee0aa494bc8bc015048e0e5991ccda8fcc84fae7ea7280edae4982d8db5e2a84"
     },
     {
-      "bytes": 16570,
+      "bytes": 16594,
       "path": "CHANGELOG.md",
-      "sha256": "392441f6e7cfb79d099575d2dccf5cda677cafd6baf9697c5d8cd19fe9726249"
+      "sha256": "98b2c684c43acbff4a3f6d557fe94f2a2333afc66f10b5f47a75b2c706f500f7"
     },
     {
-      "bytes": 426,
+      "bytes": 454,
       "path": "CITATION.cff",
-      "sha256": "372e6ed01df4e58d9b4c5152c3df1a42fcce55f6cf2a2c0e385036df111ef03c"
+      "sha256": "b53deedbe1c4d3568c0c3b9a7d366ab3ea4a7aa4403e5390e273aabbcb415912"
     },
     {
       "bytes": 456,
@@ -218,14 +218,14 @@
       "sha256": "25f30832388d90ac9df0a6a3805c8e48f950a58555138f1985ddd2384fb0c5bd"
     },
     {
-      "bytes": 18802,
+      "bytes": 18936,
       "path": "README.md",
-      "sha256": "097aecd3b5345d9e5f516b4376a933c7562242ba091df4e73f42b3eb8132d3cf"
+      "sha256": "9d94eab319f2c511ac35172cdbe006edb3400cd5db15bf73beb2d4e75854b4b4"
     },
     {
-      "bytes": 10496,
+      "bytes": 10626,
       "path": "ROADMAP.md",
-      "sha256": "331c073bba26c5caf8a2a53914ae3fa0f0333bd6a93041a4e22cfaad040a0ef6"
+      "sha256": "2bbecec1b6c272ca6fec19a7ea1680b7c775e25b967067ace5134110b495c0c4"
     },
     {
       "bytes": 1442,
@@ -588,9 +588,9 @@
       "sha256": "4c58d977cf4d0f064ddd960e5678182283ae2809df744aefe2a74c48fb17e884"
     },
     {
-      "bytes": 1151,
+      "bytes": 1154,
       "path": "docs/CITATION.md",
-      "sha256": "2da62f31137090af41af1750a6c07b2309a1c953266c5f2f417ff77cd1267426"
+      "sha256": "857d672740c47d0f04e5a6b9f66c3b9f28d89c576dbe26cda4aeb3434bc9b529"
     },
     {
       "bytes": 3596,
@@ -708,14 +708,14 @@
       "sha256": "d38d14b1925a656e0396561e2fe6a92cbf6d5f33d8ec53ee6b1d29c24d6985c6"
     },
     {
-      "bytes": 4465,
+      "bytes": 4937,
       "path": "docs/RELEASE_NOTES_v0.2.0.md",
-      "sha256": "c4dfc5743db5a8074a699cef02d587ac3f563742187c9e3c5964ca4310588230"
+      "sha256": "78c37524d525e2964530d472864f6d4bdb7737e37b883a6b4acc63fd533c5faf"
     },
     {
-      "bytes": 3021,
+      "bytes": 3158,
       "path": "docs/RELEASE_PROCESS.md",
-      "sha256": "f391e94a83ba116759b622ce25ba538e0ac2f268b2e5ee91b04f9dc1ee99fa9f"
+      "sha256": "4c0f3ae052f4bef345fffcf4667cfb1d013915f75eda6f11686bc4363e5d3b9b"
     },
     {
       "bytes": 5400,
@@ -3035,7 +3035,7 @@
     {
       "bytes": 65,
       "path": "src/hpc_skill_hub/__init__.py",
-      "sha256": "81583b690d7f556c0fddc532700d247528d901746d71b05d8887197b449a090a"
+      "sha256": "cc61f8b1f3bc631b7c8177063130268dfa8688227079d45ab36f8b5c92e501f1"
     },
     {
       "bytes": 145,
@@ -3078,9 +3078,9 @@
       "sha256": "4a625d36f1145fb3ea4be9bacabc9c8b315ce130520bc15419be6ec4eac10d01"
     },
     {
-      "bytes": 22609,
+      "bytes": 23810,
       "path": "tests/test_registry.py",
-      "sha256": "75b9db2533001ef20b93c1b063e5434163c97b846015122f808055d3e510622e"
+      "sha256": "f169716cbdec73135e3f20f76c9127e3d487adf0aa62a4e9385ce65a397c12bd"
     },
     {
       "bytes": 2981,
@@ -3250,6 +3250,6 @@
     "uncollected_skill_count": 0
   },
   "schema_version": "0.1.0",
-  "total_bytes": 3105083,
+  "total_bytes": 3107385,
   "version": "v0.2.0"
 }

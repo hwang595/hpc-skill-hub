@@ -12,7 +12,7 @@
   <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/validate.yml?query=branch%3Amain"><img alt="Validate workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/validate.yml/badge.svg?branch=main"></a>
   <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/package.yml?query=branch%3Amain"><img alt="Package workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/package.yml/badge.svg?branch=main"></a>
   <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/pages.yml?query=branch%3Amain"><img alt="Pages workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/pages.yml/badge.svg?branch=main"></a>
-  <img alt="Version 0.2.0 in development" src="https://img.shields.io/badge/version-0.2.0--dev-0f766e">
+  <img alt="Version 0.2.0" src="https://img.shields.io/badge/version-0.2.0-0f766e">
   <img alt="Python 3.9+" src="https://img.shields.io/badge/python-3.9%2B-3776ab">
   <img alt="97 skills" src="https://img.shields.io/badge/skills-97-2563eb">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-green"></a>
@@ -257,12 +257,14 @@ The repository is set up as a versioned registry, not just a documentation dump:
 
 ## Project Status
 
-This repository is in the seed stage. The initial focus is on:
+`v0.2.0` is the current stable registry snapshot. The registry remains
+conservative about maturity: skills stay `seed` until domain review and public
+evidence support promotion. The current focus is on:
 
 1. A stable skill package format.
 2. A curated first batch of practical HPC skills.
 3. CI validation for contributions.
-4. A path toward a searchable public registry and ecosystem.
+4. Evidence-backed agent integrations and a path toward an open ecosystem.
 
 See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 

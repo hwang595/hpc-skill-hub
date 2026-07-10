@@ -280,6 +280,32 @@ class RegistryTests(unittest.TestCase):
         self.assertIn("schemas/registry-health.schema.json", paths)
         self.assertIn("schemas/release-manifest.schema.json", paths)
 
+    def test_repository_release_versions_are_consistent(self):
+        manifest = json.loads(
+            (ROOT / "registry" / "releases" / "v0.2.0.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        version = manifest["version"].removeprefix("v")
+        pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+        setup = (ROOT / "setup.py").read_text(encoding="utf-8")
+        package_init = (ROOT / "src" / "hpc_skill_hub" / "__init__.py").read_text(
+            encoding="utf-8"
+        )
+        citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        release_notes = (ROOT / "docs" / "RELEASE_NOTES_v0.2.0.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn(f'version = "{version}"', pyproject)
+        self.assertIn(f'version="{version}"', setup)
+        self.assertIn(f'__version__ = "{version}"', package_init)
+        self.assertIn(f'version: "{version}"', citation)
+        self.assertIn(f"version-{version}-", readme)
+        self.assertNotIn(f"version-{version}--dev", readme)
+        self.assertIn("Status: released", release_notes)
+
     def test_safety_audit_passes(self):
         result = run_cmd("python3", "tools/audit_safety.py")
         self.assertIn("Safety audit passed", result.stdout)
