@@ -22,16 +22,17 @@ The seed repository currently includes:
   and deterministic release manifest artifacts.
 - GitHub metadata for labels, issue templates, discussion templates,
   milestones, workflows, starter rulesets, and seed community issues.
-- A published `v0.1.0` release and a `v0.2.0` development track for the first
-  reviewed-skill pilot.
+- Published `v0.1.0` and `v0.2.0` registry releases. The `v0.2.0` release ships
+  the reviewed-skill and agent-evidence pilot infrastructure without promoting
+  skills automatically.
 
 The public GitHub launch is complete. Current development focuses on turning
 seed skills into reviewed skills through public-safe evidence and domain
 review.
 
-The v0.2 Evidence Pilot implementation is complete locally. Real agent runs,
-blinded scoring, external adoption evidence, and maturity promotion remain
-release evidence rather than CI work.
+The v0.2 Evidence Pilot infrastructure is released. Real agent runs, blinded
+scoring, external adoption evidence, and maturity promotion remain public
+follow-up evidence and inputs to v0.3 planning.
 
 ## Phase 0: Seed Repository
 
@@ -80,7 +81,7 @@ Exit evidence:
 
 ## Phase 2: Usable Registry
 
-Status: in progress for `v0.2.0`.
+Status: released in `v0.2.0`; adoption and maturity outcomes remain open.
 
 Technical gates:
 

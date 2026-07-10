@@ -6,7 +6,8 @@ abstract: "An open registry of reusable, reviewable skills for high performance 
 authors:
   - name: "HPC Skill Hub Maintainers"
 license: "MIT"
-version: "0.1.0"
+version: "0.2.0"
+date-released: "2026-07-10"
 keywords:
   - hpc
   - slurm

@@ -37,3 +37,4 @@ jobs:
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill health --json
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill collection core-hpc --json
           /tmp/hpc-skill-hub-wheel/bin/python -m hpc_skill_hub show slurm-submit-job --json
+          /tmp/hpc-skill-hub-wheel/bin/python -c "import importlib.metadata, hpc_skill_hub; assert hpc_skill_hub.__version__ == importlib.metadata.version('hpc-skill-hub')"

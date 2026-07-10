@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+## v0.2.0 - 2026-07-10
+
 - Add the v0.2 Evidence Pilot for Codex and Claude Code with six public-safe
   tasks, condition-scoped context isolation, task/plan/result schemas, a
   54-run calibration matrix, and an explicit paid-execution gate.
