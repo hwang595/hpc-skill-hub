@@ -21,10 +21,11 @@ use it implicitly when the user asks for HPC workflow help.
    `python3 tools/hpc_skill.py show <skill-id> --examples --json`.
 5. Read the selected `skills/<skill-id>/README.md` and relevant example files
    before recommending commands or edits.
-6. If local policy matters, inspect site adapters with
-   `python3 tools/hpc_skill.py adapters --json` and
-   `python3 tools/hpc_skill.py adapter <adapter-id> --json`. Ask the user for
-   missing scheduler, account, partition, storage, module, or container values.
+6. If local policy matters, list site adapters, then resolve the selected skill
+   through the public policy contract with:
+   `python3 tools/hpc_skill.py resolve <skill-id> --adapter <adapter-id> --json`.
+   Treat `incompatible` as a stop signal and ask the user for every missing
+   scheduler, account, partition, storage, module, or container value.
 7. In the final answer, cite the skill id, version, maturity, risk level,
    README path, and example path used.
 
@@ -63,4 +64,5 @@ Maturity: <maturity>
 Risk: <risk_level>
 README: skills/<skill-id>/README.md
 Examples: skills/<skill-id>/examples/<file>
+Adapter: <adapter-id> (<status>, <resolution-status>)
 ```

@@ -37,6 +37,11 @@ storage conventions, and policy notes without editing or forking generic skills.
 Both generated artifacts are checked in CI so documentation and machine-readable
 metadata stay aligned with the skill manifests.
 
+Registry index contract `0.2.0` embeds each adapter's complete public policy so
+the installed CLI can resolve a portable skill and site adapter without a
+checkout. `hpc-skill resolve` emits the separate, read-only
+`site-adapter-resolution` contract and never renders or executes commands.
+
 `tools/build_health.py` generates `registry/health.json` and
 `docs/REGISTRY_HEALTH.md` for maintainer-facing coverage, risk, maturity, and
 collection health.
@@ -57,6 +62,10 @@ health report, packaged registry snapshot, immutable historical release
 manifests, and public JSON Schema pointers used by downstream integrations.
 Preparing a new release separately runs `tools/build_release_manifest.py` to
 compare that version's snapshot with the release candidate worktree.
+
+The tag-triggered package workflow uses GitHub artifact attestations to bind
+the versioned release manifest and tested Python distributions to their build
+workflow without granting signing permissions to pull request build jobs.
 
 `hpc_skill_hub.security` and `tools/scan_skill_security.py` scan untrusted skill
 packages without executing them. The scanner emits text, JSON, or SARIF and is

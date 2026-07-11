@@ -31,6 +31,7 @@ jobs:
         run: |
           python3 tools/agent_benchmark_harness.py --check
           python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/smoke-v0.3.json --report docs/AGENT_BENCHMARK_SMOKE_PLAN.md --check
+          python3 tools/agent_benchmark_review.py --help
           python3 tools/run_agent_benchmarks.py --check
       - name: Check packaged registry data
         run: python3 tools/build_package_data.py --check
@@ -53,6 +54,7 @@ jobs:
           cd /tmp
           hpc-skill health --json
           hpc-skill collection core-hpc --json
+          hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
           python3 -m hpc_skill_hub show slurm-submit-job --json
       - name: Smoke test registry CLI
         run: |
@@ -67,6 +69,7 @@ jobs:
           python3 tools/hpc_skill.py collections
           python3 tools/hpc_skill.py collection core-hpc
           python3 tools/hpc_skill.py adapters
+          python3 tools/hpc_skill.py resolve slurm-submit-job --adapter example-campus-cluster --json
           hpc-skill security skills/slurm-submit-job --fail-on high
           python3 tools/hpc_skill.py scaffold skill ci-test-skill --name "CI Test Skill" --category education --tool bash --root /tmp/hpc-skill-hub-scaffold --force
           python3 tools/hpc_skill.py scaffold site-adapter ci-test-cluster --name "CI Test Cluster" --root /tmp/hpc-skill-hub-scaffold --force

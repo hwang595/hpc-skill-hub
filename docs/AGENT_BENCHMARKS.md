@@ -41,6 +41,12 @@ They record exact agent, harness, model, task and repository provenance;
 execution metrics; status; failure category; artifacts; rubric scores; and
 evaluator provenance.
 
+Blinded packet manifests, independent reviews, and reconciliations follow
+[`agent-benchmark-review-packet.schema.json`](../schemas/agent-benchmark-review-packet.schema.json),
+[`agent-benchmark-review.schema.json`](../schemas/agent-benchmark-review.schema.json),
+and
+[`agent-benchmark-reconciliation.schema.json`](../schemas/agent-benchmark-reconciliation.schema.json).
+
 ## Dry Run And Isolation
 
 Inspect the deterministic matrix:
@@ -99,6 +105,13 @@ Use two reviewers for the calibration set:
 
 LLM-assisted scoring may support reviewers, but it must be labeled
 `llm-assisted`; it is not a substitute for calibration against human ratings.
+
+Use `tools/agent_benchmark_review.py` to prepare digest-bound packets, validate
+exactly two independent reviews, require reconciliation at the disagreement
+threshold, and finalize a public staging bundle. The private mapping and salt
+must stay outside the distributed packet. See the
+[Blinded Review And Scoring runbook](BLINDED_REVIEW.md) for commands, trust
+boundaries, and publication handling.
 
 ## Aggregation
 
@@ -170,8 +183,8 @@ quota must be approved and monitored outside the harness.
 
 Do not score a dirty-worktree run as public evidence. Commit the benchmark
 contract first, execute from that clean commit, redact artifacts, and then use
-the result importer and blinded rubric process. `--allow-dirty-run` exists only
-for explicitly non-public harness debugging.
+the blinded review and scoring tool. `--allow-dirty-run` exists only for
+explicitly non-public harness debugging.
 
 ## Publication Gate
 

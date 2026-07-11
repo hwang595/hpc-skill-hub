@@ -11,6 +11,10 @@ only after its artifacts are redacted and reviewers complete every rubric
 criterion. Failed runs remain visible and contribute to the reported failure
 rate instead of disappearing from the leaderboard.
 
+Use `tools/agent_benchmark_review.py finalize` to build an external staging
+bundle. Inspect that bundle before importing selected results here; the tool
+does not write to this directory automatically.
+
 Do not commit raw transcripts, private hostnames, usernames, accounts,
 allocation names, tokens, private paths, internal project ids, or unpublished
 site policy.

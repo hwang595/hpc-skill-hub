@@ -7,6 +7,14 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a read-only site-adapter resolver, ship complete public policy in registry
+  index contract `0.2.0`, and expose mapped, compatible-unmapped, and
+  incompatible outcomes to installed CLI and agent consumers.
+- Add tag-only GitHub/Sigstore build provenance for release manifests, source
+  distributions, and wheels through `actions/attest@v4`.
+- Add a blinded agent benchmark review and scoring MVP with digest-bound review
+  packets, two-reviewer validation, disagreement reconciliation, redaction and
+  tamper gates, and public-safe staged result finalization.
 - Start the v0.3 security foundation with an installable community skill
   scanner, structured JSON/SARIF reports, prompt-injection and dangerous-action
   rules, manifest risk cross-checks, agent adoption guidance, and CI gating.

@@ -397,6 +397,13 @@ class RegistryTests(unittest.TestCase):
         index_ids = sorted(adapter["id"] for adapter in index["site_adapters"])
         self.assertEqual(adapter_ids, index_ids)
         self.assertEqual(index["site_adapter_count"], len(adapter_ids))
+        self.assertEqual(index["schema_version"], "0.2.0")
+        for adapter in index["site_adapters"]:
+            self.assertIn("public_policy", adapter)
+            self.assertEqual(
+                adapter["skill_overrides"],
+                [item["skill_id"] for item in adapter["public_policy"]["skill_overrides"]],
+            )
 
     def test_index_matches_collections(self):
         index = self.load_index()
@@ -526,11 +533,26 @@ class RegistryTests(unittest.TestCase):
                 cwd=tmpdir,
                 env={"PYTHONPATH": tmpdir},
             )
+            resolution_result = run_cmd_with_env(
+                "python3",
+                "-m",
+                "hpc_skill_hub",
+                "resolve",
+                "slurm-submit-job",
+                "--adapter",
+                "example-campus-cluster",
+                "--json",
+                cwd=tmpdir,
+                env={"PYTHONPATH": tmpdir},
+            )
 
         payload = json.loads(result.stdout)
         self.assertEqual(payload["skill_count"], index["skill_count"])
         self.assertEqual(payload["collection_count"], index["collection_count"])
         self.assertEqual(payload["site_adapter_count"], index["site_adapter_count"])
+        resolution = json.loads(resolution_result.stdout)
+        self.assertEqual(resolution["resolution_status"], "mapped")
+        self.assertEqual(resolution["override"]["skill_id"], "slurm-submit-job")
 
     def test_package_validate_entrypoint(self):
         result = run_cmd_with_env(
@@ -555,6 +577,53 @@ class RegistryTests(unittest.TestCase):
         payload = json.loads(result.stdout)
         self.assertEqual(payload["id"], "example-campus-cluster")
         self.assertEqual(payload["scheduler"], "slurm")
+        self.assertEqual(payload["public_policy"]["scheduler"]["type"], "slurm")
+
+    def test_cli_resolve_site_adapter_json(self):
+        result = run_cmd(
+            "python3",
+            "tools/hpc_skill.py",
+            "resolve",
+            "slurm-submit-job",
+            "--adapter",
+            "example-campus-cluster",
+            "--json",
+        )
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["resolution_status"], "mapped")
+        self.assertTrue(payload["compatibility"]["scheduler_compatible"])
+        self.assertTrue(payload["compatibility"]["explicit_override"])
+        self.assertTrue(payload["review"]["required"])
+        self.assertEqual(payload["override"]["skill_id"], "slurm-submit-job")
+        self.assertEqual(payload["public_policy"]["scheduler"]["type"], "slurm")
+
+    def test_cli_resolve_compatible_unmapped_and_incompatible(self):
+        compatible = run_cmd(
+            "python3",
+            "tools/hpc_skill.py",
+            "resolve",
+            "slurm-monitor-job",
+            "--adapter",
+            "example-campus-cluster",
+            "--json",
+        )
+        compatible_payload = json.loads(compatible.stdout)
+        self.assertEqual(compatible_payload["resolution_status"], "compatible-unmapped")
+        self.assertIsNone(compatible_payload["override"])
+
+        incompatible = run_cmd_no_check(
+            "python3",
+            "tools/hpc_skill.py",
+            "resolve",
+            "pbs-submit-job",
+            "--adapter",
+            "example-campus-cluster",
+            "--json",
+        )
+        self.assertEqual(incompatible.returncode, 2)
+        incompatible_payload = json.loads(incompatible.stdout)
+        self.assertEqual(incompatible_payload["resolution_status"], "incompatible")
+        self.assertFalse(incompatible_payload["compatibility"]["scheduler_compatible"])
 
     def test_scaffold_skill_and_site_adapter(self):
         with tempfile.TemporaryDirectory() as tmpdir:

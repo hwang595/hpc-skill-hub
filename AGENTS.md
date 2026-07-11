@@ -13,7 +13,7 @@ Current generated registry snapshot:
 - Skills: 97
 - Collections: 12
 - Site adapters: 2
-- Registry schema version: `0.1.0`
+- Registry schema version: `0.2.0`
 
 ## Fast Orientation
 
@@ -32,6 +32,8 @@ Current generated registry snapshot:
 - Search skills: `python3 tools/hpc_skill.py search <query> --json`
 - Show a skill: `python3 tools/hpc_skill.py show <skill-id> --examples --json`
 - Show collections: `python3 tools/hpc_skill.py collections --json`
+- Resolve a skill through public site policy:
+  `python3 tools/hpc_skill.py resolve <skill-id> --adapter <adapter-id> --json`
 - Validate one skill: `python3 tools/hpc_skill.py check <skill-id> --json`
 - Scan a community skill before loading it:
   `python3 tools/hpc_skill.py security <skill-path> --json`

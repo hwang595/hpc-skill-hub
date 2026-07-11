@@ -21,6 +21,7 @@ agent-adapters:
 agent-benchmarks:
 	$(PYTHON) tools/agent_benchmark_harness.py --check
 	$(PYTHON) tools/agent_benchmark_harness.py --plan agent-bench/plans/smoke-v0.3.json --report docs/AGENT_BENCHMARK_SMOKE_PLAN.md --check
+	$(PYTHON) tools/agent_benchmark_review.py --help
 	$(PYTHON) tools/run_agent_benchmarks.py --check
 
 benchmarks:
@@ -59,6 +60,7 @@ cli:
 	$(PYTHON) tools/hpc_skill.py collections
 	$(PYTHON) tools/hpc_skill.py collection core-hpc
 	$(PYTHON) tools/hpc_skill.py adapters
+	$(PYTHON) tools/hpc_skill.py resolve slurm-submit-job --adapter example-campus-cluster --json
 	$(PYTHON) tools/hpc_skill.py security skills/slurm-submit-job --fail-on high
 
 test:

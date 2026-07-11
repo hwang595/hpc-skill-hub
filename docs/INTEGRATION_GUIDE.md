@@ -12,7 +12,7 @@ The stable seed-stage surfaces are:
 
 | Surface | Purpose |
 | --- | --- |
-| `registry/index.json` | Machine-readable registry summary for skills, collections, site adapters, categories, risk, maturity, and paths. |
+| `registry/index.json` | Machine-readable registry summary for skills, collections, public site-adapter policy, categories, risk, maturity, and paths. |
 | `docs/COMPATIBILITY.md` | Generated compatibility view for schedulers, collections, workflow engines, containers, domains, and tool signals. |
 | `schemas/*.schema.json` | Validation contracts for skill manifests, collections, site adapters, registry index, registry health, and release manifests. |
 | `skills/*/README.md` | Human-readable operating notes, assumptions, safety notes, and examples. |
@@ -20,7 +20,7 @@ The stable seed-stage surfaces are:
 | `collections/*.json` | Curated adoption paths for users, domains, or roles. |
 | `site-adapters/*/site.json` | Public local policy mappings for clusters, training environments, or public cloud HPC. |
 | `python3 tools/hpc_skill.py ... --json` | Local CLI access for tools that prefer command output over direct file reads, including structured validation results. |
-| `hpc-skill ... --json` | Installed package access to the packaged registry snapshot for read-only discovery. |
+| `hpc-skill ... --json` | Installed package access to the packaged registry snapshot for read-only discovery and site-policy resolution. |
 
 Prefer `registry/index.json` for search and discovery. Load individual skill
 manifests only when you need full metadata beyond the compact index.
@@ -64,7 +64,7 @@ python3 tools/validate_registry_artifacts.py
 
 If your integration only needs read-only discovery, the Python package can be
 used as a pinned registry snapshot. The installed `hpc-skill` command supports
-JSON output for list, search, show, collection, adapter, and health commands
+JSON output for list, search, show, collection, adapter, resolve, and health commands
 without requiring a checkout at runtime. Contribution, validation, scaffolding,
 and release workflows should still use a full repository checkout.
 
@@ -98,6 +98,8 @@ When using skills inside an assistant, IDE, workflow helper, or agent:
 - Keep private cluster details outside prompts, logs, examples, and public
   issues.
 - Prefer a site adapter over hard-coding local policy into the integration.
+- Treat `resolve ... --adapter ... --json` as a read-only policy packet, never
+  as authorization to submit a job or replace placeholders.
 
 ## Portal And Search Integrations
 
@@ -122,6 +124,21 @@ Use site adapters to adapt portable skills to public local policy:
 - Add public warnings for skills that need local constraints.
 - Keep private hostnames, allocation names, usernames, internal project ids,
   and unpublished security procedures out of the adapter.
+
+Use the structured resolver instead of joining adapter and skill JSON with
+ad-hoc string rules:
+
+```bash
+hpc-skill resolve slurm-submit-job \
+  --adapter example-campus-cluster \
+  --json
+```
+
+The response follows
+[`site-adapter-resolution.schema.json`](../schemas/site-adapter-resolution.schema.json).
+Stop on `incompatible`, surface every review reason, and keep
+`compatible-unmapped` generic unless the user confirms additional public local
+policy.
 
 If no site adapter exists, tools should keep recommendations generic and ask
 users to fill in local values.
