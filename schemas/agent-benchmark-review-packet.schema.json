@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/agent-benchmark-review-packet.schema.json",
+  "title": "HPC Skill Hub Blinded Review Packet",
+  "type": "object",
+  "required": ["$schema", "schema_version", "packet_id", "plan_id", "created_at", "redaction", "case_count", "cases"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"const": "https://hpc-skill-hub.org/schemas/agent-benchmark-review-packet.schema.json"},
+    "schema_version": {"const": "0.1.0"},
+    "packet_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "plan_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "redaction": {
+      "type": "object",
+      "required": ["reviewer_id", "automated_checks"],
+      "additionalProperties": false,
+      "properties": {
+        "reviewer_id": {"type": "string", "minLength": 1},
+        "automated_checks": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "case_count": {"type": "integer", "minimum": 1},
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["blind_id", "task_id", "task_version", "response_path", "rubric_path", "score_template_path", "response_sha256", "rubric_sha256", "score_template_sha256"],
+        "additionalProperties": false,
+        "properties": {
+          "blind_id": {"type": "string", "pattern": "^case-[a-f0-9]{12}$"},
+          "task_id": {"type": "string"},
+          "task_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+          "response_path": {"type": "string"},
+          "rubric_path": {"type": "string"},
+          "score_template_path": {"type": "string"},
+          "response_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "rubric_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "score_template_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    }
+  }
+}

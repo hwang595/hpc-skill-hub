@@ -83,7 +83,8 @@ uncommitted export rather than this maintained local repository.
 - `make check` passes locally and the `Validate` workflow passes in GitHub
   Actions.
 - The `Package` workflow builds source and wheel distributions, checks package
-  metadata, and smoke tests the installed CLI outside the checkout.
+  metadata, smoke tests the installed CLI, and generates tag-only GitHub
+  artifact attestations for release manifests and tested distributions.
 - README, roadmap, contribution guide, security policy, and governance docs are
   present.
 - Generated skill catalog, registry health, and compatibility tables are

@@ -191,6 +191,7 @@ Install the CLI during development:
 python3 -m pip install .
 hpc-skill list
 hpc-skill collection core-hpc
+hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
 ```
 
 Scaffold new contributions:
@@ -281,13 +282,16 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Agent benchmarks](docs/AGENT_BENCHMARKS.md)
 - [Agent benchmark calibration plan](docs/AGENT_BENCHMARK_PLAN.md)
 - [Agent benchmark v0.3 smoke plan](docs/AGENT_BENCHMARK_SMOKE_PLAN.md)
+- [Blinded review and scoring](docs/BLINDED_REVIEW.md)
 - [Agent benchmark report](docs/AGENT_BENCHMARK_REPORT.md)
+- [v0.3 completion matrix](docs/V0_3_COMPLETION.md)
 - [Benchmarks](docs/BENCHMARKS.md)
 - [Skill specification](docs/SKILL_SPEC.md)
 - [Skill authoring guide](docs/SKILL_AUTHORING_GUIDE.md)
 - [Skill lifecycle](docs/SKILL_LIFECYCLE.md)
 - [Skill backlog](docs/SKILL_BACKLOG.md)
 - [Roadmap](ROADMAP.md)
+- [Release provenance](docs/RELEASE_PROVENANCE.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Site adapters](docs/SITE_ADAPTERS.md)
 - [Integration guide](docs/INTEGRATION_GUIDE.md)

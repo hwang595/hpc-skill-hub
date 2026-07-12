@@ -19,12 +19,16 @@ PACKAGE_DATA_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "registry"
 SCHEMAS = {
     "agent-benchmark-plan": ROOT / "schemas" / "agent-benchmark-plan.schema.json",
     "agent-benchmark-result": ROOT / "schemas" / "agent-benchmark-result.schema.json",
+    "agent-benchmark-review": ROOT / "schemas" / "agent-benchmark-review.schema.json",
+    "agent-benchmark-review-packet": ROOT / "schemas" / "agent-benchmark-review-packet.schema.json",
+    "agent-benchmark-reconciliation": ROOT / "schemas" / "agent-benchmark-reconciliation.schema.json",
     "agent-benchmark-task": ROOT / "schemas" / "agent-benchmark-task.schema.json",
     "benchmark": ROOT / "schemas" / "benchmark.schema.json",
     "index": ROOT / "schemas" / "registry-index.schema.json",
     "health": ROOT / "schemas" / "registry-health.schema.json",
     "release": ROOT / "schemas" / "release-manifest.schema.json",
     "skill-security-report": ROOT / "schemas" / "skill-security-report.schema.json",
+    "site-adapter-resolution": ROOT / "schemas" / "site-adapter-resolution.schema.json",
 }
 PUBLIC_BASELINE_DOCS = [
     ROOT / "CHANGELOG.md",
@@ -73,6 +77,7 @@ def require_schema_pointer(
 def validate_index(index: Dict[str, Any], errors: List[str]) -> None:
     context = relative(INDEX_JSON)
     require_schema_pointer(index, "../schemas/registry-index.schema.json", errors, context)
+    require(index.get("schema_version") == "0.2.0", errors, f"{context}: schema_version mismatch")
     require_keys(
         index,
         [
@@ -160,11 +165,43 @@ def validate_index(index: Dict[str, Any], errors: List[str]) -> None:
 
     for adapter in adapters:
         adapter_context = f"{context}: site_adapters/{adapter.get('id')}"
+        public_policy = adapter.get("public_policy")
+        require(
+            isinstance(public_policy, dict),
+            errors,
+            f"{adapter_context}: missing public_policy contract",
+        )
+        if isinstance(public_policy, dict):
+            require_keys(
+                public_policy,
+                [
+                    "contacts",
+                    "scheduler",
+                    "partitions",
+                    "modules",
+                    "storage",
+                    "policies",
+                    "skill_overrides",
+                ],
+                errors,
+                f"{adapter_context}: public_policy",
+            )
         for override_id in adapter.get("skill_overrides", []):
             require(
                 override_id in known_skills,
                 errors,
                 f"{adapter_context}: unknown skill override {override_id}",
+            )
+        if isinstance(public_policy, dict):
+            detail_ids = [
+                item.get("skill_id")
+                for item in public_policy.get("skill_overrides", [])
+                if isinstance(item, dict)
+            ]
+            require(
+                detail_ids == adapter.get("skill_overrides", []),
+                errors,
+                f"{adapter_context}: public_policy skill overrides mismatch",
             )
 
     for collection in collections:

@@ -416,7 +416,7 @@
     "slurm": 70,
     "uge": 1
   },
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "site_adapter_count": 2,
   "site_adapters": [
     {
@@ -429,6 +429,108 @@
         "gpu"
       ],
       "path": "site-adapters/example-campus-cluster",
+      "public_policy": {
+        "contacts": [
+          {
+            "name": "Example HPC Help Desk",
+            "url": "https://example.edu/hpc"
+          }
+        ],
+        "modules": {
+          "recommended": [
+            {
+              "module": "<mpi-module>",
+              "purpose": "MPI examples"
+            },
+            {
+              "module": "<cuda-module>",
+              "purpose": "CUDA examples"
+            },
+            {
+              "module": "<python-module>",
+              "purpose": "Python notebooks"
+            }
+          ],
+          "system": "lmod"
+        },
+        "partitions": [
+          {
+            "gpu": false,
+            "max_walltime": "00:30:00",
+            "name": "debug",
+            "purpose": "Short smoke tests and interactive debugging."
+          },
+          {
+            "gpu": false,
+            "max_walltime": "24:00:00",
+            "name": "cpu",
+            "purpose": "General CPU batch work."
+          },
+          {
+            "gpu": true,
+            "max_walltime": "12:00:00",
+            "name": "gpu",
+            "purpose": "GPU-accelerated workloads."
+          }
+        ],
+        "policies": [
+          {
+            "summary": "Compile and submit jobs from login nodes, but run compute-heavy work through Slurm.",
+            "topic": "login-nodes"
+          },
+          {
+            "summary": "Use Apptainer images stored in project or scratch space; avoid writing large image caches to home.",
+            "topic": "containers"
+          },
+          {
+            "summary": "Use Globus for large external transfers and record task ids with analysis outputs.",
+            "topic": "data-transfer"
+          }
+        ],
+        "scheduler": {
+          "account_placeholder": "<account>",
+          "default_partition": "debug",
+          "job_submit_notes": [
+            "Use the debug partition for smoke tests.",
+            "Production work should use a project-approved account."
+          ],
+          "type": "slurm"
+        },
+        "skill_overrides": [
+          {
+            "notes": "Replace <partition> with debug, cpu, or gpu and keep smoke tests under 30 minutes.",
+            "skill_id": "slurm-submit-job"
+          },
+          {
+            "notes": "Use the gpu partition and confirm local CUDA or ROCm modules before submitting.",
+            "skill_id": "gpu-sanity-check"
+          },
+          {
+            "notes": "Confirm endpoint names and project storage permissions with the local help desk.",
+            "skill_id": "globus-transfer-dataset"
+          }
+        ],
+        "storage": [
+          {
+            "backed_up": true,
+            "intended_use": "Small source files, scripts, and configuration.",
+            "name": "home",
+            "path": "$HOME"
+          },
+          {
+            "backed_up": true,
+            "intended_use": "Shared project data and durable workflow outputs.",
+            "name": "project",
+            "path": "/project/<project>"
+          },
+          {
+            "backed_up": false,
+            "intended_use": "Temporary high-throughput job working directories.",
+            "name": "scratch",
+            "path": "/scratch/<user>"
+          }
+        ]
+      },
       "readme": "site-adapters/example-campus-cluster/README.md",
       "scheduler": "slurm",
       "skill_overrides": [
@@ -451,6 +553,184 @@
         "shared"
       ],
       "path": "site-adapters/nersc-perlmutter-public",
+      "public_policy": {
+        "contacts": [
+          {
+            "name": "NERSC Documentation",
+            "url": "https://docs.nersc.gov/"
+          },
+          {
+            "name": "NERSC Help",
+            "url": "https://help.nersc.gov/"
+          }
+        ],
+        "modules": {
+          "recommended": [
+            {
+              "module": "python",
+              "purpose": "Python workflows"
+            },
+            {
+              "module": "cray-python",
+              "purpose": "Cray-provided Python and mpi4py workflows"
+            },
+            {
+              "module": "globus-tools",
+              "purpose": "Globus command line transfers"
+            },
+            {
+              "module": "Review NERSC Shifter and podman-hpc documentation",
+              "purpose": "Container workflows"
+            }
+          ],
+          "system": "lmod"
+        },
+        "partitions": [
+          {
+            "gpu": true,
+            "name": "regular",
+            "purpose": "Standard production workload QOS described by NERSC queue policy.",
+            "type": "qos"
+          },
+          {
+            "gpu": true,
+            "name": "debug",
+            "purpose": "Code development, testing, and debugging; not for production runs.",
+            "type": "qos"
+          },
+          {
+            "gpu": true,
+            "name": "interactive",
+            "purpose": "Interactive sessions for development, testing, debugging, and analysis.",
+            "type": "qos"
+          },
+          {
+            "gpu": true,
+            "name": "preempt",
+            "purpose": "Preemptible workloads that can handle interruption through restart or retry.",
+            "type": "qos"
+          },
+          {
+            "gpu": true,
+            "name": "shared",
+            "purpose": "Shared-node work where allowed by current NERSC queue policy.",
+            "type": "qos"
+          }
+        ],
+        "policies": [
+          {
+            "summary": "This draft adapter is derived only from public NERSC documentation and should be reviewed by NERSC maintainers before being marked reviewed.",
+            "topic": "public-source"
+          },
+          {
+            "summary": "Perlmutter uses Slurm; jobs should specify an account, a CPU or GPU constraint, an appropriate QOS, and explicit GPU resources for GPU work.",
+            "topic": "job-submission"
+          },
+          {
+            "summary": "Debug QOS is for code development, testing, and debugging; production runs should use an appropriate production QOS.",
+            "topic": "debug-qos"
+          },
+          {
+            "summary": "Use Perlmutter scratch for active, data-intensive job I/O, but treat it as temporary and purged storage.",
+            "topic": "scratch"
+          },
+          {
+            "summary": "Use NERSC DTNs and Globus for significant data movement into and out of NERSC.",
+            "topic": "data-transfer"
+          },
+          {
+            "summary": "NERSC documents Shifter and podman-hpc container workflows; adapt generic Apptainer skills through site-specific review.",
+            "topic": "containers"
+          }
+        ],
+        "scheduler": {
+          "account_placeholder": "<nersc-project>",
+          "default_qos": "debug",
+          "job_submit_notes": [
+            "Set the Slurm account option to the active NERSC project to charge work.",
+            "Use -C cpu for CPU-only nodes and -C gpu for GPU nodes.",
+            "Quote compound GPU constraints such as gpu&hbm80g in shell commands.",
+            "Request GPU resources explicitly with Slurm GPU options when using GPU nodes.",
+            "Most production jobs should use the regular QOS; debug is for development and testing."
+          ],
+          "node_constraints": [
+            "cpu",
+            "gpu",
+            "gpu&hbm80g"
+          ],
+          "production_qos": "regular",
+          "system": "perlmutter",
+          "type": "slurm"
+        },
+        "skill_overrides": [
+          {
+            "notes": "Use --account=<nersc-project>, --constraint=cpu or --constraint=gpu, and a NERSC QOS such as debug or regular.",
+            "skill_id": "slurm-submit-job"
+          },
+          {
+            "notes": "Use the interactive QOS where appropriate and keep interactive allocations short and policy-compliant.",
+            "skill_id": "interactive-session"
+          },
+          {
+            "notes": "Request GPU nodes with --constraint=gpu and explicitly request GPU resources such as --gpus-per-node.",
+            "skill_id": "gpu-sanity-check"
+          },
+          {
+            "notes": "Prefer the NERSC DTN Globus endpoint for large transfers involving NERSC filesystems.",
+            "skill_id": "globus-transfer-dataset"
+          },
+          {
+            "notes": "Stage active job inputs and outputs through $SCRATCH or $PSCRATCH, then copy important outputs to durable storage.",
+            "skill_id": "dataset-staging-to-scratch"
+          },
+          {
+            "notes": "Review NERSC Shifter and podman-hpc container documentation before adapting generic Apptainer examples.",
+            "skill_id": "apptainer-run-container"
+          },
+          {
+            "notes": "Run storage smoke tests only with site approval and on approved scratch or test locations.",
+            "skill_id": "ior-mdtest-storage-smoke"
+          }
+        ],
+        "storage": [
+          {
+            "backed_up": true,
+            "intended_use": "Small source files, scripts, shell configuration, and personal configuration.",
+            "name": "home",
+            "notes": "Not tuned for high-performance parallel job I/O.",
+            "path": "$HOME"
+          },
+          {
+            "backed_up": false,
+            "intended_use": "Software stacks and compiled applications intended to be available from compute nodes.",
+            "name": "common",
+            "notes": "Use public NERSC filesystem documentation for the current path and compute-node access mode.",
+            "path": "<nersc-common-path>"
+          },
+          {
+            "backed_up": true,
+            "intended_use": "Project and collaboration data intended for medium-term sharing.",
+            "name": "community",
+            "notes": "Project-owned storage; keep permissions and data sharing aligned with NERSC policy.",
+            "path": "<nersc-community-project-path>"
+          },
+          {
+            "backed_up": false,
+            "intended_use": "High-performance temporary job working directories and intensive I/O.",
+            "name": "perlmutter-scratch",
+            "notes": "Files not accessed within the public NERSC purge window may be deleted; keep critical data elsewhere.",
+            "path": "$SCRATCH or $PSCRATCH",
+            "purged": true
+          },
+          {
+            "backed_up": false,
+            "intended_use": "Long-term archive for inactive or important data.",
+            "name": "hpss",
+            "notes": "Use NERSC archive documentation and allocation-specific quota guidance.",
+            "path": "<nersc-hpss-path>"
+          }
+        ]
+      },
       "readme": "site-adapters/nersc-perlmutter-public/README.md",
       "scheduler": "slurm",
       "skill_overrides": [

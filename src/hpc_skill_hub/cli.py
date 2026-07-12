@@ -19,6 +19,9 @@ from .security import sarif_report, scan_target, text_report
 
 ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 PACKAGE_NAME = "hpc_skill_hub"
+SITE_ADAPTER_RESOLUTION_SCHEMA = (
+    "https://hpc-skill-hub.org/schemas/site-adapter-resolution.schema.json"
+)
 
 
 def discover_repo_root() -> Optional[Path]:
@@ -288,6 +291,112 @@ def cmd_adapter(args: argparse.Namespace) -> int:
     print(f"Skill overrides: {', '.join(adapter['skill_overrides'])}")
     print(f"README: {adapter['readme']}")
     return 0
+
+
+def site_adapter_resolution(
+    skill: Dict[str, Any], adapter: Dict[str, Any]
+) -> Dict[str, Any]:
+    policy = adapter["public_policy"]
+    adapter_scheduler = adapter.get("scheduler")
+    skill_schedulers = set(skill.get("schedulers", []))
+    scheduler_compatible = not skill_schedulers or adapter_scheduler in skill_schedulers
+    override = next(
+        (
+            item
+            for item in policy.get("skill_overrides", [])
+            if item.get("skill_id") == skill["id"]
+        ),
+        None,
+    )
+    if not scheduler_compatible:
+        resolution_status = "incompatible"
+    elif override is not None:
+        resolution_status = "mapped"
+    else:
+        resolution_status = "compatible-unmapped"
+
+    reasons = ["Site policy must be confirmed locally before operational use."]
+    if adapter["status"] != "reviewed":
+        reasons.append(f"Adapter status is {adapter['status']}, not reviewed.")
+    if skill["maturity"] not in {"field-tested", "maintained"}:
+        reasons.append(f"Skill maturity is {skill['maturity']}.")
+    if not scheduler_compatible:
+        reasons.append(
+            f"Skill schedulers {sorted(skill_schedulers)} do not include {adapter_scheduler}."
+        )
+    elif override is None:
+        reasons.append("The adapter has no explicit override for this skill.")
+
+    return {
+        "$schema": SITE_ADAPTER_RESOLUTION_SCHEMA,
+        "schema_version": "0.1.0",
+        "resolution_status": resolution_status,
+        "skill": {
+            key: skill[key]
+            for key in (
+                "id",
+                "version",
+                "status",
+                "maturity",
+                "risk_level",
+                "schedulers",
+                "readme",
+                "examples",
+            )
+        },
+        "adapter": {
+            key: adapter[key]
+            for key in ("id", "status", "institution_type", "scheduler", "readme")
+        },
+        "compatibility": {
+            "scheduler_compatible": scheduler_compatible,
+            "explicit_override": override is not None,
+        },
+        "public_policy": policy,
+        "override": override,
+        "review": {
+            "required": True,
+            "reasons": reasons,
+            "rules": [
+                "Preserve placeholders until the user confirms public local values.",
+                "Do not infer unpublished accounts, partitions, modules, paths, or endpoints.",
+                "Require explicit user intent before submitting jobs or changing shared state.",
+            ],
+        },
+    }
+
+
+def cmd_resolve(args: argparse.Namespace) -> int:
+    index = load_index()
+    skill = find_by_id(index["skills"], args.skill_id)
+    if not skill:
+        print(f"Unknown skill: {args.skill_id}", file=sys.stderr)
+        return 1
+    adapter = find_by_id(index["site_adapters"], args.adapter_id)
+    if not adapter:
+        print(f"Unknown site adapter: {args.adapter_id}", file=sys.stderr)
+        return 1
+    if not isinstance(adapter.get("public_policy"), dict):
+        print(
+            "Site adapter resolution requires registry index schema 0.2.0 or later.",
+            file=sys.stderr,
+        )
+        return 1
+    payload = site_adapter_resolution(skill, adapter)
+    if args.json:
+        emit_json(payload)
+    else:
+        print(f"Resolution: {payload['resolution_status']}")
+        print(f"Skill: {skill['id']} v{skill['version']} ({skill['maturity']}, {skill['risk_level']})")
+        print(f"Adapter: {adapter['id']} ({adapter['status']}, {adapter['scheduler']})")
+        print(f"Skill README: {skill['readme']}")
+        print(f"Adapter README: {adapter['readme']}")
+        if payload["override"] is not None:
+            print(f"Override: {payload['override']['notes']}")
+        print("Review required: yes")
+        for reason in payload["review"]["reasons"]:
+            print(f"- {reason}")
+    return 2 if payload["resolution_status"] == "incompatible" else 0
 
 
 def cmd_collections(args: argparse.Namespace) -> int:
@@ -892,6 +1001,14 @@ def build_parser() -> argparse.ArgumentParser:
     adapter_parser.add_argument("adapter_id", help="Site adapter id")
     adapter_parser.add_argument("--json", action="store_true", help="Emit JSON")
     adapter_parser.set_defaults(func=cmd_adapter)
+
+    resolve_parser = subparsers.add_parser(
+        "resolve", help="Resolve a skill through a public site adapter"
+    )
+    resolve_parser.add_argument("skill_id", help="Skill id")
+    resolve_parser.add_argument("--adapter", dest="adapter_id", required=True)
+    resolve_parser.add_argument("--json", action="store_true", help="Emit JSON")
+    resolve_parser.set_defaults(func=cmd_resolve)
 
     collections_parser = subparsers.add_parser("collections", help="List skill collections")
     collections_parser.add_argument("--json", action="store_true", help="Emit JSON")

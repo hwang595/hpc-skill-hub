@@ -25,7 +25,8 @@ adapters.
 2. Show the user candidate skill ids with risk and maturity.
 3. Inspect the selected skill with `python3 tools/hpc_skill.py show --examples`.
 4. Read the selected README and examples before recommending commands.
-5. Use site adapters only when public local policy exists.
+5. Use `hpc-skill resolve <skill-id> --adapter <adapter-id> --json` when public
+   local policy applies; stop on an `incompatible` resolution.
 6. Ask the user to confirm missing scheduler, account, partition, module,
    storage, container, and allocation assumptions.
 
@@ -74,7 +75,8 @@ The `agent-adapters` make target runs the same check and is part of
 
 ## Next Integration Step
 
-The next layer should be a read-only MCP server over the same registry contract.
-Start with tools such as `search_skills`, `show_skill`, `list_collections`,
-`show_site_adapters`, and `validate_registry`. Keep write, submit, transfer,
-and install actions out of the first MCP version.
+The registry now exposes a read-only skill/site-adapter resolution contract.
+The next layer should be a read-only MCP server over the same contract. Start
+with tools such as `search_skills`, `show_skill`, `resolve_site_policy`,
+`list_collections`, `show_site_adapters`, and `validate_registry`. Keep write,
+submit, transfer, and install actions out of the first MCP version.

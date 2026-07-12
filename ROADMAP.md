@@ -18,6 +18,8 @@ The seed repository currently includes:
   benchmark coverage for selected skills.
 - An evidence-pilot agent benchmark contract with six public-safe tasks and a
   dry-run 54-run Codex/Claude calibration matrix.
+- A blinded review and scoring pipeline with redaction gates, independent
+  double scoring, reconciliation, tamper detection, and staged finalization.
 - Generated catalog, compatibility, registry health, package data, static site,
   and deterministic release manifest artifacts.
 - GitHub metadata for labels, issue templates, discussion templates,
@@ -47,14 +49,14 @@ agent-consumed skills:
   understated risk declarations without executing skill content.
 - Preserve published release manifests as immutable evidence.
 
-The next v0.3 tranche executes the public-safe agent benchmark calibration. A
-six-run Codex/Claude smoke campaign now gates the 54-run repeated-trial matrix
-with executable/model preflight, condition isolation, resumable status, and
-explicit paid execution. The remaining work is to run from a clean commit with
-exact models, import blinded reviewed results, and publish the first
-evidence-backed comparison without claiming lift from dry-run plans alone.
-Provenance/signing and deeper site-adapter integration remain the following
-tranches.
+The v0.3 code foundation now includes the community skill scanner, six-run
+Codex/Claude smoke harness, digest-bound blinded scoring, a read-only
+skill/site-adapter resolution contract, registry index contract `0.2.0`, and
+tag-time GitHub artifact provenance. The remaining release work is evidence:
+run from a clean merged commit with exact models and explicit quota approval,
+complete the independent reviews, import the staged public-safe results, and
+publish the first evidence-backed comparison without claiming lift from
+dry-run plans alone. See [v0.3 Completion Matrix](docs/V0_3_COMPLETION.md).
 
 ## Phase 0: Seed Repository
 

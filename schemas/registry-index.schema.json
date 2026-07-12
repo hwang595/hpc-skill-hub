@@ -24,7 +24,7 @@
       "const": "../schemas/registry-index.schema.json"
     },
     "schema_version": {
-      "type": "string"
+      "const": "0.2.0"
     },
     "generated_by": {
       "const": "tools/build_index.py"
@@ -216,6 +216,7 @@
         "scheduler",
         "partitions",
         "skill_overrides",
+        "public_policy",
         "path",
         "readme"
       ],
@@ -249,6 +250,28 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/id"
+          }
+        },
+        "public_policy": {
+          "type": "object",
+          "required": [
+            "contacts",
+            "scheduler",
+            "partitions",
+            "modules",
+            "storage",
+            "policies",
+            "skill_overrides"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "contacts": {"type": "array", "items": {"type": "object"}},
+            "scheduler": {"type": "object"},
+            "partitions": {"type": "array", "items": {"type": "object"}},
+            "modules": {"type": "object"},
+            "storage": {"type": "array", "items": {"type": "object"}},
+            "policies": {"type": "array", "items": {"type": "object"}},
+            "skill_overrides": {"type": "array", "items": {"type": "object"}}
           }
         },
         "path": {

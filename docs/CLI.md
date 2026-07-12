@@ -16,6 +16,7 @@ python3 tools/hpc_skill.py validate
 python3 tools/hpc_skill.py security skills/slurm-submit-job
 python3 tools/hpc_skill.py adapters
 python3 tools/hpc_skill.py adapter example-campus-cluster
+python3 tools/hpc_skill.py resolve slurm-submit-job --adapter example-campus-cluster
 ```
 
 Install the package during development to use the `hpc-skill` command:
@@ -24,6 +25,7 @@ Install the package during development to use the `hpc-skill` command:
 python3 -m pip install .
 hpc-skill list
 hpc-skill collection core-hpc
+hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
 hpc-skill security ./community-skill --format json
 ```
 
@@ -113,6 +115,23 @@ python3 tools/hpc_skill.py list --risk medium
 python3 tools/hpc_skill.py list --tag gpu
 ```
 
+## Resolving Public Site Policy
+
+Resolve a portable skill through one public site adapter:
+
+```bash
+hpc-skill resolve slurm-submit-job \
+  --adapter nersc-perlmutter-public \
+  --json
+```
+
+The result includes the skill source, complete public adapter policy, an
+explicit skill override when one exists, scheduler compatibility, and review
+reasons. `mapped` means an explicit override exists, `compatible-unmapped`
+means the schedulers are compatible but no skill-specific override exists, and
+`incompatible` returns exit code 2. Every resolution requires local review and
+preserves unknown account, partition, module, storage, and endpoint values.
+
 ## JSON Output
 
 Discovery commands support JSON output for automation:
@@ -122,6 +141,7 @@ python3 tools/hpc_skill.py show gpu-sanity-check --json
 python3 tools/hpc_skill.py collection core-hpc --json
 python3 tools/hpc_skill.py health --json
 python3 tools/hpc_skill.py adapters --json
+python3 tools/hpc_skill.py resolve slurm-submit-job --adapter example-campus-cluster --json
 ```
 
 ## Updating The Index
@@ -144,5 +164,6 @@ python3 tools/validate_registry_artifacts.py
 ## Future Direction
 
 The CLI is intentionally small and already installable as `hpc-skill`. Next
-steps include richer security policy packs, template rendering, and site-aware
-generation for common scheduler and workflow files.
+steps include richer security policy packs, template rendering, a read-only MCP
+surface, and reviewed site-aware generation for common scheduler and workflow
+files.

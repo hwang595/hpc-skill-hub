@@ -87,6 +87,15 @@ def compact_site_adapter(adapter: Dict[str, Any]) -> Dict[str, Any]:
         "skill_overrides": [
             override["skill_id"] for override in adapter.get("skill_overrides", [])
         ],
+        "public_policy": {
+            "contacts": adapter["contacts"],
+            "scheduler": adapter["scheduler"],
+            "partitions": adapter["partitions"],
+            "modules": adapter["modules"],
+            "storage": adapter["storage"],
+            "policies": adapter["policies"],
+            "skill_overrides": adapter["skill_overrides"],
+        },
         "path": adapter["_path"],
         "readme": f"{adapter['_path']}/README.md",
     }
@@ -126,7 +135,7 @@ def build_index(
 
     return {
         "$schema": "../schemas/registry-index.schema.json",
-        "schema_version": "0.1.0",
+        "schema_version": "0.2.0",
         "generated_by": "tools/build_index.py",
         "skill_count": len(skills),
         "site_adapter_count": len(site_adapters),

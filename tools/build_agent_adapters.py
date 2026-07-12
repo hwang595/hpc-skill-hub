@@ -67,6 +67,8 @@ Current generated registry snapshot:
 - Search skills: `python3 tools/hpc_skill.py search <query> --json`
 - Show a skill: `python3 tools/hpc_skill.py show <skill-id> --examples --json`
 - Show collections: `python3 tools/hpc_skill.py collections --json`
+- Resolve a skill through public site policy:
+  `python3 tools/hpc_skill.py resolve <skill-id> --adapter <adapter-id> --json`
 - Validate one skill: `python3 tools/hpc_skill.py check <skill-id> --json`
 - Scan a community skill before loading it:
   `python3 tools/hpc_skill.py security <skill-path> --json`
@@ -161,10 +163,11 @@ use it implicitly when the user asks for HPC workflow help.
    `python3 tools/hpc_skill.py show <skill-id> --examples --json`.
 5. Read the selected `skills/<skill-id>/README.md` and relevant example files
    before recommending commands or edits.
-6. If local policy matters, inspect site adapters with
-   `python3 tools/hpc_skill.py adapters --json` and
-   `python3 tools/hpc_skill.py adapter <adapter-id> --json`. Ask the user for
-   missing scheduler, account, partition, storage, module, or container values.
+6. If local policy matters, list site adapters, then resolve the selected skill
+   through the public policy contract with:
+   `python3 tools/hpc_skill.py resolve <skill-id> --adapter <adapter-id> --json`.
+   Treat `incompatible` as a stop signal and ask the user for every missing
+   scheduler, account, partition, storage, module, or container value.
 7. In the final answer, cite the skill id, version, maturity, risk level,
    README path, and example path used.
 
@@ -203,6 +206,7 @@ Maturity: <maturity>
 Risk: <risk_level>
 README: skills/<skill-id>/README.md
 Examples: skills/<skill-id>/examples/<file>
+Adapter: <adapter-id> (<status>, <resolution-status>)
 ```
 """
 
@@ -246,7 +250,8 @@ adapters.
 2. Show the user candidate skill ids with risk and maturity.
 3. Inspect the selected skill with `python3 tools/hpc_skill.py show --examples`.
 4. Read the selected README and examples before recommending commands.
-5. Use site adapters only when public local policy exists.
+5. Use `hpc-skill resolve <skill-id> --adapter <adapter-id> --json` when public
+   local policy applies; stop on an `incompatible` resolution.
 6. Ask the user to confirm missing scheduler, account, partition, module,
    storage, container, and allocation assumptions.
 
@@ -295,10 +300,11 @@ The `agent-adapters` make target runs the same check and is part of
 
 ## Next Integration Step
 
-The next layer should be a read-only MCP server over the same registry contract.
-Start with tools such as `search_skills`, `show_skill`, `list_collections`,
-`show_site_adapters`, and `validate_registry`. Keep write, submit, transfer,
-and install actions out of the first MCP version.
+The registry now exposes a read-only skill/site-adapter resolution contract.
+The next layer should be a read-only MCP server over the same contract. Start
+with tools such as `search_skills`, `show_skill`, `resolve_site_policy`,
+`list_collections`, `show_site_adapters`, and `validate_registry`. Keep write,
+submit, transfer, and install actions out of the first MCP version.
 """
 
 

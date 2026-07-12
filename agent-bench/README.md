@@ -10,6 +10,7 @@ The evidence-pilot workflow is dry-run by default:
 ```bash
 python3 tools/agent_benchmark_harness.py --check
 python3 tools/agent_benchmark_harness.py --json
+python3 tools/agent_benchmark_review.py --help
 python3 tools/run_agent_benchmarks.py --check
 python3 tools/run_agent_benchmarks.py --json
 ```
@@ -54,4 +55,5 @@ Directory roles:
 - `fixtures/`: synthetic inputs used to test the benchmark implementation.
 
 See [`docs/AGENT_BENCHMARKS.md`](../docs/AGENT_BENCHMARKS.md) for execution,
-review, scoring, and publication rules.
+review, scoring, and publication rules. The operational workflow is documented
+in [`docs/BLINDED_REVIEW.md`](../docs/BLINDED_REVIEW.md).

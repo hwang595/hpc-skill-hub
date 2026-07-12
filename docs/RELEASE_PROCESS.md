@@ -62,12 +62,18 @@ Review:
   `docs/REVIEW_PACKET_v0.2.0.md` or its successor is current.
 - Built source and wheel distributions pass `twine check`, and the `Package`
   workflow smoke tests the installed `hpc-skill` CLI outside the checkout.
+- Tagged package builds attest the versioned release manifest, source
+  distribution, and wheel with `actions/attest@v4`; downloaded artifacts pass
+  `gh attestation verify <artifact> --repo <owner>/hpc-skill-hub`.
 - New skills have README files, examples, tests, and references.
 - Medium and high-risk entries explain impact and safety notes.
 - Site adapters contain only public, non-sensitive information.
 - Any maturity promotions link a maturity review issue or public review
   evidence.
 - `Validate` and `Package` GitHub Actions are green on `main`.
+
+See [Release Provenance](RELEASE_PROVENANCE.md) for the tag-time signing and
+verification boundary.
 
 ## Release Notes Template
 

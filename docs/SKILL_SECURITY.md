@@ -80,6 +80,7 @@ Coding agents should apply this order to community skills:
 The scanner is static, local, deterministic, and standard-library-only. It does
 not execute skill content or use the network. It cannot prove that a script is
 safe, detect every obfuscated payload, verify a remote artifact after download,
-or replace domain review and sandboxing. Future v0.3 work should add provenance,
-signed release metadata, archive extraction limits, and stronger policy packs
-without turning static findings into automatic maturity promotion.
+or replace domain review and sandboxing. Tagged package builds now add signed
+GitHub artifact provenance for release manifests and distributions. Future work
+should add archive extraction limits and stronger policy packs without turning
+static findings into automatic maturity promotion.

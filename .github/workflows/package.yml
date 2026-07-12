@@ -6,6 +6,8 @@ on:
     branches:
       - main
       - master
+    tags:
+      - "v*"
   workflow_dispatch:
 
 permissions:
@@ -36,5 +38,33 @@ jobs:
           cd /tmp
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill health --json
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill collection core-hpc --json
+          /tmp/hpc-skill-hub-wheel/bin/hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
           /tmp/hpc-skill-hub-wheel/bin/python -m hpc_skill_hub show slurm-submit-job --json
           /tmp/hpc-skill-hub-wheel/bin/python -c "import importlib.metadata, hpc_skill_hub; assert hpc_skill_hub.__version__ == importlib.metadata.version('hpc-skill-hub')"
+      - name: Upload tested distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-distributions
+          path: dist/
+
+  attest:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: wheel
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Download tested distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: python-distributions
+          path: dist/
+      - name: Attest tagged release artifacts
+        uses: actions/attest@v4
+        with:
+          subject-path: |
+            dist/*
+            registry/releases/${{ github.ref_name }}.json
