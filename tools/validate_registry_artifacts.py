@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 INDEX_JSON = ROOT / "registry" / "index.json"
 HEALTH_JSON = ROOT / "registry" / "health.json"
 QUALITY_JSON = ROOT / "registry" / "skill-quality.json"
+REVIEW_STATUS_JSON = ROOT / "registry" / "review-status.json"
 RELEASE_DIR = ROOT / "registry" / "releases"
 PACKAGE_DATA_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "registry"
 SCHEMAS = {
@@ -30,6 +31,8 @@ SCHEMAS = {
     "release": ROOT / "schemas" / "release-manifest.schema.json",
     "skill-security-report": ROOT / "schemas" / "skill-security-report.schema.json",
     "skill-quality-report": ROOT / "schemas" / "skill-quality-report.schema.json",
+    "skill-review": ROOT / "schemas" / "skill-review.schema.json",
+    "skill-review-status": ROOT / "schemas" / "skill-review-status.schema.json",
     "site-adapter-resolution": ROOT / "schemas" / "site-adapter-resolution.schema.json",
 }
 PUBLIC_BASELINE_DOCS = [
@@ -276,6 +279,42 @@ def validate_skill_quality(
     )
 
 
+def validate_review_status(
+    index: Dict[str, Any], review_status: Dict[str, Any], errors: List[str]
+) -> None:
+    context = relative(REVIEW_STATUS_JSON)
+    require_schema_pointer(
+        review_status, "../schemas/skill-review-status.schema.json", errors, context
+    )
+    require(
+        review_status.get("generated_by") == "tools/build_skill_reviews.py",
+        errors,
+        f"{context}: generated_by mismatch",
+    )
+    skills = review_status.get("skills", [])
+    require(
+        review_status.get("candidate_count") == len(skills),
+        errors,
+        f"{context}: candidate_count mismatch",
+    )
+    known_ids = {item["id"] for item in index["skills"]}
+    review_ids = [item.get("id") for item in skills if isinstance(item, dict)]
+    require(len(review_ids) == len(set(review_ids)), errors, f"{context}: duplicate skill ids")
+    require(set(review_ids) <= known_ids, errors, f"{context}: unknown skill ids")
+    require(
+        review_status.get("static_ready_count")
+        == sum(bool(item.get("static_ready")) for item in skills),
+        errors,
+        f"{context}: static_ready_count mismatch",
+    )
+    require(
+        review_status.get("promotion_ready_count")
+        == sum(bool(item.get("promotion_ready")) for item in skills),
+        errors,
+        f"{context}: promotion_ready_count mismatch",
+    )
+
+
 def validate_release(path: Path, release: Dict[str, Any], errors: List[str]) -> None:
     context = relative(path)
     require_schema_pointer(
@@ -355,6 +394,7 @@ def validate_package_data(errors: List[str]) -> None:
     for filename, source_path in {
         "index.json": INDEX_JSON,
         "health.json": HEALTH_JSON,
+        "review-status.json": REVIEW_STATUS_JSON,
     }.items():
         package_path = PACKAGE_DATA_DIR / filename
         require(package_path.exists(), errors, f"{relative(package_path)} is missing")
@@ -469,9 +509,11 @@ def main() -> int:
     index = load_json(INDEX_JSON)
     health = load_json(HEALTH_JSON)
     quality = load_json(QUALITY_JSON)
+    review_status = load_json(REVIEW_STATUS_JSON)
     validate_index(index, errors)
     validate_health(index, health, errors)
     validate_skill_quality(index, quality, errors)
+    validate_review_status(index, review_status, errors)
     validate_package_data(errors)
     validate_public_count_mentions(index, errors)
 

@@ -38,6 +38,22 @@ The packet and report are triage aids, not maturity decisions. Maintainers
 should still confirm examples, references, portability, site assumptions, risk
 labels, and public evidence before promoting a skill to `reviewed`.
 
+For the evidence-backed v0.4 pilot, use the generated review queue:
+
+```bash
+python3 tools/build_skill_reviews.py --check
+python3 tools/hpc_skill.py review candidates --release v0.4.0
+python3 tools/hpc_skill.py review status <skill-id>
+python3 tools/hpc_skill.py review check reviews/v0.4.0/<skill-id>.json
+```
+
+The source bundle records static evidence and external review separately.
+`static_ready: true` means the quality and benchmark evidence is current;
+`promotion_ready: true` additionally requires a public issue, exact review
+commit, an explicit reviewer independence attestation, domain approval,
+required safety approval, and a maintainer
+decision. The generator never changes `skill.json` maturity.
+
 ## Evidence By Level
 
 To promote to `reviewed`, include:
@@ -98,6 +114,8 @@ A maturity promotion pull request should:
   ```
 
 - Link the maturity review issue.
+- Update the release-scoped source bundle and keep review evidence pinned to
+  the exact commit that reviewers inspected.
 - Include only public, non-sensitive evidence.
 
 ## When To Use Safety Review Instead

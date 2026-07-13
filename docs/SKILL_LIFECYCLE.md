@@ -82,6 +82,8 @@ make check
 Promotion from `seed` to `reviewed`, `field-tested`, or `maintained` requires a
 maturity review issue. The linked pull request should update the manifest,
 generated registry files, and release notes or changelog when appropriate.
+For release-scoped pilots, it should also update the source bundle under
+`reviews/<release>/` and pass `hpc-skill review check`.
 
 Reviewers should check:
 

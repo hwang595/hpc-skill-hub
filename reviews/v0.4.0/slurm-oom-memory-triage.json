@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schemas/skill-review.schema.json",
+  "schema_version": "0.1.0",
+  "review_id": "v0.4.0/slurm-oom-memory-triage",
+  "release": "v0.4.0",
+  "target_maturity": "reviewed",
+  "skill": {
+    "id": "slurm-oom-memory-triage",
+    "version": "0.2.0",
+    "maturity": "seed",
+    "risk_level": "low"
+  },
+  "quality_snapshot": {
+    "score": 100,
+    "band": "strong",
+    "gaps": []
+  },
+  "evidence": {
+    "readme": "skills/slurm-oom-memory-triage/README.md",
+    "examples": [
+      "skills/slurm-oom-memory-triage/examples/memory-request-review.md",
+      "skills/slurm-oom-memory-triage/examples/review-oom-evidence.py",
+      "skills/slurm-oom-memory-triage/examples/slurm-oom-triage.sh"
+    ],
+    "benchmark_cases": [
+      "benchmarks/cases/slurm-oom-fixture.json"
+    ],
+    "agent_tasks": [
+      "agent-bench/tasks/skill-routing-oom-triage.json"
+    ],
+    "adoption_reports": []
+  },
+  "review_issue": null,
+  "review_commit": null,
+  "domain_reviews": [],
+  "safety_reviews": [],
+  "decision": {
+    "status": "pending",
+    "decided_by": null,
+    "decided_at": null,
+    "notes": "Awaiting public issue routing and independent domain review."
+  }
+}

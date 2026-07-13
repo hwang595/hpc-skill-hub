@@ -14,6 +14,13 @@ import textwrap
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
+from .reviews import (
+    assess_bundle,
+    candidates_text,
+    markdown_report,
+    repo_path,
+    skill_status_text,
+)
 from .security import sarif_report, scan_target, text_report
 
 
@@ -92,6 +99,19 @@ def load_health() -> Dict[str, Any]:
         with health_path.open("r", encoding="utf-8") as handle:
             return json.load(handle)
     return load_packaged_json("health.json")
+
+
+def load_review_status() -> Dict[str, Any]:
+    root = discover_repo_root()
+    if root:
+        status_path = root / "registry" / "review-status.json"
+        if not status_path.exists():
+            raise SystemExit(
+                "registry/review-status.json is missing; run tools/build_skill_reviews.py"
+            )
+        with status_path.open("r", encoding="utf-8") as handle:
+            return json.load(handle)
+    return load_packaged_json("review-status.json")
 
 
 def emit_json(data: Any) -> None:
@@ -477,6 +497,118 @@ def cmd_health(args: argparse.Namespace) -> int:
         for skill_id in health["uncollected_skill_ids"]:
             print(f"- {skill_id}")
     return 0
+
+
+def review_release(payload: Dict[str, Any], release: Optional[str]) -> bool:
+    return release is None or payload.get("release") == release
+
+
+def cmd_review_candidates(args: argparse.Namespace) -> int:
+    payload = load_review_status()
+    if not review_release(payload, args.release):
+        print(f"No review queue found for release: {args.release}", file=sys.stderr)
+        return 1
+    if args.json:
+        emit_json(
+            {
+                "release": payload["release"],
+                "candidate_count": payload["candidate_count"],
+                "static_ready_count": payload["static_ready_count"],
+                "promotion_ready_count": payload["promotion_ready_count"],
+                "candidates": payload["skills"],
+            }
+        )
+    else:
+        print(candidates_text(payload))
+    return 0
+
+
+def cmd_review_status(args: argparse.Namespace) -> int:
+    payload = load_review_status()
+    if not review_release(payload, args.release):
+        print(f"No review queue found for release: {args.release}", file=sys.stderr)
+        return 1
+    skill = find_by_id(payload.get("skills", []), args.skill_id)
+    if not skill:
+        print(f"No review bundle found for skill: {args.skill_id}", file=sys.stderr)
+        return 1
+    if args.json:
+        emit_json(skill)
+    else:
+        print(skill_status_text(skill))
+    return 0
+
+
+def cmd_review_check(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve() if args.root else get_root()
+    bundle_path = repo_path(root, args.review_file)
+    if bundle_path is None or not bundle_path.is_file():
+        print(
+            "Review file must be an existing repository-relative path.",
+            file=sys.stderr,
+        )
+        return 2
+    try:
+        with (root / "registry" / "index.json").open(encoding="utf-8") as handle:
+            index = json.load(handle)
+        with (root / "registry" / "skill-quality.json").open(encoding="utf-8") as handle:
+            quality = json.load(handle)
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        print(f"Cannot load registry review inputs: {exc}", file=sys.stderr)
+        return 2
+    assessment = assess_bundle(root, bundle_path, index, quality)
+    payload = {
+        "ok": not assessment["validation_errors"],
+        "promotion_ready": assessment["promotion_ready"],
+        "assessment": assessment,
+    }
+    if args.json:
+        emit_json(payload)
+    else:
+        print(skill_status_text(assessment))
+        if assessment["validation_errors"]:
+            print("Validation errors:", file=sys.stderr)
+            for error in assessment["validation_errors"]:
+                print(f"- {error}", file=sys.stderr)
+    return 1 if assessment["validation_errors"] else 0
+
+
+def cmd_review_packet(args: argparse.Namespace) -> int:
+    payload = load_review_status()
+    if not review_release(payload, args.release):
+        print(f"No review queue found for release: {args.release}", file=sys.stderr)
+        return 1
+    if args.json:
+        emit_json(payload)
+    else:
+        print(markdown_report(payload), end="")
+    return 0
+
+
+def add_review_subcommands(subparsers: argparse._SubParsersAction) -> None:
+    candidates = subparsers.add_parser(
+        "candidates", help="List evidence-backed maturity review candidates"
+    )
+    candidates.add_argument("--release", help="Filter by release")
+    candidates.add_argument("--json", action="store_true", help="Emit JSON")
+    candidates.set_defaults(func=cmd_review_candidates)
+
+    status = subparsers.add_parser("status", help="Show one skill review status")
+    status.add_argument("skill_id", help="Skill id")
+    status.add_argument("--release", help="Filter by release")
+    status.add_argument("--json", action="store_true", help="Emit JSON")
+    status.set_defaults(func=cmd_review_status)
+
+    check = subparsers.add_parser("check", help="Validate one source review bundle")
+    check.add_argument("review_file", help="Repository-relative review bundle path")
+    check.add_argument("--root", help="Repository root")
+    check.add_argument("--json", action="store_true", help="Emit JSON")
+    check.set_defaults(func=cmd_review_check)
+
+    packet = subparsers.add_parser("packet", help="Print the generated review packet")
+    packet.add_argument("--release", help="Filter by release")
+    packet.add_argument("--json", action="store_true", help="Emit JSON")
+    packet.set_defaults(func=cmd_review_packet)
 
 
 def cmd_security(args: argparse.Namespace) -> int:
@@ -1022,6 +1154,14 @@ def build_parser() -> argparse.ArgumentParser:
     health_parser = subparsers.add_parser("health", help="Show registry health summary")
     health_parser.add_argument("--json", action="store_true", help="Emit JSON")
     health_parser.set_defaults(func=cmd_health)
+
+    review_parser = subparsers.add_parser(
+        "review", help="Inspect evidence-backed skill maturity reviews"
+    )
+    review_subparsers = review_parser.add_subparsers(
+        dest="review_command", required=True
+    )
+    add_review_subcommands(review_subparsers)
 
     security_parser = subparsers.add_parser(
         "security", help="Scan a community skill package for security risks"

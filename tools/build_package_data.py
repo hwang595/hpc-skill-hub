@@ -14,7 +14,7 @@ from typing import Iterable, List
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT / "registry"
 PACKAGE_DATA_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "registry"
-FILES = ["index.json", "health.json"]
+FILES = ["index.json", "health.json", "review-status.json"]
 
 
 def source_path(filename: str) -> Path:

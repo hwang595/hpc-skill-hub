@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schemas/skill-review.schema.json",
+  "schema_version": "0.1.0",
+  "review_id": "v0.4.0/slurm-pending-reason-triage",
+  "release": "v0.4.0",
+  "target_maturity": "reviewed",
+  "skill": {
+    "id": "slurm-pending-reason-triage",
+    "version": "0.2.0",
+    "maturity": "seed",
+    "risk_level": "low"
+  },
+  "quality_snapshot": {
+    "score": 98,
+    "band": "strong",
+    "gaps": []
+  },
+  "evidence": {
+    "readme": "skills/slurm-pending-reason-triage/README.md",
+    "examples": [
+      "skills/slurm-pending-reason-triage/examples/pending-reason-triage.sh",
+      "skills/slurm-pending-reason-triage/examples/review-pending-snapshot.py"
+    ],
+    "benchmark_cases": [
+      "benchmarks/cases/slurm-pending-reason-fixture.json",
+      "benchmarks/cases/slurm-qos-account-limit-fixture.json"
+    ],
+    "agent_tasks": [
+      "agent-bench/tasks/slurm-pending-qos-triage.json"
+    ],
+    "adoption_reports": []
+  },
+  "review_issue": null,
+  "review_commit": null,
+  "domain_reviews": [],
+  "safety_reviews": [],
+  "decision": {
+    "status": "pending",
+    "decided_by": null,
+    "decided_at": null,
+    "notes": "Awaiting public issue routing and independent domain review."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schemas/skill-review.schema.json",
+  "schema_version": "0.1.0",
+  "review_id": "v0.4.0/slurm-output-log-triage",
+  "release": "v0.4.0",
+  "target_maturity": "reviewed",
+  "skill": {
+    "id": "slurm-output-log-triage",
+    "version": "0.2.0",
+    "maturity": "seed",
+    "risk_level": "low"
+  },
+  "quality_snapshot": {
+    "score": 100,
+    "band": "strong",
+    "gaps": []
+  },
+  "evidence": {
+    "readme": "skills/slurm-output-log-triage/README.md",
+    "examples": [
+      "skills/slurm-output-log-triage/examples/output-log-review-checklist.md",
+      "skills/slurm-output-log-triage/examples/review-output-log-evidence.py",
+      "skills/slurm-output-log-triage/examples/slurm-output-log-triage.sh"
+    ],
+    "benchmark_cases": [
+      "benchmarks/cases/slurm-output-log-fixture.json"
+    ],
+    "agent_tasks": [
+      "agent-bench/tasks/repo-benchmark-case-repair.json"
+    ],
+    "adoption_reports": []
+  },
+  "review_issue": null,
+  "review_commit": null,
+  "domain_reviews": [],
+  "safety_reviews": [],
+  "decision": {
+    "status": "pending",
+    "decided_by": null,
+    "decided_at": null,
+    "notes": "Awaiting public issue routing and independent domain review."
+  }
+}

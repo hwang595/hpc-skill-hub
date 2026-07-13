@@ -1,7 +1,10 @@
 # v0.4 Completion Matrix
 
-Status: P0 evidence foundation and P1 campaign control plane complete locally;
-real evidence execution pending external setup, approval, and pull-request CI.
+Status: P0 evidence foundation and P1 campaign control plane merged through
+PRs #27 and #28 with required CI checks passing. P2A evidence-backed maturity
+review workflow is complete locally with pull-request CI pending. Real evidence
+execution and skill promotion remain pending external setup, quota approval,
+and independent review.
 
 v0.4 is the evidence and reviewed-registry release. It must distinguish
 repository capability from externally collected evidence: deterministic plans,
@@ -17,28 +20,27 @@ require real runs, public-safe artifacts, and independent review.
 | Resumable campaign accounting | Complete locally | Campaign status records completed states, recorded cost, remaining budget, and the next planned run. |
 | Evidence publication gate | Complete locally | Comparative output requires two scored agent/model variants, no pending reviews, exactly two independent blinded reviewers per scored run, digest-verified public artifacts, and at least three paired trials for every agent/model variant. |
 | Static evidence dashboard | Complete locally | The generated dashboard shows coverage, condition outcomes, paired lift, public run provenance, and explicit blockers. It suppresses comparative ranking while the gate is closed. |
-| Local and CI validation | Local complete; remote pending | Generated plans, report, dashboard, schemas, 121 tests, and the full `make check` gate pass without launching an agent. Pull-request CI remains required. |
+| Local and CI validation | Complete | Generated plans, report, dashboard, schemas, and the full `make check` gate pass without launching an agent. PRs #27 and #28 passed the required Validate and Package checks. |
 
-The P0 implementation is ready for pull-request review. P0 is release-complete
-only after remote CI passes. It does not include paid execution and does not
-establish measured skill lift.
+The P0 implementation is merged and has passed remote CI. It does not include
+paid execution and does not establish measured skill lift.
 
 ## P1 Real Evidence Campaign
 
 | Gate | Status | Required evidence |
 | --- | --- | --- |
-| Clean-run preflight and campaign lock | Complete locally; external setup pending | Campaign preparation locks one clean commit, plan and task digests, exact model ids, CLI versions, budget enforcement modes, and explicit quota acknowledgement. Real preparation still requires authenticated CLIs. |
-| Balanced execution waves | Complete locally; execution pending | A seeded schedule groups the 54-run matrix into nine randomized six-run task/trial waves. Status emits only the earliest incomplete wave and stops on provenance or budget blockers. |
+| Clean-run preflight and campaign lock | Control plane merged; external setup pending | Campaign preparation locks one clean commit, plan and task digests, exact model ids, CLI versions, budget enforcement modes, and explicit quota acknowledgement. Real preparation still requires authenticated CLIs. |
+| Balanced execution waves | Control plane merged; execution pending | A seeded schedule groups the 54-run matrix into nine randomized six-run task/trial waves. Status emits only the earliest incomplete wave and stops on provenance or budget blockers. |
 | Blinded independent review | Pending real runs | Redact artifacts, collect exactly two independent reviews per run, and reconcile rubric differences of `0.25` or more. |
-| Public evidence import audit | Complete locally; evidence pending | Staging audit checks campaign identity, model and CLI locks, clean commit provenance, double-blinded review, public artifact digests, private-file boundaries, safety, and acknowledged security review. |
+| Public evidence import audit | Control plane merged; evidence pending | Staging audit checks campaign identity, model and CLI locks, clean commit provenance, double-blinded review, public artifact digests, private-file boundaries, safety, and acknowledged security review. |
 | Comparative publication | Gate closed | Publish comparisons only after the machine-readable publication gate is open. |
 
 ## P2 Reviewed Registry Pilot
 
 | Gate | Status | Required evidence |
 | --- | --- | --- |
-| Candidate selection | Planned | Select a bounded set of high-value skills using quality gaps, benchmark coverage, adoption evidence, and reviewer availability. |
-| Skill depth improvements | Planned | Close documented prerequisites, validation, failure handling, cost, cleanup, site-boundary, and example gaps. |
+| Candidate selection | P2A complete locally; remote pending | Five low-risk, strong-quality candidates are tracked through release-scoped evidence bundles, generated status, CLI inspection, and machine-readable promotion blockers. The full local gate passes. |
+| Skill depth improvements | Pilot static gate complete | The five pilot candidates score 98-100, have no detected quality gaps, and carry static plus agent benchmark references. External review may still identify changes. |
 | Domain review and adoption | Planned | Record public domain review and real adoption evidence without exposing private site policy. |
 | Maturity promotion | Planned | Promote only skills that satisfy the existing lifecycle contract; benchmark lift alone is insufficient. |
 

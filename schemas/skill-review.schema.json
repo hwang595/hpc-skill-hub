@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/skill-review.schema.json",
+  "title": "HPC Skill Hub Maturity Review Bundle",
+  "type": "object",
+  "required": ["$schema", "schema_version", "review_id", "release", "target_maturity", "skill", "quality_snapshot", "evidence", "review_issue", "review_commit", "domain_reviews", "safety_reviews", "decision"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"const": "../../schemas/skill-review.schema.json"},
+    "schema_version": {"const": "0.1.0"},
+    "review_id": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+/[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "release": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "target_maturity": {"const": "reviewed"},
+    "skill": {
+      "type": "object",
+      "required": ["id", "version", "maturity", "risk_level"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "maturity": {"enum": ["seed", "reviewed", "field-tested", "maintained"]},
+        "risk_level": {"enum": ["low", "medium", "high"]}
+      }
+    },
+    "quality_snapshot": {
+      "type": "object",
+      "required": ["score", "band", "gaps"],
+      "additionalProperties": false,
+      "properties": {
+        "score": {"type": "integer", "minimum": 0, "maximum": 100},
+        "band": {"enum": ["strong", "developing", "needs-depth"]},
+        "gaps": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["readme", "examples", "benchmark_cases", "agent_tasks", "adoption_reports"],
+      "additionalProperties": false,
+      "properties": {
+        "readme": {"type": "string"},
+        "examples": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+        "benchmark_cases": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+        "agent_tasks": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+        "adoption_reports": {"type": "array", "items": {"type": "string", "format": "uri"}, "uniqueItems": true}
+      }
+    },
+    "review_issue": {"type": ["string", "null"], "format": "uri"},
+    "review_commit": {"type": ["string", "null"], "pattern": "^[a-f0-9]{40}$"},
+    "domain_reviews": {"$ref": "#/$defs/reviews"},
+    "safety_reviews": {"$ref": "#/$defs/reviews"},
+    "decision": {
+      "type": "object",
+      "required": ["status", "decided_by", "decided_at", "notes"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"enum": ["pending", "approved", "rejected"]},
+        "decided_by": {"type": ["string", "null"]},
+        "decided_at": {"type": ["string", "null"], "format": "date-time"},
+        "notes": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {
+    "reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["reviewer", "domain", "decision", "independence_attestation", "reviewed_at", "review_commit", "evidence_url", "notes"],
+        "additionalProperties": false,
+        "properties": {
+          "reviewer": {"type": "string", "minLength": 1},
+          "domain": {"type": "string", "minLength": 1},
+          "decision": {"enum": ["approved", "changes-requested"]},
+          "independence_attestation": {"const": true},
+          "reviewed_at": {"type": "string", "format": "date-time"},
+          "review_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+          "evidence_url": {"type": "string", "format": "uri"},
+          "notes": {"type": "string"}
+        }
+      }
+    }
+  }
+}

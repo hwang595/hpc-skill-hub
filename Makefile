@@ -1,4 +1,4 @@
-.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check compatibility health package-data release-manifest review-packet security skill-quality test validate index site cli clean
+.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check compatibility health package-data release-manifest review-packet security skill-quality skill-reviews test validate index site cli clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -14,6 +14,9 @@ health:
 
 skill-quality:
 	$(PYTHON) tools/build_skill_quality.py --check
+
+skill-reviews:
+	$(PYTHON) tools/build_skill_reviews.py --check
 
 compatibility:
 	$(PYTHON) tools/build_compatibility.py --check
@@ -57,6 +60,9 @@ cli:
 	$(PYTHON) tools/hpc_skill.py list
 	PYTHONPATH=src $(PYTHON) -m hpc_skill_hub collections
 	$(PYTHON) tools/hpc_skill.py health
+	$(PYTHON) tools/hpc_skill.py review candidates
+	$(PYTHON) tools/hpc_skill.py review status job-failure-triage
+	$(PYTHON) tools/hpc_skill.py review check reviews/v0.4.0/job-failure-triage.json
 	$(PYTHON) tools/hpc_skill.py validate --skill slurm-submit-job
 	$(PYTHON) tools/hpc_skill.py validate --skill slurm-submit-job --json
 	$(PYTHON) tools/hpc_skill.py check slurm-submit-job
@@ -71,7 +77,7 @@ cli:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health skill-quality compatibility agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security test site cli
+check: validate index health skill-quality skill-reviews compatibility agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security test site cli
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +
