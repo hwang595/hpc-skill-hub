@@ -94,7 +94,7 @@ verification boundary.
 ## Release Command Generator
 
 Use the matching release notes, such as
-[v0.2.0 Release Notes](RELEASE_NOTES_v0.2.0.md), as the starting point for the
+[v0.3.0 Release Notes](RELEASE_NOTES_v0.3.0.md), as the starting point for the
 GitHub release body.
 
 After `main` is pushed, GitHub Actions are green, the Pages site is published,
