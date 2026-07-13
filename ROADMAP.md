@@ -39,7 +39,8 @@ follow-up work rather than synthetic CI claims.
 
 ## v0.4 Current Development
 
-Status: P0 evidence foundation complete locally; pull-request CI pending.
+Status: P0 evidence foundation and P1 campaign control plane complete locally;
+real evidence execution pending external setup, approval, and pull-request CI.
 
 v0.4 focuses on evidence and a reviewed registry. Work proceeds in this order:
 

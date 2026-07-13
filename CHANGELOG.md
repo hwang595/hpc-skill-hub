@@ -15,6 +15,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
   artifacts, no pending reviews, and at least three paired trials.
 - Add a v0.4 completion matrix, roadmap, milestone, CI checks, and tests that
   distinguish campaign readiness from real measured agent evidence.
+- Add the P1 real-evidence campaign control plane with clean-commit and exact-model
+  locks, seeded balanced execution waves, resumable next-wave commands, budget
+  stop conditions, and strict finalized-staging import audits.
 
 ## v0.3.0 - 2026-07-13
 

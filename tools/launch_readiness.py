@@ -40,6 +40,7 @@ REQUIRED_LAUNCH_FILES = [
     "docs/V0_4_COMPLETION.md",
     "docs/AGENT_BENCHMARK_SMOKE_PLAN.md",
     "docs/AGENT_BENCHMARK_V0_4_PLAN.md",
+    "docs/AGENT_BENCHMARK_CAMPAIGN.md",
     "docs/AGENT_BENCHMARK_DASHBOARD.html",
     "docs/SKILL_SECURITY.md",
     "docs/COMMUNITY_LAUNCH.md",
@@ -62,6 +63,7 @@ REQUIRED_LAUNCH_FILES = [
     "schemas/agent-benchmark-review-packet.schema.json",
     "schemas/agent-benchmark-review.schema.json",
     "schemas/agent-benchmark-reconciliation.schema.json",
+    "schemas/agent-benchmark-campaign.schema.json",
     "agent-bench/plans/smoke-v0.3.json",
     "agent-bench/plans/evidence-v0.4.json",
     "registry/releases/v0.1.0.json",
@@ -101,6 +103,7 @@ REQUIRED_LAUNCH_FILES = [
     "tools/build_skill_quality.py",
     "tools/scan_skill_security.py",
     "tools/agent_benchmark_review.py",
+    "tools/agent_benchmark_campaign.py",
     "tools/validate_registry_artifacts.py",
 ]
 

@@ -49,6 +49,11 @@ Blinded packet manifests, independent reviews, and reconciliations follow
 and
 [`agent-benchmark-reconciliation.schema.json`](../schemas/agent-benchmark-reconciliation.schema.json).
 
+Real campaign locks follow
+[`agent-benchmark-campaign.schema.json`](../schemas/agent-benchmark-campaign.schema.json).
+They bind one clean commit, exact model and CLI versions, plan and task digests,
+budget acknowledgement, and a seeded balanced execution schedule.
+
 ## Dry Run And Isolation
 
 Inspect the deterministic matrix:
@@ -226,6 +231,12 @@ Real execution remains one run at a time. Each invocation requires an exact
 model id and `--allow-paid-run`; the plan cannot authorize a batch launch.
 Review the [v0.4 Completion Matrix](V0_4_COMPLETION.md) before opening the real
 campaign.
+
+Use `tools/agent_benchmark_campaign.py` to lock one clean commit, exact models,
+agent versions, approved budgets, and a seeded nine-wave schedule. The tool
+reports only the next balanced wave and audits finalized staging; it never
+launches an agent. Follow the
+[Agent Benchmark Campaign Operations](AGENT_BENCHMARK_CAMPAIGN.md) runbook.
 
 ## Publication Gate
 
