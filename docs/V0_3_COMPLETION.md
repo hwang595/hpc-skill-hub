@@ -1,11 +1,11 @@
 # v0.3 Completion Matrix
 
-Status: code-ready for pull request; not release-ready.
+Status: v0.3.0 infrastructure scope released; comparative evidence track open.
 
-This matrix separates repository implementation from evidence that must be
-collected from a clean merged commit. A dry-run plan, synthetic test, or signed
-workflow definition is not evidence that a real agent comparison or release
-attestation has already happened.
+This matrix separates the released repository contracts from evidence that
+must still be collected from clean commits. A dry-run plan, synthetic test, or
+signed workflow definition is not evidence that a real agent comparison has
+already happened.
 
 ## Code Gates
 
@@ -17,30 +17,43 @@ attestation has already happened.
 | Site-adapter integration contract | Complete | Registry index `0.2.0` ships complete public policy; `hpc-skill resolve` reports mapped, compatible-unmapped, or incompatible. |
 | Agent adapter support | Complete | Generated Codex and Claude router guidance consumes the resolver and treats incompatible policy as a stop signal. |
 | Release provenance workflow | Complete | Tag-only `actions/attest@v4` covers the versioned release manifest, source distribution, and wheel. |
-| Local repository gate | Complete when current branch passes | `make check` validates generated artifacts, safety, security, CLI behavior, package data, and tests without launching paid agents. |
+| Skill-quality baseline | Complete | Ten visible workflow dimensions, bounded evidence bonuses, generated JSON/Markdown reports, and CI freshness checks without maturity promotion. |
+| Tier-1 skill depth | Complete | All nine agent-evidence priority skills have explicit prerequisites, validation, failure handling, resource impact, cleanup, site boundaries, and offline reviewers. |
+| Local repository gate | Complete | `make check` validates generated artifacts, safety, security, CLI behavior, package data, and tests without launching paid agents. |
 
-## Release Evidence Gates
+## Post-Release Evidence Gates
 
 | Gate | Status | Required next evidence |
 | --- | --- | --- |
-| Six real smoke runs | Pending after merge | Run Codex and Claude Code from one clean commit with exact model ids and explicit quota approval. |
+| Six real smoke runs | Deferred, no runs imported | Install and authenticate both CLIs, then run Codex and Claude Code from one clean commit with exact model ids and explicit quota approval. |
 | Independent blinded scores | Pending real runs | Prepare the packet, collect exactly two reviews per case, and reconcile criterion differences of `0.25` or more. |
 | First public comparison | Pending reviewed scores | Import only the staged public-safe result and redacted artifact bundle, then regenerate the benchmark report. |
 | Repeated-trial calibration | Gated by smoke result | Expand to the 54-run matrix only after the six-run pipeline is valid and the budget is approved. |
-| Tag attestation | Pending v0.3 tag | Build from the release tag and verify every attached artifact with `gh attestation verify`. |
+| Tag attestation | Required for release | Build from the `v0.3.0` tag and verify the manifest and Python distributions with `gh attestation verify`. |
 | External adoption and site review | Community evidence | Keep public adoption, domain review, and real-site adapter validation visible without treating them as synthetic CI results. |
 
-## Required Order
+The `v0.3.0` release contains no scored external-agent row and makes no claim
+that skills improve agent performance. Missing Claude Code availability during
+release preparation was treated as a stop signal for paid cross-agent runs,
+not as permission to substitute synthetic evidence.
 
-1. Merge the v0.3 code-foundation pull request after CI and review.
-2. Pin exact Codex and Claude Code model ids and verify both CLIs.
-3. Run the six-run campaign from the clean merged commit with explicit paid-run
+## Release Order
+
+1. Merge the v0.3 code foundations, skill-quality work, and release candidate
+   after CI and review.
+2. Build the deterministic `v0.3.0` manifest and release notes from the clean
+   release commit.
+3. Create the tag and GitHub release, then verify tag-triggered package
+   attestations.
+
+## Evidence Order
+
+1. Pin exact Codex and Claude Code model ids and verify both CLIs.
+2. Run the six-run campaign from a clean commit with explicit paid-run
    approval.
-4. Complete redaction, blinded scoring, reconciliation, and staged import.
-5. Publish the smoke comparison with failures and pending runs visible.
-6. Decide whether evidence and budget justify the repeated-trial matrix.
-7. Prepare the v0.3 release manifest and notes, create the tag, and verify the
-   generated attestations.
+3. Complete redaction, blinded scoring, reconciliation, and staged import.
+4. Publish the smoke comparison with failures and pending runs visible.
+5. Decide whether evidence and budget justify the repeated-trial matrix.
 
 The project should not claim that skills improve agent performance until the
 real reviewed comparison exists.

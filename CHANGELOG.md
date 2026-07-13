@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+## v0.3.0 - 2026-07-13
+
 - Add a deterministic skill-quality audit with ten reviewable workflow
   dimensions, bounded evidence bonuses, benchmark-aware release priorities,
   a versioned JSON Schema contract, generated maintainer reports, and non-threshold CI

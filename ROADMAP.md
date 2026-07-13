@@ -24,21 +24,24 @@ The seed repository currently includes:
   and deterministic release manifest artifacts.
 - GitHub metadata for labels, issue templates, discussion templates,
   milestones, workflows, starter rulesets, and seed community issues.
-- Published `v0.1.0` and `v0.2.0` registry releases. The `v0.2.0` release ships
-  the reviewed-skill and agent-evidence pilot infrastructure without promoting
-  skills automatically.
+- Published `v0.1.0`, `v0.2.0`, and `v0.3.0` registry releases. The `v0.3.0`
+  release adds community-skill security, agent compatibility, blinded-review,
+  provenance, and skill-quality infrastructure without promoting skills
+  automatically or claiming measured agent lift.
 
 The public GitHub launch is complete. Current development focuses on turning
 seed skills into reviewed skills through public-safe evidence and domain
 review.
 
-The v0.2 Evidence Pilot infrastructure is released. Real agent runs, blinded
+The v0.3 infrastructure is released. Real cross-agent runs, independent
 scoring, external adoption evidence, and maturity promotion remain public
-follow-up evidence and inputs to v0.3 planning.
+follow-up work rather than synthetic CI claims.
 
-## v0.3 Current Development
+## v0.3 Release Scope
 
-Development starts with a security foundation for community-contributed and
+Status: released in `v0.3.0` as an infrastructure and contract release.
+
+The release establishes a security foundation for community-contributed and
 agent-consumed skills:
 
 - Scan untrusted skill packages before loading their instructions into Codex,
@@ -49,14 +52,14 @@ agent-consumed skills:
   understated risk declarations without executing skill content.
 - Preserve published release manifests as immutable evidence.
 
-The v0.3 code foundation now includes the community skill scanner, six-run
-Codex/Claude smoke harness, digest-bound blinded scoring, a read-only
-skill/site-adapter resolution contract, registry index contract `0.2.0`, and
-tag-time GitHub artifact provenance. The remaining release work is evidence:
-run from a clean merged commit with exact models and explicit quota approval,
-complete the independent reviews, import the staged public-safe results, and
-publish the first evidence-backed comparison without claiming lift from
-dry-run plans alone. See [v0.3 Completion Matrix](docs/V0_3_COMPLETION.md).
+The v0.3 release includes the community skill scanner, six-run Codex/Claude
+smoke harness, digest-bound blinded scoring, a read-only skill/site-adapter
+resolution contract, registry index contract `0.2.0`, deterministic
+skill-quality reporting, deeper tier-1 skill evidence, and tag-time GitHub
+artifact provenance. The real-agent evidence track remains separate: run from
+a clean commit with exact models and explicit quota approval, complete
+independent reviews, and publish only public-safe reviewed results. See
+[v0.3 Completion Matrix](docs/V0_3_COMPLETION.md).
 
 ## Phase 0: Seed Repository
 

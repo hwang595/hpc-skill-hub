@@ -274,7 +274,7 @@ class RegistryTests(unittest.TestCase):
         for candidate in collection_payload["candidates"]:
             self.assertIn("data-movement", candidate["collections"])
 
-    def test_release_manifest_summarizes_registry(self):
+    def test_v0_2_release_manifest_remains_immutable(self):
         manifest_path = ROOT / "registry" / "releases" / "v0.2.0.json"
         data = manifest_path.read_bytes()
         manifest = json.loads(data)
@@ -299,9 +299,26 @@ class RegistryTests(unittest.TestCase):
         self.assertIn("schemas/registry-health.schema.json", paths)
         self.assertIn("schemas/release-manifest.schema.json", paths)
 
+    def test_current_release_manifest_summarizes_registry(self):
+        manifest_path = ROOT / "registry" / "releases" / "v0.3.0.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(manifest["version"], "v0.3.0")
+        self.assertEqual(manifest["registry"]["skill_count"], 97)
+        self.assertEqual(manifest["registry"]["collection_count"], 12)
+        self.assertEqual(manifest["registry"]["site_adapter_count"], 2)
+        paths = {entry["path"] for entry in manifest["files"]}
+        self.assertIn("registry/skill-quality.json", paths)
+        self.assertIn("docs/SKILL_QUALITY.md", paths)
+        self.assertIn("docs/V0_3_COMPLETION.md", paths)
+        self.assertIn("docs/RELEASE_NOTES_v0.3.0.md", paths)
+        self.assertIn("schemas/skill-security-report.schema.json", paths)
+        self.assertIn("schemas/skill-quality-report.schema.json", paths)
+        self.assertIn("schemas/agent-benchmark-review.schema.json", paths)
+
     def test_repository_release_versions_are_consistent(self):
         manifest = json.loads(
-            (ROOT / "registry" / "releases" / "v0.2.0.json").read_text(
+            (ROOT / "registry" / "releases" / "v0.3.0.json").read_text(
                 encoding="utf-8"
             )
         )
@@ -313,7 +330,7 @@ class RegistryTests(unittest.TestCase):
         )
         citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        release_notes = (ROOT / "docs" / "RELEASE_NOTES_v0.2.0.md").read_text(
+        release_notes = (ROOT / "docs" / "RELEASE_NOTES_v0.3.0.md").read_text(
             encoding="utf-8"
         )
 

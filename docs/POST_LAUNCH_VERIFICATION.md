@@ -14,7 +14,7 @@ rulesets, or publish releases.
 From an authenticated GitHub CLI environment:
 
 ```bash
-python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --version v0.2.0
+python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --version v0.3.0
 ```
 
 For machine-readable output:

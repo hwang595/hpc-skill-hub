@@ -57,8 +57,8 @@ def main() -> int:
     )
     parser.add_argument(
         "--version",
-        default="v0.2.0",
-        help="Release version to include in the plan. Default: v0.2.0.",
+        default="v0.3.0",
+        help="Release version to include in the plan. Default: v0.3.0.",
     )
     parser.add_argument(
         "--run-check",

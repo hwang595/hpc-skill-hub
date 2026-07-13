@@ -13,7 +13,7 @@ URL for the version you used.
 For the current release:
 
 ```text
-HPC Skill Hub Maintainers. HPC Skill Hub. Version 0.2.0.
+HPC Skill Hub Maintainers. HPC Skill Hub. Version 0.3.0.
 Open registry of reusable, reviewable skills for high performance computing
 workflows.
 ```

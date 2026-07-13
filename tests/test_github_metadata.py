@@ -451,7 +451,7 @@ class GitHubMetadataTests(unittest.TestCase):
             result.stdout,
         )
         self.assertIn("repos/example/hpc-skill-hub/rulesets", result.stdout)
-        self.assertIn("gh release create v0.2.0", result.stdout)
+        self.assertIn("gh release create v0.3.0", result.stdout)
         self.assertIn("Link Pages URL from repository homepage", result.stdout)
         self.assertIn("python3 tools/github_homepage.py", result.stdout)
         self.assertIn("Verify published repository state", result.stdout)
@@ -486,7 +486,7 @@ class GitHubMetadataTests(unittest.TestCase):
             result.stdout,
         )
         self.assertIn("python3 tools/github_homepage.py --repo example/hpc-skill-hub", result.stdout)
-        self.assertIn("gh release view v0.2.0", result.stdout)
+        self.assertIn("gh release view v0.3.0", result.stdout)
 
     def test_proposal_evidence_generator(self):
         markdown = subprocess.run(
