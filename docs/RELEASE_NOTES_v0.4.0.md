@@ -1,6 +1,6 @@
 # v0.4.0 Release Notes
 
-Status: release-ready on 2026-07-13; tag and attestations pending.
+Status: released on 2026-07-13; tag and attestations verified.
 
 ## Summary
 
@@ -93,7 +93,7 @@ exist.
 
 ## Release Verification
 
-The release candidate is verified with:
+The release is verified with:
 
 - `make check` passing locally.
 - Generated campaign, benchmark, review, registry, package, site, and release

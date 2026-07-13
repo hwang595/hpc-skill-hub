@@ -1,9 +1,10 @@
 # v0.4 Completion Matrix
 
-Status: release candidate complete locally. P0 and P1 control planes merged
-through PRs #27 and #28, and P2A merged through PR #29. Release PR CI, tag
-publication, and attestation verification remain pending. Real agent execution
-and maturity promotion are explicitly deferred rather than claimed complete.
+Status: released as `v0.4.0` on 2026-07-13 from commit `cee22c6`. P0 and P1
+control planes merged through PRs #27 and #28, P2A merged through PR #29, and
+release preparation merged through PR #38. Validate, Package, Pages, and
+tag-triggered attestations passed. Real agent execution and maturity promotion
+remain explicitly deferred rather than claimed complete.
 
 v0.4 is the evidence and reviewed-registry release. It must distinguish
 repository capability from externally collected evidence: deterministic plans,
@@ -48,8 +49,8 @@ paid execution and does not establish measured skill lift.
 | Gate | Status | Required evidence |
 | --- | --- | --- |
 | Public dashboard decision | Complete | Publish the dashboard with the comparison gate closed and explicit missing-evidence blockers. Do not publish a leaderboard row. |
-| Registry and release artifacts | Complete locally | Version metadata, release notes, deterministic registry artifacts, package data, and `registry/releases/v0.4.0.json` are prepared and validated. |
-| v0.4.0 release | Release candidate ready locally | Merge the release PR after CI, tag the clean commit, publish notes and manifest, then verify tag-triggered attestations. |
+| Registry and release artifacts | Complete | Version metadata, release notes, deterministic registry artifacts, package data, and `registry/releases/v0.4.0.json` were published and validated. |
+| v0.4.0 release | Released and verified | PR #38 merged, annotated tag `v0.4.0` points to `cee22c6`, the GitHub Release and manifest are public, Pages is live, and the manifest, wheel, and source distribution attestations verify against the tag. |
 
 ## Evidence Boundary
 

@@ -354,7 +354,7 @@ class RegistryTests(unittest.TestCase):
         self.assertIn(f'version: "{version}"', citation)
         self.assertIn(f"version-{version}-", readme)
         self.assertNotIn(f"version-{version}--dev", readme)
-        self.assertIn("Status: release-ready", release_notes)
+        self.assertIn("Status: released", release_notes)
 
     def test_safety_audit_passes(self):
         result = run_cmd("python3", "tools/audit_safety.py")
