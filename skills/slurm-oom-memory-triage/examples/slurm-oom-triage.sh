@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [ "$#" -gt 2 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+  echo "usage: slurm-oom-triage.sh [job-id] [log-file]"
+  echo "       JOB_ID=<job-id> JOB_LOG=<log-file> REPORT_DIR=<new-dir> slurm-oom-triage.sh"
+  if [ "$#" -gt 2 ]; then
+    exit 2
+  fi
+  exit 0
+fi
+
 job_id="${1:-${JOB_ID:-}}"
 log_file="${2:-${JOB_LOG:-}}"
 timestamp="$(date +%Y%m%d-%H%M%S 2>/dev/null || printf unknown-time)"
@@ -10,6 +19,21 @@ report_dir="${REPORT_DIR:-slurm-oom-triage-${safe_job_id}-${timestamp}}"
 if [ -z "${job_id}" ] && [ -z "${log_file}" ]; then
   echo "usage: slurm-oom-triage.sh [job-id] [log-file]"
   echo "       JOB_ID=<job-id> JOB_LOG=<log-file> REPORT_DIR=<dir> slurm-oom-triage.sh"
+  exit 2
+fi
+
+if [ -n "${job_id}" ] && ! [[ "${job_id}" =~ ^[A-Za-z0-9_.+-]+$ ]]; then
+  echo "error: job id contains unexpected characters: ${job_id}" >&2
+  exit 2
+fi
+
+if [ -n "${log_file}" ] && [ ! -f "${log_file}" ]; then
+  echo "error: log file does not exist or is not a regular file: ${log_file}" >&2
+  exit 2
+fi
+
+if [ -e "${report_dir}" ]; then
+  echo "error: report directory already exists: ${report_dir}" >&2
   exit 2
 fi
 
@@ -74,7 +98,7 @@ else
   echo "No job id provided." > "${efficiency}"
 fi
 
-if [ -n "${log_file}" ] && [ -f "${log_file}" ]; then
+if [ -n "${log_file}" ]; then
   if command -v tail >/dev/null 2>&1; then
     tail -n 160 "${log_file}" > "${log_tail}" 2>&1 || true
   else
@@ -88,9 +112,6 @@ if [ -n "${log_file}" ] && [ -f "${log_file}" ]; then
   else
     echo "grep command not found on PATH." > "${log_signals}"
   fi
-elif [ -n "${log_file}" ]; then
-  echo "Log file not found: ${log_file}" > "${log_tail}"
-  echo "Log file not found: ${log_file}" > "${log_signals}"
 else
   echo "No log file provided." > "${log_tail}"
   echo "No log file provided." > "${log_signals}"

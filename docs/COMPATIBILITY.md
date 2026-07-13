@@ -68,7 +68,7 @@ Counts show how many skills in each collection include each category.
 | Spack | [`spack-environment-create`](../skills/spack-environment-create/README.md) |
 | EasyBuild | [`easybuild-install-software`](../skills/easybuild-install-software/README.md) |
 | Conda and Mamba | [`conda-mamba-on-hpc`](../skills/conda-mamba-on-hpc/README.md) |
-| Python | [`blas-openmp-thread-control`](../skills/blas-openmp-thread-control/README.md), [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md), [`deepspeed-on-slurm`](../skills/deepspeed-on-slurm/README.md), [`gpu-memory-triage`](../skills/gpu-memory-triage/README.md), [`huggingface-accelerate-on-slurm`](../skills/huggingface-accelerate-on-slurm/README.md), [`ior-mdtest-storage-smoke`](../skills/ior-mdtest-storage-smoke/README.md), [`jax-distributed-on-slurm`](../skills/jax-distributed-on-slurm/README.md), [`jupyter-on-slurm`](../skills/jupyter-on-slurm/README.md), [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md), [`parsl-on-slurm`](../skills/parsl-on-slurm/README.md), [`python-virtualenv-on-hpc`](../skills/python-virtualenv-on-hpc/README.md), [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md), [`ray-on-slurm`](../skills/ray-on-slurm/README.md), [`scientific-simulation-workflows`](../skills/scientific-simulation-workflows/README.md), [`slurm-gpu-binding-diagnostics`](../skills/slurm-gpu-binding-diagnostics/README.md), [`streamlit-on-slurm`](../skills/streamlit-on-slurm/README.md), [`tensorboard-on-slurm`](../skills/tensorboard-on-slurm/README.md), [`tensorflow-multiworker-on-slurm`](../skills/tensorflow-multiworker-on-slurm/README.md) |
+| Python | [`blas-openmp-thread-control`](../skills/blas-openmp-thread-control/README.md), [`dask-jobqueue-on-slurm`](../skills/dask-jobqueue-on-slurm/README.md), [`deepspeed-on-slurm`](../skills/deepspeed-on-slurm/README.md), [`gpu-memory-triage`](../skills/gpu-memory-triage/README.md), [`huggingface-accelerate-on-slurm`](../skills/huggingface-accelerate-on-slurm/README.md), [`ior-mdtest-storage-smoke`](../skills/ior-mdtest-storage-smoke/README.md), [`jax-distributed-on-slurm`](../skills/jax-distributed-on-slurm/README.md), [`jupyter-on-slurm`](../skills/jupyter-on-slurm/README.md), [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md), [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md), [`parsl-on-slurm`](../skills/parsl-on-slurm/README.md), [`python-virtualenv-on-hpc`](../skills/python-virtualenv-on-hpc/README.md), [`pytorch-ddp-on-slurm`](../skills/pytorch-ddp-on-slurm/README.md), [`ray-on-slurm`](../skills/ray-on-slurm/README.md), [`scientific-simulation-workflows`](../skills/scientific-simulation-workflows/README.md), [`shared-project-permissions-triage`](../skills/shared-project-permissions-triage/README.md), [`slurm-gpu-binding-diagnostics`](../skills/slurm-gpu-binding-diagnostics/README.md), [`slurm-oom-memory-triage`](../skills/slurm-oom-memory-triage/README.md), [`slurm-output-log-triage`](../skills/slurm-output-log-triage/README.md), [`slurm-pending-reason-triage`](../skills/slurm-pending-reason-triage/README.md), [`slurm-qos-account-limit-triage`](../skills/slurm-qos-account-limit-triage/README.md), [`streamlit-on-slurm`](../skills/streamlit-on-slurm/README.md), [`tensorboard-on-slurm`](../skills/tensorboard-on-slurm/README.md), [`tensorflow-multiworker-on-slurm`](../skills/tensorflow-multiworker-on-slurm/README.md) |
 | R, Julia, and MATLAB | [`blas-openmp-thread-control`](../skills/blas-openmp-thread-control/README.md), [`julia-on-slurm`](../skills/julia-on-slurm/README.md), [`matlab-batch-on-slurm`](../skills/matlab-batch-on-slurm/README.md), [`rscript-on-slurm`](../skills/rscript-on-slurm/README.md) |
 | Compiler and MPI stacks | [`apptainer-mpi-on-slurm`](../skills/apptainer-mpi-on-slurm/README.md), [`cmake-hpc-build-preflight`](../skills/cmake-hpc-build-preflight/README.md), [`compiler-mpi-matrix`](../skills/compiler-mpi-matrix/README.md), [`cp2k-on-slurm`](../skills/cp2k-on-slurm/README.md), [`darshan-io-profile-analysis`](../skills/darshan-io-profile-analysis/README.md), [`grid-engine-submit-job`](../skills/grid-engine-submit-job/README.md), [`gromacs-on-slurm`](../skills/gromacs-on-slurm/README.md), [`hybrid-mpi-openmp-slurm`](../skills/hybrid-mpi-openmp-slurm/README.md), [`ior-mdtest-storage-smoke`](../skills/ior-mdtest-storage-smoke/README.md), [`lammps-on-slurm`](../skills/lammps-on-slurm/README.md), [`lsf-submit-job`](../skills/lsf-submit-job/README.md), [`module-environment-debug`](../skills/module-environment-debug/README.md), [`module-tree-health-check`](../skills/module-tree-health-check/README.md), [`mpi-fabric-diagnostics`](../skills/mpi-fabric-diagnostics/README.md), [`mpi-hello-and-benchmark`](../skills/mpi-hello-and-benchmark/README.md), [`mpi-rank-binding-diagnostics`](../skills/mpi-rank-binding-diagnostics/README.md), [`mpi4py-on-slurm`](../skills/mpi4py-on-slurm/README.md), [`namd-on-slurm`](../skills/namd-on-slurm/README.md), [`openfoam-on-slurm`](../skills/openfoam-on-slurm/README.md), [`parallel-hdf5-netcdf-preflight`](../skills/parallel-hdf5-netcdf-preflight/README.md), [`pbs-submit-job`](../skills/pbs-submit-job/README.md), [`quantum-espresso-on-slurm`](../skills/quantum-espresso-on-slurm/README.md), [`scientific-simulation-workflows`](../skills/scientific-simulation-workflows/README.md), [`slurm-submit-job`](../skills/slurm-submit-job/README.md), [`wrf-on-slurm`](../skills/wrf-on-slurm/README.md) |
 
@@ -100,9 +100,9 @@ they show where examples and wrappers expect a command or library.
 | `module` | 25 |
 | `tee` | 24 |
 | `bash` | 23 |
+| `python3` | 20 |
+| `scontrol` | 18 |
 | `grep` | 17 |
-| `scontrol` | 17 |
-| `python3` | 14 |
 | `squeue` | 13 |
 | `sacct` | 12 |
 | `sort` | 11 |
@@ -111,22 +111,22 @@ they show where examples and wrappers expect a command or library.
 | `test` | 9 |
 | `pwd` | 8 |
 | `env` | 7 |
-| `find` | 7 |
 | `mpicc` | 7 |
 | `df` | 6 |
+| `find` | 6 |
 | `head` | 5 |
 | `sed` | 5 |
 | `sinfo` | 5 |
 | `ssh` | 5 |
 | `awk` | 4 |
 | `dirname` | 4 |
+| `ls` | 4 |
 | `mpirun` | 4 |
 | `python` | 4 |
 | `apptainer` | 3 |
 | `cat` | 3 |
 | `command` | 3 |
 | `cp` | 3 |
-| `ls` | 3 |
 | `lscpu` | 3 |
 | `qsub` | 3 |
 | `rocm-smi` | 3 |

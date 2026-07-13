@@ -10,7 +10,17 @@ a default Slurm filename, an unexpected working directory, a split stdout/stderr
 path, a directory that did not exist at launch, permissions, quota, early
 submission failure, or an application that wrote output somewhere else.
 
-## Example
+## Prerequisites
+
+- Confirm the scheduler is Slurm and identify the exact job, array task, or step
+  whose output is missing. Filename patterns may differ across those levels.
+- Obtain only user-approved stdout/stderr paths. Relative paths must be
+  interpreted against the recorded job working directory, not the current shell.
+- Treat missing accounting or an expired job record as missing evidence.
+- Choose a new report directory. The collector refuses to overwrite an existing
+  path; a missing stdout/stderr candidate is retained as diagnostic evidence.
+
+## Workflow
 
 Collect scheduler and default log-path evidence:
 
@@ -36,6 +46,13 @@ Write to a named report directory:
 REPORT_DIR=output-log-report bash examples/slurm-output-log-triage.sh <job-id> logs/my-job.out
 ```
 
+Review saved job-record and filesystem evidence without contacting Slurm:
+
+```bash
+python3 examples/review-output-log-evidence.py \
+  --job-record <scontrol.txt> --filesystem <path-evidence.txt>
+```
+
 ## What To Review
 
 - Slurm's default output file is usually `slurm-%j.out` for ordinary jobs and
@@ -49,10 +66,31 @@ REPORT_DIR=output-log-report bash examples/slurm-output-log-triage.sh <job-id> l
 - Missing parent directories, permissions, quotas, and filesystem errors can
   prevent useful logs from appearing where expected.
 
+## Resource And Cost
+
+The collector issues bounded read-only scheduler queries and path metadata
+checks, then writes a small local report. It does not recursively search project
+or scratch filesystems. Avoid broad `find` scans for missing logs; large shared
+filesystem searches can create metadata load and expose unrelated paths.
+
+## Cleanup
+
+The script creates one report directory and does not alter user logs. Retain the
+bundle for support or remove only that local bundle under project policy. Any
+later log move, directory creation, permission repair, or job rerun is a separate
+state-changing action.
+
+## Site Adaptation
+
+Default filenames, accounting retention, array expansion, working-directory
+policy, and filesystem mounts vary by site. Redact usernames, accounts,
+hostnames, project paths, commands, and dataset identifiers before sharing.
+
 ## Safety Notes
 
-This skill is read-only. It does not move, delete, truncate, create, or rewrite
-user logs. Generated reports may include private paths, job names, usernames,
+This skill is scheduler and user-data read-only, but it creates a local report
+directory. It does not move, delete, truncate, create, or rewrite user logs.
+Generated reports may include private paths, job names, usernames,
 account names, project names, dataset names, commands, and application
 arguments; review them before sharing outside a support context.
 

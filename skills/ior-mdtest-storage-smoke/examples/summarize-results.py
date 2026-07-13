@@ -52,13 +52,23 @@ def main() -> int:
         print("status=not-a-directory")
         return 1
     if not marker.exists():
-        print("warning=marker-missing")
+        print("status=marker-missing")
+        return 1
 
     files = sorted(path for path in run_dir.rglob("*") if path.is_file())
     print(f"file_count={len(files)}")
-    for name in ("run-metadata.txt", "commands.txt", "ior.out", "mdtest.out"):
+    required = ("run-metadata.txt", "commands.txt", "ior.out", "mdtest.out")
+    missing = []
+    for name in required:
         path = run_dir / name
-        print(f"{name}={'present' if path.exists() else 'missing'}")
+        status = "present" if path.exists() else "missing"
+        print(f"{name}={status}")
+        if status == "missing":
+            missing.append(name)
+
+    if missing:
+        print(f"status=incomplete; missing={','.join(missing)}")
+        return 1
 
     for output_name in ("ior.out", "mdtest.out"):
         path = run_dir / output_name
@@ -67,6 +77,7 @@ def main() -> int:
             for line in interesting_lines(path):
                 print(line)
 
+    print("status=complete")
     return 0
 
 

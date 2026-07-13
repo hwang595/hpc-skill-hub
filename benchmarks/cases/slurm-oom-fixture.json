@@ -2,7 +2,7 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "slurm-oom-fixture",
   "name": "Slurm OOM fixture evidence",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "fixture",
   "risk_level": "low",
@@ -23,6 +23,11 @@
       "label": "OOM triage script syntax",
       "argv": ["bash", "-n", "skills/slurm-oom-memory-triage/examples/slurm-oom-triage.sh"],
       "expect_returncode": 0
+    },
+    {
+      "label": "OOM reviewer requires scheduler and application evidence",
+      "argv": ["python3", "skills/slurm-oom-memory-triage/examples/review-oom-evidence.py", "--accounting", "benchmarks/fixtures/slurm/oom-sacct.txt", "--log", "benchmarks/fixtures/slurm/oom-log.txt", "--require-both"],
+      "expect_returncode": 0
     }
   ],
   "checks": [
@@ -37,6 +42,12 @@
       "type": "contains_any",
       "path": "benchmarks/fixtures/slurm/oom-log.txt",
       "patterns": ["oom-kill", "DataLoader worker", "Killed"]
+    },
+    {
+      "label": "OOM reviewer preserves request, peak, step, and log comparison",
+      "type": "contains_all",
+      "path": "skills/slurm-oom-memory-triage/examples/review-oom-evidence.py",
+      "patterns": ["ReqMem", "MaxRSS", "scheduler_oom_rows", "application_log_signals"]
     }
   ],
   "expected_outcomes": [

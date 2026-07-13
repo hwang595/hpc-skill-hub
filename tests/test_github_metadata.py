@@ -301,6 +301,7 @@ class GitHubMetadataTests(unittest.TestCase):
         for command in [
             "python3 tools/build_index.py --check",
             "python3 tools/build_health.py --check",
+            "python3 tools/build_skill_quality.py --check",
             "python3 tools/build_compatibility.py --check",
             "python3 tools/build_package_data.py --check",
             "hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json",
@@ -592,6 +593,10 @@ class GitHubMetadataTests(unittest.TestCase):
         )
         self.assertIn(
             "tools/github_homepage.py",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "registry/skill-quality.json",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
 

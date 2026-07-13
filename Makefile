@@ -1,4 +1,4 @@
-.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check compatibility health package-data release-manifest review-packet security test validate index site cli clean
+.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check compatibility health package-data release-manifest review-packet security skill-quality test validate index site cli clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -11,6 +11,9 @@ index:
 
 health:
 	$(PYTHON) tools/build_health.py --check
+
+skill-quality:
+	$(PYTHON) tools/build_skill_quality.py --check
 
 compatibility:
 	$(PYTHON) tools/build_compatibility.py --check
@@ -66,7 +69,7 @@ cli:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health compatibility agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security test site cli
+check: validate index health skill-quality compatibility agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security test site cli
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

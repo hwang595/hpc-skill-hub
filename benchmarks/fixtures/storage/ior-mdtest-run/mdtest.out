@@ -1,0 +1,4 @@
+mdtest-3.3.0 was launched with 4 total task(s)
+SUMMARY rate: create 12000.0 IOPS
+SUMMARY rate: stat 18000.0 IOPS
+SUMMARY rate: remove 11000.0 IOPS

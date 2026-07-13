@@ -2,7 +2,7 @@
   "$schema": "../../schemas/skill.schema.json",
   "id": "slurm-oom-memory-triage",
   "name": "Slurm OOM Memory Triage",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "summary": "Collect Slurm memory evidence for out-of-memory jobs.",
   "description": "This skill collects read-only Slurm accounting, job-state, optional efficiency, and log evidence for jobs that failed with out-of-memory or killed-process symptoms.",
@@ -51,6 +51,10 @@
     },
     {
       "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "python3",
       "required": false
     }
   ],
@@ -90,12 +94,17 @@
     {
       "name": "triage_summary",
       "description": "Human-readable prompts for deciding whether to increase memory, reduce concurrency, stage data differently, or gather stronger profiling evidence."
+    },
+    {
+      "name": "offline_evidence_review",
+      "description": "Scheduler and application OOM signals extracted from saved public-safe fixtures."
     }
   ],
   "artifacts": [
     "README.md",
     "examples/slurm-oom-triage.sh",
-    "examples/memory-request-review.md"
+    "examples/memory-request-review.md",
+    "examples/review-oom-evidence.py"
   ],
   "examples": [
     {
@@ -105,6 +114,10 @@
     {
       "title": "Review memory request choices after triage",
       "path": "examples/memory-request-review.md"
+    },
+    {
+      "title": "Review saved OOM accounting and log evidence",
+      "path": "examples/review-oom-evidence.py"
     }
   ],
   "tests": [
@@ -117,6 +130,11 @@
       "type": "static",
       "command": "bash -n skills/slurm-oom-memory-triage/examples/slurm-oom-triage.sh",
       "description": "Check shell syntax for the evidence collection script."
+    },
+    {
+      "type": "static",
+      "command": "python3 skills/slurm-oom-memory-triage/examples/review-oom-evidence.py --accounting benchmarks/fixtures/slurm/oom-sacct.txt --log benchmarks/fixtures/slurm/oom-log.txt --require-both",
+      "description": "Require matching scheduler and application OOM evidence in synthetic fixtures."
     },
     {
       "type": "manual",

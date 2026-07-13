@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/skill-quality-report.schema.json",
+  "title": "HPC Skill Hub Skill Quality Report",
+  "type": "object",
+  "required": ["$schema", "schema_version", "generated_by", "skill_count", "average_score", "median_score", "thresholds", "band_counts", "priority_counts", "skills"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"const": "../schemas/skill-quality-report.schema.json"},
+    "schema_version": {"const": "0.1.0"},
+    "generated_by": {"const": "tools/build_skill_quality.py"},
+    "skill_count": {"type": "integer", "minimum": 1},
+    "average_score": {"type": "number", "minimum": 0, "maximum": 100},
+    "median_score": {"type": "number", "minimum": 0, "maximum": 100},
+    "thresholds": {
+      "type": "object",
+      "required": ["strong", "developing"],
+      "additionalProperties": false,
+      "properties": {
+        "strong": {"type": "integer", "minimum": 0, "maximum": 100},
+        "developing": {"type": "integer", "minimum": 0, "maximum": 100}
+      }
+    },
+    "band_counts": {
+      "type": "object",
+      "required": ["strong", "developing", "needs-depth"],
+      "additionalProperties": false,
+      "properties": {
+        "strong": {"type": "integer", "minimum": 0},
+        "developing": {"type": "integer", "minimum": 0},
+        "needs-depth": {"type": "integer", "minimum": 0}
+      }
+    },
+    "priority_counts": {
+      "type": "object",
+      "required": ["tier-1-agent-evidence", "tier-2-benchmark", "tier-3-registry"],
+      "additionalProperties": false,
+      "properties": {
+        "tier-1-agent-evidence": {"type": "integer", "minimum": 0},
+        "tier-2-benchmark": {"type": "integer", "minimum": 0},
+        "tier-3-registry": {"type": "integer", "minimum": 0}
+      }
+    },
+    "skills": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "version", "status", "risk_level", "maturity", "categories", "score", "band", "release_priority", "word_count", "example_count", "reference_count", "benchmark_case_count", "agent_task_count", "dimensions", "bonus_points", "bonus_evidence", "gaps", "readme"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+          "status": {"enum": ["draft", "reviewed", "deprecated"]},
+          "risk_level": {"enum": ["low", "medium", "high"]},
+          "maturity": {"type": "string"},
+          "categories": {"type": "array", "items": {"type": "string"}},
+          "score": {"type": "integer", "minimum": 0, "maximum": 100},
+          "band": {"enum": ["strong", "developing", "needs-depth"]},
+          "release_priority": {"enum": ["tier-1-agent-evidence", "tier-2-benchmark", "tier-3-registry"]},
+          "word_count": {"type": "integer", "minimum": 0},
+          "example_count": {"type": "integer", "minimum": 0},
+          "reference_count": {"type": "integer", "minimum": 0},
+          "benchmark_case_count": {"type": "integer", "minimum": 0},
+          "agent_task_count": {"type": "integer", "minimum": 0},
+          "dimensions": {
+            "type": "array",
+            "minItems": 10,
+            "maxItems": 10,
+            "items": {
+              "type": "object",
+              "required": ["id", "label", "status", "points", "evidence"],
+              "additionalProperties": false,
+              "properties": {
+                "id": {"enum": ["scope", "prerequisites", "workflow", "inputs_outputs", "validation", "failure_handling", "safety", "resource_impact", "cleanup", "site_boundary"]},
+                "label": {"type": "string"},
+                "status": {"enum": ["present", "missing"]},
+                "points": {"enum": [0, 8]},
+                "evidence": {"type": "string"}
+              }
+            }
+          },
+          "bonus_points": {"type": "integer", "minimum": 0, "maximum": 20},
+          "bonus_evidence": {"type": "array", "items": {"type": "string"}},
+          "gaps": {"type": "array", "items": {"type": "string"}},
+          "readme": {"type": "string"}
+        }
+      }
+    }
+  }
+}

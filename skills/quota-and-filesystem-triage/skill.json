@@ -2,7 +2,7 @@
   "$schema": "../../schemas/skill.schema.json",
   "id": "quota-and-filesystem-triage",
   "name": "Quota And Filesystem Triage",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "summary": "Diagnose quota, inode, and filesystem-space failures from user-visible evidence.",
   "description": "This skill gives users and support teams a read-only checklist for storage-related failures such as full filesystems, quota limits, inode exhaustion, and path permission errors.",
@@ -26,10 +26,6 @@
       "required": false
     },
     {
-      "name": "find",
-      "required": true
-    },
-    {
       "name": "grep",
       "required": true
     },
@@ -39,6 +35,10 @@
     },
     {
       "name": "dirname",
+      "required": true
+    },
+    {
+      "name": "ls",
       "required": true
     }
   ],
@@ -62,11 +62,19 @@
       "description": "Read-only evidence about capacity, inode usage, quota command availability, path permissions, and log clues."
     }
   ],
-  "artifacts": ["README.md", "examples/filesystem-triage.sh"],
+  "artifacts": [
+    "README.md",
+    "examples/filesystem-triage.sh",
+    "examples/storage-evidence-checklist.md"
+  ],
   "examples": [
     {
       "title": "Triage filesystem and quota signals",
       "path": "examples/filesystem-triage.sh"
+    },
+    {
+      "title": "Record bounded storage evidence",
+      "path": "examples/storage-evidence-checklist.md"
     }
   ],
   "tests": [
@@ -74,6 +82,11 @@
       "type": "static",
       "command": "python3 tools/validate_skills.py --skill quota-and-filesystem-triage",
       "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "static",
+      "command": "bash skills/quota-and-filesystem-triage/examples/filesystem-triage.sh benchmarks/fixtures/filesystem benchmarks/fixtures/filesystem/quota-log.txt",
+      "description": "Run bounded read-only triage against a synthetic log fixture."
     },
     {
       "type": "manual",

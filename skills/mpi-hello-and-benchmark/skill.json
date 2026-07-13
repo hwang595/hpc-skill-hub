@@ -2,7 +2,7 @@
   "$schema": "../../schemas/skill.schema.json",
   "id": "mpi-hello-and-benchmark",
   "name": "MPI Hello And Benchmark",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "summary": "Compile and run MPI sanity checks across allocated nodes.",
   "description": "This skill provides a minimal MPI hello-world program and Slurm batch script to verify compiler, launcher, and node-to-node execution.",
@@ -25,6 +25,10 @@
     {
       "name": "srun",
       "required": true
+    },
+    {
+      "name": "python3",
+      "required": false
     }
   ],
   "inputs": [
@@ -44,14 +48,23 @@
   "outputs": [
     {
       "name": "mpi_binary",
-      "description": "Compiled MPI hello-world executable."
+      "description": "Temporary MPI hello-world executable removed when the smoke test exits."
     },
     {
       "name": "rank_report",
       "description": "Rank, size, and hostname output from each MPI process."
+    },
+    {
+      "name": "rank_validation",
+      "description": "Offline completeness, communicator-size, and host summary for a saved MPI hello log."
     }
   ],
-  "artifacts": ["README.md", "examples/hello_mpi.c", "examples/run-mpi.sbatch"],
+  "artifacts": [
+    "README.md",
+    "examples/hello_mpi.c",
+    "examples/run-mpi.sbatch",
+    "examples/review-mpi-log.py"
+  ],
   "examples": [
     {
       "title": "MPI hello-world source",
@@ -60,6 +73,10 @@
     {
       "title": "Run MPI under Slurm",
       "path": "examples/run-mpi.sbatch"
+    },
+    {
+      "title": "Review saved MPI rank output",
+      "path": "examples/review-mpi-log.py"
     }
   ],
   "tests": [
@@ -67,6 +84,11 @@
       "type": "static",
       "command": "python3 tools/validate_skills.py --skill mpi-hello-and-benchmark",
       "description": "Validate the manifest and example files."
+    },
+    {
+      "type": "static",
+      "command": "python3 skills/mpi-hello-and-benchmark/examples/review-mpi-log.py --expected-ranks 4 --expected-hosts 2 benchmarks/fixtures/mpi/hello-output.txt",
+      "description": "Validate complete rank output from a synthetic two-node hello run."
     },
     {
       "type": "manual",
@@ -81,6 +103,10 @@
     {
       "title": "Slurm MPI guide",
       "url": "https://slurm.schedmd.com/mpi_guide.html"
+    },
+    {
+      "title": "Slurm sbatch documentation",
+      "url": "https://slurm.schedmd.com/sbatch.html"
     }
   ]
 }

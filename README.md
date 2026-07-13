@@ -250,6 +250,7 @@ The repository is set up as a versioned registry, not just a documentation dump:
 | Gate | What it proves |
 | --- | --- |
 | `Validate` workflow | Skill manifests, generated registry files, safety audit, CLI smoke tests, and unit tests pass on every push and pull request. |
+| `registry/skill-quality.json` | Deterministic documentation and evidence coverage baseline that prioritizes review work without claiming maturity or correctness. |
 | `hpc-skill security` | Community skill packages receive deterministic prompt-injection, command, persistence, credential, package, and risk-declaration checks before adoption. |
 | `Package` workflow | Source and wheel distributions build cleanly, metadata passes `twine check`, and the installed wheel can read registry data outside the checkout. |
 | `Publish Pages` workflow | The searchable static registry site builds and deploys from the tracked registry index. |
@@ -276,6 +277,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Collections](docs/COLLECTIONS.md)
 - [Machine-readable registry index](registry/index.json)
 - [Registry health](docs/REGISTRY_HEALTH.md)
+- [Skill quality baseline](docs/SKILL_QUALITY.md)
 - [Compatibility tables](docs/COMPATIBILITY.md)
 - [CLI](docs/CLI.md)
 - [Agent integration](docs/AGENT_INTEGRATION.md)

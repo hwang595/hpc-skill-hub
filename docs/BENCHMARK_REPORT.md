@@ -23,19 +23,19 @@ explicitly enabled.
 | Case | Mode | Skills | Status | Evidence |
 | --- | --- | --- | --- | --- |
 | [`file-descriptor-limit-fixture`](../benchmarks/cases/file-descriptor-limit-fixture.json) | `fixture` | `file-descriptor-limit-triage` | `passed` | 1 command(s), 2 check(s) |
-| [`gpu-sanity-static`](../benchmarks/cases/gpu-sanity-static.json) | `static` | `gpu-sanity-check` | `passed` | 1 command(s), 1 check(s) |
-| [`ior-mdtest-storage-static`](../benchmarks/cases/ior-mdtest-storage-static.json) | `static` | `ior-mdtest-storage-smoke` | `passed` | 3 command(s), 1 check(s) |
-| [`job-failure-triage-static`](../benchmarks/cases/job-failure-triage-static.json) | `static` | `job-failure-triage` | `passed` | 1 command(s), 1 check(s) |
+| [`gpu-sanity-static`](../benchmarks/cases/gpu-sanity-static.json) | `static` | `gpu-sanity-check` | `passed` | 2 command(s), 2 check(s) |
+| [`ior-mdtest-storage-static`](../benchmarks/cases/ior-mdtest-storage-static.json) | `static` | `ior-mdtest-storage-smoke` | `passed` | 6 command(s), 3 check(s) |
+| [`job-failure-triage-static`](../benchmarks/cases/job-failure-triage-static.json) | `static` | `job-failure-triage` | `passed` | 2 command(s), 2 check(s) |
 | [`mpi-hello-site`](../benchmarks/cases/mpi-hello-site.json) | `site` | `mpi-hello-and-benchmark` | `skipped` | metadata only |
-| [`mpi-hello-static`](../benchmarks/cases/mpi-hello-static.json) | `static` | `mpi-hello-and-benchmark` | `passed` | 1 command(s), 1 check(s) |
-| [`quota-filesystem-fixture`](../benchmarks/cases/quota-filesystem-fixture.json) | `fixture` | `quota-and-filesystem-triage` | `passed` | 1 command(s), 2 check(s) |
-| [`shared-permissions-fixture`](../benchmarks/cases/shared-permissions-fixture.json) | `fixture` | `shared-project-permissions-triage` | `passed` | 1 command(s), 3 check(s) |
+| [`mpi-hello-static`](../benchmarks/cases/mpi-hello-static.json) | `static` | `mpi-hello-and-benchmark` | `passed` | 3 command(s), 2 check(s) |
+| [`quota-filesystem-fixture`](../benchmarks/cases/quota-filesystem-fixture.json) | `fixture` | `quota-and-filesystem-triage` | `passed` | 3 command(s), 3 check(s) |
+| [`shared-permissions-fixture`](../benchmarks/cases/shared-permissions-fixture.json) | `fixture` | `shared-project-permissions-triage` | `passed` | 2 command(s), 4 check(s) |
 | [`slurm-node-failure-fixture`](../benchmarks/cases/slurm-node-failure-fixture.json) | `fixture` | `slurm-node-failure-triage`, `job-failure-triage` | `passed` | 1 command(s), 3 check(s) |
-| [`slurm-oom-fixture`](../benchmarks/cases/slurm-oom-fixture.json) | `fixture` | `slurm-oom-memory-triage`, `job-failure-triage` | `passed` | 1 command(s), 2 check(s) |
-| [`slurm-output-log-fixture`](../benchmarks/cases/slurm-output-log-fixture.json) | `fixture` | `slurm-output-log-triage` | `passed` | 1 command(s), 2 check(s) |
-| [`slurm-pending-reason-fixture`](../benchmarks/cases/slurm-pending-reason-fixture.json) | `fixture` | `slurm-pending-reason-triage` | `passed` | 1 command(s), 2 check(s) |
-| [`slurm-qos-account-limit-fixture`](../benchmarks/cases/slurm-qos-account-limit-fixture.json) | `fixture` | `slurm-qos-account-limit-triage`, `slurm-pending-reason-triage` | `passed` | 1 command(s), 2 check(s) |
-| [`slurm-submit-static`](../benchmarks/cases/slurm-submit-static.json) | `static` | `slurm-submit-job` | `passed` | 4 command(s), 1 check(s) |
+| [`slurm-oom-fixture`](../benchmarks/cases/slurm-oom-fixture.json) | `fixture` | `slurm-oom-memory-triage`, `job-failure-triage` | `passed` | 2 command(s), 3 check(s) |
+| [`slurm-output-log-fixture`](../benchmarks/cases/slurm-output-log-fixture.json) | `fixture` | `slurm-output-log-triage` | `passed` | 2 command(s), 3 check(s) |
+| [`slurm-pending-reason-fixture`](../benchmarks/cases/slurm-pending-reason-fixture.json) | `fixture` | `slurm-pending-reason-triage` | `passed` | 2 command(s), 3 check(s) |
+| [`slurm-qos-account-limit-fixture`](../benchmarks/cases/slurm-qos-account-limit-fixture.json) | `fixture` | `slurm-qos-account-limit-triage`, `slurm-pending-reason-triage` | `passed` | 2 command(s), 3 check(s) |
+| [`slurm-submit-static`](../benchmarks/cases/slurm-submit-static.json) | `static` | `slurm-submit-job` | `passed` | 5 command(s), 2 check(s) |
 | [`slurm-time-limit-fixture`](../benchmarks/cases/slurm-time-limit-fixture.json) | `fixture` | `slurm-time-limit-triage`, `checkpoint-restart-workflow` | `passed` | 1 command(s), 2 check(s) |
 
 ## Expected Outcomes

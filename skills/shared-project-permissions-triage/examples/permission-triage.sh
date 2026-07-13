@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [ "$#" -gt 2 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+  echo "usage: permission-triage.sh [path] [log-file]"
+  if [ "$#" -gt 2 ]; then
+    exit 2
+  fi
+  exit 0
+fi
+
 target="${1:-.}"
 log_file="${2:-}"
 start_dir="$(pwd)"
@@ -14,6 +22,11 @@ case "${log_file}" in
   ""|/*) ;;
   *) log_file="${start_dir}/${log_file}" ;;
 esac
+
+if [ -n "${log_file}" ] && [ ! -f "${log_file}" ]; then
+  echo "error: log file does not exist or is not a regular file: ${log_file}" >&2
+  exit 2
+fi
 
 if [ -e "${target}" ]; then
   inspect_path="${target}"

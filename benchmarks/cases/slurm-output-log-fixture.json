@@ -2,7 +2,7 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "slurm-output-log-fixture",
   "name": "Slurm output-log fixture evidence",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "fixture",
   "risk_level": "low",
@@ -23,6 +23,11 @@
       "label": "Output-log triage script syntax",
       "argv": ["bash", "-n", "skills/slurm-output-log-triage/examples/slurm-output-log-triage.sh"],
       "expect_returncode": 0
+    },
+    {
+      "label": "Output-log reviewer separates missing and empty paths",
+      "argv": ["python3", "skills/slurm-output-log-triage/examples/review-output-log-evidence.py", "--job-record", "benchmarks/fixtures/slurm/output-log-scontrol.txt", "--filesystem", "benchmarks/fixtures/slurm/output-log-filesystem.txt"],
+      "expect_returncode": 0
     }
   ],
   "checks": [
@@ -37,6 +42,12 @@
       "type": "contains_all",
       "path": "benchmarks/fixtures/slurm/output-log-filesystem.txt",
       "patterns": ["expected stdout path is missing", "stderr exists but is empty"]
+    },
+    {
+      "label": "Output reviewer requires path and working-directory evidence",
+      "type": "contains_all",
+      "path": "skills/slurm-output-log-triage/examples/review-output-log-evidence.py",
+      "patterns": ["WorkDir", "StdOut", "StdErr", "missing_path_records", "empty_file_records"]
     }
   ],
   "expected_outcomes": [

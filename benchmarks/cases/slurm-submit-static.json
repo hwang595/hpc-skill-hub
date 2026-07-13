@@ -2,7 +2,7 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "slurm-submit-static",
   "name": "Slurm submit example syntax",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "static",
   "risk_level": "low",
@@ -29,6 +29,11 @@
       "label": "Array sbatch syntax",
       "argv": ["bash", "-n", "skills/slurm-submit-job/examples/array.sbatch"],
       "expect_returncode": 0
+    },
+    {
+      "label": "Static reviewer blocks unresolved placeholders",
+      "argv": ["bash", "skills/slurm-submit-job/examples/review-sbatch.sh", "skills/slurm-submit-job/examples/cpu.sbatch"],
+      "expect_returncode": 3
     }
   ],
   "checks": [
@@ -37,6 +42,12 @@
       "type": "contains_all",
       "path": "skills/slurm-submit-job/examples/cpu.sbatch",
       "patterns": ["<account>", "<partition>", "Replace this with the real workload"]
+    },
+    {
+      "label": "Submission guidance keeps review and submit separate",
+      "type": "contains_all",
+      "path": "skills/slurm-submit-job/README.md",
+      "patterns": ["static reviewer", "explicit user approval", "total request", "Do not publish private"]
     }
   ],
   "expected_outcomes": [

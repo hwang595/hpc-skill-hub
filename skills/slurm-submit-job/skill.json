@@ -2,7 +2,7 @@
   "$schema": "../../schemas/skill.schema.json",
   "id": "slurm-submit-job",
   "name": "Slurm Submit Job",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "summary": "Generate safe Slurm batch scripts for common HPC job shapes.",
   "description": "This skill helps users create Slurm sbatch scripts for CPU, GPU, MPI, and array workloads with conservative defaults and clear placeholders.",
@@ -62,7 +62,8 @@
     "examples/cpu.sbatch",
     "examples/mpi.sbatch",
     "examples/gpu.sbatch",
-    "examples/array.sbatch"
+    "examples/array.sbatch",
+    "examples/review-sbatch.sh"
   ],
   "examples": [
     {
@@ -80,6 +81,10 @@
     {
       "title": "Array batch job",
       "path": "examples/array.sbatch"
+    },
+    {
+      "title": "Review a batch script without submitting",
+      "path": "examples/review-sbatch.sh"
     }
   ],
   "tests": [
@@ -101,6 +106,10 @@
     {
       "title": "Slurm srun documentation",
       "url": "https://slurm.schedmd.com/srun.html"
+    },
+    {
+      "title": "Slurm Generic Resource scheduling",
+      "url": "https://slurm.schedmd.com/gres.html"
     }
   ]
 }

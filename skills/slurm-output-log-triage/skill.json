@@ -2,7 +2,7 @@
   "$schema": "../../schemas/skill.schema.json",
   "id": "slurm-output-log-triage",
   "name": "Slurm Output Log Triage",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "summary": "Collect read-only evidence for missing or confusing Slurm output logs.",
   "description": "This skill helps users and support teams diagnose missing, empty, misplaced, or confusing Slurm stdout/stderr logs by collecting accounting, job-record, output-path, working-directory, and filesystem evidence without modifying job or user data.",
@@ -63,6 +63,10 @@
     },
     {
       "name": "mkdir",
+      "required": true
+    },
+    {
+      "name": "python3",
       "required": false
     }
   ],
@@ -112,12 +116,17 @@
     {
       "name": "triage_summary",
       "description": "Human-readable prompts for deciding whether logs are in a different working directory, were empty, failed before launch, or need clearer sbatch output directives."
+    },
+    {
+      "name": "offline_log_evidence_review",
+      "description": "Presence of job-record path fields plus missing and empty saved filesystem evidence."
     }
   ],
   "artifacts": [
     "README.md",
     "examples/slurm-output-log-triage.sh",
-    "examples/output-log-review-checklist.md"
+    "examples/output-log-review-checklist.md",
+    "examples/review-output-log-evidence.py"
   ],
   "examples": [
     {
@@ -127,6 +136,10 @@
     {
       "title": "Review missing or empty output logs",
       "path": "examples/output-log-review-checklist.md"
+    },
+    {
+      "title": "Review saved job-record and filesystem evidence",
+      "path": "examples/review-output-log-evidence.py"
     }
   ],
   "tests": [
@@ -139,6 +152,11 @@
       "type": "static",
       "command": "bash -n skills/slurm-output-log-triage/examples/slurm-output-log-triage.sh",
       "description": "Check shell syntax for the evidence collection script."
+    },
+    {
+      "type": "static",
+      "command": "python3 skills/slurm-output-log-triage/examples/review-output-log-evidence.py --job-record benchmarks/fixtures/slurm/output-log-scontrol.txt --filesystem benchmarks/fixtures/slurm/output-log-filesystem.txt",
+      "description": "Check missing and empty log classification from synthetic evidence."
     },
     {
       "type": "manual",

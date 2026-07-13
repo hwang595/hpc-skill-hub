@@ -46,6 +46,11 @@ checkout. `hpc-skill resolve` emits the separate, read-only
 `docs/REGISTRY_HEALTH.md` for maintainer-facing coverage, risk, maturity, and
 collection health.
 
+`tools/build_skill_quality.py` generates `registry/skill-quality.json` and
+`docs/SKILL_QUALITY.md`. It scores visible workflow and evidence coverage to
+prioritize review; it does not promote maturity or certify correctness. CI
+checks that the baseline is current but does not enforce a score threshold.
+
 `tools/build_compatibility.py` generates `docs/COMPATIBILITY.md` for scheduler,
 collection, workflow engine, container, domain, and tool compatibility views
 derived from `registry/index.json`.
@@ -58,7 +63,7 @@ with deterministic file sizes and SHA-256 checksums for release provenance.
 users can run read-only discovery commands without a repository checkout.
 
 `tools/validate_registry_artifacts.py` checks the generated registry index,
-health report, packaged registry snapshot, immutable historical release
+health and skill-quality reports, packaged registry snapshot, immutable historical release
 manifests, and public JSON Schema pointers used by downstream integrations.
 Preparing a new release separately runs `tools/build_release_manifest.py` to
 compare that version's snapshot with the release candidate worktree.

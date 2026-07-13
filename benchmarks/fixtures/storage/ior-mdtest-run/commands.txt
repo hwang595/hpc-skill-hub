@@ -1,0 +1,2 @@
+ior_command=srun -n 4 ior -a POSIX -F -w -r -t 1m -b 16m -s 4 -o <run-dir>/ior/file
+mdtest_command=srun -n 4 mdtest -d <run-dir>/mdtest -n 32 -i 1 -z 0 -u -F

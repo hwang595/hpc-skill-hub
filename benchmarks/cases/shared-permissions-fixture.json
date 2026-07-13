@@ -2,7 +2,7 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "shared-permissions-fixture",
   "name": "Shared permissions fixture evidence",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "fixture",
   "risk_level": "low",
@@ -27,6 +27,11 @@
       "label": "Permission triage script syntax",
       "argv": ["bash", "-n", "skills/shared-project-permissions-triage/examples/permission-triage.sh"],
       "expect_returncode": 0
+    },
+    {
+      "label": "Permission reviewer requires traversal, ACL, and log evidence",
+      "argv": ["python3", "skills/shared-project-permissions-triage/examples/review-permission-evidence.py", "--namei", "benchmarks/fixtures/filesystem/permissions-namei.txt", "--acl", "benchmarks/fixtures/filesystem/permissions-getfacl.txt", "--log", "benchmarks/fixtures/filesystem/permissions-log.txt", "--require-all"],
+      "expect_returncode": 0
     }
   ],
   "checks": [
@@ -47,6 +52,12 @@
       "type": "contains_any",
       "path": "benchmarks/fixtures/filesystem/permissions-log.txt",
       "patterns": ["Permission denied", "Operation not permitted", "access denied"]
+    },
+    {
+      "label": "Permission reviewer keeps evidence paths separate",
+      "type": "contains_all",
+      "path": "skills/shared-project-permissions-triage/examples/review-permission-evidence.py",
+      "patterns": ["blocked_traversal", "restrictive_acl_mask", "application_denied", "distinct"]
     }
   ],
   "expected_outcomes": [

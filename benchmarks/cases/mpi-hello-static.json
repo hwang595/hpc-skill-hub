@@ -2,18 +2,37 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "mpi-hello-static",
   "name": "MPI hello static checks",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "static",
   "risk_level": "low",
   "skill_ids": ["mpi-hello-and-benchmark"],
   "summary": "Check that the MPI hello example remains reviewable without launching MPI work in CI.",
-  "fixtures": [],
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/mpi/hello-output.txt",
+      "description": "Synthetic complete four-rank output across two compute hosts."
+    },
+    {
+      "path": "benchmarks/fixtures/mpi/hello-output-missing-rank.txt",
+      "description": "Synthetic incomplete output used to verify missing-rank detection."
+    }
+  ],
   "commands": [
     {
       "label": "MPI sbatch syntax",
       "argv": ["bash", "-n", "skills/mpi-hello-and-benchmark/examples/run-mpi.sbatch"],
       "expect_returncode": 0
+    },
+    {
+      "label": "MPI rank output validation",
+      "argv": ["python3", "skills/mpi-hello-and-benchmark/examples/review-mpi-log.py", "--expected-ranks", "4", "--expected-hosts", "2", "benchmarks/fixtures/mpi/hello-output.txt"],
+      "expect_returncode": 0
+    },
+    {
+      "label": "MPI rank reviewer rejects incomplete output",
+      "argv": ["python3", "skills/mpi-hello-and-benchmark/examples/review-mpi-log.py", "--expected-ranks", "4", "--expected-hosts", "2", "benchmarks/fixtures/mpi/hello-output-missing-rank.txt"],
+      "expect_returncode": 1
     }
   ],
   "checks": [
@@ -22,6 +41,12 @@
       "type": "contains_all",
       "path": "skills/mpi-hello-and-benchmark/examples/hello_mpi.c",
       "patterns": ["MPI_Comm_rank", "MPI_Comm_size", "rank %d of %d"]
+    },
+    {
+      "label": "MPI script uses a cleaned temporary build directory",
+      "type": "contains_all",
+      "path": "skills/mpi-hello-and-benchmark/examples/run-mpi.sbatch",
+      "patterns": ["mktemp -d", "trap cleanup EXIT", "rmdir", "srun \"${binary}\""]
     }
   ],
   "expected_outcomes": [

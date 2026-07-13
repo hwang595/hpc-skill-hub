@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [ "$#" -gt 2 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+  echo "usage: slurm-output-log-triage.sh [job-id] [log-file]"
+  echo "       JOB_ID=<job-id> JOB_LOG=<path> ERROR_FILE=<path> REPORT_DIR=<new-dir> slurm-output-log-triage.sh"
+  if [ "$#" -gt 2 ]; then
+    exit 2
+  fi
+  exit 0
+fi
+
 job_id="${1:-${JOB_ID:-}}"
 log_file="${2:-${JOB_LOG:-${OUTPUT_PATH:-}}}"
 error_file="${ERROR_FILE:-}"
@@ -11,6 +20,16 @@ report_dir="${REPORT_DIR:-slurm-output-log-triage-${safe_job_id}-${timestamp}}"
 if [ -z "${job_id}" ] && [ -z "${log_file}" ] && [ -z "${error_file}" ]; then
   echo "usage: slurm-output-log-triage.sh [job-id] [log-file]"
   echo "       JOB_ID=<job-id> JOB_LOG=<path> ERROR_FILE=<path> REPORT_DIR=<dir> slurm-output-log-triage.sh"
+  exit 2
+fi
+
+if [ -n "${job_id}" ] && ! [[ "${job_id}" =~ ^[A-Za-z0-9_.+-]+$ ]]; then
+  echo "error: job id contains unexpected characters: ${job_id}" >&2
+  exit 2
+fi
+
+if [ -e "${report_dir}" ]; then
+  echo "error: report directory already exists: ${report_dir}" >&2
   exit 2
 fi
 
