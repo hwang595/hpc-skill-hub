@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/skill-review-status.schema.json",
+  "title": "HPC Skill Hub Generated Review Status",
+  "type": "object",
+  "required": ["$schema", "schema_version", "generated_by", "release", "candidate_count", "static_ready_count", "promotion_ready_count", "status_counts", "skills"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"const": "../schemas/skill-review-status.schema.json"},
+    "schema_version": {"const": "0.1.0"},
+    "generated_by": {"const": "tools/build_skill_reviews.py"},
+    "release": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "candidate_count": {"type": "integer", "minimum": 0},
+    "static_ready_count": {"type": "integer", "minimum": 0},
+    "promotion_ready_count": {"type": "integer", "minimum": 0},
+    "status_counts": {
+      "type": "object",
+      "required": ["blocked", "awaiting-review", "promotion-ready", "promoted"],
+      "additionalProperties": false,
+      "properties": {
+        "blocked": {"type": "integer", "minimum": 0},
+        "awaiting-review": {"type": "integer", "minimum": 0},
+        "promotion-ready": {"type": "integer", "minimum": 0},
+        "promoted": {"type": "integer", "minimum": 0}
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "version", "release", "current_maturity", "target_maturity", "risk_level", "status", "static_ready", "promotion_ready", "safety_review_required", "quality", "evidence", "review_issue", "review_commit", "requirements", "blockers", "validation_errors", "bundle_path", "bundle_sha256"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "version": {"type": "string"},
+          "release": {"type": "string"},
+          "current_maturity": {"type": "string"},
+          "target_maturity": {"const": "reviewed"},
+          "risk_level": {"enum": ["low", "medium", "high"]},
+          "status": {"enum": ["blocked", "awaiting-review", "promotion-ready", "promoted"]},
+          "static_ready": {"type": "boolean"},
+          "promotion_ready": {"type": "boolean"},
+          "safety_review_required": {"type": "boolean"},
+          "quality": {"type": "object"},
+          "evidence": {"type": "object"},
+          "review_issue": {"type": ["string", "null"]},
+          "review_commit": {"type": ["string", "null"]},
+          "requirements": {"type": "array", "items": {"type": "object"}},
+          "blockers": {"type": "array", "items": {"type": "object"}},
+          "validation_errors": {"type": "array", "items": {"type": "string"}},
+          "bundle_path": {"type": "string"},
+          "bundle_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    }
+  }
+}

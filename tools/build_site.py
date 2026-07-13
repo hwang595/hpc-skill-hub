@@ -25,6 +25,7 @@ SUPPORT_PATHS = [
     "skills",
     "site-adapters",
     "registry",
+    "reviews",
 ]
 
 
@@ -585,6 +586,7 @@ def render(index: Dict[str, Any]) -> str:
         <a href="docs/COMPATIBILITY.md">Compatibility</a>
         <a href="docs/SITE_ADAPTERS.md">Site adapters</a>
         <a href="docs/AGENT_BENCHMARK_DASHBOARD.html">Evidence</a>
+        <a href="docs/SKILL_REVIEW_DASHBOARD.html">Reviews</a>
         <a href="docs/ECOSYSTEM_PROPOSAL.md">Proposal</a>
       </nav>
     </div>

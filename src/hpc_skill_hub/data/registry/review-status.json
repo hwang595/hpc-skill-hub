@@ -1,0 +1,541 @@
+{
+  "$schema": "../schemas/skill-review-status.schema.json",
+  "candidate_count": 5,
+  "generated_by": "tools/build_skill_reviews.py",
+  "promotion_ready_count": 0,
+  "release": "v0.4.0",
+  "schema_version": "0.1.0",
+  "skills": [
+    {
+      "blockers": [
+        {
+          "detail": "A public maturity-review issue is linked.",
+          "id": "public-review-issue"
+        },
+        {
+          "detail": "Review is pinned to one full Git commit.",
+          "id": "review-commit"
+        },
+        {
+          "detail": "An independent domain reviewer approved the pinned commit.",
+          "id": "domain-review"
+        },
+        {
+          "detail": "A maintainer recorded the final promotion decision.",
+          "id": "maintainer-decision"
+        }
+      ],
+      "bundle_path": "reviews/v0.4.0/job-failure-triage.json",
+      "bundle_sha256": "f6ff0b5520c4ae5baa381b4c308525acb422160dac7342be0f3b94347ea8f1fa",
+      "current_maturity": "seed",
+      "evidence": {
+        "adoption_report_count": 0,
+        "agent_task_count": 1,
+        "benchmark_case_count": 3,
+        "example_count": 2,
+        "readme": "skills/job-failure-triage/README.md"
+      },
+      "id": "job-failure-triage",
+      "name": "Job Failure Triage",
+      "promotion_ready": false,
+      "quality": {
+        "band": "strong",
+        "gaps": [],
+        "score": 98
+      },
+      "release": "v0.4.0",
+      "requirements": [
+        {
+          "category": "static",
+          "detail": "Quality band is strong.",
+          "id": "quality-strong",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "Quality report has no gaps.",
+          "id": "quality-gaps-closed",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "At least one static or fixture benchmark references the skill.",
+          "id": "benchmark-evidence",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "At least one agent benchmark task references the skill.",
+          "id": "agent-task-evidence",
+          "status": "passed"
+        },
+        {
+          "category": "review",
+          "detail": "A public maturity-review issue is linked.",
+          "id": "public-review-issue",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "Review is pinned to one full Git commit.",
+          "id": "review-commit",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "An independent domain reviewer approved the pinned commit.",
+          "id": "domain-review",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "Required safety review approved the pinned commit.",
+          "id": "safety-review",
+          "status": "passed"
+        },
+        {
+          "category": "review",
+          "detail": "A maintainer recorded the final promotion decision.",
+          "id": "maintainer-decision",
+          "status": "pending"
+        }
+      ],
+      "review_commit": null,
+      "review_issue": null,
+      "risk_level": "low",
+      "safety_review_required": false,
+      "static_ready": true,
+      "status": "awaiting-review",
+      "target_maturity": "reviewed",
+      "validation_errors": [],
+      "version": "0.2.0"
+    },
+    {
+      "blockers": [
+        {
+          "detail": "A public maturity-review issue is linked.",
+          "id": "public-review-issue"
+        },
+        {
+          "detail": "Review is pinned to one full Git commit.",
+          "id": "review-commit"
+        },
+        {
+          "detail": "An independent domain reviewer approved the pinned commit.",
+          "id": "domain-review"
+        },
+        {
+          "detail": "Required safety review approved the pinned commit.",
+          "id": "safety-review"
+        },
+        {
+          "detail": "A maintainer recorded the final promotion decision.",
+          "id": "maintainer-decision"
+        }
+      ],
+      "bundle_path": "reviews/v0.4.0/shared-project-permissions-triage.json",
+      "bundle_sha256": "c854824e61d3e95a8fd1b427a1fb29d39b1f2e60562e326974f3cd21a991e54a",
+      "current_maturity": "seed",
+      "evidence": {
+        "adoption_report_count": 0,
+        "agent_task_count": 1,
+        "benchmark_case_count": 1,
+        "example_count": 3,
+        "readme": "skills/shared-project-permissions-triage/README.md"
+      },
+      "id": "shared-project-permissions-triage",
+      "name": "Shared Project Permissions Triage",
+      "promotion_ready": false,
+      "quality": {
+        "band": "strong",
+        "gaps": [],
+        "score": 100
+      },
+      "release": "v0.4.0",
+      "requirements": [
+        {
+          "category": "static",
+          "detail": "Quality band is strong.",
+          "id": "quality-strong",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "Quality report has no gaps.",
+          "id": "quality-gaps-closed",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "At least one static or fixture benchmark references the skill.",
+          "id": "benchmark-evidence",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "At least one agent benchmark task references the skill.",
+          "id": "agent-task-evidence",
+          "status": "passed"
+        },
+        {
+          "category": "review",
+          "detail": "A public maturity-review issue is linked.",
+          "id": "public-review-issue",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "Review is pinned to one full Git commit.",
+          "id": "review-commit",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "An independent domain reviewer approved the pinned commit.",
+          "id": "domain-review",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "Required safety review approved the pinned commit.",
+          "id": "safety-review",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "A maintainer recorded the final promotion decision.",
+          "id": "maintainer-decision",
+          "status": "pending"
+        }
+      ],
+      "review_commit": null,
+      "review_issue": null,
+      "risk_level": "low",
+      "safety_review_required": true,
+      "static_ready": true,
+      "status": "awaiting-review",
+      "target_maturity": "reviewed",
+      "validation_errors": [],
+      "version": "0.2.0"
+    },
+    {
+      "blockers": [
+        {
+          "detail": "A public maturity-review issue is linked.",
+          "id": "public-review-issue"
+        },
+        {
+          "detail": "Review is pinned to one full Git commit.",
+          "id": "review-commit"
+        },
+        {
+          "detail": "An independent domain reviewer approved the pinned commit.",
+          "id": "domain-review"
+        },
+        {
+          "detail": "A maintainer recorded the final promotion decision.",
+          "id": "maintainer-decision"
+        }
+      ],
+      "bundle_path": "reviews/v0.4.0/slurm-oom-memory-triage.json",
+      "bundle_sha256": "eb1829eb16c8055b5679b543f1de28006b8d24a9c96b83d3f1e33f19efd10896",
+      "current_maturity": "seed",
+      "evidence": {
+        "adoption_report_count": 0,
+        "agent_task_count": 1,
+        "benchmark_case_count": 1,
+        "example_count": 3,
+        "readme": "skills/slurm-oom-memory-triage/README.md"
+      },
+      "id": "slurm-oom-memory-triage",
+      "name": "Slurm OOM Memory Triage",
+      "promotion_ready": false,
+      "quality": {
+        "band": "strong",
+        "gaps": [],
+        "score": 100
+      },
+      "release": "v0.4.0",
+      "requirements": [
+        {
+          "category": "static",
+          "detail": "Quality band is strong.",
+          "id": "quality-strong",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "Quality report has no gaps.",
+          "id": "quality-gaps-closed",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "At least one static or fixture benchmark references the skill.",
+          "id": "benchmark-evidence",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "At least one agent benchmark task references the skill.",
+          "id": "agent-task-evidence",
+          "status": "passed"
+        },
+        {
+          "category": "review",
+          "detail": "A public maturity-review issue is linked.",
+          "id": "public-review-issue",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "Review is pinned to one full Git commit.",
+          "id": "review-commit",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "An independent domain reviewer approved the pinned commit.",
+          "id": "domain-review",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "Required safety review approved the pinned commit.",
+          "id": "safety-review",
+          "status": "passed"
+        },
+        {
+          "category": "review",
+          "detail": "A maintainer recorded the final promotion decision.",
+          "id": "maintainer-decision",
+          "status": "pending"
+        }
+      ],
+      "review_commit": null,
+      "review_issue": null,
+      "risk_level": "low",
+      "safety_review_required": false,
+      "static_ready": true,
+      "status": "awaiting-review",
+      "target_maturity": "reviewed",
+      "validation_errors": [],
+      "version": "0.2.0"
+    },
+    {
+      "blockers": [
+        {
+          "detail": "A public maturity-review issue is linked.",
+          "id": "public-review-issue"
+        },
+        {
+          "detail": "Review is pinned to one full Git commit.",
+          "id": "review-commit"
+        },
+        {
+          "detail": "An independent domain reviewer approved the pinned commit.",
+          "id": "domain-review"
+        },
+        {
+          "detail": "A maintainer recorded the final promotion decision.",
+          "id": "maintainer-decision"
+        }
+      ],
+      "bundle_path": "reviews/v0.4.0/slurm-output-log-triage.json",
+      "bundle_sha256": "1f939748d0efd92a006faf9f8bec0f1cca25e770d3c3d5027533750d0590b956",
+      "current_maturity": "seed",
+      "evidence": {
+        "adoption_report_count": 0,
+        "agent_task_count": 1,
+        "benchmark_case_count": 1,
+        "example_count": 3,
+        "readme": "skills/slurm-output-log-triage/README.md"
+      },
+      "id": "slurm-output-log-triage",
+      "name": "Slurm Output Log Triage",
+      "promotion_ready": false,
+      "quality": {
+        "band": "strong",
+        "gaps": [],
+        "score": 100
+      },
+      "release": "v0.4.0",
+      "requirements": [
+        {
+          "category": "static",
+          "detail": "Quality band is strong.",
+          "id": "quality-strong",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "Quality report has no gaps.",
+          "id": "quality-gaps-closed",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "At least one static or fixture benchmark references the skill.",
+          "id": "benchmark-evidence",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "At least one agent benchmark task references the skill.",
+          "id": "agent-task-evidence",
+          "status": "passed"
+        },
+        {
+          "category": "review",
+          "detail": "A public maturity-review issue is linked.",
+          "id": "public-review-issue",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "Review is pinned to one full Git commit.",
+          "id": "review-commit",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "An independent domain reviewer approved the pinned commit.",
+          "id": "domain-review",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "Required safety review approved the pinned commit.",
+          "id": "safety-review",
+          "status": "passed"
+        },
+        {
+          "category": "review",
+          "detail": "A maintainer recorded the final promotion decision.",
+          "id": "maintainer-decision",
+          "status": "pending"
+        }
+      ],
+      "review_commit": null,
+      "review_issue": null,
+      "risk_level": "low",
+      "safety_review_required": false,
+      "static_ready": true,
+      "status": "awaiting-review",
+      "target_maturity": "reviewed",
+      "validation_errors": [],
+      "version": "0.2.0"
+    },
+    {
+      "blockers": [
+        {
+          "detail": "A public maturity-review issue is linked.",
+          "id": "public-review-issue"
+        },
+        {
+          "detail": "Review is pinned to one full Git commit.",
+          "id": "review-commit"
+        },
+        {
+          "detail": "An independent domain reviewer approved the pinned commit.",
+          "id": "domain-review"
+        },
+        {
+          "detail": "A maintainer recorded the final promotion decision.",
+          "id": "maintainer-decision"
+        }
+      ],
+      "bundle_path": "reviews/v0.4.0/slurm-pending-reason-triage.json",
+      "bundle_sha256": "e97fa42be837a046602215a1950d87e31729f6f57d4181df432c2677c7bf3c63",
+      "current_maturity": "seed",
+      "evidence": {
+        "adoption_report_count": 0,
+        "agent_task_count": 1,
+        "benchmark_case_count": 2,
+        "example_count": 2,
+        "readme": "skills/slurm-pending-reason-triage/README.md"
+      },
+      "id": "slurm-pending-reason-triage",
+      "name": "Slurm Pending Reason Triage",
+      "promotion_ready": false,
+      "quality": {
+        "band": "strong",
+        "gaps": [],
+        "score": 98
+      },
+      "release": "v0.4.0",
+      "requirements": [
+        {
+          "category": "static",
+          "detail": "Quality band is strong.",
+          "id": "quality-strong",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "Quality report has no gaps.",
+          "id": "quality-gaps-closed",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "At least one static or fixture benchmark references the skill.",
+          "id": "benchmark-evidence",
+          "status": "passed"
+        },
+        {
+          "category": "static",
+          "detail": "At least one agent benchmark task references the skill.",
+          "id": "agent-task-evidence",
+          "status": "passed"
+        },
+        {
+          "category": "review",
+          "detail": "A public maturity-review issue is linked.",
+          "id": "public-review-issue",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "Review is pinned to one full Git commit.",
+          "id": "review-commit",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "An independent domain reviewer approved the pinned commit.",
+          "id": "domain-review",
+          "status": "pending"
+        },
+        {
+          "category": "review",
+          "detail": "Required safety review approved the pinned commit.",
+          "id": "safety-review",
+          "status": "passed"
+        },
+        {
+          "category": "review",
+          "detail": "A maintainer recorded the final promotion decision.",
+          "id": "maintainer-decision",
+          "status": "pending"
+        }
+      ],
+      "review_commit": null,
+      "review_issue": null,
+      "risk_level": "low",
+      "safety_review_required": false,
+      "static_ready": true,
+      "status": "awaiting-review",
+      "target_maturity": "reviewed",
+      "validation_errors": [],
+      "version": "0.2.0"
+    }
+  ],
+  "static_ready_count": 5,
+  "status_counts": {
+    "awaiting-review": 5,
+    "blocked": 0,
+    "promoted": 0,
+    "promotion-ready": 0
+  }
+}

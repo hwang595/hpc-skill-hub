@@ -51,6 +51,13 @@ collection health.
 prioritize review; it does not promote maturity or certify correctness. CI
 checks that the baseline is current but does not enforce a score threshold.
 
+Source maturity-review bundles live under `reviews/<release>/`. Each bundle
+pins a candidate's version, quality snapshot, public evidence paths, review
+issue, exact commit, independent approvals, and maintainer decision.
+`tools/build_skill_reviews.py` validates those records and generates
+`registry/review-status.json`, `docs/REVIEW_PACKET_v0.4.0.md`, and the static
+review dashboard. Static readiness never changes skill maturity automatically.
+
 `tools/build_compatibility.py` generates `docs/COMPATIBILITY.md` for scheduler,
 collection, workflow engine, container, domain, and tool compatibility views
 derived from `registry/index.json`.
@@ -58,12 +65,13 @@ derived from `registry/index.json`.
 `tools/build_release_manifest.py` generates `registry/releases/<version>.json`
 with deterministic file sizes and SHA-256 checksums for release provenance.
 
-`tools/build_package_data.py` copies `registry/index.json` and
-`registry/health.json` into `src/hpc_skill_hub/data/registry/` so installed CLI
-users can run read-only discovery commands without a repository checkout.
+`tools/build_package_data.py` copies `registry/index.json`,
+`registry/health.json`, and `registry/review-status.json` into
+`src/hpc_skill_hub/data/registry/` so installed CLI users can run read-only
+discovery and review-status commands without a repository checkout.
 
 `tools/validate_registry_artifacts.py` checks the generated registry index,
-health and skill-quality reports, packaged registry snapshot, immutable historical release
+health, skill-quality, and skill-review reports, packaged registry snapshot, immutable historical release
 manifests, and public JSON Schema pointers used by downstream integrations.
 Preparing a new release separately runs `tools/build_release_manifest.py` to
 compare that version's snapshot with the release candidate worktree.

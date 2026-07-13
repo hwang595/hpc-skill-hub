@@ -39,8 +39,11 @@ follow-up work rather than synthetic CI claims.
 
 ## v0.4 Current Development
 
-Status: P0 evidence foundation and P1 campaign control plane complete locally;
-real evidence execution pending external setup, approval, and pull-request CI.
+Status: P0 evidence foundation and P1 campaign control plane merged through
+PRs #27 and #28 with required CI checks passing. P2A evidence-backed maturity
+review workflow is complete locally with pull-request CI pending. Real evidence
+execution and skill promotion remain pending external setup, quota approval,
+and independent review.
 
 v0.4 focuses on evidence and a reviewed registry. Work proceeds in this order:
 

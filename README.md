@@ -280,6 +280,8 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Machine-readable registry index](registry/index.json)
 - [Registry health](docs/REGISTRY_HEALTH.md)
 - [Skill quality baseline](docs/SKILL_QUALITY.md)
+- [v0.4 skill review packet](docs/REVIEW_PACKET_v0.4.0.md)
+- [Skill review dashboard](docs/SKILL_REVIEW_DASHBOARD.html)
 - [Compatibility tables](docs/COMPATIBILITY.md)
 - [CLI](docs/CLI.md)
 - [Agent integration](docs/AGENT_INTEGRATION.md)

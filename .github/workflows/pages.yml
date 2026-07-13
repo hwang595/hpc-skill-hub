@@ -11,6 +11,8 @@ on:
       - "collections/**"
       - "docs/**"
       - "registry/index.json"
+      - "registry/review-status.json"
+      - "reviews/**"
       - "skills/**"
       - "site-adapters/**"
       - "tools/build_site.py"

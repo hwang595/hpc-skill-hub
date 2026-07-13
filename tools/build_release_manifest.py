@@ -44,6 +44,7 @@ INCLUDED_DIRS = [
     "collections",
     "docs",
     "registry",
+    "reviews",
     "schemas",
     "site-adapters",
     "skills",

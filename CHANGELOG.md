@@ -18,6 +18,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Add the P1 real-evidence campaign control plane with clean-commit and exact-model
   locks, seeded balanced execution waves, resumable next-wave commands, budget
   stop conditions, and strict finalized-staging import audits.
+- Add the P2A evidence-backed maturity review workflow with release-scoped
+  source bundles, machine-checkable promotion blockers, installed CLI review
+  commands, generated registry status, a reviewer packet, and a static dashboard.
 
 ## v0.3.0 - 2026-07-13
 

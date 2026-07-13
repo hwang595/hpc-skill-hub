@@ -12,6 +12,8 @@ python3 tools/hpc_skill.py show slurm-submit-job --examples
 python3 tools/hpc_skill.py collections
 python3 tools/hpc_skill.py collection core-hpc
 python3 tools/hpc_skill.py health
+python3 tools/hpc_skill.py review candidates
+python3 tools/hpc_skill.py review status job-failure-triage
 python3 tools/hpc_skill.py validate
 python3 tools/hpc_skill.py security skills/slurm-submit-job
 python3 tools/hpc_skill.py adapters
@@ -29,9 +31,10 @@ hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
 hpc-skill security ./community-skill --format json
 ```
 
-The installed command can run read-only discovery commands from the packaged
+The installed command can run read-only discovery and review-status commands from the packaged
 registry snapshot. When a full checkout is available, it prefers the current
-repository's `registry/index.json` and `registry/health.json`. For commands
+repository's `registry/index.json`, `registry/health.json`, and
+`registry/review-status.json`. For commands
 that validate or write repository files, run from the repository root or set
 `HPC_SKILL_HUB_ROOT` to the repository root.
 
@@ -106,6 +109,29 @@ hpc-skill security ./community-skill --format sarif
 The default threshold fails on `high` and `critical`; lower-severity findings
 produce a `review` verdict. See [Community Skill Security](SKILL_SECURITY.md).
 
+## Reviewing Maturity Evidence
+
+Inspect the bounded v0.4 review queue and one candidate:
+
+```bash
+hpc-skill review candidates --release v0.4.0
+hpc-skill review status shared-project-permissions-triage --json
+hpc-skill review packet --release v0.4.0
+```
+
+Validate a source bundle from a repository checkout:
+
+```bash
+hpc-skill review check \
+  reviews/v0.4.0/shared-project-permissions-triage.json \
+  --json
+```
+
+`ok: true` means the bundle is structurally valid and current. It does not mean
+the skill is promotion-ready. The status remains `awaiting-review` until a
+public issue, exact review commit, reviewer independence attestation and domain approval, any required
+safety approval, and a maintainer decision are recorded.
+
 ## Filtering Skills
 
 ```bash
@@ -156,6 +182,8 @@ python3 tools/build_health.py
 python3 tools/build_health.py --check
 python3 tools/build_compatibility.py
 python3 tools/build_compatibility.py --check
+python3 tools/build_skill_reviews.py
+python3 tools/build_skill_reviews.py --check
 python3 tools/build_package_data.py
 python3 tools/build_package_data.py --check
 python3 tools/validate_registry_artifacts.py
