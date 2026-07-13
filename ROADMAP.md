@@ -37,13 +37,12 @@ The v0.3 infrastructure is released. Real cross-agent runs, independent
 scoring, external adoption evidence, and maturity promotion remain public
 follow-up work rather than synthetic CI claims.
 
-## v0.4 Current Development
+## v0.4 Release Candidate
 
 Status: P0 evidence foundation and P1 campaign control plane merged through
-PRs #27 and #28 with required CI checks passing. P2A evidence-backed maturity
-review workflow is complete locally with pull-request CI pending. Real evidence
-execution and skill promotion remain pending external setup, quota approval,
-and independent review.
+PRs #27 and #28, and the P2A evidence-backed maturity review workflow merged
+through PR #29. The v0.4.0 release candidate is complete locally with release
+PR CI, tag publication, and attestation verification pending.
 
 v0.4 focuses on evidence and a reviewed registry. Work proceeds in this order:
 
@@ -64,6 +63,11 @@ The P0 plan contains 54 paired runs across three tasks, three conditions, three
 trials, and two agents. Its USD 40.50 maximum is an authorization ceiling, not
 a spending target. CI validates the campaign but never launches paid agents.
 See the [v0.4 Completion Matrix](docs/V0_4_COMPLETION.md).
+
+The release candidate contains no paid agent runs, comparative ranking, or
+maturity promotion. The benchmark publication gate remains closed. Five
+static-ready skills are pinned to public maturity-review issues for independent
+post-release review, and all remain `seed` until those approvals exist.
 
 ## v0.3 Release Scope
 

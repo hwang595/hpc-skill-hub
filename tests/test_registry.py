@@ -299,26 +299,40 @@ class RegistryTests(unittest.TestCase):
         self.assertIn("schemas/registry-health.schema.json", paths)
         self.assertIn("schemas/release-manifest.schema.json", paths)
 
-    def test_current_release_manifest_summarizes_registry(self):
+    def test_v0_3_release_manifest_remains_immutable(self):
         manifest_path = ROOT / "registry" / "releases" / "v0.3.0.json"
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        data = manifest_path.read_bytes()
+        manifest = json.loads(data)
 
         self.assertEqual(manifest["version"], "v0.3.0")
+        self.assertEqual(
+            hashlib.sha256(data).hexdigest(),
+            "783988190fb695f6c8ca0066d129fd0f83d05fbb90bb1a6e89c6687f1a506de6",
+        )
+
+    def test_current_release_manifest_summarizes_registry(self):
+        manifest_path = ROOT / "registry" / "releases" / "v0.4.0.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(manifest["version"], "v0.4.0")
         self.assertEqual(manifest["registry"]["skill_count"], 97)
         self.assertEqual(manifest["registry"]["collection_count"], 12)
         self.assertEqual(manifest["registry"]["site_adapter_count"], 2)
         paths = {entry["path"] for entry in manifest["files"]}
         self.assertIn("registry/skill-quality.json", paths)
-        self.assertIn("docs/SKILL_QUALITY.md", paths)
-        self.assertIn("docs/V0_3_COMPLETION.md", paths)
-        self.assertIn("docs/RELEASE_NOTES_v0.3.0.md", paths)
-        self.assertIn("schemas/skill-security-report.schema.json", paths)
-        self.assertIn("schemas/skill-quality-report.schema.json", paths)
-        self.assertIn("schemas/agent-benchmark-review.schema.json", paths)
+        self.assertIn("registry/review-status.json", paths)
+        self.assertIn("reviews/v0.4.0/job-failure-triage.json", paths)
+        self.assertIn("docs/V0_4_COMPLETION.md", paths)
+        self.assertIn("docs/RELEASE_NOTES_v0.4.0.md", paths)
+        self.assertIn("docs/AGENT_BENCHMARK_DASHBOARD.html", paths)
+        self.assertIn("docs/SKILL_REVIEW_DASHBOARD.html", paths)
+        self.assertIn("schemas/agent-benchmark-campaign.schema.json", paths)
+        self.assertIn("schemas/skill-review.schema.json", paths)
+        self.assertIn("schemas/skill-review-status.schema.json", paths)
 
     def test_repository_release_versions_are_consistent(self):
         manifest = json.loads(
-            (ROOT / "registry" / "releases" / "v0.3.0.json").read_text(
+            (ROOT / "registry" / "releases" / "v0.4.0.json").read_text(
                 encoding="utf-8"
             )
         )
@@ -330,7 +344,7 @@ class RegistryTests(unittest.TestCase):
         )
         citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        release_notes = (ROOT / "docs" / "RELEASE_NOTES_v0.3.0.md").read_text(
+        release_notes = (ROOT / "docs" / "RELEASE_NOTES_v0.4.0.md").read_text(
             encoding="utf-8"
         )
 
@@ -340,7 +354,7 @@ class RegistryTests(unittest.TestCase):
         self.assertIn(f'version: "{version}"', citation)
         self.assertIn(f"version-{version}-", readme)
         self.assertNotIn(f"version-{version}--dev", readme)
-        self.assertIn("Status: released", release_notes)
+        self.assertIn("Status: release-ready", release_notes)
 
     def test_safety_audit_passes(self):
         result = run_cmd("python3", "tools/audit_safety.py")

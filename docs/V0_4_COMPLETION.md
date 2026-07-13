@@ -1,10 +1,9 @@
 # v0.4 Completion Matrix
 
-Status: P0 evidence foundation and P1 campaign control plane merged through
-PRs #27 and #28 with required CI checks passing. P2A evidence-backed maturity
-review workflow is complete locally with pull-request CI pending. Real evidence
-execution and skill promotion remain pending external setup, quota approval,
-and independent review.
+Status: release candidate complete locally. P0 and P1 control planes merged
+through PRs #27 and #28, and P2A merged through PR #29. Release PR CI, tag
+publication, and attestation verification remain pending. Real agent execution
+and maturity promotion are explicitly deferred rather than claimed complete.
 
 v0.4 is the evidence and reviewed-registry release. It must distinguish
 repository capability from externally collected evidence: deterministic plans,
@@ -29,28 +28,28 @@ paid execution and does not establish measured skill lift.
 
 | Gate | Status | Required evidence |
 | --- | --- | --- |
-| Clean-run preflight and campaign lock | Control plane merged; external setup pending | Campaign preparation locks one clean commit, plan and task digests, exact model ids, CLI versions, budget enforcement modes, and explicit quota acknowledgement. Real preparation still requires authenticated CLIs. |
-| Balanced execution waves | Control plane merged; execution pending | A seeded schedule groups the 54-run matrix into nine randomized six-run task/trial waves. Status emits only the earliest incomplete wave and stops on provenance or budget blockers. |
-| Blinded independent review | Pending real runs | Redact artifacts, collect exactly two independent reviews per run, and reconcile rubric differences of `0.25` or more. |
-| Public evidence import audit | Control plane merged; evidence pending | Staging audit checks campaign identity, model and CLI locks, clean commit provenance, double-blinded review, public artifact digests, private-file boundaries, safety, and acknowledged security review. |
-| Comparative publication | Gate closed | Publish comparisons only after the machine-readable publication gate is open. |
+| Clean-run preflight and campaign lock | Control plane merged; execution deferred | Campaign preparation locks one clean commit, plan and task digests, exact model ids, CLI versions, budget enforcement modes, and explicit quota acknowledgement. No paid execution was authorized for this release. |
+| Balanced execution waves | Control plane merged; execution deferred | A seeded schedule groups the 54-run matrix into nine randomized six-run task/trial waves. It remains available for a later explicitly approved campaign. |
+| Blinded independent review | Deferred with real runs | No synthetic review substitutes for missing agent outputs. Future runs must be redacted, independently double scored, and reconciled. |
+| Public evidence import audit | Control plane merged; evidence pending | Staging audit is available, but no reviewed real-run bundle is imported in v0.4.0. |
+| Comparative publication | Gate closed by release decision | The public dashboard reports missing evidence and emits no comparative ranking or measured-lift claim. |
 
 ## P2 Reviewed Registry Pilot
 
 | Gate | Status | Required evidence |
 | --- | --- | --- |
-| Candidate selection | P2A complete locally; remote pending | Five low-risk, strong-quality candidates are tracked through release-scoped evidence bundles, generated status, CLI inspection, and machine-readable promotion blockers. The full local gate passes. |
+| Candidate selection | Complete and merged | Five low-risk, strong-quality candidates are tracked through release-scoped evidence bundles, generated status, CLI inspection, and machine-readable promotion blockers. PR #29 passed required CI. |
 | Skill depth improvements | Pilot static gate complete | The five pilot candidates score 98-100, have no detected quality gaps, and carry static plus agent benchmark references. External review may still identify changes. |
-| Domain review and adoption | Planned | Record public domain review and real adoption evidence without exposing private site policy. |
-| Maturity promotion | Planned | Promote only skills that satisfy the existing lifecycle contract; benchmark lift alone is insufficient. |
+| Domain review and adoption | Public review routed; approval pending | Review is pinned to commit `55b90ad8dbb8fcf9e1e0656a95889217a02c6ab5` in issues #30, #33, #35, #36, and #37. No adoption report or reviewer approval is fabricated. |
+| Maturity promotion | Deferred | All skills remain `seed`. Promotion requires the linked independent domain approval, required safety approval for shared permissions, and a recorded maintainer decision. |
 
 ## P3 Release Readiness
 
 | Gate | Status | Required evidence |
 | --- | --- | --- |
-| Public dashboard decision | Planned | Either publish gated comparative evidence or state clearly that evidence remains incomplete. |
-| Registry and release artifacts | Planned | Regenerate all deterministic artifacts from the release commit and validate immutable snapshots. |
-| v0.4.0 release | Planned | Merge reviewed work, tag the clean release commit, publish notes, and verify GitHub attestations. |
+| Public dashboard decision | Complete | Publish the dashboard with the comparison gate closed and explicit missing-evidence blockers. Do not publish a leaderboard row. |
+| Registry and release artifacts | Complete locally | Version metadata, release notes, deterministic registry artifacts, package data, and `registry/releases/v0.4.0.json` are prepared and validated. |
+| v0.4.0 release | Release candidate ready locally | Merge the release PR after CI, tag the clean commit, publish notes and manifest, then verify tag-triggered attestations. |
 
 ## Evidence Boundary
 
@@ -58,3 +57,8 @@ CI may validate plans, context isolation, budget logic, aggregation, review
 contracts, artifact digests, and generated output. CI must never launch Codex,
 Claude Code, or another paid agent. A passing P0 gate means the campaign is
 ready to run; it does not mean the campaign has run.
+
+The v0.4.0 release decision is to ship the validated evidence and review
+control planes while keeping both outcome gates closed. This preserves a
+reproducible path to later evidence without turning missing external work into
+a release claim.

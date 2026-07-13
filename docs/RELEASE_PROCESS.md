@@ -20,10 +20,15 @@ Run:
 python3 tools/validate_skills.py
 python3 tools/build_index.py --check
 python3 tools/build_health.py --check
+python3 tools/build_skill_quality.py --check
 python3 tools/build_compatibility.py --check
+python3 tools/build_skill_reviews.py --check
 python3 tools/build_package_data.py --check
 python3 tools/build_release_manifest.py <version> --check
 python3 tools/review_packet.py --check
+python3 tools/agent_benchmark_harness.py --check
+python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.4.json --report docs/AGENT_BENCHMARK_V0_4_PLAN.md --check
+python3 tools/run_agent_benchmarks.py --check
 python3 tools/validate_registry_artifacts.py
 python3 tools/audit_safety.py
 python3 tools/scan_skill_security.py skills --fail-on high
@@ -49,8 +54,13 @@ Review:
 - `pyproject.toml`, `setup.py`, `src/hpc_skill_hub/__init__.py`,
   `CITATION.cff`, and the README badge agree on the repository version.
 - `registry/index.json` is current.
+- `registry/skill-quality.json` is current.
+- `registry/review-status.json` is current and each v0.4 pilot bundle links a
+  public review issue and immutable review commit.
 - `docs/SKILL_CATALOG.md` is current.
 - `docs/COMPATIBILITY.md` is current.
+- `docs/AGENT_BENCHMARK_V0_4_PLAN.md`, `docs/REVIEW_PACKET_v0.4.0.md`, and
+  `docs/SKILL_REVIEW_DASHBOARD.html` are current.
 - `src/hpc_skill_hub/data/registry/` matches the generated registry JSON.
 - Registry index, health, release manifest, package data, and schema pointers
   pass `tools/validate_registry_artifacts.py`.
@@ -70,6 +80,9 @@ Review:
 - Site adapters contain only public, non-sensitive information.
 - Any maturity promotions link a maturity review issue or public review
   evidence.
+- Any comparative benchmark claim is backed by a complete, blinded campaign;
+  otherwise the comparative publication gate stays closed and the release
+  notes state that no measured-lift claim is being made.
 - `Validate` and `Package` GitHub Actions are green on `main`.
 
 See [Release Provenance](RELEASE_PROVENANCE.md) for the tag-time signing and
@@ -94,7 +107,7 @@ verification boundary.
 ## Release Command Generator
 
 Use the matching release notes, such as
-[v0.3.0 Release Notes](RELEASE_NOTES_v0.3.0.md), as the starting point for the
+[v0.4.0 Release Notes](RELEASE_NOTES_v0.4.0.md), as the starting point for the
 GitHub release body.
 
 After `main` is pushed, GitHub Actions are green, the Pages site is published,

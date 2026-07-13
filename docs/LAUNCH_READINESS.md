@@ -78,7 +78,7 @@ python3 tools/launch_readiness.py --owner <owner> --run-check
 python3 tools/proposal_evidence.py --owner <owner> --run-check
 python3 tools/review_candidates.py --limit 12
 python3 tools/build_package_data.py --check
-python3 tools/build_release_manifest.py v0.3.0 --check
+python3 tools/build_release_manifest.py v0.4.0 --check
 python3 tools/review_packet.py --check
 python3 tools/validate_registry_artifacts.py
 python3 -m pip install --upgrade build twine
@@ -90,7 +90,7 @@ python3 tools/github_milestones.py --repo <owner>/hpc-skill-hub
 python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
 python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub
 python3 tools/github_homepage.py --repo <owner>/hpc-skill-hub
-python3 tools/github_release.py v0.3.0 --repo <owner>/hpc-skill-hub
+python3 tools/github_release.py v0.4.0 --repo <owner>/hpc-skill-hub
 python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --dry-run
 ```
 

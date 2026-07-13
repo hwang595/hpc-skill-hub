@@ -9,14 +9,6 @@
     {
       "blockers": [
         {
-          "detail": "A public maturity-review issue is linked.",
-          "id": "public-review-issue"
-        },
-        {
-          "detail": "Review is pinned to one full Git commit.",
-          "id": "review-commit"
-        },
-        {
           "detail": "An independent domain reviewer approved the pinned commit.",
           "id": "domain-review"
         },
@@ -26,7 +18,7 @@
         }
       ],
       "bundle_path": "reviews/v0.4.0/job-failure-triage.json",
-      "bundle_sha256": "f6ff0b5520c4ae5baa381b4c308525acb422160dac7342be0f3b94347ea8f1fa",
+      "bundle_sha256": "fad5e2e70d017ec422f5a3748f7384e79617eba5b3abc5ab17a1139fcc0da765",
       "current_maturity": "seed",
       "evidence": {
         "adoption_report_count": 0,
@@ -73,13 +65,13 @@
           "category": "review",
           "detail": "A public maturity-review issue is linked.",
           "id": "public-review-issue",
-          "status": "pending"
+          "status": "passed"
         },
         {
           "category": "review",
           "detail": "Review is pinned to one full Git commit.",
           "id": "review-commit",
-          "status": "pending"
+          "status": "passed"
         },
         {
           "category": "review",
@@ -100,8 +92,8 @@
           "status": "pending"
         }
       ],
-      "review_commit": null,
-      "review_issue": null,
+      "review_commit": "55b90ad8dbb8fcf9e1e0656a95889217a02c6ab5",
+      "review_issue": "https://github.com/hwang595/hpc-skill-hub/issues/30",
       "risk_level": "low",
       "safety_review_required": false,
       "static_ready": true,
@@ -112,14 +104,6 @@
     },
     {
       "blockers": [
-        {
-          "detail": "A public maturity-review issue is linked.",
-          "id": "public-review-issue"
-        },
-        {
-          "detail": "Review is pinned to one full Git commit.",
-          "id": "review-commit"
-        },
         {
           "detail": "An independent domain reviewer approved the pinned commit.",
           "id": "domain-review"
@@ -134,7 +118,7 @@
         }
       ],
       "bundle_path": "reviews/v0.4.0/shared-project-permissions-triage.json",
-      "bundle_sha256": "c854824e61d3e95a8fd1b427a1fb29d39b1f2e60562e326974f3cd21a991e54a",
+      "bundle_sha256": "6fc47a21e26541973ab69c3b9ca981986901b47bbeda91f6abe2bb7bc5ec8d5b",
       "current_maturity": "seed",
       "evidence": {
         "adoption_report_count": 0,
@@ -181,13 +165,13 @@
           "category": "review",
           "detail": "A public maturity-review issue is linked.",
           "id": "public-review-issue",
-          "status": "pending"
+          "status": "passed"
         },
         {
           "category": "review",
           "detail": "Review is pinned to one full Git commit.",
           "id": "review-commit",
-          "status": "pending"
+          "status": "passed"
         },
         {
           "category": "review",
@@ -208,8 +192,8 @@
           "status": "pending"
         }
       ],
-      "review_commit": null,
-      "review_issue": null,
+      "review_commit": "55b90ad8dbb8fcf9e1e0656a95889217a02c6ab5",
+      "review_issue": "https://github.com/hwang595/hpc-skill-hub/issues/33",
       "risk_level": "low",
       "safety_review_required": true,
       "static_ready": true,
@@ -221,14 +205,6 @@
     {
       "blockers": [
         {
-          "detail": "A public maturity-review issue is linked.",
-          "id": "public-review-issue"
-        },
-        {
-          "detail": "Review is pinned to one full Git commit.",
-          "id": "review-commit"
-        },
-        {
           "detail": "An independent domain reviewer approved the pinned commit.",
           "id": "domain-review"
         },
@@ -238,7 +214,7 @@
         }
       ],
       "bundle_path": "reviews/v0.4.0/slurm-oom-memory-triage.json",
-      "bundle_sha256": "eb1829eb16c8055b5679b543f1de28006b8d24a9c96b83d3f1e33f19efd10896",
+      "bundle_sha256": "0d4a7fe5a963cd37710cde4a63c938301ae4d5a22c19502a7bcb72befc448e34",
       "current_maturity": "seed",
       "evidence": {
         "adoption_report_count": 0,
@@ -285,13 +261,13 @@
           "category": "review",
           "detail": "A public maturity-review issue is linked.",
           "id": "public-review-issue",
-          "status": "pending"
+          "status": "passed"
         },
         {
           "category": "review",
           "detail": "Review is pinned to one full Git commit.",
           "id": "review-commit",
-          "status": "pending"
+          "status": "passed"
         },
         {
           "category": "review",
@@ -312,8 +288,8 @@
           "status": "pending"
         }
       ],
-      "review_commit": null,
-      "review_issue": null,
+      "review_commit": "55b90ad8dbb8fcf9e1e0656a95889217a02c6ab5",
+      "review_issue": "https://github.com/hwang595/hpc-skill-hub/issues/35",
       "risk_level": "low",
       "safety_review_required": false,
       "static_ready": true,
@@ -325,14 +301,6 @@
     {
       "blockers": [
         {
-          "detail": "A public maturity-review issue is linked.",
-          "id": "public-review-issue"
-        },
-        {
-          "detail": "Review is pinned to one full Git commit.",
-          "id": "review-commit"
-        },
-        {
           "detail": "An independent domain reviewer approved the pinned commit.",
           "id": "domain-review"
         },
@@ -342,7 +310,7 @@
         }
       ],
       "bundle_path": "reviews/v0.4.0/slurm-output-log-triage.json",
-      "bundle_sha256": "1f939748d0efd92a006faf9f8bec0f1cca25e770d3c3d5027533750d0590b956",
+      "bundle_sha256": "65b131f955d0bcbcda4ceaee3f3d086c9b9450b189af5238951b6acc7c116201",
       "current_maturity": "seed",
       "evidence": {
         "adoption_report_count": 0,
@@ -389,13 +357,13 @@
           "category": "review",
           "detail": "A public maturity-review issue is linked.",
           "id": "public-review-issue",
-          "status": "pending"
+          "status": "passed"
         },
         {
           "category": "review",
           "detail": "Review is pinned to one full Git commit.",
           "id": "review-commit",
-          "status": "pending"
+          "status": "passed"
         },
         {
           "category": "review",
@@ -416,8 +384,8 @@
           "status": "pending"
         }
       ],
-      "review_commit": null,
-      "review_issue": null,
+      "review_commit": "55b90ad8dbb8fcf9e1e0656a95889217a02c6ab5",
+      "review_issue": "https://github.com/hwang595/hpc-skill-hub/issues/36",
       "risk_level": "low",
       "safety_review_required": false,
       "static_ready": true,
@@ -429,14 +397,6 @@
     {
       "blockers": [
         {
-          "detail": "A public maturity-review issue is linked.",
-          "id": "public-review-issue"
-        },
-        {
-          "detail": "Review is pinned to one full Git commit.",
-          "id": "review-commit"
-        },
-        {
           "detail": "An independent domain reviewer approved the pinned commit.",
           "id": "domain-review"
         },
@@ -446,7 +406,7 @@
         }
       ],
       "bundle_path": "reviews/v0.4.0/slurm-pending-reason-triage.json",
-      "bundle_sha256": "e97fa42be837a046602215a1950d87e31729f6f57d4181df432c2677c7bf3c63",
+      "bundle_sha256": "18c01df0ad8a86fc87cd85325258d56ae20ebb7818535cbd57c30e2490a7f060",
       "current_maturity": "seed",
       "evidence": {
         "adoption_report_count": 0,
@@ -493,13 +453,13 @@
           "category": "review",
           "detail": "A public maturity-review issue is linked.",
           "id": "public-review-issue",
-          "status": "pending"
+          "status": "passed"
         },
         {
           "category": "review",
           "detail": "Review is pinned to one full Git commit.",
           "id": "review-commit",
-          "status": "pending"
+          "status": "passed"
         },
         {
           "category": "review",
@@ -520,8 +480,8 @@
           "status": "pending"
         }
       ],
-      "review_commit": null,
-      "review_issue": null,
+      "review_commit": "55b90ad8dbb8fcf9e1e0656a95889217a02c6ab5",
+      "review_issue": "https://github.com/hwang595/hpc-skill-hub/issues/37",
       "risk_level": "low",
       "safety_review_required": false,
       "static_ready": true,

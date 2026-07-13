@@ -22,7 +22,7 @@ DEFAULT_PLAN = ROOT / "agent-bench" / "plans" / "calibration-v0.2.json"
 DEFAULT_REPORT = ROOT / "docs" / "AGENT_BENCHMARK_PLAN.md"
 PLAN_SCHEMA = "../../schemas/agent-benchmark-plan.schema.json"
 RESULT_SCHEMA = "../../schemas/agent-benchmark-result.schema.json"
-HARNESS_VERSION = "0.3.0"
+HARNESS_VERSION = "0.4.0"
 ALLOWED_CONDITIONS = {"baseline", "docs-only", "skill-enabled", "skill-site-adapter"}
 ALLOWED_HARNESSES = {"codex-cli", "claude-code"}
 
