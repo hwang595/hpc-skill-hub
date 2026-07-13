@@ -2,7 +2,7 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "slurm-pending-reason-fixture",
   "name": "Slurm pending reason fixture evidence",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "fixture",
   "risk_level": "low",
@@ -23,6 +23,11 @@
       "label": "Pending reason triage script syntax",
       "argv": ["bash", "-n", "skills/slurm-pending-reason-triage/examples/pending-reason-triage.sh"],
       "expect_returncode": 0
+    },
+    {
+      "label": "Offline pending snapshot classification",
+      "argv": ["python3", "skills/slurm-pending-reason-triage/examples/review-pending-snapshot.py", "benchmarks/fixtures/slurm/pending-squeue.txt", "benchmarks/fixtures/slurm/pending-scontrol.txt", "benchmarks/fixtures/slurm/qos-account-squeue.txt"],
+      "expect_returncode": 0
     }
   ],
   "checks": [
@@ -37,6 +42,12 @@
       "type": "contains_all",
       "path": "benchmarks/fixtures/slurm/pending-scontrol.txt",
       "patterns": ["Reason=Dependency", "Dependency=afterok:90990", "Priority=1134"]
+    },
+    {
+      "label": "Offline reviewer separates dependency and policy limits",
+      "type": "contains_all",
+      "path": "skills/slurm-pending-reason-triage/examples/review-pending-snapshot.py",
+      "patterns": ["dependency", "policy-limit", "point-in-time evidence"]
     }
   ],
   "expected_outcomes": [

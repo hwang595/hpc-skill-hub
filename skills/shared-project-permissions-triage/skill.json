@@ -2,7 +2,7 @@
   "$schema": "../../schemas/skill.schema.json",
   "id": "shared-project-permissions-triage",
   "name": "Shared Project Permissions Triage",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "summary": "Collect read-only evidence for shared project directory permission failures.",
   "description": "This skill helps HPC users and support teams diagnose permission denied failures in shared project, scratch, and collaboration directories without changing ownership, modes, ACLs, or group membership.",
@@ -58,6 +58,10 @@
     {
       "name": "tail",
       "required": false
+    },
+    {
+      "name": "python3",
+      "required": false
     }
   ],
   "inputs": [
@@ -78,12 +82,17 @@
     {
       "name": "permissions_triage_report",
       "description": "Read-only report with current identity, group membership, path metadata, traversal permissions, ACL output when available, and relevant log clues."
+    },
+    {
+      "name": "offline_permissions_review",
+      "description": "Separated traversal, ACL-mask, and application permission signals from saved evidence."
     }
   ],
   "artifacts": [
     "README.md",
     "examples/permission-triage.sh",
-    "examples/support-review-checklist.md"
+    "examples/support-review-checklist.md",
+    "examples/review-permission-evidence.py"
   ],
   "examples": [
     {
@@ -93,6 +102,10 @@
     {
       "title": "Review shared directory permission evidence",
       "path": "examples/support-review-checklist.md"
+    },
+    {
+      "title": "Review saved traversal, ACL, and log evidence",
+      "path": "examples/review-permission-evidence.py"
     }
   ],
   "tests": [
@@ -105,6 +118,11 @@
       "type": "dry-run",
       "command": "bash skills/shared-project-permissions-triage/examples/permission-triage.sh .",
       "description": "Collect read-only evidence for the current directory."
+    },
+    {
+      "type": "static",
+      "command": "python3 skills/shared-project-permissions-triage/examples/review-permission-evidence.py --namei benchmarks/fixtures/filesystem/permissions-namei.txt --acl benchmarks/fixtures/filesystem/permissions-getfacl.txt --log benchmarks/fixtures/filesystem/permissions-log.txt --require-all",
+      "description": "Require traversal, ACL mask, and application-denied signals in synthetic fixtures."
     },
     {
       "type": "manual",

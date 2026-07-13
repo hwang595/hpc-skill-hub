@@ -1,0 +1,6 @@
+compiler=/opt/example/mpi/bin/mpicc
+expected_tasks=4
+rank 0 of 4 on compute-a
+rank 1 of 4 on compute-a
+rank 2 of 4 on compute-b
+rank 3 of 4 on compute-b

@@ -14,6 +14,7 @@ from typing import Any, Dict, Iterable, List, Set
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_JSON = ROOT / "registry" / "index.json"
 HEALTH_JSON = ROOT / "registry" / "health.json"
+QUALITY_JSON = ROOT / "registry" / "skill-quality.json"
 RELEASE_DIR = ROOT / "registry" / "releases"
 PACKAGE_DATA_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "registry"
 SCHEMAS = {
@@ -28,6 +29,7 @@ SCHEMAS = {
     "health": ROOT / "schemas" / "registry-health.schema.json",
     "release": ROOT / "schemas" / "release-manifest.schema.json",
     "skill-security-report": ROOT / "schemas" / "skill-security-report.schema.json",
+    "skill-quality-report": ROOT / "schemas" / "skill-quality-report.schema.json",
     "site-adapter-resolution": ROOT / "schemas" / "site-adapter-resolution.schema.json",
 }
 PUBLIC_BASELINE_DOCS = [
@@ -247,6 +249,32 @@ def validate_health(index: Dict[str, Any], health: Dict[str, Any], errors: List[
         )
 
 
+def validate_skill_quality(
+    index: Dict[str, Any], quality: Dict[str, Any], errors: List[str]
+) -> None:
+    context = relative(QUALITY_JSON)
+    require_schema_pointer(
+        quality, "../schemas/skill-quality-report.schema.json", errors, context
+    )
+    require(
+        quality.get("generated_by") == "tools/build_skill_quality.py",
+        errors,
+        f"{context}: generated_by mismatch",
+    )
+    skills = quality.get("skills", [])
+    require(
+        quality.get("skill_count") == len(skills),
+        errors,
+        f"{context}: skill_count mismatch",
+    )
+    require(
+        {item.get("id") for item in skills if isinstance(item, dict)}
+        == {item["id"] for item in index["skills"]},
+        errors,
+        f"{context}: skill ids mismatch",
+    )
+
+
 def validate_release(path: Path, release: Dict[str, Any], errors: List[str]) -> None:
     context = relative(path)
     require_schema_pointer(
@@ -434,8 +462,10 @@ def main() -> int:
 
     index = load_json(INDEX_JSON)
     health = load_json(HEALTH_JSON)
+    quality = load_json(QUALITY_JSON)
     validate_index(index, errors)
     validate_health(index, health, errors)
+    validate_skill_quality(index, quality, errors)
     validate_package_data(errors)
     validate_public_count_mentions(index, errors)
 

@@ -7,6 +7,23 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Add a deterministic skill-quality audit with ten reviewable workflow
+  dimensions, bounded evidence bonuses, benchmark-aware release priorities,
+  a versioned JSON Schema contract, generated maintainer reports, and non-threshold CI
+  freshness checks.
+- Deepen `gpu-sanity-check`, `job-failure-triage`, and `slurm-submit-job` with
+  explicit prerequisites, evidence interpretation, resource impact, failure
+  handling, cleanup, site boundaries, read-only review helpers, and expanded
+  static/fixture benchmark coverage.
+- Deepen `slurm-pending-reason-triage`, `mpi-hello-and-benchmark`, and
+  `quota-and-filesystem-triage` with offline snapshot and log reviewers,
+  temporary MPI build cleanup, bounded storage evidence, and executable
+  synthetic benchmark fixtures.
+- Close the remaining tier-1 agent-evidence quality gaps across Slurm OOM,
+  output-log, QOS/account, shared-permission, and IOR/MDTest workflows with
+  offline evidence reviewers, fail-closed report handling, true no-write
+  plan-only behavior, bounded storage smoke parameters, and positive/negative
+  process-level regression coverage.
 - Add a read-only site-adapter resolver, ship complete public policy in registry
   index contract `0.2.0`, and expose mapped, compatible-unmapped, and
   incompatible outcomes to installed CLI and agent consumers.

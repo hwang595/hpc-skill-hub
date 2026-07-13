@@ -2,7 +2,7 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "mpi-hello-site",
   "name": "MPI hello site smoke test",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "site",
   "risk_level": "medium",
@@ -35,7 +35,7 @@
       "label": "MPI site script documents local module opt-in",
       "type": "contains_all",
       "path": "skills/mpi-hello-and-benchmark/examples/run-mpi.sbatch",
-      "patterns": ["HPC_SKILL_HUB_MPI_MODULE", "mpicc", "srun ./hello_mpi"]
+      "patterns": ["HPC_SKILL_HUB_MPI_MODULE", "mpicc", "srun \"${binary}\""]
     }
   ],
   "expected_outcomes": [

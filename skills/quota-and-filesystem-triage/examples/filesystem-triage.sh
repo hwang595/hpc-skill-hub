@@ -5,6 +5,14 @@ target="${1:-.}"
 log_file="${2:-}"
 start_dir="$(pwd)"
 
+if [ "$#" -gt 2 ] || [ "${target}" = "-h" ] || [ "${target}" = "--help" ]; then
+  echo "usage: filesystem-triage.sh [path] [log-file]"
+  if [ "$#" -gt 2 ]; then
+    exit 2
+  fi
+  exit 0
+fi
+
 case "${log_file}" in
   ""|/*) ;;
   *) log_file="${start_dir}/${log_file}" ;;
@@ -16,7 +24,13 @@ if [ ! -e "${target}" ]; then
   exit 2
 fi
 
+if [ -n "${log_file}" ] && [ ! -f "${log_file}" ]; then
+  echo "error: log file does not exist or is not a regular file: ${log_file}" >&2
+  exit 2
+fi
+
 echo "== target =="
+ls -ld -- "${target}"
 if [ -d "${target}" ]; then
   cd "${target}"
 else
@@ -51,7 +65,7 @@ fi
 if [ -n "${log_file}" ]; then
   echo
   echo "== recent log lines =="
-  tail -n 80 "${log_file}" || true
+  tail -n 80 "${log_file}"
 
   echo
   echo "== storage-related log clues =="

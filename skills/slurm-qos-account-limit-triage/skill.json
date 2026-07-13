@@ -2,7 +2,7 @@
   "$schema": "../../schemas/skill.schema.json",
   "id": "slurm-qos-account-limit-triage",
   "name": "Slurm QOS Account Limit Triage",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "summary": "Collect read-only evidence for Slurm account, QOS, and fairshare limits.",
   "description": "This skill helps users and support teams investigate pending jobs caused by Slurm association limits, QOS limits, invalid accounts, invalid QOS values, fairshare pressure, and TRES-minute policy without modifying scheduler state.",
@@ -51,6 +51,10 @@
     {
       "name": "date",
       "required": true
+    },
+    {
+      "name": "python3",
+      "required": false
     }
   ],
   "inputs": [
@@ -81,12 +85,17 @@
     {
       "name": "review_prompts",
       "description": "Public-safe prompts for interpreting association and QOS limit reason strings."
+    },
+    {
+      "name": "offline_policy_review",
+      "description": "Pending reason category and visible account, QOS, TRES, and fairshare field coverage."
     }
   ],
   "artifacts": [
     "README.md",
     "examples/qos-account-limit-triage.sh",
-    "examples/pending-limit-reasons.md"
+    "examples/pending-limit-reasons.md",
+    "examples/review-qos-evidence.py"
   ],
   "examples": [
     {
@@ -96,6 +105,10 @@
     {
       "title": "Pending limit reason reference",
       "path": "examples/pending-limit-reasons.md"
+    },
+    {
+      "title": "Review saved queue and policy evidence",
+      "path": "examples/review-qos-evidence.py"
     }
   ],
   "tests": [
@@ -108,6 +121,11 @@
       "type": "dry-run",
       "command": "bash -n skills/slurm-qos-account-limit-triage/examples/qos-account-limit-triage.sh",
       "description": "Check shell syntax without contacting Slurm."
+    },
+    {
+      "type": "static",
+      "command": "python3 skills/slurm-qos-account-limit-triage/examples/review-qos-evidence.py --queue benchmarks/fixtures/slurm/qos-account-squeue.txt --policy benchmarks/fixtures/slurm/qos-account-policy.txt",
+      "description": "Classify a synthetic association limit against visible policy fields."
     },
     {
       "type": "manual",

@@ -2,7 +2,7 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "job-failure-triage-static",
   "name": "Job failure triage static checks",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "static",
   "risk_level": "low",
@@ -14,6 +14,11 @@
       "label": "Failure triage script syntax",
       "argv": ["bash", "-n", "skills/job-failure-triage/examples/triage-slurm-job.sh"],
       "expect_returncode": 0
+    },
+    {
+      "label": "Failure triage accepts a log without scheduler access",
+      "argv": ["bash", "skills/job-failure-triage/examples/triage-slurm-job.sh", "benchmarks/fixtures/slurm/oom-log.txt"],
+      "expect_returncode": 0
     }
   ],
   "checks": [
@@ -21,7 +26,13 @@
       "label": "Failure triage README points to scheduler and log evidence",
       "type": "contains_all",
       "path": "skills/job-failure-triage/README.md",
-      "patterns": ["sacct", "log", "out-of-memory"]
+      "patterns": ["sacct", "log", "OUT_OF_MEMORY"]
+    },
+    {
+      "label": "Failure triage includes a hypothesis-testing checklist",
+      "type": "contains_all",
+      "path": "skills/job-failure-triage/examples/triage-evidence-checklist.md",
+      "patterns": ["Facts", "hypothesis", "contradictory evidence", "Expected signal", "resource/cost limit"]
     }
   ],
   "expected_outcomes": [

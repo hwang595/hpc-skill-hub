@@ -1,0 +1,13 @@
+date=2026-01-15T12:00:00Z
+hostname=compute-a
+slurm_job_id=45678
+slurm_nodelist=compute-a
+slurm_ntasks=4
+bench_root=<approved-scratch>/ior-mdtest-smoke
+run_dir=<approved-scratch>/ior-mdtest-smoke/45678
+ior_block_size=16m
+ior_transfer_size=1m
+ior_segments=4
+mdtest_items=32
+mdtest_iterations=1
+mdtest_depth=0

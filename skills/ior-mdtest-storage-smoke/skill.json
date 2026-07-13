@@ -2,7 +2,7 @@
   "$schema": "../../schemas/skill.schema.json",
   "id": "ior-mdtest-storage-smoke",
   "name": "IOR MDTest Storage Smoke",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "summary": "Collect small IOR and MDTest storage benchmark evidence on Slurm.",
   "description": "This skill provides a conservative pattern for running tiny IOR and MDTest smoke benchmarks from Slurm allocations, recording the exact commands, target directory, tool versions, and cleanup notes needed for storage or performance support triage.",
@@ -88,7 +88,7 @@
       "name": "site_policy",
       "type": "string",
       "required": true,
-      "description": "Local policy confirming that user-started storage benchmarks are allowed on the target filesystem."
+      "description": "Local policy confirmation represented by the explicit CONFIRM_STORAGE_POLICY=1 execution gate."
     }
   ],
   "outputs": [
@@ -146,6 +146,11 @@
       "type": "static",
       "command": "python3 -m py_compile skills/ior-mdtest-storage-smoke/examples/summarize-results.py",
       "description": "Check that the summary helper parses."
+    },
+    {
+      "type": "static",
+      "command": "python3 skills/ior-mdtest-storage-smoke/examples/summarize-results.py benchmarks/fixtures/storage/ior-mdtest-run",
+      "description": "Require a complete marked synthetic IOR and MDTest result bundle."
     },
     {
       "type": "manual",

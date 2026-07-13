@@ -2,7 +2,7 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "quota-filesystem-fixture",
   "name": "Quota and filesystem fixture evidence",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "fixture",
   "risk_level": "low",
@@ -23,6 +23,16 @@
       "label": "Filesystem triage script syntax",
       "argv": ["bash", "-n", "skills/quota-and-filesystem-triage/examples/filesystem-triage.sh"],
       "expect_returncode": 0
+    },
+    {
+      "label": "Filesystem triage runs read-only against synthetic log evidence",
+      "argv": ["bash", "skills/quota-and-filesystem-triage/examples/filesystem-triage.sh", "benchmarks/fixtures/filesystem", "benchmarks/fixtures/filesystem/quota-log.txt"],
+      "expect_returncode": 0
+    },
+    {
+      "label": "Filesystem triage rejects a requested missing log",
+      "argv": ["bash", "skills/quota-and-filesystem-triage/examples/filesystem-triage.sh", "benchmarks/fixtures/filesystem", "benchmarks/fixtures/filesystem/not-present.log"],
+      "expect_returncode": 2
     }
   ],
   "checks": [
@@ -37,6 +47,12 @@
       "type": "contains_all",
       "path": "benchmarks/fixtures/filesystem/quota-log.txt",
       "patterns": ["No space left on device", "Disk quota exceeded", "inode"]
+    },
+    {
+      "label": "Storage checklist separates evidence from remediation",
+      "type": "contains_all",
+      "path": "skills/quota-and-filesystem-triage/examples/storage-evidence-checklist.md",
+      "patterns": ["Byte capacity", "Inode capacity", "Missing or contradictory evidence", "recovery plan"]
     }
   ],
   "expected_outcomes": [

@@ -1,0 +1,6 @@
+IOR-3.3.0: MPI Coordinated Test of Parallel I/O
+Max Write: 1040.00 MiB/s
+Mean Write: 1012.00 MiB/s
+Max Read: 1200.00 MiB/s
+Mean Read: 1175.00 MiB/s
+Summary of all tests:

@@ -8,7 +8,18 @@ The goal is to collect enough read-only evidence to decide whether the next run
 should request more memory, reduce per-node concurrency, change data-loading
 behavior, stage inputs differently, or move to a profiling workflow.
 
-## Example
+## Prerequisites
+
+- Confirm the scheduler is Slurm and that the user may inspect the selected job
+  and log. Completed-job accounting may be delayed, purged, or hidden by policy.
+- Preserve job and step identifiers separately; top-level, batch, extern, and
+  application steps can report different states and memory fields.
+- Treat `ReqMem` units and per-node/per-CPU scope according to local Slurm
+  configuration. Do not compare values until their scope is understood.
+- Choose a new report directory. The collector refuses to overwrite an existing
+  path or continue when an explicitly requested log is missing.
+
+## Workflow
 
 Collect scheduler and log evidence:
 
@@ -28,6 +39,13 @@ Write to a named report directory:
 REPORT_DIR=oom-report bash examples/slurm-oom-triage.sh <job-id> failed-job.out
 ```
 
+Review synthetic or redacted evidence without contacting Slurm:
+
+```bash
+python3 examples/review-oom-evidence.py \
+  --accounting <sacct.txt> --log <job-log.txt> --require-both
+```
+
 ## What To Review
 
 - `sacct` job and step states. The batch step may show `OUT_OF_MEMORY` even
@@ -41,10 +59,31 @@ REPORT_DIR=oom-report bash examples/slurm-oom-triage.sh <job-id> failed-job.out
 - Whether the workload launched more concurrent processes or threads than the
   memory request was sized for.
 
+## Resource And Cost
+
+The collector sends a few bounded read-only Slurm queries and writes a small
+local text report. Avoid repeated broad accounting queries. Any proposed rerun,
+profiling job, larger memory request, reduced concurrency, or input staging can
+consume allocation, CPU, memory, storage, and walltime and needs separate review.
+
+## Cleanup
+
+The script creates one report directory and never deletes it. Retain the bundle
+for comparison or remove it under project policy after review. It does not
+cancel, modify, or resubmit the failed job.
+
+## Site Adaptation
+
+Accounting retention, `ReqMem` scope, cgroup signals, `seff` availability, and
+support escalation vary by site. Preserve missing fields as missing evidence and
+redact usernames, accounts, hostnames, paths, job names, and application
+arguments before public sharing.
+
 ## Safety Notes
 
-This skill is read-only. It does not cancel, modify, resubmit, or clean up jobs.
-Generated reports may include private paths, job names, usernames, account
+This skill is scheduler read-only but creates a local report directory. It does
+not cancel, modify, resubmit, or clean up jobs. Generated reports may include
+private paths, job names, usernames, account
 names, dataset names, and application arguments; review them before sharing
 outside a support context.
 

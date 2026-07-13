@@ -2,7 +2,7 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "slurm-qos-account-limit-fixture",
   "name": "Slurm QOS account limit fixture evidence",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "fixture",
   "risk_level": "low",
@@ -23,6 +23,11 @@
       "label": "QOS account limit triage script syntax",
       "argv": ["bash", "-n", "skills/slurm-qos-account-limit-triage/examples/qos-account-limit-triage.sh"],
       "expect_returncode": 0
+    },
+    {
+      "label": "QOS reviewer maps queue reason to visible policy evidence",
+      "argv": ["python3", "skills/slurm-qos-account-limit-triage/examples/review-qos-evidence.py", "--queue", "benchmarks/fixtures/slurm/qos-account-squeue.txt", "--policy", "benchmarks/fixtures/slurm/qos-account-policy.txt"],
+      "expect_returncode": 0
     }
   ],
   "checks": [
@@ -37,6 +42,12 @@
       "type": "contains_all",
       "path": "benchmarks/fixtures/slurm/qos-account-policy.txt",
       "patterns": ["Fairshare", "GrpTRES", "sshare"]
+    },
+    {
+      "label": "QOS reviewer distinguishes association and QOS limit classes",
+      "type": "contains_all",
+      "path": "skills/slurm-qos-account-limit-triage/examples/review-qos-evidence.py",
+      "patterns": ["association-aggregate-limit", "association-per-job-limit", "qos-aggregate-limit", "qos-per-job-limit"]
     }
   ],
   "expected_outcomes": [

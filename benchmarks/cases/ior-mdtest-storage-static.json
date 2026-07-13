@@ -2,13 +2,30 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "ior-mdtest-storage-static",
   "name": "IOR and MDTest storage smoke static checks",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "static",
   "risk_level": "low",
   "skill_ids": ["ior-mdtest-storage-smoke"],
   "summary": "Check that storage smoke examples remain parseable and policy-gated.",
-  "fixtures": [],
+  "fixtures": [
+    {
+      "path": "benchmarks/fixtures/storage/ior-mdtest-run/run-metadata.txt",
+      "description": "Synthetic metadata for a bounded four-task storage smoke run."
+    },
+    {
+      "path": "benchmarks/fixtures/storage/ior-mdtest-run/commands.txt",
+      "description": "Synthetic reviewed IOR and MDTest command capture."
+    },
+    {
+      "path": "benchmarks/fixtures/storage/ior-mdtest-run/ior.out",
+      "description": "Synthetic IOR summary output."
+    },
+    {
+      "path": "benchmarks/fixtures/storage/ior-mdtest-run/mdtest.out",
+      "description": "Synthetic MDTest summary output."
+    }
+  ],
   "commands": [
     {
       "label": "Storage preflight syntax",
@@ -24,6 +41,21 @@
       "label": "Storage cleanup syntax",
       "argv": ["bash", "-n", "skills/ior-mdtest-storage-smoke/examples/cleanup-run.sh"],
       "expect_returncode": 0
+    },
+    {
+      "label": "Storage preflight does not create an unapproved root",
+      "argv": ["bash", "skills/ior-mdtest-storage-smoke/examples/storage-smoke-preflight.sh", "--paths-only", "benchmarks/fixtures/storage/planned-ior-root"],
+      "expect_returncode": 0
+    },
+    {
+      "label": "Storage summary accepts a complete marked fixture",
+      "argv": ["python3", "skills/ior-mdtest-storage-smoke/examples/summarize-results.py", "benchmarks/fixtures/storage/ior-mdtest-run"],
+      "expect_returncode": 0
+    },
+    {
+      "label": "Storage cleanup remains explicit opt-in",
+      "argv": ["bash", "skills/ior-mdtest-storage-smoke/examples/cleanup-run.sh", "benchmarks/fixtures/storage/ior-mdtest-run"],
+      "expect_returncode": 2
     }
   ],
   "checks": [
@@ -32,6 +64,18 @@
       "type": "contains_all",
       "path": "skills/ior-mdtest-storage-smoke/examples/site-policy-checklist.md",
       "patterns": ["benchmark-approved", "not as a site-wide performance"]
+    },
+    {
+      "label": "Plan-only mode exits before creating run artifacts",
+      "type": "contains_all",
+      "path": "skills/ior-mdtest-storage-smoke/examples/ior-mdtest-smoke.sbatch",
+      "patterns": ["Plan-only mode. No directories or files were created.", "CONFIRM_STORAGE_POLICY", "run directory already exists"]
+    },
+    {
+      "label": "Storage smoke enforces bounded parameters",
+      "type": "contains_all",
+      "path": "skills/ior-mdtest-storage-smoke/examples/ior-mdtest-smoke.sbatch",
+      "patterns": ["SLURM_NTASKS", "IOR_BLOCK_SIZE", "IOR_TRANSFER_SIZE", "MDTEST_ITEMS", "smoke-test cap"]
     }
   ],
   "expected_outcomes": [

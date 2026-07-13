@@ -2,7 +2,7 @@
   "$schema": "../../schemas/benchmark.schema.json",
   "id": "gpu-sanity-static",
   "name": "GPU sanity static checks",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "mode": "static",
   "risk_level": "low",
@@ -14,6 +14,11 @@
       "label": "GPU sbatch syntax",
       "argv": ["bash", "-n", "skills/gpu-sanity-check/examples/gpu-sanity.sbatch"],
       "expect_returncode": 0
+    },
+    {
+      "label": "GPU log reviewer interface",
+      "argv": ["python3", "skills/gpu-sanity-check/examples/review-gpu-log.py", "--help"],
+      "expect_returncode": 0
     }
   ],
   "checks": [
@@ -22,6 +27,12 @@
       "type": "contains_any",
       "path": "skills/gpu-sanity-check/examples/gpu-sanity.sbatch",
       "patterns": ["nvidia-smi", "rocm-smi", "CUDA_VISIBLE_DEVICES", "ROCR_VISIBLE_DEVICES"]
+    },
+    {
+      "label": "GPU guidance separates allocation, vendor, and framework evidence",
+      "type": "contains_all",
+      "path": "skills/gpu-sanity-check/README.md",
+      "patterns": ["scheduler evidence", "vendor CLI evidence", "framework evidence", "Never auto-submit"]
     }
   ],
   "expected_outcomes": [

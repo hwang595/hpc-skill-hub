@@ -6,7 +6,18 @@ association, QOS, fairshare, or TRES-minute policy. It is a deeper follow-up to
 `AssocMax*Limit`, `QOSGrp*Limit`, `QOSMax*Limit`, `InvalidAccount`,
 `InvalidQOS`, or `Priority`.
 
-## Example
+## Prerequisites
+
+- Confirm the scheduler is Slurm and that the user may inspect the selected job,
+  association, QOS, and fairshare fields exposed by local policy.
+- Record the job id, user, account, QOS, partition, requested TRES, and snapshot
+  time. Do not query another user's policy records without authorization.
+- Treat hidden `sacctmgr`, `sshare`, or `sprio` output as missing evidence, not
+  proof that no policy limit exists.
+- Choose a new output directory; the collector refuses to overwrite an existing
+  evidence bundle.
+
+## Workflow
 
 Collect a report for a pending job:
 
@@ -24,6 +35,13 @@ Write to an explicit report directory:
 
 ```bash
 bash examples/qos-account-limit-triage.sh 123456 "$USER" qos-limit-report
+```
+
+Review saved queue and visible policy fixtures offline:
+
+```bash
+python3 examples/review-qos-evidence.py \
+  --queue <squeue.txt> --policy <visible-policy.txt>
 ```
 
 ## What It Collects
@@ -50,9 +68,29 @@ bash examples/qos-account-limit-triage.sh 123456 "$USER" qos-limit-report
 - `Priority` may reflect fairshare, QOS priority, partition priority, job age,
   or other site policy.
 
+## Resource And Cost
+
+The collector writes a small local report and sends bounded read-only queries to
+Slurm control/accounting services. Avoid polling loops and broad all-user policy
+queries. Changing CPU, GPU, memory, walltime, QOS, or account can alter queue
+cost and eligibility and must be reviewed separately.
+
+## Cleanup
+
+The script creates one report directory and never changes scheduler state.
+Retain or remove the local bundle under project policy. It does not hold,
+release, cancel, requeue, resubmit, or edit the selected job or policy records.
+
+## Site Adaptation
+
+Association hierarchy, QOS names, fairshare, TRES limits, visibility, and
+support procedures are site-specific. Do not promise a start time or infer
+hidden policy. Redact users, accounts, QOS, partitions, job names, and internal
+limits before public sharing.
+
 ## Safety Notes
 
-This skill is `low` risk because it only runs read-only Slurm commands and
+This skill is `low` risk because it runs bounded read-only Slurm commands and
 writes local text reports. It does not modify accounts, QOS records,
 associations, fairshare, jobs, reservations, or scheduler configuration.
 

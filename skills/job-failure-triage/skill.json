@@ -2,7 +2,7 @@
   "$schema": "../../schemas/skill.schema.json",
   "id": "job-failure-triage",
   "name": "Job Failure Triage",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "summary": "Diagnose common HPC job failures from scheduler and log evidence.",
   "description": "This skill provides a first-pass checklist for failed jobs, including out-of-memory events, time limits, missing modules, permission errors, and node failures.",
@@ -20,6 +20,10 @@
   "tools": [
     {
       "name": "sacct",
+      "required": false
+    },
+    {
+      "name": "scontrol",
       "required": false
     },
     {
@@ -51,11 +55,19 @@
       "description": "Evidence and likely next actions for the failed job."
     }
   ],
-  "artifacts": ["README.md", "examples/triage-slurm-job.sh"],
+  "artifacts": [
+    "README.md",
+    "examples/triage-slurm-job.sh",
+    "examples/triage-evidence-checklist.md"
+  ],
   "examples": [
     {
       "title": "Triage a failed Slurm job",
       "path": "examples/triage-slurm-job.sh"
+    },
+    {
+      "title": "Record scheduler and application evidence",
+      "path": "examples/triage-evidence-checklist.md"
     }
   ],
   "tests": [
@@ -73,6 +85,14 @@
     {
       "title": "Slurm job state codes",
       "url": "https://slurm.schedmd.com/job_state_codes.html"
+    },
+    {
+      "title": "Slurm sacct documentation",
+      "url": "https://slurm.schedmd.com/sacct.html"
+    },
+    {
+      "title": "Slurm job exit codes",
+      "url": "https://slurm.schedmd.com/job_exit_code.html"
     }
   ]
 }

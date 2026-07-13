@@ -2090,6 +2090,10 @@
         {
           "path": "skills/gpu-sanity-check/examples/gpu-sanity.sbatch",
           "title": "Submit a GPU sanity job"
+        },
+        {
+          "path": "skills/gpu-sanity-check/examples/review-gpu-log.py",
+          "title": "Review an existing GPU sanity log"
         }
       ],
       "id": "gpu-sanity-check",
@@ -2105,6 +2109,10 @@
         {
           "title": "ROCm SMI documentation",
           "url": "https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/"
+        },
+        {
+          "title": "Slurm Generic Resource scheduling",
+          "url": "https://slurm.schedmd.com/gres.html"
         }
       ],
       "risk_level": "medium",
@@ -2126,7 +2134,7 @@
         "nvidia-smi",
         "rocm-smi"
       ],
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "categories": [
@@ -2602,7 +2610,7 @@
         "tee",
         "rm"
       ],
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "categories": [
@@ -2677,6 +2685,10 @@
         {
           "path": "skills/job-failure-triage/examples/triage-slurm-job.sh",
           "title": "Triage a failed Slurm job"
+        },
+        {
+          "path": "skills/job-failure-triage/examples/triage-evidence-checklist.md",
+          "title": "Record scheduler and application evidence"
         }
       ],
       "id": "job-failure-triage",
@@ -2688,6 +2700,14 @@
         {
           "title": "Slurm job state codes",
           "url": "https://slurm.schedmd.com/job_state_codes.html"
+        },
+        {
+          "title": "Slurm sacct documentation",
+          "url": "https://slurm.schedmd.com/sacct.html"
+        },
+        {
+          "title": "Slurm job exit codes",
+          "url": "https://slurm.schedmd.com/job_exit_code.html"
         }
       ],
       "risk_level": "low",
@@ -2706,10 +2726,11 @@
       ],
       "tools": [
         "sacct",
+        "scontrol",
         "grep",
         "tail"
       ],
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "categories": [
@@ -3382,6 +3403,10 @@
         {
           "path": "skills/mpi-hello-and-benchmark/examples/run-mpi.sbatch",
           "title": "Run MPI under Slurm"
+        },
+        {
+          "path": "skills/mpi-hello-and-benchmark/examples/review-mpi-log.py",
+          "title": "Review saved MPI rank output"
         }
       ],
       "id": "mpi-hello-and-benchmark",
@@ -3397,6 +3422,10 @@
         {
           "title": "Slurm MPI guide",
           "url": "https://slurm.schedmd.com/mpi_guide.html"
+        },
+        {
+          "title": "Slurm sbatch documentation",
+          "url": "https://slurm.schedmd.com/sbatch.html"
         }
       ],
       "risk_level": "medium",
@@ -3414,9 +3443,10 @@
       ],
       "tools": [
         "mpicc",
-        "srun"
+        "srun",
+        "python3"
       ],
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "categories": [
@@ -4653,6 +4683,10 @@
         {
           "path": "skills/quota-and-filesystem-triage/examples/filesystem-triage.sh",
           "title": "Triage filesystem and quota signals"
+        },
+        {
+          "path": "skills/quota-and-filesystem-triage/examples/storage-evidence-checklist.md",
+          "title": "Record bounded storage evidence"
         }
       ],
       "id": "quota-and-filesystem-triage",
@@ -4686,12 +4720,12 @@
       "tools": [
         "df",
         "quota",
-        "find",
         "grep",
         "tail",
-        "dirname"
+        "dirname",
+        "ls"
       ],
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "categories": [
@@ -5155,6 +5189,10 @@
         {
           "path": "skills/shared-project-permissions-triage/examples/support-review-checklist.md",
           "title": "Review shared directory permission evidence"
+        },
+        {
+          "path": "skills/shared-project-permissions-triage/examples/review-permission-evidence.py",
+          "title": "Review saved traversal, ACL, and log evidence"
         }
       ],
       "id": "shared-project-permissions-triage",
@@ -5203,9 +5241,10 @@
         "getfacl",
         "df",
         "grep",
-        "tail"
+        "tail",
+        "python3"
       ],
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "categories": [
@@ -5696,6 +5735,10 @@
         {
           "path": "skills/slurm-oom-memory-triage/examples/memory-request-review.md",
           "title": "Review memory request choices after triage"
+        },
+        {
+          "path": "skills/slurm-oom-memory-triage/examples/review-oom-evidence.py",
+          "title": "Review saved OOM accounting and log evidence"
         }
       ],
       "id": "slurm-oom-memory-triage",
@@ -5741,9 +5784,10 @@
         "grep",
         "tail",
         "date",
-        "mkdir"
+        "mkdir",
+        "python3"
       ],
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "categories": [
@@ -5760,6 +5804,10 @@
         {
           "path": "skills/slurm-output-log-triage/examples/output-log-review-checklist.md",
           "title": "Review missing or empty output logs"
+        },
+        {
+          "path": "skills/slurm-output-log-triage/examples/review-output-log-evidence.py",
+          "title": "Review saved job-record and filesystem evidence"
         }
       ],
       "id": "slurm-output-log-triage",
@@ -5809,9 +5857,10 @@
         "tail",
         "grep",
         "date",
-        "mkdir"
+        "mkdir",
+        "python3"
       ],
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "categories": [
@@ -5823,6 +5872,10 @@
         {
           "path": "skills/slurm-pending-reason-triage/examples/pending-reason-triage.sh",
           "title": "Inspect pending Slurm reasons"
+        },
+        {
+          "path": "skills/slurm-pending-reason-triage/examples/review-pending-snapshot.py",
+          "title": "Classify reasons in saved scheduler snapshots"
         }
       ],
       "id": "slurm-pending-reason-triage",
@@ -5864,9 +5917,10 @@
         "squeue",
         "scontrol",
         "sprio",
-        "bash"
+        "bash",
+        "python3"
       ],
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "categories": [
@@ -5953,6 +6007,10 @@
         {
           "path": "skills/slurm-qos-account-limit-triage/examples/pending-limit-reasons.md",
           "title": "Pending limit reason reference"
+        },
+        {
+          "path": "skills/slurm-qos-account-limit-triage/examples/review-qos-evidence.py",
+          "title": "Review saved queue and policy evidence"
         }
       ],
       "id": "slurm-qos-account-limit-triage",
@@ -6006,9 +6064,10 @@
         "sshare",
         "sprio",
         "mkdir",
-        "date"
+        "date",
+        "python3"
       ],
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "categories": [
@@ -6073,6 +6132,10 @@
         {
           "path": "skills/slurm-submit-job/examples/array.sbatch",
           "title": "Array batch job"
+        },
+        {
+          "path": "skills/slurm-submit-job/examples/review-sbatch.sh",
+          "title": "Review a batch script without submitting"
         }
       ],
       "id": "slurm-submit-job",
@@ -6088,6 +6151,10 @@
         {
           "title": "Slurm srun documentation",
           "url": "https://slurm.schedmd.com/srun.html"
+        },
+        {
+          "title": "Slurm Generic Resource scheduling",
+          "url": "https://slurm.schedmd.com/gres.html"
         }
       ],
       "risk_level": "medium",
@@ -6108,7 +6175,7 @@
         "sbatch",
         "srun"
       ],
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "categories": [
@@ -7132,7 +7199,7 @@
     "eb": 1,
     "env": 7,
     "fi_info": 1,
-    "find": 7,
+    "find": 6,
     "gatk": 1,
     "gcc": 1,
     "getfacl": 1,
@@ -7158,7 +7225,7 @@
     "lmp": 1,
     "lmutil": 1,
     "ln": 1,
-    "ls": 3,
+    "ls": 4,
     "lscpu": 3,
     "lsof": 1,
     "make": 1,
@@ -7194,7 +7261,7 @@
     "pw.x": 1,
     "pwd": 8,
     "python": 4,
-    "python3": 14,
+    "python3": 20,
     "qdel": 1,
     "qstat": 2,
     "qsub": 3,
@@ -7212,7 +7279,7 @@
     "salloc": 1,
     "sbatch": 50,
     "scancel": 1,
-    "scontrol": 17,
+    "scontrol": 18,
     "sed": 5,
     "seff": 3,
     "sha256sum": 2,

@@ -2,7 +2,7 @@
   "$schema": "../../schemas/skill.schema.json",
   "id": "slurm-pending-reason-triage",
   "name": "Slurm Pending Reason Triage",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "summary": "Explain why Slurm jobs are pending using read-only scheduler signals.",
   "description": "This skill helps users and support teams inspect pending Slurm jobs with squeue, scontrol, and optional sprio output so they can distinguish dependency, priority, resource, partition, reservation, and policy-related wait reasons.",
@@ -33,6 +33,10 @@
     {
       "name": "bash",
       "required": true
+    },
+    {
+      "name": "python3",
+      "required": false
     }
   ],
   "inputs": [
@@ -47,6 +51,12 @@
       "type": "string",
       "required": false,
       "description": "User whose pending jobs should be listed when no job id is provided."
+    },
+    {
+      "name": "saved_snapshot",
+      "type": "path",
+      "required": false,
+      "description": "Saved public-safe squeue or scontrol text for offline reason classification."
     }
   ],
   "outputs": [
@@ -65,13 +75,25 @@
     {
       "name": "triage_prompts",
       "description": "Human-readable prompts for interpreting common pending reasons."
+    },
+    {
+      "name": "offline_reason_summary",
+      "description": "Reason and broad category pairs extracted from saved snapshots without contacting Slurm."
     }
   ],
-  "artifacts": ["README.md", "examples/pending-reason-triage.sh"],
+  "artifacts": [
+    "README.md",
+    "examples/pending-reason-triage.sh",
+    "examples/review-pending-snapshot.py"
+  ],
   "examples": [
     {
       "title": "Inspect pending Slurm reasons",
       "path": "examples/pending-reason-triage.sh"
+    },
+    {
+      "title": "Classify reasons in saved scheduler snapshots",
+      "path": "examples/review-pending-snapshot.py"
     }
   ],
   "tests": [
@@ -79,6 +101,11 @@
       "type": "static",
       "command": "python3 tools/validate_skills.py --skill slurm-pending-reason-triage",
       "description": "Validate the manifest and example script."
+    },
+    {
+      "type": "static",
+      "command": "python3 skills/slurm-pending-reason-triage/examples/review-pending-snapshot.py benchmarks/fixtures/slurm/pending-squeue.txt",
+      "description": "Classify a synthetic pending reason without contacting Slurm."
     },
     {
       "type": "manual",

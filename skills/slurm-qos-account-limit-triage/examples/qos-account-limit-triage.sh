@@ -15,6 +15,11 @@ if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
   exit 0
 fi
 
+if [[ "$#" -gt 3 ]]; then
+  usage >&2
+  exit 2
+fi
+
 job_id="${1:-${SLURM_JOB_ID_TO_TRIAGE:-}}"
 target_user="${2:-${SLURM_TRIAGE_USER:-${USER:-}}}"
 output_dir="${3:-${OUTPUT_DIR:-slurm-qos-account-limit-report}}"
@@ -32,6 +37,11 @@ fi
 if ! command -v squeue >/dev/null 2>&1; then
   echo "ERROR: squeue is required." >&2
   exit 1
+fi
+
+if [[ -e "${output_dir}" ]]; then
+  echo "ERROR: output directory already exists: ${output_dir}" >&2
+  exit 2
 fi
 
 mkdir -p "${output_dir}"
