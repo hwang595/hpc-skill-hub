@@ -31,8 +31,8 @@
     ],
     "adoption_reports": []
   },
-  "review_issue": null,
-  "review_commit": null,
+  "review_issue": "https://github.com/hwang595/hpc-skill-hub/issues/30",
+  "review_commit": "55b90ad8dbb8fcf9e1e0656a95889217a02c6ab5",
   "domain_reviews": [],
   "safety_reviews": [],
   "decision": {

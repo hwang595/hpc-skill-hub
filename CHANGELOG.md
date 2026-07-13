@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+## v0.4.0 - 2026-07-13
+
 - Start the v0.4 P0 evidence foundation with a versioned 54-run Codex and
   Claude Code campaign, explicit per-run and total budget contracts, resumable
   cost accounting, and exact-model paid-run gates.

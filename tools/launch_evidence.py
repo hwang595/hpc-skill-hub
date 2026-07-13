@@ -15,7 +15,7 @@ from launch_readiness import launch_checks
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_JSON = ROOT / "registry" / "index.json"
 HEALTH_JSON = ROOT / "registry" / "health.json"
-RELEASE_MANIFEST = ROOT / "registry" / "releases" / "v0.3.0.json"
+RELEASE_MANIFEST = ROOT / "registry" / "releases" / "v0.4.0.json"
 
 
 def run_git(parts: List[str]) -> str:

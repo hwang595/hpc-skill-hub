@@ -413,8 +413,8 @@ def main() -> int:
     )
     parser.add_argument(
         "--version",
-        default="v0.3.0",
-        help="Release tag to verify. Default: v0.3.0.",
+        default="v0.4.0",
+        help="Release tag to verify. Default: v0.4.0.",
     )
     parser.add_argument(
         "--dry-run",

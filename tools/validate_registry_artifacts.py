@@ -44,6 +44,7 @@ PUBLIC_BASELINE_DOCS = [
     ROOT / "docs" / "REGISTRY_HEALTH.md",
     ROOT / "docs" / "RELEASE_NOTES_v0.2.0.md",
     ROOT / "docs" / "RELEASE_NOTES_v0.3.0.md",
+    ROOT / "docs" / "RELEASE_NOTES_v0.4.0.md",
     ROOT / "docs" / "REVIEW_PACKET_v0.2.0.md",
     ROOT / "docs" / "SKILL_CATALOG.md",
 ]
@@ -444,6 +445,11 @@ def public_count_expectations(index: Dict[str, Any]) -> Dict[str, List[str]]:
             f"- Site adapters: {site_adapter_count},",
         ],
         "docs/RELEASE_NOTES_v0.3.0.md": [
+            f"- Skills: {skill_count}.",
+            f"- Collections: {collection_count}.",
+            f"- Site adapters: {site_adapter_count},",
+        ],
+        "docs/RELEASE_NOTES_v0.4.0.md": [
             f"- Skills: {skill_count}.",
             f"- Collections: {collection_count}.",
             f"- Site adapters: {site_adapter_count},",

@@ -14,11 +14,11 @@ promoting skills automatically. Static readiness is not domain approval.
 
 | Skill | Quality | Risk | Status | Safety review | Blockers |
 | --- | ---: | --- | --- | --- | --- |
-| `job-failure-triage` | 98 | `low` | `awaiting-review` | not required | public-review-issue, review-commit, domain-review, maintainer-decision |
-| `shared-project-permissions-triage` | 100 | `low` | `awaiting-review` | required | public-review-issue, review-commit, domain-review, safety-review, maintainer-decision |
-| `slurm-oom-memory-triage` | 100 | `low` | `awaiting-review` | not required | public-review-issue, review-commit, domain-review, maintainer-decision |
-| `slurm-output-log-triage` | 100 | `low` | `awaiting-review` | not required | public-review-issue, review-commit, domain-review, maintainer-decision |
-| `slurm-pending-reason-triage` | 98 | `low` | `awaiting-review` | not required | public-review-issue, review-commit, domain-review, maintainer-decision |
+| `job-failure-triage` | 98 | `low` | `awaiting-review` | not required | domain-review, maintainer-decision |
+| `shared-project-permissions-triage` | 100 | `low` | `awaiting-review` | required | domain-review, safety-review, maintainer-decision |
+| `slurm-oom-memory-triage` | 100 | `low` | `awaiting-review` | not required | domain-review, maintainer-decision |
+| `slurm-output-log-triage` | 100 | `low` | `awaiting-review` | not required | domain-review, maintainer-decision |
+| `slurm-pending-reason-triage` | 98 | `low` | `awaiting-review` | not required | domain-review, maintainer-decision |
 
 ## Promotion Boundary
 
