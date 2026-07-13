@@ -34,6 +34,8 @@ Experiment plans follow
 [`agent-benchmark-plan.schema.json`](../schemas/agent-benchmark-plan.schema.json).
 The v0.2 calibration plan selects three tasks, two agent harnesses, three
 conditions, and three trials per cell, producing 54 planned runs.
+The v0.4 evidence plan adds an explicit per-run budget, total campaign ceiling,
+and paid-run acknowledgement contract to the same balanced matrix.
 
 Reviewed results follow
 [`agent-benchmark-result.schema.json`](../schemas/agent-benchmark-result.schema.json).
@@ -140,7 +142,9 @@ python3 tools/run_agent_benchmarks.py --json
 
 See the generated [Calibration Plan](AGENT_BENCHMARK_PLAN.md),
 [v0.3 Smoke Plan](AGENT_BENCHMARK_SMOKE_PLAN.md), and
-[Agent Benchmark Report](AGENT_BENCHMARK_REPORT.md).
+[v0.4 Evidence Plan](AGENT_BENCHMARK_V0_4_PLAN.md). Public output is available
+as both an [Agent Benchmark Report](AGENT_BENCHMARK_REPORT.md) and an
+[Evidence Dashboard](AGENT_BENCHMARK_DASHBOARD.html).
 
 ## v0.3 Six-Run Smoke Campaign
 
@@ -186,6 +190,43 @@ contract first, execute from that clean commit, redact artifacts, and then use
 the blinded review and scoring tool. `--allow-dirty-run` exists only for
 explicitly non-public harness debugging.
 
+## v0.4 Repeated Evidence Campaign
+
+The v0.4 plan expands the validated smoke path to three public-safe tasks,
+three conditions, three trials, and two agents: 54 runs in total. Inspect its
+matrix and preflight exact model ids without launching an agent:
+
+```bash
+python3 tools/agent_benchmark_harness.py \
+  --plan agent-bench/plans/evidence-v0.4.json \
+  --json
+
+python3 tools/agent_benchmark_harness.py \
+  --plan agent-bench/plans/evidence-v0.4.json \
+  --preflight \
+  --model-override codex-v0-4=<exact-codex-model> \
+  --model-override claude-v0-4=<exact-claude-model>
+```
+
+The plan sets a USD 0.75 per-run ceiling and a USD 40.50 total campaign
+ceiling. Before each run, the harness sums recorded result costs and refuses to
+start when the next per-run allowance would exceed the total. The total is an
+authorization ceiling, not a spending target. Codex quota and any provider
+charges that are not exposed to the harness still require external monitoring.
+
+Track resumable state and recorded budget without paid execution:
+
+```bash
+python3 tools/agent_benchmark_harness.py \
+  --plan agent-bench/plans/evidence-v0.4.json \
+  --status --json
+```
+
+Real execution remains one run at a time. Each invocation requires an exact
+model id and `--allow-paid-run`; the plan cannot authorize a batch launch.
+Review the [v0.4 Completion Matrix](V0_4_COMPLETION.md) before opening the real
+campaign.
+
 ## Publication Gate
 
 Do not publish a leaderboard row until:
@@ -194,6 +235,12 @@ Do not publish a leaderboard row until:
 - the run comes from a clean repository snapshot at the recorded commit,
 - at least three trials exist for each compared condition,
 - failures and pending runs remain visible,
-- artifacts pass the repository safety audit and human redaction review,
+- every scored run has exactly two independent blinded reviewers,
+- every scored run has digest-verified public artifacts that pass the
+  repository safety audit and human redaction review,
 - paired conditions use the same task version and trial numbers,
 - scoring provenance names the rubric version and reviewer method.
+
+`tools/run_agent_benchmarks.py` enforces these requirements as a publication
+readiness gate. The dashboard lists blockers and suppresses comparative
+ranking until the gate opens.

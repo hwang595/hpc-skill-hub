@@ -584,6 +584,7 @@ def render(index: Dict[str, Any]) -> str:
         <a href="docs/SKILL_SPEC.md">Skill spec</a>
         <a href="docs/COMPATIBILITY.md">Compatibility</a>
         <a href="docs/SITE_ADAPTERS.md">Site adapters</a>
+        <a href="docs/AGENT_BENCHMARK_DASHBOARD.html">Evidence</a>
         <a href="docs/ECOSYSTEM_PROPOSAL.md">Proposal</a>
       </nav>
     </div>

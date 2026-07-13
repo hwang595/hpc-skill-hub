@@ -121,6 +121,85 @@ class AgentBenchmarkAggregationTests(unittest.TestCase):
         self.assertEqual(lift["reference_condition"], "baseline")
         self.assertEqual(lift["lift"], 25.0)
         self.assertEqual(lift["lift_ci95"], 9.8)
+        self.assertFalse(payload["publication"]["leaderboard_ready"])
+        self.assertTrue(
+            any("pending blinded review" in item for item in payload["publication"]["blockers"])
+        )
+        self.assertTrue(
+            any("digest-verified" in item for item in payload["publication"]["blockers"])
+        )
+
+        dashboard = self.runner.dashboard_report(payload)
+        self.assertIn("Evidence not ready", dashboard)
+        self.assertIn("Public Run Ledger", dashboard)
+        self.assertIn("fixture-agent-oom-baseline-t01", dashboard)
+
+    def test_publication_gate_accepts_complete_paired_evidence(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            artifact_path = root / "agent-bench" / "artifacts" / "public" / "response.txt"
+            artifact_path.parent.mkdir(parents=True)
+            artifact_path.write_text("Public-safe reviewed response.\n", encoding="utf-8")
+            artifact = {
+                "path": str(artifact_path.relative_to(root)),
+                "description": "Public-safe reviewed response.",
+                "sha256": self.runner.sha256_path(artifact_path),
+            }
+            results = []
+            lifts = []
+            for agent in ("codex", "claude-code"):
+                for condition in ("baseline", "skill-enabled"):
+                    for trial in range(1, 4):
+                        results.append(
+                            {
+                                "run_id": f"{agent}-{condition}-t{trial:02d}",
+                                "status": "scored",
+                                "agent": agent,
+                                "harness": f"{agent}-cli",
+                                "model": f"{agent}-exact-v1",
+                                "evaluation": {
+                                    "blinded": True,
+                                    "evaluator_ids": ["reviewer-a", "reviewer-b"],
+                                },
+                                "artifacts": [artifact],
+                            }
+                        )
+                lifts.append(
+                    {
+                        "agent": agent,
+                        "harness": f"{agent}-cli",
+                        "model": f"{agent}-exact-v1",
+                        "task_id": "public-fixture",
+                        "condition": "skill-enabled",
+                        "reference_condition": "baseline",
+                        "pair_count": 3,
+                    }
+                )
+
+            readiness = self.runner.publication_readiness(
+                {
+                    "results": results,
+                    "pending_review_count": 0,
+                    "skill_lifts": lifts,
+                },
+                root,
+            )
+            incomplete_readiness = self.runner.publication_readiness(
+                {
+                    "results": results,
+                    "pending_review_count": 0,
+                    "skill_lifts": lifts[:1],
+                },
+                root,
+            )
+
+        self.assertTrue(readiness["leaderboard_ready"], readiness["blockers"])
+        self.assertEqual(readiness["scored_agent_variant_count"], 2)
+        self.assertEqual(readiness["eligible_comparison_count"], 2)
+        self.assertFalse(incomplete_readiness["leaderboard_ready"])
+        self.assertTrue(
+            any("lack a 3-pair" in item for item in incomplete_readiness["blockers"])
+        )
 
     def test_site_adapter_lift_uses_skill_enabled_reference(self):
         base = {
@@ -148,6 +227,9 @@ class AgentBenchmarkHarnessTests(unittest.TestCase):
         self.payload = self.harness.plan_payload()
         self.smoke_payload = self.harness.plan_payload(
             ROOT / "agent-bench" / "plans" / "smoke-v0.3.json"
+        )
+        self.v0_4_payload = self.harness.plan_payload(
+            ROOT / "agent-bench" / "plans" / "evidence-v0.4.json"
         )
 
     def test_calibration_matrix_is_balanced(self):
@@ -177,6 +259,54 @@ class AgentBenchmarkHarnessTests(unittest.TestCase):
             self.smoke_payload["plan"]["execution"]["max_budget_usd_per_run"], 0.5
         )
 
+    def test_v0_4_evidence_matrix_is_balanced_and_budgeted(self):
+        self.assertTrue(
+            self.v0_4_payload["ok"], self.v0_4_payload["validation_errors"]
+        )
+        self.assertEqual(self.v0_4_payload["run_count"], 54)
+        self.assertEqual(
+            self.v0_4_payload["agent_counts"], {"claude-code": 27, "codex": 27}
+        )
+        self.assertEqual(
+            self.v0_4_payload["condition_counts"],
+            {"baseline": 18, "docs-only": 18, "skill-enabled": 18},
+        )
+        execution = self.v0_4_payload["plan"]["execution"]
+        self.assertEqual(execution["max_budget_usd_per_run"], 0.75)
+        self.assertEqual(execution["max_total_budget_usd"], 40.5)
+        self.assertTrue(execution["require_paid_run_acknowledgement"])
+
+    def test_total_budget_requires_paid_run_acknowledgement(self):
+        plan_path = ROOT / "agent-bench" / "plans" / "evidence-v0.4.json"
+        plan = self.harness.load_json(plan_path)
+        plan["execution"].pop("require_paid_run_acknowledgement")
+
+        errors = self.harness.validate_plan(plan, self.harness.load_tasks())
+
+        self.assertIn(
+            "plan with max_total_budget_usd must require paid-run acknowledgement",
+            errors,
+        )
+
+    def test_campaign_budget_blocks_a_run_above_total_ceiling(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            output_root = Path(tmpdir)
+            result_dir = output_root / "results"
+            result_dir.mkdir()
+            (result_dir / "spent.json").write_text(
+                json.dumps({"metrics": {"cost_usd": 40.0}}), encoding="utf-8"
+            )
+
+            with self.assertRaisesRegex(ValueError, "campaign budget exhausted"):
+                self.harness.enforce_campaign_budget(
+                    self.v0_4_payload["plan"], output_root
+                )
+
+            (result_dir / "spent.json").write_text(
+                json.dumps({"metrics": {"cost_usd": 39.75}}), encoding="utf-8"
+            )
+            self.harness.enforce_campaign_budget(self.v0_4_payload["plan"], output_root)
+
     def test_preflight_requires_installed_agents_and_exact_models(self):
         with mock.patch.object(self.harness.shutil, "which", return_value=None):
             preflight = self.harness.preflight_payload(self.smoke_payload)
@@ -202,6 +332,12 @@ class AgentBenchmarkHarnessTests(unittest.TestCase):
 
         self.assertTrue(preflight["ok"], preflight["blockers"])
         self.assertTrue(all(item["ready"] for item in preflight["variants"]))
+        budget_modes = {
+            item["harness"]: item["budget_enforcement"]
+            for item in preflight["variants"]
+        }
+        self.assertEqual(budget_modes["claude-code"], "provider-cli-hard-limit")
+        self.assertEqual(budget_modes["codex-cli"], "external-monitoring-required")
 
     def test_preflight_blocks_dirty_repository_evidence(self):
         overrides = {
@@ -255,6 +391,8 @@ class AgentBenchmarkHarnessTests(unittest.TestCase):
             self.assertEqual(
                 resumed["next_run_id"], self.smoke_payload["runs"][1]["run_id"]
             )
+            self.assertEqual(resumed["recorded_cost_usd"], 0.0)
+            self.assertIsNone(resumed["max_total_budget_usd"])
 
             duplicate = imported_dir / result_path.name
             duplicate.write_text(json.dumps(result), encoding="utf-8")

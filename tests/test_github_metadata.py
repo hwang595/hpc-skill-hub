@@ -115,6 +115,7 @@ class GitHubMetadataTests(unittest.TestCase):
         titles = [milestone["title"] for milestone in milestones]
         self.assertEqual(len(titles), len(set(titles)))
         self.assertIn("v0.1.0 seed launch", titles)
+        self.assertIn("v0.4.0 evidence and reviewed registry", titles)
         self.assertIn("ecosystem backlog", titles)
 
         for milestone in milestones:
@@ -306,6 +307,7 @@ class GitHubMetadataTests(unittest.TestCase):
             "python3 tools/build_package_data.py --check",
             "hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json",
             "python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/smoke-v0.3.json --report docs/AGENT_BENCHMARK_SMOKE_PLAN.md --check",
+            "python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.4.json --report docs/AGENT_BENCHMARK_V0_4_PLAN.md --check",
             "python3 tools/agent_benchmark_review.py --help",
             "python3 tools/validate_registry_artifacts.py --release-only",
             "python3 tools/review_packet.py --check",
@@ -597,6 +599,14 @@ class GitHubMetadataTests(unittest.TestCase):
         )
         self.assertIn(
             "registry/skill-quality.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "docs/V0_4_COMPLETION.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "docs/AGENT_BENCHMARK_DASHBOARD.html",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
 

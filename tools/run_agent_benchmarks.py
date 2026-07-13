@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import json
 import math
 import statistics
@@ -21,6 +22,8 @@ TASK_DIR = AGENT_BENCH_DIR / "tasks"
 RESULT_DIR = AGENT_BENCH_DIR / "results"
 INDEX_JSON = ROOT / "registry" / "index.json"
 DEFAULT_REPORT = ROOT / "docs" / "AGENT_BENCHMARK_REPORT.md"
+DEFAULT_DASHBOARD = ROOT / "docs" / "AGENT_BENCHMARK_DASHBOARD.html"
+PUBLICATION_MIN_PAIRS = 3
 
 TASK_SCHEMA = "../../schemas/agent-benchmark-task.schema.json"
 RESULT_SCHEMA = "../../schemas/agent-benchmark-result.schema.json"
@@ -557,6 +560,103 @@ def build_skill_lifts(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return lifts
 
 
+def publication_readiness(
+    payload: Dict[str, Any], root: Path = ROOT
+) -> Dict[str, Any]:
+    results = payload.get("results", [])
+    scored_results = [result for result in results if result.get("status") == "scored"]
+    agents = {
+        (result.get("agent"), result.get("harness"), result.get("model"))
+        for result in scored_results
+    }
+    blockers: List[str] = []
+
+    if not scored_results:
+        blockers.append("No reviewed scored runs have been imported.")
+    if len(agents) < 2:
+        blockers.append("Fewer than two scored agent/model variants are available.")
+    if payload.get("pending_review_count", 0):
+        blockers.append(
+            f"{payload['pending_review_count']} run(s) are still pending blinded review."
+        )
+
+    root = root.resolve()
+    artifact_issue_runs = set()
+    review_issue_runs = set()
+    for result in scored_results:
+        run_id = result["run_id"]
+        evaluation = result.get("evaluation") or {}
+        evaluator_ids = evaluation.get("evaluator_ids", [])
+        if (
+            evaluation.get("blinded") is not True
+            or not isinstance(evaluator_ids, list)
+            or len(evaluator_ids) != 2
+            or len(set(evaluator_ids)) != 2
+        ):
+            review_issue_runs.add(run_id)
+
+        artifacts = result.get("artifacts", [])
+        if not artifacts:
+            artifact_issue_runs.add(run_id)
+            continue
+        for artifact in artifacts:
+            digest = artifact.get("sha256") if isinstance(artifact, dict) else None
+            value = artifact.get("path") if isinstance(artifact, dict) else None
+            if not isinstance(value, str) or not isinstance(digest, str):
+                artifact_issue_runs.add(run_id)
+                continue
+            path = (root / value).resolve()
+            try:
+                path.relative_to(root)
+            except ValueError:
+                artifact_issue_runs.add(run_id)
+                continue
+            if not path.is_file() or sha256_path(path) != digest:
+                artifact_issue_runs.add(run_id)
+
+    if review_issue_runs:
+        blockers.append(
+            f"{len(review_issue_runs)} scored run(s) lack exactly two independent blinded reviewers."
+        )
+    if artifact_issue_runs:
+        blockers.append(
+            f"{len(artifact_issue_runs)} scored run(s) lack complete digest-verified public artifacts."
+        )
+
+    lifts = payload.get("skill_lifts", [])
+    eligible_lifts = [
+        lift for lift in lifts if lift.get("pair_count", 0) >= PUBLICATION_MIN_PAIRS
+    ]
+    if not lifts:
+        blockers.append("No paired condition comparison is available.")
+    elif len(eligible_lifts) != len(lifts):
+        blockers.append(
+            f"{len(lifts) - len(eligible_lifts)} paired comparison(s) have fewer than "
+            f"{PUBLICATION_MIN_PAIRS} trials."
+        )
+
+    eligible_skill_variants = {
+        (lift.get("agent"), lift.get("harness"), lift.get("model"))
+        for lift in eligible_lifts
+        if lift.get("condition") == "skill-enabled"
+        and lift.get("reference_condition") == "baseline"
+    }
+    missing_skill_variants = agents - eligible_skill_variants
+    if missing_skill_variants:
+        blockers.append(
+            f"{len(missing_skill_variants)} scored agent/model variant(s) lack a "
+            f"{PUBLICATION_MIN_PAIRS}-pair baseline-to-skill comparison."
+        )
+
+    return {
+        "leaderboard_ready": not blockers,
+        "minimum_pairs": PUBLICATION_MIN_PAIRS,
+        "scored_agent_variant_count": len(agents),
+        "eligible_comparison_count": len(eligible_lifts),
+        "blockers": blockers,
+    }
+
+
 def benchmark_payload(task_dir: Path = TASK_DIR, result_dir: Path = RESULT_DIR) -> Dict[str, Any]:
     index = load_json(INDEX_JSON)
     known_skills = {skill["id"] for skill in index["skills"]}
@@ -629,7 +729,7 @@ def benchmark_payload(task_dir: Path = TASK_DIR, result_dir: Path = RESULT_DIR) 
         for task in sorted(tasks, key=lambda item: item["id"])
     ]
 
-    return {
+    payload = {
         "ok": True,
         "validation_errors": [],
         "task_count": len(tasks),
@@ -645,6 +745,8 @@ def benchmark_payload(task_dir: Path = TASK_DIR, result_dir: Path = RESULT_DIR) 
         "variants": build_variants(enriched_results),
         "skill_lifts": build_skill_lifts(enriched_results),
     }
+    payload["publication"] = publication_readiness(payload)
+    return payload
 
 
 def format_optional(value: Optional[float], signed: bool = False) -> str:
@@ -677,6 +779,26 @@ def markdown_report(payload: Dict[str, Any]) -> str:
         lines.append(f"| Task type `{task_type}` | {count} |")
     for condition, count in payload.get("condition_counts", {}).items():
         lines.append(f"| Condition `{condition}` | {count} |")
+
+    publication = payload.get("publication", {})
+    lines.extend(
+        [
+            "",
+            "## Publication Readiness",
+            "",
+            "Ready for comparative publication: "
+            f"**{'yes' if publication.get('leaderboard_ready') else 'no'}**.",
+            "",
+        ]
+    )
+    blockers = publication.get("blockers", [])
+    if blockers:
+        lines.extend(f"- {blocker}" for blocker in blockers)
+    else:
+        lines.append(
+            f"All comparisons have at least {publication.get('minimum_pairs')} paired trials, "
+            "two independent blinded reviewers per scored run, and digest-verified artifacts."
+        )
 
     lines.extend(
         [
@@ -750,6 +872,223 @@ def markdown_report(payload: Dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def dashboard_report(payload: Dict[str, Any]) -> str:
+    def esc(value: Any) -> str:
+        return html.escape(str(value), quote=True)
+
+    def display(value: Optional[float], prefix: str = "", suffix: str = "") -> str:
+        if value is None:
+            return "Pending"
+        return f"{prefix}{value:.2f}{suffix}"
+
+    publication = payload.get("publication", {})
+    ready = bool(publication.get("leaderboard_ready"))
+    blockers = publication.get("blockers", [])
+    blocker_items = "".join(f"<li>{esc(blocker)}</li>" for blocker in blockers)
+    if not blocker_items:
+        blocker_items = (
+            "<li>Repeated paired trials, blinded reviews, and public artifact digests "
+            "satisfy the publication contract.</li>"
+        )
+
+    variant_rows = []
+    for item in payload.get("variants", []):
+        score = item.get("score")
+        score_width = max(0.0, min(100.0, float(score or 0.0)))
+        variant_rows.append(
+            "<tr>"
+            f"<td><strong>{esc(item['agent'])}</strong><span class=\"sub\">{esc(item['harness'])}</span></td>"
+            f"<td><code>{esc(item['model'])}</code></td>"
+            f"<td><span class=\"condition\">{esc(item['condition'])}</span></td>"
+            f"<td>{item['run_count']}</td>"
+            f"<td>{item['scored_count']}</td>"
+            f"<td>{item['failed_count']}</td>"
+            "<td><div class=\"score-cell\">"
+            f"<span>{display(score)}</span><div class=\"meter\"><i style=\"width:{score_width:.2f}%\"></i></div>"
+            "</div></td>"
+            f"<td>{display(item.get('failure_rate'), suffix='%')}</td>"
+            f"<td>{display(item.get('wall_time_seconds'), suffix='s')}</td>"
+            f"<td>{display(item.get('cost_usd'), prefix='$')}</td>"
+            "</tr>"
+        )
+    if not variant_rows:
+        variant_rows.append(
+            '<tr><td colspan="10" class="empty">No reviewed runs published.</td></tr>'
+        )
+
+    lift_rows = []
+    for item in payload.get("skill_lifts", []):
+        lift = item.get("lift")
+        lift_class = "positive" if lift is not None and lift >= 0 else "negative"
+        lift_rows.append(
+            "<tr>"
+            f"<td><strong>{esc(item['agent'])}</strong><span class=\"sub\">{esc(item['model'])}</span></td>"
+            f"<td><code>{esc(item['task_id'])}</code></td>"
+            f"<td>{esc(item['reference_condition'])}</td>"
+            f"<td>{esc(item['condition'])}</td>"
+            f"<td>{item['pair_count']}</td>"
+            f"<td>{display(item.get('reference_score'))}</td>"
+            f"<td>{display(item.get('condition_score'))}</td>"
+            f"<td class=\"{lift_class}\">{display(lift, prefix='+' if lift is not None and lift >= 0 else '')}</td>"
+            f"<td>{display(item.get('lift_ci95'), prefix='±')}</td>"
+            "</tr>"
+        )
+    if not lift_rows:
+        lift_rows.append(
+            '<tr><td colspan="9" class="empty">No three-trial paired comparison is available.</td></tr>'
+        )
+
+    result_rows = []
+    for item in payload.get("results", []):
+        result_rows.append(
+            "<tr>"
+            f"<td><a href=\"../{esc(item['result_path'])}\"><code>{esc(item['run_id'])}</code></a></td>"
+            f"<td>{esc(item['agent'])}<span class=\"sub\">{esc(item['model'])}</span></td>"
+            f"<td>{esc(item['task_id'])}</td>"
+            f"<td>{esc(item['condition'])}</td>"
+            f"<td>{item['trial']}</td>"
+            f"<td><span class=\"status status-{esc(item['status'])}\">{esc(item['status'])}</span></td>"
+            f"<td>{display(item.get('score'))}</td>"
+            f"<td>{display(item.get('metrics', {}).get('wall_time_seconds'), suffix='s')}</td>"
+            f"<td>{display(item.get('metrics', {}).get('cost_usd'), prefix='$')}</td>"
+            "</tr>"
+        )
+    if not result_rows:
+        result_rows.append(
+            '<tr><td colspan="9" class="empty">The public result ledger is empty.</td></tr>'
+        )
+
+    status_label = "Publication ready" if ready else "Evidence not ready"
+    status_class = "ready" if ready else "blocked"
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HPC Skill Hub Agent Evidence</title>
+  <style>
+    :root {{
+      --bg: #f5f7fa;
+      --panel: #ffffff;
+      --text: #17202a;
+      --muted: #667085;
+      --line: #d8dee8;
+      --teal: #0f766e;
+      --blue: #2563eb;
+      --green: #157347;
+      --amber: #a16207;
+      --red: #b42318;
+    }}
+    * {{ box-sizing: border-box; }}
+    body {{ margin: 0; background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.45; }}
+    a {{ color: #1d4ed8; text-decoration: none; }}
+    a:hover {{ text-decoration: underline; }}
+    code {{ font-size: .88em; overflow-wrap: anywhere; }}
+    header {{ background: var(--panel); border-bottom: 1px solid var(--line); }}
+    .wrap {{ width: min(1240px, calc(100vw - 32px)); margin: 0 auto; }}
+    .topbar {{ display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 0; }}
+    h1 {{ margin: 0; font-size: 1.45rem; letter-spacing: 0; }}
+    h2 {{ margin: 0; font-size: 1.05rem; letter-spacing: 0; }}
+    .subtitle {{ margin: 3px 0 0; color: var(--muted); }}
+    nav {{ display: flex; gap: 14px; flex-wrap: wrap; font-size: .92rem; }}
+    main {{ padding: 24px 0 44px; }}
+    .metrics {{ display: grid; grid-template-columns: repeat(4, minmax(140px, 1fr)); gap: 12px; margin-bottom: 18px; }}
+    .metric {{ background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }}
+    .metric strong {{ display: block; font-size: 1.55rem; }}
+    .metric span {{ color: var(--muted); font-size: .86rem; }}
+    .publication {{ border: 1px solid var(--line); border-left: 5px solid var(--amber); background: var(--panel); padding: 16px 18px; margin-bottom: 22px; }}
+    .publication.ready {{ border-left-color: var(--green); }}
+    .publication h2 {{ color: var(--amber); }}
+    .publication.ready h2 {{ color: var(--green); }}
+    .publication ul {{ margin: 8px 0 0; padding-left: 20px; color: var(--muted); }}
+    section {{ margin-top: 24px; }}
+    .section-head {{ display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 9px; }}
+    .section-head span {{ color: var(--muted); font-size: .86rem; }}
+    .table-wrap {{ overflow-x: auto; border: 1px solid var(--line); background: var(--panel); }}
+    table {{ width: 100%; border-collapse: collapse; min-width: 820px; font-size: .88rem; }}
+    th, td {{ text-align: left; border-bottom: 1px solid var(--line); padding: 10px 11px; vertical-align: top; }}
+    th {{ background: #eef2f7; color: #344054; font-weight: 650; white-space: nowrap; }}
+    tr:last-child td {{ border-bottom: 0; }}
+    .sub {{ display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }}
+    .condition {{ border: 1px solid #b7c6db; border-radius: 6px; padding: 2px 6px; white-space: nowrap; }}
+    .score-cell {{ min-width: 126px; }}
+    .meter {{ width: 100%; height: 5px; background: #e5eaf1; margin-top: 5px; }}
+    .meter i {{ display: block; height: 100%; background: var(--teal); }}
+    .positive {{ color: var(--green); font-weight: 650; }}
+    .negative {{ color: var(--red); font-weight: 650; }}
+    .status {{ display: inline-block; border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; white-space: nowrap; }}
+    .status-scored {{ color: var(--green); border-color: #86b79d; }}
+    .status-failed {{ color: var(--red); border-color: #e3a29c; }}
+    .status-pending-review {{ color: var(--amber); border-color: #ddc28a; }}
+    .empty {{ color: var(--muted); text-align: center; padding: 28px; }}
+    .method {{ color: var(--muted); max-width: 86ch; font-size: .9rem; }}
+    footer {{ background: var(--panel); border-top: 1px solid var(--line); color: var(--muted); padding: 18px 0; font-size: .86rem; }}
+    @media (max-width: 760px) {{
+      .topbar {{ align-items: flex-start; flex-direction: column; }}
+      .metrics {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+      .section-head {{ align-items: flex-start; flex-direction: column; }}
+      h1 {{ font-size: 1.25rem; }}
+    }}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div>
+        <h1>Agent Evidence Dashboard</h1>
+        <p class="subtitle">Reviewed HPC task outcomes across baseline, documentation, and skill-enabled conditions.</p>
+      </div>
+      <nav aria-label="Evidence links">
+        <a href="../index.html">Registry</a>
+        <a href="AGENT_BENCHMARKS.md">Method</a>
+        <a href="AGENT_BENCHMARK_REPORT.md">Report</a>
+        <a href="V0_4_COMPLETION.md">v0.4 gates</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="metrics" aria-label="Evidence summary">
+      <div class="metric"><strong>{payload.get('scored_result_count', 0)}</strong><span>Reviewed runs</span></div>
+      <div class="metric"><strong>{publication.get('scored_agent_variant_count', 0)}</strong><span>Agent/model variants</span></div>
+      <div class="metric"><strong>{payload.get('task_count', 0)}</strong><span>Public tasks</span></div>
+      <div class="metric"><strong>{publication.get('eligible_comparison_count', 0)}</strong><span>Three-trial comparisons</span></div>
+    </div>
+    <div class="publication {status_class}">
+      <h2>{status_label}</h2>
+      <ul>{blocker_items}</ul>
+    </div>
+    <section aria-labelledby="conditions-heading">
+      <div class="section-head"><h2 id="conditions-heading">Condition Results</h2><span>Macro score, failures, time, and reported cost</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Agent</th><th>Model</th><th>Condition</th><th>Runs</th><th>Scored</th><th>Failed</th><th>Score</th><th>Failure</th><th>Time</th><th>Cost</th></tr></thead>
+        <tbody>{''.join(variant_rows)}</tbody>
+      </table></div>
+    </section>
+    <section aria-labelledby="lift-heading">
+      <div class="section-head"><h2 id="lift-heading">Paired Skill Lift</h2><span>Same task and trial, compared by condition</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Agent</th><th>Task</th><th>Reference</th><th>Condition</th><th>Pairs</th><th>Reference score</th><th>Condition score</th><th>Lift</th><th>CI95</th></tr></thead>
+        <tbody>{''.join(lift_rows)}</tbody>
+      </table></div>
+    </section>
+    <section aria-labelledby="ledger-heading">
+      <div class="section-head"><h2 id="ledger-heading">Public Run Ledger</h2><span>Failures and pending reviews remain visible</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Run</th><th>Agent</th><th>Task</th><th>Condition</th><th>Trial</th><th>Status</th><th>Score</th><th>Time</th><th>Cost</th></tr></thead>
+        <tbody>{''.join(result_rows)}</tbody>
+      </table></div>
+    </section>
+    <section aria-labelledby="method-heading">
+      <div class="section-head"><h2 id="method-heading">Evidence Boundary</h2></div>
+      <p class="method">Comparative publication requires at least {PUBLICATION_MIN_PAIRS} paired trials, two independent blinded reviewers for every scored run, exact agent and model versions, a clean repository commit, and digest-verified public artifacts. Scores are not maturity promotions and incomplete evidence does not produce a ranking.</p>
+    </section>
+  </main>
+  <footer><div class="wrap">Generated by <code>tools/run_agent_benchmarks.py</code> from reviewed public results.</div></footer>
+</body>
+</html>
+"""
+
+
 def check_report(report_path: Path, expected: str) -> List[str]:
     if not report_path.exists():
         return [f"{rel(report_path)} is missing"]
@@ -772,25 +1111,36 @@ def main() -> int:
     parser.add_argument("--tasks-dir", default=str(TASK_DIR), help="Task directory")
     parser.add_argument("--results-dir", default=str(RESULT_DIR), help="Result directory")
     parser.add_argument("--report", default=str(DEFAULT_REPORT), help="Report path")
+    parser.add_argument(
+        "--dashboard", default=str(DEFAULT_DASHBOARD), help="Dashboard HTML path"
+    )
     args = parser.parse_args()
 
     payload = benchmark_payload(Path(args.tasks_dir), Path(args.results_dir))
     expected_report = markdown_report(payload) + "\n"
+    expected_dashboard = dashboard_report(payload)
 
     if args.json:
         print(json.dumps(payload, indent=2, sort_keys=True))
     elif args.check:
         errors = check_report(Path(args.report), expected_report)
+        errors.extend(check_report(Path(args.dashboard), expected_dashboard))
         if errors:
             for error in errors:
                 print(f"ERROR: {error}", file=sys.stderr)
             return 1
-        print(f"Agent benchmark report is current in {rel(Path(args.report))}.")
+        print(
+            f"Agent benchmark report is current in {rel(Path(args.report))}; "
+            f"dashboard is current in {rel(Path(args.dashboard))}."
+        )
     else:
         report_path = Path(args.report)
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(expected_report, encoding="utf-8")
-        print(f"Wrote {rel(report_path)}.")
+        dashboard_path = Path(args.dashboard)
+        dashboard_path.parent.mkdir(parents=True, exist_ok=True)
+        dashboard_path.write_text(expected_dashboard, encoding="utf-8")
+        print(f"Wrote {rel(report_path)} and {rel(dashboard_path)}.")
 
     if not payload["ok"]:
         emit_failures(payload)

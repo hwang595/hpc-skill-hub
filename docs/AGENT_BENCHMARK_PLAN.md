@@ -16,6 +16,8 @@ Calibrate paired baseline, documentation, and skill-enabled scoring before publi
 | Agent variants | 2 |
 | Trials per task and condition | 3 |
 | Max budget per run (USD) | not set |
+| Max campaign budget (USD) | not set |
+| Paid-run acknowledgement | false |
 | Agent `claude-code` | 27 |
 | Agent `codex` | 27 |
 | Condition `baseline` | 18 |
@@ -47,3 +49,5 @@ a reviewer records rubric and evaluator provenance.
 
 Use `--preflight` with exact per-variant model overrides before execution. Use
 `--status` to find the next planned run and detect duplicate or mismatched results.
+Preflight labels Claude Code's provider CLI budget as a hard limit and Codex's
+allowance as requiring external quota monitoring.
