@@ -81,11 +81,30 @@
       "type": "object",
       "required": ["max_turns", "max_budget_usd_per_run", "retain_workspaces"],
       "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {"required": ["max_total_budget_usd"]},
+          "then": {
+            "required": ["require_paid_run_acknowledgement"],
+            "properties": {
+              "require_paid_run_acknowledgement": {"const": true}
+            }
+          }
+        }
+      ],
       "properties": {
         "max_turns": {"type": "integer", "minimum": 1, "maximum": 100},
         "max_budget_usd_per_run": {
           "type": ["number", "null"],
           "exclusiveMinimum": 0
+        },
+        "max_total_budget_usd": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "require_paid_run_acknowledgement": {
+          "type": "boolean",
+          "const": true
         },
         "retain_workspaces": {"type": "boolean"}
       }

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HPC Skill Hub Agent Evidence</title>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --panel: #ffffff;
+      --text: #17202a;
+      --muted: #667085;
+      --line: #d8dee8;
+      --teal: #0f766e;
+      --blue: #2563eb;
+      --green: #157347;
+      --amber: #a16207;
+      --red: #b42318;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.45; }
+    a { color: #1d4ed8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { font-size: .88em; overflow-wrap: anywhere; }
+    header { background: var(--panel); border-bottom: 1px solid var(--line); }
+    .wrap { width: min(1240px, calc(100vw - 32px)); margin: 0 auto; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 0; }
+    h1 { margin: 0; font-size: 1.45rem; letter-spacing: 0; }
+    h2 { margin: 0; font-size: 1.05rem; letter-spacing: 0; }
+    .subtitle { margin: 3px 0 0; color: var(--muted); }
+    nav { display: flex; gap: 14px; flex-wrap: wrap; font-size: .92rem; }
+    main { padding: 24px 0 44px; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(140px, 1fr)); gap: 12px; margin-bottom: 18px; }
+    .metric { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+    .metric strong { display: block; font-size: 1.55rem; }
+    .metric span { color: var(--muted); font-size: .86rem; }
+    .publication { border: 1px solid var(--line); border-left: 5px solid var(--amber); background: var(--panel); padding: 16px 18px; margin-bottom: 22px; }
+    .publication.ready { border-left-color: var(--green); }
+    .publication h2 { color: var(--amber); }
+    .publication.ready h2 { color: var(--green); }
+    .publication ul { margin: 8px 0 0; padding-left: 20px; color: var(--muted); }
+    section { margin-top: 24px; }
+    .section-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 9px; }
+    .section-head span { color: var(--muted); font-size: .86rem; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); background: var(--panel); }
+    table { width: 100%; border-collapse: collapse; min-width: 820px; font-size: .88rem; }
+    th, td { text-align: left; border-bottom: 1px solid var(--line); padding: 10px 11px; vertical-align: top; }
+    th { background: #eef2f7; color: #344054; font-weight: 650; white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    .sub { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
+    .condition { border: 1px solid #b7c6db; border-radius: 6px; padding: 2px 6px; white-space: nowrap; }
+    .score-cell { min-width: 126px; }
+    .meter { width: 100%; height: 5px; background: #e5eaf1; margin-top: 5px; }
+    .meter i { display: block; height: 100%; background: var(--teal); }
+    .positive { color: var(--green); font-weight: 650; }
+    .negative { color: var(--red); font-weight: 650; }
+    .status { display: inline-block; border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; white-space: nowrap; }
+    .status-scored { color: var(--green); border-color: #86b79d; }
+    .status-failed { color: var(--red); border-color: #e3a29c; }
+    .status-pending-review { color: var(--amber); border-color: #ddc28a; }
+    .empty { color: var(--muted); text-align: center; padding: 28px; }
+    .method { color: var(--muted); max-width: 86ch; font-size: .9rem; }
+    footer { background: var(--panel); border-top: 1px solid var(--line); color: var(--muted); padding: 18px 0; font-size: .86rem; }
+    @media (max-width: 760px) {
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .section-head { align-items: flex-start; flex-direction: column; }
+      h1 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div>
+        <h1>Agent Evidence Dashboard</h1>
+        <p class="subtitle">Reviewed HPC task outcomes across baseline, documentation, and skill-enabled conditions.</p>
+      </div>
+      <nav aria-label="Evidence links">
+        <a href="../index.html">Registry</a>
+        <a href="AGENT_BENCHMARKS.md">Method</a>
+        <a href="AGENT_BENCHMARK_REPORT.md">Report</a>
+        <a href="V0_4_COMPLETION.md">v0.4 gates</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="metrics" aria-label="Evidence summary">
+      <div class="metric"><strong>0</strong><span>Reviewed runs</span></div>
+      <div class="metric"><strong>0</strong><span>Agent/model variants</span></div>
+      <div class="metric"><strong>6</strong><span>Public tasks</span></div>
+      <div class="metric"><strong>0</strong><span>Three-trial comparisons</span></div>
+    </div>
+    <div class="publication blocked">
+      <h2>Evidence not ready</h2>
+      <ul><li>No reviewed scored runs have been imported.</li><li>Fewer than two scored agent/model variants are available.</li><li>No paired condition comparison is available.</li></ul>
+    </div>
+    <section aria-labelledby="conditions-heading">
+      <div class="section-head"><h2 id="conditions-heading">Condition Results</h2><span>Macro score, failures, time, and reported cost</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Agent</th><th>Model</th><th>Condition</th><th>Runs</th><th>Scored</th><th>Failed</th><th>Score</th><th>Failure</th><th>Time</th><th>Cost</th></tr></thead>
+        <tbody><tr><td colspan="10" class="empty">No reviewed runs published.</td></tr></tbody>
+      </table></div>
+    </section>
+    <section aria-labelledby="lift-heading">
+      <div class="section-head"><h2 id="lift-heading">Paired Skill Lift</h2><span>Same task and trial, compared by condition</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Agent</th><th>Task</th><th>Reference</th><th>Condition</th><th>Pairs</th><th>Reference score</th><th>Condition score</th><th>Lift</th><th>CI95</th></tr></thead>
+        <tbody><tr><td colspan="9" class="empty">No three-trial paired comparison is available.</td></tr></tbody>
+      </table></div>
+    </section>
+    <section aria-labelledby="ledger-heading">
+      <div class="section-head"><h2 id="ledger-heading">Public Run Ledger</h2><span>Failures and pending reviews remain visible</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Run</th><th>Agent</th><th>Task</th><th>Condition</th><th>Trial</th><th>Status</th><th>Score</th><th>Time</th><th>Cost</th></tr></thead>
+        <tbody><tr><td colspan="9" class="empty">The public result ledger is empty.</td></tr></tbody>
+      </table></div>
+    </section>
+    <section aria-labelledby="method-heading">
+      <div class="section-head"><h2 id="method-heading">Evidence Boundary</h2></div>
+      <p class="method">Comparative publication requires at least 3 paired trials, two independent blinded reviewers for every scored run, exact agent and model versions, a clean repository commit, and digest-verified public artifacts. Scores are not maturity promotions and incomplete evidence does not produce a ranking.</p>
+    </section>
+  </main>
+  <footer><div class="wrap">Generated by <code>tools/run_agent_benchmarks.py</code> from reviewed public results.</div></footer>
+</body>
+</html>

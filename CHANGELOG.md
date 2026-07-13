@@ -7,6 +7,15 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+- Start the v0.4 P0 evidence foundation with a versioned 54-run Codex and
+  Claude Code campaign, explicit per-run and total budget contracts, resumable
+  cost accounting, and exact-model paid-run gates.
+- Add a generated public evidence dashboard that withholds comparative ranking
+  until results have two independent blinded reviewers, digest-verified public
+  artifacts, no pending reviews, and at least three paired trials.
+- Add a v0.4 completion matrix, roadmap, milestone, CI checks, and tests that
+  distinguish campaign readiness from real measured agent evidence.
+
 ## v0.3.0 - 2026-07-13
 
 - Add a deterministic skill-quality audit with ten reviewable workflow

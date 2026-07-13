@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - "README.md"
+      - "agent-bench/**"
       - "collections/**"
       - "docs/**"
       - "registry/index.json"

@@ -14,6 +14,7 @@ public GitHub repository.
 | `v0.1.0 seed launch` | Publish the first public registry snapshot, generated site, release manifest, and community launch queue. |
 | `v0.2.0 reviewed-skill pilot` | Promote the first reviewed skills, collect adoption reports, and recruit domain reviewers. |
 | `v0.3.0 integrations and adapters` | Expand site adapters, downstream registry integrations, and compatibility contracts. |
+| `v0.4.0 evidence and reviewed registry` | Collect reviewed cross-agent evidence, publish gated comparisons, deepen priority skills, and promote only evidence-backed registry entries. |
 | `ecosystem backlog` | Track longer-running requests that need owners, RFCs, site evidence, or domain review. |
 
 ## Create Milestones
@@ -38,5 +39,8 @@ mutate GitHub by itself.
   review work.
 - Put site adapter and downstream integration work in
   `v0.3.0 integrations and adapters`.
+- Put the bounded evidence campaign, blinded scoring, public dashboard,
+  priority skill depth, and evidence-backed promotion work in
+  `v0.4.0 evidence and reviewed registry`.
 - Put broad requests in `ecosystem backlog` until a maintainer can split them
   into focused issues, RFCs, safety reviews, or skill requests.

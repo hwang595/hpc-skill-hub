@@ -24,6 +24,7 @@ agent-adapters:
 agent-benchmarks:
 	$(PYTHON) tools/agent_benchmark_harness.py --check
 	$(PYTHON) tools/agent_benchmark_harness.py --plan agent-bench/plans/smoke-v0.3.json --report docs/AGENT_BENCHMARK_SMOKE_PLAN.md --check
+	$(PYTHON) tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.4.json --report docs/AGENT_BENCHMARK_V0_4_PLAN.md --check
 	$(PYTHON) tools/agent_benchmark_review.py --help
 	$(PYTHON) tools/run_agent_benchmarks.py --check
 

@@ -146,8 +146,35 @@ def validate_plan(plan: Dict[str, Any], tasks: Dict[str, Dict[str, Any]]) -> Lis
         if not isinstance(max_turns, int) or max_turns < 1:
             errors.append("plan execution max_turns must be positive")
         budget = execution.get("max_budget_usd_per_run")
-        if budget is not None and (not isinstance(budget, (int, float)) or budget <= 0):
+        if budget is not None and (
+            not isinstance(budget, (int, float))
+            or isinstance(budget, bool)
+            or budget <= 0
+        ):
             errors.append("plan max_budget_usd_per_run must be positive or null")
+        total_budget = execution.get("max_total_budget_usd")
+        if total_budget is not None and (
+            not isinstance(total_budget, (int, float))
+            or isinstance(total_budget, bool)
+            or total_budget <= 0
+        ):
+            errors.append("plan max_total_budget_usd must be positive when set")
+        elif total_budget is not None and budget is None:
+            errors.append("plan with max_total_budget_usd must set max_budget_usd_per_run")
+        elif (
+            total_budget is not None
+            and isinstance(budget, (int, float))
+            and not isinstance(budget, bool)
+            and total_budget < budget
+        ):
+            errors.append("plan max_total_budget_usd cannot be below the per-run budget")
+        acknowledgement = execution.get("require_paid_run_acknowledgement")
+        if total_budget is not None and acknowledgement is not True:
+            errors.append(
+                "plan with max_total_budget_usd must require paid-run acknowledgement"
+            )
+        elif acknowledgement is not None and acknowledgement is not True:
+            errors.append("plan require_paid_run_acknowledgement must be true when set")
         if not isinstance(execution.get("retain_workspaces"), bool):
             errors.append("plan retain_workspaces must be boolean")
     return errors
@@ -229,6 +256,8 @@ def plan_report(payload: Dict[str, Any]) -> str:
         f"| Agent variants | {len(plan['variants'])} |",
         f"| Trials per task and condition | {plan['trials_per_condition']} |",
         f"| Max budget per run (USD) | {plan['execution']['max_budget_usd_per_run'] if plan['execution']['max_budget_usd_per_run'] is not None else 'not set'} |",
+        f"| Max campaign budget (USD) | {plan['execution'].get('max_total_budget_usd', 'not set')} |",
+        f"| Paid-run acknowledgement | {str(plan['execution'].get('require_paid_run_acknowledgement', False)).lower()} |",
     ]
     for agent, count in payload["agent_counts"].items():
         lines.append(f"| Agent `{agent}` | {count} |")
@@ -275,6 +304,8 @@ def plan_report(payload: Dict[str, Any]) -> str:
             "",
             "Use `--preflight` with exact per-variant model overrides before execution. Use",
             "`--status` to find the next planned run and detect duplicate or mismatched results.",
+            "Preflight labels Claude Code's provider CLI budget as a hard limit and Codex's",
+            "allowance as requiring external quota monitoring.",
         ]
     )
     return "\n".join(lines)
@@ -455,6 +486,7 @@ def preflight_payload(
     if any(run["network_access"] for run in payload["runs"]):
         blockers.append("benchmark plan contains a run with network access enabled")
     variants = []
+    per_run_budget = payload["plan"]["execution"].get("max_budget_usd_per_run")
     for variant in payload["plan"]["variants"]:
         executable = "codex" if variant["harness"] == "codex-cli" else "claude"
         executable_path = shutil.which(executable)
@@ -471,6 +503,12 @@ def preflight_payload(
         exact_model = bool(model and model != "configured-default")
         if not exact_model:
             issues.append("exact model id is required")
+        if per_run_budget is None:
+            budget_enforcement = "not-configured"
+        elif variant["harness"] == "claude-code":
+            budget_enforcement = "provider-cli-hard-limit"
+        else:
+            budget_enforcement = "external-monitoring-required"
         blockers.extend(f"variant {variant['id']}: {issue}" for issue in issues)
         variants.append(
             {
@@ -482,6 +520,7 @@ def preflight_payload(
                 "agent_version": version,
                 "model": model,
                 "exact_model": exact_model,
+                "budget_enforcement": budget_enforcement,
                 "ready": not issues,
                 "issues": issues,
             }
@@ -492,6 +531,10 @@ def preflight_payload(
         "run_count": payload["run_count"],
         "repository_commit": repository_commit,
         "repository_dirty": repository_dirty,
+        "max_budget_usd_per_run": per_run_budget,
+        "max_total_budget_usd": payload["plan"]["execution"].get(
+            "max_total_budget_usd"
+        ),
         "variants": variants,
         "blockers": blockers,
     }
@@ -501,12 +544,15 @@ def preflight_text(preflight: Dict[str, Any]) -> str:
     lines = [
         f"Agent benchmark preflight: {'READY' if preflight['ok'] else 'BLOCKED'}",
         f"Plan: {preflight['plan_id']} ({preflight['run_count']} runs)",
+        f"Per-run budget (USD): {preflight['max_budget_usd_per_run'] or 'not set'}",
+        f"Campaign budget (USD): {preflight['max_total_budget_usd'] or 'not set'}",
     ]
     for variant in preflight["variants"]:
         state = "READY" if variant["ready"] else "BLOCKED"
         version = variant["agent_version"] or "unavailable"
         lines.append(
-            f"{state}: {variant['id']}: {variant['executable']} {version}; model={variant['model']}"
+            f"{state}: {variant['id']}: {variant['executable']} {version}; "
+            f"model={variant['model']}; budget={variant['budget_enforcement']}"
         )
         for issue in variant["issues"]:
             lines.append(f"  - {issue}")
@@ -543,12 +589,14 @@ def campaign_status(payload: Dict[str, Any], result_dirs: Iterable[Path]) -> Dic
     result_dirs = list(result_dirs)
     runs = []
     counts = Counter()
+    recorded_cost_usd = 0.0
     for run in payload["runs"]:
         candidates = [directory / f"{run['run_id']}.json" for directory in result_dirs]
         existing = [path for path in candidates if path.exists()]
         errors = []
         result_path = None
         result_model = None
+        result_cost_usd = None
         if len(existing) > 1:
             state = "invalid"
             errors.append("result exists in more than one result directory")
@@ -565,6 +613,14 @@ def campaign_status(payload: Dict[str, Any], result_dirs: Iterable[Path]) -> Dic
                 errors.extend(result_identity_errors(run, result))
                 state = "invalid" if errors else result["status"]
                 result_model = result.get("model")
+                metrics = result.get("metrics", {})
+                if (
+                    isinstance(metrics, dict)
+                    and isinstance(metrics.get("cost_usd"), (int, float))
+                    and not isinstance(metrics.get("cost_usd"), bool)
+                ):
+                    result_cost_usd = float(metrics["cost_usd"])
+                    recorded_cost_usd += result_cost_usd
         counts[state] += 1
         runs.append(
             {
@@ -576,6 +632,7 @@ def campaign_status(payload: Dict[str, Any], result_dirs: Iterable[Path]) -> Dic
                 "trial": run["trial"],
                 "state": state,
                 "model": result_model,
+                "cost_usd": result_cost_usd,
                 "result_path": str(result_path) if result_path else None,
                 "errors": errors,
             }
@@ -585,6 +642,12 @@ def campaign_status(payload: Dict[str, Any], result_dirs: Iterable[Path]) -> Dic
     scoring_complete = execution_complete and all(
         run["state"] in {"scored", "skipped"} for run in runs
     )
+    total_budget_usd = payload["plan"]["execution"].get("max_total_budget_usd")
+    remaining_budget_usd = (
+        round(max(0.0, float(total_budget_usd) - recorded_cost_usd), 4)
+        if isinstance(total_budget_usd, (int, float))
+        else None
+    )
     return {
         "ok": counts["invalid"] == 0,
         "plan_id": payload["plan"]["id"],
@@ -593,6 +656,9 @@ def campaign_status(payload: Dict[str, Any], result_dirs: Iterable[Path]) -> Dic
         "next_run_id": next_run,
         "execution_complete": execution_complete,
         "scoring_complete": scoring_complete,
+        "recorded_cost_usd": round(recorded_cost_usd, 4),
+        "max_total_budget_usd": total_budget_usd,
+        "remaining_budget_usd": remaining_budget_usd,
         "runs": runs,
     }
 
@@ -607,6 +673,10 @@ def status_text(status: Dict[str, Any]) -> str:
     lines.append(f"Next run: {status['next_run_id'] or 'none'}")
     lines.append(f"Execution complete: {str(status['execution_complete']).lower()}")
     lines.append(f"Scoring complete: {str(status['scoring_complete']).lower()}")
+    lines.append(f"Recorded cost (USD): {status['recorded_cost_usd']:.4f}")
+    if status["max_total_budget_usd"] is not None:
+        lines.append(f"Campaign budget (USD): {status['max_total_budget_usd']}")
+        lines.append(f"Remaining budget (USD): {status['remaining_budget_usd']:.4f}")
     for run in status["runs"]:
         if run["errors"]:
             lines.append(f"INVALID: {run['run_id']}: {'; '.join(run['errors'])}")
@@ -734,6 +804,40 @@ def artifact_entry(path: Path, description: str, run_id: str) -> Dict[str, Any]:
     }
 
 
+def recorded_campaign_cost(output_root: Path) -> float:
+    total = 0.0
+    result_dir = output_root / "results"
+    if not result_dir.exists():
+        return total
+    for path in sorted(result_dir.glob("*.json")):
+        try:
+            result = load_json(path)
+        except (OSError, json.JSONDecodeError):
+            continue
+        metrics = result.get("metrics", {})
+        cost = metrics.get("cost_usd") if isinstance(metrics, dict) else None
+        if isinstance(cost, (int, float)) and not isinstance(cost, bool):
+            total += float(cost)
+    return round(total, 4)
+
+
+def enforce_campaign_budget(plan: Dict[str, Any], output_root: Path) -> None:
+    execution = plan["execution"]
+    total_budget = execution.get("max_total_budget_usd")
+    if total_budget is None:
+        return
+    per_run_budget = execution.get("max_budget_usd_per_run")
+    if per_run_budget is None:
+        raise ValueError("campaign total budget requires a per-run budget")
+    recorded = recorded_campaign_cost(output_root)
+    if recorded + float(per_run_budget) > float(total_budget) + 1e-9:
+        raise ValueError(
+            "campaign budget exhausted: "
+            f"recorded ${recorded:.4f}, next-run cap ${float(per_run_budget):.4f}, "
+            f"total cap ${float(total_budget):.4f}"
+        )
+
+
 def execute_run(
     payload: Dict[str, Any],
     run_id: str,
@@ -751,6 +855,7 @@ def execute_run(
             "real execution requires a clean repository; commit the benchmark contract "
             "or pass --allow-dirty-run for non-public debugging"
         )
+    enforce_campaign_budget(payload["plan"], output_root)
     run, workspace = materialize_run(payload, run_id, workspace_root, force=force)
     before = file_snapshot(workspace)
     task = load_tasks()[run["task_id"]]

@@ -37,6 +37,30 @@ The v0.3 infrastructure is released. Real cross-agent runs, independent
 scoring, external adoption evidence, and maturity promotion remain public
 follow-up work rather than synthetic CI claims.
 
+## v0.4 Current Development
+
+Status: P0 evidence foundation complete locally; pull-request CI pending.
+
+v0.4 focuses on evidence and a reviewed registry. Work proceeds in this order:
+
+1. **P0 evidence foundation:** version the repeated cross-agent campaign,
+   enforce per-run and campaign budgets, generate a public evidence dashboard,
+   and keep comparative output behind machine-checkable publication gates.
+2. **P1 real evidence campaign:** run Codex and Claude Code from one clean
+   commit with exact models and explicit quota approval, then complete redaction
+   and independent blinded review.
+3. **P2 reviewed registry pilot:** deepen a bounded candidate set, collect
+   public domain and adoption evidence, and promote maturity only through the
+   existing lifecycle contract.
+4. **P3 release readiness:** regenerate deterministic artifacts, decide whether
+   the evidence gate supports public comparison, and cut `v0.4.0` from a clean
+   release commit.
+
+The P0 plan contains 54 paired runs across three tasks, three conditions, three
+trials, and two agents. Its USD 40.50 maximum is an authorization ceiling, not
+a spending target. CI validates the campaign but never launches paid agents.
+See the [v0.4 Completion Matrix](docs/V0_4_COMPLETION.md).
+
 ## v0.3 Release Scope
 
 Status: released in `v0.3.0` as an infrastructure and contract release.

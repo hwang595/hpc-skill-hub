@@ -25,6 +25,14 @@ External agents are launched only by the opt-in execution harness, never by CI.
 | Condition `skill-enabled` | 6 |
 | Condition `skill-site-adapter` | 1 |
 
+## Publication Readiness
+
+Ready for comparative publication: **no**.
+
+- No reviewed scored runs have been imported.
+- Fewer than two scored agent/model variants are available.
+- No paired condition comparison is available.
+
 ## Tasks
 
 | Task | Type | Skills | Conditions | Workspace | Timeout |

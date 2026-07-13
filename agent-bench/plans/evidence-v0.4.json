@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schemas/agent-benchmark-plan.schema.json",
+  "id": "evidence-v0-4",
+  "name": "v0.4 cross-agent evidence calibration",
+  "version": "0.4.0",
+  "status": "draft",
+  "description": "Collect repeated, paired Codex and Claude Code evidence for baseline, documentation-only, and skill-enabled conditions before publishing any comparative result.",
+  "repository_ref": "HEAD",
+  "task_ids": [
+    "repo-benchmark-case-repair",
+    "shared-permissions-safety",
+    "skill-routing-oom-triage"
+  ],
+  "conditions": ["baseline", "docs-only", "skill-enabled"],
+  "trials_per_condition": 3,
+  "variants": [
+    {
+      "id": "codex-v0-4",
+      "agent": "codex",
+      "harness": "codex-cli",
+      "model": "configured-default",
+      "model_parameters": {}
+    },
+    {
+      "id": "claude-v0-4",
+      "agent": "claude-code",
+      "harness": "claude-code",
+      "model": "configured-default",
+      "model_parameters": {}
+    }
+  ],
+  "execution": {
+    "max_turns": 12,
+    "max_budget_usd_per_run": 0.75,
+    "max_total_budget_usd": 40.5,
+    "require_paid_run_acknowledgement": true,
+    "retain_workspaces": false
+  }
+}
