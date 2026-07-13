@@ -260,7 +260,7 @@ The repository is set up as a versioned registry, not just a documentation dump:
 
 ## Project Status
 
-`v0.4.0` is the release-ready registry snapshot. The registry remains
+`v0.4.0` is the current stable registry snapshot. The registry remains
 conservative about maturity: skills stay `seed` until domain review and public
 evidence support promotion. This release adds bounded evidence campaigns,
 machine-checkable maturity review, public review routing, and gated dashboards
