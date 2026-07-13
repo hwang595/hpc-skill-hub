@@ -1,6 +1,7 @@
 # v0.4 Completion Matrix
 
-Status: P0 evidence foundation complete locally; pull-request CI pending.
+Status: P0 evidence foundation and P1 campaign control plane complete locally;
+real evidence execution pending external setup, approval, and pull-request CI.
 
 v0.4 is the evidence and reviewed-registry release. It must distinguish
 repository capability from externally collected evidence: deterministic plans,
@@ -26,10 +27,10 @@ establish measured skill lift.
 
 | Gate | Status | Required evidence |
 | --- | --- | --- |
-| Clean-run preflight | Pending external setup | Install and authenticate both CLIs, pin exact model ids, approve quota, and use one clean repository commit. |
-| Repeated paired runs | Pending approval | Execute the 54-run matrix one run at a time within the campaign budget. Keep failures and stopped runs visible. |
+| Clean-run preflight and campaign lock | Complete locally; external setup pending | Campaign preparation locks one clean commit, plan and task digests, exact model ids, CLI versions, budget enforcement modes, and explicit quota acknowledgement. Real preparation still requires authenticated CLIs. |
+| Balanced execution waves | Complete locally; execution pending | A seeded schedule groups the 54-run matrix into nine randomized six-run task/trial waves. Status emits only the earliest incomplete wave and stops on provenance or budget blockers. |
 | Blinded independent review | Pending real runs | Redact artifacts, collect exactly two independent reviews per run, and reconcile rubric differences of `0.25` or more. |
-| Public evidence import | Pending review | Import only digest-bound, public-safe result records and artifacts, then regenerate the report and dashboard. |
+| Public evidence import audit | Complete locally; evidence pending | Staging audit checks campaign identity, model and CLI locks, clean commit provenance, double-blinded review, public artifact digests, private-file boundaries, safety, and acknowledged security review. |
 | Comparative publication | Gate closed | Publish comparisons only after the machine-readable publication gate is open. |
 
 ## P2 Reviewed Registry Pilot

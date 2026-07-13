@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/agent-benchmark-campaign.schema.json",
+  "title": "HPC Skill Hub Agent Benchmark Campaign Lock",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "campaign_id",
+    "created_at",
+    "plan",
+    "repository",
+    "task_sha256",
+    "conditions",
+    "variants",
+    "budget",
+    "schedule"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://hpc-skill-hub.org/schemas/agent-benchmark-campaign.schema.json"
+    },
+    "schema_version": {"const": "0.1.0"},
+    "campaign_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "plan": {
+      "type": "object",
+      "required": ["id", "version", "path", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "version": {"type": "string"},
+        "path": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "repository": {
+      "type": "object",
+      "required": ["commit", "dirty"],
+      "additionalProperties": false,
+      "properties": {
+        "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "dirty": {"const": false}
+      }
+    },
+    "task_sha256": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "variants": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "agent",
+          "harness",
+          "model",
+          "agent_version",
+          "budget_enforcement"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "agent": {"type": "string"},
+          "harness": {"enum": ["codex-cli", "claude-code"]},
+          "model": {"type": "string", "minLength": 1},
+          "agent_version": {"type": "string", "minLength": 1},
+          "budget_enforcement": {
+            "enum": ["provider-cli-hard-limit", "external-monitoring-required"]
+          }
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "required": [
+        "max_usd_per_run",
+        "max_total_usd",
+        "paid_quota_acknowledged"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "max_usd_per_run": {"type": "number", "exclusiveMinimum": 0},
+        "max_total_usd": {"type": "number", "exclusiveMinimum": 0},
+        "paid_quota_acknowledged": {"const": true}
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "required": ["seed", "wave_count", "run_count", "waves"],
+      "additionalProperties": false,
+      "properties": {
+        "seed": {"type": "integer", "minimum": 0},
+        "wave_count": {"type": "integer", "minimum": 1},
+        "run_count": {"type": "integer", "minimum": 1},
+        "waves": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "task_id", "trial", "run_ids"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {"type": "string", "pattern": "^wave-[0-9]{2}$"},
+              "task_id": {"type": "string"},
+              "trial": {"type": "integer", "minimum": 1},
+              "run_ids": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

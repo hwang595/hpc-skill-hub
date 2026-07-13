@@ -287,6 +287,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Agent benchmark calibration plan](docs/AGENT_BENCHMARK_PLAN.md)
 - [Agent benchmark v0.3 smoke plan](docs/AGENT_BENCHMARK_SMOKE_PLAN.md)
 - [Agent benchmark v0.4 evidence plan](docs/AGENT_BENCHMARK_V0_4_PLAN.md)
+- [Agent benchmark campaign operations](docs/AGENT_BENCHMARK_CAMPAIGN.md)
 - [Blinded review and scoring](docs/BLINDED_REVIEW.md)
 - [Agent benchmark report](docs/AGENT_BENCHMARK_REPORT.md)
 - [Agent benchmark evidence dashboard](docs/AGENT_BENCHMARK_DASHBOARD.html)

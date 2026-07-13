@@ -11,6 +11,7 @@ The evidence-pilot workflow is dry-run by default:
 python3 tools/agent_benchmark_harness.py --check
 python3 tools/agent_benchmark_harness.py --json
 python3 tools/agent_benchmark_review.py --help
+python3 tools/agent_benchmark_campaign.py --help
 python3 tools/run_agent_benchmarks.py --check
 python3 tools/run_agent_benchmarks.py --json
 ```
@@ -22,6 +23,12 @@ launches an external agent.
 The v0.3 smoke campaign in `plans/smoke-v0.3.json` uses one OOM routing task,
 three conditions, two agents, and one trial per cell for six runs. It validates
 the execution and review pipeline before the 54-run repeated-trial calibration.
+
+The v0.4 evidence campaign in `plans/evidence-v0.4.json` locks the repeated
+matrix to one clean commit, exact models, CLI versions, and a reviewed budget.
+`tools/agent_benchmark_campaign.py` schedules nine balanced waves and audits
+finalized public staging without launching an agent. See the
+[campaign operations runbook](../docs/AGENT_BENCHMARK_CAMPAIGN.md).
 
 Check local agent/model readiness without executing a run:
 
