@@ -87,14 +87,20 @@
         "writes_files",
         "uses_network",
         "submits_jobs",
-        "returns_unreviewed_community_content"
+        "returns_unreviewed_community_content",
+        "accepts_private_site_policy",
+        "uses_mcp_logging",
+        "logs_sensitive_arguments"
       ],
       "properties": {
         "executes_commands": { "const": false },
         "writes_files": { "const": false },
         "uses_network": { "const": false },
         "submits_jobs": { "const": false },
-        "returns_unreviewed_community_content": { "const": false }
+        "returns_unreviewed_community_content": { "const": false },
+        "accepts_private_site_policy": { "const": false },
+        "uses_mcp_logging": { "const": false },
+        "logs_sensitive_arguments": { "const": false }
       }
     },
     "server": {
@@ -112,6 +118,7 @@
         "python",
         "read_only",
         "tools",
+        "tool_arguments",
         "resources",
         "safety_boundary"
       ],
@@ -131,6 +138,15 @@
           "minItems": 1,
           "uniqueItems": true,
           "items": { "type": "string", "minLength": 1 }
+        },
+        "tool_arguments": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          }
         },
         "resources": {
           "type": "array",

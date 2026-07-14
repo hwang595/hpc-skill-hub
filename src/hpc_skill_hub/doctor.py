@@ -22,10 +22,13 @@ from .client_contract import (
 from .context import ContextBundleError, context_summary, load_context_bundle
 from .mcp_server import (
     RESOURCE_NAMES,
+    TOOL_ARGUMENT_ALLOWLIST,
     TOOL_NAMES,
     create_server,
     skill_resource_uri,
 )
+from .security import RULE_CATALOG
+from .security_policy import SecurityPolicyError, load_effective_policy
 
 
 DOCTOR_SCHEMA_VERSION = "0.1.0"
@@ -41,6 +44,7 @@ REGISTRY_DATA_FILES = (
     "review-status.json",
     "skill-context.json",
 )
+SECURITY_POLICY_FILENAME = "community-default.json"
 
 
 @dataclass(frozen=True)
@@ -124,6 +128,13 @@ def _check_package_data() -> DoctorCheck:
         packaged[contract_relative] = len(raw)
     except (FileNotFoundError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         errors.append(f"{contract_relative}: {exc}")
+    policy_relative = f"security/{SECURITY_POLICY_FILENAME}"
+    try:
+        raw = _packaged_path("security", SECURITY_POLICY_FILENAME).read_bytes()
+        json.loads(raw.decode("utf-8"))
+        packaged[policy_relative] = len(raw)
+    except (FileNotFoundError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        errors.append(f"{policy_relative}: {exc}")
 
     repository_root = discover_repo_root()
     stale: List[str] = []
@@ -141,6 +152,12 @@ def _check_package_data() -> DoctorCheck:
             stale.append(f"{contract_relative} (source missing)")
         elif packaged_path.is_file() and source.read_bytes() != packaged_path.read_bytes():
             stale.append(contract_relative)
+        source = repository_root / "security" / "policies" / SECURITY_POLICY_FILENAME
+        packaged_path = _packaged_path("security", SECURITY_POLICY_FILENAME)
+        if not source.is_file():
+            stale.append(f"{policy_relative} (source missing)")
+        elif packaged_path.is_file() and source.read_bytes() != packaged_path.read_bytes():
+            stale.append(policy_relative)
 
     if errors or stale:
         return failed(
@@ -198,6 +215,29 @@ def _check_registry() -> DoctorCheck:
     return passed("registry", "Registry metadata and counts are consistent", **details)
 
 
+def _check_security_policy() -> DoctorCheck:
+    try:
+        policy = load_effective_policy(RULE_CATALOG)
+    except (SecurityPolicyError, OSError) as exc:
+        return failed(
+            "security-policy",
+            "Packaged trust policy failed closed",
+            error=str(exc),
+        )
+    return passed(
+        "security-policy",
+        "Versioned trust policy matches the scanner rule catalog",
+        policy_id=policy.policy_id,
+        version=policy.version,
+        source=policy.source,
+        effective_digest=policy.effective_digest,
+        fail_on=policy.fail_on,
+        enabled_rule_count=len(policy.enabled_rules),
+        severity_override_count=len(policy.severity_overrides),
+        exception_count=len(policy.exceptions),
+    )
+
+
 def _check_context() -> DoctorCheck:
     try:
         bundle = load_context_bundle()
@@ -231,6 +271,12 @@ def _check_contract() -> DoctorCheck:
     errors = []
     if tuple(server["tools"]) != TOOL_NAMES:
         errors.append("contract tools differ from the server allowlist")
+    contract_arguments = {
+        name: tuple(arguments)
+        for name, arguments in server["tool_arguments"].items()
+    }
+    if contract_arguments != TOOL_ARGUMENT_ALLOWLIST:
+        errors.append("contract tool arguments differ from the server allowlist")
     if server["registry_schema_version"] != REGISTRY_SCHEMA_VERSION:
         errors.append("contract registry schema differs from the runtime contract")
     if tuple(resources_by_name) != RESOURCE_NAMES:
@@ -244,6 +290,7 @@ def _check_contract() -> DoctorCheck:
         "source_mode": source_mode,
         "server_id": server["id"],
         "tools": server["tools"],
+        "tool_arguments": server["tool_arguments"],
         "resources": list(resources_by_name),
         "providers": sorted(contract["providers"]),
     }
@@ -336,6 +383,9 @@ async def _protocol_probe() -> Dict[str, Any]:
                 and not annotations.openWorldHint
             ):
                 raise RuntimeError(f"{name}: protocol annotations are not read-only")
+            properties = tool.inputSchema.get("properties", {})
+            if set(properties) != set(TOOL_ARGUMENT_ALLOWLIST[name]):
+                raise RuntimeError(f"{name}: protocol arguments differ from the allowlist")
 
         templates = await session.list_resource_templates()
         by_name = {item.name: item for item in templates.resourceTemplates}
@@ -361,6 +411,9 @@ async def _protocol_probe() -> Dict[str, Any]:
 
         return {
             "tools": sorted(tools),
+            "tool_arguments": {
+                name: list(TOOL_ARGUMENT_ALLOWLIST[name]) for name in sorted(tools)
+            },
             "resources": sorted(by_name),
             "probe_skill_id": PROBE_SKILL_ID,
             "probe_file_count": context["file_count"],
@@ -397,6 +450,7 @@ def doctor_report(require_mcp: bool = False) -> Dict[str, Any]:
         _check_python(),
         _check_package_version(),
         _check_package_data(),
+        _check_security_policy(),
         _check_registry(),
         _check_context(),
         _check_contract(),

@@ -21,6 +21,7 @@ The stable seed-stage surfaces are:
 | `site-adapters/*/site.json` | Public local policy mappings for clusters, training environments, or public cloud HPC. |
 | `registry/skill-context.json` | Bounded, digest-verified README and declared artifact content for every validated skill. |
 | `integrations/mcp-client.json` | Canonical local stdio, capability, provider, and safety contract for MCP clients. |
+| `security/policies/community-default.json` | Versioned fail-closed community-skill policy, packaged independently from scanner code. |
 | `integrations/codex.config.toml` and `integrations/claude-code.mcp.json` | Generated, reviewable provider configuration examples. |
 | `python3 tools/hpc_skill.py ... --json` | Local CLI access for tools that prefer command output over direct file reads, including structured validation results. |
 | `hpc-skill ... --json` | Installed package access to the packaged registry snapshot for read-only discovery and site-policy resolution. |
@@ -77,6 +78,10 @@ For MCP clients, install `hpc-skill-hub[mcp]`, run
 `hpc-skill doctor --require-mcp`, and follow the generated
 [MCP Client Setup](MCP_CLIENT_SETUP.md). The doctor uses an in-memory transport;
 it opens no listener and executes no skill content.
+
+Apply only operator-reviewed external trust policies stored outside the scanned
+community package. See [Trust Policy Packs](TRUST_POLICY_PACKS.md) for the
+monotonic override, reviewed-exception, and provenance contract.
 
 Minimal Python example:
 

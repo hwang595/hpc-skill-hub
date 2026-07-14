@@ -52,6 +52,7 @@ tools.
 ├── collections/            # Curated groups of skills for adoption paths
 ├── site-adapters/          # Optional local cluster policy adapters
 ├── integrations/           # Canonical and generated MCP client configuration
+├── security/               # Versioned community-skill trust policy packs
 ├── agent-bench/            # Agent benchmark task and result contracts
 ├── schemas/                # JSON Schemas for skill metadata
 ├── tools/                  # Local validation and maintenance scripts
@@ -266,6 +267,7 @@ The repository is set up as a versioned registry, not just a documentation dump:
 | `Validate` workflow | Skill manifests, generated registry files, safety audit, CLI smoke tests, and unit tests pass on every push and pull request. |
 | `registry/skill-quality.json` | Deterministic documentation and evidence coverage baseline that prioritizes review work without claiming maturity or correctness. |
 | `hpc-skill security` | Community skill packages receive deterministic prompt-injection, command, persistence, credential, package, and risk-declaration checks before adoption. |
+| `security/policies/community-default.json` | Versioned 26-rule trust baseline with monotonic overrides, digest-bound reviewed exceptions, and policy/target/rule-catalog receipts. |
 | `registry/skill-context.json` | Bounded registry-declared README and artifact content is bound to the index with file, skill, bundle, and security-report SHA-256 provenance. |
 | `hpc-skill-mcp` | Optional stdio-only MCP surface exposes six closed-domain registry queries and verified `hpc-skill://skills/{skill_id}` resources with no execution or write tools. |
 | `Package` workflow | Source and wheel distributions build cleanly, metadata passes `twine check`, and the installed wheel can read registry data outside the checkout. |
@@ -285,8 +287,8 @@ current v0.5 focus is on trusted agent distribution:
 
 1. Read-only MCP registry discovery, merged in P0.
 2. Digest-verified packaged skill context, implemented in P1.
-3. Generated Codex and Claude Code onboarding plus compatibility diagnostics.
-4. Versioned community-skill trust policy and provenance receipts.
+3. Generated Codex and Claude Code onboarding plus compatibility diagnostics, merged in P2.
+4. Versioned community-skill trust policy and provenance receipts, implemented in P3.
 5. An MCP-enabled benchmark condition behind the existing paid-run and review gates.
 
 See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
@@ -305,6 +307,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [CLI](docs/CLI.md)
 - [Agent integration](docs/AGENT_INTEGRATION.md)
 - [Read-only MCP server](docs/MCP_SERVER.md)
+- [Trust policy packs](docs/TRUST_POLICY_PACKS.md)
 - [v0.5 development plan](docs/V0_5_PLAN.md)
 - [Agent benchmarks](docs/AGENT_BENCHMARKS.md)
 - [Agent benchmark calibration plan](docs/AGENT_BENCHMARK_PLAN.md)

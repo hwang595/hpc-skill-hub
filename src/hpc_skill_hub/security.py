@@ -7,13 +7,20 @@ import hashlib
 import json
 import re
 import sys
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any, Dict, Iterable, List, Optional, Sequence
 
+from .security_policy import (
+    SecurityPolicyError,
+    canonical_digest,
+    load_effective_policy,
+    policy_receipt,
+)
+
 
 SCANNER_NAME = "hpc-skill-security"
-SCANNER_VERSION = "0.1.0"
+SCANNER_VERSION = "0.2.0"
 SCHEMA_URL = "https://hpc-skill-hub.org/schemas/skill-security-report.schema.json"
 SEVERITIES = ("low", "medium", "high", "critical")
 SEVERITY_RANK = {severity: index for index, severity in enumerate(SEVERITIES)}
@@ -59,6 +66,7 @@ class Rule:
 @dataclass(frozen=True)
 class Finding:
     rule_id: str
+    base_severity: str
     severity: str
     category: str
     path: str
@@ -66,6 +74,9 @@ class Finding:
     message: str
     remediation: str
     fingerprint: str
+    finding_digest: str
+    disposition: str
+    exception: Optional[Dict[str, str]]
     skill_id: Optional[str] = None
 
 
@@ -234,10 +245,38 @@ RULES = (
     ),
 )
 
+PROGRAMMATIC_RULES = {
+    "metadata.invalid-manifest": ("high", "metadata"),
+    "metadata.path-escape": ("high", "metadata"),
+    "metadata.risk-underdeclared": ("high", "metadata"),
+    "package.archive": ("high", "package"),
+    "package.executable-binary": ("high", "package"),
+    "package.large-file": ("medium", "package"),
+    "package.non-utf8-text": ("medium", "package"),
+    "package.symlink": ("high", "package"),
+}
+RULE_CATALOG = {
+    **{rule.rule_id: rule.severity for rule in RULES},
+    **{rule_id: values[0] for rule_id, values in PROGRAMMATIC_RULES.items()},
+}
+
 
 def fingerprint(rule_id: str, path: str, line: int) -> str:
     payload = f"{rule_id}\0{path}\0{line}".encode("utf-8")
     return hashlib.sha256(payload).hexdigest()[:16]
+
+
+def finding_digest(rule_id: str, path: str, line: int, source_digest: str) -> str:
+    payload = f"{rule_id}\0{path}\0{line}\0{source_digest}".encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def file_digest(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def finding(
@@ -249,9 +288,11 @@ def finding(
     message: str,
     remediation: str,
     skill_id: Optional[str] = None,
+    source_digest: str = "",
 ) -> Finding:
     return Finding(
         rule_id=rule_id,
+        base_severity=severity,
         severity=severity,
         category=category,
         path=path,
@@ -259,6 +300,9 @@ def finding(
         message=message,
         remediation=remediation,
         fingerprint=fingerprint(rule_id, path, line),
+        finding_digest=finding_digest(rule_id, path, line, source_digest),
+        disposition="active",
+        exception=None,
         skill_id=skill_id,
     )
 
@@ -308,7 +352,9 @@ def skill_id_for(path: Path, target: Path) -> Optional[str]:
     return None
 
 
-def scan_text_file(path: Path, target: Path, skill_id: Optional[str]) -> List[Finding]:
+def scan_text_file(
+    path: Path, target: Path, skill_id: Optional[str], source_digest: str
+) -> List[Finding]:
     relative = display_path(path, target)
     try:
         text = path.read_text(encoding="utf-8")
@@ -323,6 +369,7 @@ def scan_text_file(path: Path, target: Path, skill_id: Optional[str]) -> List[Fi
                 "A text-like file is not valid UTF-8 and cannot be reviewed reliably.",
                 "Convert the file to UTF-8 or remove it from the skill package.",
                 skill_id,
+                source_digest,
             )
         ]
     findings: List[Finding] = []
@@ -339,12 +386,15 @@ def scan_text_file(path: Path, target: Path, skill_id: Optional[str]) -> List[Fi
                         rule.message,
                         rule.remediation,
                         skill_id,
+                        source_digest,
                     )
                 )
     return findings
 
 
-def manifest_findings(path: Path, target: Path, skill_id: Optional[str]) -> List[Finding]:
+def manifest_findings(
+    path: Path, target: Path, skill_id: Optional[str], source_digest: str
+) -> List[Finding]:
     relative = display_path(path, target)
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
@@ -359,6 +409,7 @@ def manifest_findings(path: Path, target: Path, skill_id: Optional[str]) -> List
                 f"skill.json is not valid readable JSON: {exc}",
                 "Fix the manifest before reviewing or installing the skill.",
                 skill_id,
+                source_digest,
             )
         ]
     findings: List[Finding] = []
@@ -389,24 +440,51 @@ def manifest_findings(path: Path, target: Path, skill_id: Optional[str]) -> List
                         f"Manifest field {field} references a path outside the skill package.",
                         "Use a relative path contained by the skill directory.",
                         skill_id,
+                        source_digest,
                     )
                 )
     return findings
 
 
-def scan_target(target: Path, fail_on: str = "high") -> Dict[str, Any]:
+def scan_target(
+    target: Path,
+    fail_on: Optional[str] = None,
+    policy_path: Optional[Path] = None,
+) -> Dict[str, Any]:
     target_label = target.as_posix() if not target.is_absolute() else (target.name or ".")
     target = target.expanduser().absolute()
     if not target.exists() and not target.is_symlink():
         raise FileNotFoundError(f"security scan target does not exist: {target}")
 
+    policy = load_effective_policy(RULE_CATALOG, policy_path=policy_path, target=target)
+    requested_fail_on = "policy" if fail_on is None else fail_on
+    if requested_fail_on in {"policy", "none"}:
+        effective_fail_on = policy.fail_on
+    elif requested_fail_on in SEVERITIES:
+        if SEVERITY_RANK[requested_fail_on] > SEVERITY_RANK[policy.fail_on]:
+            raise SecurityPolicyError(
+                f"--fail-on {requested_fail_on} would weaken policy threshold {policy.fail_on}"
+            )
+        effective_fail_on = requested_fail_on
+    else:
+        raise SecurityPolicyError(f"invalid fail-on threshold: {requested_fail_on}")
+    exit_on = "none" if requested_fail_on == "none" else effective_fail_on
+
     findings: List[Finding] = []
     files_scanned = 0
     manifests: Dict[str, Dict[str, Any]] = {}
+    manifest_digests: Dict[str, str] = {}
+    file_records: List[Dict[str, Any]] = []
     for path in iter_files(target):
         relative = display_path(path, target)
         skill_id = skill_id_for(path, target)
         if path.is_symlink():
+            link_digest = hashlib.sha256(
+                str(path.readlink()).encode("utf-8", errors="surrogateescape")
+            ).hexdigest()
+            file_records.append(
+                {"path": relative, "type": "symlink", "sha256": link_digest}
+            )
             findings.append(
                 finding(
                     "package.symlink",
@@ -417,6 +495,7 @@ def scan_target(target: Path, fail_on: str = "high") -> Dict[str, Any]:
                     "A symbolic link can escape the reviewed skill package.",
                     "Replace the link with a regular reviewed file inside the package.",
                     skill_id,
+                    link_digest,
                 )
             )
             continue
@@ -425,6 +504,13 @@ def scan_target(target: Path, fail_on: str = "high") -> Dict[str, Any]:
             size = path.stat().st_size
         except OSError:
             size = 0
+        try:
+            source_digest = file_digest(path)
+        except OSError:
+            source_digest = hashlib.sha256(b"").hexdigest()
+        file_records.append(
+            {"path": relative, "type": "file", "bytes": size, "sha256": source_digest}
+        )
         if size > MAX_FILE_BYTES:
             findings.append(
                 finding(
@@ -436,6 +522,7 @@ def scan_target(target: Path, fail_on: str = "high") -> Dict[str, Any]:
                     f"File exceeds the {MAX_FILE_BYTES}-byte static review limit.",
                     "Keep skill packages small and move large data to a referenced release artifact.",
                     skill_id,
+                    source_digest,
                 )
             )
         suffix = path.suffix.lower()
@@ -460,6 +547,7 @@ def scan_target(target: Path, fail_on: str = "high") -> Dict[str, Any]:
                     "Executable or loadable binary content is not reviewable as source.",
                     "Remove the binary and document a verified external dependency instead.",
                     skill_id,
+                    source_digest,
                 )
             )
         if suffix in ARCHIVE_SUFFIXES:
@@ -473,17 +561,19 @@ def scan_target(target: Path, fail_on: str = "high") -> Dict[str, Any]:
                     "Archive content is hidden from the normal source review boundary.",
                     "Extract the archive, review its files, and commit readable source directly.",
                     skill_id,
+                    source_digest,
                 )
             )
         if path.name == "skill.json":
-            manifest_results = manifest_findings(path, target, skill_id)
+            manifest_results = manifest_findings(path, target, skill_id, source_digest)
             findings.extend(manifest_results)
             try:
                 manifests[skill_id or relative] = json.loads(path.read_text(encoding="utf-8"))
+                manifest_digests[skill_id or relative] = source_digest
             except (OSError, json.JSONDecodeError):
                 pass
         if suffix in TEXT_SUFFIXES:
-            findings.extend(scan_text_file(path, target, skill_id))
+            findings.extend(scan_text_file(path, target, skill_id, source_digest))
 
     # Compare declared manifest risk against the strongest behavior finding for each skill.
     for skill_id, manifest in manifests.items():
@@ -513,28 +603,79 @@ def scan_target(target: Path, fail_on: str = "high") -> Dict[str, Any]:
                     f"Manifest risk_level={declared} is lower than detected {strongest} behavior.",
                     "Raise risk_level or remove/guard the behavior before review.",
                     skill_id,
+                    manifest_digests.get(skill_id, ""),
                 )
             )
 
-    findings.sort(key=lambda item: (-SEVERITY_RANK[item.severity], item.path, item.line, item.rule_id))
+    governed_findings: List[Finding] = []
+    applied_exception_ids = set()
+    for item in findings:
+        severity = policy.severity_for(item.rule_id, item.base_severity)
+        exception = policy.exception_for(
+            item.rule_id, item.skill_id, item.path, item.finding_digest
+        )
+        if exception is None:
+            governed_findings.append(replace(item, severity=severity))
+            continue
+        applied_exception_ids.add(exception.exception_id)
+        governed_findings.append(
+            replace(
+                item,
+                severity=severity,
+                disposition="accepted",
+                exception={
+                    "id": exception.exception_id,
+                    "status": "accepted",
+                    "expires_on": exception.expires_on,
+                    "review_digest": exception.review_digest,
+                },
+            )
+        )
+    findings = governed_findings
+    findings.sort(
+        key=lambda item: (-SEVERITY_RANK[item.severity], item.path, item.line, item.rule_id)
+    )
     counts = {severity: 0 for severity in SEVERITIES}
     for item in findings:
         counts[item.severity] += 1
-    blocking = [] if fail_on == "none" else [
-        item for item in findings if SEVERITY_RANK[item.severity] >= SEVERITY_RANK[fail_on]
+    active_findings = [item for item in findings if item.disposition == "active"]
+    blocking = [
+        item
+        for item in active_findings
+        if SEVERITY_RANK[item.severity] >= SEVERITY_RANK[effective_fail_on]
     ]
-    verdict = "block" if blocking else ("review" if findings else "pass")
+    verdict = "block" if blocking else (
+        "review" if active_findings else ("pass-with-exceptions" if findings else "pass")
+    )
+    receipt = policy_receipt(policy)
+    receipt["fail_on"] = effective_fail_on
     return {
         "$schema": SCHEMA_URL,
-        "schema_version": "0.1.0",
+        "schema_version": "0.2.0",
         "scanner": {"name": SCANNER_NAME, "version": SCANNER_VERSION},
         "target": target_label,
-        "policy": {"fail_on": fail_on},
+        "policy": receipt,
+        "execution": {"exit_on": exit_on},
+        "provenance": {
+            "target_digest": canonical_digest(file_records),
+            "rule_catalog_digest": canonical_digest(
+                [
+                    {
+                        "id": rule_id,
+                        "severity": RULE_CATALOG[rule_id],
+                    }
+                    for rule_id in sorted(RULE_CATALOG)
+                ]
+            ),
+            "policy_digest": policy.effective_digest,
+            "applied_exception_ids": sorted(applied_exception_ids),
+        },
         "summary": {
             "verdict": verdict,
             "files_scanned": files_scanned,
             "finding_count": len(findings),
             "blocking_count": len(blocking),
+            "accepted_exception_count": len(applied_exception_ids),
             "severity_counts": counts,
         },
         "findings": [asdict(item) for item in findings],
@@ -546,8 +687,7 @@ def sarif_report(report: Dict[str, Any]) -> Dict[str, Any]:
     results = []
     for item in report["findings"]:
         severity = item["severity"]
-        results.append(
-            {
+        result = {
                 "ruleId": item["rule_id"],
                 "level": "error" if severity in {"critical", "high"} else (
                     "warning" if severity == "medium" else "note"
@@ -564,11 +704,20 @@ def sarif_report(report: Dict[str, Any]) -> Dict[str, Any]:
                 "partialFingerprints": {"primaryLocationLineHash": item["fingerprint"]},
                 "properties": {
                     "category": item["category"],
+                    "base_severity": item["base_severity"],
                     "severity": severity,
                     "skill_id": item.get("skill_id"),
+                    "finding_digest": item["finding_digest"],
+                    "disposition": item["disposition"],
                 },
             }
-        )
+        if item["disposition"] == "accepted":
+            result["suppressions"] = [{"kind": "external", "status": "accepted"}]
+            result["properties"]["exception_id"] = item["exception"]["id"]
+            result["properties"]["exception_review_digest"] = item["exception"][
+                "review_digest"
+            ]
+        results.append(result)
     descriptors = []
     seen = set()
     for item in report["findings"]:
@@ -610,15 +759,20 @@ def text_report(report: Dict[str, Any]) -> str:
         f"Skill security verdict: {summary['verdict'].upper()}",
         f"Target: {report['target']}",
         (
+            f"Policy: {report['policy']['id']}@{report['policy']['version']} "
+            f"({report['policy']['effective_digest'][:12]}, fail on {report['policy']['fail_on']})"
+        ),
+        (
             f"Scanned {summary['files_scanned']} file(s); "
             f"{summary['finding_count']} finding(s), {summary['blocking_count']} blocking."
         ),
     ]
     for item in report["findings"]:
         skill = f" [{item['skill_id']}]" if item.get("skill_id") else ""
+        disposition = " [ACCEPTED]" if item["disposition"] == "accepted" else ""
         lines.append(
             f"{item['severity'].upper()}: {item['path']}:{item['line']}: "
-            f"{item['rule_id']}{skill}: {item['message']}"
+            f"{item['rule_id']}{skill}{disposition}: {item['message']}"
         )
     return "\n".join(lines)
 
@@ -635,9 +789,14 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--json", action="store_true", help="Alias for --format json")
     parser.add_argument(
         "--fail-on",
-        choices=("none",) + SEVERITIES,
-        default="high",
-        help="Lowest severity that returns a failing exit code",
+        choices=("policy", "none") + SEVERITIES,
+        default="policy",
+        help="Use the policy threshold, strengthen it, or use none for report-only mode",
+    )
+    parser.add_argument(
+        "--policy",
+        type=Path,
+        help="Complete external policy pack that extends community-default@0.1.0",
     )
     return parser
 
@@ -646,8 +805,10 @@ def run_cli(argv: Optional[Sequence[str]] = None) -> int:
     args = build_parser().parse_args(argv)
     output_format = "json" if args.json else args.format
     try:
-        report = scan_target(Path(args.target), fail_on=args.fail_on)
-    except (FileNotFoundError, OSError) as exc:
+        report = scan_target(
+            Path(args.target), fail_on=args.fail_on, policy_path=args.policy
+        )
+    except (FileNotFoundError, OSError, SecurityPolicyError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
     payload: Any = sarif_report(report) if output_format == "sarif" else report
@@ -655,7 +816,10 @@ def run_cli(argv: Optional[Sequence[str]] = None) -> int:
         print(json.dumps(payload, indent=2, sort_keys=True))
     else:
         print(text_report(report))
-    return 1 if report["summary"]["verdict"] == "block" else 0
+    return 1 if (
+        report["execution"]["exit_on"] != "none"
+        and report["summary"]["verdict"] == "block"
+    ) else 0
 
 
 def main() -> int:

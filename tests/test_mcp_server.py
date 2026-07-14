@@ -13,6 +13,7 @@ if str(SRC) not in sys.path:
 from hpc_skill_hub.mcp_server import (
     RESOURCE_NAMES,
     TOOL_NAMES,
+    TOOL_ARGUMENT_ALLOWLIST,
     create_server,
     list_collections,
     main,
@@ -48,6 +49,15 @@ class McpRegistryToolTests(unittest.TestCase):
 
         self.assertFalse(payload["ok"])
         self.assertEqual(payload["error"]["code"], "invalid-limit")
+
+    def test_tool_results_do_not_reflect_raw_arguments(self):
+        marker = "private-token-shaped-marker"
+
+        search = json.dumps(search_skills(marker), sort_keys=True)
+        unknown = json.dumps(show_skill(marker), sort_keys=True)
+
+        self.assertNotIn(marker, search)
+        self.assertNotIn(marker, unknown)
 
     def test_show_skill_includes_agent_safety_contract(self):
         payload = show_skill("slurm-oom-memory-triage")
@@ -86,7 +96,7 @@ class McpRegistryToolTests(unittest.TestCase):
         payload = json.loads(read_skill_context("slurm-submit-job"))
 
         self.assertTrue(payload["ok"])
-        self.assertEqual(payload["bundle_schema_version"], "0.1.0")
+        self.assertEqual(payload["bundle_schema_version"], "0.2.0")
         self.assertTrue(
             any(
                 item["role"] == "readme" and "Slurm" in item["content"]
@@ -115,6 +125,9 @@ class McpRegistryToolTests(unittest.TestCase):
         self.assertTrue(payload["server"]["read_only"])
         self.assertFalse(payload["safety_boundary"]["uses_network"])
         self.assertFalse(payload["safety_boundary"]["writes_files"])
+        self.assertFalse(payload["safety_boundary"]["accepts_private_site_policy"])
+        self.assertFalse(payload["safety_boundary"]["uses_mcp_logging"])
+        self.assertFalse(payload["safety_boundary"]["logs_sensitive_arguments"])
         self.assertEqual(payload["registry"]["skill_count"], 97)
         self.assertEqual(payload["context"]["file_count"], 344)
 
@@ -146,6 +159,34 @@ class McpProtocolTests(unittest.IsolatedAsyncioTestCase):
                 self.assertFalse(tool.annotations.destructiveHint)
                 self.assertTrue(tool.annotations.idempotentHint)
                 self.assertFalse(tool.annotations.openWorldHint)
+                self.assertEqual(
+                    set(tool.inputSchema.get("properties", {})),
+                    set(TOOL_ARGUMENT_ALLOWLIST[tool.name]),
+                )
+
+            sensitive_fragments = {
+                "account",
+                "allocation",
+                "credential",
+                "hostname",
+                "password",
+                "private_policy",
+                "secret",
+                "token",
+                "username",
+            }
+            exposed_arguments = {
+                argument
+                for arguments in TOOL_ARGUMENT_ALLOWLIST.values()
+                for argument in arguments
+            }
+            self.assertFalse(
+                any(
+                    fragment in argument
+                    for argument in exposed_arguments
+                    for fragment in sensitive_fragments
+                )
+            )
 
             result = await session.call_tool(
                 "search_skills", {"query": "slurm oom", "limit": 3}

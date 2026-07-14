@@ -9,6 +9,13 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ### Added
 
+- Add v0.5 P3 Trust Policy Packs with a separately versioned packaged baseline,
+  explicit rule enablement, monotonic severity overrides, digest-bound and
+  expiring reviewed exceptions, scanner/context provenance receipts, and
+  fail-closed policy loading outside contributed packages.
+- Enforce exact MCP tool and argument allowlists in server startup, doctor, and
+  protocol tests; exclude private site-policy inputs, MCP logging, and raw
+  argument reflection from the public server contract.
 - Add a canonical packaged MCP client contract, deterministic Codex and Claude
   Code configuration examples, and generated onboarding documentation.
 - Add `hpc-skill doctor` for Python, package metadata, registry schema, package

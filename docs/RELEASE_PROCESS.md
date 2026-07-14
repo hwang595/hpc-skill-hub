@@ -61,7 +61,8 @@ Review:
 - `docs/COMPATIBILITY.md` is current.
 - `docs/AGENT_BENCHMARK_V0_4_PLAN.md`, `docs/REVIEW_PACKET_v0.4.0.md`, and
   `docs/SKILL_REVIEW_DASHBOARD.html` are current.
-- `src/hpc_skill_hub/data/registry/` matches the generated registry JSON.
+- `src/hpc_skill_hub/data/registry/`, `data/integrations/`, and
+  `data/security/` match their generated or canonical JSON sources.
 - Registry index, health, release manifest, package data, and schema pointers
   pass `tools/validate_registry_artifacts.py`.
 - `registry/releases/v<version>.json` is current and attached to the GitHub

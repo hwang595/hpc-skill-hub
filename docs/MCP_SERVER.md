@@ -106,7 +106,15 @@ functions and one bounded resource template. It contains no tool that:
 
 Only content already admitted to the generated public registry can enter the
 resource bundle. Arbitrary community paths cannot be passed to the MCP server.
-Security `review` findings remain visible; `block` prevents generation.
+Security `review` findings and the versioned trust-policy receipt remain
+visible; `block` prevents generation.
+
+The server defines an exact argument allowlist for each tool and checks it
+against callable signatures before registration. The doctor and official SDK
+tests compare the protocol `inputSchema` properties with the same allowlist.
+The server does not accept private site policy, enable MCP logging, or echo raw
+search and unknown-id arguments into responses. Tool annotations remain client
+hints; this server-side allowlist is the capability boundary.
 
 Clients must still treat `maturity: seed` as a review signal, preserve site
 placeholders, inspect referenced README and example sources, and obtain explicit

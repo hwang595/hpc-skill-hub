@@ -25,6 +25,11 @@ from hpc_skill_hub.client_contract import (  # noqa: E402
     ClientContractError,
     validate_client_contract,
 )
+from hpc_skill_hub.security import RULE_CATALOG  # noqa: E402
+from hpc_skill_hub.security_policy import (  # noqa: E402
+    SecurityPolicyError,
+    load_effective_policy,
+)
 
 INDEX_JSON = ROOT / "registry" / "index.json"
 HEALTH_JSON = ROOT / "registry" / "health.json"
@@ -32,9 +37,11 @@ QUALITY_JSON = ROOT / "registry" / "skill-quality.json"
 REVIEW_STATUS_JSON = ROOT / "registry" / "review-status.json"
 CONTEXT_JSON = ROOT / "registry" / "skill-context.json"
 MCP_CLIENT_JSON = ROOT / "integrations" / "mcp-client.json"
+SECURITY_POLICY_JSON = ROOT / "security" / "policies" / "community-default.json"
 RELEASE_DIR = ROOT / "registry" / "releases"
 PACKAGE_DATA_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "registry"
 PACKAGE_INTEGRATION_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "integrations"
+PACKAGE_SECURITY_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "security"
 SCHEMAS = {
     "agent-benchmark-plan": ROOT / "schemas" / "agent-benchmark-plan.schema.json",
     "agent-benchmark-result": ROOT / "schemas" / "agent-benchmark-result.schema.json",
@@ -48,6 +55,7 @@ SCHEMAS = {
     "mcp-client-contract": ROOT / "schemas" / "mcp-client-contract.schema.json",
     "release": ROOT / "schemas" / "release-manifest.schema.json",
     "skill-security-report": ROOT / "schemas" / "skill-security-report.schema.json",
+    "skill-security-policy": ROOT / "schemas" / "skill-security-policy.schema.json",
     "skill-context-bundle": ROOT / "schemas" / "skill-context-bundle.schema.json",
     "skill-quality-report": ROOT / "schemas" / "skill-quality-report.schema.json",
     "skill-review": ROOT / "schemas" / "skill-review.schema.json",
@@ -470,6 +478,7 @@ def validate_package_data(errors: List[str]) -> None:
         PACKAGE_DATA_DIR / "review-status.json": REVIEW_STATUS_JSON,
         PACKAGE_DATA_DIR / "skill-context.json": CONTEXT_JSON,
         PACKAGE_INTEGRATION_DIR / "mcp-client.json": MCP_CLIENT_JSON,
+        PACKAGE_SECURITY_DIR / "community-default.json": SECURITY_POLICY_JSON,
     }
     for package_path, source_path in snapshots.items():
         require(package_path.exists(), errors, f"{relative(package_path)} is missing")
@@ -561,6 +570,24 @@ def validate_schemas(errors: List[str]) -> None:
             require(payload.get("title"), errors, f"{relative(path)}: missing title")
 
 
+def validate_security_policy(errors: List[str]) -> None:
+    try:
+        policy = load_effective_policy(RULE_CATALOG)
+    except (SecurityPolicyError, OSError) as exc:
+        errors.append(f"{relative(SECURITY_POLICY_JSON)}: {exc}")
+        return
+    require(
+        policy.policy_id == "community-default" and policy.version == "0.1.0",
+        errors,
+        f"{relative(SECURITY_POLICY_JSON)}: default policy identity mismatch",
+    )
+    require(
+        set(policy.enabled_rules) == set(RULE_CATALOG),
+        errors,
+        f"{relative(SECURITY_POLICY_JSON)}: rule catalog mismatch",
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Validate generated registry artifacts and package snapshots"
@@ -574,6 +601,7 @@ def main() -> int:
 
     errors: List[str] = []
     validate_schemas(errors)
+    validate_security_policy(errors)
     releases = sorted(RELEASE_DIR.glob("v*.json"))
     require(bool(releases), errors, "registry/releases has no versioned snapshots")
     for release_path in releases:

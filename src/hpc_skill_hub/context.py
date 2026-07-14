@@ -10,10 +10,17 @@ import re
 from pathlib import Path, PurePosixPath
 from typing import Any, Dict, Optional, Tuple
 
+from .security import RULE_CATALOG
+from .security_policy import (
+    SecurityPolicyError,
+    load_effective_policy,
+    policy_receipt,
+)
+
 
 PACKAGE_NAME = "hpc_skill_hub"
 CONTEXT_FILENAME = "skill-context.json"
-CONTEXT_SCHEMA_VERSION = "0.1.0"
+CONTEXT_SCHEMA_VERSION = "0.2.0"
 CONTEXT_GENERATOR = "tools/build_skill_context.py"
 RESOURCE_URI_TEMPLATE = "hpc-skill://skills/{skill_id}"
 
@@ -64,6 +71,13 @@ def _safe_repo_path(value: Any, context: str) -> str:
 
 def verify_context_bundle(payload: Dict[str, Any]) -> None:
     """Fail closed unless all bundle counts, bounds, paths, and digests match."""
+    try:
+        expected_policy = load_effective_policy(RULE_CATALOG)
+    except (SecurityPolicyError, OSError) as exc:
+        raise ContextBundleError(f"packaged security policy is invalid: {exc}") from exc
+    expected_policy_receipt = policy_receipt(expected_policy)
+    expected_policy_receipt["fail_on"] = expected_policy.fail_on
+
     _require(isinstance(payload, dict), "context bundle must be an object")
     _require(
         payload.get("schema_version") == CONTEXT_SCHEMA_VERSION,
@@ -150,15 +164,28 @@ def verify_context_bundle(payload: Dict[str, Any]) -> None:
         _require(
             isinstance(scanner, dict)
             and scanner.get("name") == "hpc-skill-security"
-            and isinstance(scanner.get("version"), str),
+            and scanner.get("version") == "0.2.0",
             f"{context}: invalid security scanner provenance",
         )
+        policy = security.get("policy")
         _require(
-            security.get("policy") == {"fail_on": "high"},
+            policy == expected_policy_receipt,
             f"{context}: invalid security policy provenance",
         )
+        provenance = security.get("provenance")
         _require(
-            security.get("verdict") in {"pass", "review"},
+            isinstance(provenance, dict)
+            and provenance.get("policy_digest") == policy["effective_digest"]
+            and all(
+                isinstance(provenance.get(field), str)
+                and re.fullmatch(r"[a-f0-9]{64}", provenance[field]) is not None
+                for field in ("target_digest", "rule_catalog_digest", "policy_digest")
+            )
+            and isinstance(provenance.get("applied_exception_ids"), list),
+            f"{context}: invalid security scan provenance receipt",
+        )
+        _require(
+            security.get("verdict") in {"pass", "pass-with-exceptions", "review"},
             f"{context}: blocked security verdict",
         )
         _require(
@@ -171,6 +198,27 @@ def verify_context_bundle(payload: Dict[str, Any]) -> None:
             security.get("finding_count") == len(findings),
             f"{context}: security finding_count mismatch",
         )
+        accepted = [item for item in findings if item.get("disposition") == "accepted"]
+        _require(
+            security.get("accepted_exception_count")
+            == len(provenance["applied_exception_ids"])
+            == len(accepted),
+            f"{context}: accepted security exception count mismatch",
+        )
+        for item in findings:
+            _require(
+                item.get("base_severity") in {"low", "medium", "high", "critical"}
+                and item.get("severity") in {"low", "medium", "high", "critical"}
+                and item.get("disposition") in {"active", "accepted"}
+                and isinstance(item.get("finding_digest"), str)
+                and re.fullmatch(r"[a-f0-9]{64}", item["finding_digest"]) is not None,
+                f"{context}: invalid security finding receipt",
+            )
+            _require(
+                (item.get("disposition") == "accepted")
+                == isinstance(item.get("exception"), dict),
+                f"{context}: invalid security finding exception",
+            )
         severity_counts = security.get("severity_counts")
         _require(
             isinstance(severity_counts, dict)

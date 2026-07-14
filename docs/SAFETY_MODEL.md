@@ -57,15 +57,19 @@ python3 tools/scan_skill_security.py skills --fail-on high
 The safety audit protects the public repository as a whole. The security
 scanner evaluates the trust boundary of each skill package and emits text,
 JSON, or SARIF findings. See [Community Skill Security](SKILL_SECURITY.md) for
-the threat model, verdicts, agent adoption protocol, and limitations.
+the threat model, verdicts, agent adoption protocol, and limitations. The
+[Trust Policy Packs](TRUST_POLICY_PACKS.md) contract versions rule enablement,
+monotonic severity overrides, digest-bound reviewed exceptions, and provenance
+separately from scanner code.
 
 ## Verified Agent Context
 
 `tools/build_skill_context.py` packages only files declared by validated skill
 manifests. Generation rejects missing or undeclared files, symbolic links,
 path escapes, non-UTF-8 or oversized content, stale output, and any security
-scan with a `block` verdict. A `review` verdict and its finding fingerprints
-remain visible in the bundle.
+scan with a `block` verdict. A `review` verdict and its finding fingerprints,
+source-bound digests, dispositions, and policy receipt remain visible in the
+bundle.
 
 Each source file has a SHA-256, each skill binds its files, manifest metadata,
 and security provenance, and the top-level digest binds every skill plus the

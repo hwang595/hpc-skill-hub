@@ -125,6 +125,15 @@ class SkillContextTests(unittest.TestCase):
         self.assertTrue(
             all(skill["security"]["blocking_count"] == 0 for skill in bundle["skills"])
         )
+        self.assertTrue(
+            all(
+                skill["security"]["policy"]["id"] == "community-default"
+                and skill["security"]["policy"]["enabled_rule_count"] == 26
+                and skill["security"]["provenance"]["policy_digest"]
+                == skill["security"]["policy"]["effective_digest"]
+                for skill in bundle["skills"]
+            )
+        )
 
     def test_runtime_verification_rejects_tampered_content(self):
         bundle = self.load_bundle()
@@ -138,6 +147,11 @@ class SkillContextTests(unittest.TestCase):
         malformed["source_index"]["digest"] = "not-a-digest"
         with self.assertRaisesRegex(ContextBundleError, "expected SHA-256 is invalid"):
             verify_context_bundle(malformed)
+
+        policy_tampered = copy.deepcopy(bundle)
+        policy_tampered["skills"][0]["security"]["policy"]["source_digest"] = "0" * 64
+        with self.assertRaisesRegex(ContextBundleError, "security policy provenance"):
+            verify_context_bundle(policy_tampered)
 
     def test_builder_rejects_missing_and_untracked_files(self):
         with tempfile.TemporaryDirectory() as tmpdir:

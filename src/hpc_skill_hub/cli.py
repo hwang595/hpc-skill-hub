@@ -22,6 +22,7 @@ from .reviews import (
     skill_status_text,
 )
 from .security import sarif_report, scan_target, text_report
+from .security_policy import SecurityPolicyError
 
 
 ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -625,8 +626,12 @@ def add_review_subcommands(subparsers: argparse._SubParsersAction) -> None:
 def cmd_security(args: argparse.Namespace) -> int:
     target = Path(args.target).expanduser()
     try:
-        report = scan_target(target, fail_on=args.fail_on)
-    except (FileNotFoundError, OSError) as exc:
+        report = scan_target(
+            target,
+            fail_on=args.fail_on,
+            policy_path=Path(args.policy).expanduser() if args.policy else None,
+        )
+    except (FileNotFoundError, OSError, SecurityPolicyError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
     output_format = "json" if args.json else args.format
@@ -636,7 +641,10 @@ def cmd_security(args: argparse.Namespace) -> int:
         emit_json(sarif_report(report))
     else:
         print(text_report(report))
-    return 1 if report["summary"]["verdict"] == "block" else 0
+    return 1 if (
+        report["execution"]["exit_on"] != "none"
+        and report["summary"]["verdict"] == "block"
+    ) else 0
 
 
 def run_step(label: str, command: List[str], root: Path) -> int:
@@ -1200,9 +1208,13 @@ def build_parser() -> argparse.ArgumentParser:
     security_parser.add_argument("--json", action="store_true", help="Alias for --format json")
     security_parser.add_argument(
         "--fail-on",
-        choices=["none", "low", "medium", "high", "critical"],
-        default="high",
-        help="Lowest severity that returns a failing exit code",
+        choices=["policy", "none", "low", "medium", "high", "critical"],
+        default="policy",
+        help="Use the policy threshold, strengthen it, or use none for report-only mode",
+    )
+    security_parser.add_argument(
+        "--policy",
+        help="Complete external policy pack that extends community-default@0.1.0",
     )
     security_parser.set_defaults(func=cmd_security)
 
