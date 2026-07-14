@@ -54,7 +54,7 @@ hpc-skill doctor --require-mcp
 | `list_collections` | List collections or inspect one collection. |
 | `show_site_adapters` | List site adapters or inspect one adapter's public policy. |
 | `resolve_site_policy` | Resolve one skill through one public adapter without filling unknown local values. |
-| `registry_status` | Return registry health, review queue state, server capabilities, and the safety boundary. |
+| `registry_status` | Return registry health, release capability gates, review queue state, server capabilities, and the safety boundary. |
 
 Search results are capped at 50 records. `show_skill` returns validated metadata
 plus the URI, digest, file count, and byte count for the corresponding verified

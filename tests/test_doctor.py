@@ -27,12 +27,19 @@ class DoctorTests(unittest.TestCase):
             "package-data",
             "security-policy",
             "registry",
+            "release-status",
             "context-digests",
             "client-contract",
         ):
             self.assertEqual(checks[check_id]["status"], "pass", checks[check_id])
         self.assertEqual(checks["registry"]["details"]["skill_count"], 97)
         self.assertEqual(checks["context-digests"]["details"]["file_count"], 344)
+        self.assertTrue(
+            checks["release-status"]["details"]["repository_capability_ready"]
+        )
+        self.assertFalse(
+            checks["release-status"]["details"]["external_evidence_ready"]
+        )
 
     def test_cli_emits_machine_readable_report(self):
         env = os.environ.copy()
@@ -68,6 +75,14 @@ class DoctorTests(unittest.TestCase):
 
         self.assertEqual(check.status, "fail")
         self.assertIn("stable v1", check.summary)
+
+    def test_installed_package_version_mismatch_fails_closed(self):
+        with mock.patch.object(doctor, "discover_repo_root", return_value=None):
+            with mock.patch.object(doctor.metadata, "version", return_value="0.4.0"):
+                check = doctor._check_package_version()
+
+        self.assertEqual(check.status, "fail")
+        self.assertEqual(check.details["source_mode"], "packaged")
 
     @unittest.skipUnless(
         sys.version_info[:2] >= (3, 10),

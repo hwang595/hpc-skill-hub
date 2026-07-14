@@ -16,10 +16,11 @@ agent.
 | `baseline` | Task prompt and condition-scoped synthetic fixtures only. |
 | `docs-only` | Baseline context plus `AGENTS.md` and provider-specific repository guidance. |
 | `skill-enabled` | Documentation context plus the router skill, registry index, CLI, and selected skill packages. |
+| `mcp-enabled` | Baseline context plus the canonical local read-only MCP server; no direct repository guidance, registry files, router skill, or skill directories. |
 | `skill-site-adapter` | Skill context plus an explicitly declared public site adapter. |
 
 Fixtures declare their allowed conditions. The validator rejects skill files in
-`baseline` or `docs-only` and rejects site-adapter files outside
+`baseline`, `docs-only`, or `mcp-enabled` and rejects site-adapter files outside
 `skill-site-adapter`.
 
 ## Contracts
@@ -36,6 +37,8 @@ The v0.2 calibration plan selects three tasks, two agent harnesses, three
 conditions, and three trials per cell, producing 54 planned runs.
 The v0.4 evidence plan adds an explicit per-run budget, total campaign ceiling,
 and paid-run acknowledgement contract to the same balanced matrix.
+The v0.5 evidence plan adds the MCP condition to produce 72 runs, with the same
+three tasks, two agents, and three paired trials per cell.
 
 Reviewed results follow
 [`agent-benchmark-result.schema.json`](../schemas/agent-benchmark-result.schema.json).
@@ -52,7 +55,9 @@ and
 Real campaign locks follow
 [`agent-benchmark-campaign.schema.json`](../schemas/agent-benchmark-campaign.schema.json).
 They bind one clean commit, exact model and CLI versions, plan and task digests,
-budget acknowledgement, and a seeded balanced execution schedule.
+budget acknowledgement, and a seeded balanced execution schedule. An
+MCP-enabled campaign also locks the canonical client-contract digest and the
+installed `hpc-skill-hub` package version.
 
 ## Dry Run And Isolation
 
@@ -73,6 +78,9 @@ python3 tools/agent_benchmark_harness.py \
 The harness copies only condition-appropriate files. Baseline packets exclude
 `AGENTS.md`, `CLAUDE.md`, `.agents/`, `.claude/`, registry indexes, and skill
 packages. Skill-enabled packets include only the selected skills.
+MCP-enabled packets preserve the same direct-file exclusions while configuring
+only `hpc-skill-hub`; Codex receives explicit per-run config overrides and
+Claude Code receives a generated strict `.mcp.json` allowlist.
 
 ## Explicit Execution
 
@@ -88,9 +96,11 @@ python3 tools/agent_benchmark_harness.py \
 
 The Codex adapter uses non-interactive, ephemeral execution with the task's
 read-only or workspace-write sandbox. The Claude Code adapter uses print mode,
-project-only settings, no session persistence, no MCP tools, and an allowlist of
-read or edit tools based on the task contract. The harness refuses execution
-when the matching CLI is unavailable.
+project-only settings, no session persistence, and an allowlist of read or edit
+tools based on the task contract. Non-MCP conditions disable all MCP tools;
+the MCP condition allows only the canonical HPC Skill Hub server. The harness
+refuses execution when the matching CLI is unavailable or the required MCP
+doctor does not pass.
 
 Outputs go to `/tmp/hpc-skill-hub-agent-bench-runs` by default. Successful runs
 are `pending-review`; the harness does not award scores. Review and redact all
@@ -134,6 +144,8 @@ workload. It reports:
 
 ```text
 Skill Lift = score(skill-enabled) - score(baseline)
+MCP Lift = score(mcp-enabled) - score(baseline)
+MCP Delivery Delta = score(mcp-enabled) - score(skill-enabled)
 Site Adapter Lift = score(skill-site-adapter) - score(skill-enabled)
 ```
 
@@ -147,7 +159,8 @@ python3 tools/run_agent_benchmarks.py --json
 
 See the generated [Calibration Plan](AGENT_BENCHMARK_PLAN.md),
 [v0.3 Smoke Plan](AGENT_BENCHMARK_SMOKE_PLAN.md), and
-[v0.4 Evidence Plan](AGENT_BENCHMARK_V0_4_PLAN.md). Public output is available
+[v0.4 Evidence Plan](AGENT_BENCHMARK_V0_4_PLAN.md), and
+[v0.5 MCP Evidence Plan](AGENT_BENCHMARK_V0_5_PLAN.md). Public output is available
 as both an [Agent Benchmark Report](AGENT_BENCHMARK_REPORT.md) and an
 [Evidence Dashboard](AGENT_BENCHMARK_DASHBOARD.html).
 
@@ -238,6 +251,37 @@ reports only the next balanced wave and audits finalized staging; it never
 launches an agent. Follow the
 [Agent Benchmark Campaign Operations](AGENT_BENCHMARK_CAMPAIGN.md) runbook.
 
+## v0.5 MCP Evidence Campaign
+
+The v0.5 plan adds one read-only MCP condition to the repeated matrix: three
+tasks, four conditions, three trials, and two agents produce 72 runs. Its USD
+0.75 per-run ceiling and USD 54.00 campaign ceiling remain authorization caps,
+not spending targets.
+
+Inspect the matrix and local readiness without launching an agent:
+
+```bash
+python3 tools/agent_benchmark_harness.py \
+  --plan agent-bench/plans/evidence-v0.5.json \
+  --json
+
+python3 tools/agent_benchmark_harness.py \
+  --plan agent-bench/plans/evidence-v0.5.json \
+  --preflight \
+  --model-override codex-v0-5=<exact-codex-model> \
+  --model-override claude-v0-5=<exact-claude-model>
+```
+
+Preflight requires both agent CLIs, exact models, a clean commit,
+`hpc-skill-mcp`, and a passing `hpc-skill doctor --require-mcp`. It records no
+credentials and performs no paid agent call. Campaign preparation additionally
+locks the MCP contract digest and installed package version.
+
+The public report exposes two independent MCP gates: `mcp-vs-baseline` measures
+registry delivery lift, while `mcp-vs-skill` measures the difference between
+MCP retrieval and direct skill injection. Both remain closed until every
+declared task and scored agent/model variant has at least three paired trials.
+
 ## Publication Gate
 
 Do not publish a leaderboard row until:
@@ -250,6 +294,8 @@ Do not publish a leaderboard row until:
 - every scored run has digest-verified public artifacts that pass the
   repository safety audit and human redaction review,
 - paired conditions use the same task version and trial numbers,
+- MCP results match the campaign's contract digest and package-version lock,
+- both MCP comparison gates are complete when MCP-enabled tasks are declared,
 - scoring provenance names the rubric version and reviewer method.
 
 `tools/run_agent_benchmarks.py` enforces these requirements as a publication

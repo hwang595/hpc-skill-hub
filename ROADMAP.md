@@ -38,10 +38,11 @@ follow-up work rather than synthetic CI claims.
 
 ## v0.5 Current Development
 
-Status: P0 read-only MCP MVP, P1 verified context bundles, and P2 generated
-onboarding/diagnostics are merged through PR #43 on 2026-07-14. P3 Trust Policy
-Packs are implemented on the current development branch. The v0.5 delivery
-queue is tracked in issue #40.
+Status: P0 through P3 are merged through PR #44 on 2026-07-14. P4's
+repository-side MCP evidence capability and P5's release-candidate preparation
+are complete locally. Merge, authenticated paid runs, independent review, the
+release tag, and tag-triggered attestations remain external gates. The v0.5
+delivery queue is tracked in issue #40.
 
 v0.5 focuses on trusted agent distribution:
 
@@ -60,8 +61,10 @@ oversized, path-escaping, or blocked inputs. P2 generates reviewable examples
 without silently enabling project MCP configuration and validates the exact
 capability surface through an in-memory protocol probe. P3 adds a separately
 versioned, fail-closed security policy with source-bound review exceptions and
-MCP argument allowlists. None of these phases changes the v0.4 evidence
-boundary. See the [v0.5 Development Plan](docs/V0_5_PLAN.md).
+MCP argument allowlists. P4 adds a 72-run MCP evidence contract without
+launching paid agents in CI. P5 publishes one generated release-status artifact
+that preserves closed external gates. See the
+[v0.5 Development Plan](docs/V0_5_PLAN.md).
 
 ## v0.4 Released
 

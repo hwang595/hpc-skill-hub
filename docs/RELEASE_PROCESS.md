@@ -28,7 +28,9 @@ python3 tools/build_release_manifest.py <version> --check
 python3 tools/review_packet.py --check
 python3 tools/agent_benchmark_harness.py --check
 python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.4.json --report docs/AGENT_BENCHMARK_V0_4_PLAN.md --check
+python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.5.json --report docs/AGENT_BENCHMARK_V0_5_PLAN.md --check
 python3 tools/run_agent_benchmarks.py --check
+python3 tools/build_release_status.py --check
 python3 tools/validate_registry_artifacts.py
 python3 tools/audit_safety.py
 python3 tools/scan_skill_security.py skills --fail-on high
@@ -57,10 +59,13 @@ Review:
 - `registry/skill-quality.json` is current.
 - `registry/review-status.json` is current and each v0.4 pilot bundle links a
   public review issue and immutable review commit.
+- `registry/release-status.json` is current, matches the package version, and
+  keeps comparative evidence, maturity promotion, and tag provenance closed or
+  pending unless their real evidence exists.
 - `docs/SKILL_CATALOG.md` is current.
 - `docs/COMPATIBILITY.md` is current.
-- `docs/AGENT_BENCHMARK_V0_4_PLAN.md`, `docs/REVIEW_PACKET_v0.4.0.md`, and
-  `docs/SKILL_REVIEW_DASHBOARD.html` are current.
+- `docs/AGENT_BENCHMARK_V0_5_PLAN.md`, `docs/V0_5_COMPLETION.md`,
+  `docs/REVIEW_PACKET_v0.4.0.md`, and the generated dashboards are current.
 - `src/hpc_skill_hub/data/registry/`, `data/integrations/`, and
   `data/security/` match their generated or canonical JSON sources.
 - Registry index, health, release manifest, package data, and schema pointers
@@ -108,7 +113,7 @@ verification boundary.
 ## Release Command Generator
 
 Use the matching release notes, such as
-[v0.4.0 Release Notes](RELEASE_NOTES_v0.4.0.md), as the starting point for the
+[v0.5.0 Release Notes](RELEASE_NOTES_v0.5.0.md), as the starting point for the
 GitHub release body.
 
 After `main` is pushed, GitHub Actions are green, the Pages site is published,

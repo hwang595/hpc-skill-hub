@@ -27,6 +27,7 @@ from .mcp_server import (
     create_server,
     skill_resource_uri,
 )
+from .release_status import ReleaseStatusError, load_release_status
 from .security import RULE_CATALOG
 from .security_policy import SecurityPolicyError, load_effective_policy
 
@@ -41,6 +42,7 @@ PROBE_SKILL_ID = "slurm-submit-job"
 REGISTRY_DATA_FILES = (
     "index.json",
     "health.json",
+    "release-status.json",
     "review-status.json",
     "skill-context.json",
 )
@@ -98,9 +100,17 @@ def _check_package_version() -> DoctorCheck:
         )
     details = {"module_version": __version__, "distribution_version": installed}
     if installed != __version__:
+        if discover_repo_root():
+            return warned(
+                "package-version",
+                "Source checkout differs from the installed distribution",
+                source_mode="repository",
+                **details,
+            )
         return failed(
             "package-version",
             "Module and distribution versions do not match",
+            source_mode="packaged",
             **details,
         )
     return passed("package-version", "Package version metadata is consistent", **details)
@@ -213,6 +223,30 @@ def _check_registry() -> DoctorCheck:
     if errors:
         return failed("registry", "Registry metadata is inconsistent", errors=errors, **details)
     return passed("registry", "Registry metadata and counts are consistent", **details)
+
+
+def _check_release_status() -> DoctorCheck:
+    try:
+        status = load_release_status()
+    except (ReleaseStatusError, OSError) as exc:
+        return failed(
+            "release-status",
+            "Generated release capability status failed closed",
+            error=str(exc),
+        )
+    capabilities = status["capabilities"]
+    gates = status["gates"]
+    return passed(
+        "release-status",
+        "Release capability artifact matches the installed package",
+        release=status["release"],
+        repository_capability_ready=status["repository_capability_ready"],
+        external_evidence_ready=status["external_evidence_ready"],
+        capability_statuses={
+            name: capability["status"] for name, capability in capabilities.items()
+        },
+        gate_statuses={name: gate["status"] for name, gate in gates.items()},
+    )
 
 
 def _check_security_policy() -> DoctorCheck:
@@ -452,6 +486,7 @@ def doctor_report(require_mcp: bool = False) -> Dict[str, Any]:
         _check_package_data(),
         _check_security_policy(),
         _check_registry(),
+        _check_release_status(),
         _check_context(),
         _check_contract(),
     ]

@@ -32,7 +32,8 @@ from hpc_skill_hub.security import scan_target
 CAMPAIGN_SCHEMA = (
     "https://hpc-skill-hub.org/schemas/agent-benchmark-campaign.schema.json"
 )
-SCHEMA_VERSION = "0.1.0"
+SCHEMA_VERSION = "0.2.0"
+LEGACY_SCHEMA_VERSION = "0.1.0"
 CAMPAIGN_REQUIRED_FIELDS = {
     "$schema",
     "schema_version",
@@ -42,6 +43,7 @@ CAMPAIGN_REQUIRED_FIELDS = {
     "repository",
     "task_sha256",
     "conditions",
+    "mcp_contract",
     "variants",
     "budget",
     "schedule",
@@ -181,6 +183,23 @@ def build_manifest(
 
     tasks = harness.load_tasks()
     commit = preflight["repository_commit"]
+    mcp_contract = None
+    if harness.MCP_CONDITION in payload["plan"]["conditions"]:
+        mcp = preflight.get("mcp")
+        if not isinstance(mcp, dict) or not mcp.get("ready"):
+            raise ValueError("mcp-enabled campaign requires a passing MCP preflight")
+        if mcp.get("mcp_package_version") != payload["plan"]["version"]:
+            raise ValueError("MCP package version must match the campaign plan version")
+        mcp_contract = {
+            key: mcp[key]
+            for key in [
+                "mcp_server_id",
+                "mcp_contract_path",
+                "mcp_contract_sha256",
+                "mcp_read_only",
+                "mcp_package_version",
+            ]
+        }
     manifest = {
         "$schema": CAMPAIGN_SCHEMA,
         "schema_version": SCHEMA_VERSION,
@@ -198,6 +217,7 @@ def build_manifest(
             for task_id in payload["plan"]["task_ids"]
         },
         "conditions": payload["plan"]["conditions"],
+        "mcp_contract": mcp_contract,
         "variants": variants,
         "budget": {
             "max_usd_per_run": float(per_run_budget),
@@ -216,14 +236,21 @@ def validate_campaign(
     manifest: Dict[str, Any],
 ) -> Tuple[List[str], Optional[Dict[str, Any]]]:
     errors: List[str] = []
-    for field in sorted(CAMPAIGN_REQUIRED_FIELDS - set(manifest)):
+    schema_version = manifest.get("schema_version")
+    required_fields = set(CAMPAIGN_REQUIRED_FIELDS)
+    if schema_version == LEGACY_SCHEMA_VERSION:
+        required_fields.remove("mcp_contract")
+    for field in sorted(required_fields - set(manifest)):
         errors.append(f"campaign missing field {field}")
-    for field in sorted(set(manifest) - CAMPAIGN_REQUIRED_FIELDS):
+    for field in sorted(set(manifest) - required_fields):
         errors.append(f"campaign has unknown field {field}")
     if manifest.get("$schema") != CAMPAIGN_SCHEMA:
         errors.append(f"campaign expected $schema {CAMPAIGN_SCHEMA}")
-    if manifest.get("schema_version") != SCHEMA_VERSION:
-        errors.append(f"campaign expected schema_version {SCHEMA_VERSION}")
+    if schema_version not in {LEGACY_SCHEMA_VERSION, SCHEMA_VERSION}:
+        errors.append(
+            "campaign expected schema_version "
+            f"{LEGACY_SCHEMA_VERSION} or {SCHEMA_VERSION}"
+        )
     if not isinstance(manifest.get("campaign_id"), str) or not re.fullmatch(
         r"[a-z0-9]+(?:-[a-z0-9]+)*", manifest.get("campaign_id", "")
     ):
@@ -263,6 +290,27 @@ def validate_campaign(
 
     if manifest.get("conditions") != payload["plan"]["conditions"]:
         errors.append("campaign conditions do not match the repository plan")
+
+    mcp_contract = manifest.get("mcp_contract")
+    if harness.MCP_CONDITION in payload["plan"]["conditions"]:
+        if schema_version != SCHEMA_VERSION:
+            errors.append("mcp-enabled campaign requires schema_version 0.2.0")
+        if not isinstance(mcp_contract, dict):
+            errors.append("mcp-enabled campaign requires an MCP contract lock")
+        else:
+            expected_mcp = harness.mcp_condition_context()
+            expected_fields = set(expected_mcp) | {"mcp_package_version"}
+            if set(mcp_contract) != expected_fields:
+                errors.append("campaign MCP contract fields do not match the lock schema")
+            for field, expected in expected_mcp.items():
+                if mcp_contract.get(field) != expected:
+                    errors.append(f"campaign MCP contract changed for {field}")
+            if not isinstance(mcp_contract.get("mcp_package_version"), str) or not mcp_contract.get(
+                "mcp_package_version"
+            ):
+                errors.append("campaign MCP contract requires a package version")
+    elif mcp_contract is not None:
+        errors.append("campaign without mcp-enabled must not lock an MCP contract")
 
     tasks = harness.load_tasks()
     task_digests = manifest.get("task_sha256")
@@ -422,7 +470,44 @@ def runtime_environment_errors(manifest: Dict[str, Any]) -> List[str]:
             continue
         if version != variant["agent_version"]:
             errors.append(f"{executable} version does not match campaign lock")
+    locked_mcp = manifest.get("mcp_contract")
+    if isinstance(locked_mcp, dict):
+        try:
+            runtime_mcp = harness.mcp_runtime_preflight()
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
+            errors.append(f"could not validate MCP runtime: {exc}")
+        else:
+            if not runtime_mcp.get("ready"):
+                errors.extend(
+                    f"MCP runtime: {issue}" for issue in runtime_mcp.get("issues", [])
+                )
+            for field, expected in locked_mcp.items():
+                if runtime_mcp.get(field) != expected:
+                    errors.append(f"MCP runtime {field} does not match campaign lock")
     return errors
+
+
+def mcp_result_provenance_errors(
+    manifest: Dict[str, Any], result: Dict[str, Any]
+) -> List[str]:
+    locked_mcp = manifest.get("mcp_contract")
+    provenance = result.get("provenance")
+    condition_context = (
+        provenance.get("condition_context") if isinstance(provenance, dict) else None
+    )
+    if result.get("condition") == harness.MCP_CONDITION:
+        if not isinstance(locked_mcp, dict):
+            return ["MCP result has no campaign contract lock"]
+        if not isinstance(condition_context, dict):
+            return ["MCP result requires condition_context provenance"]
+        return [
+            f"MCP result {field} does not match campaign lock"
+            for field, expected in locked_mcp.items()
+            if condition_context.get(field) != expected
+        ]
+    if condition_context is not None:
+        return ["non-MCP result must not declare MCP condition_context"]
+    return []
 
 
 def campaign_status(
@@ -453,6 +538,7 @@ def campaign_status(
                 item["errors"].append("repository commit does not match campaign lock")
             if provenance.get("agent_version") != expected_variant["agent_version"]:
                 item["errors"].append("agent version does not match campaign lock")
+        item["errors"].extend(mcp_result_provenance_errors(manifest, result))
         if item["errors"]:
             item["state"] = "invalid"
 
@@ -637,6 +723,7 @@ def audit_staging(
                     run_errors.append("public import requires a clean repository snapshot")
                 if provenance.get("agent_version") != expected_variant["agent_version"]:
                     run_errors.append("agent version does not match campaign lock")
+            run_errors.extend(mcp_result_provenance_errors(manifest, result))
             evaluation = result.get("evaluation")
             if not isinstance(evaluation, dict):
                 run_errors.append("scored result requires evaluation provenance")

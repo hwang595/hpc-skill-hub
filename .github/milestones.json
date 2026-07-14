@@ -20,6 +20,11 @@
     "state": "open"
   },
   {
+    "title": "v0.5.0 trusted agent distribution",
+    "description": "Ship verified packaged context, a read-only MCP surface, provider onboarding, trust policy packs, and gated MCP evidence.",
+    "state": "open"
+  },
+  {
     "title": "ecosystem backlog",
     "description": "Track longer-running community requests that need owners, RFCs, site evidence, or domain review.",
     "state": "open"

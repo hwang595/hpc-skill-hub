@@ -22,8 +22,16 @@ DEFAULT_PLAN = ROOT / "agent-bench" / "plans" / "calibration-v0.2.json"
 DEFAULT_REPORT = ROOT / "docs" / "AGENT_BENCHMARK_PLAN.md"
 PLAN_SCHEMA = "../../schemas/agent-benchmark-plan.schema.json"
 RESULT_SCHEMA = "../../schemas/agent-benchmark-result.schema.json"
-HARNESS_VERSION = "0.4.0"
-ALLOWED_CONDITIONS = {"baseline", "docs-only", "skill-enabled", "skill-site-adapter"}
+HARNESS_VERSION = "0.5.0"
+MCP_CONDITION = "mcp-enabled"
+MCP_CONTRACT_PATH = ROOT / "integrations" / "mcp-client.json"
+ALLOWED_CONDITIONS = {
+    "baseline",
+    "docs-only",
+    "skill-enabled",
+    MCP_CONDITION,
+    "skill-site-adapter",
+}
 ALLOWED_HARNESSES = {"codex-cli", "claude-code"}
 
 
@@ -46,6 +54,39 @@ def rel(path: Path) -> str:
 
 def sha256_path(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def mcp_contract() -> Dict[str, Any]:
+    contract = load_json(MCP_CONTRACT_PATH)
+    server = contract.get("server")
+    if not isinstance(server, dict):
+        raise ValueError("MCP client contract must contain a server object")
+    if server.get("transport") != "stdio":
+        raise ValueError("benchmark MCP server must use stdio transport")
+    if server.get("read_only") is not True:
+        raise ValueError("benchmark MCP server must be read-only")
+    if not isinstance(server.get("id"), str) or not server["id"]:
+        raise ValueError("benchmark MCP server must declare an id")
+    if not isinstance(server.get("command"), str) or not server["command"]:
+        raise ValueError("benchmark MCP server must declare a command")
+    if not isinstance(server.get("args"), list):
+        raise ValueError("benchmark MCP server args must be a list")
+    if not isinstance(server.get("env"), dict):
+        raise ValueError("benchmark MCP server env must be an object")
+    return contract
+
+
+def mcp_condition_context(package_version: Optional[str] = None) -> Dict[str, Any]:
+    server = mcp_contract()["server"]
+    context = {
+        "mcp_server_id": server["id"],
+        "mcp_contract_path": rel(MCP_CONTRACT_PATH),
+        "mcp_contract_sha256": sha256_path(MCP_CONTRACT_PATH),
+        "mcp_read_only": True,
+    }
+    if package_version is not None:
+        context["mcp_package_version"] = package_version
+    return context
 
 
 def decoded_text(value: Any) -> str:
@@ -111,6 +152,11 @@ def validate_plan(plan: Dict[str, Any], tasks: Dict[str, Dict[str, Any]]) -> Lis
     for condition in conditions:
         if condition not in ALLOWED_CONDITIONS:
             errors.append(f"plan uses unknown condition {condition}")
+    if MCP_CONDITION in conditions:
+        try:
+            mcp_contract()
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
+            errors.append(f"plan MCP condition contract is invalid: {exc}")
     for task_id in task_ids:
         if task_id in tasks:
             missing = sorted(set(conditions) - set(tasks[task_id].get("conditions", [])))
@@ -190,25 +236,26 @@ def build_matrix(plan: Dict[str, Any], tasks: Dict[str, Dict[str, Any]]) -> List
                     run_id = (
                         f"{plan['id']}-{variant['id']}-{task_id}-{condition}-t{trial:02d}"
                     )
-                    runs.append(
-                        {
-                            "run_id": run_id,
-                            "plan_id": plan["id"],
-                            "plan_version": plan["version"],
-                            "variant_id": variant["id"],
-                            "agent": variant["agent"],
-                            "harness": variant["harness"],
-                            "model": variant["model"],
-                            "model_parameters": variant["model_parameters"],
-                            "task_id": task_id,
-                            "task_version": task["version"],
-                            "condition": condition,
-                            "trial": trial,
-                            "workspace_mode": task["execution"]["workspace_mode"],
-                            "network_access": task["execution"]["network_access"],
-                            "timeout_seconds": task["execution"]["timeout_seconds"],
-                        }
-                    )
+                    run = {
+                        "run_id": run_id,
+                        "plan_id": plan["id"],
+                        "plan_version": plan["version"],
+                        "variant_id": variant["id"],
+                        "agent": variant["agent"],
+                        "harness": variant["harness"],
+                        "model": variant["model"],
+                        "model_parameters": variant["model_parameters"],
+                        "task_id": task_id,
+                        "task_version": task["version"],
+                        "condition": condition,
+                        "trial": trial,
+                        "workspace_mode": task["execution"]["workspace_mode"],
+                        "network_access": task["execution"]["network_access"],
+                        "timeout_seconds": task["execution"]["timeout_seconds"],
+                    }
+                    if condition == MCP_CONDITION:
+                        run["condition_context"] = mcp_condition_context()
+                    runs.append(run)
     return runs
 
 
@@ -350,6 +397,25 @@ def copy_repo_path(source: Path, workspace: Path) -> None:
         shutil.copy2(source, target)
 
 
+def write_mcp_client_config(workspace: Path) -> Path:
+    server = mcp_contract()["server"]
+    path = workspace / ".mcp.json"
+    write_json(
+        path,
+        {
+            "mcpServers": {
+                server["id"]: {
+                    "type": server["transport"],
+                    "command": server["command"],
+                    "args": server["args"],
+                    "env": server["env"],
+                }
+            }
+        },
+    )
+    return path
+
+
 def prompt_text(task: Dict[str, Any], condition: str) -> str:
     fixture_lines = [
         f"- `{fixture['path']}`: {fixture['description']}"
@@ -363,6 +429,19 @@ def prompt_text(task: Dict[str, Any], condition: str) -> str:
         write_rule = "You may edit only: " + ", ".join(f"`{path}`" for path in allowed_paths) + "."
     else:
         write_rule = "Treat the workspace as read-only."
+    if condition == MCP_CONDITION:
+        context_boundary = (
+            "The files present in this isolated workspace and the explicitly configured "
+            "read-only HPC Skill Hub MCP server are the complete context available for this "
+            "run. Use only that server for registry discovery and skill context; do not infer "
+            "other repository instructions or site policy, and do not use the network."
+        )
+    else:
+        context_boundary = (
+            "The files present in this isolated workspace are the complete context available "
+            "for this run. Do not infer that missing repository instructions, skills, or site "
+            "policy exist elsewhere, and do not use the network."
+        )
     return "\n".join(
         [
             f"# {task['name']}",
@@ -373,9 +452,7 @@ def prompt_text(task: Dict[str, Any], condition: str) -> str:
             "",
             *fixture_lines,
             "",
-            "The files present in this isolated workspace are the complete context available for",
-            "this run. Do not infer that missing repository instructions, skills, or site policy",
-            "exist elsewhere, and do not use the network.",
+            context_boundary,
             "",
             "## Execution Constraints",
             "",
@@ -403,6 +480,8 @@ def materialize_run(
     task = load_tasks()[run["task_id"]]
     for path in support_paths(task, run):
         copy_repo_path(path, workspace)
+    if run["condition"] == MCP_CONDITION and run["harness"] == "claude-code":
+        write_mcp_client_config(workspace)
     (workspace / "BENCHMARK_TASK.md").write_text(
         prompt_text(task, run["condition"]), encoding="utf-8"
     )
@@ -462,6 +541,87 @@ def parse_model_overrides(values: Iterable[str]) -> Dict[str, str]:
             raise ValueError(f"duplicate model override for {variant_id}")
         overrides[variant_id] = model
     return overrides
+
+
+def mcp_runtime_preflight() -> Dict[str, Any]:
+    server = mcp_contract()["server"]
+    server_path = shutil.which(server["command"])
+    doctor_path = shutil.which("hpc-skill")
+    issues = []
+    package_version = None
+    server_version = None
+    doctor_status = None
+    if server_path is None:
+        issues.append(f"required MCP executable is not installed: {server['command']}")
+    else:
+        try:
+            version_result = subprocess.run(
+                [server_path, "--version"],
+                text=True,
+                capture_output=True,
+                timeout=15,
+                check=False,
+            )
+        except (OSError, subprocess.SubprocessError) as exc:
+            issues.append(f"MCP server version could not be evaluated: {exc}")
+        else:
+            version_output = (version_result.stdout or version_result.stderr).strip()
+            if version_result.returncode != 0 or not version_output:
+                issues.append("MCP server did not report a version")
+            else:
+                server_version = version_output.splitlines()[-1]
+    if doctor_path is None:
+        issues.append("required MCP doctor executable is not installed: hpc-skill")
+    else:
+        try:
+            completed = subprocess.run(
+                [doctor_path, "doctor", "--require-mcp", "--json"],
+                text=True,
+                capture_output=True,
+                timeout=60,
+                check=False,
+            )
+            report = json.loads(completed.stdout)
+        except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as exc:
+            issues.append(f"MCP doctor could not be evaluated: {exc}")
+        else:
+            doctor_status = report.get("status")
+            checks = report.get("checks", [])
+            package_check = next(
+                (
+                    item
+                    for item in checks
+                    if isinstance(item, dict) and item.get("id") == "package-version"
+                ),
+                None,
+            )
+            if isinstance(package_check, dict):
+                details = package_check.get("details", {})
+                if isinstance(details, dict):
+                    value = details.get("distribution_version")
+                    if isinstance(value, str) and value:
+                        package_version = value
+            if completed.returncode != 0 or report.get("ok") is not True:
+                issues.append("hpc-skill doctor --require-mcp did not pass")
+            if package_version is None:
+                issues.append("MCP doctor did not report an installed package version")
+    if server_path and doctor_path:
+        if Path(server_path).resolve().parent != Path(doctor_path).resolve().parent:
+            issues.append("MCP server and doctor must come from the same environment")
+    if server_version and package_version and server_version != package_version:
+        issues.append("MCP server version does not match the doctor package version")
+
+    context = mcp_condition_context(package_version)
+    return {
+        **context,
+        "server_command": server["command"],
+        "server_executable_path": server_path,
+        "server_version": server_version,
+        "doctor_executable_path": doctor_path,
+        "doctor_status": doctor_status,
+        "ready": not issues,
+        "issues": issues,
+    }
 
 
 def preflight_payload(
@@ -525,6 +685,21 @@ def preflight_payload(
                 "issues": issues,
             }
         )
+    mcp = None
+    if MCP_CONDITION in payload["plan"]["conditions"]:
+        try:
+            mcp = dict(mcp_runtime_preflight())
+            mcp["issues"] = list(mcp.get("issues", []))
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
+            mcp = {"ready": False, "issues": [str(exc)]}
+        expected_package_version = payload["plan"]["version"]
+        if mcp.get("mcp_package_version") != expected_package_version:
+            mcp["issues"].append(
+                "installed MCP package version must match plan version "
+                f"{expected_package_version}"
+            )
+            mcp["ready"] = False
+        blockers.extend(f"mcp-enabled: {issue}" for issue in mcp["issues"])
     return {
         "ok": not blockers,
         "plan_id": payload["plan"]["id"],
@@ -536,6 +711,7 @@ def preflight_payload(
             "max_total_budget_usd"
         ),
         "variants": variants,
+        "mcp": mcp,
         "blockers": blockers,
     }
 
@@ -555,6 +731,16 @@ def preflight_text(preflight: Dict[str, Any]) -> str:
             f"model={variant['model']}; budget={variant['budget_enforcement']}"
         )
         for issue in variant["issues"]:
+            lines.append(f"  - {issue}")
+    if preflight.get("mcp") is not None:
+        mcp = preflight["mcp"]
+        state = "READY" if mcp.get("ready") else "BLOCKED"
+        lines.append(
+            f"{state}: mcp-enabled: server={mcp.get('mcp_server_id', 'unknown')}; "
+            f"package={mcp.get('mcp_package_version', 'unavailable')}; "
+            f"doctor={mcp.get('doctor_status', 'unavailable')}"
+        )
+        for issue in mcp.get("issues", []):
             lines.append(f"  - {issue}")
     if preflight["blockers"]:
         lines.append("Blockers:")
@@ -715,14 +901,33 @@ def build_command(
             str(output_file),
             "--model",
             model,
-            "-",
         ]
+        if run["condition"] == MCP_CONDITION:
+            server = mcp_contract()["server"]
+            prefix = f"mcp_servers.{server['id']}"
+            command.extend(
+                [
+                    "--config",
+                    f"{prefix}.command={json.dumps(server['command'])}",
+                    "--config",
+                    f"{prefix}.args={json.dumps(server['args'])}",
+                    "--config",
+                    f"{prefix}.enabled=true",
+                    "--config",
+                    f"{prefix}.required=true",
+                    "--config",
+                    f"{prefix}.startup_timeout_sec=15",
+                    "--config",
+                    f"{prefix}.tool_timeout_sec=60",
+                ]
+            )
+        command.append("-")
         return command
 
-    tools = "Read,Glob,Grep"
+    tool_names = ["Read", "Glob", "Grep"]
     permission_mode = "plan"
     if run["workspace_mode"] == "workspace-write":
-        tools = "Read,Glob,Grep,Edit,Write"
+        tool_names.extend(["Edit", "Write"])
         permission_mode = "acceptEdits"
     command = [
         "claude",
@@ -733,17 +938,32 @@ def build_command(
         "--setting-sources",
         "project",
         "--strict-mcp-config",
-        "--disallowedTools",
-        "mcp__*",
-        "--tools",
-        tools,
-        "--permission-mode",
-        permission_mode,
-        "--max-turns",
-        str(plan["execution"]["max_turns"]),
-        "--model",
-        model,
     ]
+    if run["condition"] == MCP_CONDITION:
+        server_id = mcp_contract()["server"]["id"]
+        mcp_pattern = f"mcp__{server_id}__*"
+        command.extend(
+            [
+                "--mcp-config",
+                str(workspace / ".mcp.json"),
+                "--allowedTools",
+                mcp_pattern,
+            ]
+        )
+    else:
+        command.extend(["--disallowedTools", "mcp__*"])
+    command.extend(
+        [
+            "--tools",
+            ",".join(tool_names),
+            "--permission-mode",
+            permission_mode,
+            "--max-turns",
+            str(plan["execution"]["max_turns"]),
+            "--model",
+            model,
+        ]
+    )
     budget = plan["execution"].get("max_budget_usd_per_run")
     if budget is not None:
         command.extend(["--max-budget-usd", str(budget)])
@@ -855,6 +1075,24 @@ def execute_run(
             "real execution requires a clean repository; commit the benchmark contract "
             "or pass --allow-dirty-run for non-public debugging"
         )
+    planned_run = next(
+        (item for item in payload["runs"] if item["run_id"] == run_id), None
+    )
+    if planned_run is None:
+        raise ValueError(f"unknown run id {run_id}")
+    mcp_runtime = None
+    if planned_run["condition"] == MCP_CONDITION:
+        mcp_runtime = mcp_runtime_preflight()
+        if not mcp_runtime["ready"]:
+            raise ValueError(
+                "mcp-enabled execution preflight failed: "
+                + "; ".join(mcp_runtime["issues"])
+            )
+        if mcp_runtime.get("mcp_package_version") != payload["plan"]["version"]:
+            raise ValueError(
+                "mcp-enabled execution requires installed package version "
+                f"{payload['plan']['version']}"
+            )
     enforce_campaign_budget(payload["plan"], output_root)
     run, workspace = materialize_run(payload, run_id, workspace_root, force=force)
     before = file_snapshot(workspace)
@@ -964,6 +1202,17 @@ def execute_run(
         "artifacts": artifacts,
         "notes": "Pending redaction review and blinded rubric scoring before public import.",
     }
+    if mcp_runtime is not None:
+        result["provenance"]["condition_context"] = {
+            key: mcp_runtime[key]
+            for key in [
+                "mcp_server_id",
+                "mcp_contract_path",
+                "mcp_contract_sha256",
+                "mcp_read_only",
+                "mcp_package_version",
+            ]
+        }
     result_path = result_dir / f"{run_id}.json"
     write_json(result_path, result)
     if not payload["plan"]["execution"]["retain_workspaces"]:

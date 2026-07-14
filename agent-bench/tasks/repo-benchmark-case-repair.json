@@ -2,24 +2,24 @@
   "$schema": "../../schemas/agent-benchmark-task.schema.json",
   "id": "repo-benchmark-case-repair",
   "name": "Repair a malformed benchmark case",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "task_type": "repo-edit",
   "risk_level": "low",
   "skill_ids": ["slurm-output-log-triage"],
-  "conditions": ["baseline", "docs-only", "skill-enabled"],
+  "conditions": ["baseline", "docs-only", "skill-enabled", "mcp-enabled"],
   "summary": "Measure whether an agent can repair benchmark metadata using the repo schema and validation flow.",
   "prompt": "You are editing this repository. The file agent-bench/fixtures/malformed-benchmark-case.json is an intentionally incomplete benchmark case for slurm-output-log-triage. Explain the missing fields, produce a corrected benchmark case shape that follows schemas/benchmark.schema.json, and name the local validation commands you would run. Do not submit jobs or invent site-specific account, partition, host, or filesystem values.",
   "fixtures": [
     {
       "path": "agent-bench/fixtures/malformed-benchmark-case.json",
       "description": "Intentionally incomplete benchmark case used as repair input.",
-      "conditions": ["baseline", "docs-only", "skill-enabled"]
+      "conditions": ["baseline", "docs-only", "skill-enabled", "mcp-enabled"]
     },
     {
       "path": "schemas/benchmark.schema.json",
       "description": "Benchmark case schema the agent should use for repair.",
-      "conditions": ["baseline", "docs-only", "skill-enabled"]
+      "conditions": ["baseline", "docs-only", "skill-enabled", "mcp-enabled"]
     }
   ],
   "execution": {

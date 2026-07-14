@@ -40,13 +40,18 @@ jobs:
           python3 tools/agent_benchmark_harness.py --check
           python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/smoke-v0.3.json --report docs/AGENT_BENCHMARK_SMOKE_PLAN.md --check
           python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.4.json --report docs/AGENT_BENCHMARK_V0_4_PLAN.md --check
+          python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.5.json --report docs/AGENT_BENCHMARK_V0_5_PLAN.md --check
           python3 tools/agent_benchmark_campaign.py --help
           python3 tools/agent_benchmark_review.py --help
           python3 tools/run_agent_benchmarks.py --check
+      - name: Check generated release status
+        run: python3 tools/build_release_status.py --check
       - name: Check packaged registry data
         run: python3 tools/build_package_data.py --check
       - name: Check immutable release snapshots
-        run: python3 tools/validate_registry_artifacts.py --release-only
+        run: |
+          python3 tools/build_release_manifest.py v0.5.0 --check
+          python3 tools/validate_registry_artifacts.py --release-only
       - name: Check reviewed-skill pilot packet
         run: python3 tools/review_packet.py --check
       - name: Validate generated artifact contracts

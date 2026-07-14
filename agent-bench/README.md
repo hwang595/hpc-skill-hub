@@ -30,6 +30,12 @@ matrix to one clean commit, exact models, CLI versions, and a reviewed budget.
 finalized public staging without launching an agent. See the
 [campaign operations runbook](../docs/AGENT_BENCHMARK_CAMPAIGN.md).
 
+The v0.5 evidence campaign in `plans/evidence-v0.5.json` adds a fourth,
+`mcp-enabled` condition for 72 runs. MCP packets contain task fixtures and one
+canonical read-only server configuration, but no direct skill, registry, or
+agent-instruction files. Preflight remains blocked until the installed MCP
+doctor passes and exact agent models are supplied.
+
 Check local agent/model readiness without executing a run:
 
 ```bash

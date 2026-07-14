@@ -1,0 +1,105 @@
+{
+  "$schema": "../schemas/release-status.schema.json",
+  "capabilities": {
+    "benchmark": {
+      "artifact": "docs/AGENT_BENCHMARK_REPORT.md",
+      "comparison_gates": [
+        {
+          "eligible_comparison_count": 0,
+          "expected_comparison_count": 6,
+          "id": "mcp-vs-baseline",
+          "ready": false
+        },
+        {
+          "eligible_comparison_count": 0,
+          "expected_comparison_count": 6,
+          "id": "mcp-vs-skill",
+          "ready": false
+        }
+      ],
+      "leaderboard_ready": false,
+      "plan_artifact": "agent-bench/plans/evidence-v0.5.json",
+      "plan_sha256": "46f86bc69eec683df70e74e3ff854b6e4aeccebd1efd43fae1b2b66d3526d7c7",
+      "planned_run_count": 72,
+      "result_count": 0,
+      "scored_result_count": 0,
+      "sha256": "c1f59dedd0f153154fbe610f4bda71fda92e19f89dcbbda608232e19ed243ce9",
+      "status": "pending"
+    },
+    "compatibility": {
+      "artifact": "docs/COMPATIBILITY.md",
+      "collection_count": 12,
+      "sha256": "427635015adfb426317a5df39f6ad5889f78ee42067197cb21b8ecd4ce626c5c",
+      "site_adapter_count": 2,
+      "skill_count": 97,
+      "status": "ready"
+    },
+    "context_bundle": {
+      "artifact": "registry/skill-context.json",
+      "bundle_digest": "81314ccebc6680a1c7aeb225eae757bd3b5e5dc21d51885602894d4c36d84871",
+      "file_count": 344,
+      "sha256": "5e8e2c05ecbd16f90bd0b740013d3b67755e7eeaa59f62a1e787b906977da600",
+      "skill_count": 97,
+      "status": "ready",
+      "total_bytes": 567911
+    },
+    "mcp": {
+      "artifact": "integrations/mcp-client.json",
+      "read_only": true,
+      "resource_count": 1,
+      "sha256": "3b0d8163fb137b18aad68095234c9746a4698b2111882ba6f5fe768d6014e1f6",
+      "status": "ready",
+      "tool_count": 6,
+      "transport": "stdio"
+    },
+    "review": {
+      "artifact": "registry/review-status.json",
+      "candidate_count": 5,
+      "promotion_ready_count": 0,
+      "review_release": "v0.4.0",
+      "sha256": "6dcca15d82497c52b615b62dec872140f0f548855c980d418c742283708ad577",
+      "status": "pending"
+    },
+    "security": {
+      "artifact": "security/policies/community-default.json",
+      "blocking_count": 0,
+      "finding_count": 2,
+      "policy_id": "community-default",
+      "policy_version": "0.1.0",
+      "review_skill_count": 2,
+      "scanned_skill_count": 97,
+      "sha256": "75364a2b4f612a3066a3ccbbfff29bdee00f14777290095face32e6cc572c0e4",
+      "status": "ready-with-review"
+    }
+  },
+  "external_evidence_ready": false,
+  "gates": {
+    "comparative_evidence": {
+      "blockers": [
+        "Reviewed real-agent evidence has not satisfied the publication contract."
+      ],
+      "status": "closed"
+    },
+    "maturity_promotion": {
+      "blockers": [
+        "No candidate has completed independent review and maintainer approval."
+      ],
+      "status": "closed"
+    },
+    "release_provenance": {
+      "blockers": [
+        "Tag-triggered manifest, wheel, and source-distribution attestations require the v0.5.0 release tag."
+      ],
+      "status": "pending"
+    },
+    "repository": {
+      "blockers": [],
+      "status": "open"
+    }
+  },
+  "generated_by": "tools/build_release_status.py",
+  "package_version": "0.5.0",
+  "release": "v0.5.0",
+  "repository_capability_ready": true,
+  "schema_version": "0.1.0"
+}

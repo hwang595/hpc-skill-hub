@@ -1,10 +1,12 @@
 # v0.5 Development Plan
 
 Status: P0 read-only MCP MVP merged through PR #41, P1 verified context bundles
-merged through PR #42, and P2 onboarding/diagnostics merged through PR #43 on
-2026-07-14. P3 Trust Policy Packs are implemented on the current development
-branch. Public delivery is tracked in issue
-[#40](https://github.com/hwang595/hpc-skill-hub/issues/40).
+merged through PR #42, P2 onboarding/diagnostics merged through PR #43, and P3
+Trust Policy Packs merged through PR #44 on 2026-07-14. P4's repository-side
+MCP evidence capability and P5's release-candidate contracts are implemented;
+merge, authenticated paid runs, independent review, tag publication, and
+tag-triggered attestations remain intentionally pending. Public delivery is
+tracked in issue [#40](https://github.com/hwang595/hpc-skill-hub/issues/40).
 
 v0.5 focuses on trusted agent distribution. The release should make the
 validated registry easier for Codex, Claude Code, and other MCP clients to
@@ -70,6 +72,12 @@ boundaries are enforced in code and tests.
 
 ## P4 Evidence And Review
 
+Implementation status: complete for the repository capability. The v0.5 plan
+defines 72 balanced runs, MCP contexts remain isolated from direct skill files,
+preflight binds a passing installed MCP runtime, campaign locks preserve the
+contract digest and package version, and the report exposes closed MCP
+comparison gates until reviewed evidence is complete.
+
 - Add an `mcp-enabled` benchmark condition beside baseline, docs-only, and
   skill-enabled conditions.
 - Run real Codex and Claude Code campaigns only after exact models,
@@ -81,6 +89,11 @@ boundaries are enforced in code and tests.
 
 ## P5 Release
 
+Implementation status: release-candidate capability complete locally. The
+generated status, versioned manifest, core/MCP wheel smoke tests, and full local
+gate pass. Tag creation and GitHub attestation verification necessarily remain
+pending until the reviewed candidate merges.
+
 - Publish compatibility, context-bundle, MCP, benchmark, review, and security
   status in generated artifacts.
 - Build and smoke-test core and MCP extras from the wheel.
@@ -89,6 +102,8 @@ boundaries are enforced in code and tests.
 
 ## Completion Boundary
 
-P0-P3 are repository capabilities. P4 requires external evidence and explicit
-authorization. A passing CI gate proves protocol and policy behavior; it does
-not prove agent lift, domain correctness, adoption, or reviewed maturity.
+P0-P5 can establish repository and release-candidate capability. P4 outcome
+claims still require external evidence and explicit authorization, while final
+P5 provenance requires the release tag. A passing CI gate proves protocol and
+policy behavior; it does not prove agent lift, domain correctness, adoption, or
+reviewed maturity.

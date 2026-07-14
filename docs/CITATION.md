@@ -10,10 +10,10 @@ Use [CITATION.cff](../CITATION.cff) as the source of truth for citation
 metadata. After the repository is published on GitHub, cite the tagged release
 URL for the version you used.
 
-For the current release:
+For the current release candidate (cite its commit until the tag is published):
 
 ```text
-HPC Skill Hub Maintainers. HPC Skill Hub. Version 0.4.0.
+HPC Skill Hub Maintainers. HPC Skill Hub. Version 0.5.0.
 Open registry of reusable, reviewable skills for high performance computing
 workflows.
 ```

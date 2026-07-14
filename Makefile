@@ -1,4 +1,4 @@
-.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check cli compatibility doctor health index mcp mcp-client-configs package-data release-manifest review-packet security site skill-context skill-quality skill-reviews test trust-policy validate clean
+.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check cli compatibility doctor health index mcp mcp-client-configs package-data release-manifest release-status review-packet security site skill-context skill-quality skill-reviews test trust-policy validate clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -34,9 +34,13 @@ agent-benchmarks:
 	$(PYTHON) tools/agent_benchmark_harness.py --check
 	$(PYTHON) tools/agent_benchmark_harness.py --plan agent-bench/plans/smoke-v0.3.json --report docs/AGENT_BENCHMARK_SMOKE_PLAN.md --check
 	$(PYTHON) tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.4.json --report docs/AGENT_BENCHMARK_V0_4_PLAN.md --check
+	$(PYTHON) tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.5.json --report docs/AGENT_BENCHMARK_V0_5_PLAN.md --check
 	$(PYTHON) tools/agent_benchmark_campaign.py --help
 	$(PYTHON) tools/agent_benchmark_review.py --help
 	$(PYTHON) tools/run_agent_benchmarks.py --check
+
+release-status:
+	$(PYTHON) tools/build_release_status.py --check
 
 benchmarks:
 	$(PYTHON) tools/run_benchmarks.py --check
@@ -45,6 +49,7 @@ package-data:
 	$(PYTHON) tools/build_package_data.py --check
 
 release-manifest:
+	$(PYTHON) tools/build_release_manifest.py v0.5.0 --check
 	$(PYTHON) tools/validate_registry_artifacts.py --release-only
 
 review-packet:
@@ -93,7 +98,7 @@ doctor:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health skill-quality skill-reviews skill-context compatibility mcp-client-configs agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security trust-policy test site cli mcp doctor
+check: validate index health skill-quality skill-reviews skill-context compatibility mcp-client-configs agent-adapters benchmarks agent-benchmarks release-status package-data release-manifest review-packet artifact-contracts audit security trust-policy test site cli mcp doctor
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

@@ -15,6 +15,7 @@ public GitHub repository.
 | `v0.2.0 reviewed-skill pilot` | Promote the first reviewed skills, collect adoption reports, and recruit domain reviewers. |
 | `v0.3.0 integrations and adapters` | Expand site adapters, downstream registry integrations, and compatibility contracts. |
 | `v0.4.0 evidence and reviewed registry` | Collect reviewed cross-agent evidence, publish gated comparisons, deepen priority skills, and promote only evidence-backed registry entries. |
+| `v0.5.0 trusted agent distribution` | Ship verified context, read-only MCP access, provider onboarding, trust policy packs, and gated MCP evidence. |
 | `ecosystem backlog` | Track longer-running requests that need owners, RFCs, site evidence, or domain review. |
 
 ## Create Milestones
@@ -42,5 +43,7 @@ mutate GitHub by itself.
 - Put the bounded evidence campaign, blinded scoring, public dashboard,
   priority skill depth, and evidence-backed promotion work in
   `v0.4.0 evidence and reviewed registry`.
+- Put verified agent context, MCP distribution, trust policy, and MCP evidence
+  work in `v0.5.0 trusted agent distribution`.
 - Put broad requests in `ecosystem backlog` until a maintainer can split them
   into focused issues, RFCs, safety reviews, or skill requests.

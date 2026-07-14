@@ -10,9 +10,9 @@ build and test distributions, but they do not create release attestations.
 
 ## Attested Subjects
 
-For a tag such as `v0.4.0`, the workflow attests:
+For a tag such as `v0.5.0`, the workflow attests:
 
-- `registry/releases/v0.4.0.json`
+- `registry/releases/v0.5.0.json`
 - every source distribution under `dist/`
 - every wheel under `dist/`
 

@@ -20,6 +20,7 @@ The stable seed-stage surfaces are:
 | `collections/*.json` | Curated adoption paths for users, domains, or roles. |
 | `site-adapters/*/site.json` | Public local policy mappings for clusters, training environments, or public cloud HPC. |
 | `registry/skill-context.json` | Bounded, digest-verified README and declared artifact content for every validated skill. |
+| `registry/release-status.json` | Package-versioned capability status and explicit repository, comparative-evidence, maturity, and release-provenance gates. |
 | `integrations/mcp-client.json` | Canonical local stdio, capability, provider, and safety contract for MCP clients. |
 | `security/policies/community-default.json` | Versioned fail-closed community-skill policy, packaged independently from scanner code. |
 | `integrations/codex.config.toml` and `integrations/claude-code.mcp.json` | Generated, reviewable provider configuration examples. |
@@ -30,6 +31,11 @@ The stable seed-stage surfaces are:
 
 Prefer `registry/index.json` for search and discovery. Load individual skill
 manifests only when you need full metadata beyond the compact index.
+
+Use `registry/release-status.json` or the MCP `registry_status` tool before
+making release-wide claims. An open repository gate means the implementation
+artifacts are coherent; closed comparative or maturity gates mean no measured
+lift or promotion should be inferred.
 
 ## Consumption Contract
 

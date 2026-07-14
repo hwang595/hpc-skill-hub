@@ -55,21 +55,23 @@ class AgentBenchmarkCampaignTests(unittest.TestCase):
             created_at="2026-07-13T18:00:00Z",
         )
 
-    def expected_variant(self, run):
+    def expected_variant(self, run, manifest=None):
+        manifest = manifest or self.manifest
         return next(
             item
-            for item in self.manifest["variants"]
+            for item in manifest["variants"]
             if item["id"] == run["variant_id"]
         )
 
-    def write_scored_result(self, staging_root, run):
+    def write_scored_result(self, staging_root, run, manifest=None):
+        manifest = manifest or self.manifest
         artifact_path = (
             staging_root / "artifacts" / run["run_id"] / "final-output.txt"
         )
         artifact_path.parent.mkdir(parents=True, exist_ok=True)
         artifact_path.write_text("Public-safe reviewed response.\n", encoding="utf-8")
         task = self.campaign.harness.load_tasks()[run["task_id"]]
-        variant = self.expected_variant(run)
+        variant = self.expected_variant(run, manifest)
         result = {
             "$schema": "../../schemas/agent-benchmark-result.schema.json",
             "run_id": run["run_id"],
@@ -84,10 +86,10 @@ class AgentBenchmarkCampaignTests(unittest.TestCase):
             "completed_at": "2026-07-13T18:01:00Z",
             "status": "scored",
             "provenance": {
-                "repository_commit": self.manifest["repository"]["commit"],
+                "repository_commit": manifest["repository"]["commit"],
                 "repository_dirty": False,
-                "skill_snapshot": self.manifest["repository"]["commit"],
-                "task_sha256": self.manifest["task_sha256"][run["task_id"]],
+                "skill_snapshot": manifest["repository"]["commit"],
+                "task_sha256": manifest["task_sha256"][run["task_id"]],
                 "agent_version": variant["agent_version"],
                 "harness_version": self.campaign.harness.HARNESS_VERSION,
                 "invocation_mode": "cli",
@@ -124,6 +126,10 @@ class AgentBenchmarkCampaignTests(unittest.TestCase):
             ],
             "notes": "Finalized from independent blinded review.",
         }
+        if run["condition"] == self.campaign.harness.MCP_CONDITION:
+            result["provenance"]["condition_context"] = dict(
+                manifest["mcp_contract"]
+            )
         result_path = staging_root / "results" / f"{run['run_id']}.json"
         result_path.parent.mkdir(parents=True, exist_ok=True)
         result_path.write_text(
@@ -153,6 +159,90 @@ class AgentBenchmarkCampaignTests(unittest.TestCase):
         changed = self.campaign.build_schedule(self.payload, 20260714)
         self.assertEqual(repeated, self.manifest["schedule"])
         self.assertNotEqual(changed["waves"], repeated["waves"])
+
+    def test_legacy_v0_4_campaign_lock_remains_readable(self):
+        legacy = json.loads(json.dumps(self.manifest))
+        legacy["schema_version"] = "0.1.0"
+        legacy.pop("mcp_contract")
+
+        errors, payload = self.campaign.validate_campaign(legacy)
+
+        self.assertEqual(errors, [])
+        self.assertIsNotNone(payload)
+
+    def test_v0_5_manifest_locks_mcp_runtime_and_audit_rejects_tampering(self):
+        plan_path = ROOT / "agent-bench" / "plans" / "evidence-v0.5.json"
+        payload = self.campaign.harness.plan_payload(plan_path)
+        variants = []
+        for variant in payload["plan"]["variants"]:
+            variants.append(
+                {
+                    "id": variant["id"],
+                    "agent": variant["agent"],
+                    "harness": variant["harness"],
+                    "model": f"{variant['agent']}-exact-v1",
+                    "agent_version": f"{variant['agent']} 1.0.0",
+                    "budget_enforcement": self.campaign.budget_mode(
+                        variant["harness"]
+                    ),
+                    "ready": True,
+                    "issues": [],
+                }
+            )
+        preflight = {
+            "ok": True,
+            "plan_id": payload["plan"]["id"],
+            "run_count": payload["run_count"],
+            "repository_commit": "c" * 40,
+            "repository_dirty": False,
+            "variants": variants,
+            "mcp": {
+                **self.campaign.harness.mcp_condition_context("0.5.0"),
+                "ready": True,
+                "issues": [],
+            },
+            "blockers": [],
+        }
+        manifest = self.campaign.build_manifest(
+            payload,
+            plan_path,
+            preflight,
+            seed=20260714,
+            created_at="2026-07-14T18:00:00Z",
+        )
+        mcp_run = next(
+            run
+            for run in payload["runs"]
+            if run["condition"] == self.campaign.harness.MCP_CONDITION
+        )
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            staging_root = Path(tmpdir)
+            result_path, _ = self.write_scored_result(
+                staging_root, mcp_run, manifest
+            )
+            ready = self.campaign.audit_staging(
+                manifest, staging_root, allow_partial=True
+            )
+            result = json.loads(result_path.read_text(encoding="utf-8"))
+            result["provenance"]["condition_context"]["mcp_contract_sha256"] = (
+                "0" * 64
+            )
+            result_path.write_text(json.dumps(result), encoding="utf-8")
+            tampered = self.campaign.audit_staging(
+                manifest, staging_root, allow_partial=True
+            )
+
+        self.assertEqual(manifest["schema_version"], "0.2.0")
+        self.assertEqual(manifest["schedule"]["run_count"], 72)
+        self.assertEqual(manifest["schedule"]["wave_count"], 9)
+        self.assertTrue(
+            all(len(wave["run_ids"]) == 8 for wave in manifest["schedule"]["waves"])
+        )
+        self.assertEqual(manifest["mcp_contract"]["mcp_package_version"], "0.5.0")
+        self.assertTrue(ready["ready_for_import"], ready["errors"])
+        self.assertFalse(tampered["ready_for_import"])
+        self.assertTrue(any("MCP result" in item for item in tampered["errors"]))
 
     def test_prepare_writes_lock_without_launching_agents(self):
         with tempfile.TemporaryDirectory() as tmpdir:

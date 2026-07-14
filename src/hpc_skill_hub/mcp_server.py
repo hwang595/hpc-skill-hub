@@ -30,6 +30,7 @@ from .cli import (
     site_adapter_resolution,
     skill_collection_membership,
 )
+from .release_status import ReleaseStatusError, load_release_status
 
 
 SERVER_NAME = "HPC Skill Hub"
@@ -271,8 +272,9 @@ def registry_status() -> Dict[str, Any]:
     reviews = load_review_status()
     try:
         context = load_context_bundle()
-    except ContextBundleError as exc:
-        return error_payload("invalid-context-bundle", str(exc))
+        release = load_release_status()
+    except (ContextBundleError, ReleaseStatusError) as exc:
+        return error_payload("invalid-generated-status", str(exc))
     return {
         "ok": True,
         "server": {
@@ -302,6 +304,7 @@ def registry_status() -> Dict[str, Any]:
             "status_counts": reviews["status_counts"],
         },
         "context": context_summary(context),
+        "release": release,
         "safety_boundary": {
             "executes_commands": False,
             "writes_files": False,

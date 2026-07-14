@@ -21,7 +21,7 @@
     "$schema": {
       "const": "https://hpc-skill-hub.org/schemas/agent-benchmark-campaign.schema.json"
     },
-    "schema_version": {"const": "0.1.0"},
+    "schema_version": {"enum": ["0.1.0", "0.2.0"]},
     "campaign_id": {
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
@@ -59,6 +59,32 @@
       "minItems": 1,
       "uniqueItems": true,
       "items": {"type": "string"}
+    },
+    "mcp_contract": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "required": [
+            "mcp_server_id",
+            "mcp_contract_path",
+            "mcp_contract_sha256",
+            "mcp_read_only",
+            "mcp_package_version"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "mcp_server_id": {"type": "string", "minLength": 1},
+            "mcp_contract_path": {"const": "integrations/mcp-client.json"},
+            "mcp_contract_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "mcp_read_only": {"const": true},
+            "mcp_package_version": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
     },
     "variants": {
       "type": "array",
@@ -130,5 +156,14 @@
         }
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"schema_version": {"const": "0.2.0"}},
+        "required": ["schema_version"]
+      },
+      "then": {"required": ["mcp_contract"]}
+    }
+  ]
 }

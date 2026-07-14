@@ -47,7 +47,7 @@
       "uniqueItems": true,
       "items": {
         "type": "string",
-        "enum": ["baseline", "docs-only", "skill-enabled", "skill-site-adapter"]
+        "enum": ["baseline", "docs-only", "skill-enabled", "mcp-enabled", "skill-site-adapter"]
       }
     },
     "trials_per_condition": {

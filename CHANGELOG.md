@@ -7,8 +7,18 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+## v0.5.0 - 2026-07-14
+
 ### Added
 
+- Add a generated, packaged v0.5 release-status contract that summarizes
+  compatibility, verified context, MCP, benchmark, review, and security
+  evidence while keeping comparative, promotion, and tag-provenance gates
+  explicitly closed or pending.
+- Add a 72-run MCP evidence plan across Codex and Claude Code, three public-safe
+  tasks, four isolated conditions, and three trials, with exact installed MCP
+  package and contract locks, preflight protocol diagnostics, and separate
+  MCP-versus-baseline and MCP-versus-skill publication gates.
 - Add v0.5 P3 Trust Policy Packs with a separately versioned packaged baseline,
   explicit rule enablement, monotonic severity overrides, digest-bound and
   expiring reviewed exceptions, scanner/context provenance receipts, and
@@ -31,6 +41,11 @@ skills keep their own `version` field in `skills/*/skill.json`.
   optional official SDK v1 support, explicit safety annotations, packaging,
   protocol tests, and CI smoke coverage.
 - Add the v0.5 trusted agent distribution plan and MCP safety contract.
+
+### Changed
+
+- Prepare package, citation, release notes, completion matrix, wheel smoke tests,
+  and immutable manifest metadata for the `v0.5.0` release candidate.
 
 ## v0.4.0 - 2026-07-13
 
