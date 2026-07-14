@@ -63,7 +63,8 @@ capability surface through an in-memory protocol probe. P3 adds a separately
 versioned, fail-closed security policy with source-bound review exceptions and
 MCP argument allowlists. P4 adds a 72-run MCP evidence contract without
 launching paid agents in CI. P5 publishes one generated release-status artifact
-that preserves closed external gates. See the
+that preserves closed external gates and an operational Pages explorer that
+makes those gates visible beside the registry. See the
 [v0.5 Development Plan](docs/V0_5_PLAN.md).
 
 ## v0.4 Released

@@ -56,6 +56,7 @@ status that distinguishes repository capability from external evidence.
 | Gate | Status | Evidence |
 | --- | --- | --- |
 | Unified generated status | Complete locally | `registry/release-status.json` summarizes compatibility, context, MCP, benchmark, review, and security artifacts and preserves closed external gates. |
+| Registry web explorer | Complete locally | The generated Pages site surfaces release readiness, collection entry points, responsive table/card views, sorting, shareable URL filters, and bounded mobile card expansion without adding a runtime framework. |
 | Version consistency | Complete locally | Package metadata, module version, citation metadata, README badge, notes, and candidate manifest target `0.5.0`. |
 | Distribution smoke tests | CI contract complete; candidate run required | Package workflow builds sdist/wheel, runs `twine check`, and tests both core and MCP-extra installs outside the checkout. |
 | Immutable manifest | Complete locally | `registry/releases/v0.5.0.json` checksums the candidate tree and CI requires it to pass `--check`. |

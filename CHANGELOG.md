@@ -44,6 +44,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ### Changed
 
+- Upgrade the generated Pages registry into an operational explorer with
+  release-readiness gates, collection shortcuts, responsive table/card views,
+  sorting, shareable URL filters, and bounded mobile result expansion.
 - Prepare package, citation, release notes, completion matrix, wheel smoke tests,
   and immutable manifest metadata for the `v0.5.0` release candidate.
 
