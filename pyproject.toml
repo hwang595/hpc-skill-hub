@@ -24,6 +24,12 @@ classifiers = [
 
 [project.scripts]
 hpc-skill = "hpc_skill_hub.cli:main"
+hpc-skill-mcp = "hpc_skill_hub.mcp_server:main"
+
+[project.optional-dependencies]
+mcp = [
+  "mcp>=1.27,<2; python_version >= '3.10'"
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]

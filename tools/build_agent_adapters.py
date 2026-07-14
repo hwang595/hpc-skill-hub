@@ -73,6 +73,8 @@ Current generated registry snapshot:
 - Scan a community skill before loading it:
   `python3 tools/hpc_skill.py security <skill-path> --json`
 - Validate the registry: `python3 tools/hpc_skill.py validate --json`
+- Inspect the optional MCP entry point:
+  `PYTHONPATH=src python3 -m hpc_skill_hub.mcp_server --help`
 - Full local gate: `make check`
 
 ## Agent Integration
@@ -80,6 +82,9 @@ Current generated registry snapshot:
 - Codex should use `.agents/skills/hpc-skill-hub/SKILL.md` for registry-backed
   HPC guidance.
 - Claude Code should use `CLAUDE.md` plus `.claude/skills/hpc-skill-hub/SKILL.md`.
+- MCP-capable clients may use the optional local `hpc-skill-mcp` stdio server
+  for read-only registry metadata discovery. Full workflow content still comes
+  from the referenced README and examples until verified context bundles ship.
 - Keep provider-specific generated files synchronized with:
   `python3 tools/build_agent_adapters.py`.
 - Check generated agent files without writing with:
@@ -239,6 +244,7 @@ scraping prose or guessing cluster policy.
 | `.agents/skills/hpc-skill-hub/SKILL.md` | Codex | Router skill for registry-backed HPC guidance. |
 | `.agents/skills/hpc-skill-hub/agents/openai.yaml` | Codex app | UI metadata and invocation policy for the router skill. |
 | `.claude/skills/hpc-skill-hub/SKILL.md` | Claude Code | Router skill exposed as `/hpc-skill-hub`. |
+| `hpc-skill-mcp` | MCP clients | Optional local stdio server for six read-only registry queries. |
 
 The current generated registry snapshot contains {index['skill_count']} skills,
 {index['collection_count']} collections, and {index['site_adapter_count']} site
@@ -298,13 +304,17 @@ python3 tools/build_agent_adapters.py --check
 The `agent-adapters` make target runs the same check and is part of
 `make check`.
 
-## Next Integration Step
+## Read-Only MCP Surface
 
-The registry now exposes a read-only skill/site-adapter resolution contract.
-The next layer should be a read-only MCP server over the same contract. Start
-with tools such as `search_skills`, `show_skill`, `resolve_site_policy`,
-`list_collections`, `show_site_adapters`, and `validate_registry`. Keep write,
-submit, transfer, and install actions out of the first MCP version.
+The optional `hpc-skill-mcp` stdio server exposes `search_skills`,
+`show_skill`, `list_collections`, `show_site_adapters`,
+`resolve_site_policy`, and `registry_status`. Every tool is read-only,
+non-destructive, idempotent, and closed-world. The server has no write,
+submit, transfer, install, tunnel, container, or network-listener tool.
+
+P0 returns validated registry metadata and source paths. The next integration
+step is a digest-verified packaged context bundle for complete README and
+example inspection outside a source checkout.
 """
 
 

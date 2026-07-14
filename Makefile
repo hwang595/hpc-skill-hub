@@ -1,4 +1,4 @@
-.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check compatibility health package-data release-manifest review-packet security skill-quality skill-reviews test validate index site cli clean
+.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check compatibility health mcp package-data release-manifest review-packet security skill-quality skill-reviews test validate index site cli clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -74,10 +74,13 @@ cli:
 	$(PYTHON) tools/hpc_skill.py resolve slurm-submit-job --adapter example-campus-cluster --json
 	$(PYTHON) tools/hpc_skill.py security skills/slurm-submit-job --fail-on high
 
+mcp:
+	PYTHONPATH=src $(PYTHON) -m hpc_skill_hub.mcp_server --help
+
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health skill-quality skill-reviews compatibility agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security test site cli
+check: validate index health skill-quality skill-reviews compatibility agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security test site cli mcp
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +
