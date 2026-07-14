@@ -1,7 +1,8 @@
 # v0.5 Development Plan
 
 Status: P0 read-only MCP MVP merged through PR #41 on 2026-07-14. P1 verified
-context bundles are implemented for review. Public delivery is tracked in issue
+context bundles are implemented in PR #42; required checks pass and merge is
+pending. Public delivery is tracked in issue
 [#40](https://github.com/hwang595/hpc-skill-hub/issues/40).
 
 v0.5 focuses on trusted agent distribution. The release should make the

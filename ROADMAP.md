@@ -40,8 +40,8 @@ follow-up work rather than synthetic CI claims.
 ## v0.5 Current Development
 
 Status: P0 read-only MCP MVP merged through PR #41 on 2026-07-14. P1 verified
-context bundles are implemented for review. The v0.5 delivery queue is tracked
-in issue #40.
+context bundles are implemented in PR #42; required checks pass and merge is
+pending. The v0.5 delivery queue is tracked in issue #40.
 
 v0.5 focuses on trusted agent distribution:
 
