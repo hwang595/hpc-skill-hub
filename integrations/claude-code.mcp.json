@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "hpc-skill-hub": {
+      "args": [],
+      "command": "hpc-skill-mcp",
+      "env": {},
+      "type": "stdio"
+    }
+  }
+}

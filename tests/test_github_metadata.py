@@ -304,7 +304,9 @@ class GitHubMetadataTests(unittest.TestCase):
             "python3 tools/build_health.py --check",
             "python3 tools/build_skill_quality.py --check",
             "python3 tools/build_compatibility.py --check",
+            "python3 tools/build_mcp_client_configs.py --check",
             "python3 tools/build_package_data.py --check",
+            "hpc-skill doctor --require-mcp --json",
             "hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json",
             "python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/smoke-v0.3.json --report docs/AGENT_BENCHMARK_SMOKE_PLAN.md --check",
             "python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.4.json --report docs/AGENT_BENCHMARK_V0_4_PLAN.md --check",
@@ -332,6 +334,7 @@ class GitHubMetadataTests(unittest.TestCase):
             "wheel:",
             "python3 -m pip install --upgrade pip build twine",
             "python3 tools/build_package_data.py --check",
+            "python3 tools/build_mcp_client_configs.py --check",
             "python3 tools/validate_registry_artifacts.py",
             "python3 -m build --sdist --wheel",
             "python3 -m twine check dist/*",
@@ -342,8 +345,12 @@ class GitHubMetadataTests(unittest.TestCase):
             "attestations: write",
             "id-token: write",
             "python3 -m venv /tmp/hpc-skill-hub-wheel",
+            "python3 -m venv /tmp/hpc-skill-hub-wheel-mcp",
+            "wheel_path=",
+            "${wheel_path}[mcp]",
             "--no-index --find-links",
             "hpc-skill health --json",
+            "hpc-skill doctor --require-mcp --json",
             "hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json",
             "python -m hpc_skill_hub show slurm-submit-job --json",
         ]:
@@ -624,6 +631,18 @@ class GitHubMetadataTests(unittest.TestCase):
         )
         self.assertIn(
             "schemas/skill-context-bundle.schema.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "integrations/mcp-client.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "docs/MCP_CLIENT_SETUP.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "schemas/mcp-client-contract.schema.json",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
 

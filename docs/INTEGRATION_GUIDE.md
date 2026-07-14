@@ -19,8 +19,13 @@ The stable seed-stage surfaces are:
 | `skills/*/examples/` | Reviewable example scripts, batch files, configs, and checklists. |
 | `collections/*.json` | Curated adoption paths for users, domains, or roles. |
 | `site-adapters/*/site.json` | Public local policy mappings for clusters, training environments, or public cloud HPC. |
+| `registry/skill-context.json` | Bounded, digest-verified README and declared artifact content for every validated skill. |
+| `integrations/mcp-client.json` | Canonical local stdio, capability, provider, and safety contract for MCP clients. |
+| `integrations/codex.config.toml` and `integrations/claude-code.mcp.json` | Generated, reviewable provider configuration examples. |
 | `python3 tools/hpc_skill.py ... --json` | Local CLI access for tools that prefer command output over direct file reads, including structured validation results. |
 | `hpc-skill ... --json` | Installed package access to the packaged registry snapshot for read-only discovery and site-policy resolution. |
+| `hpc-skill-mcp` | Optional read-only stdio server for metadata queries and verified full-context resources. |
+| `hpc-skill doctor --json` | Installed-runtime diagnostics for package data, digests, client contract, dependencies, and MCP capabilities. |
 
 Prefer `registry/index.json` for search and discovery. Load individual skill
 manifests only when you need full metadata beyond the compact index.
@@ -67,6 +72,11 @@ used as a pinned registry snapshot. The installed `hpc-skill` command supports
 JSON output for list, search, show, collection, adapter, resolve, and health commands
 without requiring a checkout at runtime. Contribution, validation, scaffolding,
 and release workflows should still use a full repository checkout.
+
+For MCP clients, install `hpc-skill-hub[mcp]`, run
+`hpc-skill doctor --require-mcp`, and follow the generated
+[MCP Client Setup](MCP_CLIENT_SETUP.md). The doctor uses an in-memory transport;
+it opens no listener and executes no skill content.
 
 Minimal Python example:
 

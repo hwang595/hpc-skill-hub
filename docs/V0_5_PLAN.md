@@ -1,8 +1,8 @@
 # v0.5 Development Plan
 
-Status: P0 read-only MCP MVP merged through PR #41 on 2026-07-14. P1 verified
-context bundles are implemented in PR #42; required checks pass and merge is
-pending. Public delivery is tracked in issue
+Status: P0 read-only MCP MVP merged through PR #41 and P1 verified context
+bundles merged through PR #42 on 2026-07-14. P2 onboarding and installed-runtime
+diagnostics are implemented for the next merge. Public delivery is tracked in issue
 [#40](https://github.com/hwang595/hpc-skill-hub/issues/40).
 
 v0.5 focuses on trusted agent distribution. The release should make the
@@ -40,6 +40,10 @@ resource client.
   content outside the packaged trust boundary.
 
 ## P2 Codex And Claude Code Onboarding
+
+Implementation status: complete for the repository capability. Provider
+examples are generated from a packaged canonical contract, and the doctor can
+validate both a core-only install and the full official-SDK protocol path.
 
 - Generate provider-specific stdio configuration examples from one canonical
   contract.

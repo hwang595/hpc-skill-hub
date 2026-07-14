@@ -21,14 +21,20 @@ from hpc_skill_hub.context import (  # noqa: E402
     ContextBundleError,
     verify_context_bundle,
 )
+from hpc_skill_hub.client_contract import (  # noqa: E402
+    ClientContractError,
+    validate_client_contract,
+)
 
 INDEX_JSON = ROOT / "registry" / "index.json"
 HEALTH_JSON = ROOT / "registry" / "health.json"
 QUALITY_JSON = ROOT / "registry" / "skill-quality.json"
 REVIEW_STATUS_JSON = ROOT / "registry" / "review-status.json"
 CONTEXT_JSON = ROOT / "registry" / "skill-context.json"
+MCP_CLIENT_JSON = ROOT / "integrations" / "mcp-client.json"
 RELEASE_DIR = ROOT / "registry" / "releases"
 PACKAGE_DATA_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "registry"
+PACKAGE_INTEGRATION_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "integrations"
 SCHEMAS = {
     "agent-benchmark-plan": ROOT / "schemas" / "agent-benchmark-plan.schema.json",
     "agent-benchmark-result": ROOT / "schemas" / "agent-benchmark-result.schema.json",
@@ -39,6 +45,7 @@ SCHEMAS = {
     "benchmark": ROOT / "schemas" / "benchmark.schema.json",
     "index": ROOT / "schemas" / "registry-index.schema.json",
     "health": ROOT / "schemas" / "registry-health.schema.json",
+    "mcp-client-contract": ROOT / "schemas" / "mcp-client-contract.schema.json",
     "release": ROOT / "schemas" / "release-manifest.schema.json",
     "skill-security-report": ROOT / "schemas" / "skill-security-report.schema.json",
     "skill-context-bundle": ROOT / "schemas" / "skill-context-bundle.schema.json",
@@ -365,6 +372,22 @@ def validate_context_bundle(
             )
 
 
+def validate_mcp_client_contract(
+    contract: Dict[str, Any], errors: List[str]
+) -> None:
+    context = relative(MCP_CLIENT_JSON)
+    require_schema_pointer(
+        contract,
+        "../schemas/mcp-client-contract.schema.json",
+        errors,
+        context,
+    )
+    try:
+        validate_client_contract(contract)
+    except ClientContractError as exc:
+        errors.append(f"{context}: {exc}")
+
+
 def validate_release(path: Path, release: Dict[str, Any], errors: List[str]) -> None:
     context = relative(path)
     require_schema_pointer(
@@ -441,13 +464,14 @@ def validate_release(path: Path, release: Dict[str, Any], errors: List[str]) -> 
 
 
 def validate_package_data(errors: List[str]) -> None:
-    for filename, source_path in {
-        "index.json": INDEX_JSON,
-        "health.json": HEALTH_JSON,
-        "review-status.json": REVIEW_STATUS_JSON,
-        "skill-context.json": CONTEXT_JSON,
-    }.items():
-        package_path = PACKAGE_DATA_DIR / filename
+    snapshots = {
+        PACKAGE_DATA_DIR / "index.json": INDEX_JSON,
+        PACKAGE_DATA_DIR / "health.json": HEALTH_JSON,
+        PACKAGE_DATA_DIR / "review-status.json": REVIEW_STATUS_JSON,
+        PACKAGE_DATA_DIR / "skill-context.json": CONTEXT_JSON,
+        PACKAGE_INTEGRATION_DIR / "mcp-client.json": MCP_CLIENT_JSON,
+    }
+    for package_path, source_path in snapshots.items():
         require(package_path.exists(), errors, f"{relative(package_path)} is missing")
         if package_path.exists():
             require(
@@ -567,11 +591,13 @@ def main() -> int:
     quality = load_json(QUALITY_JSON)
     review_status = load_json(REVIEW_STATUS_JSON)
     context_bundle = load_json(CONTEXT_JSON)
+    mcp_client_contract = load_json(MCP_CLIENT_JSON)
     validate_index(index, errors)
     validate_health(index, health, errors)
     validate_skill_quality(index, quality, errors)
     validate_review_status(index, review_status, errors)
     validate_context_bundle(index, context_bundle, errors)
+    validate_mcp_client_contract(mcp_client_contract, errors)
     validate_package_data(errors)
     validate_public_count_mentions(index, errors)
 

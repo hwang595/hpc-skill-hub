@@ -43,6 +43,7 @@ INCLUDED_DIRS = [
     "benchmarks",
     "collections",
     "docs",
+    "integrations",
     "registry",
     "reviews",
     "schemas",

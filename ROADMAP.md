@@ -24,10 +24,9 @@ The seed repository currently includes:
   and deterministic release manifest artifacts.
 - GitHub metadata for labels, issue templates, discussion templates,
   milestones, workflows, starter rulesets, and seed community issues.
-- Published `v0.1.0`, `v0.2.0`, and `v0.3.0` registry releases. The `v0.3.0`
-  release adds community-skill security, agent compatibility, blinded-review,
-  provenance, and skill-quality infrastructure without promoting skills
-  automatically or claiming measured agent lift.
+- Published `v0.1.0` through `v0.4.0` registry releases. The `v0.4.0` release
+  adds evidence-campaign controls and review infrastructure without promoting
+  skills automatically or claiming measured agent lift.
 
 The public GitHub launch is complete. Current development focuses on turning
 seed skills into reviewed skills through public-safe evidence and domain
@@ -39,9 +38,11 @@ follow-up work rather than synthetic CI claims.
 
 ## v0.5 Current Development
 
-Status: P0 read-only MCP MVP merged through PR #41 on 2026-07-14. P1 verified
-context bundles are implemented in PR #42; required checks pass and merge is
-pending. The v0.5 delivery queue is tracked in issue #40.
+Status: P0 read-only MCP MVP merged through PR #41 and P1 verified context
+bundles merged through PR #42 on 2026-07-14. P2 adds generated Codex and Claude
+Code onboarding, a packaged canonical client contract, installed-runtime
+diagnostics, and core/full-MCP wheel smoke tests. The v0.5 delivery queue is
+tracked in issue #40.
 
 v0.5 focuses on trusted agent distribution:
 
@@ -56,7 +57,9 @@ v0.5 focuses on trusted agent distribution:
 
 The MCP surface contains no operational HPC actions. P1 packages only
 registry-declared, security-scanned content and rejects stale, missing,
-oversized, path-escaping, or blocked inputs. Neither phase changes the v0.4
+oversized, path-escaping, or blocked inputs. P2 generates reviewable examples
+without silently enabling project MCP configuration and validates the exact
+capability surface through an in-memory protocol probe. None of these phases changes the v0.4
 evidence boundary. See the [v0.5 Development Plan](docs/V0_5_PLAN.md).
 
 ## v0.4 Released

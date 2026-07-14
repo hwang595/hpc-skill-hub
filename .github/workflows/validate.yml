@@ -29,6 +29,8 @@ jobs:
         run: python3 tools/build_skill_context.py --check
       - name: Check generated compatibility tables
         run: python3 tools/build_compatibility.py --check
+      - name: Check generated MCP client configurations
+        run: python3 tools/build_mcp_client_configs.py --check
       - name: Check generated agent adapters
         run: python3 tools/build_agent_adapters.py --check
       - name: Check skill benchmarks
@@ -61,6 +63,7 @@ jobs:
         run: |
           cd /tmp
           hpc-skill-mcp --help
+          hpc-skill doctor --require-mcp --json
           hpc-skill health --json
           hpc-skill review candidates --json
           hpc-skill collection core-hpc --json
@@ -71,6 +74,7 @@ jobs:
         run: |
           python3 tools/hpc_skill.py list
           hpc-skill collections
+          hpc-skill doctor --require-mcp
           hpc-skill collection core-hpc
           hpc-skill health
           hpc-skill review status job-failure-triage

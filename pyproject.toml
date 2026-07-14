@@ -35,4 +35,4 @@ mcp = [
 where = ["src"]
 
 [tool.setuptools.package-data]
-hpc_skill_hub = ["data/registry/*.json"]
+hpc_skill_hub = ["data/registry/*.json", "data/integrations/*.json"]

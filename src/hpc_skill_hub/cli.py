@@ -499,6 +499,17 @@ def cmd_health(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_doctor(args: argparse.Namespace) -> int:
+    from .doctor import doctor_report, doctor_text
+
+    report = doctor_report(require_mcp=args.require_mcp)
+    if args.json:
+        emit_json(report)
+    else:
+        print(doctor_text(report))
+    return 0 if report["ok"] else 1
+
+
 def review_release(payload: Dict[str, Any], release: Optional[str]) -> bool:
     return release is None or payload.get("release") == release
 
@@ -1154,6 +1165,17 @@ def build_parser() -> argparse.ArgumentParser:
     health_parser = subparsers.add_parser("health", help="Show registry health summary")
     health_parser.add_argument("--json", action="store_true", help="Emit JSON")
     health_parser.set_defaults(func=cmd_health)
+
+    doctor_parser = subparsers.add_parser(
+        "doctor", help="Diagnose installed data and optional MCP compatibility"
+    )
+    doctor_parser.add_argument("--json", action="store_true", help="Emit JSON")
+    doctor_parser.add_argument(
+        "--require-mcp",
+        action="store_true",
+        help="Fail when the optional MCP dependency or protocol probe is unavailable",
+    )
+    doctor_parser.set_defaults(func=cmd_doctor)
 
     review_parser = subparsers.add_parser(
         "review", help="Inspect evidence-backed skill maturity reviews"
