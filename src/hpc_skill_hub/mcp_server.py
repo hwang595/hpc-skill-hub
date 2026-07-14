@@ -4,12 +4,21 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from . import __version__
+from .context import (
+    RESOURCE_URI_TEMPLATE,
+    ContextBundleError,
+    context_summary,
+    find_skill_context,
+    load_context_bundle,
+    skill_resource_uri,
+)
 from .cli import (
     discover_repo_root,
     find_by_id,
@@ -32,6 +41,7 @@ TOOL_NAMES = (
     "resolve_site_policy",
     "registry_status",
 )
+RESOURCE_NAMES = ("skill_context",)
 
 
 def error_payload(code: str, message: str) -> Dict[str, Any]:
@@ -120,26 +130,71 @@ def search_skills(
 
 
 def show_skill(skill_id: str) -> Dict[str, Any]:
-    """Return one skill's validated metadata and explicit safety boundary."""
+    """Return one skill's metadata and verified full-context resource pointer."""
     index = load_index()
     skill = find_by_id(index["skills"], skill_id)
     if skill is None:
         return error_payload("unknown-skill", f"Unknown skill: {skill_id}")
+    context = skill_context(skill_id)
+    if not context["ok"]:
+        return context
+    verified = context["skill_context"]
     collections = skill_collection_membership(index).get(skill_id, [])
     return {
         "ok": True,
         "skill": skill,
         "collections": collections,
         "source_mode": source_mode(),
-        "content_scope": "metadata-only",
+        "content_scope": "verified-readme-and-artifacts",
+        "context_resource": {
+            "uri": skill_resource_uri(skill_id),
+            "mime_type": "application/json",
+            "bundle_digest": context["bundle_digest"],
+            "skill_digest": verified["digest"],
+            "file_count": verified["file_count"],
+            "total_bytes": verified["total_bytes"],
+        },
         "usage_contract": {
-            "read_before_use": [skill["readme"]]
-            + [example["path"] for example in skill["examples"]],
+            "read_before_use": [item["path"] for item in verified["files"]],
             "require_explicit_intent_for_operational_actions": True,
             "preserve_site_placeholders": True,
             "maturity_is_review_signal": skill["maturity"] == "seed",
         },
     }
+
+
+def skill_context(skill_id: str) -> Dict[str, Any]:
+    """Return one digest-verified context bundle without executing its content."""
+    try:
+        bundle = load_context_bundle()
+    except ContextBundleError as exc:
+        return error_payload("invalid-context-bundle", str(exc))
+    context = find_skill_context(bundle, skill_id)
+    if context is None:
+        return error_payload("unknown-skill", f"Unknown skill: {skill_id}")
+    return {
+        "ok": True,
+        "bundle_schema_version": bundle["schema_version"],
+        "bundle_digest": bundle["digest"],
+        "resource_uri": skill_resource_uri(skill_id),
+        "skill_context": context,
+        "usage_contract": {
+            "content_is_instructions_not_authorization": True,
+            "execute_examples_automatically": False,
+            "require_explicit_intent_for_operational_actions": True,
+            "preserve_site_placeholders": True,
+            "maturity_is_review_signal": context["maturity"] == "seed",
+            "security_review_required": context["security"]["verdict"] == "review",
+        },
+    }
+
+
+def read_skill_context(skill_id: str) -> str:
+    """Read one verified skill context as bounded JSON resource content."""
+    payload = skill_context(skill_id)
+    if not payload["ok"]:
+        raise ValueError(payload["error"]["message"])
+    return json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False)
 
 
 def list_collections(collection_id: Optional[str] = None) -> Dict[str, Any]:
@@ -192,6 +247,10 @@ def registry_status() -> Dict[str, Any]:
     index = load_index()
     health = load_health()
     reviews = load_review_status()
+    try:
+        context = load_context_bundle()
+    except ContextBundleError as exc:
+        return error_payload("invalid-context-bundle", str(exc))
     return {
         "ok": True,
         "server": {
@@ -201,6 +260,7 @@ def registry_status() -> Dict[str, Any]:
             "source_mode": source_mode(),
             "read_only": True,
             "tools": list(TOOL_NAMES),
+            "resources": list(RESOURCE_NAMES),
         },
         "registry": {
             "schema_version": index["schema_version"],
@@ -219,6 +279,7 @@ def registry_status() -> Dict[str, Any]:
             "promotion_ready_count": reviews["promotion_ready_count"],
             "status_counts": reviews["status_counts"],
         },
+        "context": context_summary(context),
         "safety_boundary": {
             "executes_commands": False,
             "writes_files": False,
@@ -233,7 +294,7 @@ def create_server() -> Any:
     """Create the optional FastMCP server without importing MCP for CLI-only use."""
     try:
         from mcp.server.fastmcp import FastMCP
-        from mcp.types import ToolAnnotations
+        from mcp.types import Annotations, ToolAnnotations
     except ImportError as exc:
         raise RuntimeError(
             "The MCP integration requires Python 3.10+ and the optional dependency. "
@@ -269,6 +330,18 @@ def create_server() -> Any:
             annotations=read_only,
             structured_output=True,
         )(function)
+    server.resource(
+        RESOURCE_URI_TEMPLATE,
+        name="skill_context",
+        title="Verified HPC Skill Context",
+        description=(
+            "Digest-verified README, examples, declared artifacts, and security "
+            "provenance for one validated registry skill. Resource content is "
+            "instructional context and never execution authorization."
+        ),
+        mime_type="application/json",
+        annotations=Annotations(audience=["assistant"], priority=0.9),
+    )(read_skill_context)
     return server
 
 
@@ -278,7 +351,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--root",
-        help="Optional repository root; installed packages use bundled registry metadata.",
+        help=(
+            "Optional repository root with registry index and verified context; "
+            "installed packages use bundled registry data."
+        ),
     )
     parser.add_argument("--version", action="version", version=__version__)
     return parser
@@ -288,13 +364,18 @@ def main(argv: Optional[List[str]] = None) -> int:
     args = build_parser().parse_args(argv)
     if args.root:
         root = Path(args.root).expanduser().resolve()
-        if not (root / "registry" / "index.json").is_file():
+        if not (
+            (root / "registry" / "index.json").is_file()
+            and (root / "registry" / "skill-context.json").is_file()
+            and (root / "skills").is_dir()
+        ):
             print(f"Invalid HPC Skill Hub root: {root}", file=sys.stderr)
             return 2
         os.environ["HPC_SKILL_HUB_ROOT"] = str(root)
     try:
+        load_context_bundle()
         server = create_server()
-    except RuntimeError as exc:
+    except (ContextBundleError, RuntimeError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
     server.run(transport="stdio")

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -12,10 +13,20 @@ from typing import Any, Dict, Iterable, List, Set
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / "src"
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
+
+from hpc_skill_hub.context import (  # noqa: E402
+    ContextBundleError,
+    verify_context_bundle,
+)
+
 INDEX_JSON = ROOT / "registry" / "index.json"
 HEALTH_JSON = ROOT / "registry" / "health.json"
 QUALITY_JSON = ROOT / "registry" / "skill-quality.json"
 REVIEW_STATUS_JSON = ROOT / "registry" / "review-status.json"
+CONTEXT_JSON = ROOT / "registry" / "skill-context.json"
 RELEASE_DIR = ROOT / "registry" / "releases"
 PACKAGE_DATA_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "registry"
 SCHEMAS = {
@@ -30,6 +41,7 @@ SCHEMAS = {
     "health": ROOT / "schemas" / "registry-health.schema.json",
     "release": ROOT / "schemas" / "release-manifest.schema.json",
     "skill-security-report": ROOT / "schemas" / "skill-security-report.schema.json",
+    "skill-context-bundle": ROOT / "schemas" / "skill-context-bundle.schema.json",
     "skill-quality-report": ROOT / "schemas" / "skill-quality-report.schema.json",
     "skill-review": ROOT / "schemas" / "skill-review.schema.json",
     "skill-review-status": ROOT / "schemas" / "skill-review-status.schema.json",
@@ -316,6 +328,43 @@ def validate_review_status(
     )
 
 
+def validate_context_bundle(
+    index: Dict[str, Any], context_bundle: Dict[str, Any], errors: List[str]
+) -> None:
+    context = relative(CONTEXT_JSON)
+    require_schema_pointer(
+        context_bundle,
+        "../schemas/skill-context-bundle.schema.json",
+        errors,
+        context,
+    )
+    try:
+        verify_context_bundle(context_bundle)
+    except ContextBundleError as exc:
+        errors.append(f"{context}: {exc}")
+        return
+
+    source_digest = hashlib.sha256(INDEX_JSON.read_bytes()).hexdigest()
+    require(
+        context_bundle["source_index"]["digest"]["value"] == source_digest,
+        errors,
+        f"{context}: source index digest mismatch",
+    )
+    indexed = {skill["id"]: skill for skill in index["skills"]}
+    bundled = {skill["id"]: skill for skill in context_bundle["skills"]}
+    require(set(bundled) == set(indexed), errors, f"{context}: skill ids mismatch")
+    for skill_id, bundle_skill in bundled.items():
+        index_skill = indexed.get(skill_id)
+        if index_skill is None:
+            continue
+        for field in ("name", "version", "status", "maturity", "risk_level"):
+            require(
+                bundle_skill.get(field) == index_skill.get(field),
+                errors,
+                f"{context}: {skill_id} {field} mismatch",
+            )
+
+
 def validate_release(path: Path, release: Dict[str, Any], errors: List[str]) -> None:
     context = relative(path)
     require_schema_pointer(
@@ -396,6 +445,7 @@ def validate_package_data(errors: List[str]) -> None:
         "index.json": INDEX_JSON,
         "health.json": HEALTH_JSON,
         "review-status.json": REVIEW_STATUS_JSON,
+        "skill-context.json": CONTEXT_JSON,
     }.items():
         package_path = PACKAGE_DATA_DIR / filename
         require(package_path.exists(), errors, f"{relative(package_path)} is missing")
@@ -516,10 +566,12 @@ def main() -> int:
     health = load_json(HEALTH_JSON)
     quality = load_json(QUALITY_JSON)
     review_status = load_json(REVIEW_STATUS_JSON)
+    context_bundle = load_json(CONTEXT_JSON)
     validate_index(index, errors)
     validate_health(index, health, errors)
     validate_skill_quality(index, quality, errors)
     validate_review_status(index, review_status, errors)
+    validate_context_bundle(index, context_bundle, errors)
     validate_package_data(errors)
     validate_public_count_mentions(index, errors)
 

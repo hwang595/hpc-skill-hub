@@ -1,8 +1,8 @@
 # Read-Only MCP Server
 
-The optional `hpc-skill-mcp` command exposes validated registry metadata to MCP
-clients over stdio. It does not run HPC commands or provide an operational
-execution tool.
+The optional `hpc-skill-mcp` command exposes validated registry metadata and
+verified skill context to MCP clients over stdio. It does not run HPC commands
+or provide an operational execution tool.
 
 ## Requirements
 
@@ -25,8 +25,8 @@ python3 -m pip install '.[mcp]'
 hpc-skill-mcp --root /path/to/hpc-skill-hub
 ```
 
-An MCP client should launch `hpc-skill-mcp` as a local stdio command. P0 does
-not expose an HTTP listener.
+An MCP client should launch `hpc-skill-mcp` as a local stdio command. The
+server does not expose an HTTP listener.
 
 ## Tool Surface
 
@@ -39,15 +39,46 @@ not expose an HTTP listener.
 | `resolve_site_policy` | Resolve one skill through one public adapter without filling unknown local values. |
 | `registry_status` | Return registry health, review queue state, server capabilities, and the safety boundary. |
 
-Search results are capped at 50 records. P0 returns packaged registry metadata,
-not full README or example contents. Digest-verified full context is P1 work.
+Search results are capped at 50 records. `show_skill` returns validated metadata
+plus the URI, digest, file count, and byte count for the corresponding verified
+context resource.
+
+## Resource Surface
+
+The resource template is:
+
+```text
+hpc-skill://skills/{skill_id}
+```
+
+For example, after calling `show_skill("slurm-submit-job")`, a client can read
+`hpc-skill://skills/slurm-submit-job`. The JSON resource contains:
+
+- skill id, version, status, maturity, risk, and source path;
+- exact UTF-8 content for README and every manifest-declared artifact;
+- source byte counts and SHA-256 digests;
+- a per-skill digest and the enclosing bundle digest;
+- manifest provenance and static security-scan provenance; and
+- an explicit usage contract that content is instruction, not authorization.
+
+`registry/skill-context.json` is generated deterministically. Current limits
+are 64 KiB per file, 64 files and 256 KiB per skill, and 2 MiB of source content
+for the complete registry. Generation fails for stale, missing, undeclared,
+non-UTF-8, oversized, symlinked, path-escaping, or security-blocked content.
+Installed wheels carry an identical package snapshot.
+
+At runtime the loader recomputes every file, skill, and bundle digest, then
+checks that the bundle is bound to the exact packaged `registry/index.json`.
+SHA-256 detects corruption and stale data; it is not a signature and does not
+replace release attestations or human review. Server startup fails closed when
+the selected repository or packaged bundle does not pass these checks.
 
 ## Safety Boundary
 
 Every tool is annotated as read-only, non-destructive, idempotent, and
 closed-world. These annotations help clients describe the tools, but they are
 not the enforcement boundary. The server itself registers only the six named
-functions and contains no tool that:
+functions and one bounded resource template. It contains no tool that:
 
 - executes commands or example scripts;
 - writes files or changes registry state;
@@ -55,6 +86,10 @@ functions and contains no tool that:
 - transfers data, installs software, or launches containers;
 - opens tunnels, listeners, or remote network sessions; or
 - returns unreviewed community skill content.
+
+Only content already admitted to the generated public registry can enter the
+resource bundle. Arbitrary community paths cannot be passed to the MCP server.
+Security `review` findings remain visible; `block` prevents generation.
 
 Clients must still treat `maturity: seed` as a review signal, preserve site
 placeholders, inspect referenced README and example sources, and obtain explicit
@@ -67,8 +102,11 @@ Run the dependency-independent checks:
 ```bash
 PYTHONPATH=src python3 -m hpc_skill_hub.mcp_server --help
 python3 -m unittest tests.test_mcp_server
+python3 -m unittest tests.test_skill_context
+python3 tools/build_skill_context.py --check
 ```
 
 With the optional MCP dependency installed, the same test module creates an
 official in-memory client/server session, lists tools, verifies annotations,
-and calls `search_skills` through the protocol.
+calls `search_skills`, lists the resource template, and reads a verified skill
+context through the protocol.

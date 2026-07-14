@@ -618,6 +618,14 @@ class GitHubMetadataTests(unittest.TestCase):
             "schemas/agent-benchmark-campaign.schema.json",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
+        self.assertIn(
+            "registry/skill-context.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "schemas/skill-context-bundle.schema.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
 
         result = subprocess.run(
             [

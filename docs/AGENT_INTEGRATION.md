@@ -14,7 +14,7 @@ scraping prose or guessing cluster policy.
 | `.agents/skills/hpc-skill-hub/SKILL.md` | Codex | Router skill for registry-backed HPC guidance. |
 | `.agents/skills/hpc-skill-hub/agents/openai.yaml` | Codex app | UI metadata and invocation policy for the router skill. |
 | `.claude/skills/hpc-skill-hub/SKILL.md` | Claude Code | Router skill exposed as `/hpc-skill-hub`. |
-| `hpc-skill-mcp` | MCP clients | Optional local stdio server for six read-only registry queries. |
+| `hpc-skill-mcp` | MCP clients | Optional local stdio server for six read-only registry queries plus verified skill-context resources. |
 
 The current generated registry snapshot contains 97 skills,
 12 collections, and 2 site
@@ -33,6 +33,12 @@ adapters.
 
 Agents should cite the skill id, version, maturity, risk level, README path, and
 example paths used for a recommendation.
+
+MCP clients should call `show_skill`, then read the returned
+`hpc-skill://skills/<skill-id>` resource. The resource contains only
+registry-declared UTF-8 artifacts, per-file and per-skill SHA-256 digests, and
+security-scan provenance. A `review` verdict remains visible and a `block`
+verdict is never packaged.
 
 Community-contributed skill packages are a separate trust boundary. Agents
 should run `python3 tools/hpc_skill.py security <skill-path> --json` before
@@ -82,6 +88,9 @@ The optional `hpc-skill-mcp` stdio server exposes `search_skills`,
 non-destructive, idempotent, and closed-world. The server has no write,
 submit, transfer, install, tunnel, container, or network-listener tool.
 
-P0 returns validated registry metadata and source paths. The next integration
-step is a digest-verified packaged context bundle for complete README and
-example inspection outside a source checkout.
+The `hpc-skill://skills/{skill_id}` resource template returns bounded,
+digest-verified README, example, and declared artifact content outside a source
+checkout. Runtime verification binds the resource to the packaged registry
+index. Hash verification detects stale or corrupted context; it does not
+replace release attestations, domain review, sandboxing, or explicit user
+authorization for operational actions.
