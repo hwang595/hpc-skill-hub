@@ -34,12 +34,17 @@ from hpc_skill_hub.release_status import (  # noqa: E402
     ReleaseStatusError,
     validate_release_status,
 )
+from hpc_skill_hub.release_provenance import (  # noqa: E402
+    ReleaseProvenanceError,
+    validate_release_provenance as validate_release_provenance_record,
+)
 
 INDEX_JSON = ROOT / "registry" / "index.json"
 HEALTH_JSON = ROOT / "registry" / "health.json"
 QUALITY_JSON = ROOT / "registry" / "skill-quality.json"
 REVIEW_STATUS_JSON = ROOT / "registry" / "review-status.json"
 RELEASE_STATUS_JSON = ROOT / "registry" / "release-status.json"
+RELEASE_PROVENANCE_JSON = ROOT / "registry" / "provenance" / "v0.5.0.json"
 CONTEXT_JSON = ROOT / "registry" / "skill-context.json"
 MCP_CLIENT_JSON = ROOT / "integrations" / "mcp-client.json"
 SECURITY_POLICY_JSON = ROOT / "security" / "policies" / "community-default.json"
@@ -59,6 +64,7 @@ SCHEMAS = {
     "health": ROOT / "schemas" / "registry-health.schema.json",
     "mcp-client-contract": ROOT / "schemas" / "mcp-client-contract.schema.json",
     "release": ROOT / "schemas" / "release-manifest.schema.json",
+    "release-provenance-record": ROOT / "schemas" / "release-provenance-record.schema.json",
     "release-status": ROOT / "schemas" / "release-status.schema.json",
     "skill-security-report": ROOT / "schemas" / "skill-security-report.schema.json",
     "skill-security-policy": ROOT / "schemas" / "skill-security-policy.schema.json",
@@ -494,10 +500,30 @@ def validate_release(path: Path, release: Dict[str, Any], errors: List[str]) -> 
     require(paths == sorted(paths), errors, f"{context}: file paths must be sorted")
 
 
+def validate_release_provenance(
+    provenance: Dict[str, Any], errors: List[str]
+) -> None:
+    context = relative(RELEASE_PROVENANCE_JSON)
+    release = RELEASE_PROVENANCE_JSON.stem
+    manifest_path = RELEASE_DIR / f"{release}.json"
+    if not manifest_path.exists():
+        errors.append(f"{relative(manifest_path)} is missing")
+        return
+    try:
+        validate_release_provenance_record(
+            provenance,
+            release,
+            hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+        )
+    except ReleaseProvenanceError as exc:
+        errors.append(f"{context}: {exc}")
+
+
 def validate_package_data(errors: List[str]) -> None:
     snapshots = {
         PACKAGE_DATA_DIR / "index.json": INDEX_JSON,
         PACKAGE_DATA_DIR / "health.json": HEALTH_JSON,
+        PACKAGE_DATA_DIR / "release-provenance.json": RELEASE_PROVENANCE_JSON,
         PACKAGE_DATA_DIR / "release-status.json": RELEASE_STATUS_JSON,
         PACKAGE_DATA_DIR / "review-status.json": REVIEW_STATUS_JSON,
         PACKAGE_DATA_DIR / "skill-context.json": CONTEXT_JSON,
@@ -648,6 +674,7 @@ def main() -> int:
     quality = load_json(QUALITY_JSON)
     review_status = load_json(REVIEW_STATUS_JSON)
     release_status = load_json(RELEASE_STATUS_JSON)
+    release_provenance = load_json(RELEASE_PROVENANCE_JSON)
     context_bundle = load_json(CONTEXT_JSON)
     mcp_client_contract = load_json(MCP_CLIENT_JSON)
     validate_index(index, errors)
@@ -655,6 +682,7 @@ def main() -> int:
     validate_skill_quality(index, quality, errors)
     validate_review_status(index, review_status, errors)
     validate_generated_release_status(release_status, errors)
+    validate_release_provenance(release_provenance, errors)
     validate_context_bundle(index, context_bundle, errors)
     validate_mcp_client_contract(mcp_client_contract, errors)
     validate_package_data(errors)

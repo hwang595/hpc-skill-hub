@@ -79,7 +79,7 @@ python3 tools/proposal_evidence.py --owner <owner> --run-check
 python3 tools/review_candidates.py --limit 12
 python3 tools/build_package_data.py --check
 python3 tools/build_release_status.py --check
-python3 tools/build_release_manifest.py v0.5.0 --check
+python3 tools/validate_registry_artifacts.py --release-only
 python3 tools/review_packet.py --check
 python3 tools/validate_registry_artifacts.py
 python3 -m pip install --upgrade build twine

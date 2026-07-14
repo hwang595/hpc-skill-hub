@@ -40,6 +40,11 @@ class DoctorTests(unittest.TestCase):
         self.assertFalse(
             checks["release-status"]["details"]["external_evidence_ready"]
         )
+        self.assertEqual(len(checks["package-data"]["details"]["files"]), 8)
+        self.assertIn(
+            "registry/release-provenance.json",
+            checks["package-data"]["details"]["files"],
+        )
 
     def test_cli_emits_machine_readable_report(self):
         env = os.environ.copy()

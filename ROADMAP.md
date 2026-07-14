@@ -24,8 +24,8 @@ The seed repository currently includes:
   and deterministic release manifest artifacts.
 - GitHub metadata for labels, issue templates, discussion templates,
   milestones, workflows, starter rulesets, and seed community issues.
-- Published `v0.1.0` through `v0.4.0` registry releases. The `v0.4.0` release
-  adds evidence-campaign controls and review infrastructure without promoting
+- Published `v0.1.0` through `v0.5.0` registry releases. The `v0.5.0` release
+  adds trusted agent distribution and verified tag provenance without promoting
   skills automatically or claiming measured agent lift.
 
 The public GitHub launch is complete. Current development focuses on turning
@@ -36,36 +36,48 @@ The v0.3 infrastructure is released. Real cross-agent runs, independent
 scoring, external adoption evidence, and maturity promotion remain public
 follow-up work rather than synthetic CI claims.
 
-## v0.5 Current Development
+## v0.6 Current Development
 
-Status: P0 through P3 are merged through PR #44 on 2026-07-14. P4's
-repository-side MCP evidence capability and P5's release-candidate preparation
-are complete locally. Merge, authenticated paid runs, independent review, the
-release tag, and tag-triggered attestations remain external gates. The v0.5
-delivery queue is tracked in issue #40.
+v0.6 focuses on verified community intake and evidence. Work proceeds in this
+order:
 
-v0.5 focuses on trusted agent distribution:
+1. **P0 release hygiene:** record v0.5 provenance, correct public release
+   status, freeze its manifest checks, refresh CI actions, and open the v0.6
+   tracking contracts.
+2. **P1 quarantined intake:** inspect untrusted contribution bundles under
+   strict path, archive, size, and no-execution limits before any instruction is
+   loaded into agent context.
+3. **P2 intake receipts:** bind source digest, inventory, scanner and policy
+   versions, findings, exceptions, and reviewer disposition in a portable JSON
+   contract.
+4. **P3 operational evidence:** connect independent review and public-safe
+   adoption evidence to intake decisions without automatic maturity promotion.
+5. **P4 trusted agent consumption:** expose only accepted, digest-verified
+   community context through CLI, MCP, Codex, and Claude Code surfaces.
+6. **P5 pilot and release:** exercise benign and adversarial fixture packages,
+   publish honest gate status, and release v0.6 only after reproducible package
+   and provenance checks pass.
 
-1. Ship a local stdio MCP server with a closed, read-only registry tool set.
-2. Package digest-verified skill context so installed agents can inspect full
-   workflows without scraping or a source checkout.
-3. Generate Codex and Claude Code onboarding plus compatibility diagnostics.
-4. Version community-skill trust policy and provenance receipts.
-5. Measure an MCP-enabled benchmark condition only after explicit paid-run and
-   independent-review authorization.
-6. Publish v0.5.0 with immutable manifests and verified attestations.
+CI may validate intake mechanics and synthetic fixtures, but it cannot claim a
+community contribution is domain-correct, independently reviewed, adopted, or
+performance-improving. Those remain external evidence gates. See the
+[v0.6 Development Plan](docs/V0_6_PLAN.md).
 
-The MCP surface contains no operational HPC actions. P1 packages only
-registry-declared, security-scanned content and rejects stale, missing,
-oversized, path-escaping, or blocked inputs. P2 generates reviewable examples
-without silently enabling project MCP configuration and validates the exact
-capability surface through an in-memory protocol probe. P3 adds a separately
-versioned, fail-closed security policy with source-bound review exceptions and
-MCP argument allowlists. P4 adds a 72-run MCP evidence contract without
-launching paid agents in CI. P5 publishes one generated release-status artifact
-that preserves closed external gates and an operational Pages explorer that
-makes those gates visible beside the registry. See the
-[v0.5 Development Plan](docs/V0_5_PLAN.md).
+## v0.5 Released
+
+Status: P0 through P3 merged in PRs #41-#44, release preparation merged in PR
+#45, and the website upgrade merged in PR #46. `v0.5.0` was published from
+commit `22be6ae` on 2026-07-14. Validate, Package, Pages, and the tag-triggered
+attestation jobs passed; the manifest, wheel, and source distribution were
+verified with `gh attestation verify`.
+
+v0.5 delivered trusted agent distribution: a closed read-only MCP registry
+surface, digest-verified packaged context, generated provider onboarding,
+installed diagnostics, versioned trust policy packs, and a gated MCP evidence
+contract. The release contains no operational HPC action tools, paid agent
+runs, comparative performance claim, or automatic maturity promotion. See the
+[v0.5 Development Plan](docs/V0_5_PLAN.md) and
+[v0.5 Completion Matrix](docs/V0_5_COMPLETION.md).
 
 ## v0.4 Released
 

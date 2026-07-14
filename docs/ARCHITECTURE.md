@@ -68,19 +68,30 @@ with deterministic file sizes and SHA-256 checksums for release provenance.
 `tools/build_release_status.py` generates `registry/release-status.json` from
 the compatibility, context, MCP, benchmark, review, and security artifacts. It
 keeps repository capability separate from external comparison, maturity, and
-tag-provenance gates and is included in installed package data.
+tag-provenance gates and is included in installed package data. A release's
+provenance gate opens only when its schema-validated audit receipt exists and
+matches the immutable manifest digest.
 
-`tools/build_package_data.py` copies generated registry/context/release data, the MCP
-client contract, and the canonical community trust policy into
+`registry/provenance/<version>.json` records a maintainer-audited release tag,
+commit, successful package workflow, exact manifest/wheel/sdist digests, and
+completed GitHub attestation verification. The receipt is packaged for offline
+inspection; it makes verification facts reviewable but is not itself a digital
+signature.
+
+`tools/build_package_data.py` copies generated registry/context/release data,
+the current release provenance receipt, the MCP client contract, and the
+canonical community trust policy into
 `src/hpc_skill_hub/data/` so installed clients can discover skills, verify
 context, diagnose capabilities, and scan community packages without a
 repository checkout.
 
 `tools/validate_registry_artifacts.py` checks the generated registry index,
-health, skill-quality, and skill-review reports, packaged registry snapshot, immutable historical release
-manifests, and public JSON Schema pointers used by downstream integrations.
-Preparing a new release separately runs `tools/build_release_manifest.py` to
-compare that version's snapshot with the release candidate worktree.
+health, skill-quality, and skill-review reports, packaged registry snapshot,
+release provenance receipt, immutable historical release manifests, and public
+JSON Schema pointers used by downstream integrations. Preparing a new release
+separately runs `tools/build_release_manifest.py` to compare that version's
+snapshot with the release candidate worktree; after publication only structural
+immutable-snapshot validation remains in normal development gates.
 
 The tag-triggered package workflow uses GitHub artifact attestations to bind
 the versioned release manifest and tested Python distributions to their build

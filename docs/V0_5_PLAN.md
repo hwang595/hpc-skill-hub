@@ -1,12 +1,12 @@
 # v0.5 Development Plan
 
-Status: P0 read-only MCP MVP merged through PR #41, P1 verified context bundles
+Status: released. P0 read-only MCP MVP merged through PR #41, P1 verified context bundles
 merged through PR #42, P2 onboarding/diagnostics merged through PR #43, and P3
-Trust Policy Packs merged through PR #44 on 2026-07-14. P4's repository-side
-MCP evidence capability and P5's release-candidate contracts are implemented;
-merge, authenticated paid runs, independent review, tag publication, and
-tag-triggered attestations remain intentionally pending. Public delivery is
-tracked in issue [#40](https://github.com/hwang595/hpc-skill-hub/issues/40).
+Trust Policy Packs merged through PR #44, release preparation merged in PR #45,
+and the website upgrade merged in PR #46. `v0.5.0` was published from commit
+`22be6ae` on 2026-07-14 and its tag-triggered artifact attestations were
+verified. Authenticated paid runs and independent review remain intentionally
+pending external evidence.
 
 v0.5 focuses on trusted agent distribution. The release should make the
 validated registry easier for Codex, Claude Code, and other MCP clients to
@@ -89,10 +89,9 @@ comparison gates until reviewed evidence is complete.
 
 ## P5 Release
 
-Implementation status: release-candidate capability complete locally. The
-generated status, operational registry explorer, versioned manifest, core/MCP
-wheel smoke tests, and full local gate pass. Tag creation and GitHub attestation
-verification necessarily remain pending until the reviewed candidate merges.
+Implementation status: released and verified. The generated status,
+operational registry explorer, versioned manifest, core/MCP wheel smoke tests,
+tag workflow, and artifact attestation verification are complete.
 
 - Publish compatibility, context-bundle, MCP, benchmark, review, and security
   status in generated artifacts.
@@ -104,8 +103,7 @@ verification necessarily remain pending until the reviewed candidate merges.
 
 ## Completion Boundary
 
-P0-P5 can establish repository and release-candidate capability. P4 outcome
-claims still require external evidence and explicit authorization, while final
-P5 provenance requires the release tag. A passing CI gate proves protocol and
-policy behavior; it does not prove agent lift, domain correctness, adoption, or
-reviewed maturity.
+P0-P5 establish repository and release capability. P4 outcome claims still
+require external evidence and explicit authorization. A passing CI gate and a
+verified release prove protocol, policy, build, and provenance behavior; they do
+not prove agent lift, domain correctness, adoption, or reviewed maturity.

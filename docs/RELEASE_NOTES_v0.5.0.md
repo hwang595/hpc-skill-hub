@@ -1,7 +1,7 @@
 # v0.5.0 Release Notes
 
-Status: release candidate; merge, tag, and tag-triggered attestation verification
-are pending.
+Status: released on 2026-07-14 from commit `22be6ae`; tag-triggered manifest,
+wheel, and source-distribution attestations are verified.
 
 ## Summary
 
@@ -10,7 +10,7 @@ read-only MCP server, digest-verified packaged skill context, generated Codex
 and Claude Code onboarding, installed-runtime diagnostics, versioned trust
 policy packs, and an MCP-aware evidence campaign contract.
 
-This candidate contains no paid Codex or Claude Code runs, no comparative
+This release contains no paid Codex or Claude Code runs, no comparative
 ranking, no measured MCP or skill-lift claim, and no maturity promotion. Those
 outcomes remain behind explicit execution, redaction, independent review, and
 publication gates.
@@ -74,8 +74,11 @@ publication gates.
 - Package CI builds source and wheel distributions, tests metadata, exercises
   core and MCP-extra installs outside the checkout, and checks verified context
   plus release status.
-- Tag-only GitHub provenance will attest the immutable manifest, wheel, and
-  source distribution after `v0.5.0` is published.
+- Tag-only GitHub provenance attested the immutable manifest, wheel, and source
+  distribution in successful Package run `29375502297`; all three downloaded
+  subjects passed `gh attestation verify`.
+- `registry/provenance/v0.5.0.json` records the release commit, workflow URL,
+  artifact digests, and verification outcome as a reviewable audit receipt.
 
 ## Safety And Evidence Boundary
 

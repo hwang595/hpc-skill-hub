@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/release-provenance-record.schema.json",
+  "title": "HPC Skill Hub Release Provenance Record",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "release",
+    "tag",
+    "commit",
+    "repository",
+    "published_at",
+    "release_url",
+    "workflow",
+    "verification",
+    "artifacts"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "../../schemas/release-provenance-record.schema.json"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "release": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "tag": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "release_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "workflow": {
+      "type": "object",
+      "required": ["name", "run_id", "run_url", "conclusion", "completed_at"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "run_id": {"type": "integer", "minimum": 1},
+        "run_url": {"type": "string", "format": "uri"},
+        "conclusion": {"const": "success"},
+        "completed_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": ["status", "method", "verified_at"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"const": "verified"},
+        "method": {"const": "gh-attestation-verify"},
+        "verified_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["kind", "name", "source", "sha256", "attestation"],
+        "additionalProperties": false,
+        "properties": {
+          "kind": {"enum": ["manifest", "wheel", "sdist"]},
+          "name": {"type": "string", "minLength": 1},
+          "source": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "attestation": {
+            "type": "object",
+            "required": ["status"],
+            "additionalProperties": false,
+            "properties": {
+              "status": {"const": "verified"}
+            }
+          }
+        }
+      }
+    }
+  }
+}
