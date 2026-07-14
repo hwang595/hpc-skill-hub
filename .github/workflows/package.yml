@@ -26,6 +26,7 @@ jobs:
       - name: Check packaged registry data
         run: |
           python3 tools/build_skill_context.py --check
+          python3 tools/build_mcp_client_configs.py --check
           python3 tools/build_package_data.py --check
           python3 tools/validate_registry_artifacts.py
       - name: Build distributions
@@ -38,12 +39,21 @@ jobs:
           /tmp/hpc-skill-hub-wheel/bin/python -m pip install --no-index --find-links "${GITHUB_WORKSPACE}/dist" hpc-skill-hub
           cd /tmp
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill health --json
+          /tmp/hpc-skill-hub-wheel/bin/hpc-skill doctor --json
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill collection core-hpc --json
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill-mcp --help
           /tmp/hpc-skill-hub-wheel/bin/python -m hpc_skill_hub show slurm-submit-job --json
           /tmp/hpc-skill-hub-wheel/bin/python -c "from hpc_skill_hub.context import find_skill_context, load_context_bundle; b = load_context_bundle(); s = find_skill_context(b, 'slurm-submit-job'); assert s and any(f['role'] == 'readme' and f['content'] for f in s['files'])"
           /tmp/hpc-skill-hub-wheel/bin/python -c "import importlib.metadata, hpc_skill_hub; assert hpc_skill_hub.__version__ == importlib.metadata.version('hpc-skill-hub')"
+      - name: Smoke test wheel with MCP extra outside checkout
+        run: |
+          python3 -m venv /tmp/hpc-skill-hub-wheel-mcp
+          /tmp/hpc-skill-hub-wheel-mcp/bin/python -m pip install --upgrade pip
+          wheel_path="$(python3 -c "from pathlib import Path; print(next(Path('dist').glob('*.whl')).resolve())")"
+          /tmp/hpc-skill-hub-wheel-mcp/bin/python -m pip install "${wheel_path}[mcp]"
+          cd /tmp
+          /tmp/hpc-skill-hub-wheel-mcp/bin/hpc-skill doctor --require-mcp --json
       - name: Upload tested distributions
         uses: actions/upload-artifact@v4
         with:

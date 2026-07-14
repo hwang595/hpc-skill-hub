@@ -8,28 +8,33 @@ import filecmp
 import shutil
 import sys
 from pathlib import Path
-from typing import Iterable, List
+from typing import Iterable, List, Tuple
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_DIR = ROOT / "registry"
-PACKAGE_DATA_DIR = ROOT / "src" / "hpc_skill_hub" / "data" / "registry"
-FILES = ["index.json", "health.json", "review-status.json", "skill-context.json"]
+PACKAGE_ROOT = ROOT / "src" / "hpc_skill_hub" / "data"
+FILES: List[Tuple[Path, Path]] = [
+    (
+        ROOT / "registry" / filename,
+        PACKAGE_ROOT / "registry" / filename,
+    )
+    for filename in (
+        "index.json",
+        "health.json",
+        "review-status.json",
+        "skill-context.json",
+    )
+] + [
+    (
+        ROOT / "integrations" / "mcp-client.json",
+        PACKAGE_ROOT / "integrations" / "mcp-client.json",
+    )
+]
 
 
-def source_path(filename: str) -> Path:
-    return SOURCE_DIR / filename
-
-
-def output_path(filename: str) -> Path:
-    return PACKAGE_DATA_DIR / filename
-
-
-def stale_files(files: Iterable[str]) -> List[str]:
+def stale_files(files: Iterable[Tuple[Path, Path]]) -> List[str]:
     stale: List[str] = []
-    for filename in files:
-        source = source_path(filename)
-        output = output_path(filename)
+    for source, output in files:
         if not source.exists():
             stale.append(f"{source.relative_to(ROOT)} is missing")
             continue
@@ -43,10 +48,10 @@ def stale_files(files: Iterable[str]) -> List[str]:
     return stale
 
 
-def sync_files(files: Iterable[str]) -> None:
-    PACKAGE_DATA_DIR.mkdir(parents=True, exist_ok=True)
-    for filename in files:
-        shutil.copyfile(source_path(filename), output_path(filename))
+def sync_files(files: Iterable[Tuple[Path, Path]]) -> None:
+    for source, output in files:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, output)
 
 
 def main() -> int:
@@ -66,7 +71,7 @@ def main() -> int:
         return 0
 
     sync_files(FILES)
-    print(f"Wrote package registry data in {PACKAGE_DATA_DIR.relative_to(ROOT)}")
+    print(f"Wrote {len(FILES)} package data artifact(s) in {PACKAGE_ROOT.relative_to(ROOT)}")
     return 0
 
 

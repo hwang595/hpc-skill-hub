@@ -75,8 +75,8 @@ Current generated registry snapshot:
 - Scan a community skill before loading it:
   `python3 tools/hpc_skill.py security <skill-path> --json`
 - Validate the registry: `python3 tools/hpc_skill.py validate --json`
-- Inspect the optional MCP entry point:
-  `PYTHONPATH=src python3 -m hpc_skill_hub.mcp_server --help`
+- Diagnose package data and optional MCP compatibility:
+  `python3 tools/hpc_skill.py doctor --json`
 - Verify generated skill context:
   `python3 tools/build_skill_context.py --check`
 - Full local gate: `make check`
@@ -91,6 +91,8 @@ Current generated registry snapshot:
   `hpc-skill://skills/<skill-id>`.
 - Keep provider-specific generated files synchronized with:
   `python3 tools/build_agent_adapters.py`.
+- Keep MCP client examples synchronized with:
+  `python3 tools/build_mcp_client_configs.py`.
 - Check generated agent files without writing with:
   `python3 tools/build_agent_adapters.py --check`.
 
@@ -248,7 +250,11 @@ scraping prose or guessing cluster policy.
 | `.agents/skills/hpc-skill-hub/SKILL.md` | Codex | Router skill for registry-backed HPC guidance. |
 | `.agents/skills/hpc-skill-hub/agents/openai.yaml` | Codex app | UI metadata and invocation policy for the router skill. |
 | `.claude/skills/hpc-skill-hub/SKILL.md` | Claude Code | Router skill exposed as `/hpc-skill-hub`. |
+| `integrations/mcp-client.json` | MCP clients and package runtime | Canonical stdio, capability, provider, and safety contract. |
+| `integrations/codex.config.toml` | Codex | Generated user/project configuration example. |
+| `integrations/claude-code.mcp.json` | Claude Code | Generated project-scoped `.mcp.json` example. |
 | `hpc-skill-mcp` | MCP clients | Optional local stdio server for six read-only registry queries plus verified skill-context resources. |
+| `hpc-skill doctor` | Maintainers and installed clients | Local package, context-integrity, dependency, and protocol diagnostics. |
 
 The current generated registry snapshot contains {index['skill_count']} skills,
 {index['collection_count']} collections, and {index['site_adapter_count']} site
@@ -314,6 +320,13 @@ python3 tools/build_agent_adapters.py --check
 The `agent-adapters` make target runs the same check and is part of
 `make check`.
 
+MCP client examples are generated separately from the canonical contract:
+
+```bash
+python3 tools/build_mcp_client_configs.py
+python3 tools/build_mcp_client_configs.py --check
+```
+
 ## Read-Only MCP Surface
 
 The optional `hpc-skill-mcp` stdio server exposes `search_skills`,
@@ -328,6 +341,11 @@ checkout. Runtime verification binds the resource to the packaged registry
 index. Hash verification detects stale or corrupted context; it does not
 replace release attestations, domain review, sandboxing, or explicit user
 authorization for operational actions.
+
+Run `hpc-skill doctor --require-mcp` after installation to verify the exact
+tool annotations, resource template, and a full digest-verified context read
+through the official SDK's in-memory transport. The check performs no network
+request and executes no skill content.
 """
 
 

@@ -9,6 +9,13 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ### Added
 
+- Add a canonical packaged MCP client contract, deterministic Codex and Claude
+  Code configuration examples, and generated onboarding documentation.
+- Add `hpc-skill doctor` for Python, package metadata, registry schema, package
+  data, context-digest, client-contract, optional SDK, and in-memory protocol
+  diagnostics, with strict MCP mode and JSON output.
+- Smoke-test core-only and full-MCP wheel installs outside the source checkout,
+  including verified context retrieval through the official SDK protocol.
 - Add deterministic verified context bundles for all registry-declared skill
   artifacts, with bounded UTF-8 content, file/skill/bundle SHA-256 integrity,
   registry-index binding, security-scan provenance, fail-closed generation,

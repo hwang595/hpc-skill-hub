@@ -40,8 +40,8 @@ Current generated registry snapshot:
 - Scan a community skill before loading it:
   `python3 tools/hpc_skill.py security <skill-path> --json`
 - Validate the registry: `python3 tools/hpc_skill.py validate --json`
-- Inspect the optional MCP entry point:
-  `PYTHONPATH=src python3 -m hpc_skill_hub.mcp_server --help`
+- Diagnose package data and optional MCP compatibility:
+  `python3 tools/hpc_skill.py doctor --json`
 - Verify generated skill context:
   `python3 tools/build_skill_context.py --check`
 - Full local gate: `make check`
@@ -56,6 +56,8 @@ Current generated registry snapshot:
   `hpc-skill://skills/<skill-id>`.
 - Keep provider-specific generated files synchronized with:
   `python3 tools/build_agent_adapters.py`.
+- Keep MCP client examples synchronized with:
+  `python3 tools/build_mcp_client_configs.py`.
 - Check generated agent files without writing with:
   `python3 tools/build_agent_adapters.py --check`.
 

@@ -1,4 +1,4 @@
-.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check compatibility health mcp package-data release-manifest review-packet security skill-context skill-quality skill-reviews test validate index site cli clean
+.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check cli compatibility doctor health index mcp mcp-client-configs package-data release-manifest review-packet security site skill-context skill-quality skill-reviews test validate clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -23,6 +23,9 @@ skill-context:
 
 compatibility:
 	$(PYTHON) tools/build_compatibility.py --check
+
+mcp-client-configs:
+	$(PYTHON) tools/build_mcp_client_configs.py --check
 
 agent-adapters:
 	$(PYTHON) tools/build_agent_adapters.py --check
@@ -63,6 +66,7 @@ cli:
 	$(PYTHON) tools/hpc_skill.py list
 	PYTHONPATH=src $(PYTHON) -m hpc_skill_hub collections
 	$(PYTHON) tools/hpc_skill.py health
+	PYTHONPATH=src $(PYTHON) -m hpc_skill_hub doctor --json
 	$(PYTHON) tools/hpc_skill.py review candidates
 	$(PYTHON) tools/hpc_skill.py review status job-failure-triage
 	$(PYTHON) tools/hpc_skill.py review check reviews/v0.4.0/job-failure-triage.json
@@ -80,10 +84,13 @@ cli:
 mcp:
 	PYTHONPATH=src $(PYTHON) -m hpc_skill_hub.mcp_server --help
 
+doctor:
+	PYTHONPATH=src $(PYTHON) -m hpc_skill_hub doctor --json
+
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health skill-quality skill-reviews skill-context compatibility agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security test site cli mcp
+check: validate index health skill-quality skill-reviews skill-context compatibility mcp-client-configs agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security test site cli mcp doctor
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

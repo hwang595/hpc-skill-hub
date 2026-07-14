@@ -28,6 +28,23 @@ hpc-skill-mcp --root /path/to/hpc-skill-hub
 An MCP client should launch `hpc-skill-mcp` as a local stdio command. The
 server does not expose an HTTP listener.
 
+Generated Codex and Claude Code examples, official client commands, and trust
+notes are in [MCP Client Setup](MCP_CLIENT_SETUP.md). All provider output is
+derived from `integrations/mcp-client.json`; the examples do not automatically
+enable a project server.
+
+Diagnose a core-only install without requiring the optional SDK:
+
+```bash
+hpc-skill doctor --json
+```
+
+Require the full dependency and in-memory protocol/resource probe:
+
+```bash
+hpc-skill doctor --require-mcp
+```
+
 ## Tool Surface
 
 | Tool | Purpose |
@@ -104,6 +121,8 @@ PYTHONPATH=src python3 -m hpc_skill_hub.mcp_server --help
 python3 -m unittest tests.test_mcp_server
 python3 -m unittest tests.test_skill_context
 python3 tools/build_skill_context.py --check
+python3 tools/build_mcp_client_configs.py --check
+hpc-skill doctor --require-mcp
 ```
 
 With the optional MCP dependency installed, the same test module creates an

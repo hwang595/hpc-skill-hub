@@ -1,0 +1,67 @@
+{
+  "$schema": "../schemas/mcp-client-contract.schema.json",
+  "schema_version": "0.1.0",
+  "server": {
+    "id": "hpc-skill-hub",
+    "name": "HPC Skill Hub",
+    "transport": "stdio",
+    "command": "hpc-skill-mcp",
+    "args": [],
+    "env": {},
+    "package_extra": "hpc-skill-hub[mcp]",
+    "registry_schema_version": "0.2.0",
+    "python": {
+      "core_minimum": "3.9",
+      "mcp_minimum": "3.10"
+    },
+    "read_only": true,
+    "tools": [
+      "search_skills",
+      "show_skill",
+      "list_collections",
+      "show_site_adapters",
+      "resolve_site_policy",
+      "registry_status"
+    ],
+    "resources": [
+      {
+        "name": "skill_context",
+        "uri_template": "hpc-skill://skills/{skill_id}",
+        "mime_type": "application/json"
+      }
+    ],
+    "safety_boundary": {
+      "executes_commands": false,
+      "writes_files": false,
+      "uses_network": false,
+      "submits_jobs": false,
+      "returns_unreviewed_community_content": false
+    }
+  },
+  "providers": {
+    "codex": {
+      "config_format": "toml",
+      "user_config_path": "~/.codex/config.toml",
+      "project_config_path": ".codex/config.toml",
+      "example_path": "integrations/codex.config.toml",
+      "add_command": "codex mcp add hpc-skill-hub -- hpc-skill-mcp",
+      "verify_commands": [
+        "codex mcp get hpc-skill-hub",
+        "codex mcp list"
+      ],
+      "documentation_url": "https://developers.openai.com/codex/mcp/"
+    },
+    "claude-code": {
+      "config_format": "json",
+      "user_config_path": "~/.claude.json",
+      "project_config_path": ".mcp.json",
+      "example_path": "integrations/claude-code.mcp.json",
+      "add_command": "claude mcp add --transport stdio --scope project hpc-skill-hub -- hpc-skill-mcp",
+      "verify_commands": [
+        "claude mcp get hpc-skill-hub",
+        "claude mcp list"
+      ],
+      "documentation_url": "https://code.claude.com/docs/en/mcp"
+    }
+  }
+}

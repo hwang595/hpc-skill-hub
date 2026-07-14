@@ -51,6 +51,7 @@ tools.
 ├── skills/                 # Skill packages, one directory per skill
 ├── collections/            # Curated groups of skills for adoption paths
 ├── site-adapters/          # Optional local cluster policy adapters
+├── integrations/           # Canonical and generated MCP client configuration
 ├── agent-bench/            # Agent benchmark task and result contracts
 ├── schemas/                # JSON Schemas for skill metadata
 ├── tools/                  # Local validation and maintenance scripts
@@ -198,8 +199,12 @@ Install the optional read-only MCP server on Python 3.10 or later:
 
 ```bash
 python3 -m pip install '.[mcp]'
-hpc-skill-mcp --root /path/to/hpc-skill-hub
+hpc-skill doctor --require-mcp
 ```
+
+See the [MCP client setup guide](docs/MCP_CLIENT_SETUP.md) for generated Codex
+and Claude Code configurations. The stdio server performs read-only registry
+discovery and verified context retrieval; it does not execute skill examples.
 
 Scaffold new contributions:
 

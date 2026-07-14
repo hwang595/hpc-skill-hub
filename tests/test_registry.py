@@ -166,6 +166,10 @@ class RegistryTests(unittest.TestCase):
         result = run_cmd("python3", "tools/build_package_data.py", "--check")
         self.assertIn("Package registry data is current", result.stdout)
 
+    def test_generated_mcp_client_configs_are_current(self):
+        result = run_cmd("python3", "tools/build_mcp_client_configs.py", "--check")
+        self.assertIn("MCP client configuration examples are current", result.stdout)
+
     def test_registry_artifact_contracts_pass(self):
         result = run_cmd("python3", "tools/validate_registry_artifacts.py")
         self.assertIn("Validated registry artifacts", result.stdout)
