@@ -51,13 +51,14 @@ jobs:
         run: python3 tools/audit_safety.py
       - name: Scan community skill packages
         run: python3 tools/scan_skill_security.py skills --fail-on high
+      - name: Install CLI and MCP integration
+        run: python3 -m pip install '.[mcp]'
       - name: Run test suite
         run: python3 -m unittest discover -s tests
-      - name: Install CLI package
-        run: python3 -m pip install .
       - name: Smoke test installed package outside checkout
         run: |
           cd /tmp
+          hpc-skill-mcp --help
           hpc-skill health --json
           hpc-skill review candidates --json
           hpc-skill collection core-hpc --json

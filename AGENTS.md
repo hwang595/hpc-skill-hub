@@ -38,6 +38,8 @@ Current generated registry snapshot:
 - Scan a community skill before loading it:
   `python3 tools/hpc_skill.py security <skill-path> --json`
 - Validate the registry: `python3 tools/hpc_skill.py validate --json`
+- Inspect the optional MCP entry point:
+  `PYTHONPATH=src python3 -m hpc_skill_hub.mcp_server --help`
 - Full local gate: `make check`
 
 ## Agent Integration
@@ -45,6 +47,9 @@ Current generated registry snapshot:
 - Codex should use `.agents/skills/hpc-skill-hub/SKILL.md` for registry-backed
   HPC guidance.
 - Claude Code should use `CLAUDE.md` plus `.claude/skills/hpc-skill-hub/SKILL.md`.
+- MCP-capable clients may use the optional local `hpc-skill-mcp` stdio server
+  for read-only registry metadata discovery. Full workflow content still comes
+  from the referenced README and examples until verified context bundles ship.
 - Keep provider-specific generated files synchronized with:
   `python3 tools/build_agent_adapters.py`.
 - Check generated agent files without writing with:

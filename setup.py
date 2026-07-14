@@ -14,6 +14,7 @@ setup(
     entry_points={
         "console_scripts": [
             "hpc-skill=hpc_skill_hub.cli:main",
+            "hpc-skill-mcp=hpc_skill_hub.mcp_server:main",
         ]
     },
 )

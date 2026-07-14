@@ -194,6 +194,13 @@ hpc-skill collection core-hpc
 hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
 ```
 
+Install the optional read-only MCP server on Python 3.10 or later:
+
+```bash
+python3 -m pip install '.[mcp]'
+hpc-skill-mcp --root /path/to/hpc-skill-hub
+```
+
 Scaffold new contributions:
 
 ```bash
@@ -252,6 +259,7 @@ The repository is set up as a versioned registry, not just a documentation dump:
 | `Validate` workflow | Skill manifests, generated registry files, safety audit, CLI smoke tests, and unit tests pass on every push and pull request. |
 | `registry/skill-quality.json` | Deterministic documentation and evidence coverage baseline that prioritizes review work without claiming maturity or correctness. |
 | `hpc-skill security` | Community skill packages receive deterministic prompt-injection, command, persistence, credential, package, and risk-declaration checks before adoption. |
+| `hpc-skill-mcp` | Optional stdio-only MCP surface exposes six closed-domain registry queries with no execution or write tools. |
 | `Package` workflow | Source and wheel distributions build cleanly, metadata passes `twine check`, and the installed wheel can read registry data outside the checkout. |
 | `Publish Pages` workflow | The searchable static registry site builds and deploys from the tracked registry index. |
 | `registry/releases/v0.4.0.json` | Versioned release manifest with file checksums and registry counts for reproducible snapshots. |
@@ -265,12 +273,13 @@ conservative about maturity: skills stay `seed` until domain review and public
 evidence support promotion. This release adds bounded evidence campaigns,
 machine-checkable maturity review, public review routing, and gated dashboards
 without claiming measured agent lift or completed maturity promotion. The
-current focus is on:
+current v0.5 focus is on:
 
 1. A stable skill package format.
 2. A curated first batch of practical HPC skills.
 3. CI validation for contributions.
-4. Evidence-backed agent integrations and a path toward an open ecosystem.
+4. Trusted MCP distribution for Codex, Claude Code, and other agent clients.
+5. Evidence-backed agent integrations and a path toward an open ecosystem.
 
 See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 
@@ -286,6 +295,8 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Compatibility tables](docs/COMPATIBILITY.md)
 - [CLI](docs/CLI.md)
 - [Agent integration](docs/AGENT_INTEGRATION.md)
+- [Read-only MCP server](docs/MCP_SERVER.md)
+- [v0.5 development plan](docs/V0_5_PLAN.md)
 - [Agent benchmarks](docs/AGENT_BENCHMARKS.md)
 - [Agent benchmark calibration plan](docs/AGENT_BENCHMARK_PLAN.md)
 - [Agent benchmark v0.3 smoke plan](docs/AGENT_BENCHMARK_SMOKE_PLAN.md)

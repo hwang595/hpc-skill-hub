@@ -7,6 +7,13 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+### Added
+
+- Start the v0.5 read-only MCP surface with six closed-domain registry tools,
+  optional official SDK v1 support, explicit safety annotations, packaging,
+  protocol tests, and CI smoke coverage.
+- Add the v0.5 trusted agent distribution plan and MCP safety contract.
+
 ## v0.4.0 - 2026-07-13
 
 - Start the v0.4 P0 evidence foundation with a versioned 54-run Codex and

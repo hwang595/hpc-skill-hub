@@ -37,6 +37,25 @@ The v0.3 infrastructure is released. Real cross-agent runs, independent
 scoring, external adoption evidence, and maturity promotion remain public
 follow-up work rather than synthetic CI claims.
 
+## v0.5 Current Development
+
+Status: P0 read-only MCP MVP complete on 2026-07-13. PR #41 required checks
+pass; merge is pending. The v0.5 delivery queue is tracked in issue #40.
+
+v0.5 focuses on trusted agent distribution:
+
+1. Ship a local stdio MCP server with a closed, read-only registry tool set.
+2. Package digest-verified skill context so installed agents can inspect full
+   workflows without scraping or a source checkout.
+3. Generate Codex and Claude Code onboarding plus compatibility diagnostics.
+4. Version community-skill trust policy and provenance receipts.
+5. Measure an MCP-enabled benchmark condition only after explicit paid-run and
+   independent-review authorization.
+6. Publish v0.5.0 with immutable manifests and verified attestations.
+
+The MCP P0 contains no operational HPC actions and does not change the v0.4
+evidence boundary. See the [v0.5 Development Plan](docs/V0_5_PLAN.md).
+
 ## v0.4 Released
 
 Status: P0 evidence foundation and P1 campaign control plane merged through
