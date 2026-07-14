@@ -90,12 +90,14 @@ comparison gates until reviewed evidence is complete.
 ## P5 Release
 
 Implementation status: release-candidate capability complete locally. The
-generated status, versioned manifest, core/MCP wheel smoke tests, and full local
-gate pass. Tag creation and GitHub attestation verification necessarily remain
-pending until the reviewed candidate merges.
+generated status, operational registry explorer, versioned manifest, core/MCP
+wheel smoke tests, and full local gate pass. Tag creation and GitHub attestation
+verification necessarily remain pending until the reviewed candidate merges.
 
 - Publish compatibility, context-bundle, MCP, benchmark, review, and security
   status in generated artifacts.
+- Publish a responsive registry explorer with release-gate visibility,
+  collection-first discovery, shareable filters, and table/card views.
 - Build and smoke-test core and MCP extras from the wheel.
 - Publish an immutable v0.5.0 manifest and verify manifest, wheel, and source
   distribution attestations from the release tag.

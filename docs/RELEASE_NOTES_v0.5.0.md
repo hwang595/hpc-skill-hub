@@ -65,6 +65,9 @@ publication gates.
 
 - `registry/release-status.json` is a generated, packaged summary of
   compatibility, context, MCP, benchmark, review, security, and release gates.
+- The generated registry website now puts release readiness beside the catalog,
+  supports collection-first discovery, responsive table and card views,
+  sorting, shareable URL filters, and bounded mobile result expansion.
 - MCP `registry_status` and `hpc-skill doctor` consume the same status artifact,
   so installed clients can distinguish repository readiness from pending
   external evidence.
