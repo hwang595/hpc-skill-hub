@@ -1,13 +1,19 @@
 # v0.6 Development Plan
 
-Status: P0 release hygiene is in progress. Later phases are planned and must
-preserve the external evidence boundaries described below.
+Status: P0 release hygiene is implemented in PR #48 with local and GitHub CI
+gates passing; review and merge remain pending. P1 through P5 are planned and
+must preserve the external evidence boundaries described below.
 
 v0.6 focuses on verified community intake and evidence. The release should let
 maintainers inspect, quarantine, review, and selectively expose contributed
 skills without loading untrusted instructions before policy checks complete.
 
 ## P0 Release Hygiene
+
+Implementation status: complete on the P0 branch. The v0.6 milestone is #7,
+the public delivery tracker is issue #49, the completed v0.5 tracker and
+milestone are closed, and duplicate or superseded PRs are closed with links to
+their replacement.
 
 - Record v0.5 release, workflow, artifact digest, and attestation verification
   facts in a schema-validated provenance receipt.

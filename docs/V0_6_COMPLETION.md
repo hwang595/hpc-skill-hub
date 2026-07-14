@@ -1,12 +1,13 @@
 # v0.6 Completion Matrix
 
-Status: P0 release hygiene is in progress. P1 through P5 are planned; no
+Status: P0 release hygiene is complete in PR #48 with local and GitHub CI gates
+passing; review and merge remain pending. P1 through P5 are planned. No
 community bundle acceptance, independent review, adoption, maturity promotion,
 or measured agent-lift outcome is claimed.
 
 | Phase | Status | Completion gate |
 | --- | --- | --- |
-| P0 release hygiene | In progress | v0.5 provenance receipt, corrected release state, immutable snapshot checks, refreshed CI actions, v0.6 milestone, and passing full local gate. |
+| P0 release hygiene | Complete in PR #48 | v0.5 provenance receipt, corrected release state, immutable snapshot checks, refreshed CI actions, v0.6 milestone #7 and tracker #49, 192-test local gate, and passing Validate/Package CI. |
 | P1 quarantined intake | Planned | Untrusted directories and archives are bounded, staged, scanned, and rejected before instruction loading or execution. |
 | P2 intake receipts | Planned | Deterministic receipts bind source, inventory, policy, findings, exceptions, review disposition, and accepted context digest. |
 | P3 review and adoption evidence | Planned | Independent decisions and public-safe adoption reports bind exact contribution digests without automatic maturity promotion. |
