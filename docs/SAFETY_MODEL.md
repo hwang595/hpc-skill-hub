@@ -59,6 +59,24 @@ scanner evaluates the trust boundary of each skill package and emits text,
 JSON, or SARIF findings. See [Community Skill Security](SKILL_SECURITY.md) for
 the threat model, verdicts, agent adoption protocol, and limitations.
 
+## Verified Agent Context
+
+`tools/build_skill_context.py` packages only files declared by validated skill
+manifests. Generation rejects missing or undeclared files, symbolic links,
+path escapes, non-UTF-8 or oversized content, stale output, and any security
+scan with a `block` verdict. A `review` verdict and its finding fingerprints
+remain visible in the bundle.
+
+Each source file has a SHA-256, each skill binds its files, manifest metadata,
+and security provenance, and the top-level digest binds every skill plus the
+exact `registry/index.json` snapshot. Runtime loading recomputes those digests
+before MCP serves `hpc-skill://skills/<skill-id>`.
+
+Digest verification detects stale or corrupted package content. It does not
+prove author identity or workflow correctness, and it does not authorize an
+agent to execute examples. Release attestations, human review, sandboxing, and
+explicit user intent remain separate controls.
+
 ## Review Expectations
 
 Reviewers should still check:

@@ -39,8 +39,9 @@ follow-up work rather than synthetic CI claims.
 
 ## v0.5 Current Development
 
-Status: P0 read-only MCP MVP complete on 2026-07-13. PR #41 required checks
-pass; merge is pending. The v0.5 delivery queue is tracked in issue #40.
+Status: P0 read-only MCP MVP merged through PR #41 on 2026-07-14. P1 verified
+context bundles are implemented for review. The v0.5 delivery queue is tracked
+in issue #40.
 
 v0.5 focuses on trusted agent distribution:
 
@@ -53,7 +54,9 @@ v0.5 focuses on trusted agent distribution:
    independent-review authorization.
 6. Publish v0.5.0 with immutable manifests and verified attestations.
 
-The MCP P0 contains no operational HPC actions and does not change the v0.4
+The MCP surface contains no operational HPC actions. P1 packages only
+registry-declared, security-scanned content and rejects stale, missing,
+oversized, path-escaping, or blocked inputs. Neither phase changes the v0.4
 evidence boundary. See the [v0.5 Development Plan](docs/V0_5_PLAN.md).
 
 ## v0.4 Released

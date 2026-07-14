@@ -1,4 +1,4 @@
-.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check compatibility health mcp package-data release-manifest review-packet security skill-quality skill-reviews test validate index site cli clean
+.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check compatibility health mcp package-data release-manifest review-packet security skill-context skill-quality skill-reviews test validate index site cli clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -17,6 +17,9 @@ skill-quality:
 
 skill-reviews:
 	$(PYTHON) tools/build_skill_reviews.py --check
+
+skill-context:
+	$(PYTHON) tools/build_skill_context.py --check
 
 compatibility:
 	$(PYTHON) tools/build_compatibility.py --check
@@ -80,7 +83,7 @@ mcp:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health skill-quality skill-reviews compatibility agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security test site cli mcp
+check: validate index health skill-quality skill-reviews skill-context compatibility agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security test site cli mcp
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

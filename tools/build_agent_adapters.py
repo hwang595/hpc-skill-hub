@@ -53,6 +53,8 @@ Current generated registry snapshot:
 ## Fast Orientation
 
 - Prefer `registry/index.json` for discovery and filtering.
+- Use `registry/skill-context.json` for bounded, digest-verified README and
+  declared artifact content when a source checkout is not available.
 - Use `skills/<skill-id>/README.md` and `skills/<skill-id>/examples/` for the
   full human-readable workflow before recommending commands.
 - Use `site-adapters/*/site.json` only for public local policy mappings. Do not
@@ -75,6 +77,8 @@ Current generated registry snapshot:
 - Validate the registry: `python3 tools/hpc_skill.py validate --json`
 - Inspect the optional MCP entry point:
   `PYTHONPATH=src python3 -m hpc_skill_hub.mcp_server --help`
+- Verify generated skill context:
+  `python3 tools/build_skill_context.py --check`
 - Full local gate: `make check`
 
 ## Agent Integration
@@ -83,8 +87,8 @@ Current generated registry snapshot:
   HPC guidance.
 - Claude Code should use `CLAUDE.md` plus `.claude/skills/hpc-skill-hub/SKILL.md`.
 - MCP-capable clients may use the optional local `hpc-skill-mcp` stdio server
-  for read-only registry metadata discovery. Full workflow content still comes
-  from the referenced README and examples until verified context bundles ship.
+  for read-only registry discovery and digest-verified full skill context at
+  `hpc-skill://skills/<skill-id>`.
 - Keep provider-specific generated files synchronized with:
   `python3 tools/build_agent_adapters.py`.
 - Check generated agent files without writing with:
@@ -244,7 +248,7 @@ scraping prose or guessing cluster policy.
 | `.agents/skills/hpc-skill-hub/SKILL.md` | Codex | Router skill for registry-backed HPC guidance. |
 | `.agents/skills/hpc-skill-hub/agents/openai.yaml` | Codex app | UI metadata and invocation policy for the router skill. |
 | `.claude/skills/hpc-skill-hub/SKILL.md` | Claude Code | Router skill exposed as `/hpc-skill-hub`. |
-| `hpc-skill-mcp` | MCP clients | Optional local stdio server for six read-only registry queries. |
+| `hpc-skill-mcp` | MCP clients | Optional local stdio server for six read-only registry queries plus verified skill-context resources. |
 
 The current generated registry snapshot contains {index['skill_count']} skills,
 {index['collection_count']} collections, and {index['site_adapter_count']} site
@@ -263,6 +267,12 @@ adapters.
 
 Agents should cite the skill id, version, maturity, risk level, README path, and
 example paths used for a recommendation.
+
+MCP clients should call `show_skill`, then read the returned
+`hpc-skill://skills/<skill-id>` resource. The resource contains only
+registry-declared UTF-8 artifacts, per-file and per-skill SHA-256 digests, and
+security-scan provenance. A `review` verdict remains visible and a `block`
+verdict is never packaged.
 
 Community-contributed skill packages are a separate trust boundary. Agents
 should run `python3 tools/hpc_skill.py security <skill-path> --json` before
@@ -312,9 +322,12 @@ The optional `hpc-skill-mcp` stdio server exposes `search_skills`,
 non-destructive, idempotent, and closed-world. The server has no write,
 submit, transfer, install, tunnel, container, or network-listener tool.
 
-P0 returns validated registry metadata and source paths. The next integration
-step is a digest-verified packaged context bundle for complete README and
-example inspection outside a source checkout.
+The `hpc-skill://skills/{{skill_id}}` resource template returns bounded,
+digest-verified README, example, and declared artifact content outside a source
+checkout. Runtime verification binds the resource to the packaged registry
+index. Hash verification detects stale or corrupted context; it does not
+replace release attestations, domain review, sandboxing, or explicit user
+authorization for operational actions.
 """
 
 

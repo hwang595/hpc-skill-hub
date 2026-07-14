@@ -1,5 +1,7 @@
-import unittest
+import json
 import sys
+import tempfile
+import unittest
 from pathlib import Path
 
 
@@ -9,18 +11,26 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from hpc_skill_hub.mcp_server import (
+    RESOURCE_NAMES,
     TOOL_NAMES,
     create_server,
     list_collections,
+    main,
+    read_skill_context,
     registry_status,
     resolve_site_policy,
     search_skills,
     show_site_adapters,
     show_skill,
+    skill_context,
 )
 
 
 class McpRegistryToolTests(unittest.TestCase):
+    def test_invalid_repository_root_is_rejected_before_server_start(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            self.assertEqual(main(["--root", tmpdir]), 2)
+
     def test_search_skills_filters_and_bounds_results(self):
         payload = search_skills(
             "slurm memory", scheduler="slurm", risk="low", limit=2
@@ -44,7 +54,12 @@ class McpRegistryToolTests(unittest.TestCase):
 
         self.assertTrue(payload["ok"])
         self.assertEqual(payload["skill"]["maturity"], "seed")
-        self.assertEqual(payload["content_scope"], "metadata-only")
+        self.assertEqual(payload["content_scope"], "verified-readme-and-artifacts")
+        self.assertEqual(
+            payload["context_resource"]["uri"],
+            "hpc-skill://skills/slurm-oom-memory-triage",
+        )
+        self.assertGreater(payload["context_resource"]["file_count"], 0)
         self.assertTrue(
             payload["usage_contract"][
                 "require_explicit_intent_for_operational_actions"
@@ -63,6 +78,24 @@ class McpRegistryToolTests(unittest.TestCase):
             show_site_adapters("not-an-adapter")["error"]["code"],
             "unknown-site-adapter",
         )
+        self.assertEqual(
+            skill_context("not-a-skill")["error"]["code"], "unknown-skill"
+        )
+
+    def test_skill_context_returns_verified_full_content_and_safety_contract(self):
+        payload = json.loads(read_skill_context("slurm-submit-job"))
+
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["bundle_schema_version"], "0.1.0")
+        self.assertTrue(
+            any(
+                item["role"] == "readme" and "Slurm" in item["content"]
+                for item in payload["skill_context"]["files"]
+            )
+        )
+        self.assertFalse(
+            payload["usage_contract"]["execute_examples_automatically"]
+        )
 
     def test_resolve_site_policy_preserves_review_boundary(self):
         payload = resolve_site_policy(
@@ -78,16 +111,20 @@ class McpRegistryToolTests(unittest.TestCase):
 
         self.assertTrue(payload["ok"])
         self.assertEqual(payload["server"]["tools"], list(TOOL_NAMES))
+        self.assertEqual(payload["server"]["resources"], list(RESOURCE_NAMES))
         self.assertTrue(payload["server"]["read_only"])
         self.assertFalse(payload["safety_boundary"]["uses_network"])
         self.assertFalse(payload["safety_boundary"]["writes_files"])
         self.assertEqual(payload["registry"]["skill_count"], 97)
+        self.assertEqual(payload["context"]["file_count"], 344)
 
 
 try:
     from mcp.shared.memory import create_connected_server_and_client_session
+    from pydantic import AnyUrl
 except ImportError:
     create_connected_server_and_client_session = None
+    AnyUrl = None
 
 
 @unittest.skipIf(
@@ -117,6 +154,25 @@ class McpProtocolTests(unittest.IsolatedAsyncioTestCase):
             payload = result.structuredContent["result"]
             self.assertTrue(payload["ok"])
             self.assertGreater(payload["returned"], 0)
+
+            templates = await session.list_resource_templates()
+            by_name = {item.name: item for item in templates.resourceTemplates}
+            self.assertEqual(set(by_name), set(RESOURCE_NAMES))
+            self.assertEqual(
+                str(by_name["skill_context"].uriTemplate),
+                "hpc-skill://skills/{skill_id}",
+            )
+            self.assertEqual(by_name["skill_context"].mimeType, "application/json")
+
+            resource = await session.read_resource(
+                AnyUrl("hpc-skill://skills/slurm-submit-job")
+            )
+            resource_payload = json.loads(resource.contents[0].text)
+            self.assertTrue(resource_payload["ok"])
+            self.assertEqual(
+                resource_payload["skill_context"]["id"], "slurm-submit-job"
+            )
+            self.assertTrue(resource_payload["skill_context"]["files"])
 
 
 if __name__ == "__main__":

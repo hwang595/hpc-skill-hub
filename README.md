@@ -229,6 +229,8 @@ Rebuild the registry index after adding or editing skills:
 python3 tools/hpc_skill.py validate --skill my-new-skill
 python3 tools/build_index.py
 python3 tools/build_health.py
+python3 tools/build_skill_context.py
+python3 tools/build_package_data.py
 python3 tools/hpc_skill.py validate
 ```
 
@@ -259,7 +261,8 @@ The repository is set up as a versioned registry, not just a documentation dump:
 | `Validate` workflow | Skill manifests, generated registry files, safety audit, CLI smoke tests, and unit tests pass on every push and pull request. |
 | `registry/skill-quality.json` | Deterministic documentation and evidence coverage baseline that prioritizes review work without claiming maturity or correctness. |
 | `hpc-skill security` | Community skill packages receive deterministic prompt-injection, command, persistence, credential, package, and risk-declaration checks before adoption. |
-| `hpc-skill-mcp` | Optional stdio-only MCP surface exposes six closed-domain registry queries with no execution or write tools. |
+| `registry/skill-context.json` | Bounded registry-declared README and artifact content is bound to the index with file, skill, bundle, and security-report SHA-256 provenance. |
+| `hpc-skill-mcp` | Optional stdio-only MCP surface exposes six closed-domain registry queries and verified `hpc-skill://skills/{skill_id}` resources with no execution or write tools. |
 | `Package` workflow | Source and wheel distributions build cleanly, metadata passes `twine check`, and the installed wheel can read registry data outside the checkout. |
 | `Publish Pages` workflow | The searchable static registry site builds and deploys from the tracked registry index. |
 | `registry/releases/v0.4.0.json` | Versioned release manifest with file checksums and registry counts for reproducible snapshots. |
@@ -273,13 +276,13 @@ conservative about maturity: skills stay `seed` until domain review and public
 evidence support promotion. This release adds bounded evidence campaigns,
 machine-checkable maturity review, public review routing, and gated dashboards
 without claiming measured agent lift or completed maturity promotion. The
-current v0.5 focus is on:
+current v0.5 focus is on trusted agent distribution:
 
-1. A stable skill package format.
-2. A curated first batch of practical HPC skills.
-3. CI validation for contributions.
-4. Trusted MCP distribution for Codex, Claude Code, and other agent clients.
-5. Evidence-backed agent integrations and a path toward an open ecosystem.
+1. Read-only MCP registry discovery, merged in P0.
+2. Digest-verified packaged skill context, implemented in P1.
+3. Generated Codex and Claude Code onboarding plus compatibility diagnostics.
+4. Versioned community-skill trust policy and provenance receipts.
+5. An MCP-enabled benchmark condition behind the existing paid-run and review gates.
 
 See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 
@@ -288,6 +291,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Skill catalog](docs/SKILL_CATALOG.md)
 - [Collections](docs/COLLECTIONS.md)
 - [Machine-readable registry index](registry/index.json)
+- [Verified skill context bundle](registry/skill-context.json)
 - [Registry health](docs/REGISTRY_HEALTH.md)
 - [Skill quality baseline](docs/SKILL_QUALITY.md)
 - [v0.4 skill review packet](docs/REVIEW_PACKET_v0.4.0.md)

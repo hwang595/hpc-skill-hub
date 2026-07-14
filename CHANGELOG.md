@@ -9,6 +9,10 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ### Added
 
+- Add deterministic verified context bundles for all registry-declared skill
+  artifacts, with bounded UTF-8 content, file/skill/bundle SHA-256 integrity,
+  registry-index binding, security-scan provenance, fail-closed generation,
+  packaged-wheel access, and read-only MCP resources.
 - Start the v0.5 read-only MCP surface with six closed-domain registry tools,
   optional official SDK v1 support, explicit safety annotations, packaging,
   protocol tests, and CI smoke coverage.

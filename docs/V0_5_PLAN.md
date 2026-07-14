@@ -1,7 +1,7 @@
 # v0.5 Development Plan
 
-Status: P0 read-only MCP MVP complete on 2026-07-13. PR #41 required checks
-pass; merge is pending. Public delivery is tracked in issue
+Status: P0 read-only MCP MVP merged through PR #41 on 2026-07-14. P1 verified
+context bundles are implemented for review. Public delivery is tracked in issue
 [#40](https://github.com/hwang595/hpc-skill-hub/issues/40).
 
 v0.5 focuses on trusted agent distribution. The release should make the
@@ -23,6 +23,11 @@ boundaries.
 - Validate the protocol with the official SDK's in-memory client/session test.
 
 ## P1 Verified Context Bundles
+
+Implementation status: complete for the repository capability. The generated
+bundle covers every current registry skill and declared artifact, is included
+in package data, and is exercised through the official MCP SDK's in-memory
+resource client.
 
 - Generate bounded context bundles containing validated skill README and
   example content, source paths, versions, and SHA-256 digests.

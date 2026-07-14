@@ -38,6 +38,8 @@ REQUIRED_LAUNCH_FILES = [
     "docs/BLINDED_REVIEW.md",
     "docs/V0_3_COMPLETION.md",
     "docs/V0_4_COMPLETION.md",
+    "docs/V0_5_PLAN.md",
+    "docs/MCP_SERVER.md",
     "docs/AGENT_BENCHMARK_SMOKE_PLAN.md",
     "docs/AGENT_BENCHMARK_V0_4_PLAN.md",
     "docs/AGENT_BENCHMARK_CAMPAIGN.md",
@@ -64,6 +66,7 @@ REQUIRED_LAUNCH_FILES = [
     "schemas/skill-review-status.schema.json",
     "schemas/release-manifest.schema.json",
     "schemas/skill-security-report.schema.json",
+    "schemas/skill-context-bundle.schema.json",
     "schemas/site-adapter-resolution.schema.json",
     "schemas/agent-benchmark-review-packet.schema.json",
     "schemas/agent-benchmark-review.schema.json",
@@ -77,6 +80,7 @@ REQUIRED_LAUNCH_FILES = [
     "registry/releases/v0.4.0.json",
     "registry/skill-quality.json",
     "registry/review-status.json",
+    "registry/skill-context.json",
     "docs/REVIEW_ROUTING.md",
     "docs/DOMAIN_REVIEWERS.md",
     "docs/CONTRIBUTOR_LADDER.md",
@@ -109,6 +113,7 @@ REQUIRED_LAUNCH_FILES = [
     "tools/build_release_manifest.py",
     "tools/build_skill_quality.py",
     "tools/build_skill_reviews.py",
+    "tools/build_skill_context.py",
     "tools/scan_skill_security.py",
     "tools/agent_benchmark_review.py",
     "tools/agent_benchmark_campaign.py",
@@ -181,6 +186,10 @@ def generated_artifacts_check() -> List[Check]:
     for name, command in [
         ("registry-index-current", ["python3", "tools/build_index.py", "--check"]),
         ("registry-health-current", ["python3", "tools/build_health.py", "--check"]),
+        (
+            "skill-context-current",
+            ["python3", "tools/build_skill_context.py", "--check"],
+        ),
         ("compatibility-current", ["python3", "tools/build_compatibility.py", "--check"]),
         ("package-data-current", ["python3", "tools/build_package_data.py", "--check"]),
         (
