@@ -34,7 +34,7 @@ hpc-skill security ./community-skill --format json
 The installed command can run read-only discovery and review-status commands from the packaged
 registry snapshot. When a full checkout is available, it prefers the current
 repository's `registry/index.json`, `registry/health.json`, and
-`registry/review-status.json`. For commands
+`registry/review-status.json`, and `registry/release-status.json`. For commands
 that validate or write repository files, run from the repository root or set
 `HPC_SKILL_HUB_ROOT` to the repository root.
 

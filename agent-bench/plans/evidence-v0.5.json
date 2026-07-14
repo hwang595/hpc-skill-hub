@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schemas/agent-benchmark-plan.schema.json",
+  "id": "evidence-v0-5",
+  "name": "v0.5 cross-agent MCP evidence campaign",
+  "version": "0.5.0",
+  "status": "draft",
+  "description": "Collect repeated, paired Codex and Claude Code evidence across baseline, documentation-only, skill-enabled, and read-only MCP-enabled conditions before publishing any comparative result.",
+  "repository_ref": "HEAD",
+  "task_ids": [
+    "repo-benchmark-case-repair",
+    "shared-permissions-safety",
+    "skill-routing-oom-triage"
+  ],
+  "conditions": ["baseline", "docs-only", "skill-enabled", "mcp-enabled"],
+  "trials_per_condition": 3,
+  "variants": [
+    {
+      "id": "codex-v0-5",
+      "agent": "codex",
+      "harness": "codex-cli",
+      "model": "configured-default",
+      "model_parameters": {}
+    },
+    {
+      "id": "claude-v0-5",
+      "agent": "claude-code",
+      "harness": "claude-code",
+      "model": "configured-default",
+      "model_parameters": {}
+    }
+  ],
+  "execution": {
+    "max_turns": 12,
+    "max_budget_usd_per_run": 0.75,
+    "max_total_budget_usd": 54.0,
+    "require_paid_run_acknowledgement": true,
+    "retain_workspaces": false
+  }
+}

@@ -27,7 +27,9 @@ jobs:
         run: |
           python3 tools/build_skill_context.py --check
           python3 tools/build_mcp_client_configs.py --check
+          python3 tools/build_release_status.py --check
           python3 tools/build_package_data.py --check
+          python3 tools/build_release_manifest.py v0.5.0 --check
           python3 tools/validate_registry_artifacts.py
       - name: Build distributions
         run: python3 -m build --sdist --wheel
@@ -45,6 +47,7 @@ jobs:
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill-mcp --help
           /tmp/hpc-skill-hub-wheel/bin/python -m hpc_skill_hub show slurm-submit-job --json
           /tmp/hpc-skill-hub-wheel/bin/python -c "from hpc_skill_hub.context import find_skill_context, load_context_bundle; b = load_context_bundle(); s = find_skill_context(b, 'slurm-submit-job'); assert s and any(f['role'] == 'readme' and f['content'] for f in s['files'])"
+          /tmp/hpc-skill-hub-wheel/bin/python -c "from hpc_skill_hub.release_status import load_release_status; s = load_release_status(); assert s['repository_capability_ready'] and not s['external_evidence_ready']"
           /tmp/hpc-skill-hub-wheel/bin/python -c "import importlib.metadata, hpc_skill_hub; assert hpc_skill_hub.__version__ == importlib.metadata.version('hpc-skill-hub')"
       - name: Smoke test wheel with MCP extra outside checkout
         run: |

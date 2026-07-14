@@ -21,6 +21,7 @@ AGENT_BENCH_DIR = ROOT / "agent-bench"
 TASK_DIR = AGENT_BENCH_DIR / "tasks"
 RESULT_DIR = AGENT_BENCH_DIR / "results"
 INDEX_JSON = ROOT / "registry" / "index.json"
+MCP_CONTRACT_PATH = ROOT / "integrations" / "mcp-client.json"
 DEFAULT_REPORT = ROOT / "docs" / "AGENT_BENCHMARK_REPORT.md"
 DEFAULT_DASHBOARD = ROOT / "docs" / "AGENT_BENCHMARK_DASHBOARD.html"
 PUBLICATION_MIN_PAIRS = 3
@@ -31,7 +32,13 @@ RESULT_SCHEMA = "../../schemas/agent-benchmark-result.schema.json"
 ALLOWED_STATUS = {"draft", "reviewed", "deprecated"}
 ALLOWED_TASK_TYPES = {"skill-routing", "triage", "safety", "repo-edit", "site-policy"}
 ALLOWED_RISK = {"low", "medium", "high"}
-ALLOWED_CONDITIONS = {"baseline", "docs-only", "skill-enabled", "skill-site-adapter"}
+ALLOWED_CONDITIONS = {
+    "baseline",
+    "docs-only",
+    "skill-enabled",
+    "mcp-enabled",
+    "skill-site-adapter",
+}
 ALLOWED_RESULT_STATUS = {"pending-review", "scored", "failed", "skipped"}
 ALLOWED_WORKSPACE_MODES = {"read-only", "workspace-write"}
 ALLOWED_INVOCATION_MODES = {"cli", "api", "manual", "import"}
@@ -205,7 +212,9 @@ def validate_task(task: Dict[str, Any], known_skills: set[str]) -> List[str]:
             if condition not in conditions:
                 errors.append(f"{context}: fixture {path} uses undeclared condition {condition}")
         if path.startswith(("skills/", ".agents/", ".claude/")):
-            leaked = sorted(set(fixture_conditions) & {"baseline", "docs-only"})
+            leaked = sorted(
+                set(fixture_conditions) & {"baseline", "docs-only", "mcp-enabled"}
+            )
             if leaked:
                 errors.append(f"{context}: skill fixture {path} leaks into {leaked}")
         if path.startswith("site-adapters/") and set(fixture_conditions) != {"skill-site-adapter"}:
@@ -350,6 +359,30 @@ def validate_result(result: Dict[str, Any], tasks_by_id: Dict[str, Dict[str, Any
         errors.append(f"{context}: workspace_mode does not match task execution contract")
     if provenance.get("network_access") != task.get("execution", {}).get("network_access"):
         errors.append(f"{context}: network_access does not match task execution contract")
+    condition_context = provenance.get("condition_context")
+    if condition == "mcp-enabled":
+        if not isinstance(condition_context, dict):
+            errors.append(f"{context}: mcp-enabled result requires condition_context")
+        else:
+            expected_context = {
+                "mcp_server_id": "hpc-skill-hub",
+                "mcp_contract_path": "integrations/mcp-client.json",
+                "mcp_contract_sha256": sha256_path(MCP_CONTRACT_PATH),
+                "mcp_read_only": True,
+            }
+            for field, expected in expected_context.items():
+                if condition_context.get(field) != expected:
+                    errors.append(
+                        f"{context}: condition_context {field} does not match "
+                        "the repository MCP contract"
+                    )
+            package_version = condition_context.get("mcp_package_version")
+            if not isinstance(package_version, str) or not package_version:
+                errors.append(
+                    f"{context}: condition_context requires mcp_package_version"
+                )
+    elif condition_context is not None:
+        errors.append(f"{context}: non-MCP result must not declare condition_context")
 
     criterion_ids = {criterion["id"] for criterion in task["rubric"]}
     scores = result.get("criteria_scores", [])
@@ -525,6 +558,8 @@ def build_skill_lifts(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         comparisons = [
             ("docs-only", "baseline"),
             ("skill-enabled", "baseline"),
+            ("mcp-enabled", "baseline"),
+            ("mcp-enabled", "skill-enabled"),
             ("skill-site-adapter", "skill-enabled"),
         ]
         for condition, reference_condition in comparisons:
@@ -558,6 +593,65 @@ def build_skill_lifts(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             }
         )
     return lifts
+
+
+def mcp_comparison_gates(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
+    tasks = payload.get("tasks", [])
+    scored_results = [
+        result for result in payload.get("results", []) if result.get("status") == "scored"
+    ]
+    agents = {
+        (result.get("agent"), result.get("harness"), result.get("model"))
+        for result in scored_results
+    }
+    lifts = payload.get("skill_lifts", [])
+    gates = []
+    for gate_id, condition, reference_condition in [
+        ("mcp-vs-baseline", "mcp-enabled", "baseline"),
+        ("mcp-vs-skill", "mcp-enabled", "skill-enabled"),
+    ]:
+        task_ids = {
+            task["id"]
+            for task in tasks
+            if {condition, reference_condition}.issubset(set(task.get("conditions", [])))
+        }
+        if not task_ids:
+            continue
+        expected = {
+            (*agent, task_id)
+            for agent in agents
+            for task_id in task_ids
+        }
+        eligible = {
+            (
+                lift.get("agent"),
+                lift.get("harness"),
+                lift.get("model"),
+                lift.get("task_id"),
+            )
+            for lift in lifts
+            if lift.get("condition") == condition
+            and lift.get("reference_condition") == reference_condition
+            and lift.get("pair_count", 0) >= PUBLICATION_MIN_PAIRS
+        }
+        eligible &= expected
+        required_agent_count = max(2, len(agents))
+        expected_count = required_agent_count * len(task_ids)
+        gates.append(
+            {
+                "id": gate_id,
+                "condition": condition,
+                "reference_condition": reference_condition,
+                "task_count": len(task_ids),
+                "scored_agent_variant_count": len(agents),
+                "required_agent_variant_count": required_agent_count,
+                "expected_comparison_count": expected_count,
+                "eligible_comparison_count": len(eligible),
+                "missing_comparison_count": expected_count - len(eligible),
+                "ready": len(agents) >= 2 and len(eligible) == expected_count,
+            }
+        )
+    return gates
 
 
 def publication_readiness(
@@ -648,11 +742,30 @@ def publication_readiness(
             f"{PUBLICATION_MIN_PAIRS}-pair baseline-to-skill comparison."
         )
 
+    comparison_gates = mcp_comparison_gates(payload)
+    for gate in comparison_gates:
+        if gate["ready"]:
+            continue
+        if gate["scored_agent_variant_count"] == 0:
+            blockers.append(
+                f"MCP comparison gate {gate['id']} is closed: no scored agent/model "
+                f"variants are available (0/{gate['expected_comparison_count']} "
+                "required task-level comparisons)."
+            )
+        else:
+            blockers.append(
+                f"MCP comparison gate {gate['id']} is closed: "
+                f"{gate['eligible_comparison_count']}/"
+                f"{gate['expected_comparison_count']} task-level comparisons have "
+                f"at least {PUBLICATION_MIN_PAIRS} paired trials."
+            )
+
     return {
         "leaderboard_ready": not blockers,
         "minimum_pairs": PUBLICATION_MIN_PAIRS,
         "scored_agent_variant_count": len(agents),
         "eligible_comparison_count": len(eligible_lifts),
+        "comparison_gates": comparison_gates,
         "blockers": blockers,
     }
 
@@ -800,6 +913,26 @@ def markdown_report(payload: Dict[str, Any]) -> str:
             "two independent blinded reviewers per scored run, and digest-verified artifacts."
         )
 
+    comparison_gates = publication.get("comparison_gates", [])
+    lines.extend(["", "## MCP Comparison Gates", ""])
+    if comparison_gates:
+        lines.extend(
+            [
+                "| Gate | Reference | Condition | Tasks | Eligible | Expected | Status |",
+                "| --- | --- | --- | ---: | ---: | ---: | --- |",
+            ]
+        )
+        for gate in comparison_gates:
+            lines.append(
+                f"| `{gate['id']}` | `{gate['reference_condition']}` | "
+                f"`{gate['condition']}` | {gate['task_count']} | "
+                f"{gate['eligible_comparison_count']} | "
+                f"{gate['expected_comparison_count']} | "
+                f"{'open' if gate['ready'] else 'closed'} |"
+            )
+    else:
+        lines.append("No MCP-enabled task contract is declared.")
+
     lines.extend(
         [
             "",
@@ -889,6 +1022,25 @@ def dashboard_report(payload: Dict[str, Any]) -> str:
         blocker_items = (
             "<li>Repeated paired trials, blinded reviews, and public artifact digests "
             "satisfy the publication contract.</li>"
+        )
+
+    gate_rows = []
+    for gate in publication.get("comparison_gates", []):
+        state = "Open" if gate["ready"] else "Closed"
+        state_class = "gate-open" if gate["ready"] else "gate-closed"
+        gate_rows.append(
+            "<tr>"
+            f"<td><code>{esc(gate['id'])}</code></td>"
+            f"<td>{esc(gate['reference_condition'])}</td>"
+            f"<td>{esc(gate['condition'])}</td>"
+            f"<td>{gate['task_count']}</td>"
+            f"<td>{gate['eligible_comparison_count']}/{gate['expected_comparison_count']}</td>"
+            f"<td><span class=\"{state_class}\">{state}</span></td>"
+            "</tr>"
+        )
+    if not gate_rows:
+        gate_rows.append(
+            '<tr><td colspan="6" class="empty">No MCP-enabled task contract is declared.</td></tr>'
         )
 
     variant_rows = []
@@ -1020,6 +1172,8 @@ def dashboard_report(payload: Dict[str, Any]) -> str:
     .status-scored {{ color: var(--green); border-color: #86b79d; }}
     .status-failed {{ color: var(--red); border-color: #e3a29c; }}
     .status-pending-review {{ color: var(--amber); border-color: #ddc28a; }}
+    .gate-open {{ color: var(--green); font-weight: 650; }}
+    .gate-closed {{ color: var(--amber); font-weight: 650; }}
     .empty {{ color: var(--muted); text-align: center; padding: 28px; }}
     .method {{ color: var(--muted); max-width: 86ch; font-size: .9rem; }}
     footer {{ background: var(--panel); border-top: 1px solid var(--line); color: var(--muted); padding: 18px 0; font-size: .86rem; }}
@@ -1036,7 +1190,7 @@ def dashboard_report(payload: Dict[str, Any]) -> str:
     <div class="wrap topbar">
       <div>
         <h1>Agent Evidence Dashboard</h1>
-        <p class="subtitle">Reviewed HPC task outcomes across baseline, documentation, and skill-enabled conditions.</p>
+        <p class="subtitle">Reviewed HPC task outcomes across baseline, documentation, direct-skill, and MCP-enabled conditions.</p>
       </div>
       <nav aria-label="Evidence links">
         <a href="../index.html">Registry</a>
@@ -1057,6 +1211,13 @@ def dashboard_report(payload: Dict[str, Any]) -> str:
       <h2>{status_label}</h2>
       <ul>{blocker_items}</ul>
     </div>
+    <section aria-labelledby="gates-heading">
+      <div class="section-head"><h2 id="gates-heading">MCP Comparison Gates</h2><span>Three paired trials per agent, task, and comparison</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Gate</th><th>Reference</th><th>Condition</th><th>Tasks</th><th>Eligible</th><th>Status</th></tr></thead>
+        <tbody>{''.join(gate_rows)}</tbody>
+      </table></div>
+    </section>
     <section aria-labelledby="conditions-heading">
       <div class="section-head"><h2 id="conditions-heading">Condition Results</h2><span>Macro score, failures, time, and reported cost</span></div>
       <div class="table-wrap"><table>

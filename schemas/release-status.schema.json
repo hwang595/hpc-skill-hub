@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/release-status.schema.json",
+  "title": "HPC Skill Hub Release Status",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "generated_by",
+    "release",
+    "package_version",
+    "repository_capability_ready",
+    "external_evidence_ready",
+    "capabilities",
+    "gates"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "../schemas/release-status.schema.json"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "generated_by": {
+      "const": "tools/build_release_status.py"
+    },
+    "release": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "package_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "repository_capability_ready": {
+      "type": "boolean"
+    },
+    "external_evidence_ready": {
+      "type": "boolean"
+    },
+    "capabilities": {
+      "type": "object",
+      "required": [
+        "compatibility",
+        "context_bundle",
+        "mcp",
+        "benchmark",
+        "review",
+        "security"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "compatibility": {
+          "allOf": [
+            {"$ref": "#/$defs/artifact"},
+            {
+              "type": "object",
+              "required": ["skill_count", "collection_count", "site_adapter_count"],
+              "properties": {
+                "skill_count": {"type": "integer", "minimum": 0},
+                "collection_count": {"type": "integer", "minimum": 0},
+                "site_adapter_count": {"type": "integer", "minimum": 0}
+              }
+            }
+          ]
+        },
+        "context_bundle": {
+          "allOf": [
+            {"$ref": "#/$defs/artifact"},
+            {
+              "type": "object",
+              "required": ["bundle_digest", "skill_count", "file_count", "total_bytes"],
+              "properties": {
+                "bundle_digest": {"$ref": "#/$defs/sha256"},
+                "skill_count": {"type": "integer", "minimum": 0},
+                "file_count": {"type": "integer", "minimum": 0},
+                "total_bytes": {"type": "integer", "minimum": 0}
+              }
+            }
+          ]
+        },
+        "mcp": {
+          "allOf": [
+            {"$ref": "#/$defs/artifact"},
+            {
+              "type": "object",
+              "required": ["transport", "read_only", "tool_count", "resource_count"],
+              "properties": {
+                "transport": {"const": "stdio"},
+                "read_only": {"const": true},
+                "tool_count": {"type": "integer", "minimum": 1},
+                "resource_count": {"type": "integer", "minimum": 1}
+              }
+            }
+          ]
+        },
+        "benchmark": {
+          "allOf": [
+            {"$ref": "#/$defs/artifact"},
+            {
+              "type": "object",
+              "required": [
+                "plan_artifact",
+                "plan_sha256",
+                "planned_run_count",
+                "result_count",
+                "scored_result_count",
+                "leaderboard_ready",
+                "comparison_gates"
+              ],
+              "properties": {
+                "plan_artifact": {"type": "string", "minLength": 1},
+                "plan_sha256": {"$ref": "#/$defs/sha256"},
+                "planned_run_count": {"type": "integer", "minimum": 1},
+                "result_count": {"type": "integer", "minimum": 0},
+                "scored_result_count": {"type": "integer", "minimum": 0},
+                "leaderboard_ready": {"type": "boolean"},
+                "comparison_gates": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "ready", "eligible_comparison_count", "expected_comparison_count"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {"type": "string", "minLength": 1},
+                      "ready": {"type": "boolean"},
+                      "eligible_comparison_count": {"type": "integer", "minimum": 0},
+                      "expected_comparison_count": {"type": "integer", "minimum": 0}
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "review": {
+          "allOf": [
+            {"$ref": "#/$defs/artifact"},
+            {
+              "type": "object",
+              "required": ["review_release", "candidate_count", "promotion_ready_count"],
+              "properties": {
+                "review_release": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
+                "candidate_count": {"type": "integer", "minimum": 0},
+                "promotion_ready_count": {"type": "integer", "minimum": 0}
+              }
+            }
+          ]
+        },
+        "security": {
+          "allOf": [
+            {"$ref": "#/$defs/artifact"},
+            {
+              "type": "object",
+              "required": [
+                "policy_id",
+                "policy_version",
+                "scanned_skill_count",
+                "finding_count",
+                "review_skill_count",
+                "blocking_count"
+              ],
+              "properties": {
+                "policy_id": {"type": "string", "minLength": 1},
+                "policy_version": {"type": "string", "minLength": 1},
+                "scanned_skill_count": {"type": "integer", "minimum": 0},
+                "finding_count": {"type": "integer", "minimum": 0},
+                "review_skill_count": {"type": "integer", "minimum": 0},
+                "blocking_count": {"type": "integer", "minimum": 0}
+              }
+            }
+          ]
+        }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "required": ["repository", "comparative_evidence", "maturity_promotion", "release_provenance"],
+      "additionalProperties": false,
+      "properties": {
+        "repository": {"$ref": "#/$defs/gate"},
+        "comparative_evidence": {"$ref": "#/$defs/gate"},
+        "maturity_promotion": {"$ref": "#/$defs/gate"},
+        "release_provenance": {"$ref": "#/$defs/gate"}
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["status", "artifact", "sha256"],
+      "properties": {
+        "status": {
+          "enum": ["ready", "ready-with-review", "pending"]
+        },
+        "artifact": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "gate": {
+      "type": "object",
+      "required": ["status", "blockers"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"enum": ["open", "closed", "pending"]},
+        "blockers": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

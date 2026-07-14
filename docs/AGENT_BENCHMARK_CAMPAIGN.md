@@ -1,6 +1,6 @@
 # Agent Benchmark Campaign Operations
 
-This runbook operates the v0.4 real-evidence campaign after the benchmark
+This runbook operates the v0.4 and v0.5 real-evidence campaigns after the benchmark
 contracts are merged. The campaign tool locks provenance, randomizes balanced
 execution waves, reports resumable state, and audits public staging. It never
 launches an agent.
@@ -12,7 +12,8 @@ launches an agent.
 - Use one clean repository commit for the complete campaign.
 - Pin exact Codex and Claude Code model ids and CLI versions.
 - Approve provider quota before creating the campaign lock. The v0.4 plan
-  authorizes at most USD 0.75 per run and USD 40.50 for the campaign.
+  authorizes at most USD 0.75 per run and USD 40.50 for the campaign; the v0.5
+  MCP plan keeps the per-run cap and raises the 72-run ceiling to USD 54.00.
 - Treat Claude Code's provider CLI budget as a hard limit. Codex usage requires
   external quota monitoring when its CLI does not expose an equivalent limit.
 - Run one generated command at a time. Do not turn the command list into an
@@ -50,6 +51,24 @@ a deterministic schedule. It performs no agent call.
 The 54-run v0.4 matrix becomes nine randomized waves. Each wave contains all
 six agent and condition combinations for one task/trial pair, reducing order
 bias without separating paired observations.
+
+For the v0.5 MCP campaign, use the new plan and variant ids:
+
+```bash
+python3 tools/agent_benchmark_campaign.py prepare \
+  --plan agent-bench/plans/evidence-v0.5.json \
+  --model-override codex-v0-5=<exact-codex-model> \
+  --model-override claude-v0-5=<exact-claude-model> \
+  --seed <public-randomization-seed> \
+  --output /tmp/hpc-skill-hub-v0.5-campaign/campaign.json \
+  --acknowledge-paid-quota \
+  --json
+```
+
+This command remains blocked until `hpc-skill doctor --require-mcp` passes. The
+lock records the canonical MCP client-contract digest and installed package
+version. The 72-run matrix has nine waves of eight agent/condition
+combinations; campaign preparation still performs no paid agent call.
 
 ## 2. Inspect The Next Wave
 
@@ -109,9 +128,9 @@ python3 tools/agent_benchmark_campaign.py audit \
   --json
 ```
 
-The default audit requires the complete 54-run campaign. `--allow-partial` may
-be used to inspect a reviewed wave, but incomplete evidence remains visible and
-cannot open the comparative publication gate.
+The default audit requires the complete campaign: 54 runs for v0.4 or 72 for
+v0.5. `--allow-partial` may be used to inspect a reviewed wave, but incomplete
+evidence remains visible and cannot open the comparative publication gate.
 
 The audit verifies:
 

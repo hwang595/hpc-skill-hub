@@ -131,6 +131,26 @@ class RegistryTests(unittest.TestCase):
         self.assertTrue(smoke_payload["ok"])
         self.assertEqual(smoke_payload["run_count"], 6)
 
+        v0_5_json = run_cmd(
+            "python3",
+            "tools/agent_benchmark_harness.py",
+            "--plan",
+            "agent-bench/plans/evidence-v0.5.json",
+            "--json",
+        )
+        v0_5_payload = json.loads(v0_5_json.stdout)
+        self.assertTrue(v0_5_payload["ok"])
+        self.assertEqual(v0_5_payload["run_count"], 72)
+        self.assertEqual(
+            v0_5_payload["condition_counts"],
+            {
+                "baseline": 18,
+                "docs-only": 18,
+                "mcp-enabled": 18,
+                "skill-enabled": 18,
+            },
+        )
+
         result = run_cmd("python3", "tools/run_agent_benchmarks.py", "--check")
         self.assertIn("Agent benchmark report is current", result.stdout)
 
@@ -157,10 +177,30 @@ class RegistryTests(unittest.TestCase):
             {
                 "baseline": 6,
                 "docs-only": 6,
+                "mcp-enabled": 3,
                 "skill-enabled": 6,
                 "skill-site-adapter": 1,
             },
         )
+
+    def test_generated_release_status_is_current_and_preserves_external_gates(self):
+        result = run_cmd("python3", "tools/build_release_status.py", "--check")
+        self.assertIn("Release status is current", result.stdout)
+
+        status = json.loads(
+            (ROOT / "registry" / "release-status.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(status["release"], "v0.5.0")
+        self.assertTrue(status["repository_capability_ready"])
+        self.assertFalse(status["external_evidence_ready"])
+        self.assertEqual(status["capabilities"]["benchmark"]["planned_run_count"], 72)
+        self.assertEqual(status["capabilities"]["benchmark"]["result_count"], 0)
+        self.assertFalse(status["capabilities"]["benchmark"]["leaderboard_ready"])
+        self.assertEqual(
+            status["gates"]["comparative_evidence"]["status"], "closed"
+        )
+        self.assertEqual(status["gates"]["maturity_promotion"]["status"], "closed")
+        self.assertEqual(status["gates"]["release_provenance"]["status"], "pending")
 
     def test_generated_package_data_is_current(self):
         result = run_cmd("python3", "tools/build_package_data.py", "--check")
@@ -315,19 +355,21 @@ class RegistryTests(unittest.TestCase):
         )
 
     def test_current_release_manifest_summarizes_registry(self):
-        manifest_path = ROOT / "registry" / "releases" / "v0.4.0.json"
+        manifest_path = ROOT / "registry" / "releases" / "v0.5.0.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
 
-        self.assertEqual(manifest["version"], "v0.4.0")
+        self.assertEqual(manifest["version"], "v0.5.0")
         self.assertEqual(manifest["registry"]["skill_count"], 97)
         self.assertEqual(manifest["registry"]["collection_count"], 12)
         self.assertEqual(manifest["registry"]["site_adapter_count"], 2)
         paths = {entry["path"] for entry in manifest["files"]}
         self.assertIn("registry/skill-quality.json", paths)
         self.assertIn("registry/review-status.json", paths)
-        self.assertIn("reviews/v0.4.0/job-failure-triage.json", paths)
-        self.assertIn("docs/V0_4_COMPLETION.md", paths)
-        self.assertIn("docs/RELEASE_NOTES_v0.4.0.md", paths)
+        self.assertIn("registry/release-status.json", paths)
+        self.assertIn("schemas/release-status.schema.json", paths)
+        self.assertIn("docs/V0_5_COMPLETION.md", paths)
+        self.assertIn("docs/RELEASE_NOTES_v0.5.0.md", paths)
+        self.assertIn("agent-bench/plans/evidence-v0.5.json", paths)
         self.assertIn("docs/AGENT_BENCHMARK_DASHBOARD.html", paths)
         self.assertIn("docs/SKILL_REVIEW_DASHBOARD.html", paths)
         self.assertIn("schemas/agent-benchmark-campaign.schema.json", paths)
@@ -336,7 +378,7 @@ class RegistryTests(unittest.TestCase):
 
     def test_repository_release_versions_are_consistent(self):
         manifest = json.loads(
-            (ROOT / "registry" / "releases" / "v0.4.0.json").read_text(
+            (ROOT / "registry" / "releases" / "v0.5.0.json").read_text(
                 encoding="utf-8"
             )
         )
@@ -348,7 +390,7 @@ class RegistryTests(unittest.TestCase):
         )
         citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        release_notes = (ROOT / "docs" / "RELEASE_NOTES_v0.4.0.md").read_text(
+        release_notes = (ROOT / "docs" / "RELEASE_NOTES_v0.5.0.md").read_text(
             encoding="utf-8"
         )
 
@@ -357,8 +399,8 @@ class RegistryTests(unittest.TestCase):
         self.assertIn(f'__version__ = "{version}"', package_init)
         self.assertIn(f'version: "{version}"', citation)
         self.assertIn(f"version-{version}-", readme)
-        self.assertNotIn(f"version-{version}--dev", readme)
-        self.assertIn("Status: released", release_notes)
+        self.assertIn(f"version-{version}--rc", readme)
+        self.assertIn("Status: release candidate", release_notes)
 
     def test_safety_audit_passes(self):
         result = run_cmd("python3", "tools/audit_safety.py")

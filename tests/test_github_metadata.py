@@ -116,6 +116,7 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertEqual(len(titles), len(set(titles)))
         self.assertIn("v0.1.0 seed launch", titles)
         self.assertIn("v0.4.0 evidence and reviewed registry", titles)
+        self.assertIn("v0.5.0 trusted agent distribution", titles)
         self.assertIn("ecosystem backlog", titles)
 
         for milestone in milestones:
@@ -305,11 +306,14 @@ class GitHubMetadataTests(unittest.TestCase):
             "python3 tools/build_skill_quality.py --check",
             "python3 tools/build_compatibility.py --check",
             "python3 tools/build_mcp_client_configs.py --check",
+            "python3 tools/build_release_status.py --check",
+            "python3 tools/build_release_manifest.py v0.5.0 --check",
             "python3 tools/build_package_data.py --check",
             "hpc-skill doctor --require-mcp --json",
             "hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json",
             "python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/smoke-v0.3.json --report docs/AGENT_BENCHMARK_SMOKE_PLAN.md --check",
             "python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.4.json --report docs/AGENT_BENCHMARK_V0_4_PLAN.md --check",
+            "python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.5.json --report docs/AGENT_BENCHMARK_V0_5_PLAN.md --check",
             "python3 tools/agent_benchmark_campaign.py --help",
             "python3 tools/agent_benchmark_review.py --help",
             "python3 tools/validate_registry_artifacts.py --release-only",
@@ -334,6 +338,8 @@ class GitHubMetadataTests(unittest.TestCase):
             "wheel:",
             "python3 -m pip install --upgrade pip build twine",
             "python3 tools/build_package_data.py --check",
+            "python3 tools/build_release_status.py --check",
+            "python3 tools/build_release_manifest.py v0.5.0 --check",
             "python3 tools/build_mcp_client_configs.py --check",
             "python3 tools/validate_registry_artifacts.py",
             "python3 -m build --sdist --wheel",
@@ -353,6 +359,7 @@ class GitHubMetadataTests(unittest.TestCase):
             "hpc-skill doctor --require-mcp --json",
             "hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json",
             "python -m hpc_skill_hub show slurm-submit-job --json",
+            "from hpc_skill_hub.release_status import load_release_status",
         ]:
             self.assertIn(text, workflow)
 
@@ -461,7 +468,7 @@ class GitHubMetadataTests(unittest.TestCase):
             result.stdout,
         )
         self.assertIn("repos/example/hpc-skill-hub/rulesets", result.stdout)
-        self.assertIn("gh release create v0.4.0", result.stdout)
+        self.assertIn("gh release create v0.5.0", result.stdout)
         self.assertIn("Link Pages URL from repository homepage", result.stdout)
         self.assertIn("python3 tools/github_homepage.py", result.stdout)
         self.assertIn("Verify published repository state", result.stdout)
@@ -496,7 +503,7 @@ class GitHubMetadataTests(unittest.TestCase):
             result.stdout,
         )
         self.assertIn("python3 tools/github_homepage.py --repo example/hpc-skill-hub", result.stdout)
-        self.assertIn("gh release view v0.4.0", result.stdout)
+        self.assertIn("gh release view v0.5.0", result.stdout)
 
     def test_proposal_evidence_generator(self):
         markdown = subprocess.run(
@@ -614,6 +621,18 @@ class GitHubMetadataTests(unittest.TestCase):
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(
+            "docs/V0_5_COMPLETION.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "registry/release-status.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "schemas/release-status.schema.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
             "docs/AGENT_BENCHMARK_DASHBOARD.html",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
@@ -680,6 +699,9 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertEqual(by_name["github-milestones"]["status"], "OK")
         self.assertEqual(by_name["registry-index-current"]["status"], "OK")
         self.assertEqual(by_name["registry-health-current"]["status"], "OK")
+        self.assertEqual(
+            by_name["release-candidate-manifest-current"]["status"], "OK"
+        )
         self.assertEqual(by_name["registry-artifact-contracts"]["status"], "OK")
         self.assertIn(by_name["git-remote"]["status"], {"OK", "WARN"})
         self.assertIn(by_name["gh-cli"]["status"], {"OK", "WARN"})

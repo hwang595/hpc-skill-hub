@@ -21,6 +21,7 @@ FILES: List[Tuple[Path, Path]] = [
     for filename in (
         "index.json",
         "health.json",
+        "release-status.json",
         "review-status.json",
         "skill-context.json",
     )

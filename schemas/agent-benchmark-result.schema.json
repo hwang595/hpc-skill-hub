@@ -55,7 +55,7 @@
     },
     "condition": {
       "type": "string",
-      "enum": ["baseline", "docs-only", "skill-enabled", "skill-site-adapter"]
+      "enum": ["baseline", "docs-only", "skill-enabled", "mcp-enabled", "skill-site-adapter"]
     },
     "started_at": {
       "type": "string",
@@ -121,6 +121,27 @@
         "workspace_mode": {
           "type": "string",
           "enum": ["read-only", "workspace-write"]
+        },
+        "condition_context": {
+          "type": "object",
+          "required": [
+            "mcp_server_id",
+            "mcp_contract_path",
+            "mcp_contract_sha256",
+            "mcp_read_only",
+            "mcp_package_version"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "mcp_server_id": {"type": "string", "minLength": 1},
+            "mcp_contract_path": {"const": "integrations/mcp-client.json"},
+            "mcp_contract_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "mcp_read_only": {"const": true},
+            "mcp_package_version": {"type": "string", "minLength": 1}
+          }
         }
       }
     },
@@ -229,5 +250,18 @@
     "notes": {
       "type": "string"
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"condition": {"const": "mcp-enabled"}},
+        "required": ["condition"]
+      },
+      "then": {
+        "properties": {
+          "provenance": {"required": ["condition_context"]}
+        }
+      }
+    }
+  ]
 }

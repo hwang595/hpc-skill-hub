@@ -46,7 +46,7 @@ class AgentBenchmarkAggregationTests(unittest.TestCase):
             }
         elif status == "failed":
             failure = {"category": "agent-error", "summary": "Synthetic fixture failure."}
-        return {
+        result = {
             "$schema": "../../schemas/agent-benchmark-result.schema.json",
             "run_id": run_id,
             "task_id": self.task["id"],
@@ -83,6 +83,17 @@ class AgentBenchmarkAggregationTests(unittest.TestCase):
             "artifacts": [],
             "notes": "Synthetic public-safe aggregation fixture.",
         }
+        if condition == "mcp-enabled":
+            result["provenance"]["condition_context"] = {
+                "mcp_server_id": "hpc-skill-hub",
+                "mcp_contract_path": "integrations/mcp-client.json",
+                "mcp_contract_sha256": self.runner.sha256_path(
+                    ROOT / "integrations" / "mcp-client.json"
+                ),
+                "mcp_read_only": True,
+                "mcp_package_version": "0.5.0",
+            }
+        return result
 
     def test_repeated_trials_failure_rate_and_paired_lift(self):
         results = [
@@ -220,6 +231,89 @@ class AgentBenchmarkAggregationTests(unittest.TestCase):
         self.assertEqual(site_lift["reference_score"], 55.0)
         self.assertEqual(site_lift["lift"], 20.0)
 
+    def test_mcp_lift_compares_baseline_and_direct_skill_delivery(self):
+        base = {
+            "agent": "fixture-agent",
+            "harness": "fixture-harness",
+            "model": "fixture-model-v1",
+            "task_id": "skill-routing-oom-triage",
+            "trial": 1,
+        }
+        results = [
+            {**base, "condition": "baseline", "score": 20.0},
+            {**base, "condition": "skill-enabled", "score": 70.0},
+            {**base, "condition": "mcp-enabled", "score": 75.0},
+        ]
+
+        lifts = self.runner.build_skill_lifts(results)
+        mcp_lifts = {
+            item["reference_condition"]: item
+            for item in lifts
+            if item["condition"] == "mcp-enabled"
+        }
+
+        self.assertEqual(set(mcp_lifts), {"baseline", "skill-enabled"})
+        self.assertEqual(mcp_lifts["baseline"]["lift"], 55.0)
+        self.assertEqual(mcp_lifts["skill-enabled"]["lift"], 5.0)
+
+    def test_mcp_result_requires_current_contract_provenance(self):
+        result = self.result("mcp-enabled", 1, "scored", 0.8)
+        result["_path"] = Path(f"{result['run_id']}.json")
+        tasks = {self.task["id"]: {**self.task, "_path": self.task_path}}
+
+        valid = self.runner.validate_result(result, tasks)
+        result["provenance"]["condition_context"]["mcp_contract_sha256"] = "0" * 64
+        tampered = self.runner.validate_result(result, tasks)
+
+        self.assertEqual(valid, [])
+        self.assertTrue(any("MCP contract" in error for error in tampered))
+
+    def test_mcp_comparison_gates_remain_closed_until_every_pair_is_complete(self):
+        agents = [
+            ("codex", "codex-cli", "codex-exact-v1"),
+            ("claude-code", "claude-code", "claude-exact-v1"),
+        ]
+        results = [
+            {
+                "status": "scored",
+                "agent": agent,
+                "harness": harness,
+                "model": model,
+            }
+            for agent, harness, model in agents
+        ]
+        lifts = []
+        for agent, harness, model in agents:
+            for reference in ("baseline", "skill-enabled"):
+                lifts.append(
+                    {
+                        "agent": agent,
+                        "harness": harness,
+                        "model": model,
+                        "task_id": "skill-routing-oom-triage",
+                        "condition": "mcp-enabled",
+                        "reference_condition": reference,
+                        "pair_count": 3,
+                    }
+                )
+        payload = {
+            "tasks": [
+                {
+                    "id": "skill-routing-oom-triage",
+                    "conditions": ["baseline", "skill-enabled", "mcp-enabled"],
+                }
+            ],
+            "results": results,
+            "skill_lifts": lifts,
+        }
+
+        ready = self.runner.mcp_comparison_gates(payload)
+        payload["skill_lifts"] = lifts[:-1]
+        incomplete = self.runner.mcp_comparison_gates(payload)
+
+        self.assertTrue(all(gate["ready"] for gate in ready))
+        self.assertTrue(any(not gate["ready"] for gate in incomplete))
+
 
 class AgentBenchmarkHarnessTests(unittest.TestCase):
     def setUp(self):
@@ -230,6 +324,9 @@ class AgentBenchmarkHarnessTests(unittest.TestCase):
         )
         self.v0_4_payload = self.harness.plan_payload(
             ROOT / "agent-bench" / "plans" / "evidence-v0.4.json"
+        )
+        self.v0_5_payload = self.harness.plan_payload(
+            ROOT / "agent-bench" / "plans" / "evidence-v0.5.json"
         )
 
     def test_calibration_matrix_is_balanced(self):
@@ -275,6 +372,32 @@ class AgentBenchmarkHarnessTests(unittest.TestCase):
         self.assertEqual(execution["max_budget_usd_per_run"], 0.75)
         self.assertEqual(execution["max_total_budget_usd"], 40.5)
         self.assertTrue(execution["require_paid_run_acknowledgement"])
+
+    def test_v0_5_evidence_matrix_adds_balanced_mcp_condition(self):
+        self.assertTrue(
+            self.v0_5_payload["ok"], self.v0_5_payload["validation_errors"]
+        )
+        self.assertEqual(self.v0_5_payload["run_count"], 72)
+        self.assertEqual(
+            self.v0_5_payload["agent_counts"], {"claude-code": 36, "codex": 36}
+        )
+        self.assertEqual(
+            self.v0_5_payload["condition_counts"],
+            {
+                "baseline": 18,
+                "docs-only": 18,
+                "mcp-enabled": 18,
+                "skill-enabled": 18,
+            },
+        )
+        self.assertEqual(
+            self.v0_5_payload["plan"]["execution"]["max_total_budget_usd"], 54.0
+        )
+        mcp_runs = [
+            run for run in self.v0_5_payload["runs"] if run["condition"] == "mcp-enabled"
+        ]
+        self.assertEqual(len(mcp_runs), 18)
+        self.assertTrue(all("condition_context" in run for run in mcp_runs))
 
     def test_total_budget_requires_paid_run_acknowledgement(self):
         plan_path = ROOT / "agent-bench" / "plans" / "evidence-v0.4.json"
@@ -338,6 +461,52 @@ class AgentBenchmarkHarnessTests(unittest.TestCase):
         }
         self.assertEqual(budget_modes["claude-code"], "provider-cli-hard-limit")
         self.assertEqual(budget_modes["codex-cli"], "external-monitoring-required")
+
+    def test_v0_5_preflight_requires_passing_mcp_runtime(self):
+        overrides = {
+            "codex-v0-5": "codex-exact-model",
+            "claude-v0-5": "claude-exact-model",
+        }
+        blocked_mcp = {"ready": False, "issues": ["MCP doctor did not pass"]}
+        ready_mcp = {
+            **self.harness.mcp_condition_context("0.5.0"),
+            "ready": True,
+            "issues": [],
+            "doctor_status": "pass",
+        }
+        version_mismatch_mcp = {
+            **self.harness.mcp_condition_context("0.4.0"),
+            "ready": True,
+            "issues": [],
+            "doctor_status": "pass",
+        }
+        with mock.patch.object(
+            self.harness.shutil,
+            "which",
+            side_effect=lambda executable: f"/bin/{executable}",
+        ), mock.patch.object(
+            self.harness, "command_version", return_value="agent 1.0"
+        ), mock.patch.object(
+            self.harness, "repository_state", return_value=("a" * 40, False)
+        ), mock.patch.object(
+            self.harness, "mcp_runtime_preflight", return_value=blocked_mcp
+        ) as mcp_probe:
+            blocked = self.harness.preflight_payload(self.v0_5_payload, overrides)
+            mcp_probe.return_value = version_mismatch_mcp
+            version_mismatch = self.harness.preflight_payload(
+                self.v0_5_payload, overrides
+            )
+            mcp_probe.return_value = ready_mcp
+            ready = self.harness.preflight_payload(self.v0_5_payload, overrides)
+
+        self.assertFalse(blocked["ok"])
+        self.assertTrue(any("mcp-enabled" in item for item in blocked["blockers"]))
+        self.assertFalse(version_mismatch["ok"])
+        self.assertTrue(
+            any("plan version 0.5.0" in item for item in version_mismatch["blockers"])
+        )
+        self.assertTrue(ready["ok"], ready["blockers"])
+        self.assertEqual(ready["mcp"]["mcp_package_version"], "0.5.0")
 
     def test_preflight_blocks_dirty_repository_evidence(self):
         overrides = {
@@ -471,6 +640,66 @@ class AgentBenchmarkHarnessTests(unittest.TestCase):
             self.assertTrue((enabled / ".agents" / "skills" / "hpc-skill-hub").exists())
             self.assertTrue((enabled / "skills" / "slurm-oom-memory-triage").exists())
             self.assertTrue((enabled / "registry" / "index.json").exists())
+
+    def test_mcp_contexts_use_only_fixtures_and_provider_config(self):
+        codex_run = next(
+            run
+            for run in self.v0_5_payload["runs"]
+            if run["condition"] == "mcp-enabled"
+            and run["harness"] == "codex-cli"
+            and run["task_id"] == "skill-routing-oom-triage"
+        )
+        claude_run = next(
+            run
+            for run in self.v0_5_payload["runs"]
+            if run["condition"] == "mcp-enabled"
+            and run["harness"] == "claude-code"
+            and run["task_id"] == "skill-routing-oom-triage"
+        )
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _, codex_workspace = self.harness.materialize_run(
+                self.v0_5_payload, codex_run["run_id"], root
+            )
+            _, claude_workspace = self.harness.materialize_run(
+                self.v0_5_payload, claude_run["run_id"], root
+            )
+
+            for workspace in (codex_workspace, claude_workspace):
+                self.assertFalse((workspace / "AGENTS.md").exists())
+                self.assertFalse((workspace / "skills").exists())
+                self.assertFalse((workspace / "registry").exists())
+                self.assertTrue(
+                    (workspace / "benchmarks" / "fixtures" / "slurm" / "oom-sacct.txt").exists()
+                )
+                self.assertIn(
+                    "read-only HPC Skill Hub MCP server",
+                    (workspace / "BENCHMARK_TASK.md").read_text(encoding="utf-8"),
+                )
+            self.assertFalse((codex_workspace / ".mcp.json").exists())
+            self.assertTrue((claude_workspace / ".mcp.json").exists())
+
+            codex_command = self.harness.build_command(
+                codex_run,
+                codex_workspace,
+                "codex-exact-v1",
+                root / "codex-output.txt",
+                self.v0_5_payload["plan"],
+            )
+            claude_command = self.harness.build_command(
+                claude_run,
+                claude_workspace,
+                "claude-exact-v1",
+                root / "claude-output.txt",
+                self.v0_5_payload["plan"],
+            )
+
+        self.assertTrue(
+            any("mcp_servers.hpc-skill-hub.required=true" in item for item in codex_command)
+        )
+        self.assertIn("--mcp-config", claude_command)
+        self.assertIn("mcp__hpc-skill-hub__*", claude_command)
+        self.assertNotIn("--disallowedTools", claude_command)
 
     def test_site_adapter_fixture_is_condition_scoped(self):
         task = self.harness.load_tasks()["site-adapter-policy-mapping"]

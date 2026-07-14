@@ -130,6 +130,13 @@ class McpRegistryToolTests(unittest.TestCase):
         self.assertFalse(payload["safety_boundary"]["logs_sensitive_arguments"])
         self.assertEqual(payload["registry"]["skill_count"], 97)
         self.assertEqual(payload["context"]["file_count"], 344)
+        self.assertEqual(payload["release"]["release"], "v0.5.0")
+        self.assertTrue(payload["release"]["repository_capability_ready"])
+        self.assertFalse(payload["release"]["external_evidence_ready"])
+        self.assertEqual(
+            payload["release"]["gates"]["comparative_evidence"]["status"],
+            "closed",
+        )
 
 
 try:

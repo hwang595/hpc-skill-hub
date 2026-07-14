@@ -30,11 +30,16 @@ from hpc_skill_hub.security_policy import (  # noqa: E402
     SecurityPolicyError,
     load_effective_policy,
 )
+from hpc_skill_hub.release_status import (  # noqa: E402
+    ReleaseStatusError,
+    validate_release_status,
+)
 
 INDEX_JSON = ROOT / "registry" / "index.json"
 HEALTH_JSON = ROOT / "registry" / "health.json"
 QUALITY_JSON = ROOT / "registry" / "skill-quality.json"
 REVIEW_STATUS_JSON = ROOT / "registry" / "review-status.json"
+RELEASE_STATUS_JSON = ROOT / "registry" / "release-status.json"
 CONTEXT_JSON = ROOT / "registry" / "skill-context.json"
 MCP_CLIENT_JSON = ROOT / "integrations" / "mcp-client.json"
 SECURITY_POLICY_JSON = ROOT / "security" / "policies" / "community-default.json"
@@ -54,6 +59,7 @@ SCHEMAS = {
     "health": ROOT / "schemas" / "registry-health.schema.json",
     "mcp-client-contract": ROOT / "schemas" / "mcp-client-contract.schema.json",
     "release": ROOT / "schemas" / "release-manifest.schema.json",
+    "release-status": ROOT / "schemas" / "release-status.schema.json",
     "skill-security-report": ROOT / "schemas" / "skill-security-report.schema.json",
     "skill-security-policy": ROOT / "schemas" / "skill-security-policy.schema.json",
     "skill-context-bundle": ROOT / "schemas" / "skill-context-bundle.schema.json",
@@ -72,6 +78,7 @@ PUBLIC_BASELINE_DOCS = [
     ROOT / "docs" / "RELEASE_NOTES_v0.2.0.md",
     ROOT / "docs" / "RELEASE_NOTES_v0.3.0.md",
     ROOT / "docs" / "RELEASE_NOTES_v0.4.0.md",
+    ROOT / "docs" / "RELEASE_NOTES_v0.5.0.md",
     ROOT / "docs" / "REVIEW_PACKET_v0.2.0.md",
     ROOT / "docs" / "SKILL_CATALOG.md",
 ]
@@ -396,6 +403,22 @@ def validate_mcp_client_contract(
         errors.append(f"{context}: {exc}")
 
 
+def validate_generated_release_status(
+    status: Dict[str, Any], errors: List[str]
+) -> None:
+    context = relative(RELEASE_STATUS_JSON)
+    require_schema_pointer(
+        status,
+        "../schemas/release-status.schema.json",
+        errors,
+        context,
+    )
+    try:
+        validate_release_status(status)
+    except ReleaseStatusError as exc:
+        errors.append(f"{context}: {exc}")
+
+
 def validate_release(path: Path, release: Dict[str, Any], errors: List[str]) -> None:
     context = relative(path)
     require_schema_pointer(
@@ -475,6 +498,7 @@ def validate_package_data(errors: List[str]) -> None:
     snapshots = {
         PACKAGE_DATA_DIR / "index.json": INDEX_JSON,
         PACKAGE_DATA_DIR / "health.json": HEALTH_JSON,
+        PACKAGE_DATA_DIR / "release-status.json": RELEASE_STATUS_JSON,
         PACKAGE_DATA_DIR / "review-status.json": REVIEW_STATUS_JSON,
         PACKAGE_DATA_DIR / "skill-context.json": CONTEXT_JSON,
         PACKAGE_INTEGRATION_DIR / "mcp-client.json": MCP_CLIENT_JSON,
@@ -536,6 +560,11 @@ def public_count_expectations(index: Dict[str, Any]) -> Dict[str, List[str]]:
             f"- Skills: {skill_count}.",
             f"- Collections: {collection_count}.",
             f"- Site adapters: {site_adapter_count},",
+        ],
+        "docs/RELEASE_NOTES_v0.5.0.md": [
+            f"- Skills: {skill_count}.",
+            f"- Collections: {collection_count}.",
+            f"- Site adapters: {site_adapter_count}.",
         ],
         "docs/REVIEW_PACKET_v0.2.0.md": [
             f"- Skills: {skill_count}",
@@ -618,12 +647,14 @@ def main() -> int:
     health = load_json(HEALTH_JSON)
     quality = load_json(QUALITY_JSON)
     review_status = load_json(REVIEW_STATUS_JSON)
+    release_status = load_json(RELEASE_STATUS_JSON)
     context_bundle = load_json(CONTEXT_JSON)
     mcp_client_contract = load_json(MCP_CLIENT_JSON)
     validate_index(index, errors)
     validate_health(index, health, errors)
     validate_skill_quality(index, quality, errors)
     validate_review_status(index, review_status, errors)
+    validate_generated_release_status(release_status, errors)
     validate_context_bundle(index, context_bundle, errors)
     validate_mcp_client_contract(mcp_client_contract, errors)
     validate_package_data(errors)

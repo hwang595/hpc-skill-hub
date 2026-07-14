@@ -65,7 +65,12 @@ derived from `registry/index.json`.
 `tools/build_release_manifest.py` generates `registry/releases/<version>.json`
 with deterministic file sizes and SHA-256 checksums for release provenance.
 
-`tools/build_package_data.py` copies generated registry/context data, the MCP
+`tools/build_release_status.py` generates `registry/release-status.json` from
+the compatibility, context, MCP, benchmark, review, and security artifacts. It
+keeps repository capability separate from external comparison, maturity, and
+tag-provenance gates and is included in installed package data.
+
+`tools/build_package_data.py` copies generated registry/context/release data, the MCP
 client contract, and the canonical community trust policy into
 `src/hpc_skill_hub/data/` so installed clients can discover skills, verify
 context, diagnose capabilities, and scan community packages without a

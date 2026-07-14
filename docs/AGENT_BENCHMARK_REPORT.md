@@ -22,6 +22,7 @@ External agents are launched only by the opt-in execution harness, never by CI.
 | Task type `triage` | 1 |
 | Condition `baseline` | 6 |
 | Condition `docs-only` | 6 |
+| Condition `mcp-enabled` | 3 |
 | Condition `skill-enabled` | 6 |
 | Condition `skill-site-adapter` | 1 |
 
@@ -32,15 +33,24 @@ Ready for comparative publication: **no**.
 - No reviewed scored runs have been imported.
 - Fewer than two scored agent/model variants are available.
 - No paired condition comparison is available.
+- MCP comparison gate mcp-vs-baseline is closed: no scored agent/model variants are available (0/6 required task-level comparisons).
+- MCP comparison gate mcp-vs-skill is closed: no scored agent/model variants are available (0/6 required task-level comparisons).
+
+## MCP Comparison Gates
+
+| Gate | Reference | Condition | Tasks | Eligible | Expected | Status |
+| --- | --- | --- | ---: | ---: | ---: | --- |
+| `mcp-vs-baseline` | `baseline` | `mcp-enabled` | 3 | 0 | 6 | closed |
+| `mcp-vs-skill` | `skill-enabled` | `mcp-enabled` | 3 | 0 | 6 | closed |
 
 ## Tasks
 
 | Task | Type | Skills | Conditions | Workspace | Timeout |
 | --- | --- | --- | --- | --- | ---: |
-| [`repo-benchmark-case-repair`](../agent-bench/tasks/repo-benchmark-case-repair.json) | `repo-edit` | `slurm-output-log-triage` | `baseline`, `docs-only`, `skill-enabled` | `workspace-write` | 600s |
-| [`shared-permissions-safety`](../agent-bench/tasks/shared-permissions-safety.json) | `safety` | `shared-project-permissions-triage` | `baseline`, `docs-only`, `skill-enabled` | `read-only` | 300s |
+| [`repo-benchmark-case-repair`](../agent-bench/tasks/repo-benchmark-case-repair.json) | `repo-edit` | `slurm-output-log-triage` | `baseline`, `docs-only`, `skill-enabled`, `mcp-enabled` | `workspace-write` | 600s |
+| [`shared-permissions-safety`](../agent-bench/tasks/shared-permissions-safety.json) | `safety` | `shared-project-permissions-triage` | `baseline`, `docs-only`, `skill-enabled`, `mcp-enabled` | `read-only` | 300s |
 | [`site-adapter-policy-mapping`](../agent-bench/tasks/site-adapter-policy-mapping.json) | `site-policy` | `slurm-submit-job`, `gpu-sanity-check` | `baseline`, `docs-only`, `skill-enabled`, `skill-site-adapter` | `read-only` | 300s |
-| [`skill-routing-oom-triage`](../agent-bench/tasks/skill-routing-oom-triage.json) | `skill-routing` | `slurm-oom-memory-triage`, `job-failure-triage` | `baseline`, `docs-only`, `skill-enabled` | `read-only` | 300s |
+| [`skill-routing-oom-triage`](../agent-bench/tasks/skill-routing-oom-triage.json) | `skill-routing` | `slurm-oom-memory-triage`, `job-failure-triage` | `baseline`, `docs-only`, `skill-enabled`, `mcp-enabled` | `read-only` | 300s |
 | [`slurm-pending-qos-triage`](../agent-bench/tasks/slurm-pending-qos-triage.json) | `triage` | `slurm-pending-reason-triage`, `slurm-qos-account-limit-triage` | `baseline`, `docs-only`, `skill-enabled` | `read-only` | 300s |
 | [`storage-smoke-safety-gate`](../agent-bench/tasks/storage-smoke-safety-gate.json) | `safety` | `ior-mdtest-storage-smoke` | `baseline`, `docs-only`, `skill-enabled` | `read-only` | 300s |
 
