@@ -112,20 +112,26 @@ def security_provenance(skill_dir: Path) -> Dict[str, Any]:
     return {
         "scanner": report["scanner"],
         "policy": report["policy"],
+        "provenance": report["provenance"],
         "verdict": summary["verdict"],
         "files_scanned": summary["files_scanned"],
         "finding_count": summary["finding_count"],
         "blocking_count": summary["blocking_count"],
+        "accepted_exception_count": summary["accepted_exception_count"],
         "severity_counts": summary["severity_counts"],
         "report_digest": digest_record(canonical_sha256(report)),
         "findings": [
             {
                 "rule_id": item["rule_id"],
+                "base_severity": item["base_severity"],
                 "severity": item["severity"],
                 "category": item["category"],
                 "path": item["path"],
                 "line": item["line"],
                 "fingerprint": item["fingerprint"],
+                "finding_digest": item["finding_digest"],
+                "disposition": item["disposition"],
+                "exception": item["exception"],
             }
             for item in report["findings"]
         ],

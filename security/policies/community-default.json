@@ -1,0 +1,42 @@
+{
+  "$schema": "https://hpc-skill-hub.org/schemas/skill-security-policy.schema.json",
+  "schema_version": "0.1.0",
+  "id": "community-default",
+  "version": "0.1.0",
+  "description": "Fail-closed baseline for community-contributed HPC skill packages.",
+  "extends": null,
+  "enforcement": {
+    "fail_on": "high",
+    "exception_max_severity": "medium"
+  },
+  "rules": [
+    {"id": "credential.sensitive-read", "enabled": true},
+    {"id": "dependency.unreviewed-install", "enabled": true},
+    {"id": "execution.download-pipe-shell", "enabled": true},
+    {"id": "execution.dynamic-eval", "enabled": true},
+    {"id": "execution.encoded-payload", "enabled": true},
+    {"id": "filesystem.recursive-delete", "enabled": true},
+    {"id": "filesystem.world-writable", "enabled": true},
+    {"id": "metadata.invalid-manifest", "enabled": true},
+    {"id": "metadata.path-escape", "enabled": true},
+    {"id": "metadata.risk-underdeclared", "enabled": true},
+    {"id": "network.reverse-shell", "enabled": true},
+    {"id": "package.archive", "enabled": true},
+    {"id": "package.executable-binary", "enabled": true},
+    {"id": "package.large-file", "enabled": true},
+    {"id": "package.non-utf8-text", "enabled": true},
+    {"id": "package.symlink", "enabled": true},
+    {"id": "persistence.authorized-keys", "enabled": true},
+    {"id": "persistence.shell-profile", "enabled": true},
+    {"id": "privilege.sudo", "enabled": true},
+    {"id": "prompt.hide-behavior", "enabled": true},
+    {"id": "prompt.ignore-instructions", "enabled": true},
+    {"id": "secret.aws-access-key", "enabled": true},
+    {"id": "secret.github-token", "enabled": true},
+    {"id": "secret.jupyter-token", "enabled": true},
+    {"id": "secret.private-key", "enabled": true},
+    {"id": "secret.slack-token", "enabled": true}
+  ],
+  "severity_overrides": [],
+  "exceptions": []
+}

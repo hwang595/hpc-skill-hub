@@ -23,6 +23,14 @@
       "resolve_site_policy",
       "registry_status"
     ],
+    "tool_arguments": {
+      "search_skills": ["query", "category", "scheduler", "risk", "maturity", "status", "tool", "collection", "limit"],
+      "show_skill": ["skill_id"],
+      "list_collections": ["collection_id"],
+      "show_site_adapters": ["adapter_id"],
+      "resolve_site_policy": ["skill_id", "adapter_id"],
+      "registry_status": []
+    },
     "resources": [
       {
         "name": "skill_context",
@@ -35,7 +43,10 @@
       "writes_files": false,
       "uses_network": false,
       "submits_jobs": false,
-      "returns_unreviewed_community_content": false
+      "returns_unreviewed_community_content": false,
+      "accepts_private_site_policy": false,
+      "uses_mcp_logging": false,
+      "logs_sensitive_arguments": false
     }
   },
   "providers": {

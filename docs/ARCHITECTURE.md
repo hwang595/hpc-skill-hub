@@ -65,10 +65,11 @@ derived from `registry/index.json`.
 `tools/build_release_manifest.py` generates `registry/releases/<version>.json`
 with deterministic file sizes and SHA-256 checksums for release provenance.
 
-`tools/build_package_data.py` copies `registry/index.json`,
-`registry/health.json`, and `registry/review-status.json` into
-`src/hpc_skill_hub/data/registry/` so installed CLI users can run read-only
-discovery and review-status commands without a repository checkout.
+`tools/build_package_data.py` copies generated registry/context data, the MCP
+client contract, and the canonical community trust policy into
+`src/hpc_skill_hub/data/` so installed clients can discover skills, verify
+context, diagnose capabilities, and scan community packages without a
+repository checkout.
 
 `tools/validate_registry_artifacts.py` checks the generated registry index,
 health, skill-quality, and skill-review reports, packaged registry snapshot, immutable historical release
@@ -83,6 +84,9 @@ workflow without granting signing permissions to pull request build jobs.
 `hpc_skill_hub.security` and `tools/scan_skill_security.py` scan untrusted skill
 packages without executing them. The scanner emits text, JSON, or SARIF and is
 available through the installed `hpc-skill security` command.
+`hpc_skill_hub.security_policy` loads the separately versioned policy pack,
+rejects weakening overrides and in-package policy paths, and emits digest-bound
+policy and exception provenance.
 
 `tools/agent_benchmark_harness.py` expands versioned experiment plans into
 condition-isolated run packets. The v0.3 smoke plan uses six runs to verify

@@ -86,6 +86,7 @@ def validate_client_contract(payload: Dict[str, Any]) -> None:
             "python",
             "read_only",
             "tools",
+            "tool_arguments",
             "resources",
             "safety_boundary",
         },
@@ -119,6 +120,18 @@ def validate_client_contract(payload: Dict[str, Any]) -> None:
         "MCP tool list is invalid",
     )
     _require(len(tools) == len(set(tools)), "MCP tool names must be unique")
+    tool_arguments = server.get("tool_arguments")
+    _require(
+        isinstance(tool_arguments, dict) and set(tool_arguments) == set(tools),
+        "MCP tool argument allowlist must exactly cover the tools",
+    )
+    for tool_name, arguments in tool_arguments.items():
+        _require(
+            isinstance(arguments, list)
+            and len(arguments) == len(set(arguments))
+            and all(isinstance(item, str) and item for item in arguments),
+            f"{tool_name}: MCP tool argument allowlist is invalid",
+        )
 
     resource_entries = server.get("resources")
     _require(
@@ -157,6 +170,9 @@ def validate_client_contract(payload: Dict[str, Any]) -> None:
         "uses_network": False,
         "submits_jobs": False,
         "returns_unreviewed_community_content": False,
+        "accepts_private_site_policy": False,
+        "uses_mcp_logging": False,
+        "logs_sensitive_arguments": False,
     }
     _require(
         server.get("safety_boundary") == expected_safety,

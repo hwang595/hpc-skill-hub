@@ -1,8 +1,9 @@
 # v0.5 Development Plan
 
-Status: P0 read-only MCP MVP merged through PR #41 and P1 verified context
-bundles merged through PR #42 on 2026-07-14. P2 onboarding and installed-runtime
-diagnostics are implemented for the next merge. Public delivery is tracked in issue
+Status: P0 read-only MCP MVP merged through PR #41, P1 verified context bundles
+merged through PR #42, and P2 onboarding/diagnostics merged through PR #43 on
+2026-07-14. P3 Trust Policy Packs are implemented on the current development
+branch. Public delivery is tracked in issue
 [#40](https://github.com/hwang595/hpc-skill-hub/issues/40).
 
 v0.5 focuses on trusted agent distribution. The release should make the
@@ -53,6 +54,11 @@ validate both a core-only install and the full official-SDK protocol path.
   full context retrieval.
 
 ## P3 Trust Policy Packs
+
+Implementation status: complete for the repository capability. The packaged
+baseline is separate from scanner code, external packs can only strengthen it,
+reviewed exceptions bind exact findings and expire, and MCP capability/privacy
+boundaries are enforced in code and tests.
 
 - Version community-skill security policy separately from scanner code.
 - Add explicit rule enablement, severity overrides, reviewed exceptions, and

@@ -23,23 +23,28 @@ hpc-skill security ./path/to/skill --format json
 hpc-skill security ./path/to/skill --format sarif
 ```
 
-The default policy fails on `high` and `critical` findings. Use
-`--fail-on medium` for a stricter review gate or `--fail-on none` to collect a
-report without changing the exit status.
+The packaged `community-default@0.1.0` policy fails on active `high` and
+`critical` findings. Use `--fail-on medium` for a stricter review gate or
+`--fail-on none` for report-only process behavior. Report-only mode does not
+erase a policy `block` verdict. See [Trust Policy Packs](TRUST_POLICY_PACKS.md)
+for external policy and reviewed-exception rules.
 
 ## Verdicts
 
 | Verdict | Meaning | Expected action |
 | --- | --- | --- |
 | `pass` | No rule matched. | Continue normal validation and human review. |
+| `pass-with-exceptions` | Every finding is covered by an exact, unexpired reviewed exception. | Preserve the receipt and re-review before expiration or any source change. |
 | `review` | Findings exist below the failure threshold. | Review the exact file, behavior, risk declaration, guard, and remediation. |
 | `block` | At least one finding meets the failure threshold. | Do not install, load into an agent context, or execute the skill until resolved. |
 
 Reports follow
 [`skill-security-report.schema.json`](../schemas/skill-security-report.schema.json)
-and include stable rule ids, severity, category, file/line location, remediation,
-skill id when available, and a deterministic finding fingerprint. Reports do
-not copy matched secret text into output.
+and include stable rule ids, base and effective severity, category, file/line
+location, remediation, skill id when available, a deterministic fingerprint,
+and a source-bound finding digest. Policy, target, and rule-catalog digests form
+a provenance receipt. Reports do not copy matched secret, reviewer, or exception
+justification text into output.
 
 ## Initial Rule Coverage
 
@@ -81,6 +86,7 @@ The scanner is static, local, deterministic, and standard-library-only. It does
 not execute skill content or use the network. It cannot prove that a script is
 safe, detect every obfuscated payload, verify a remote artifact after download,
 or replace domain review and sandboxing. Tagged package builds now add signed
-GitHub artifact provenance for release manifests and distributions. Future work
-should add archive extraction limits and stronger policy packs without turning
-static findings into automatic maturity promotion.
+GitHub artifact provenance for release manifests and distributions. Versioned
+policy packs and receipts detect policy/content drift but are not signatures.
+Future work should add archive extraction limits without turning static
+findings or reviewed exceptions into automatic maturity promotion.

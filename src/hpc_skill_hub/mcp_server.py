@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 import os
 import sys
@@ -41,6 +42,24 @@ TOOL_NAMES = (
     "resolve_site_policy",
     "registry_status",
 )
+TOOL_ARGUMENT_ALLOWLIST = {
+    "search_skills": (
+        "query",
+        "category",
+        "scheduler",
+        "risk",
+        "maturity",
+        "status",
+        "tool",
+        "collection",
+        "limit",
+    ),
+    "show_skill": ("skill_id",),
+    "list_collections": ("collection_id",),
+    "show_site_adapters": ("adapter_id",),
+    "resolve_site_policy": ("skill_id", "adapter_id"),
+    "registry_status": (),
+}
 RESOURCE_NAMES = ("skill_context",)
 
 
@@ -111,16 +130,19 @@ def search_skills(
 
     return {
         "ok": True,
-        "query": query,
-        "filters": {
-            "category": category,
-            "scheduler": scheduler,
-            "risk": risk,
-            "maturity": maturity,
-            "status": status,
-            "tool": tool,
-            "collection": collection,
-        },
+        "applied_filters": sorted(
+            name
+            for name, value in {
+                "category": category,
+                "scheduler": scheduler,
+                "risk": risk,
+                "maturity": maturity,
+                "status": status,
+                "tool": tool,
+                "collection": collection,
+            }.items()
+            if value is not None
+        ),
         "total": len(matches),
         "returned": min(len(matches), limit),
         "truncated": len(matches) > limit,
@@ -134,7 +156,7 @@ def show_skill(skill_id: str) -> Dict[str, Any]:
     index = load_index()
     skill = find_by_id(index["skills"], skill_id)
     if skill is None:
-        return error_payload("unknown-skill", f"Unknown skill: {skill_id}")
+        return error_payload("unknown-skill", "Unknown skill id.")
     context = skill_context(skill_id)
     if not context["ok"]:
         return context
@@ -171,7 +193,7 @@ def skill_context(skill_id: str) -> Dict[str, Any]:
         return error_payload("invalid-context-bundle", str(exc))
     context = find_skill_context(bundle, skill_id)
     if context is None:
-        return error_payload("unknown-skill", f"Unknown skill: {skill_id}")
+        return error_payload("unknown-skill", "Unknown skill id.")
     return {
         "ok": True,
         "bundle_schema_version": bundle["schema_version"],
@@ -204,7 +226,7 @@ def list_collections(collection_id: Optional[str] = None) -> Dict[str, Any]:
         collection = find_by_id(collections, collection_id)
         if collection is None:
             return error_payload(
-                "unknown-collection", f"Unknown collection: {collection_id}"
+                "unknown-collection", "Unknown collection id."
             )
         return {"ok": True, "collection": collection}
     return {"ok": True, "count": len(collections), "collections": collections}
@@ -217,7 +239,7 @@ def show_site_adapters(adapter_id: Optional[str] = None) -> Dict[str, Any]:
         adapter = find_by_id(adapters, adapter_id)
         if adapter is None:
             return error_payload(
-                "unknown-site-adapter", f"Unknown site adapter: {adapter_id}"
+                "unknown-site-adapter", "Unknown site adapter id."
             )
         return {"ok": True, "site_adapter": adapter}
     return {"ok": True, "count": len(adapters), "site_adapters": adapters}
@@ -228,11 +250,11 @@ def resolve_site_policy(skill_id: str, adapter_id: str) -> Dict[str, Any]:
     index = load_index()
     skill = find_by_id(index["skills"], skill_id)
     if skill is None:
-        return error_payload("unknown-skill", f"Unknown skill: {skill_id}")
+        return error_payload("unknown-skill", "Unknown skill id.")
     adapter = find_by_id(index.get("site_adapters", []), adapter_id)
     if adapter is None:
         return error_payload(
-            "unknown-site-adapter", f"Unknown site adapter: {adapter_id}"
+            "unknown-site-adapter", "Unknown site adapter id."
         )
     if not isinstance(adapter.get("public_policy"), dict):
         return error_payload(
@@ -286,8 +308,23 @@ def registry_status() -> Dict[str, Any]:
             "uses_network": False,
             "submits_jobs": False,
             "returns_unreviewed_community_content": False,
+            "accepts_private_site_policy": False,
+            "uses_mcp_logging": False,
+            "logs_sensitive_arguments": False,
         },
     }
+
+
+def validate_tool_surface(tool_functions: Dict[str, Any]) -> None:
+    """Fail closed if registration or callable parameters drift from the allowlist."""
+    if tuple(tool_functions) != TOOL_NAMES:
+        raise RuntimeError("MCP tool registration differs from the server allowlist")
+    if set(TOOL_ARGUMENT_ALLOWLIST) != set(TOOL_NAMES):
+        raise RuntimeError("MCP tool argument allowlist is incomplete")
+    for name, function in tool_functions.items():
+        parameters = tuple(inspect.signature(function).parameters)
+        if parameters != TOOL_ARGUMENT_ALLOWLIST[name]:
+            raise RuntimeError(f"{name}: callable parameters differ from the allowlist")
 
 
 def create_server() -> Any:
@@ -316,17 +353,27 @@ def create_server() -> Any:
         idempotentHint=True,
         openWorldHint=False,
     )
-    for tool_name, title, function in (
-        ("search_skills", "Search HPC Skills", search_skills),
-        ("show_skill", "Show HPC Skill", show_skill),
-        ("list_collections", "List Skill Collections", list_collections),
-        ("show_site_adapters", "Show Site Adapters", show_site_adapters),
-        ("resolve_site_policy", "Resolve Public Site Policy", resolve_site_policy),
-        ("registry_status", "Show Registry Status", registry_status),
-    ):
+    tool_functions = {
+        "search_skills": search_skills,
+        "show_skill": show_skill,
+        "list_collections": list_collections,
+        "show_site_adapters": show_site_adapters,
+        "resolve_site_policy": resolve_site_policy,
+        "registry_status": registry_status,
+    }
+    validate_tool_surface(tool_functions)
+    titles = {
+        "search_skills": "Search HPC Skills",
+        "show_skill": "Show HPC Skill",
+        "list_collections": "List Skill Collections",
+        "show_site_adapters": "Show Site Adapters",
+        "resolve_site_policy": "Resolve Public Site Policy",
+        "registry_status": "Show Registry Status",
+    }
+    for tool_name, function in tool_functions.items():
         server.tool(
             name=tool_name,
-            title=title,
+            title=titles[tool_name],
             annotations=read_only,
             structured_output=True,
         )(function)

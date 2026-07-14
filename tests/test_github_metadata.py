@@ -645,6 +645,18 @@ class GitHubMetadataTests(unittest.TestCase):
             "schemas/mcp-client-contract.schema.json",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
+        self.assertIn(
+            "schemas/skill-security-policy.schema.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "security/policies/community-default.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "docs/TRUST_POLICY_PACKS.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
 
         result = subprocess.run(
             [

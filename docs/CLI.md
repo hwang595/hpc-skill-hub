@@ -189,9 +189,13 @@ python3 tools/build_package_data.py --check
 python3 tools/validate_registry_artifacts.py
 ```
 
-## Future Direction
+## Trust Policy Packs
 
-The CLI is intentionally small and already installable as `hpc-skill`. Next
-steps include richer security policy packs, template rendering, a read-only MCP
-surface, and reviewed site-aware generation for common scheduler and workflow
-files.
+The installed CLI loads `community-default@0.1.0` from package data. An
+operator-reviewed policy stored outside the scan target can strengthen the
+baseline with `hpc-skill security <path> --policy <policy.json>`. See
+[Trust Policy Packs](TRUST_POLICY_PACKS.md) for severity, exception, and
+provenance rules.
+
+Future work includes template rendering and reviewed site-aware generation for
+common scheduler and workflow files.

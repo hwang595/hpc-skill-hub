@@ -15,6 +15,7 @@ scraping prose or guessing cluster policy.
 | `.agents/skills/hpc-skill-hub/agents/openai.yaml` | Codex app | UI metadata and invocation policy for the router skill. |
 | `.claude/skills/hpc-skill-hub/SKILL.md` | Claude Code | Router skill exposed as `/hpc-skill-hub`. |
 | `integrations/mcp-client.json` | MCP clients and package runtime | Canonical stdio, capability, provider, and safety contract. |
+| `security/policies/community-default.json` | CLI, agents, and package runtime | Versioned fail-closed community-skill policy and provenance identity. |
 | `integrations/codex.config.toml` | Codex | Generated user/project configuration example. |
 | `integrations/claude-code.mcp.json` | Claude Code | Generated project-scoped `.mcp.json` example. |
 | `hpc-skill-mcp` | MCP clients | Optional local stdio server for six read-only registry queries plus verified skill-context resources. |
@@ -48,6 +49,11 @@ Community-contributed skill packages are a separate trust boundary. Agents
 should run `python3 tools/hpc_skill.py security <skill-path> --json` before
 loading untrusted skill text into context, stop on a `block` verdict, and show
 the user any `review` findings before adoption.
+
+External policy packs must be operator-reviewed and stored outside the scan
+target. They can only strengthen the packaged baseline. Reviewed exceptions
+bind the exact source finding and remain visible as digest-only provenance;
+they do not establish skill maturity or execution authorization.
 
 ## Safety Contract
 

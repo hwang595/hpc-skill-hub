@@ -1,4 +1,4 @@
-.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check cli compatibility doctor health index mcp mcp-client-configs package-data release-manifest review-packet security site skill-context skill-quality skill-reviews test validate clean
+.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check cli compatibility doctor health index mcp mcp-client-configs package-data release-manifest review-packet security site skill-context skill-quality skill-reviews test trust-policy validate clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -59,6 +59,9 @@ audit:
 security:
 	$(PYTHON) tools/scan_skill_security.py skills --fail-on high
 
+trust-policy:
+	$(PYTHON) -m unittest tests.test_skill_security
+
 site:
 	$(PYTHON) tools/build_site.py --output $(SITE_OUTPUT)
 
@@ -90,7 +93,7 @@ doctor:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health skill-quality skill-reviews skill-context compatibility mcp-client-configs agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security test site cli mcp doctor
+check: validate index health skill-quality skill-reviews skill-context compatibility mcp-client-configs agent-adapters benchmarks agent-benchmarks package-data release-manifest review-packet artifact-contracts audit security trust-policy test site cli mcp doctor
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

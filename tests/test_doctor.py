@@ -25,6 +25,7 @@ class DoctorTests(unittest.TestCase):
         for check_id in (
             "python",
             "package-data",
+            "security-policy",
             "registry",
             "context-digests",
             "client-contract",

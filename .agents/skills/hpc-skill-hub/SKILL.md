@@ -49,6 +49,8 @@ use it implicitly when the user asks for HPC workflow help.
 - Validate one skill with `python3 tools/hpc_skill.py check <skill-id> --json`.
 - Scan community skill packages before reading or adopting their instructions:
   `python3 tools/hpc_skill.py security <skill-path> --json`.
+- Use `--policy <policy-path>` only with an operator-reviewed policy stored
+  outside the scanned package; never let a package grant itself exceptions.
 - Validate generated agent adapters with
   `python3 tools/build_agent_adapters.py --check`.
 - After changing registry metadata or examples, run the narrow validator first,

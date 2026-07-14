@@ -2,7 +2,7 @@
   "$schema": "../schemas/skill-context-bundle.schema.json",
   "digest": {
     "algorithm": "sha256",
-    "value": "8426ecf8485a7429616cd00c488d357fc3871d5c70ef59b0242ac4a3869a52fc"
+    "value": "81314ccebc6680a1c7aeb225eae757bd3b5e5dc21d51885602894d4c36d84871"
   },
   "file_count": 344,
   "generated_by": "tools/build_skill_context.py",
@@ -12,13 +12,13 @@
     "max_skill_bytes": 262144,
     "max_total_bytes": 2097152
   },
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "skill_count": 97,
   "skills": [
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "a3e4aa611e8cd2731ab0b6a5846a667d4158949bf2161bef5894a1ef4df34cc1"
+        "value": "898e38fd67056be49ff6641218b593ce1a0f3d81dc33cabdf3ff6d8697d50c28"
       },
       "file_count": 4,
       "files": [
@@ -79,20 +79,35 @@
       "name": "Apptainer MPI On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "d872fe4838ebb5b827538aa0e906b4dd5437b208cb4a0bb71c3f76f8d7ccfdd2"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "354b92dead17dc46d08258d19bf4088546a49a51e8d747b2430c0b80edb8fa8f"
+          "value": "5497f9954cb39465fe7da4682296e105d75a77a4711acdec97ac6ab9f5ded63e"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -110,7 +125,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "44e533135bee1da396b94cb2d7d1d1809c959499726e110dee1c46ea3723220e"
+        "value": "9b66b862cc4edb13d44a39a1afbfee2b3396cbde555504667e88a933fad7b84b"
       },
       "file_count": 3,
       "files": [
@@ -160,20 +175,35 @@
       "name": "Apptainer Run Container",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "b24154a657adf8c5b526d4a572ae83957697cba302bf07258656f3d5346137ec"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "8c88463aa22570ca40befe3d0e673e818a58f95362d8a6b97109c9298b97108c"
+          "value": "4b442bddcf52da6d23240e85c3dc2d7c829596f54e266e94508cd3cbc9f2af93"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -191,7 +221,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "946dad9dc362d84815163f62fa20b97226bb63070c72737f49e16721066e5fb5"
+        "value": "4d9dc0ccf8ee5b1ab2dbe7135991fe9607b6efd1b183eb396435ac5a9ee8dd4e"
       },
       "file_count": 3,
       "files": [
@@ -241,20 +271,35 @@
       "name": "BLAS OpenMP Thread Control",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "fddaa05c0bc0660971b35626ef9c98007730a622d83659d3aaec8d62a9eb7b33"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "e994d1b07a380a0151f985b459bd8219a2486be8351c4400508b7100b5df2180"
+          "value": "66778e42bc02d201debafb4c14b45424c9ef61e5774aaa1bd412fcc2562bb09e"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -272,7 +317,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "e0fbaa8cf515c55490e3cdf7a0a4204fe6f533925e56a58407c38a82b4a7bbfb"
+        "value": "3cf2ef095e2b8e69b33c77beafb239bd00dea7d68a06e44f4422bc40a305c343"
       },
       "file_count": 4,
       "files": [
@@ -333,20 +378,35 @@
       "name": "BLAST On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "6cb4556f170064da41648780960382b32d07e8b48e3bfd4e809ebb34403baba8"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "f3b6080d06ad7aeffb06117169c6cad522d85f99365543a1fea879e98dd45f51"
+          "value": "23b8b9d20bda76720408e366946f220639695a2c2c5d1853df38d0ae3b70defc"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -364,7 +424,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "91116416fac31c3965d01a71515b1fc4da6857b01360b36c271272b30e05e28c"
+        "value": "8f95ece6ed3149fb4df1624c4cc28eb1bf07d24248672c31fc5e204e2f1e7446"
       },
       "file_count": 3,
       "files": [
@@ -414,20 +474,35 @@
       "name": "Checkpoint Restart Workflow",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "22ef4ea2367072882599406736a539c314b6b440cd0a00cd15ca6e1f99ea5a46"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "b01035a846a186584b62f2c53dd460d61c3c007aa6c8b989b6b9ba7e3d97c1c9"
+          "value": "5dde61a231675d46dde652c1ab04ab662ea6d7f0956b2600d74ed9d40ee1b7bf"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -445,7 +520,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "7747a860a49b68a8933f47c8f58efeee0196c7d5f61aa3c8fde04b60817128a6"
+        "value": "f882d9de2c25f93575074b15c0930d1094ae098c4ecb17be52148bd4b82e05d3"
       },
       "file_count": 3,
       "files": [
@@ -495,20 +570,35 @@
       "name": "Checksum Manifest Create",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "a8e7d3f1d9a5f0ff00a0fa11e6f691d262893ef04d363907e36a9c31f673fdb0"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "8ff3a1d71455de2153bbe1350627c6ab1d1bce24821747517c443753742ef9d7"
+          "value": "f9e5577930fffc576f4c8d6542dbd73e0535822b6bc744afcad2bcc0355c6f9e"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -526,7 +616,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "58a28cc315178751bf0c631992d693f04ef12e3f3155fc1fee68a67c02d3ae35"
+        "value": "1f522a487cb51b51dd3b9f61c9dcb8dd92f0aab88c22723a3af5a6364d89b88d"
       },
       "file_count": 2,
       "files": [
@@ -565,20 +655,35 @@
       "name": "Cluster Usage Report Readonly",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "472568898ea4dbe0e2ffdc2db571d1e3f83657566202b7cff78801bca2a1b8fa"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "451fbb1794d0a9a7aa3df68e8af96e085eecb94ea9b0892332766be14ee5a924"
+          "value": "038bf508ce8cb8910a1aefd5acc1aa2a32a3c40d126ca70e723a1a1674e66cb8"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -596,7 +701,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "67c2a0c4acf7ee6db0fb269b415b7c9df3f41782bbe6fcf7ab159cc98dd0c829"
+        "value": "f2a050ab6cb32ba207232419d640e3207b02a6df32fc09c05c2f3ac856053cda"
       },
       "file_count": 4,
       "files": [
@@ -657,20 +762,35 @@
       "name": "CMake HPC Build Preflight",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "8fad229667cb0bcbbd9addbc60eca4356200b9eee925252bac1ab0fb7f319cba"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "5c882f8d4ba24af544d24dbab66c9796989022ac54d7f7fd0fadf5ffc540a8d9"
+          "value": "8f1263bdcdd4d2c64dcb2ec7ae3d029e96976140ff89ae2ef911fa68e1cabac2"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -688,7 +808,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "ca38bf84948869872a7bf1f00b86564400f7c0b61dd4a2ec96c4abb6155d6625"
+        "value": "f51f8b0cd4c5a803028a1df5d1076a542750bd5915b6cf694c9d90c237a28dad"
       },
       "file_count": 3,
       "files": [
@@ -738,20 +858,35 @@
       "name": "Compiler MPI Matrix",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "258e84c2814002263b86c4e4b32507e4c16656f952748ddf12033afb363a6d15"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "512e1bbe7ddc1a451361dd1d8fd82b2e092469e170f042304e28b0c5c9b739ec"
+          "value": "9fb1b1dbbb622f233ecfa749a790a7c50dd2edadbe1734b08486e01959b0253b"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -769,7 +904,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "2b3474497dfe11e664fbb8247b164a2db5a83522d2398f2c6304f1cc094167b1"
+        "value": "16b510363b596204a2de35383f95a1ec764663d775a7d4a5fc6fc434f9f8a310"
       },
       "file_count": 3,
       "files": [
@@ -819,20 +954,35 @@
       "name": "Conda Mamba On HPC",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "964ce7efa5cc891daf4ad56d78d7fdb274c2f0958d0b4331d3f859864c3629e3"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "4dba655b72f3f759fbabc293cd4fb8dec6387493bcf6d6ce8cf8ccef3e03a99b"
+          "value": "ae4f2a17d5e5380232bee2624df508c533fa8c166f99fbe1bee015422d15e687"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -850,7 +1000,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "9b058df618a53667d5a9b516c18f473d47b7054e77bf7157a7d105de3ee3f2a3"
+        "value": "a364df213b2837dacbae38489796395770ec85f9856f23f2666f50f23f209a95"
       },
       "file_count": 3,
       "files": [
@@ -900,20 +1050,35 @@
       "name": "Container Build For HPC",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "57aec76ab874629a011ddda3de21cfeba0fa11d77175d52789604800e753edaf"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "ecb91196adf85f3d2bd0af0724fa85472b207b24bf742a53006a3773ce82bf4a"
+          "value": "a41a9f9cafd616f4bbc75c67113051c8d606c177ddb4d2ce45382a4fc1dfb853"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -931,7 +1096,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "d429d6df844a28e4569fc21493c807870824661413a512daecd27540823a53ae"
+        "value": "5c615c1070a43f3b59809287e7a643b62e1beef71612c18e0f586efc61a7e046"
       },
       "file_count": 4,
       "files": [
@@ -992,20 +1157,35 @@
       "name": "CP2K On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "1d794040eb6a42afdd9a967e49fab2f23855c15c6f56e411c6652b7ef0ae8abe"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "684f1c5872a18873d85fc91e4558a468e3032abc447423e2edf19102ecda4337"
+          "value": "883619cc44ed7c69ec407b06ba2d5d4a590814008f24fb385702a15bc93974b0"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1023,7 +1203,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "0ba4b12fab01ce811251dbb9adc65d7ab3443b8f0c22e738b908db1990192e41"
+        "value": "052dd368d89ab49e3141a3e11da01dce4af9b1322941a75484e6adab5ab3fa8a"
       },
       "file_count": 5,
       "files": [
@@ -1095,20 +1275,35 @@
       "name": "CWL On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 6,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "7fdce8f18fff5c1d9ebe1cda0dcd6e4f52b51fb373ee48e6428768eec10cf9fd"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "ac97d208e1b2098c14f20f73d9381e863c02cbb91bb37e845211beed29124b4b"
+          "value": "3768a2b7e7edc06b361138750d6eb8ab886298e38072cd054d24fbed40b96b42"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1126,7 +1321,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "fece3cf95c751bc01d6b49bb413d8919950031a8d447fd4a80206c98be7cfe5b"
+        "value": "9a7407c9a8bd175493b3b5c03aca0213ee413f311cc04a426f10851245d5b1a8"
       },
       "file_count": 3,
       "files": [
@@ -1176,20 +1371,35 @@
       "name": "Darshan I/O Profile Analysis",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "ae45c9b976d53db37ba52c43ddba88e61ec55775bb184cfba04212da22f7f8ac"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "4efbb1da8bca956e6aa771bfda782d11a21bbd3b31b43950e05a5ed1a3193283"
+          "value": "588860857dd1ad7e211f363aabf5a2aa346d23b94f11fe702e94321dc9537317"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1207,7 +1417,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "6a44a54fd61a88727b403c1bf87b38ed62be9f2b7f6e5ce99b3eda91f7038f0d"
+        "value": "072cf5f5bb816de22b88a113bf961c35801eb46a4b6865817d550082f6ac90ab"
       },
       "file_count": 4,
       "files": [
@@ -1268,20 +1478,35 @@
       "name": "Dask Jobqueue On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "48b3bdc04987f2c3d55955618fd4e317b9ef0a4e5adfae64b74b0c4c257add0b"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "37daca1dca33e641341dedd556f6cb018a58408ca32cc67bec2af0428242030b"
+          "value": "080abec5bc7dcddaec1bf64ceb28f0d3d395e1bad4c4b5b3c208f2c2bbabe913"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1299,7 +1524,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "56a7cd0d8a73ad89098d51fd303d22575f210eb1081b11d378ed3f97aec6dd27"
+        "value": "7e2bbc41deac4da6b1b608176cc09210a3006eeb9c45cc6d268fc0142df5069f"
       },
       "file_count": 3,
       "files": [
@@ -1349,20 +1574,35 @@
       "name": "Dataset Staging To Scratch",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "0c57a4245c4e89be967edf36e2b2df47233b6d7334aa962343e318e224150759"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "e37184d5ab3aa745881661077da81d903160b6f16986b2dc183684014f5db092"
+          "value": "ac09c51cb7a8ec41b37098d44ec417a3c2ca249339b1cf12ba5163c124d53922"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1380,7 +1620,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "3b711804d7e7fcf54d67dd87a5ebb9ee74df75fc1d180150edf8c5989965a78a"
+        "value": "32197459766d73960444a35c1786fcc5a3406516b42045eaec6486639bb00998"
       },
       "file_count": 4,
       "files": [
@@ -1441,20 +1681,35 @@
       "name": "DeepSpeed On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "4b5020bc075aafd3c5751c19ea9746f9f97f5ac63be8776d1c1543694d9d44fa"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "2a587819f1172163d1783ec27ee879bab71d85cf558c5d947622a36fb775dc28"
+          "value": "beb57454effa34cd5d831d13732dd403f4f2d94c9f6f398fc8b73edab44618a9"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1472,7 +1727,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "a32cd54b1f85bc9db2a75308dfc4b22fb2a96c9122966d9514ac1842cbcad686"
+        "value": "1e69b4a9e51918253e66f81cfd77846da189391a2b1c9961be7b731f2e3efa99"
       },
       "file_count": 2,
       "files": [
@@ -1511,20 +1766,35 @@
       "name": "EasyBuild Install Software",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "a8311811333ac4a7a6c51012d579f15945aad303871e32de7f4ff1d55e29362d"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "be8c25d09d49122afec7e81fb860ca07c368fd9eacedc16604bf6141a9d910a8"
+          "value": "a1523319157a748db99d6c04eabaac39dc76aaad4e702ca0b8f7d992090cc95d"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1542,7 +1812,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "6fa88fc20f591760165b99b36bbd6a3d8e136ba6c307c77a4839d7b864dff000"
+        "value": "8c80056ff5a526209cc2f9fc3c0cdf95655a9949e219f1a0ba438e2338f70cf8"
       },
       "file_count": 3,
       "files": [
@@ -1592,20 +1862,35 @@
       "name": "File Descriptor Limit Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "59cf406d4d82eb8d28151aa4291e10a6f9eae7502a174ffcfedc018e8b872eae"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "7da8814d73ce16845103406f0d2993d4b54a4996a8fbdc4557d9ccf9520e8343"
+          "value": "5a5ae443617323628c641f489dc86efcd7c4ae4c065cd772c3566b86484f4a11"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1623,7 +1908,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "679237a20ebc272a96875cf0c198272818cd88776271cd662daf61a48910cf7e"
+        "value": "23ed264e18ed36ca61beb59ea5440eadf99ebd2ca0bc5891be4a3e77c4ff2a8b"
       },
       "file_count": 4,
       "files": [
@@ -1684,20 +1969,35 @@
       "name": "GATK Workflow On HPC",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "cdcd76074cc243e7ad4bf1b54d35afcd6787640c1415a2bcddae236903af3148"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "a3f9f1447ecab491f1d341989abae638d35e296ed09a9b589df0a73da4eca731"
+          "value": "a38feea87fde72fd84f7f34862adff677d726000ad6c4eedc5cd2c1d7acdc5d7"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1715,7 +2015,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "3731aeca04e8823ac66f78645521c2312701c996a788b0e69a75ad4326f5abc7"
+        "value": "8930678db9e2d895d715f03a9b3db6f83f372413fa808ef8815386077ba8d939"
       },
       "file_count": 2,
       "files": [
@@ -1754,20 +2054,35 @@
       "name": "Globus Transfer Dataset",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "f89af702cc9a1268c72cb565ea9651ac0a0a343b15971acbf1c7a219afe9e917"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "777d276441f639595617f6ff459d72979d5556bb29338db9d38f4da4cb296f87"
+          "value": "7f3aca725b9dce1616f0ac6ce54d66383a17269d7377cbae86b8c9857a1e333c"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1785,7 +2100,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "25227162a99b00961c4026e6db17c27ffdfd4152686bd948742d7a73d2cc5083"
+        "value": "fc0dee8a74fcb86f0b3e41b21dabee5c4b3b8240bdff6548d25c94a7883778de"
       },
       "file_count": 3,
       "files": [
@@ -1835,20 +2150,35 @@
       "name": "GPU Memory Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "07b37e5b78c400af250147f0be608c4bf471ec035f4b7848496161dca8d23428"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "a7e03249f70b1cbfda4e323bffe899af834e791358811983dd4b57690ec630e2"
+          "value": "5420d5888894d1f167b1677e7b2300ee1d9781024c5e4b7f729b1bd19693d4e2"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1866,7 +2196,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "d5de2d2876b7665dc2d77cdf0b82fa43f1bcfa5f42e26313cd91aeeee39d52ea"
+        "value": "e03d4d44910dbc15b25fed8606a8b52959bd1e73590dd82316d0aff7256426d0"
       },
       "file_count": 3,
       "files": [
@@ -1916,20 +2246,35 @@
       "name": "GPU Sanity Check",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "042a6c1b0dda567c40d8c91032189ccc3a9918c21626a55b42067e8535cbc720"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "4e16ba7e8ef3fe2974acd4c35646ee8172944b63f9eb955b60a1c923eaae3769"
+          "value": "62b83156025e673b18cec7c12bbaa41a095e7c81416ede15eae89a1ad8176861"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -1947,7 +2292,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "6eb856bc13a4e463e3c24369bcdd6308d7e492c8d7ea563cd38bce189c9eeec2"
+        "value": "3dc243f62743112b6123d9334ab8b39e828521ecd972a7f50d26b56ba5afc97a"
       },
       "file_count": 4,
       "files": [
@@ -2008,20 +2353,35 @@
       "name": "Grid Engine Submit Job",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "0b001930e405de576c6ce88ecfef1a8b5a85e8e4ec3768978c5dff1ab9a585c6"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "2a9bad17212233a7ed098bb932a7e99e333673415cfc286c3c51033eab59936a"
+          "value": "172e68dd1cf1cfe94d48c3110d14d1f8dd305da212df2cdeaede19c2576ff7cc"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -2039,7 +2399,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "74517245175680577c796cfa5fd1c846c71d738e40df0a849fdd69249e808c77"
+        "value": "7009174bae930d4f4e3bde2508f358a699ac8e875534064e74a8ed8ebb137f1a"
       },
       "file_count": 6,
       "files": [
@@ -2122,20 +2482,35 @@
       "name": "GROMACS On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 7,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "2f69e6a7e99221a9b893dc893edac65e5f7359f642a21380a7094b7bbebb80d9"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "2bfc2fed9a0c1fe5ea6aa2a5b7f52ace02a56a9378c36a6c430c15d396256f76"
+          "value": "368dada40800b493bd6b2ebc54b58b09d37a7a622c5809466a13d92a59a52c47"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -2153,7 +2528,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "ce3f0d2422aed3943e1648a474146a0ab3c73ae01d986b4a07eefe29575eda2d"
+        "value": "d37592ff7c637b265f57e2aa1bad847964338cb21e2f79f52bedb3a1d6a53f4c"
       },
       "file_count": 4,
       "files": [
@@ -2214,20 +2589,35 @@
       "name": "HTCondor Submit Job",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "b30daa35e14d28ad76811c477e9d03fe4279157e1cafd2f3daeaba429c0a2e5b"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "6123e4f589b88f9042fdbe51c7bfa1c48527a34ac5ce00fb4a8fca4ba785d253"
+          "value": "c717ee13d9f51ef431867ecc100710b2f51f0dd2aee76d5fb92bfdd74ba7d5e1"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -2245,7 +2635,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "5bcab9678e0dc9702e1e232ace16678b6c0b4eac8464316e79fe42715d0df5e1"
+        "value": "2a16d29af3e67746af1cc605bb54a4d336d941e1dd99ef658404a0d4c47f6d6d"
       },
       "file_count": 3,
       "files": [
@@ -2295,20 +2685,35 @@
       "name": "Hugging Face Accelerate On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "72002de83e65cda99a945c9a48c22218a360e08c6bf59ba2144467cee78d707e"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "d595655b9effcbe78903e8d8a82b9167943d1fcd098d369ffdc393b60a33a2fb"
+          "value": "2a45cd7de27b12702e74df3cba227218a7cd70b10ef62575409dcb977fe7416f"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -2326,7 +2731,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "3989f2ed3d6e880b65984954910177a427e80c557fe1ada52bd94bc473c27916"
+        "value": "7f26645ab74a0c0660e1d328b43f0240258eeb41cb1918bc003fc9eb355b3914"
       },
       "file_count": 3,
       "files": [
@@ -2376,20 +2781,35 @@
       "name": "Hybrid MPI/OpenMP On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "c2084cdf9a799e357070d2a2fb3497b8d96b1cf02a34ecd7256bbeadd45b6d92"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "e2f5a01cc6a3e684fe821fb145be7f0d346753cbc93793dafb18f87e06cd4696"
+          "value": "2a1ae3238373d9e5b124a6b674c73825a35501261145a316ddfd3a4cd3063d7d"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -2407,7 +2827,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "2d6dce300a4812ee416cab862c04433880cd9c831a496210f109ac0d3e8fb880"
+        "value": "e49d932c488b1658e62cac961393c018f822a5b7f1a9a1ebe5ccec2a90b05991"
       },
       "file_count": 3,
       "files": [
@@ -2457,20 +2877,35 @@
       "name": "Interactive Session",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "1c7b4bb9b2435052c5b24063feffb6309bf514db492134e87815569b59023a36"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "dd6c10742d6046a9273104c1a2be1783d06bdd039ba0adc89d42eaf169ac317f"
+          "value": "7999508e30b32f2603d051dae2f80e7fe233c8159074fe6d2cb757b29759244b"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -2488,7 +2923,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "9f214acbbed0af59e23e44355e1fc58f541e8ea29b6a763e272c3d6d159d14fc"
+        "value": "a47e4e57971092caf7b68adeaa0d1754f29c10ff61b80b659e8f991fde3f8983"
       },
       "file_count": 6,
       "files": [
@@ -2571,12 +3006,17 @@
       "name": "IOR MDTest Storage Smoke",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 7,
         "finding_count": 1,
         "findings": [
           {
+            "base_severity": "medium",
             "category": "destructive-action",
+            "disposition": "active",
+            "exception": null,
+            "finding_digest": "c0be993a32bb0fe305624357be59e11fe5a25d0b9af7031d9dee1de1323a9227",
             "fingerprint": "8c2ce93e69ada845",
             "line": 36,
             "path": "examples/cleanup-run.sh",
@@ -2585,15 +3025,29 @@
           }
         ],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "c1c1d2ba74923f4f1f10d20c1cd9ff7e88c53a4925436c81ea88f4c543cad06c"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "40a5df28880244962ca5e6476bf6ab41f74453ea797e906b7e48354e3f669ccb"
+          "value": "007e8f5375cfe58578a83e1f45f8afe24bb49b38f7833bd31c06ee784d55abb3"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -2611,7 +3065,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "df411337a9e3bb68ce2531a300dc6c0dc5d4b34576d478437974944309bb9ed7"
+        "value": "f47833e3634749623b1e529ab0a451e95a5fb4a941a3e49a6eefee1d3b9e018d"
       },
       "file_count": 3,
       "files": [
@@ -2661,20 +3115,35 @@
       "name": "JAX Distributed On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "88baf6c8ca11434a290cd1cced1d8fa474951222add1499562fb2c2667e1939a"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "6e31ed42cfe51cf10459ef3abe31f131d326d8882446838ea3487e253189df61"
+          "value": "66b15d785ce17bc0a4d9b3bbef8d6f881201466f75eb625afb36fad7e46879ce"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -2692,7 +3161,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "dd9693c34f3168345ab49b8b35d91ab33bf4f8f451bbf8afb2cf2d58baf14af9"
+        "value": "ca4623a34a3b3c387e18f4e410b213a45c227ebc810aafeffa12ac413a1d9d79"
       },
       "file_count": 3,
       "files": [
@@ -2742,20 +3211,35 @@
       "name": "Job Failure Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "7a539df52a58868f169b1f018a0aa0968cfe6626bbcc9d8c1b1fc2c0e20ccc78"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "92a842792f4b1689d49463302689133337b3a15fe2786a2b08a29fcf5b5d3f19"
+          "value": "5018cae936ba04f10a6425477edae987067839212f2f8cab9ce7de21ca81af1f"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -2773,7 +3257,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "f8065039cbbf108dba3cdf98d895d61cb135df109ce7fb9e4ba2a5fb2b2c0b9e"
+        "value": "e2e065a7ce53b0f6d96d25661b27e3d480ecaf8b5b014ee5a483b63b66aa5d50"
       },
       "file_count": 4,
       "files": [
@@ -2834,20 +3318,35 @@
       "name": "Julia On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "9407405e0fe0142dd10dbc397b7bcadc91e1765aa661801d634f4fc12834bcc4"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "a10ce7b44395d9ce43d3097461725f58092a1fc0c89b91db2f382d7bea29b9bb"
+          "value": "8ea59a1d5dcecdc6632c3c4d393a3438d2346ded024047eaab5bb9d7dc0e8947"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -2865,7 +3364,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "a33e9c65474a1a08d370115d10a5d6fe1fc234b1896cc870b944406637b91696"
+        "value": "9ef4492d06d336f876c8d86d18357ce6a1f0dd9c4831b797339ab8d2a4239392"
       },
       "file_count": 3,
       "files": [
@@ -2915,20 +3414,35 @@
       "name": "Jupyter On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "fce0a58fd06c4f0a79955b00a4a470eb90dbbba1d170a07a0ce4c81db5ed61bb"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "b60ddf9c227e4b34b50cb34bab330c51e07b994f51a0cfa5cc2b117cd5a703da"
+          "value": "fc8b340cb65f9490a0c45a8f3f98fff81ac6e425b728112e1c9ccabf3fce6373"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -2946,7 +3460,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "c02b4e3d363dfd21d27a53079c8ca1469e9062402e27ffc55386ae7cc03c8fbb"
+        "value": "3d1fd0b9dc4136dbfa87af89038d205c91df9082b3abb664af401ac3528bad4e"
       },
       "file_count": 4,
       "files": [
@@ -3007,20 +3521,35 @@
       "name": "LAMMPS On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "9b36bd9edf05e2be220b04ff4ae992dd5d26a5a40e50d1cce3017d79d03c840e"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "f147e2758c5f75dc334c40814cdf4676bc1fdac4673355a62ce39791a8a2bf1b"
+          "value": "f1db7d9cadd9f789ef17ea65ef7b6fcedb97f1f3f66abb1bb628d3043f4a1d04"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3038,7 +3567,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "6138b36eab7309c2e514454489672862b9225f0ba5faf78c31b397c25c9f1df6"
+        "value": "1ff453bdf699af61dce1c62d3eb8f4ddfef693fcd82e9e3698e61b7a65e16e53"
       },
       "file_count": 3,
       "files": [
@@ -3088,20 +3617,35 @@
       "name": "Large File Archive Prepare",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "cfc46177feca8498762e8176a3c3a1b93dfa0aa7dcd76e063feef6d1dfa29943"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "05f4528e42cc62da968732e61f8b3f6ae327e4be654b3e5df3839c36e5348ce4"
+          "value": "642b68d5654871669c88de317f559e3761392936e0fed4e4c9cf34cb14b70386"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3119,7 +3663,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "79471e3d43242ecbf6fae2d3d57db37fee1a39c12b4cc3306e735d8918373fc8"
+        "value": "d226efd8de04252e1d558ff79ff8817c6c13b4dbd5ada5e1888ba78fe4cd7a53"
       },
       "file_count": 3,
       "files": [
@@ -3169,20 +3713,35 @@
       "name": "License-Aware Slurm Job",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "de314fc97219044e3d6e20cd18fcf78105086bf5d7324293667d3bdb2028d931"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "67550c8a2596f1c1e9af0d5b0dc042b49bb17b2bd26b5b24c289d245a52f573c"
+          "value": "2b1d18e60da377cc482798bc00d00a43645947a7d5310796c268977cf1d4da62"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3200,7 +3759,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "bdd4aba6512154591e981043c9a8e80b9f5e8f816f844f7b248d2b8e6b10285f"
+        "value": "f23e84aecb8d7615fe152e5b78a0abc51b21df41d30f85af75956cb6e4ca1ec0"
       },
       "file_count": 4,
       "files": [
@@ -3261,20 +3820,35 @@
       "name": "LSF Submit Job",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "d8035124a2c531d5d5e6e671bd8b3490480f917115ec964d5ecc3165dd8ec9fb"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "3c81ac365ae78c5e5ca784283e2c0312f99f1580b53696d95c8528c64ff6da3c"
+          "value": "43c12750c155836313d06dc3a7d0e0110973b0ea20dfa6a581049ab9c5fc6704"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3292,7 +3866,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "8e53f0cb4776c04aa0476d10ffacbbd61a8850151003b3d7eff65e10212c1afc"
+        "value": "74aad92d07096d6d19000e21522885eb2b5a575b99a67b04ef6e6d28336dd3ab"
       },
       "file_count": 3,
       "files": [
@@ -3342,20 +3916,35 @@
       "name": "Lustre Striping Layout Planning",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "6b89bfdd20efc3e10a56ddce80f427833da85532c66246cafcf61e609ebc5119"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "2260afdcff9cfd6ad867d8453dfbbe9b27dedb867fa4ab72551087e68ffa9c7a"
+          "value": "b7cfff64ab08d4d49adf11622b1c769f0d0c1b0f90a54ce7fbd10ebcd15658fc"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3373,7 +3962,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "bbfb10c1123873a06e5dbddbd4cbc3be12fb2a6ab6a38e0c2a671bf6faed2746"
+        "value": "d6d50efbbe155617977ba3023e9df1ccad4da86e88c9c1f032d025991d0301bb"
       },
       "file_count": 3,
       "files": [
@@ -3423,20 +4012,35 @@
       "name": "MATLAB Batch On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "e421d1e900e98bc7fe7f4af62d53bf8a5c430c1039a255be5e859fac74f4d6bb"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "fda0aecee034a8c053861aa128e0669706f2ff7acaf4990b467e31740718a176"
+          "value": "4c684708678b462335731948b032746c2a23411aecf0a0c7959e5943be206901"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3454,7 +4058,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "9a8b042ce68a7ac5eef3e15a2809498426708fc48ab1896eb1f0ecf8be2e96a4"
+        "value": "14b33b4a4f73c9907c5d673b3ca50074e239a385b49710a1d0ebf8913699c193"
       },
       "file_count": 2,
       "files": [
@@ -3493,20 +4097,35 @@
       "name": "Module Environment Debug",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "f4877c487b374da6fcd65c0c0e4f168ebf31c03c5336ae3474a0777d2da27eca"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "464158c716fd8229602861ede752565a3c0165c4f66112258ac6c671e2c65ab5"
+          "value": "7dcb5a681d8a69db502d2f4fdab7e3567ef6939b5777ac855f1ea3ec3113ae63"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3524,7 +4143,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "28764c935faa28f0a9bd455df8272e5ead8ae88f5e5f5b1c19102f901b3cd894"
+        "value": "93d013745f534acaf413f0e957275bea424a5bd76e7e53a18fe7dabe42219167"
       },
       "file_count": 2,
       "files": [
@@ -3563,20 +4182,35 @@
       "name": "Module Tree Health Check",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "16ddf0264c5178d9ac94a7da7aa007e7dabfac4617fe386eb1157462d50414b2"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "0bfc6fd49d01975e69b93c9c5d090a6f2af5f17400c7175993d002930b6d337f"
+          "value": "f887417aab9c057e50b0db1d7e96f7083faf7e9b414b1c8ca819ac25598006b7"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3594,7 +4228,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "49713b2223e3b3498c8c8e5fa2826145c6d665216bd51f491e1e484296da6071"
+        "value": "d7262504342fc60a4709d05a221749cfbd2d8fb55e6eb31b876a3666788d560d"
       },
       "file_count": 3,
       "files": [
@@ -3644,20 +4278,35 @@
       "name": "MPI Fabric Diagnostics",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "d1a161867356fcad5adb353f8b3a73f2ac7b8c3cbdcf49af201ba51160674d74"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "bff0203e1ee359440e7df778dfc342775c2302e9fbac96c47b2ec0d7367fd62e"
+          "value": "6099f741e1ef8308e617d34360b52e094c8f1342615e45ee8104d4387b9da894"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3675,7 +4324,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "23529fb38df334c8fc7309cea9f388f86775390496d3cc33c4d943d7adea45df"
+        "value": "95fd211d8cfcb5849e9e04b92ee2643ce73bceab48271b4f585382573546a753"
       },
       "file_count": 4,
       "files": [
@@ -3736,20 +4385,35 @@
       "name": "MPI Hello And Benchmark",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "0ecfa2001c9edadb50c1bcc6a56ebab94e52c5ca81aa5274fa6eed6f3cdd19e2"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "e1ac037ced80b19e4f06f4adba2b195b770d57d67fdfb283c5f55cc8ed3d3f6b"
+          "value": "98c44f47d194a13bd7baf1eb75e5b394616e681e47cf32dcb0f9a6eea8c7b09f"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3767,7 +4431,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "aac50547267af1d767499591cbcc3785c65dc81f5b7468da7e93144d50185e34"
+        "value": "e1209647c6dd4581bc74922cc2830cb61ecda33438bfa799123d643129db1908"
       },
       "file_count": 3,
       "files": [
@@ -3817,20 +4481,35 @@
       "name": "MPI Rank Binding Diagnostics",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "522a5266016006304653b03fa8fca71665d936b0e8486b42864d0efcc4655d65"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "2c052091dd61dafbde31b620d78113f03b186c12fa7c20e76af3cd2cdf71c025"
+          "value": "d99617f2badc3954b8bdea75e303d39548e801187b77f6cd7c84639e190fabe3"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3848,7 +4527,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "0674ce4e125d1471786885975701d026885cac1731e176f67b2e4598781a3429"
+        "value": "7f7e9ac3a5e00700fc645411bb74ea72d17dec1579036175c1f4780f0409b5ac"
       },
       "file_count": 4,
       "files": [
@@ -3909,20 +4588,35 @@
       "name": "mpi4py On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "1d5dfad36122f19bb6332803894a4890df3a7049f38e36fe31462f8d6c279602"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "c74199a98b9733867417a24a4036a35a560cfab4cde34954c37dfb99ec40121a"
+          "value": "6339b0090b118b71c867ecc1acf6d0df3d7e98d8f54c40361e5574c55ad7a7e3"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -3940,7 +4634,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "242a01e93948272531ae9f3d0757801d7292921ff74b59e8de9c7651db3c001b"
+        "value": "01b367b7c545efbf95bfe5baa6902846556e81237ef6c776d29052dda1244760"
       },
       "file_count": 4,
       "files": [
@@ -4001,20 +4695,35 @@
       "name": "NAMD On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "6942a91bc609e59de9f96352f7dba52ca150178212cec794e06954ccb57b18db"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "538532c603d9a335c0aaadbb6ac58d24f6fc6942e2b7d924d92952e50b1584dc"
+          "value": "2c0a3c26f053027775816ef48f0ceb79ba7620d79caf31ea4bdb2c915dcd953b"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -4032,7 +4741,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "9f394990cd49c0ccabd4bfc27588fbf5d5058371f904478ca97ef49b0d1c216f"
+        "value": "61fc3c33c2c2f96ee19fcdfbf98275163d8b9ec607d028a3bfa121eadf6a5018"
       },
       "file_count": 3,
       "files": [
@@ -4082,20 +4791,35 @@
       "name": "NCCL Diagnostics",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "fd37d01e8312aa32ae60fb72b013112a11ab5d19f4361823082a346b70673b7c"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "c8eaaa944d699c8992de1f5f88d707e0235cf58a2e029c18f6913fbbc22c94a4"
+          "value": "fed08beb35cf6b4ce6f0cc561439405c05e9eae7f49c45219b1ec54cede7f0d2"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -4113,7 +4837,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "fbaf02dccfc8b72465aeb4d64869f5c535e4c144cab0e933f79b4f010771a7a5"
+        "value": "019a24419a7e050069f2ff0d7955d37f667fa3d8ce1dfe333bb9e99f5ef850e8"
       },
       "file_count": 3,
       "files": [
@@ -4163,20 +4887,35 @@
       "name": "Nextflow On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "dc4671cdcdee5e5652fd3207fafb246e3803b846c4adc820b920f80043d1f9c0"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "630429dd2342db68cb6e8e9df791e2101a6dbd47669d502aedd11f147ea73b9d"
+          "value": "b937625c5e3395283f0e65a99c2363325ee34159117ba692912f825c7be8b8b7"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -4194,7 +4933,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "81894736f3f335db65d3dc4535a44a6d268f971504fdaac74f7e1e06f4fc62a0"
+        "value": "4024bbbede857b2e2911dac2213b4fc5107f5e944c61d0a6f7c4bef211bab702"
       },
       "file_count": 4,
       "files": [
@@ -4255,20 +4994,35 @@
       "name": "nf-core On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "e560cde805ea0407e861b8583e94ee31e4df21113e697291e92dac95dd024f43"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "f2f27c2867084a90593c42e4fa50b301ee321ea994664994f1cd16e82b77be64"
+          "value": "5da295ad2397030c52c6c6b5b14c743f1188bc96a33b4461a0b89a349bd20f98"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -4286,7 +5040,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "93dce841ec10fb1f4b23501e0d00741345ecaa7971c498b3b0b437695a4c6c61"
+        "value": "cb48c02dc976051ef109f4315d82f3908f5f6c00a13b1f2352ba96a8e3e80cb1"
       },
       "file_count": 2,
       "files": [
@@ -4325,20 +5079,35 @@
       "name": "Node Health Readonly Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "632a43a2280e06321c0f6baffbe2f1c92a951c8a562d476088f3001e42642956"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "8e8bd96e1381f63ca6767982e9d7b4df32028cd9450702dda76aa8fe0ec86fe6"
+          "value": "b662e2b6431f286db71d46f8bca07aee82707f1418d170f81af5ba86f15140d7"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -4356,7 +5125,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "229cf3ba2fcd5e69f22cfb36a52a176e0d9f7c77821b80c2590d469c15823788"
+        "value": "1aea2abfed8835b504d7810b1473b46b846b6a8bb999cb706df3497903bb73c8"
       },
       "file_count": 5,
       "files": [
@@ -4428,12 +5197,17 @@
       "name": "Node Local Scratch Staging",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 6,
         "finding_count": 1,
         "findings": [
           {
+            "base_severity": "medium",
             "category": "destructive-action",
+            "disposition": "active",
+            "exception": null,
+            "finding_digest": "534af00a36aeef49d5c9e2377dda073f72373757884f755db7e7358295905296",
             "fingerprint": "de0701f9de276f90",
             "line": 37,
             "path": "examples/cleanup-node-local.sh",
@@ -4442,15 +5216,29 @@
           }
         ],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "7e2be9acaf9998de5433987bf5a79b383f3f8fc4cead711897da52d6280c3cf5"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "356f1721dcb396717a70504dd838462e15c9333b5f7eec409e7a854c25814ec7"
+          "value": "001e00b6fb8dca894ba1e4f9f1c5cba76cd65364d103162932592dde16f7185a"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -4468,7 +5256,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "7f421bd9eaf30701d6d60edb7591491229ed8a9e46e14f5e5658e73bd36f51ac"
+        "value": "f9436dc0823b9fc52d65811c335d2d82a6894544f716da406ad0ab14d5ec4455"
       },
       "file_count": 3,
       "files": [
@@ -4518,20 +5306,35 @@
       "name": "Object Storage Transfer",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "599acce5f10ab1829c9503d4472add89bb0fbe825bfbb76da48d82bdc5f81ba0"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "9b1da6b61d65ce5bbffa44ea685d4375821ea24e5505020fea492a00c77f4b98"
+          "value": "b81b7e172d83cc93d00c61b16dd3cdfe6fc2a6e2fa7051bd442c47f40c2be225"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -4549,7 +5352,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "4e93b686390be9b6387a8d3bc2629177d9204ae55c4951d68e3afec7723dc954"
+        "value": "395a549721e9435ccd7b7ef536193d813edff9ae9dcd6f260454c939c6cddb57"
       },
       "file_count": 8,
       "files": [
@@ -4653,20 +5456,35 @@
       "name": "Open OnDemand Batch Connect",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 9,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "864911d96fbb5cfd1321d70df637767831c87bb16bf70e85b4097cdb88e77ec7"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "105252e3b90712633743c8706e1a6daab9e62039a5881635b8eba17fe07d0314"
+          "value": "54c3e858ca6322d270270ebb04df1d384fb9e731e824303b18b5062d8e8cae77"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -4684,7 +5502,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "316a40e177952833a6e05a686b84c1c3f513c5ae8fdece66e9dd7919348ea3a3"
+        "value": "ab9db6a21fb75586f0a563697689210e348d8bb757dd6571a042499002bea937"
       },
       "file_count": 11,
       "files": [
@@ -4815,20 +5633,35 @@
       "name": "OpenFOAM On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 12,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "77751787262c721129977cec391d473d06d48eade5d84803b44faab5388cabf5"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "159d49ea866ad99401b122b589c9c31ec8caf32bbc2c1ebf0ca4316a9eb31902"
+          "value": "bd0ab29a8b0d36692a3937a4d606a728cc00d5ce2da651a79fb2b868d2709246"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -4846,7 +5679,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "b7ce2eb04cd26b552b575c4505362b744fbbad0f0728823762623f147cfa480b"
+        "value": "d6cfbd8774c400a65a5714ffc27a41673e9c8662b29eb9353059da31bc5bb35f"
       },
       "file_count": 3,
       "files": [
@@ -4896,20 +5729,35 @@
       "name": "OpenMP Thread Affinity",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "d89b73ed1a48e7511b276fa90c91fd5459762dc97c0f3b61ca9e96e817c8fe47"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "90faa7b55cbaf711ff2042f95c4a377cfc0412d674df904399f76278c75696d4"
+          "value": "29f43f8943a8bfac69018f3eb5e76c3871abe60abab1f72b3946d5badd178c71"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -4927,7 +5775,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "e52fc39cb81ebe94cb7dbc33f4a08b7b7e12995a559203acf0417f526ae92650"
+        "value": "2962255c8f8ad757d80407c76287825497d6586c93b40186c6cdd8f41c42fe86"
       },
       "file_count": 4,
       "files": [
@@ -4988,20 +5836,35 @@
       "name": "Parallel HDF5 NetCDF Preflight",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "1bc6794cb4c3df23e5882b26f5ac07a26689fc4154ae1917acdc7b929c60e99c"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "be21c27e7edd2c07752f50cd2a872ca69c5b54dc6d6618c0374d5a000b6bdf84"
+          "value": "ab31a57637a975db79849d81e1436b467679a45a92a104809ec488f82f8ac057"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5019,7 +5882,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "b8ac12be81f411b9b459b756e67cc75ea6c3153ab6318e7774714a98263b345b"
+        "value": "9b9355458bb435ba39b49778d1c60b67cc27c9f03f0eb8f2989ea683d249b087"
       },
       "file_count": 4,
       "files": [
@@ -5080,20 +5943,35 @@
       "name": "Parsl On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "578cd0865084fd456586c79cfc9e02de297742a3883b0838f1b4e7d8bd34972b"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "10c2789d5d93cc8b00d0ef590bfb6cec23276a0eea50cde193df0afa46ac733d"
+          "value": "2e16c3139847b6f39907c450222345eb90ea784e596eaebabc69f282737c2517"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5111,7 +5989,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "bc1dcafd98d8539f9ff47823f3d8fb35834dad6402ce16067d9de6cbd8ef2437"
+        "value": "2390561895264ccfd7606ad0fa4d740bb0e098de0808769de3581191616d616a"
       },
       "file_count": 4,
       "files": [
@@ -5172,20 +6050,35 @@
       "name": "PBS Submit Job",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "61e86bcf3f0cbe18b8d4b2a45051ec86ec1e42451452777247d22677837fb5cc"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "15bedb3fdda2d2305e71a340ab2b08a07b53cc2240ae67642e3918234c8002fe"
+          "value": "1d8b3c0386c796427cfa820979d5c1c4f2f7f15f442751ad621b544a8e064341"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5203,7 +6096,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "7263c82160b6cd299047266ef7cea6685a50ddd887783a49d6495b0561273182"
+        "value": "2c073335b5b2a802fe1430d8ab344e898c7e42ac15e14a62d9018606dc15c33e"
       },
       "file_count": 2,
       "files": [
@@ -5242,20 +6135,35 @@
       "name": "Performance Profile Basic",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "719fe40c2cb4ef5ec8d1113d45288350bc5f1c4e54f63ae7397232a0978db051"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "eea7c986eb4d1090972acf459121cc5409f588f134c544228a5a69571135ff46"
+          "value": "77078e5f3b94bfde5dd1b2ccc13581525eb169005f82fb2e3e02d2946d3121db"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5273,7 +6181,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "2b37e9264c5076c68c9ff8bdc97b49e5d67dcf370da7f20378882090558c8109"
+        "value": "070100f5fc2e230f65bd0c998d3a4c63d527df6d9bc361a4638fe5644d17f74f"
       },
       "file_count": 3,
       "files": [
@@ -5323,20 +6231,35 @@
       "name": "Python Virtualenv On HPC",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "6cfa0196da64cc80c8361edde74f3fbc043489dc44118b9ada6e2401b5a1d074"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "d5cebd58a9f9a6d09fc0a580d974f77eada2b3bad436ba9926ee59915949dcaf"
+          "value": "ba59e24fd8a4ca4dea8e5d4ffbd8abef6b9c39dede90b514d610b6cf80737d44"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5354,7 +6277,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "cd7e553e378673484e9c81111785ca6e24c4d8dfede8b1350cd6a5f06a4999bc"
+        "value": "37360dbc712191d2fdb18025f0a50586e83ebd35230d52329d17987f06468f90"
       },
       "file_count": 3,
       "files": [
@@ -5404,20 +6327,35 @@
       "name": "PyTorch DDP On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "ebbbd519ae71d43f4008ba03ea6963592c585f9248a04785260306c0efc8d067"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "92fc834b7e17c5271f69d4cb545b8f3bdd9d15de2dcec942c8e6b34ac2337d17"
+          "value": "7a064945512482c6dd53de8953e15649b2d6e3748777c2a92eaf9412743a7616"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5435,7 +6373,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "9fbc149c2fac0aeffd6ce42b584621688a8e50ef68b53b6036acf315950021fe"
+        "value": "8bbecfba71d735f09652921b5055af3a1dc9545c2b37ecdc71758152b7db9e9d"
       },
       "file_count": 4,
       "files": [
@@ -5496,20 +6434,35 @@
       "name": "Quantum ESPRESSO On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "b80544e2b3d23d6f40e5fbfe35ab9b6efbec26d97c7564d30d2196cbe3805bc4"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "9388652ea068807dab49f6a9ef33c332f5d122ec8383d6485f6ede17ba670b61"
+          "value": "73f37ee1816107b41b16c32c15753e72329f65ee6e46b499fae0f0a462c0aa00"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5527,7 +6480,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "c7697b1e9e3d18d51ba1c996884f8a1fe08042e1721391bdd98c53c4d171dfd5"
+        "value": "03431fafced0144728ca45501c02832043ed8290d6b3747efa7508adeb28f2f9"
       },
       "file_count": 3,
       "files": [
@@ -5577,20 +6530,35 @@
       "name": "Quota And Filesystem Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "e5e71649f84c5f264627ff945cc2c11d0246157f50c69d06b12a9cccd19472ef"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "de5de5d71e299fe84244f9b90f4d744f9093a7ae8e7ae7139c448a2999fe0329"
+          "value": "5e1006495824a95d36e3f9a8869c853e51ccd6dd0634c4c8d1168920ba1c6669"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5608,7 +6576,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "cf281b4de62b916ec67f9de1d0ad5b0e9788256a5490c5f488d4ed93211b3e11"
+        "value": "37440edd0411057700d7a4ac523101ce4a97fcd20751328a1413e1d4e3e20267"
       },
       "file_count": 4,
       "files": [
@@ -5669,20 +6637,35 @@
       "name": "Ray On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "286b30e19d2a3421a1f3d83cfe047b5a983b8c0a28857942574c34598a93785a"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "c7277f51dc8986e877d70507b66897cd059a7482bc38da03b82750c3e83f9a13"
+          "value": "28b01f0dbff80706e3bf206540b6df7929affe2a42cbe037576398b7506ca3e0"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5700,7 +6683,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "45df65e1bd3eea653867286a4d36ce0ff25f45e78eedc8a7592d9de804ebb4e3"
+        "value": "3084b7d1603d5021b4b71011a322b1f90f8b146d82df2942d2f06fed300d391c"
       },
       "file_count": 3,
       "files": [
@@ -5750,20 +6733,35 @@
       "name": "Reproducible Run Capture",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "7107d6d97c0c65e82de8c2be7e889c98883fedeb80ffa2e46dc25fed7d5f64de"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "26fc949f9077c00edd828035a01a042ffaad243ff39c9ab242d8899e81697468"
+          "value": "866f8cb9281d697e26bf92cd2f75115410b16ceb6e8c1bb9a3ebd5c75822239c"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5781,7 +6779,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "4d4d385aa05c698927e243f873dcc348932568d81f216240504541975ed63317"
+        "value": "1351a57b23c2226333236544a6542b6fe95f6bb5f34232962983437c43e2198b"
       },
       "file_count": 3,
       "files": [
@@ -5831,20 +6829,35 @@
       "name": "Rscript On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "7b2f059d6a5d8e26005a062a4581dad743df886eb7eaba1e9d20b0bcffb04e1d"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "fab1b0bf2b9e0e355a88b676cfc05757bdcba24e2e7ec3c164c2787f018ddbf4"
+          "value": "7213b9b816c2ad0c9534aec102f90ff6f5d1c5154fcfbbe1eb1be8b7aa7c23f8"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5862,7 +6875,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "dfdba05b19d24fd9d638e488c2d5f1b885e94843ab59a4f026dc02453d3746c9"
+        "value": "95fa8882647ca36bd682f260f542d92cfb818e3ebbf693350c9d196b87a15095"
       },
       "file_count": 5,
       "files": [
@@ -5934,20 +6947,35 @@
       "name": "RStudio On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 6,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "1cbc6098eb06f7c2c19e7d3c10b8a791f97bcf506e7f5d61e13960d16f99e054"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "49b14f85a4e6d2fd9fe871275537809bc0f3df99041b45f25de434fc76e26e32"
+          "value": "ad58afd3fb29d4b73c4b3ff4876c6c85912a460659280ca503d921d2319f52ea"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -5965,7 +6993,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "fcf9217b04c6e155aaec8d4977ca6c55f0bb3ffb56e20263f61a8fed8a993f09"
+        "value": "94e54f67543aeda5708fd44c3c74402225f6f13272ae6966847fccef4eb7a242"
       },
       "file_count": 2,
       "files": [
@@ -6004,20 +7032,35 @@
       "name": "Rsync Data Transfer",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "a0cfffc549bbe7aa8fadba56004587045bdd5c42121e4e375baa099cceb90ae6"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "5b8fdd4eed1f1616891a6e02fda1678832be84cef32ddf6bd030ccaf38c795d8"
+          "value": "a5e1163000fe090df1af65278d2f7eef9291e243143bf6c00a6d8a1a9345b68e"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6035,7 +7078,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "7f3b224aafb022a7ddc3baa0dbe50dd3d392fe12eeacbd9a5d76645b665280c3"
+        "value": "5a40f11c4068a816aa79b159fb6732e5674c07ef0828db766da84f529aca0833"
       },
       "file_count": 4,
       "files": [
@@ -6096,20 +7139,35 @@
       "name": "Scientific Simulation Workflows",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "fdf0b1650d9a9519867961baca8449f392bd091ec1a7d1680530c8e0d82cf4fc"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "7c13b54dd157dd151f4e02daf97d4f4d19b8154db0e92c57611db297f57700fc"
+          "value": "f37ac527057d9caa7e4f7ce09953fe8ea35fea07c0fe15b47fcb6d3cea0e29e6"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6127,7 +7185,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "c427a8f7a7258e8af9e61c0320d260fa5dbfb7b5a3f8d777a9a4f581d5a539aa"
+        "value": "29e48c7bc1d5ef7e20eb8e7558d16f8ec496111907c676128ce19b700e534b8f"
       },
       "file_count": 2,
       "files": [
@@ -6166,20 +7224,35 @@
       "name": "Scratch Storage Management",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "5fe8fd7b8b80f8504c2bf8be9dbbccb8bcba165178fa6ca4700489a55a3635c7"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "39b53755a07cce5c3699aea3981f4aab9d467ed2e950ff8924cff6e5703f10da"
+          "value": "c159b4dc34f206ee9f1377d80ef94f7dd783dff1b31314b492e50c726d30b38c"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6197,7 +7270,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "fdddbdc3c0e82a5f6044d79a886bb56f51c89a5f0b34cfcbfc02769c7810952c"
+        "value": "63ee0737ac24df11ae94af65ebb397c5fcd7bfc3bc37e875bb0a267037e4df61"
       },
       "file_count": 4,
       "files": [
@@ -6258,20 +7331,35 @@
       "name": "Shared Project Permissions Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "d944ab86b57b01b686edaad1db115a7b91d558351443b1b1241a2b87b2776736"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "a079fdcb25f3418ca8554832ca8cfa687f83edd9e4c5dbfe6e64fb03be280f4a"
+          "value": "aa80a3cb08fbf924e668fe72f4202dcc49a4b8a89d30f076d01ab004dafff9f5"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6289,7 +7377,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "1cf698923f2a64cf1eba21266db8c8d17e07ff69bf3f4c2c8e09f50a969914c7"
+        "value": "130e07836f9f11c54ed547960bf47e967dd8174dcd6125eba90ea355dcede1cf"
       },
       "file_count": 4,
       "files": [
@@ -6350,20 +7438,35 @@
       "name": "Slurm Array Retry Plan",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "c700acdba5e47d0a4e87815d41e36963a63cb1b84feb8b07b317718a2feb3d8d"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "5a08b255b3c96a28cbce73dd51f3ddac0e6ed70d8f07695fc8cbabe0d5d79e6c"
+          "value": "bc00c6377437c4da84c3e83aac519379666b79e8ba946453e52727c5a04d56b7"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6381,7 +7484,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "6c98466f2b848e1f0a5b30b01a0b114345d4529e653d23e72d8f986e4bfb5d07"
+        "value": "cdd95f97ce222a650acbc790420fb0965b7d352b48bf97690ead1203d31cbfd0"
       },
       "file_count": 2,
       "files": [
@@ -6420,20 +7523,35 @@
       "name": "Slurm Efficiency Report",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "c9d743d707276655f551389b8209a74638e730b7dfd01a3eb64f05eb4eb9f43b"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "b2c9fa2da901920ca0c429c2bf8d08f1b51168696725a08bcde8821cf81f8e62"
+          "value": "8e755779d8ac371229d699d679b59a1a00684af17602588b3da18477492de202"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6451,7 +7569,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "e2076c2bea1e4bcccbd630caaae50a4b266e04a95aaf49c31c48ffc576d5af25"
+        "value": "ef87d92fc93cb14b79297ee31256a5ad8e10367b5cf1667b33742b8ae09e203f"
       },
       "file_count": 3,
       "files": [
@@ -6501,20 +7619,35 @@
       "name": "Slurm GPU Binding Diagnostics",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "07b4cdd3565cab8db5a2521fe3d93d97e18e3553ed60379f3c244d1966ff438a"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "912f58b06fb5b07f67fe9c40bd6fa56de155b595d243b9e3fa09a47020732cdf"
+          "value": "07cf8382ce53f6f9415db61201a2d2420f4d965e454f463a0dba0e15d973ac01"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6532,7 +7665,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "d8e2459ed63f8f301bf1cbc1082abed399210d5228c2723fa79e32debdfd7c40"
+        "value": "f4b161a3d458a20636099735f5e09bcbe76f2201a3d29fb8f92d075735e43b98"
       },
       "file_count": 3,
       "files": [
@@ -6582,20 +7715,35 @@
       "name": "Slurm Job Array Patterns",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "e00865aa74011f9e7fc8870cc81d440a6d7bd62c027ac0ac407421e499283112"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "9c6e14d8e00907e805985d5376a69d635e87051bfae07887ea338bbc7dfa78d3"
+          "value": "92956610629d30e733640fbfec8bf6b3383f38fbbce19a5333f6d5c3544f5f62"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6613,7 +7761,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "e2f027c11e23365ab3150d96aa582dd321838d91b777530f28567daca3ef9557"
+        "value": "262f41db6376fd18461bd655436221a69cef86e2ceeccc29f00ab3ba9d5d6c5a"
       },
       "file_count": 2,
       "files": [
@@ -6652,20 +7800,35 @@
       "name": "Slurm Job Dependency Chain",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "23d64cc4ec21eb503fb1a79f4be955595965c12b9bfcc89757f809ba7f834f80"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "d59d49ba5ff511896057f767ba4e026f6d5623233f3470b0de5ebe01b10ab92c"
+          "value": "5162d702cbf1c07226f3b768f1e63b2f588b13492ec7e84a0f4391f03eb29d64"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6683,7 +7846,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "704792ccdf057dd92c49a68fce2143673c8f9f717c7209efafa629269ab5c626"
+        "value": "d92c40ab009a453f7b6730cf6efa875100d54fdfa082976e721ec8faeecb1ebb"
       },
       "file_count": 3,
       "files": [
@@ -6733,20 +7896,35 @@
       "name": "Slurm Maintenance Reservation Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "aacdc6f2afe2bb9071678a71f3757fb25d2f028386a2c6c4b7c4181ba234579b"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "15c7fddc571fdaa4d6594e96ef1c04a2d06895834980ca96280ebb16596b9dcf"
+          "value": "0c79487582c607fa70fd801cdf8d0745b8b2271c3ebdd21d7c1ee796da05126a"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6764,7 +7942,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "600a051c787138c6a0f6924fd37b8a93637a5a15e8a5fba0acfb4acdc1934c59"
+        "value": "16514a79b92ff2e818e314eeeab2531cc807782ff081cbed5805c5c4cd0e22ef"
       },
       "file_count": 2,
       "files": [
@@ -6803,20 +7981,35 @@
       "name": "Slurm Monitor Job",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "1ff58a76b6a8e47c82bcbced5962356b9dc020010a8baeb52c3f042013637866"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "1d46eae79772ae1f5047ecb6746dcd0f0d4df7421bc698dbced2613cea4b3504"
+          "value": "fbf6b39781fc6246c460f63ea5bb30c2c035b6afb441496f1ec9be71355c154e"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6834,7 +8027,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "e80836749916e675de91fe1cc76481eb7622597f8b6e73d772ba2d2287fc4550"
+        "value": "e988578191ab4bbb201a63928ea50a89a2d4e77091235d149e7e6c74e36fe317"
       },
       "file_count": 3,
       "files": [
@@ -6884,20 +8077,35 @@
       "name": "Slurm Node Failure Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "603e75c00339d6cda813d7b5ccedc00a7005e1f5bf3ed3e025f5b9e822cee8b0"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "8e4049f954854cf256e0fe528b8184fff27c411380fdb916973f692d5f80bf25"
+          "value": "735e01839a91219ff641813a5bf38d26c42a3aeb10138ad75790e75f5390c4dc"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -6915,7 +8123,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "399a7481c7d85b1334fabf1405d0d94bb4b1f8296bf42deb486237ab6e23fc9e"
+        "value": "4478ea9559777066e7b14c674c83462297bfe830860a16b3901cf785b4d9c6ec"
       },
       "file_count": 4,
       "files": [
@@ -6976,20 +8184,35 @@
       "name": "Slurm OOM Memory Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "f1fcfe3a728b11684dd9732fca0f68a0c771418596c6f83539118f621da94041"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "444441b44feac25ee7f910e8a4a0faf07b266e2a9a60ba2f375d79dc7cf4275d"
+          "value": "77b6f6c26a30680301481d8b28de3a550dc1664d75e9c0eb8c25b2c6db23d69a"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -7007,7 +8230,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "76e24562ac538e9f043f3b818c43b878ebc92c3686c353e41938438ac8fbfc79"
+        "value": "bf10728a0ebfd3fb67b08a404fe218b131d395f6c80d9a5829a76cd03f2f65e3"
       },
       "file_count": 4,
       "files": [
@@ -7068,20 +8291,35 @@
       "name": "Slurm Output Log Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "3f0b26fde6341f11b6cfd0d5b01945c7450c97f99704601230779c50a537110d"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "edfa6aa6225dce871d4a1275681bd4e4970ee30f2166e54c0cc413eb5b88028f"
+          "value": "b77cc109ed832fbfe7bb09884e78d1879cfc0a8d8ad3bf446c869618398795a9"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -7099,7 +8337,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "3f681a5bc7f26ca69c44f09fdb8189c18dad74250d921a31bbf2c446451b6b1f"
+        "value": "a9849e5a1c82a20a8ff08d3e4a9f0b529c061eccbe4afc411c5f843952bcda0c"
       },
       "file_count": 3,
       "files": [
@@ -7149,20 +8387,35 @@
       "name": "Slurm Pending Reason Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "67d4d0ca75ad5f0f05a31cf1712ebe6fd82f47944e69bbb069de4216d9837650"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "b0afe51231529927a632c26da8fb669d00b33c0d8e46fc123507513d50609038"
+          "value": "e0ce9c0c0163d2a0f1eab9d450d437d253f712235ef1c54f840ac0774626e7e8"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -7180,7 +8433,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "1a45892cd661a53ff2089f90728a7dfb5d106fa99c1bdd15c5d42401721e0da0"
+        "value": "5ddc56ed9eb261a35545b93515e0e861566748fdd0d9aff68639383eda7c3edb"
       },
       "file_count": 4,
       "files": [
@@ -7241,20 +8494,35 @@
       "name": "Slurm Preemption And Requeue",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "adf18a8dd872ab36e0326f4b7b42b7ab32a23d350c398b91e4adc329b53991a3"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "e32347bfa549cf414fed6802d4a9e910245e02c392f0d17efbb5bea860e8f830"
+          "value": "45897682b6ad546522d9d466d6dd9ced90f5a189eb9754679ea8548d10c5d563"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -7272,7 +8540,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "616a0535e579330969890346f7657d5e5741a184180e57c8304556856c674cc3"
+        "value": "191985dd240ea74d5ff30f5cd8ebf5d559482bb33861f98a2f343a69546f23ae"
       },
       "file_count": 4,
       "files": [
@@ -7333,20 +8601,35 @@
       "name": "Slurm QOS Account Limit Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "df765dae04a2fa133e62048f95b50da9128f992214549586c6373c62b0f960f1"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "7dbdc5f1a19d62270573d2d434d1bed7fe00c0c0c80c23e1c14f8bd4d22f0279"
+          "value": "456fbebf717fef3bc38bc9ef8facf0cb66b52d399ae6e6d93bedc47edffe12c7"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -7364,7 +8647,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "3f69c69f27aa72804438c9be2ad246d4939fc9ea887d07acea55aea77e959737"
+        "value": "991939dce976430e2fb2d630397d0921440c90119b2a449676ed9838f8aaa1af"
       },
       "file_count": 2,
       "files": [
@@ -7403,20 +8686,35 @@
       "name": "Slurm Resource Estimator",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 3,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "7c1e8530b573fd26b83c57f3331e620932c6f78ead332c0e33c758b1188afaab"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "b8c46094c3ae30b8901aaa92f4bd99a8d21affd4d280b3b481778a59bb2cbd06"
+          "value": "7d7ac49a7a7de68d9286663ca882cd0b8bc1d1c9e597602bbe45fdcce4f03874"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -7434,7 +8732,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "809e7e3f4a34e649c823fb15a6054b795067ae6f8535a78db909805d97c6338a"
+        "value": "67cc12d7b74829f38ac74a5e7d7d0d92940eb8197528a838bbd363c5418c5a84"
       },
       "file_count": 6,
       "files": [
@@ -7517,20 +8815,35 @@
       "name": "Slurm Submit Job",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 7,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "8d4d2bdb5b522746a3cc43b78f6cead9652bdeb4ec735cdfc8e05ea1f6289d6d"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "40c6c48a54b2c3d9521d8fa156daba5b40df1119a99038d98ed0d2772e0486cf"
+          "value": "9e2bac472c4dba411ae11af6dec5dbdd8d1924bc80197a47cc9e672caaf5be3d"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -7548,7 +8861,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "9fb1f6ee40caa8bcc8e790902a2c62d4115ef543fde82d0ad57f5930af0f0788"
+        "value": "a5859d2ea1a4604f8313536204d106c1ff687d22caf431acf414c34f78e7ec0e"
       },
       "file_count": 3,
       "files": [
@@ -7598,20 +8911,35 @@
       "name": "Slurm Time Limit Triage",
       "risk_level": "low",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "0ae29efc13b6a4a107b01339b2b3b5b3834d707235e0a1dd233ecc37c54a85ef"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "b40ae65986a95f6a80f0dca955982ffe772b3c02e33df6bd61d3652e9005492f"
+          "value": "9084ede0862c27013aace6931fd61e2bd9881b205323fa3253c09ef62ec46502"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -7629,7 +8957,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "6f704b4a98b2c561c639ad42df700f672eb4dc27cc1ed337103836910f630915"
+        "value": "85a4f9818fde469da2e2a2729542b4059a123db0ccdae7754de9654d52cff761"
       },
       "file_count": 3,
       "files": [
@@ -7679,20 +9007,35 @@
       "name": "Snakemake On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "47228693ebb159cc059e3f7613508bc186ec1fc92f0f6ea32c246a40e3b11cba"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "60c87d4ccd429d59028bc7258d07262dbdae2c48557211b05dfa71871659cd67"
+          "value": "ae9ce6b2bb2ee034036b58f3a0beea366c67baf5dfcbe988f0fe4cbe22197dda"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -7710,7 +9053,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "fdd92784177cd3682aa43922ed9dd0c07e1945f3e47afe200b3ba9ad677aef46"
+        "value": "03d6bd9a1f5ec0a5bb8322a91473126ddc24bf361832dee691c7cfdfe9395390"
       },
       "file_count": 3,
       "files": [
@@ -7760,20 +9103,35 @@
       "name": "Spack Environment Create",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "9abdc9be279cad1c93ccced7b547a18f4389e610999e8999c5465562d801df38"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "dc6bb0800344534b7a4d9c865727cab7eda936e787144a7777b7d3b7c47c5443"
+          "value": "d420ba3a92495fc9c8b8eb7619dad7ac3b04d7f0b1e07d79bc73d812785df2a2"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -7791,7 +9149,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "1adb00469818b530b61cf1438bc853d8e198dff53717a9ad410d377f167c680e"
+        "value": "a3ed43bf7740f575afaa524661a48ef40868867ab7a96198f8ce0ad32e0c5aad"
       },
       "file_count": 6,
       "files": [
@@ -7874,20 +9232,35 @@
       "name": "Streamlit On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 7,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "d6c343b7aaaf24e2518532bfdff46a323137e97737a1b4f082c4788613d7f2db"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "8e0416681d67081ddf7b19e3ca09159a8d15ba6b6ad0497a984aa87971204449"
+          "value": "a8c4900ce4bfa8abb8485fb2f3e13d5524d32a6eb4563c47ddb2c4a8c161fd63"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -7905,7 +9278,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "84dc673ddd535dfb022463a917c5e3a152c5b3aa9b14f14a5045795752447fd4"
+        "value": "61035a6c24efcbc340a9453af0126f94e97f051e78e484707ddca8fa40a675a2"
       },
       "file_count": 6,
       "files": [
@@ -7988,20 +9361,35 @@
       "name": "TensorBoard On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 7,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "f9e15e728962aaf71ffdfa867920f478774c94677bdad319967b14e91c746941"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "a199d47bf93b8eff85a67c58b3539c6913dcd37baba94d70bc4a6e319f1a4e3e"
+          "value": "6c20f9bc45b02328967f2fde8a27b4cb7bac1abf440600b34e83b532562a9fd3"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -8019,7 +9407,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "07b6fe31c8739bacf13497c7a601764300914759255f8a637527ced6f198ec8a"
+        "value": "0e2bc4cd4229b36bfe07a144ffa0e5edd0888f054161a3ffbe3df7cb704dba18"
       },
       "file_count": 3,
       "files": [
@@ -8069,20 +9457,35 @@
       "name": "TensorFlow Multiworker On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "a6a630c9d705222580857f25612ebf23aba95c14059dc6b74a16a9572865ef15"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "975dbd36b730c8bc49a829154e692dd3323074ac1fa5d1bb554c862ee9aec05c"
+          "value": "c435a7c081b4eaadd2052e257d27d687e7a6910cf7cbad645147a3209b83fdaa"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -8100,7 +9503,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "3361d14792b6536040c09e240a2247f5e209e3f0a516fb9f4a5179499341d38c"
+        "value": "ca2756d2436b4312f193018f2169703807b14e254f2152845af468139042dd19"
       },
       "file_count": 3,
       "files": [
@@ -8150,20 +9553,35 @@
       "name": "Training Cluster Reset Checklist",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 4,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "0a8d8ea15c2a6b4321cd5cb53339c1e8479694796938a95abf441d37733f4759"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "6fe3113fd86aa76336f9937516af673e3e81a22eaf0abb6b062cea36edf61e5d"
+          "value": "92c9e414317e2dee5b516ef7eac1348bc9b409a046f9d23fa59f1235a8fca82f"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -8181,7 +9599,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "9b84cf35bbc435abd5ef335a9025b56b0b70fdaa06e4af925fb9c1ae123a3bac"
+        "value": "b57003a2eb24f0db58c0a9fb62df3d92bf95336d5a00f9371b602f84f6a0d06e"
       },
       "file_count": 4,
       "files": [
@@ -8242,20 +9660,35 @@
       "name": "VS Code Tunnel On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "5624d96cdf384b17a1f7e691e028f4d395fbc321e7fc7263841ee8722ba35dfa"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "b1f1a21e01c2120c0e2de1ecb9e2d00ea93bb220d2e94a53337c1153b220acb4"
+          "value": "9c1ad4dc3d1c7c580c0cc5e5373695033933667fbede3dbe087a1afe4562e484"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -8273,7 +9706,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "79f32fec24d3bb751ec98709d625996d820debbdde3eef25ddb50187f9094760"
+        "value": "1ab2755b181af79bbcfa373fa30c28feb6e0f59e8470de99aa2e1c8d84bdde1f"
       },
       "file_count": 5,
       "files": [
@@ -8345,20 +9778,35 @@
       "name": "WDL On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 6,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "84ee7d3615fb3b2a8b0076bfa275c44b6d08069b9d502391a92c0aac359c901e"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "fe762ef2e5895767274cd1bb95c2fc8ff8df08e4c747070fb0cddaefdc896010"
+          "value": "dede875a7bb61322edb6be94228136ac12eddd04848b6b1c08f1e0fbcfa0ee67"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,
@@ -8376,7 +9824,7 @@
     {
       "digest": {
         "algorithm": "sha256",
-        "value": "e18b926e4f647b5ea3e62353eddab50a958aaf3337d46a68fc75d0a3468e2810"
+        "value": "b22d0359daf5b7bfddebdde34a3bda94b847c9427ea2b55d60c9c29525781f8d"
       },
       "file_count": 4,
       "files": [
@@ -8437,20 +9885,35 @@
       "name": "WRF On Slurm",
       "risk_level": "medium",
       "security": {
+        "accepted_exception_count": 0,
         "blocking_count": 0,
         "files_scanned": 5,
         "finding_count": 0,
         "findings": [],
         "policy": {
-          "fail_on": "high"
+          "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "enabled_rule_count": 26,
+          "exception_count": 0,
+          "fail_on": "high",
+          "id": "community-default",
+          "severity_override_count": 0,
+          "source": "packaged",
+          "source_digest": "1deb6995f1e4039db674d48dd589a75e0003adb53e1ca4b64cb434fb6ba9a336",
+          "version": "0.1.0"
+        },
+        "provenance": {
+          "applied_exception_ids": [],
+          "policy_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+          "rule_catalog_digest": "d8941988d0105004f327ae181d3b01191642ce1adbcf1a57e307a705acf83d5f",
+          "target_digest": "e674563500c6c661d3f99a60c9f1e700955f0425e12b434685cfeeeb062bba09"
         },
         "report_digest": {
           "algorithm": "sha256",
-          "value": "77cf379ba413a31ac16a4d3c72e2d88b9dfc16bb382c6607cbdbb4b333c7286d"
+          "value": "1be7e59faa489a549a30692148c4be6ea3622203923ace0b6c18a258eeadcdd4"
         },
         "scanner": {
           "name": "hpc-skill-security",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "severity_counts": {
           "critical": 0,

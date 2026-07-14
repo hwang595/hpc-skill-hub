@@ -18,7 +18,7 @@
   ],
   "properties": {
     "$schema": { "const": "../schemas/skill-context-bundle.schema.json" },
-    "schema_version": { "const": "0.1.0" },
+    "schema_version": { "const": "0.2.0" },
     "generated_by": { "const": "tools/build_skill_context.py" },
     "source_index": { "$ref": "#/$defs/sourceIndex" },
     "limits": { "$ref": "#/$defs/limits" },
@@ -81,19 +81,42 @@
       "additionalProperties": false,
       "required": [
         "rule_id",
+        "base_severity",
         "severity",
         "category",
         "path",
         "line",
-        "fingerprint"
+        "fingerprint",
+        "finding_digest",
+        "disposition",
+        "exception"
       ],
       "properties": {
         "rule_id": { "type": "string", "minLength": 1 },
+        "base_severity": { "enum": ["low", "medium", "high", "critical"] },
         "severity": { "enum": ["low", "medium", "high", "critical"] },
         "category": { "type": "string", "minLength": 1 },
         "path": { "type": "string", "minLength": 1 },
         "line": { "type": "integer", "minimum": 1 },
-        "fingerprint": { "type": "string", "pattern": "^[a-f0-9]{16}$" }
+        "fingerprint": { "type": "string", "pattern": "^[a-f0-9]{16}$" },
+        "finding_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "disposition": { "enum": ["active", "accepted"] },
+        "exception": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "status", "expires_on", "review_digest"],
+              "properties": {
+                "id": { "type": "string", "minLength": 1 },
+                "status": { "const": "accepted" },
+                "expires_on": { "type": "string", "format": "date" },
+                "review_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+              }
+            }
+          ]
+        }
       }
     },
     "security": {
@@ -102,10 +125,12 @@
       "required": [
         "scanner",
         "policy",
+        "provenance",
         "verdict",
         "files_scanned",
         "finding_count",
         "blocking_count",
+        "accepted_exception_count",
         "severity_counts",
         "report_digest",
         "findings"
@@ -121,13 +146,39 @@
         },
         "policy": {
           "type": "object",
-          "required": ["fail_on"],
-          "properties": { "fail_on": { "const": "high" } }
+          "additionalProperties": false,
+          "required": ["id", "version", "source", "source_digest", "effective_digest", "enabled_rule_count", "severity_override_count", "exception_count", "fail_on"],
+          "properties": {
+            "id": { "const": "community-default" },
+            "version": { "const": "0.1.0" },
+            "source": { "const": "packaged" },
+            "source_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "effective_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "enabled_rule_count": { "const": 26 },
+            "severity_override_count": { "const": 0 },
+            "exception_count": { "const": 0 },
+            "fail_on": { "const": "high" }
+          }
         },
-        "verdict": { "enum": ["pass", "review"] },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["target_digest", "rule_catalog_digest", "policy_digest", "applied_exception_ids"],
+          "properties": {
+            "target_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "rule_catalog_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "policy_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "applied_exception_ids": {
+              "type": "array",
+              "maxItems": 0
+            }
+          }
+        },
+        "verdict": { "enum": ["pass", "pass-with-exceptions", "review"] },
         "files_scanned": { "type": "integer", "minimum": 1 },
         "finding_count": { "type": "integer", "minimum": 0 },
         "blocking_count": { "const": 0 },
+        "accepted_exception_count": { "const": 0 },
         "severity_counts": {
           "type": "object",
           "required": ["low", "medium", "high", "critical"],
