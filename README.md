@@ -272,7 +272,7 @@ The repository is set up as a versioned registry, not just a documentation dump:
 | `registry/release-status.json` | Packaged v0.5 capability and gate status distinguishes repository readiness from pending external evidence and tag attestations. |
 | `hpc-skill-mcp` | Optional stdio-only MCP surface exposes six closed-domain registry queries and verified `hpc-skill://skills/{skill_id}` resources with no execution or write tools. |
 | `Package` workflow | Source and wheel distributions build cleanly, metadata passes `twine check`, and the installed wheel can read registry data outside the checkout. |
-| `Publish Pages` workflow | The searchable static registry site builds and deploys from the tracked registry index. |
+| `Publish Pages` workflow | The responsive static explorer builds from tracked registry and release-status data, with collection discovery, sorting, shareable filters, and table/card views. |
 | `registry/releases/v0.5.0.json` | Versioned release-candidate manifest with file checksums and registry counts for a reproducible snapshot. |
 | `docs/REVIEW_PACKET_v0.2.0.md` | Reviewed-skill pilot queue with reviewer routing, suggested labels, and promotion gates. |
 | `pyproject.toml` | Package version, Python compatibility, CLI entry point, and project metadata are tracked in source control. |
@@ -290,7 +290,8 @@ without claiming measured agent lift or completed maturity promotion:
 3. Generated Codex and Claude Code onboarding plus compatibility diagnostics, merged in P2.
 4. Versioned community-skill trust policy and provenance receipts, merged in P3.
 5. An MCP-enabled benchmark condition behind the existing paid-run and review gates, implemented in P4.
-6. A packaged release-status contract and release-candidate verification in P5.
+6. A packaged release-status contract, operational registry explorer, and
+   release-candidate verification in P5.
 
 See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 
