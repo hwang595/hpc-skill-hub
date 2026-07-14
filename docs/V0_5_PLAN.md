@@ -1,7 +1,7 @@
 # v0.5 Development Plan
 
-Status: P0 read-only MCP MVP complete locally on 2026-07-13; pull-request CI
-pending. Public delivery is tracked in issue
+Status: P0 read-only MCP MVP complete on 2026-07-13. PR #41 required checks
+pass; merge is pending. Public delivery is tracked in issue
 [#40](https://github.com/hwang595/hpc-skill-hub/issues/40).
 
 v0.5 focuses on trusted agent distribution. The release should make the

@@ -39,8 +39,8 @@ follow-up work rather than synthetic CI claims.
 
 ## v0.5 Current Development
 
-Status: P0 read-only MCP MVP complete locally on 2026-07-13 with pull-request
-CI pending. The v0.5 delivery queue is tracked in issue #40.
+Status: P0 read-only MCP MVP complete on 2026-07-13. PR #41 required checks
+pass; merge is pending. The v0.5 delivery queue is tracked in issue #40.
 
 v0.5 focuses on trusted agent distribution:
 
