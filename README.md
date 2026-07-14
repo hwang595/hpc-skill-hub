@@ -12,7 +12,7 @@
   <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/validate.yml?query=branch%3Amain"><img alt="Validate workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/validate.yml/badge.svg?branch=main"></a>
   <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/package.yml?query=branch%3Amain"><img alt="Package workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/package.yml/badge.svg?branch=main"></a>
   <a href="https://github.com/hwang595/hpc-skill-hub/actions/workflows/pages.yml?query=branch%3Amain"><img alt="Pages workflow" src="https://github.com/hwang595/hpc-skill-hub/actions/workflows/pages.yml/badge.svg?branch=main"></a>
-  <img alt="Version 0.5.0 release candidate" src="https://img.shields.io/badge/version-0.5.0--rc-0f766e">
+  <img alt="Version 0.5.0" src="https://img.shields.io/badge/version-0.5.0-0f766e">
   <img alt="Python 3.9+" src="https://img.shields.io/badge/python-3.9%2B-3776ab">
   <img alt="97 skills" src="https://img.shields.io/badge/skills-97-2563eb">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-green"></a>
@@ -269,29 +269,36 @@ The repository is set up as a versioned registry, not just a documentation dump:
 | `hpc-skill security` | Community skill packages receive deterministic prompt-injection, command, persistence, credential, package, and risk-declaration checks before adoption. |
 | `security/policies/community-default.json` | Versioned 26-rule trust baseline with monotonic overrides, digest-bound reviewed exceptions, and policy/target/rule-catalog receipts. |
 | `registry/skill-context.json` | Bounded registry-declared README and artifact content is bound to the index with file, skill, bundle, and security-report SHA-256 provenance. |
-| `registry/release-status.json` | Packaged v0.5 capability and gate status distinguishes repository readiness from pending external evidence and tag attestations. |
+| `registry/release-status.json` | Packaged v0.5 capability and gate status distinguishes the verified release from pending comparative and maturity evidence. |
+| `registry/provenance/v0.5.0.json` | Maintainer-audited receipt binds the release tag, workflow run, artifact digests, and completed attestation verification. |
 | `hpc-skill-mcp` | Optional stdio-only MCP surface exposes six closed-domain registry queries and verified `hpc-skill://skills/{skill_id}` resources with no execution or write tools. |
 | `Package` workflow | Source and wheel distributions build cleanly, metadata passes `twine check`, and the installed wheel can read registry data outside the checkout. |
 | `Publish Pages` workflow | The responsive static explorer builds from tracked registry and release-status data, with collection discovery, sorting, shareable filters, and table/card views. |
-| `registry/releases/v0.5.0.json` | Versioned release-candidate manifest with file checksums and registry counts for a reproducible snapshot. |
+| `registry/releases/v0.5.0.json` | Immutable release manifest with file checksums and registry counts for a reproducible snapshot. |
 | `docs/REVIEW_PACKET_v0.2.0.md` | Reviewed-skill pilot queue with reviewer routing, suggested labels, and promotion gates. |
 | `pyproject.toml` | Package version, Python compatibility, CLI entry point, and project metadata are tracked in source control. |
 
 ## Project Status
 
-`v0.4.0` is the current stable registry snapshot and `v0.5.0` is the current
-release candidate. The registry remains
+`v0.5.0` is the current stable registry snapshot. It was published from commit
+`22be6ae` on 2026-07-14, and its manifest, wheel, and source distribution
+attestations have been verified. The registry remains
 conservative about maturity: skills stay `seed` until domain review and public
-evidence support promotion. The v0.5 candidate adds trusted agent distribution
-without claiming measured agent lift or completed maturity promotion:
+evidence support promotion. The release adds trusted agent distribution without
+claiming measured agent lift or completed maturity promotion:
 
 1. Read-only MCP registry discovery, merged in P0.
 2. Digest-verified packaged skill context, implemented in P1.
 3. Generated Codex and Claude Code onboarding plus compatibility diagnostics, merged in P2.
 4. Versioned community-skill trust policy and provenance receipts, merged in P3.
 5. An MCP-enabled benchmark condition behind the existing paid-run and review gates, implemented in P4.
-6. A packaged release-status contract, operational registry explorer, and
-   release-candidate verification in P5.
+6. A packaged release-status contract, operational registry explorer, immutable
+   manifest, and verified release provenance in P5.
+
+v0.6 development now focuses on verified community intake: quarantining
+untrusted contributions before instruction loading, publishing digest-bound
+intake receipts, and connecting independent review and adoption evidence to the
+agent-facing trust boundary. See the v0.6 plan and completion matrix below.
 
 See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 
@@ -312,6 +319,8 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Trust policy packs](docs/TRUST_POLICY_PACKS.md)
 - [v0.5 development plan](docs/V0_5_PLAN.md)
 - [v0.5 completion matrix](docs/V0_5_COMPLETION.md)
+- [v0.6 development plan](docs/V0_6_PLAN.md)
+- [v0.6 completion matrix](docs/V0_6_COMPLETION.md)
 - [Agent benchmarks](docs/AGENT_BENCHMARKS.md)
 - [Agent benchmark calibration plan](docs/AGENT_BENCHMARK_PLAN.md)
 - [Agent benchmark v0.3 smoke plan](docs/AGENT_BENCHMARK_SMOKE_PLAN.md)

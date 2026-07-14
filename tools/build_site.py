@@ -374,6 +374,7 @@ def release_readiness(status: Dict[str, Any]) -> str:
     review = status["capabilities"]["review"]
     security = status["capabilities"]["security"]
     provenance = status["gates"]["release_provenance"]
+    provenance_ready = provenance["status"] == "open"
     items = [
         (
             "Repository",
@@ -405,10 +406,18 @@ def release_readiness(status: Dict[str, Any]) -> str:
         ),
         (
             "Provenance",
-            provenance["status"].title(),
-            "pending",
-            f"Awaiting the {status['release']} tag and attestations",
-            "docs/V0_5_COMPLETION.md",
+            "Verified" if provenance_ready else provenance["status"].title(),
+            "ready" if provenance_ready else "pending",
+            (
+                "Manifest, wheel, and sdist attestations verified"
+                if provenance_ready
+                else f"Awaiting the {status['release']} tag and attestations"
+            ),
+            (
+                f"registry/provenance/{status['release']}.json"
+                if provenance_ready
+                else "docs/V0_5_COMPLETION.md"
+            ),
         ),
     ]
     rendered = []
@@ -427,6 +436,13 @@ def release_readiness(status: Dict[str, Any]) -> str:
 
 def render(index: Dict[str, Any], release_status: Dict[str, Any]) -> str:
     membership = skill_collection_membership(index)
+    provenance_ready = release_status["gates"]["release_provenance"]["status"] == "open"
+    release_summary = (
+        "Repository release and tag provenance are verified; comparative evidence and independent promotion remain explicit gates."
+        if provenance_ready
+        else "Repository capability is ready; external evidence, independent promotion, and tag attestations remain explicit gates."
+    )
+    release_badge = "Released and verified" if provenance_ready else "Repository ready"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -789,10 +805,10 @@ def render(index: Dict[str, Any], release_status: Dict[str, Any]) -> str:
     <section class="release-overview" aria-labelledby="release-heading">
       <div class="release-heading">
         <div>
-          <h2 id="release-heading">{esc(release_status['release'])} Release Readiness</h2>
-          <p>Repository capability is ready; external evidence, independent promotion, and tag attestations remain explicit gates.</p>
+          <h2 id="release-heading">{esc(release_status['release'])} Release Status</h2>
+          <p>{esc(release_summary)}</p>
         </div>
-        <span class="release-badge">Repository ready</span>
+        <span class="release-badge">{esc(release_badge)}</span>
       </div>
       <div class="readiness-grid">{release_readiness(release_status)}</div>
     </section>
@@ -872,6 +888,7 @@ def render(index: Dict[str, Any], release_status: Dict[str, Any]) -> str:
       <span>Generated from <code>registry/index.json</code> and <code>registry/release-status.json</code>.</span>
       <span class="footer-links">
         <a href="registry/release-status.json">Release status</a>
+        <a href="registry/provenance/v0.5.0.json">Provenance receipt</a>
         <a href="registry/releases/v0.5.0.json">Release manifest</a>
         <a href="docs/RELEASE_NOTES_v0.5.0.md">Release notes</a>
         <a href="LICENSE">MIT License</a>

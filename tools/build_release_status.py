@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the machine-readable v0.5 release-candidate status."""
+"""Build the machine-readable status for the current repository release."""
 
 from __future__ import annotations
 
@@ -14,6 +14,14 @@ from typing import Any, Dict, List
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / "src"
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
+
+from hpc_skill_hub.release_provenance import (  # noqa: E402
+    validate_release_provenance,
+)
+
 OUTPUT = ROOT / "registry" / "release-status.json"
 INDEX = ROOT / "registry" / "index.json"
 CONTEXT = ROOT / "registry" / "skill-context.json"
@@ -23,6 +31,8 @@ SECURITY_POLICY = ROOT / "security" / "policies" / "community-default.json"
 COMPATIBILITY = ROOT / "docs" / "COMPATIBILITY.md"
 BENCHMARK_REPORT = ROOT / "docs" / "AGENT_BENCHMARK_REPORT.md"
 BENCHMARK_PLAN = ROOT / "agent-bench" / "plans" / "evidence-v0.5.json"
+PROVENANCE_DIR = ROOT / "registry" / "provenance"
+RELEASE_DIR = ROOT / "registry" / "releases"
 
 
 def load_json(path: Path) -> Dict[str, Any]:
@@ -93,6 +103,25 @@ def benchmark_status() -> Dict[str, Any]:
     }
 
 
+def release_provenance_status(version: str) -> Dict[str, Any]:
+    release = f"v{version}"
+    path = PROVENANCE_DIR / f"{release}.json"
+    if not path.exists():
+        return {
+            "status": "pending",
+            "blockers": [
+                f"No verified release provenance receipt exists for {release}."
+            ],
+        }
+
+    manifest = RELEASE_DIR / f"{release}.json"
+    if not manifest.exists():
+        raise ValueError(f"{relative(manifest)} is missing")
+    receipt = load_json(path)
+    validate_release_provenance(receipt, release, sha256_path(manifest))
+    return {"status": "open", "blockers": []}
+
+
 def build_status() -> Dict[str, Any]:
     version = package_version()
     index = load_json(INDEX)
@@ -101,6 +130,7 @@ def build_status() -> Dict[str, Any]:
     contract = load_json(MCP_CONTRACT)
     policy = load_json(SECURITY_POLICY)
     benchmark = benchmark_status()
+    provenance = release_provenance_status(version)
     security_verdicts = Counter(
         skill["security"]["verdict"] for skill in context["skills"]
     )
@@ -197,12 +227,7 @@ def build_status() -> Dict[str, Any]:
                 if reviews["promotion_ready_count"]
                 else ["No candidate has completed independent review and maintainer approval."],
             },
-            "release_provenance": {
-                "status": "pending",
-                "blockers": [
-                    "Tag-triggered manifest, wheel, and source-distribution attestations require the v0.5.0 release tag."
-                ],
-            },
+            "release_provenance": provenance,
         },
     }
 
@@ -221,7 +246,7 @@ def check_output(expected: str) -> List[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Build the machine-readable v0.5 release-candidate status"
+        description="Build the machine-readable current release status"
     )
     parser.add_argument("--check", action="store_true", help="Fail if output is stale")
     args = parser.parse_args()

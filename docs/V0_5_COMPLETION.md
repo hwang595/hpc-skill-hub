@@ -1,9 +1,10 @@
 # v0.5 Completion Matrix
 
-Status: release candidate. P0 through P3 are merged through PR #44. P4's
-repository-side MCP evidence capability and P5's local release contracts are
-implemented on the candidate branch. Merge, tag, GitHub workflow, attestation,
-paid-run, and independent-review outcomes are not claimed here.
+Status: released. P0 through P3 merged through PR #44, release preparation
+merged in PR #45, and the website upgrade merged in PR #46. `v0.5.0` was
+published from commit `22be6ae` on 2026-07-14. Validate, Package, Pages, and the
+tag-triggered attestation jobs passed. Paid-run, comparative, and independent
+maturity-review outcomes are not claimed here.
 
 v0.5 is the trusted agent distribution release. It packages reviewed registry
 content behind a closed read-only MCP surface and publishes machine-readable
@@ -47,20 +48,20 @@ status that distinguishes repository capability from external evidence.
 | --- | --- | --- |
 | MCP campaign contract | Complete locally | `evidence-v0.5.json` defines 72 runs: two agents, three tasks, four isolated conditions, and three trials. |
 | MCP isolation and provenance | Complete locally | MCP workspaces receive fixtures plus client configuration, while campaign locks bind contract digest and exact installed package version. |
-| Real execution | Deferred | No paid run is authorized by CI or this release candidate. Exact models, authenticated CLIs, quota approval, and explicit per-run authorization are required. |
+| Real execution | Deferred | No paid run is authorized by CI or this release. Exact models, authenticated CLIs, quota approval, and explicit per-run authorization are required. |
 | Comparative publication | Gate closed | There are zero scored results; MCP-versus-baseline and MCP-versus-skill gates are both 0/6. No ranking or lift claim is emitted. |
 | Maturity promotion | Gate closed | Five v0.4 candidates still require independent domain review, one requires safety review, and all require a maintainer decision. |
 
-## P5 Release Candidate
+## P5 Release
 
 | Gate | Status | Evidence |
 | --- | --- | --- |
-| Unified generated status | Complete locally | `registry/release-status.json` summarizes compatibility, context, MCP, benchmark, review, and security artifacts and preserves closed external gates. |
-| Registry web explorer | Complete locally | The generated Pages site surfaces release readiness, collection entry points, responsive table/card views, sorting, shareable URL filters, and bounded mobile card expansion without adding a runtime framework. |
-| Version consistency | Complete locally | Package metadata, module version, citation metadata, README badge, notes, and candidate manifest target `0.5.0`. |
-| Distribution smoke tests | CI contract complete; candidate run required | Package workflow builds sdist/wheel, runs `twine check`, and tests both core and MCP-extra installs outside the checkout. |
-| Immutable manifest | Complete locally | `registry/releases/v0.5.0.json` checksums the candidate tree and CI requires it to pass `--check`. |
-| Release provenance | Pending tag | Manifest, wheel, and sdist attestations can only be created and verified after the reviewed commit is tagged `v0.5.0`. |
+| Unified generated status | Complete | `registry/release-status.json` summarizes compatibility, context, MCP, benchmark, review, security, and verified release provenance while preserving closed external evidence gates. |
+| Registry web explorer | Complete | The generated Pages site surfaces release status, collection entry points, responsive table/card views, sorting, shareable URL filters, and bounded mobile card expansion without adding a runtime framework. |
+| Version consistency | Complete | Package metadata, module version, citation metadata, README badge, notes, tag, and immutable manifest all target `0.5.0`. |
+| Distribution smoke tests | Complete | Package workflow built sdist/wheel, ran `twine check`, and tested both core and MCP-extra installs outside the checkout. |
+| Immutable manifest | Complete | `registry/releases/v0.5.0.json` records the released tree and is now checked only as an immutable published snapshot. |
+| Release provenance | Verified | `registry/provenance/v0.5.0.json` binds commit `22be6ae`, successful Package run `29375502297`, and verified SHA-256 digests for the manifest, wheel, and sdist. |
 
 ## Release Decision Boundary
 

@@ -28,6 +28,7 @@ from .mcp_server import (
     skill_resource_uri,
 )
 from .release_status import ReleaseStatusError, load_release_status
+from .release_provenance import ReleaseProvenanceError, validate_release_provenance
 from .security import RULE_CATALOG
 from .security_policy import SecurityPolicyError, load_effective_policy
 
@@ -42,6 +43,7 @@ PROBE_SKILL_ID = "slurm-submit-job"
 REGISTRY_DATA_FILES = (
     "index.json",
     "health.json",
+    "release-provenance.json",
     "release-status.json",
     "review-status.json",
     "skill-context.json",
@@ -127,9 +129,16 @@ def _check_package_data() -> DoctorCheck:
         relative = f"registry/{filename}"
         try:
             raw = _packaged_path("registry", filename).read_bytes()
-            json.loads(raw.decode("utf-8"))
+            payload = json.loads(raw.decode("utf-8"))
+            if filename == "release-provenance.json":
+                validate_release_provenance(payload, f"v{__version__}")
             packaged[relative] = len(raw)
-        except (FileNotFoundError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        except (
+            FileNotFoundError,
+            UnicodeDecodeError,
+            json.JSONDecodeError,
+            ReleaseProvenanceError,
+        ) as exc:
             errors.append(f"{relative}: {exc}")
     contract_relative = f"integrations/{CONTRACT_FILENAME}"
     try:
@@ -150,7 +159,11 @@ def _check_package_data() -> DoctorCheck:
     stale: List[str] = []
     if repository_root:
         for filename in REGISTRY_DATA_FILES:
-            source = repository_root / "registry" / filename
+            source = (
+                repository_root / "registry" / "provenance" / f"v{__version__}.json"
+                if filename == "release-provenance.json"
+                else repository_root / "registry" / filename
+            )
             packaged_path = _packaged_path("registry", filename)
             if not source.is_file():
                 stale.append(f"registry/{filename} (source missing)")

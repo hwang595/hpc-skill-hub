@@ -7,14 +7,29 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+### Added
+
+- Add a schema-validated, packaged `v0.5.0` provenance receipt that records the
+  release commit, successful Package workflow, artifact digests, and completed
+  GitHub attestation verification without treating the receipt as a signature.
+- Add the v0.6 verified community intake plan, completion matrix, and milestone.
+
+### Changed
+
+- Mark v0.5 as released and verified across the generated status, website,
+  roadmap, notes, and completion contracts while keeping comparative evidence
+  and maturity-promotion gates closed.
+- Validate published release manifests as immutable snapshots after release and
+  update GitHub workflow actions to their current Node 24-compatible majors.
+
 ## v0.5.0 - 2026-07-14
 
 ### Added
 
 - Add a generated, packaged v0.5 release-status contract that summarizes
   compatibility, verified context, MCP, benchmark, review, and security
-  evidence while keeping comparative, promotion, and tag-provenance gates
-  explicitly closed or pending.
+  evidence while keeping comparative, promotion, and pre-release tag-provenance
+  gates explicitly closed or pending.
 - Add a 72-run MCP evidence plan across Codex and Claude Code, three public-safe
   tasks, four isolated conditions, and three trials, with exact installed MCP
   package and contract locks, preflight protocol diagnostics, and separate
@@ -48,7 +63,7 @@ skills keep their own `version` field in `skills/*/skill.json`.
   release-readiness gates, collection shortcuts, responsive table/card views,
   sorting, shareable URL filters, and bounded mobile result expansion.
 - Prepare package, citation, release notes, completion matrix, wheel smoke tests,
-  and immutable manifest metadata for the `v0.5.0` release candidate.
+  and immutable manifest metadata for the `v0.5.0` release.
 
 ## v0.4.0 - 2026-07-13
 

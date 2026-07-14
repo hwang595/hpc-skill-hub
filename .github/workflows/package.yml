@@ -17,7 +17,7 @@ jobs:
   wheel:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
@@ -29,7 +29,6 @@ jobs:
           python3 tools/build_mcp_client_configs.py --check
           python3 tools/build_release_status.py --check
           python3 tools/build_package_data.py --check
-          python3 tools/build_release_manifest.py v0.5.0 --check
           python3 tools/validate_registry_artifacts.py
       - name: Build distributions
         run: python3 -m build --sdist --wheel
@@ -58,7 +57,7 @@ jobs:
           cd /tmp
           /tmp/hpc-skill-hub-wheel-mcp/bin/hpc-skill doctor --require-mcp --json
       - name: Upload tested distributions
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: python-distributions
           path: dist/
@@ -72,9 +71,9 @@ jobs:
       id-token: write
       attestations: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Download tested distributions
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: python-distributions
           path: dist/

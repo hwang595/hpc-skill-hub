@@ -16,6 +16,7 @@ public GitHub repository.
 | `v0.3.0 integrations and adapters` | Expand site adapters, downstream registry integrations, and compatibility contracts. |
 | `v0.4.0 evidence and reviewed registry` | Collect reviewed cross-agent evidence, publish gated comparisons, deepen priority skills, and promote only evidence-backed registry entries. |
 | `v0.5.0 trusted agent distribution` | Ship verified context, read-only MCP access, provider onboarding, trust policy packs, and gated MCP evidence. |
+| `v0.6.0 verified community intake` | Quarantine untrusted bundles, publish intake receipts, bind review and adoption evidence, and expose only accepted context to agents. |
 | `ecosystem backlog` | Track longer-running requests that need owners, RFCs, site evidence, or domain review. |
 
 ## Create Milestones
@@ -45,5 +46,7 @@ mutate GitHub by itself.
   `v0.4.0 evidence and reviewed registry`.
 - Put verified agent context, MCP distribution, trust policy, and MCP evidence
   work in `v0.5.0 trusted agent distribution`.
+- Put quarantine, intake receipts, contribution review, adoption evidence, and
+  accepted agent-context work in `v0.6.0 verified community intake`.
 - Put broad requests in `ecosystem backlog` until a maintainer can split them
   into focused issues, RFCs, safety reviews, or skill requests.

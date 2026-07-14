@@ -11,7 +11,7 @@ jobs:
   skills:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
@@ -50,7 +50,6 @@ jobs:
         run: python3 tools/build_package_data.py --check
       - name: Check immutable release snapshots
         run: |
-          python3 tools/build_release_manifest.py v0.5.0 --check
           python3 tools/validate_registry_artifacts.py --release-only
       - name: Check reviewed-skill pilot packet
         run: python3 tools/review_packet.py --check

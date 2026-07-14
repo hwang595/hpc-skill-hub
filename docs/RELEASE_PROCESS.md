@@ -60,14 +60,15 @@ Review:
 - `registry/review-status.json` is current and each v0.4 pilot bundle links a
   public review issue and immutable review commit.
 - `registry/release-status.json` is current, matches the package version, and
-  keeps comparative evidence, maturity promotion, and tag provenance closed or
-  pending unless their real evidence exists.
+  keeps comparative evidence and maturity promotion closed unless their real
+  evidence exists; release provenance opens only for a matching verified
+  receipt.
 - `docs/SKILL_CATALOG.md` is current.
 - `docs/COMPATIBILITY.md` is current.
 - `docs/AGENT_BENCHMARK_V0_5_PLAN.md`, `docs/V0_5_COMPLETION.md`,
   `docs/REVIEW_PACKET_v0.4.0.md`, and the generated dashboards are current.
 - `src/hpc_skill_hub/data/registry/`, `data/integrations/`, and
-  `data/security/` match their generated or canonical JSON sources.
+  `data/security/` match their generated, audited, or canonical JSON sources.
 - Registry index, health, release manifest, package data, and schema pointers
   pass `tools/validate_registry_artifacts.py`.
 - `registry/releases/v<version>.json` is current and attached to the GitHub
@@ -81,6 +82,9 @@ Review:
 - Tagged package builds attest the versioned release manifest, source
   distribution, and wheel with `actions/attest@v4`; downloaded artifacts pass
   `gh attestation verify <artifact> --repo <owner>/hpc-skill-hub`.
+- After tag verification, a reviewed `registry/provenance/<version>.json`
+  receipt records the successful workflow and exact verified subject digests;
+  the receipt does not modify or regenerate the published manifest.
 - New skills have README files, examples, tests, and references.
 - Medium and high-risk entries explain impact and safety notes.
 - Site adapters contain only public, non-sensitive information.

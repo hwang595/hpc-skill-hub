@@ -27,6 +27,10 @@ FILES: List[Tuple[Path, Path]] = [
     )
 ] + [
     (
+        ROOT / "registry" / "provenance" / "v0.5.0.json",
+        PACKAGE_ROOT / "registry" / "release-provenance.json",
+    ),
+    (
         ROOT / "integrations" / "mcp-client.json",
         PACKAGE_ROOT / "integrations" / "mcp-client.json",
     ),

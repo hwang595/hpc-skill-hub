@@ -87,10 +87,8 @@
       "status": "closed"
     },
     "release_provenance": {
-      "blockers": [
-        "Tag-triggered manifest, wheel, and source-distribution attestations require the v0.5.0 release tag."
-      ],
-      "status": "pending"
+      "blockers": [],
+      "status": "open"
     },
     "repository": {
       "blockers": [],

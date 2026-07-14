@@ -37,6 +37,20 @@ Verification proves that the artifact digest was attested by this repository's
 GitHub Actions workflow. It does not replace review of the release manifest,
 skill security findings, maturity evidence, or the source commit.
 
+## Recorded Verification
+
+After verification, maintainers record the public release facts in
+`registry/provenance/<version>.json`. The schema-bound receipt includes the tag
+and commit, release and workflow URLs, completion timestamps, exact artifact
+names and SHA-256 digests, and the `gh-attestation-verify` outcome. The current
+receipt is included in installed package data, and
+`registry/release-status.json` opens the provenance gate only when the receipt
+matches the immutable release manifest.
+
+The checked-in receipt is an auditable maintainer record, not a replacement for
+the GitHub/Sigstore attestation. Consumers that need cryptographic verification
+should download the named subject and run `gh attestation verify` themselves.
+
 Before publishing a release, confirm that:
 
 1. The tag points at the reviewed release commit.
@@ -45,6 +59,8 @@ Before publishing a release, confirm that:
 3. The tag-triggered `Package` workflow succeeds.
 4. Each attached release artifact passes `gh attestation verify`.
 5. The GitHub release notes link the source commit and versioned manifest.
+6. The provenance receipt records the verified subject digests and successful
+   tag workflow without changing the published manifest.
 
 GitHub documents the permission and verification model in
 [Using artifact attestations to establish provenance for builds](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations).

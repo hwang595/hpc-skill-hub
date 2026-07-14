@@ -117,7 +117,15 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("v0.1.0 seed launch", titles)
         self.assertIn("v0.4.0 evidence and reviewed registry", titles)
         self.assertIn("v0.5.0 trusted agent distribution", titles)
+        self.assertIn("v0.6.0 verified community intake", titles)
         self.assertIn("ecosystem backlog", titles)
+        by_title = {milestone["title"]: milestone for milestone in milestones}
+        self.assertEqual(
+            by_title["v0.5.0 trusted agent distribution"]["state"], "closed"
+        )
+        self.assertEqual(
+            by_title["v0.6.0 verified community intake"]["state"], "open"
+        )
 
         for milestone in milestones:
             self.assertIn(milestone["state"], {"open", "closed"})
@@ -307,7 +315,6 @@ class GitHubMetadataTests(unittest.TestCase):
             "python3 tools/build_compatibility.py --check",
             "python3 tools/build_mcp_client_configs.py --check",
             "python3 tools/build_release_status.py --check",
-            "python3 tools/build_release_manifest.py v0.5.0 --check",
             "python3 tools/build_package_data.py --check",
             "hpc-skill doctor --require-mcp --json",
             "hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json",
@@ -327,6 +334,8 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertIn("cd /tmp", workflow)
         self.assertIn("hpc-skill health --json", workflow)
         self.assertIn("python3 -m hpc_skill_hub show slurm-submit-job --json", workflow)
+        self.assertIn("actions/checkout@v7", workflow)
+        self.assertNotIn("tools/build_release_manifest.py v0.5.0 --check", workflow)
 
     def test_package_workflow_builds_and_smoke_tests_wheel(self):
         workflow = (ROOT / ".github" / "workflows" / "package.yml").read_text(
@@ -339,14 +348,14 @@ class GitHubMetadataTests(unittest.TestCase):
             "python3 -m pip install --upgrade pip build twine",
             "python3 tools/build_package_data.py --check",
             "python3 tools/build_release_status.py --check",
-            "python3 tools/build_release_manifest.py v0.5.0 --check",
             "python3 tools/build_mcp_client_configs.py --check",
             "python3 tools/validate_registry_artifacts.py",
             "python3 -m build --sdist --wheel",
             "python3 -m twine check dist/*",
             "actions/attest@v4",
-            "actions/upload-artifact@v4",
-            "actions/download-artifact@v4",
+            "actions/checkout@v7",
+            "actions/upload-artifact@v7",
+            "actions/download-artifact@v8",
             "registry/releases/${{ github.ref_name }}.json",
             "attestations: write",
             "id-token: write",
@@ -362,6 +371,7 @@ class GitHubMetadataTests(unittest.TestCase):
             "from hpc_skill_hub.release_status import load_release_status",
         ]:
             self.assertIn(text, workflow)
+        self.assertNotIn("tools/build_release_manifest.py v0.5.0 --check", workflow)
 
     def test_ruleset_command_generator(self):
         result = subprocess.run(
@@ -625,11 +635,27 @@ class GitHubMetadataTests(unittest.TestCase):
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(
+            "docs/V0_6_PLAN.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "docs/V0_6_COMPLETION.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
             "registry/release-status.json",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(
             "schemas/release-status.schema.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "schemas/release-provenance-record.schema.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "registry/provenance/v0.5.0.json",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(
@@ -699,9 +725,8 @@ class GitHubMetadataTests(unittest.TestCase):
         self.assertEqual(by_name["github-milestones"]["status"], "OK")
         self.assertEqual(by_name["registry-index-current"]["status"], "OK")
         self.assertEqual(by_name["registry-health-current"]["status"], "OK")
-        self.assertEqual(
-            by_name["release-candidate-manifest-current"]["status"], "OK"
-        )
+        self.assertEqual(by_name["release-snapshots-valid"]["status"], "OK")
+        self.assertNotIn("release-candidate-manifest-current", by_name)
         self.assertEqual(by_name["registry-artifact-contracts"]["status"], "OK")
         self.assertIn(by_name["git-remote"]["status"], {"OK", "WARN"})
         self.assertIn(by_name["gh-cli"]["status"], {"OK", "WARN"})

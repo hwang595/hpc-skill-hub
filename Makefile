@@ -49,7 +49,6 @@ package-data:
 	$(PYTHON) tools/build_package_data.py --check
 
 release-manifest:
-	$(PYTHON) tools/build_release_manifest.py v0.5.0 --check
 	$(PYTHON) tools/validate_registry_artifacts.py --release-only
 
 review-packet:
