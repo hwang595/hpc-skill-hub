@@ -58,7 +58,7 @@ jobs:
           cd /tmp
           /tmp/hpc-skill-hub-wheel-mcp/bin/hpc-skill doctor --require-mcp --json
       - name: Upload tested distributions
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: python-distributions
           path: dist/
