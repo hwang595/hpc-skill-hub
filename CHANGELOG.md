@@ -11,6 +11,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ### Added
 
+- Add a schema-validated, packaged `v0.6.0` provenance receipt that binds the
+  immutable manifest and tag-built wheel/sdist to successful GitHub attestation
+  verification from Package run `29458968805`.
 - Add a schema-validated, packaged `v0.5.0` provenance receipt that records the
   release commit, successful Package workflow, artifact digests, and completed
   GitHub attestation verification without treating the receipt as a signature.
@@ -42,9 +45,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
   and maturity-promotion gates closed.
 - Validate published release manifests as immutable snapshots after release and
   update GitHub workflow actions to their current Node 24-compatible majors.
-- Prepare version, release status, package data, public notes, CI isolation, and
-  release-candidate manifest contracts for `v0.6.0`; tag provenance remains
-  pending until the release artifacts and attestations are independently checked.
+- Publish version, release status, package data, public notes, CI isolation, and
+  the immutable `v0.6.0` manifest; open the provenance gate only after all three
+  tagged subjects pass independent attestation verification.
 
 ## v0.5.0 - 2026-07-14
 

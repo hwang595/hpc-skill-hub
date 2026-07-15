@@ -105,10 +105,8 @@
       "status": "closed"
     },
     "release_provenance": {
-      "blockers": [
-        "No verified release provenance receipt exists for v0.6.0."
-      ],
-      "status": "pending"
+      "blockers": [],
+      "status": "open"
     },
     "repository": {
       "blockers": [],

@@ -699,6 +699,10 @@ class GitHubMetadataTests(unittest.TestCase):
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(
+            "registry/provenance/v0.6.0.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
             "docs/AGENT_BENCHMARK_DASHBOARD.html",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )

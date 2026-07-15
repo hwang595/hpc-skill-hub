@@ -274,20 +274,19 @@ The repository is set up as a versioned registry, not just a documentation dump:
 | `registry/community-pilot-v0.6.0.json` | Deterministic 9-case benign, ambiguous, and adversarial pilot across directory, ZIP, and TAR inputs, with synthetic-only claims kept explicit. |
 | `security/policies/community-default.json` | Versioned 26-rule trust baseline with monotonic overrides, digest-bound reviewed exceptions, and policy/target/rule-catalog receipts. |
 | `registry/skill-context.json` | Bounded registry-declared README and artifact content is bound to the index with file, skill, bundle, and security-report SHA-256 provenance. |
-| `registry/release-status.json` | Packaged v0.6 capability and gate status opens the synthetic intake-pilot gate while keeping real adoption, comparative, maturity, and tag-provenance claims closed or pending. |
-| `registry/provenance/v0.5.0.json` | Latest verified release receipt; v0.6 provenance remains pending until the tag-triggered artifacts and attestations are verified. |
+| `registry/release-status.json` | Packaged v0.6 capability and gate status opens repository, synthetic intake-pilot, and verified release-provenance gates while keeping real adoption, comparative, and maturity claims closed. |
+| `registry/provenance/v0.6.0.json` | Latest verified release receipt, binding the immutable manifest and tag-built wheel/sdist to successful GitHub attestations. |
 | `hpc-skill-mcp` | Optional stdio-only MCP surface exposes seven closed-domain registry queries plus verified registry and explicitly configured community resources, with no execution or write tools. |
 | `Package` workflow | Source and wheel distributions build cleanly, metadata passes `twine check`, and reusable core/MCP isolation checks verify installed modules and trusted community context outside the checkout. |
 | `Publish Pages` workflow | The responsive static explorer builds from tracked registry and release-status data, with collection discovery, sorting, shareable filters, and table/card views. |
-| `registry/releases/v0.6.0.json` | Release-candidate manifest with file checksums and registry counts; it becomes an immutable published snapshot only after the reviewed tag is released. |
+| `registry/releases/v0.6.0.json` | Immutable published manifest with file checksums and registry counts for the reviewed v0.6 tag. |
 | `docs/REVIEW_PACKET_v0.2.0.md` | Reviewed-skill pilot queue with reviewer routing, suggested labels, and promotion gates. |
 | `pyproject.toml` | Package version, Python compatibility, CLI entry point, and project metadata are tracked in source control. |
 
 ## Project Status
 
-`v0.6.0` is the current release target; `v0.5.0` remains the latest published
-and attestation-verified tag until the v0.6 release workflow completes. The v0.6
-repository capability is release-ready without claiming real community
+`v0.6.0` is the latest published and attestation-verified release. It delivers
+verified community-intake infrastructure without claiming real community
 acceptance, external review, site adoption, maturity promotion, or measured
 agent lift:
 
@@ -298,8 +297,8 @@ agent lift:
    Claude Code in P4.
 5. A deterministic 9-case fixture pilot and reusable core/MCP installed-wheel
    isolation verifier in P5.
-6. A v0.6 release status and manifest with tag provenance deliberately pending
-   until tag-triggered attestations are verified.
+6. An immutable v0.6 manifest and exact-digest provenance receipt verified
+   against the tag-triggered manifest, wheel, and source-distribution attestations.
 
 See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 

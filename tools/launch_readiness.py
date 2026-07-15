@@ -108,6 +108,7 @@ REQUIRED_LAUNCH_FILES = [
     "registry/releases/v0.5.0.json",
     "registry/releases/v0.6.0.json",
     "registry/provenance/v0.5.0.json",
+    "registry/provenance/v0.6.0.json",
     "registry/release-status.json",
     "registry/community-pilot-v0.6.0.json",
     "registry/skill-quality.json",

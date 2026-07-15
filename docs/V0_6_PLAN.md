@@ -1,10 +1,9 @@
 # v0.6 Development Plan
 
-Status: P0 release hygiene merged in PR #48, P1 quarantined intake merged in
-PR #50, P2 intake receipts merged in PR #51, and P3 review and adoption
-evidence merged in PR #52. P4 trusted agent consumption is complete on the
-main branch after PR #53. P5 pilot and release readiness are implemented on the
-current branch and must preserve the external evidence boundaries below.
+Status: complete. P0 through P5 merged in PRs #48, #50, #51, #52, #53, and
+#54. `v0.6.0` was released from commit `af4419a` on 2026-07-15, and the
+tag-triggered manifest, wheel, and source-distribution attestations were
+verified without changing the external evidence boundaries below.
 
 v0.6 focuses on verified community intake and evidence. The release should let
 maintainers inspect, quarantine, review, and selectively expose contributed
@@ -85,10 +84,10 @@ share the same validator used by the optional read-only MCP server.
 
 ## P5 Pilot And Release
 
-Implementation status: complete on the P5 release-candidate branch. A fixed
-9-case matrix, strict report schema, reusable installed-wheel verifier, package
-workflow gates, v0.6 status, notes, and release-candidate manifest make the
-repository ready for review without claiming tag-time provenance early.
+Implementation status: released in `v0.6.0` after PR #54. A fixed 9-case
+matrix, strict report schema, reusable installed-wheel verifier, package
+workflow gates, v0.6 status, notes, and immutable manifest are published with a
+verified tag provenance receipt.
 
 - Exercise benign, ambiguous, and adversarial fixture bundles across directory
   and archive intake paths.

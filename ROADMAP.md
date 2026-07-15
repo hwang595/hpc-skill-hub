@@ -24,9 +24,10 @@ The seed repository currently includes:
   and deterministic release manifest artifacts.
 - GitHub metadata for labels, issue templates, discussion templates,
   milestones, workflows, starter rulesets, and seed community issues.
-- Published `v0.1.0` through `v0.5.0` registry releases. The `v0.5.0` release
-  adds trusted agent distribution and verified tag provenance without promoting
-  skills automatically or claiming measured agent lift.
+- Published `v0.1.0` through `v0.6.0` registry releases. The `v0.6.0` release
+  adds verified community intake and agent-consumption contracts with verified
+  tag provenance, without promoting skills automatically or claiming measured
+  agent lift.
 
 The public GitHub launch is complete. Current development focuses on turning
 seed skills into reviewed skills through public-safe evidence and domain
@@ -36,10 +37,14 @@ The v0.3 infrastructure is released. Real cross-agent runs, independent
 scoring, external adoption evidence, and maturity promotion remain public
 follow-up work rather than synthetic CI claims.
 
-## v0.6 Release Candidate
+## v0.6 Released
 
-v0.6 focuses on verified community intake and evidence. P0 through P4 are
-merged, and P5 release preparation is implemented for review:
+Status: P0 through P5 merged in PRs #48, #50, #51, #52, #53, and #54.
+`v0.6.0` was published from commit `af4419a` on 2026-07-15. Validate, Package,
+Pages, tag-triggered isolation, and attestation jobs passed; the manifest,
+wheel, and source distribution were verified with `gh attestation verify`.
+
+v0.6 focuses on verified community intake and evidence:
 
 1. **P0 release hygiene (merged):** record v0.5 provenance, correct public
    release status, freeze its manifest checks, refresh CI actions, and open the
@@ -55,10 +60,10 @@ merged, and P5 release preparation is implemented for review:
    decisions without automatic maturity promotion.
 5. **P4 trusted agent consumption (merged in PR #53):** expose only accepted, digest-verified
    community context through CLI, MCP, Codex, and Claude Code surfaces.
-6. **P5 pilot and release readiness:** run a 9-case benign, ambiguous, and
+6. **P5 pilot and release (merged in PR #54):** run a 9-case benign, ambiguous, and
    adversarial matrix across directory, ZIP, and TAR inputs; verify core and MCP
-   wheels outside the checkout; publish honest gate status; and prepare the
-   v0.6 manifest without claiming tag provenance before attestations exist.
+   wheels outside the checkout; publish honest gate status; and bind the
+   immutable v0.6 manifest and tag-built artifacts to verified provenance.
 
 CI may validate intake mechanics and synthetic fixtures, but it cannot claim a
 community contribution is domain-correct, independently reviewed, adopted, or

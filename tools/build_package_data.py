@@ -28,7 +28,7 @@ FILES: List[Tuple[Path, Path]] = [
     )
 ] + [
     (
-        ROOT / "registry" / "provenance" / "v0.5.0.json",
+        ROOT / "registry" / "provenance" / "v0.6.0.json",
         PACKAGE_ROOT / "registry" / "release-provenance.json",
     ),
     (
