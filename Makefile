@@ -1,4 +1,4 @@
-.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check cli compatibility doctor health index mcp mcp-client-configs package-data release-manifest release-status review-packet security site skill-context skill-quality skill-reviews test trust-policy validate clean
+.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check cli compatibility doctor health index intake mcp mcp-client-configs package-data release-manifest release-status review-packet security site skill-context skill-quality skill-reviews test trust-policy validate clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -63,6 +63,9 @@ audit:
 security:
 	$(PYTHON) tools/scan_skill_security.py skills --fail-on high
 
+intake:
+	$(PYTHON) tools/quarantine_skill_intake.py tests/fixtures/intake/benign-skill --json
+
 trust-policy:
 	$(PYTHON) -m unittest tests.test_skill_security
 
@@ -86,6 +89,7 @@ cli:
 	$(PYTHON) tools/hpc_skill.py collection core-hpc
 	$(PYTHON) tools/hpc_skill.py adapters
 	$(PYTHON) tools/hpc_skill.py resolve slurm-submit-job --adapter example-campus-cluster --json
+	$(PYTHON) tools/hpc_skill.py intake tests/fixtures/intake/benign-skill --json
 	$(PYTHON) tools/hpc_skill.py security skills/slurm-submit-job --fail-on high
 
 mcp:
@@ -97,7 +101,7 @@ doctor:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health skill-quality skill-reviews skill-context compatibility mcp-client-configs agent-adapters benchmarks agent-benchmarks release-status package-data release-manifest review-packet artifact-contracts audit security trust-policy test site cli mcp doctor
+check: validate index health skill-quality skill-reviews skill-context compatibility mcp-client-configs agent-adapters benchmarks agent-benchmarks release-status package-data release-manifest review-packet artifact-contracts audit security intake trust-policy test site cli mcp doctor
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

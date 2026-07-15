@@ -59,6 +59,8 @@ jobs:
         run: python3 tools/audit_safety.py
       - name: Scan community skill packages
         run: python3 tools/scan_skill_security.py skills --fail-on high
+      - name: Exercise quarantined community intake
+        run: python3 tools/quarantine_skill_intake.py tests/fixtures/intake/benign-skill --json
       - name: Install CLI and MCP integration
         run: python3 -m pip install '.[mcp]'
       - name: Run test suite
@@ -72,6 +74,7 @@ jobs:
           hpc-skill review candidates --json
           hpc-skill collection core-hpc --json
           hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
+          hpc-skill intake "${GITHUB_WORKSPACE}/tests/fixtures/intake/benign-skill" --json
           python3 -m hpc_skill_hub show slurm-submit-job --json
           python3 -c "from hpc_skill_hub.context import load_context_bundle; b = load_context_bundle(); assert b['skill_count'] == 97 and b['file_count'] == 344"
       - name: Smoke test registry CLI
@@ -91,6 +94,7 @@ jobs:
           python3 tools/hpc_skill.py collection core-hpc
           python3 tools/hpc_skill.py adapters
           python3 tools/hpc_skill.py resolve slurm-submit-job --adapter example-campus-cluster --json
+          hpc-skill intake tests/fixtures/intake/benign-skill --json
           hpc-skill security skills/slurm-submit-job --fail-on high
           python3 tools/hpc_skill.py scaffold skill ci-test-skill --name "CI Test Skill" --category education --tool bash --root /tmp/hpc-skill-hub-scaffold --force
           python3 tools/hpc_skill.py scaffold site-adapter ci-test-cluster --name "CI Test Cluster" --root /tmp/hpc-skill-hub-scaffold --force

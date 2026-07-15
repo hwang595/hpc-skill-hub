@@ -1,8 +1,8 @@
 # v0.6 Development Plan
 
-Status: P0 release hygiene is implemented in PR #48 with local and GitHub CI
-gates passing; review and merge remain pending. P1 through P5 are planned and
-must preserve the external evidence boundaries described below.
+Status: P0 release hygiene merged in PR #48. P1 quarantined intake is
+implemented on its release branch with review and merge pending. P2 through P5
+remain planned and must preserve the external evidence boundaries below.
 
 v0.6 focuses on verified community intake and evidence. The release should let
 maintainers inspect, quarantine, review, and selectively expose contributed
@@ -10,7 +10,7 @@ skills without loading untrusted instructions before policy checks complete.
 
 ## P0 Release Hygiene
 
-Implementation status: complete on the P0 branch. The v0.6 milestone is #7,
+Implementation status: merged in PR #48. The v0.6 milestone is #7,
 the public delivery tracker is issue #49, the completed v0.5 tracker and
 milestone are closed, and duplicate or superseded PRs are closed with links to
 their replacement.
@@ -24,6 +24,10 @@ their replacement.
 - Create the v0.6 milestone and public tracking issue after local gates pass.
 
 ## P1 Quarantined Community Intake
+
+Implementation status: complete on the P1 branch. The installable
+`hpc-skill intake` command and standalone repository wrapper share one
+standard-library implementation and a schema-validated report contract.
 
 - Add a no-execution intake command that inventories an untrusted directory or
   archive before any `SKILL.md`, README, example, or instruction is loaded.

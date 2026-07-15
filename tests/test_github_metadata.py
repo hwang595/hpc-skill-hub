@@ -643,6 +643,18 @@ class GitHubMetadataTests(unittest.TestCase):
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(
+            "docs/COMMUNITY_INTAKE.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "schemas/community-skill-intake-report.schema.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "tools/quarantine_skill_intake.py",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
             "registry/release-status.json",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
