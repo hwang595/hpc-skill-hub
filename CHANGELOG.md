@@ -13,6 +13,10 @@ skills keep their own `version` field in `skills/*/skill.json`.
   release commit, successful Package workflow, artifact digests, and completed
   GitHub attestation verification without treating the receipt as a signature.
 - Add the v0.6 verified community intake plan, completion matrix, and milestone.
+- Add v0.6 P1 quarantined community intake for directories, ZIP files, and TAR
+  files with no-execution staging, bounded resources, portable path checks,
+  binary and encoding rejection, cleanup, scanner integration, and a strict
+  machine-readable report contract.
 
 ### Changed
 

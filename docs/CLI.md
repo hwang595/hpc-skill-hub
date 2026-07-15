@@ -15,6 +15,7 @@ python3 tools/hpc_skill.py health
 python3 tools/hpc_skill.py review candidates
 python3 tools/hpc_skill.py review status job-failure-triage
 python3 tools/hpc_skill.py validate
+python3 tools/hpc_skill.py intake ./community-skill.zip --json
 python3 tools/hpc_skill.py security skills/slurm-submit-job
 python3 tools/hpc_skill.py adapters
 python3 tools/hpc_skill.py adapter example-campus-cluster
@@ -28,6 +29,7 @@ python3 -m pip install .
 hpc-skill list
 hpc-skill collection core-hpc
 hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
+hpc-skill intake ./community-skill.zip --json
 hpc-skill security ./community-skill --format json
 ```
 
@@ -96,6 +98,22 @@ validation skips generated registry checks and audits/scans only that skill
 directory.
 
 ## Scanning Community Skills
+
+Establish a bounded quarantine boundary before reading an untrusted directory
+or archive:
+
+```bash
+hpc-skill intake ./community-skill
+hpc-skill intake ./community-skill.zip --json
+hpc-skill intake ./community-skill.tar.gz --policy ../policy.json --json
+```
+
+`ready-for-review` and `review-required` exit `0`; `blocked` exits `1`; input or
+policy errors exit `2`. All P1 reports keep `context_loading_allowed: false`.
+See [Quarantined Community Intake](COMMUNITY_INTAKE.md).
+
+For source that is already expanded inside a reviewed boundary, run the static
+scanner directly:
 
 Scan an HPC Skill Hub package, agent `SKILL.md` directory, or parent directory
 without executing its content:

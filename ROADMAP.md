@@ -41,12 +41,12 @@ follow-up work rather than synthetic CI claims.
 v0.6 focuses on verified community intake and evidence. Work proceeds in this
 order:
 
-1. **P0 release hygiene:** record v0.5 provenance, correct public release
-   status, freeze its manifest checks, refresh CI actions, and open the v0.6
-   tracking contracts.
-2. **P1 quarantined intake:** inspect untrusted contribution bundles under
-   strict path, archive, size, and no-execution limits before any instruction is
-   loaded into agent context.
+1. **P0 release hygiene (merged):** record v0.5 provenance, correct public
+   release status, freeze its manifest checks, refresh CI actions, and open the
+   v0.6 tracking contracts.
+2. **P1 quarantined intake (implemented):** inspect untrusted contribution
+   bundles under strict path, archive, size, and no-execution limits before any
+   instruction is loaded into agent context.
 3. **P2 intake receipts:** bind source digest, inventory, scanner and policy
    versions, findings, exceptions, and reviewer disposition in a portable JSON
    contract.

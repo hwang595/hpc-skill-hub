@@ -5,6 +5,12 @@ checks and human review. A skill can contain executable examples, agent-facing
 instructions, dependency installation steps, network actions, or references to
 ambient credentials. Repository validation alone does not establish trust.
 
+Use `hpc-skill intake` as the first boundary for an untrusted directory or
+archive. It inventories and stages bounded UTF-8 source before invoking this
+scanner and returns no instruction content. See
+[Quarantined Community Intake](COMMUNITY_INTAKE.md). Use `hpc-skill security`
+directly only when the source is already expanded inside a reviewed boundary.
+
 ## Security Scanner
 
 The installable scanner accepts an HPC Skill Hub package, a Codex or Claude
@@ -71,12 +77,12 @@ example, marker-guarded cleanup can be a legitimate `medium` finding.
 
 Coding agents should apply this order to community skills:
 
-1. Scan the package before loading untrusted `SKILL.md`, README, or examples
-   into the working context.
-2. Stop on `block` and show the user the rule ids, locations, and remediation.
-3. Treat `review` as an explicit decision point; inspect guards, declared risk,
-   network/resource impact, and provenance.
-4. Run registry/schema validation after security scanning.
+1. Run `hpc-skill intake` before loading untrusted `SKILL.md`, README, or
+   examples into the working context.
+2. Stop on `blocked` and show boundary or scanner rule ids and remediation.
+3. Hand `review-required` and `ready-for-review` to a human without loading the
+   package into agent context; P1 never records acceptance.
+4. After a later acceptance workflow, run registry/schema validation.
 5. Present commands for review and require explicit user intent before any
    execution, installation, job submission, transfer, or shared-state change.
 
@@ -87,6 +93,7 @@ not execute skill content or use the network. It cannot prove that a script is
 safe, detect every obfuscated payload, verify a remote artifact after download,
 or replace domain review and sandboxing. Tagged package builds now add signed
 GitHub artifact provenance for release manifests and distributions. Versioned
-policy packs and receipts detect policy/content drift but are not signatures.
-Future work should add archive extraction limits without turning static
-findings or reviewed exceptions into automatic maturity promotion.
+policy packs and reports detect policy/content drift but are not signatures.
+The quarantined intake layer adds archive and resource limits, but neither a
+clean intake nor a reviewed exception establishes correctness, adoption,
+maturity, or execution authorization.

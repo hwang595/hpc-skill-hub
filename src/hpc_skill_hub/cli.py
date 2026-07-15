@@ -14,6 +14,7 @@ import textwrap
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
+from .intake import IntakeError, intake_package, text_report as intake_text_report
 from .reviews import (
     assess_bundle,
     candidates_text,
@@ -647,6 +648,23 @@ def cmd_security(args: argparse.Namespace) -> int:
     ) else 0
 
 
+def cmd_intake(args: argparse.Namespace) -> int:
+    source = Path(args.source).expanduser()
+    try:
+        report = intake_package(
+            source,
+            policy_path=Path(args.policy).expanduser() if args.policy else None,
+        )
+    except (FileNotFoundError, IntakeError, OSError, SecurityPolicyError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    if args.json or args.format == "json":
+        emit_json(report)
+    else:
+        print(intake_text_report(report))
+    return 1 if report["summary"]["status"] == "blocked" else 0
+
+
 def run_step(label: str, command: List[str], root: Path) -> int:
     print(f"==> {label}", flush=True)
     result = subprocess.run(command, cwd=str(root))
@@ -1192,6 +1210,28 @@ def build_parser() -> argparse.ArgumentParser:
         dest="review_command", required=True
     )
     add_review_subcommands(review_subparsers)
+
+    intake_parser = subparsers.add_parser(
+        "intake",
+        help="Quarantine and scan an untrusted community skill bundle",
+    )
+    intake_parser.add_argument(
+        "source", help="Directory, ZIP archive, or TAR archive to inspect"
+    )
+    intake_parser.add_argument(
+        "--format",
+        choices=["text", "json"],
+        default="text",
+        help="Output format",
+    )
+    intake_parser.add_argument(
+        "--json", action="store_true", help="Alias for --format json"
+    )
+    intake_parser.add_argument(
+        "--policy",
+        help="Complete external policy pack stored outside the contribution",
+    )
+    intake_parser.set_defaults(func=cmd_intake)
 
     security_parser = subparsers.add_parser(
         "security", help="Scan a community skill package for security risks"

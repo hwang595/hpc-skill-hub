@@ -46,9 +46,10 @@ security-scan provenance. A `review` verdict remains visible and a `block`
 verdict is never packaged.
 
 Community-contributed skill packages are a separate trust boundary. Agents
-should run `python3 tools/hpc_skill.py security <skill-path> --json` before
-loading untrusted skill text into context, stop on a `block` verdict, and show
-the user any `review` findings before adoption.
+should run `python3 tools/hpc_skill.py intake <skill-path-or-archive> --json`
+without first loading untrusted skill text. Stop on `blocked`; hand
+`review-required` and `ready-for-review` reports to a human. P1 intake never
+authorizes agent context loading or adoption.
 
 External policy packs must be operator-reviewed and stored outside the scan
 target. They can only strengthen the packaged baseline. Reviewed exceptions
