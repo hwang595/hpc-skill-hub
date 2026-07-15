@@ -91,7 +91,7 @@ python3 tools/github_milestones.py --repo <owner>/hpc-skill-hub
 python3 tools/github_issues.py --repo <owner>/hpc-skill-hub --include-pin-notes
 python3 tools/github_rulesets.py --repo <owner>/hpc-skill-hub
 python3 tools/github_homepage.py --repo <owner>/hpc-skill-hub
-python3 tools/github_release.py v0.5.0 --repo <owner>/hpc-skill-hub
+python3 tools/github_release.py v0.6.0 --repo <owner>/hpc-skill-hub
 python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --dry-run
 ```
 

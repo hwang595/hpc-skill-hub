@@ -21,6 +21,7 @@ if str(SRC) not in sys.path:
 from hpc_skill_hub.release_provenance import (  # noqa: E402
     validate_release_provenance,
 )
+from hpc_skill_hub.community_pilot import validate_pilot_report  # noqa: E402
 
 OUTPUT = ROOT / "registry" / "release-status.json"
 INDEX = ROOT / "registry" / "index.json"
@@ -28,6 +29,7 @@ CONTEXT = ROOT / "registry" / "skill-context.json"
 REVIEWS = ROOT / "registry" / "review-status.json"
 MCP_CONTRACT = ROOT / "integrations" / "mcp-client.json"
 SECURITY_POLICY = ROOT / "security" / "policies" / "community-default.json"
+COMMUNITY_PILOT = ROOT / "registry" / "community-pilot-v0.6.0.json"
 COMPATIBILITY = ROOT / "docs" / "COMPATIBILITY.md"
 BENCHMARK_REPORT = ROOT / "docs" / "AGENT_BENCHMARK_REPORT.md"
 BENCHMARK_PLAN = ROOT / "agent-bench" / "plans" / "evidence-v0.5.json"
@@ -122,6 +124,42 @@ def release_provenance_status(version: str) -> Dict[str, Any]:
     return {"status": "open", "blockers": []}
 
 
+def community_pilot_status() -> Dict[str, Any]:
+    report = load_json(COMMUNITY_PILOT)
+    validate_pilot_report(report)
+    matrix = report["matrix"]
+    pipeline = report["accepted_context_pipeline"]
+    claims = report["claims"]
+    ready = bool(
+        matrix["failed_count"] == 0
+        and pipeline["status"] == "pass"
+        and claims["synthetic_fixtures_only"] is True
+        and not any(
+            value
+            for key, value in claims.items()
+            if key != "synthetic_fixtures_only"
+        )
+    )
+    return {
+        "status": "ready" if ready else "pending",
+        "artifact": relative(COMMUNITY_PILOT),
+        "sha256": sha256_path(COMMUNITY_PILOT),
+        "report_digest": report["report_digest"],
+        "fixture_count": matrix["fixture_count"],
+        "transport_count": matrix["transport_count"],
+        "case_count": matrix["case_count"],
+        "passed_count": matrix["passed_count"],
+        "failed_count": matrix["failed_count"],
+        "accepted_context_status": pipeline["review_status"],
+        "synthetic_only": claims["synthetic_fixtures_only"],
+        "external_evidence_claimed": any(
+            value
+            for key, value in claims.items()
+            if key != "synthetic_fixtures_only"
+        ),
+    }
+
+
 def build_status() -> Dict[str, Any]:
     version = package_version()
     index = load_json(INDEX)
@@ -130,6 +168,7 @@ def build_status() -> Dict[str, Any]:
     contract = load_json(MCP_CONTRACT)
     policy = load_json(SECURITY_POLICY)
     benchmark = benchmark_status()
+    community_pilot = community_pilot_status()
     provenance = release_provenance_status(version)
     security_verdicts = Counter(
         skill["security"]["verdict"] for skill in context["skills"]
@@ -145,6 +184,7 @@ def build_status() -> Dict[str, Any]:
             context["skill_count"] == index["skill_count"],
             contract["server"]["read_only"] is True,
             benchmark["planned_run_count"] > 0,
+            community_pilot["status"] == "ready",
             blocking_count == 0,
         )
     )
@@ -188,6 +228,7 @@ def build_status() -> Dict[str, Any]:
                 "resource_count": len(contract["server"]["resources"]),
             },
             "benchmark": benchmark,
+            "community_pilot": community_pilot,
             "review": {
                 "status": (
                     "ready" if reviews["promotion_ready_count"] else "pending"
@@ -214,6 +255,14 @@ def build_status() -> Dict[str, Any]:
             "repository": {
                 "status": "open" if repository_ready else "closed",
                 "blockers": [] if repository_ready else ["One or more repository capability checks failed."],
+            },
+            "community_intake_pilot": {
+                "status": "open"
+                if community_pilot["status"] == "ready"
+                else "closed",
+                "blockers": []
+                if community_pilot["status"] == "ready"
+                else ["The deterministic community fixture pilot did not pass."],
             },
             "comparative_evidence": {
                 "status": "open" if benchmark["leaderboard_ready"] else "closed",

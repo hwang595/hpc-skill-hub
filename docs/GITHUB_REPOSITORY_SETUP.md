@@ -146,7 +146,7 @@ After repository settings, labels, milestones, starter issues, Pages, homepage,
 rulesets, and the release are live, run:
 
 ```bash
-python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --version v0.5.0
+python3 tools/github_post_launch_check.py --repo <owner>/hpc-skill-hub --version v0.6.0
 ```
 
 Use [Post-Launch Verification](POST_LAUNCH_VERIFICATION.md) to interpret the

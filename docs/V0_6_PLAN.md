@@ -3,8 +3,8 @@
 Status: P0 release hygiene merged in PR #48, P1 quarantined intake merged in
 PR #50, P2 intake receipts merged in PR #51, and P3 review and adoption
 evidence merged in PR #52. P4 trusted agent consumption is complete on the
-current branch. P5 remains planned and must preserve the external evidence
-boundaries below.
+main branch after PR #53. P5 pilot and release readiness are implemented on the
+current branch and must preserve the external evidence boundaries below.
 
 v0.6 focuses on verified community intake and evidence. The release should let
 maintainers inspect, quarantine, review, and selectively expose contributed
@@ -71,7 +71,7 @@ standard-library implementation and four strict public JSON contracts.
 
 ## P4 Trusted Agent Consumption
 
-Implementation status: complete on the P4 branch. The installable
+Implementation status: merged in PR #53. The installable
 `hpc-skill community-context build|check|show` commands reconstruct accepted
 content from the quarantine snapshot, embed exact-bound P2/P3 evidence, and
 share the same validator used by the optional read-only MCP server.
@@ -84,6 +84,11 @@ share the same validator used by the optional read-only MCP server.
   execution, job submission, transfer, install, or private site-policy access.
 
 ## P5 Pilot And Release
+
+Implementation status: complete on the P5 release-candidate branch. A fixed
+9-case matrix, strict report schema, reusable installed-wheel verifier, package
+workflow gates, v0.6 status, notes, and release-candidate manifest make the
+repository ready for review without claiming tag-time provenance early.
 
 - Exercise benign, ambiguous, and adversarial fixture bundles across directory
   and archive intake paths.

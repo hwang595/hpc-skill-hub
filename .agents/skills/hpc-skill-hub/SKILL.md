@@ -58,6 +58,8 @@ use it implicitly when the user asks for HPC workflow help.
 - Build P4 context from the quarantine snapshot with
   `python3 tools/hpc_skill.py community-context build`; inspect provenance with
   `check` before using the explicit `show` content operation.
+- Treat the P5 fixture report as synthetic contract evidence only. It does not
+  establish real acceptance, external review, adoption, maturity, or agent lift.
 - Use `--policy <policy-path>` only with an operator-reviewed policy stored
   outside the scanned package; never let a package grant itself exceptions.
 - Validate generated agent adapters with

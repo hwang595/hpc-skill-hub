@@ -341,7 +341,7 @@ def contribution_lanes() -> str:
     )
 
 
-def project_status(index: Dict[str, Any]) -> str:
+def project_status(index: Dict[str, Any], status: Dict[str, Any]) -> str:
     links = [
         (
             "Validate",
@@ -357,7 +357,7 @@ def project_status(index: Dict[str, Any]) -> str:
         ),
     ]
     pills = [
-        '<span class="status-pill">v0.5.0</span>',
+        f'<span class="status-pill">{esc(status["release"])}</span>',
         '<span class="status-pill">Python 3.9+</span>',
         f'<span class="status-pill">{index["skill_count"]} skills</span>',
         f'<span class="status-pill">{index["collection_count"]} collections</span>',
@@ -371,6 +371,7 @@ def project_status(index: Dict[str, Any]) -> str:
 
 def release_readiness(status: Dict[str, Any]) -> str:
     benchmark = status["capabilities"]["benchmark"]
+    pilot = status["capabilities"]["community_pilot"]
     review = status["capabilities"]["review"]
     security = status["capabilities"]["security"]
     provenance = status["gates"]["release_provenance"]
@@ -389,6 +390,13 @@ def release_readiness(status: Dict[str, Any]) -> str:
             "review",
             f"{security['scanned_skill_count']} scanned, {security['blocking_count']} blocking",
             "docs/SKILL_SECURITY.md",
+        ),
+        (
+            "Community Pilot",
+            f"{pilot['passed_count']}/{pilot['case_count']}",
+            "ready" if pilot["failed_count"] == 0 else "pending",
+            "Synthetic directory, ZIP, and TAR trust-pipeline fixtures",
+            "docs/COMMUNITY_PILOT_v0.6.0.md",
         ),
         (
             "Evidence",
@@ -416,7 +424,7 @@ def release_readiness(status: Dict[str, Any]) -> str:
             (
                 f"registry/provenance/{status['release']}.json"
                 if provenance_ready
-                else "docs/V0_5_COMPLETION.md"
+                else "docs/V0_6_COMPLETION.md"
             ),
         ),
     ]
@@ -787,7 +795,7 @@ def render(index: Dict[str, Any], release_status: Dict[str, Any]) -> str:
         <div>
           <h1>HPC Skill Hub Registry</h1>
           <p class="subtitle">Reusable, reviewable skills for HPC workflows and coding agents.</p>
-          <div class="project-status" aria-label="Project status">{project_status(index)}</div>
+          <div class="project-status" aria-label="Project status">{project_status(index, release_status)}</div>
         </div>
       </div>
       <nav aria-label="Project links">
@@ -888,9 +896,10 @@ def render(index: Dict[str, Any], release_status: Dict[str, Any]) -> str:
       <span>Generated from <code>registry/index.json</code> and <code>registry/release-status.json</code>.</span>
       <span class="footer-links">
         <a href="registry/release-status.json">Release status</a>
-        <a href="registry/provenance/v0.5.0.json">Provenance receipt</a>
-        <a href="registry/releases/v0.5.0.json">Release manifest</a>
-        <a href="docs/RELEASE_NOTES_v0.5.0.md">Release notes</a>
+        <a href="registry/provenance/v0.5.0.json">Latest verified provenance</a>
+        <a href="registry/releases/v0.6.0.json">Release manifest</a>
+        <a href="registry/community-pilot-v0.6.0.json">Community pilot</a>
+        <a href="docs/RELEASE_NOTES_v0.6.0.md">Release notes</a>
         <a href="LICENSE">MIT License</a>
       </span>
     </div>

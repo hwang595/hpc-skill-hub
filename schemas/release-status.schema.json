@@ -46,6 +46,7 @@
         "context_bundle",
         "mcp",
         "benchmark",
+        "community_pilot",
         "review",
         "security"
       ],
@@ -134,6 +135,36 @@
             }
           ]
         },
+        "community_pilot": {
+          "allOf": [
+            {"$ref": "#/$defs/artifact"},
+            {
+              "type": "object",
+              "required": [
+                "report_digest",
+                "fixture_count",
+                "transport_count",
+                "case_count",
+                "passed_count",
+                "failed_count",
+                "accepted_context_status",
+                "synthetic_only",
+                "external_evidence_claimed"
+              ],
+              "properties": {
+                "report_digest": {"$ref": "#/$defs/sha256"},
+                "fixture_count": {"type": "integer", "minimum": 1},
+                "transport_count": {"type": "integer", "minimum": 1},
+                "case_count": {"type": "integer", "minimum": 1},
+                "passed_count": {"type": "integer", "minimum": 0},
+                "failed_count": {"const": 0},
+                "accepted_context_status": {"const": "review-complete"},
+                "synthetic_only": {"const": true},
+                "external_evidence_claimed": {"const": false}
+              }
+            }
+          ]
+        },
         "review": {
           "allOf": [
             {"$ref": "#/$defs/artifact"},
@@ -176,10 +207,11 @@
     },
     "gates": {
       "type": "object",
-      "required": ["repository", "comparative_evidence", "maturity_promotion", "release_provenance"],
+      "required": ["repository", "community_intake_pilot", "comparative_evidence", "maturity_promotion", "release_provenance"],
       "additionalProperties": false,
       "properties": {
         "repository": {"$ref": "#/$defs/gate"},
+        "community_intake_pilot": {"$ref": "#/$defs/gate"},
         "comparative_evidence": {"$ref": "#/$defs/gate"},
         "maturity_promotion": {"$ref": "#/$defs/gate"},
         "release_provenance": {"$ref": "#/$defs/gate"}

@@ -1,0 +1,14 @@
+{
+  "id": "community-pilot-ambiguous",
+  "risk_level": "medium",
+  "artifacts": [
+    "README.md",
+    "examples/plan.sh"
+  ],
+  "examples": [
+    {
+      "title": "Review dynamic evaluation",
+      "path": "examples/plan.sh"
+    }
+  ]
+}

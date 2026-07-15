@@ -349,6 +349,7 @@ class GitHubMetadataTests(unittest.TestCase):
             "python3 tools/build_package_data.py --check",
             "python3 tools/build_release_status.py --check",
             "python3 tools/build_mcp_client_configs.py --check",
+            "python3 tools/community_pilot.py --check",
             "python3 tools/validate_registry_artifacts.py",
             "python3 -m build --sdist --wheel",
             "python3 -m twine check dist/*",
@@ -360,12 +361,11 @@ class GitHubMetadataTests(unittest.TestCase):
             "attestations: write",
             "id-token: write",
             "python3 -m venv /tmp/hpc-skill-hub-wheel",
-            "python3 -m venv /tmp/hpc-skill-hub-wheel-mcp",
             "wheel_path=",
-            "${wheel_path}[mcp]",
+            "tools/installed_release_smoke.py --wheel \"${wheel_path}\" --mode core --json",
+            "tools/installed_release_smoke.py --wheel \"${wheel_path}\" --mode mcp --json",
             "--no-index --find-links",
             "hpc-skill health --json",
-            "hpc-skill doctor --require-mcp --json",
             "hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json",
             "python -m hpc_skill_hub show slurm-submit-job --json",
             "from hpc_skill_hub.release_status import load_release_status",
@@ -478,7 +478,7 @@ class GitHubMetadataTests(unittest.TestCase):
             result.stdout,
         )
         self.assertIn("repos/example/hpc-skill-hub/rulesets", result.stdout)
-        self.assertIn("gh release create v0.5.0", result.stdout)
+        self.assertIn("gh release create v0.6.0", result.stdout)
         self.assertIn("Link Pages URL from repository homepage", result.stdout)
         self.assertIn("python3 tools/github_homepage.py", result.stdout)
         self.assertIn("Verify published repository state", result.stdout)
@@ -513,7 +513,7 @@ class GitHubMetadataTests(unittest.TestCase):
             result.stdout,
         )
         self.assertIn("python3 tools/github_homepage.py --repo example/hpc-skill-hub", result.stdout)
-        self.assertIn("gh release view v0.5.0", result.stdout)
+        self.assertIn("gh release view v0.6.0", result.stdout)
 
     def test_proposal_evidence_generator(self):
         markdown = subprocess.run(

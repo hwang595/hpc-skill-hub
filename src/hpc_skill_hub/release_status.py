@@ -18,11 +18,13 @@ CAPABILITY_IDS = {
     "context_bundle",
     "mcp",
     "benchmark",
+    "community_pilot",
     "review",
     "security",
 }
 GATE_IDS = {
     "repository",
+    "community_intake_pilot",
     "comparative_evidence",
     "maturity_promotion",
     "release_provenance",
@@ -65,6 +67,15 @@ def validate_release_status(payload: Dict[str, Any]) -> None:
         raise ReleaseStatusError("release status readiness flags must be boolean")
     if repository_ready != (gates["repository"].get("status") == "open"):
         raise ReleaseStatusError("repository readiness differs from its gate")
+    pilot = capabilities["community_pilot"]
+    if (pilot.get("status") == "ready") != (
+        gates["community_intake_pilot"].get("status") == "open"
+    ):
+        raise ReleaseStatusError("community pilot capability differs from its gate")
+    if pilot.get("synthetic_only") is not True or pilot.get(
+        "external_evidence_claimed"
+    ) is not False:
+        raise ReleaseStatusError("community pilot overclaims external evidence")
     expected_external = all(
         gates[gate_id].get("status") == "open"
         for gate_id in ("comparative_evidence", "maturity_promotion")

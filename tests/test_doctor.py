@@ -40,7 +40,11 @@ class DoctorTests(unittest.TestCase):
         self.assertFalse(
             checks["release-status"]["details"]["external_evidence_ready"]
         )
-        self.assertEqual(len(checks["package-data"]["details"]["files"]), 8)
+        self.assertEqual(len(checks["package-data"]["details"]["files"]), 9)
+        self.assertIn(
+            "registry/community-pilot-v0.6.0.json",
+            checks["package-data"]["details"]["files"],
+        )
         self.assertIn(
             "registry/release-provenance.json",
             checks["package-data"]["details"]["files"],

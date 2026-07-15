@@ -7,6 +7,8 @@ skills keep their own `version` field in `skills/*/skill.json`.
 
 ## Unreleased
 
+## v0.6.0 - 2026-07-15
+
 ### Added
 
 - Add a schema-validated, packaged `v0.5.0` provenance receipt that records the
@@ -25,6 +27,13 @@ skills keep their own `version` field in `skills/*/skill.json`.
   reports, declared-domain coverage, role separation, and aggregate status that
   never authorizes automatic maturity promotion, plus bounded external evidence
   loading and a canonical non-signature digest helper.
+- Add v0.6 P4 trusted community context bundles that reconstruct content only
+  from the quarantined snapshot after exact P2/P3 verification, keep maturity
+  promotion unauthorized, and expose only explicitly configured bundles through
+  a provenance-first, read-only MCP resource.
+- Add v0.6 P5 deterministic benign, ambiguous, and adversarial fixture pilots
+  across directory, ZIP, and TAR inputs, plus a reusable core/MCP installed-wheel
+  isolation verifier and machine-readable synthetic-only evidence report.
 
 ### Changed
 
@@ -33,6 +42,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
   and maturity-promotion gates closed.
 - Validate published release manifests as immutable snapshots after release and
   update GitHub workflow actions to their current Node 24-compatible majors.
+- Prepare version, release status, package data, public notes, CI isolation, and
+  release-candidate manifest contracts for `v0.6.0`; tag provenance remains
+  pending until the release artifacts and attestations are independently checked.
 
 ## v0.5.0 - 2026-07-14
 

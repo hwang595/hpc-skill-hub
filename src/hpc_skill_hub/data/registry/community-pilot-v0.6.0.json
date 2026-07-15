@@ -1,0 +1,337 @@
+{
+  "$schema": "../schemas/community-pilot-report.schema.json",
+  "accepted_context_pipeline": {
+    "adoption_report_count": 0,
+    "bundle_digest": "5c45a7b8bd53a4c8ce8746c0f671858b154650f5ada59d39af069c2cf78361d0",
+    "examples_execute_automatically": false,
+    "execution_authorized": false,
+    "file_count": 3,
+    "fixture": "benign",
+    "maturity_promotion": "not-authorized",
+    "packet_digest": "0e105aab3b8b3808340d2324d605eb554248ec592b50e3c563473f849c6ab7f9",
+    "receipt_digest": "3ab7bb75982376b223de2dcc221344bce017c520b5e87deedd093b49149b717d",
+    "receipt_status": "accepted",
+    "resource_uri": "hpc-skill://community/community-pilot-benign/0.1.0",
+    "review_status": "review-complete",
+    "status": "pass",
+    "status_digest": "0479dd8dd15ecb1eaab94ddfd0aaf98f1ef4cd82d6664a751e38c97a1fed504b",
+    "total_bytes": 483,
+    "transport": "directory"
+  },
+  "cases": [
+    {
+      "expected": {
+        "eligible_for_human_review": true,
+        "security_finding_ids": [],
+        "security_verdict": "pass",
+        "status": "ready-for-review"
+      },
+      "fixture": "benign",
+      "id": "benign-directory",
+      "observed": {
+        "boundary_finding_ids": [],
+        "context_loading_allowed": false,
+        "eligible_for_human_review": true,
+        "execution_performed": false,
+        "file_count": 3,
+        "instruction_content_returned": false,
+        "inventory_complete": true,
+        "inventory_digest": "de00153bd521258ee560c35fea8044e868870cb5fa3bd0ce4797d1e55cd5f0db",
+        "quarantine_cleaned": true,
+        "security_finding_ids": [],
+        "security_verdict": "pass",
+        "source_digest": "de00153bd521258ee560c35fea8044e868870cb5fa3bd0ce4797d1e55cd5f0db",
+        "status": "ready-for-review",
+        "total_bytes": 483
+      },
+      "passed": true,
+      "transport": "directory"
+    },
+    {
+      "expected": {
+        "eligible_for_human_review": true,
+        "security_finding_ids": [],
+        "security_verdict": "pass",
+        "status": "ready-for-review"
+      },
+      "fixture": "benign",
+      "id": "benign-zip",
+      "observed": {
+        "boundary_finding_ids": [],
+        "context_loading_allowed": false,
+        "eligible_for_human_review": true,
+        "execution_performed": false,
+        "file_count": 3,
+        "instruction_content_returned": false,
+        "inventory_complete": true,
+        "inventory_digest": "de00153bd521258ee560c35fea8044e868870cb5fa3bd0ce4797d1e55cd5f0db",
+        "quarantine_cleaned": true,
+        "security_finding_ids": [],
+        "security_verdict": "pass",
+        "source_digest": "4d7195b83460e75698e7567695e6d37dd3cc1e25d54ddfcdf8691508b806d926",
+        "status": "ready-for-review",
+        "total_bytes": 483
+      },
+      "passed": true,
+      "transport": "zip"
+    },
+    {
+      "expected": {
+        "eligible_for_human_review": true,
+        "security_finding_ids": [],
+        "security_verdict": "pass",
+        "status": "ready-for-review"
+      },
+      "fixture": "benign",
+      "id": "benign-tar",
+      "observed": {
+        "boundary_finding_ids": [],
+        "context_loading_allowed": false,
+        "eligible_for_human_review": true,
+        "execution_performed": false,
+        "file_count": 3,
+        "instruction_content_returned": false,
+        "inventory_complete": true,
+        "inventory_digest": "de00153bd521258ee560c35fea8044e868870cb5fa3bd0ce4797d1e55cd5f0db",
+        "quarantine_cleaned": true,
+        "security_finding_ids": [],
+        "security_verdict": "pass",
+        "source_digest": "737cb4a8de5a1acdeffe16c2b7f4c72adab71d052023c40e5fb7dbf18c209eb6",
+        "status": "ready-for-review",
+        "total_bytes": 483
+      },
+      "passed": true,
+      "transport": "tar"
+    },
+    {
+      "expected": {
+        "eligible_for_human_review": true,
+        "security_finding_ids": [
+          "execution.dynamic-eval"
+        ],
+        "security_verdict": "review",
+        "status": "review-required"
+      },
+      "fixture": "ambiguous",
+      "id": "ambiguous-directory",
+      "observed": {
+        "boundary_finding_ids": [],
+        "context_loading_allowed": false,
+        "eligible_for_human_review": true,
+        "execution_performed": false,
+        "file_count": 3,
+        "instruction_content_returned": false,
+        "inventory_complete": true,
+        "inventory_digest": "d26adefeda738938bafde04065f4df4af0be0226e61bc06f5fc975db2f7359ca",
+        "quarantine_cleaned": true,
+        "security_finding_ids": [
+          "execution.dynamic-eval"
+        ],
+        "security_verdict": "review",
+        "source_digest": "d26adefeda738938bafde04065f4df4af0be0226e61bc06f5fc975db2f7359ca",
+        "status": "review-required",
+        "total_bytes": 528
+      },
+      "passed": true,
+      "transport": "directory"
+    },
+    {
+      "expected": {
+        "eligible_for_human_review": true,
+        "security_finding_ids": [
+          "execution.dynamic-eval"
+        ],
+        "security_verdict": "review",
+        "status": "review-required"
+      },
+      "fixture": "ambiguous",
+      "id": "ambiguous-zip",
+      "observed": {
+        "boundary_finding_ids": [],
+        "context_loading_allowed": false,
+        "eligible_for_human_review": true,
+        "execution_performed": false,
+        "file_count": 3,
+        "instruction_content_returned": false,
+        "inventory_complete": true,
+        "inventory_digest": "d26adefeda738938bafde04065f4df4af0be0226e61bc06f5fc975db2f7359ca",
+        "quarantine_cleaned": true,
+        "security_finding_ids": [
+          "execution.dynamic-eval"
+        ],
+        "security_verdict": "review",
+        "source_digest": "8a2b279b13747f23c3e288378e2b531cbed1471e35ba36faefae11ffc50f72c9",
+        "status": "review-required",
+        "total_bytes": 528
+      },
+      "passed": true,
+      "transport": "zip"
+    },
+    {
+      "expected": {
+        "eligible_for_human_review": true,
+        "security_finding_ids": [
+          "execution.dynamic-eval"
+        ],
+        "security_verdict": "review",
+        "status": "review-required"
+      },
+      "fixture": "ambiguous",
+      "id": "ambiguous-tar",
+      "observed": {
+        "boundary_finding_ids": [],
+        "context_loading_allowed": false,
+        "eligible_for_human_review": true,
+        "execution_performed": false,
+        "file_count": 3,
+        "instruction_content_returned": false,
+        "inventory_complete": true,
+        "inventory_digest": "d26adefeda738938bafde04065f4df4af0be0226e61bc06f5fc975db2f7359ca",
+        "quarantine_cleaned": true,
+        "security_finding_ids": [
+          "execution.dynamic-eval"
+        ],
+        "security_verdict": "review",
+        "source_digest": "191a80cb75260044b95964becfb6a8847fd387beafe2098500c345b888de48e9",
+        "status": "review-required",
+        "total_bytes": 528
+      },
+      "passed": true,
+      "transport": "tar"
+    },
+    {
+      "expected": {
+        "eligible_for_human_review": false,
+        "security_finding_ids": [
+          "prompt.ignore-instructions"
+        ],
+        "security_verdict": "block",
+        "status": "blocked"
+      },
+      "fixture": "adversarial",
+      "id": "adversarial-directory",
+      "observed": {
+        "boundary_finding_ids": [],
+        "context_loading_allowed": false,
+        "eligible_for_human_review": false,
+        "execution_performed": false,
+        "file_count": 3,
+        "instruction_content_returned": false,
+        "inventory_complete": true,
+        "inventory_digest": "5ab12136ed721f1eb80330bcd52422073207828c30c30d5a652bee7cf272b4db",
+        "quarantine_cleaned": true,
+        "security_finding_ids": [
+          "prompt.ignore-instructions"
+        ],
+        "security_verdict": "block",
+        "source_digest": "5ab12136ed721f1eb80330bcd52422073207828c30c30d5a652bee7cf272b4db",
+        "status": "blocked",
+        "total_bytes": 518
+      },
+      "passed": true,
+      "transport": "directory"
+    },
+    {
+      "expected": {
+        "eligible_for_human_review": false,
+        "security_finding_ids": [
+          "prompt.ignore-instructions"
+        ],
+        "security_verdict": "block",
+        "status": "blocked"
+      },
+      "fixture": "adversarial",
+      "id": "adversarial-zip",
+      "observed": {
+        "boundary_finding_ids": [],
+        "context_loading_allowed": false,
+        "eligible_for_human_review": false,
+        "execution_performed": false,
+        "file_count": 3,
+        "instruction_content_returned": false,
+        "inventory_complete": true,
+        "inventory_digest": "5ab12136ed721f1eb80330bcd52422073207828c30c30d5a652bee7cf272b4db",
+        "quarantine_cleaned": true,
+        "security_finding_ids": [
+          "prompt.ignore-instructions"
+        ],
+        "security_verdict": "block",
+        "source_digest": "fd7cd65692f78490913ff9312c33dbda81729aacfe57fa82fd85157d68b4b147",
+        "status": "blocked",
+        "total_bytes": 518
+      },
+      "passed": true,
+      "transport": "zip"
+    },
+    {
+      "expected": {
+        "eligible_for_human_review": false,
+        "security_finding_ids": [
+          "prompt.ignore-instructions"
+        ],
+        "security_verdict": "block",
+        "status": "blocked"
+      },
+      "fixture": "adversarial",
+      "id": "adversarial-tar",
+      "observed": {
+        "boundary_finding_ids": [],
+        "context_loading_allowed": false,
+        "eligible_for_human_review": false,
+        "execution_performed": false,
+        "file_count": 3,
+        "instruction_content_returned": false,
+        "inventory_complete": true,
+        "inventory_digest": "5ab12136ed721f1eb80330bcd52422073207828c30c30d5a652bee7cf272b4db",
+        "quarantine_cleaned": true,
+        "security_finding_ids": [
+          "prompt.ignore-instructions"
+        ],
+        "security_verdict": "block",
+        "source_digest": "681b9dc74f520cce9c2d7175da5c7c201f0280f91e24a5ee3b8083a6e4e81823",
+        "status": "blocked",
+        "total_bytes": 518
+      },
+      "passed": true,
+      "transport": "tar"
+    }
+  ],
+  "claims": {
+    "comparative_agent_lift": false,
+    "independent_external_review": false,
+    "maturity_promotion": false,
+    "real_community_acceptance": false,
+    "real_site_adoption": false,
+    "synthetic_fixtures_only": true
+  },
+  "generated_by": "tools/community_pilot.py",
+  "installed_isolation_contract": {
+    "core": {
+      "command": "python3 tools/installed_release_smoke.py --wheel <wheel> --mode core",
+      "status": "required-in-ci"
+    },
+    "mcp": {
+      "command": "python3 tools/installed_release_smoke.py --wheel <wheel> --mode mcp --community-bundle <bundle>",
+      "status": "required-in-ci"
+    },
+    "requires_installed_module_path_verification": true,
+    "requires_outside_checkout": true,
+    "requires_pythonpath_removal": true
+  },
+  "matrix": {
+    "case_count": 9,
+    "failed_count": 0,
+    "fixture_count": 3,
+    "passed_count": 9,
+    "transport_count": 3
+  },
+  "policy": {
+    "effective_digest": "41ebd1a09b57d045b7a7097b8f04d84969b7dbb4df185a916a1318447b4685ab",
+    "fail_on": "high",
+    "id": "community-default",
+    "version": "0.1.0"
+  },
+  "release": "v0.6.0",
+  "report_digest": "775e3d09e48c02e3f153ef5604589a6380ae75ea8a4e1c22cca495358f627b20",
+  "schema_version": "0.1.0"
+}
