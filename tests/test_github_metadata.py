@@ -647,11 +647,27 @@ class GitHubMetadataTests(unittest.TestCase):
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(
+            "docs/INTAKE_RECEIPTS.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
             "schemas/community-skill-intake-report.schema.json",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(
+            "schemas/community-skill-intake-decision.schema.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "schemas/community-skill-intake-receipt.schema.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
             "tools/quarantine_skill_intake.py",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "tools/community_intake_receipt.py",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(

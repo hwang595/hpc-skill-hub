@@ -1,8 +1,9 @@
 # v0.6 Development Plan
 
-Status: P0 release hygiene merged in PR #48. P1 quarantined intake is
-implemented on its release branch with review and merge pending. P2 through P5
-remain planned and must preserve the external evidence boundaries below.
+Status: P0 release hygiene merged in PR #48 and P1 quarantined intake merged in
+PR #50. P2 intake receipts are implemented on the current release branch. P3
+through P5 remain planned and must preserve the external evidence boundaries
+below.
 
 v0.6 focuses on verified community intake and evidence. The release should let
 maintainers inspect, quarantine, review, and selectively expose contributed
@@ -25,7 +26,7 @@ their replacement.
 
 ## P1 Quarantined Community Intake
 
-Implementation status: complete on the P1 branch. The installable
+Implementation status: merged in PR #50. The installable
 `hpc-skill intake` command and standalone repository wrapper share one
 standard-library implementation and a schema-validated report contract.
 
@@ -38,6 +39,11 @@ standard-library implementation and a schema-validated report contract.
   predictably after review or failure.
 
 ## P2 Intake Receipts
+
+Implementation status: complete on the P2 branch. The installable
+`hpc-skill receipt create|verify` commands and standalone repository wrapper
+share one deterministic, standard-library implementation and two public JSON
+schemas for receipts and external maintainer decisions.
 
 - Define a portable JSON receipt for source digest, bounded inventory, scanner
   and policy versions, findings, accepted digest-bound exceptions, reviewer

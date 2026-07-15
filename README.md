@@ -268,6 +268,7 @@ The repository is set up as a versioned registry, not just a documentation dump:
 | `registry/skill-quality.json` | Deterministic documentation and evidence coverage baseline that prioritizes review work without claiming maturity or correctness. |
 | `hpc-skill security` | Community skill packages receive deterministic prompt-injection, command, persistence, credential, package, and risk-declaration checks before adoption. |
 | `hpc-skill intake` | Untrusted directories, ZIP files, and TAR files are bounded, quarantined, scanned, cleaned, and reported without execution or instruction loading. |
+| `hpc-skill receipt create\|verify` | Deterministic community-intake receipts bind fresh source, inventory, policy, findings, exceptions, maintainer disposition, and accepted context provenance. |
 | `security/policies/community-default.json` | Versioned 26-rule trust baseline with monotonic overrides, digest-bound reviewed exceptions, and policy/target/rule-catalog receipts. |
 | `registry/skill-context.json` | Bounded registry-declared README and artifact content is bound to the index with file, skill, bundle, and security-report SHA-256 provenance. |
 | `registry/release-status.json` | Packaged v0.5 capability and gate status distinguishes the verified release from pending comparative and maturity evidence. |
@@ -319,6 +320,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Read-only MCP server](docs/MCP_SERVER.md)
 - [Trust policy packs](docs/TRUST_POLICY_PACKS.md)
 - [Quarantined community intake](docs/COMMUNITY_INTAKE.md)
+- [Community intake receipts](docs/INTAKE_RECEIPTS.md)
 - [v0.5 development plan](docs/V0_5_PLAN.md)
 - [v0.5 completion matrix](docs/V0_5_COMPLETION.md)
 - [v0.6 development plan](docs/V0_6_PLAN.md)

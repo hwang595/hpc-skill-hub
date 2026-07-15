@@ -16,6 +16,7 @@ python3 tools/hpc_skill.py review candidates
 python3 tools/hpc_skill.py review status job-failure-triage
 python3 tools/hpc_skill.py validate
 python3 tools/hpc_skill.py intake ./community-skill.zip --json
+python3 tools/hpc_skill.py receipt create ./community-skill.zip --json
 python3 tools/hpc_skill.py security skills/slurm-submit-job
 python3 tools/hpc_skill.py adapters
 python3 tools/hpc_skill.py adapter example-campus-cluster
@@ -30,6 +31,7 @@ hpc-skill list
 hpc-skill collection core-hpc
 hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
 hpc-skill intake ./community-skill.zip --json
+hpc-skill receipt create ./community-skill.zip --json
 hpc-skill security ./community-skill --format json
 ```
 
@@ -111,6 +113,35 @@ hpc-skill intake ./community-skill.tar.gz --policy ../policy.json --json
 `ready-for-review` and `review-required` exit `0`; `blocked` exits `1`; input or
 policy errors exit `2`. All P1 reports keep `context_loading_allowed: false`.
 See [Quarantined Community Intake](COMMUNITY_INTAKE.md).
+
+## Creating And Verifying Intake Receipts
+
+Create a deterministic review-required receipt from fresh P1 intake:
+
+```bash
+hpc-skill receipt create ./community-skill.zip \
+  --output ./review/community-skill.receipt.json \
+  --json
+```
+
+After a maintainer creates an external exact-binding decision, finalize and
+verify the receipt:
+
+```bash
+hpc-skill receipt create ./community-skill.zip \
+  --decision ./review/community-skill.decision.json \
+  --output ./review/community-skill.accepted.json \
+  --json
+
+hpc-skill receipt verify ./review/community-skill.accepted.json \
+  --source ./community-skill.zip \
+  --json
+```
+
+Decisions, receipts, and external policies must remain outside a directory
+contribution. `accepted` is limited to exact maintainer intake disposition; it
+does not establish domain correctness or independent review. See
+[Community Intake Receipts](INTAKE_RECEIPTS.md).
 
 For source that is already expanded inside a reviewed boundary, run the static
 scanner directly:

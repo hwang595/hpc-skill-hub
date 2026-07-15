@@ -51,6 +51,12 @@ without first loading untrusted skill text. Stop on `blocked`; hand
 `review-required` and `ready-for-review` reports to a human. P1 intake never
 authorizes agent context loading or adoption.
 
+P2 receipts and maintainer decisions must remain outside the contribution.
+Agents may advance only a fresh `hpc-skill receipt verify` result with status
+`accepted` to the P4 context builder. That status is exact maintainer intake
+disposition, not proof of reviewer identity, domain correctness, independent
+review, adoption, maturity, execution safety, or measured agent performance.
+
 External policy packs must be operator-reviewed and stored outside the scan
 target. They can only strengthen the packaged baseline. Reviewed exceptions
 bind the exact source finding and remain visible as digest-only provenance;

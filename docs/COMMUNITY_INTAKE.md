@@ -93,10 +93,13 @@ The policy must live outside the contribution. A package cannot grant itself
 exceptions. Existing monotonic severity, expiration, exact-finding digest, and
 redaction rules continue to apply; see [Trust Policy Packs](TRUST_POLICY_PACKS.md).
 
-## P1 Boundary
+## P1 And P2 Boundary
 
 P1 reports prove only that the local parser, limits, quarantine cleanup, and
-static policy behaved as recorded for the observed input. They are not durable
-acceptance receipts and do not prove operational correctness, maintainer
-approval, independent review, adoption, maturity, or agent performance. P2 will
-bind reviewer disposition and accepted context digests to a portable receipt.
+static policy behaved as recorded for the observed input. They never authorize
+context loading. P2 adds deterministic `hpc-skill receipt create|verify`
+contracts that bind exact maintainer disposition and an accepted context
+manifest digest. See [Community Intake Receipts](INTAKE_RECEIPTS.md).
+
+Neither stage proves operational correctness, independent review, adoption,
+maturity, or agent performance. Those remain separate external evidence gates.
