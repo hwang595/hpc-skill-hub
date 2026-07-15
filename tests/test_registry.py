@@ -190,18 +190,26 @@ class RegistryTests(unittest.TestCase):
         status = json.loads(
             (ROOT / "registry" / "release-status.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(status["release"], "v0.5.0")
+        self.assertEqual(status["release"], "v0.6.0")
         self.assertTrue(status["repository_capability_ready"])
         self.assertFalse(status["external_evidence_ready"])
         self.assertEqual(status["capabilities"]["benchmark"]["planned_run_count"], 72)
         self.assertEqual(status["capabilities"]["benchmark"]["result_count"], 0)
         self.assertFalse(status["capabilities"]["benchmark"]["leaderboard_ready"])
+        self.assertEqual(status["capabilities"]["community_pilot"]["case_count"], 9)
+        self.assertEqual(status["capabilities"]["community_pilot"]["passed_count"], 9)
+        self.assertFalse(
+            status["capabilities"]["community_pilot"]["external_evidence_claimed"]
+        )
+        self.assertEqual(
+            status["gates"]["community_intake_pilot"]["status"], "open"
+        )
         self.assertEqual(
             status["gates"]["comparative_evidence"]["status"], "closed"
         )
         self.assertEqual(status["gates"]["maturity_promotion"]["status"], "closed")
-        self.assertEqual(status["gates"]["release_provenance"]["status"], "open")
-        self.assertEqual(status["gates"]["release_provenance"]["blockers"], [])
+        self.assertEqual(status["gates"]["release_provenance"]["status"], "pending")
+        self.assertTrue(status["gates"]["release_provenance"]["blockers"])
 
     def test_release_provenance_receipt_is_bound_to_manifest(self):
         receipt = json.loads(
@@ -268,7 +276,7 @@ class RegistryTests(unittest.TestCase):
             "tools/validate_registry_artifacts.py",
             "--release-only",
         )
-        self.assertIn("immutable release snapshot", result.stdout)
+        self.assertIn("versioned release snapshot", result.stdout)
 
     def test_review_packet_is_current(self):
         result = run_cmd("python3", "tools/review_packet.py", "--check")
@@ -380,7 +388,7 @@ class RegistryTests(unittest.TestCase):
             "783988190fb695f6c8ca0066d129fd0f83d05fbb90bb1a6e89c6687f1a506de6",
         )
 
-    def test_current_release_manifest_summarizes_registry(self):
+    def test_v0_5_release_manifest_remains_immutable(self):
         manifest_path = ROOT / "registry" / "releases" / "v0.5.0.json"
         data = manifest_path.read_bytes()
         manifest = json.loads(data)
@@ -391,6 +399,17 @@ class RegistryTests(unittest.TestCase):
             "4e0703b0490529bf849def3c42c05a54c2aea44065bfefbb186ea74c6841cda3",
         )
         self.assertEqual(manifest["registry"]["skill_count"], 97)
+
+    def test_current_release_manifest_summarizes_registry(self):
+        result = run_cmd(
+            "python3", "tools/build_release_manifest.py", "v0.6.0", "--check"
+        )
+        self.assertIn("Release manifest is current", result.stdout)
+        manifest_path = ROOT / "registry" / "releases" / "v0.6.0.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(manifest["version"], "v0.6.0")
+        self.assertEqual(manifest["registry"]["skill_count"], 97)
         self.assertEqual(manifest["registry"]["collection_count"], 12)
         self.assertEqual(manifest["registry"]["site_adapter_count"], 2)
         paths = {entry["path"] for entry in manifest["files"]}
@@ -398,8 +417,12 @@ class RegistryTests(unittest.TestCase):
         self.assertIn("registry/review-status.json", paths)
         self.assertIn("registry/release-status.json", paths)
         self.assertIn("schemas/release-status.schema.json", paths)
-        self.assertIn("docs/V0_5_COMPLETION.md", paths)
-        self.assertIn("docs/RELEASE_NOTES_v0.5.0.md", paths)
+        self.assertIn("docs/V0_6_COMPLETION.md", paths)
+        self.assertIn("docs/RELEASE_NOTES_v0.6.0.md", paths)
+        self.assertIn("docs/COMMUNITY_PILOT_v0.6.0.md", paths)
+        self.assertIn("registry/community-pilot-v0.6.0.json", paths)
+        self.assertIn("schemas/community-pilot-report.schema.json", paths)
+        self.assertIn("tools/installed_release_smoke.py", paths)
         self.assertIn("agent-bench/plans/evidence-v0.5.json", paths)
         self.assertIn("docs/AGENT_BENCHMARK_DASHBOARD.html", paths)
         self.assertIn("docs/SKILL_REVIEW_DASHBOARD.html", paths)
@@ -409,7 +432,7 @@ class RegistryTests(unittest.TestCase):
 
     def test_repository_release_versions_are_consistent(self):
         manifest = json.loads(
-            (ROOT / "registry" / "releases" / "v0.5.0.json").read_text(
+            (ROOT / "registry" / "releases" / "v0.6.0.json").read_text(
                 encoding="utf-8"
             )
         )
@@ -421,7 +444,7 @@ class RegistryTests(unittest.TestCase):
         )
         citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        release_notes = (ROOT / "docs" / "RELEASE_NOTES_v0.5.0.md").read_text(
+        release_notes = (ROOT / "docs" / "RELEASE_NOTES_v0.6.0.md").read_text(
             encoding="utf-8"
         )
 
@@ -431,7 +454,7 @@ class RegistryTests(unittest.TestCase):
         self.assertIn(f'version: "{version}"', citation)
         self.assertIn(f"version-{version}-", readme)
         self.assertNotIn(f"version-{version}--rc", readme)
-        self.assertIn("Status: released", release_notes)
+        self.assertIn("Status: release candidate", release_notes)
 
     def test_safety_audit_passes(self):
         result = run_cmd("python3", "tools/audit_safety.py")
@@ -775,9 +798,11 @@ class RegistryTests(unittest.TestCase):
             run_cmd("python3", "tools/build_site.py", "--output", str(output))
             html = output.read_text(encoding="utf-8")
             self.assertIn("HPC Skill Hub Registry", html)
-            self.assertIn("v0.5.0 Release Status", html)
-            self.assertIn("Released and verified", html)
-            self.assertIn("Manifest, wheel, and sdist attestations verified", html)
+            self.assertIn("v0.6.0 Release Status", html)
+            self.assertIn("Repository ready", html)
+            self.assertIn("Awaiting the v0.6.0 tag and attestations", html)
+            self.assertIn("Community Pilot", html)
+            self.assertIn("docs/COMMUNITY_PILOT_v0.6.0.md", html)
             self.assertIn("Registry Explorer", html)
             self.assertIn("Browse by Collection", html)
             self.assertIn("Open HPC Skill Ecosystem", html)

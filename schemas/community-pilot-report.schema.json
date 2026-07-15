@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/community-pilot-report.schema.json",
+  "title": "HPC Skill Hub Community Pilot Report",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "generated_by",
+    "release",
+    "policy",
+    "matrix",
+    "cases",
+    "accepted_context_pipeline",
+    "installed_isolation_contract",
+    "claims",
+    "report_digest"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"const": "../schemas/community-pilot-report.schema.json"},
+    "schema_version": {"const": "0.1.0"},
+    "generated_by": {"const": "tools/community_pilot.py"},
+    "release": {"const": "v0.6.0"},
+    "policy": {
+      "type": "object",
+      "required": ["id", "version", "effective_digest", "fail_on"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"const": "community-default"},
+        "version": {"type": "string", "minLength": 1},
+        "effective_digest": {"$ref": "#/$defs/sha256"},
+        "fail_on": {"enum": ["low", "medium", "high", "critical"]}
+      }
+    },
+    "matrix": {
+      "type": "object",
+      "required": ["fixture_count", "transport_count", "case_count", "passed_count", "failed_count"],
+      "additionalProperties": false,
+      "properties": {
+        "fixture_count": {"const": 3},
+        "transport_count": {"const": 3},
+        "case_count": {"const": 9},
+        "passed_count": {"const": 9},
+        "failed_count": {"const": 0}
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {"$ref": "#/$defs/case"}
+    },
+    "accepted_context_pipeline": {
+      "type": "object",
+      "required": [
+        "status",
+        "fixture",
+        "transport",
+        "receipt_status",
+        "review_status",
+        "maturity_promotion",
+        "adoption_report_count",
+        "resource_uri",
+        "file_count",
+        "total_bytes",
+        "receipt_digest",
+        "packet_digest",
+        "status_digest",
+        "bundle_digest",
+        "execution_authorized",
+        "examples_execute_automatically"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"const": "pass"},
+        "fixture": {"const": "benign"},
+        "transport": {"const": "directory"},
+        "receipt_status": {"const": "accepted"},
+        "review_status": {"const": "review-complete"},
+        "maturity_promotion": {"const": "not-authorized"},
+        "adoption_report_count": {"const": 0},
+        "resource_uri": {"const": "hpc-skill://community/community-pilot-benign/0.1.0"},
+        "file_count": {"type": "integer", "minimum": 1},
+        "total_bytes": {"type": "integer", "minimum": 1},
+        "receipt_digest": {"$ref": "#/$defs/sha256"},
+        "packet_digest": {"$ref": "#/$defs/sha256"},
+        "status_digest": {"$ref": "#/$defs/sha256"},
+        "bundle_digest": {"$ref": "#/$defs/sha256"},
+        "execution_authorized": {"const": false},
+        "examples_execute_automatically": {"const": false}
+      }
+    },
+    "installed_isolation_contract": {
+      "type": "object",
+      "required": ["core", "mcp", "requires_outside_checkout", "requires_pythonpath_removal", "requires_installed_module_path_verification"],
+      "additionalProperties": false,
+      "properties": {
+        "core": {"$ref": "#/$defs/isolationMode"},
+        "mcp": {"$ref": "#/$defs/isolationMode"},
+        "requires_outside_checkout": {"const": true},
+        "requires_pythonpath_removal": {"const": true},
+        "requires_installed_module_path_verification": {"const": true}
+      }
+    },
+    "claims": {
+      "type": "object",
+      "required": [
+        "synthetic_fixtures_only",
+        "real_community_acceptance",
+        "independent_external_review",
+        "real_site_adoption",
+        "maturity_promotion",
+        "comparative_agent_lift"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "synthetic_fixtures_only": {"const": true},
+        "real_community_acceptance": {"const": false},
+        "independent_external_review": {"const": false},
+        "real_site_adoption": {"const": false},
+        "maturity_promotion": {"const": false},
+        "comparative_agent_lift": {"const": false}
+      }
+    },
+    "report_digest": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "expectation": {
+      "type": "object",
+      "required": ["status", "security_verdict", "eligible_for_human_review", "security_finding_ids"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"enum": ["ready-for-review", "review-required", "blocked"]},
+        "security_verdict": {"enum": ["pass", "review", "block"]},
+        "eligible_for_human_review": {"type": "boolean"},
+        "security_finding_ids": {"$ref": "#/$defs/stringArray"}
+      }
+    },
+    "observation": {
+      "type": "object",
+      "required": [
+        "status",
+        "security_verdict",
+        "eligible_for_human_review",
+        "context_loading_allowed",
+        "inventory_complete",
+        "quarantine_cleaned",
+        "execution_performed",
+        "instruction_content_returned",
+        "boundary_finding_ids",
+        "security_finding_ids",
+        "source_digest",
+        "inventory_digest",
+        "file_count",
+        "total_bytes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"enum": ["ready-for-review", "review-required", "blocked"]},
+        "security_verdict": {"enum": ["pass", "review", "block"]},
+        "eligible_for_human_review": {"type": "boolean"},
+        "context_loading_allowed": {"const": false},
+        "inventory_complete": {"const": true},
+        "quarantine_cleaned": {"const": true},
+        "execution_performed": {"const": false},
+        "instruction_content_returned": {"const": false},
+        "boundary_finding_ids": {"$ref": "#/$defs/stringArray"},
+        "security_finding_ids": {"$ref": "#/$defs/stringArray"},
+        "source_digest": {"$ref": "#/$defs/sha256"},
+        "inventory_digest": {"$ref": "#/$defs/sha256"},
+        "file_count": {"type": "integer", "minimum": 1},
+        "total_bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "case": {
+      "type": "object",
+      "required": ["id", "fixture", "transport", "expected", "observed", "passed"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^(benign|ambiguous|adversarial)-(directory|zip|tar)$"},
+        "fixture": {"enum": ["benign", "ambiguous", "adversarial"]},
+        "transport": {"enum": ["directory", "zip", "tar"]},
+        "expected": {"$ref": "#/$defs/expectation"},
+        "observed": {"$ref": "#/$defs/observation"},
+        "passed": {"const": true}
+      }
+    },
+    "isolationMode": {
+      "type": "object",
+      "required": ["status", "command"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"const": "required-in-ci"},
+        "command": {"type": "string", "minLength": 20}
+      }
+    }
+  }
+}

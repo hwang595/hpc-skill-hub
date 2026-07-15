@@ -29,6 +29,7 @@ jobs:
           python3 tools/build_mcp_client_configs.py --check
           python3 tools/build_release_status.py --check
           python3 tools/build_package_data.py --check
+          python3 tools/community_pilot.py --check
           python3 tools/validate_registry_artifacts.py
       - name: Build distributions
         run: python3 -m build --sdist --wheel
@@ -51,14 +52,14 @@ jobs:
           /tmp/hpc-skill-hub-wheel/bin/python -c "from hpc_skill_hub.context import find_skill_context, load_context_bundle; b = load_context_bundle(); s = find_skill_context(b, 'slurm-submit-job'); assert s and any(f['role'] == 'readme' and f['content'] for f in s['files'])"
           /tmp/hpc-skill-hub-wheel/bin/python -c "from hpc_skill_hub.release_status import load_release_status; s = load_release_status(); assert s['repository_capability_ready'] and not s['external_evidence_ready']"
           /tmp/hpc-skill-hub-wheel/bin/python -c "import importlib.metadata, hpc_skill_hub; assert hpc_skill_hub.__version__ == importlib.metadata.version('hpc-skill-hub')"
+      - name: Verify core wheel isolation contract
+        run: |
+          wheel_path="$(python3 -c "from pathlib import Path; print(next(Path('dist').glob('*.whl')).resolve())")"
+          python3 tools/installed_release_smoke.py --wheel "${wheel_path}" --mode core --json
       - name: Smoke test wheel with MCP extra outside checkout
         run: |
-          python3 -m venv /tmp/hpc-skill-hub-wheel-mcp
-          /tmp/hpc-skill-hub-wheel-mcp/bin/python -m pip install --upgrade pip
           wheel_path="$(python3 -c "from pathlib import Path; print(next(Path('dist').glob('*.whl')).resolve())")"
-          /tmp/hpc-skill-hub-wheel-mcp/bin/python -m pip install "${wheel_path}[mcp]"
-          cd /tmp
-          /tmp/hpc-skill-hub-wheel-mcp/bin/hpc-skill doctor --require-mcp --json
+          python3 tools/installed_release_smoke.py --wheel "${wheel_path}" --mode mcp --json
       - name: Upload tested distributions
         uses: actions/upload-artifact@v7
         with:

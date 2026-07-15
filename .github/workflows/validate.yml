@@ -67,6 +67,10 @@ jobs:
         run: python3 tools/community_review_evidence.py --help
       - name: Exercise trusted community context contract
         run: python3 tools/community_context_bundle.py --help
+      - name: Check v0.6 community fixture pilot
+        run: python3 tools/community_pilot.py --check
+      - name: Check installed release smoke contract
+        run: python3 tools/installed_release_smoke.py --help
       - name: Install CLI and MCP integration
         run: python3 -m pip install '.[mcp]'
       - name: Run test suite

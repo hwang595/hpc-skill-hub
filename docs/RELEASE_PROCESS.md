@@ -31,6 +31,7 @@ python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.4.
 python3 tools/agent_benchmark_harness.py --plan agent-bench/plans/evidence-v0.5.json --report docs/AGENT_BENCHMARK_V0_5_PLAN.md --check
 python3 tools/run_agent_benchmarks.py --check
 python3 tools/build_release_status.py --check
+python3 tools/community_pilot.py --check
 python3 tools/validate_registry_artifacts.py
 python3 tools/audit_safety.py
 python3 tools/scan_skill_security.py skills --fail-on high
@@ -45,6 +46,8 @@ hpc-skill collection core-hpc
 python3 -m pip install --upgrade build twine
 python3 -m build --sdist --wheel
 python3 -m twine check dist/*
+python3 tools/installed_release_smoke.py --wheel dist/hpc_skill_hub-<version>-py3-none-any.whl --mode core --json
+python3 tools/installed_release_smoke.py --wheel dist/hpc_skill_hub-<version>-py3-none-any.whl --mode mcp --json
 python3 -m unittest discover -s tests
 make check
 ```
@@ -65,12 +68,15 @@ Review:
   receipt.
 - `docs/SKILL_CATALOG.md` is current.
 - `docs/COMPATIBILITY.md` is current.
-- `docs/AGENT_BENCHMARK_V0_5_PLAN.md`, `docs/V0_5_COMPLETION.md`,
+- `docs/AGENT_BENCHMARK_V0_5_PLAN.md`, `docs/V0_6_COMPLETION.md`,
+  `docs/COMMUNITY_PILOT_v0.6.0.md`,
   `docs/REVIEW_PACKET_v0.4.0.md`, and the generated dashboards are current.
 - `src/hpc_skill_hub/data/registry/`, `data/integrations/`, and
   `data/security/` match their generated, audited, or canonical JSON sources.
 - Registry index, health, release manifest, package data, and schema pointers
   pass `tools/validate_registry_artifacts.py`.
+- `registry/community-pilot-v0.6.0.json` passes all controlled fixture cases,
+  keeps every external-evidence claim false, and matches its public report.
 - `registry/releases/v<version>.json` is current and attached to the GitHub
   release.
 - Previously published release manifests remain byte-for-byte unchanged;
@@ -117,7 +123,7 @@ verification boundary.
 ## Release Command Generator
 
 Use the matching release notes, such as
-[v0.5.0 Release Notes](RELEASE_NOTES_v0.5.0.md), as the starting point for the
+[v0.6.0 Release Notes](RELEASE_NOTES_v0.6.0.md), as the starting point for the
 GitHub release body.
 
 After `main` is pushed, GitHub Actions are green, the Pages site is published,

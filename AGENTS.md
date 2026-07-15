@@ -27,8 +27,8 @@ Current generated registry snapshot:
   details.
 - Use `docs/INTEGRATION_GUIDE.md`, `docs/SAFETY_MODEL.md`,
   `docs/TRUST_POLICY_PACKS.md`, `docs/INTAKE_RECEIPTS.md`, and
-  `docs/COMMUNITY_EVIDENCE.md`, and `docs/COMMUNITY_CONTEXT.md` when changing
-  integration behavior. Use
+  `docs/COMMUNITY_EVIDENCE.md`, `docs/COMMUNITY_CONTEXT.md`, and
+  `docs/COMMUNITY_PILOT_v0.6.0.md` when changing integration behavior. Use
   `docs/SKILL_SPEC.md` for registry skill contracts.
 
 ## Useful Commands
@@ -48,6 +48,8 @@ Current generated registry snapshot:
   `python3 tools/hpc_skill.py evidence packet --help`
 - Build or verify review-gated community context:
   `python3 tools/hpc_skill.py community-context --help`
+- Verify the deterministic synthetic community pilot:
+  `python3 tools/community_pilot.py --check`
 - Scan already bounded source content directly:
   `python3 tools/hpc_skill.py security <skill-path> --json`
 - Apply an operator-reviewed external trust policy stored outside the package:

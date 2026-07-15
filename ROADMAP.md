@@ -36,10 +36,10 @@ The v0.3 infrastructure is released. Real cross-agent runs, independent
 scoring, external adoption evidence, and maturity promotion remain public
 follow-up work rather than synthetic CI claims.
 
-## v0.6 Current Development
+## v0.6 Release Candidate
 
-v0.6 focuses on verified community intake and evidence. Work proceeds in this
-order:
+v0.6 focuses on verified community intake and evidence. P0 through P4 are
+merged, and P5 release preparation is implemented for review:
 
 1. **P0 release hygiene (merged):** record v0.5 provenance, correct public
    release status, freeze its manifest checks, refresh CI actions, and open the
@@ -50,14 +50,15 @@ order:
 3. **P2 intake receipts (merged in PR #51):** bind source digest, inventory, scanner
    and policy versions, findings, exceptions, reviewer disposition, and context
    manifest digest in a portable JSON contract with fresh stale-binding checks.
-4. **P3 operational evidence (implemented):** connect exact-bound independent
+4. **P3 operational evidence (merged in PR #52):** connect exact-bound independent
    domain and safety review plus public-safe adoption reports to intake
    decisions without automatic maturity promotion.
-5. **P4 trusted agent consumption:** expose only accepted, digest-verified
+5. **P4 trusted agent consumption (merged in PR #53):** expose only accepted, digest-verified
    community context through CLI, MCP, Codex, and Claude Code surfaces.
-6. **P5 pilot and release:** exercise benign and adversarial fixture packages,
-   publish honest gate status, and release v0.6 only after reproducible package
-   and provenance checks pass.
+6. **P5 pilot and release readiness:** run a 9-case benign, ambiguous, and
+   adversarial matrix across directory, ZIP, and TAR inputs; verify core and MCP
+   wheels outside the checkout; publish honest gate status; and prepare the
+   v0.6 manifest without claiming tag provenance before attestations exist.
 
 CI may validate intake mechanics and synthetic fixtures, but it cannot claim a
 community contribution is domain-correct, independently reviewed, adopted, or

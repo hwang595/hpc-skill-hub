@@ -20,6 +20,7 @@ from .client_contract import (
     load_client_contract,
 )
 from .context import ContextBundleError, context_summary, load_context_bundle
+from .community_pilot import CommunityPilotError, validate_pilot_report
 from .mcp_server import (
     RESOURCE_NAMES,
     TOOL_ARGUMENT_ALLOWLIST,
@@ -43,6 +44,7 @@ PROBE_SKILL_ID = "slurm-submit-job"
 REGISTRY_DATA_FILES = (
     "index.json",
     "health.json",
+    "community-pilot-v0.6.0.json",
     "release-provenance.json",
     "release-status.json",
     "review-status.json",
@@ -131,12 +133,15 @@ def _check_package_data() -> DoctorCheck:
             raw = _packaged_path("registry", filename).read_bytes()
             payload = json.loads(raw.decode("utf-8"))
             if filename == "release-provenance.json":
-                validate_release_provenance(payload, f"v{__version__}")
+                validate_release_provenance(payload, payload.get("release"))
+            elif filename == "community-pilot-v0.6.0.json":
+                validate_pilot_report(payload)
             packaged[relative] = len(raw)
         except (
             FileNotFoundError,
             UnicodeDecodeError,
             json.JSONDecodeError,
+            CommunityPilotError,
             ReleaseProvenanceError,
         ) as exc:
             errors.append(f"{relative}: {exc}")
@@ -159,12 +164,15 @@ def _check_package_data() -> DoctorCheck:
     stale: List[str] = []
     if repository_root:
         for filename in REGISTRY_DATA_FILES:
+            packaged_path = _packaged_path("registry", filename)
             source = (
-                repository_root / "registry" / "provenance" / f"v{__version__}.json"
+                repository_root
+                / "registry"
+                / "provenance"
+                / f"{json.loads(packaged_path.read_text(encoding='utf-8'))['release']}.json"
                 if filename == "release-provenance.json"
                 else repository_root / "registry" / filename
             )
-            packaged_path = _packaged_path("registry", filename)
             if not source.is_file():
                 stale.append(f"registry/{filename} (source missing)")
             elif packaged_path.is_file() and source.read_bytes() != packaged_path.read_bytes():

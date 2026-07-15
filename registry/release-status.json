@@ -26,6 +26,20 @@
       "sha256": "c1f59dedd0f153154fbe610f4bda71fda92e19f89dcbbda608232e19ed243ce9",
       "status": "pending"
     },
+    "community_pilot": {
+      "accepted_context_status": "review-complete",
+      "artifact": "registry/community-pilot-v0.6.0.json",
+      "case_count": 9,
+      "external_evidence_claimed": false,
+      "failed_count": 0,
+      "fixture_count": 3,
+      "passed_count": 9,
+      "report_digest": "775e3d09e48c02e3f153ef5604589a6380ae75ea8a4e1c22cca495358f627b20",
+      "sha256": "d6a6a99fe648b1ad98f9bb5246ab178e0d33c336cf832e306d77918ae96eefbc",
+      "status": "ready",
+      "synthetic_only": true,
+      "transport_count": 3
+    },
     "compatibility": {
       "artifact": "docs/COMPATIBILITY.md",
       "collection_count": 12,
@@ -74,6 +88,10 @@
   },
   "external_evidence_ready": false,
   "gates": {
+    "community_intake_pilot": {
+      "blockers": [],
+      "status": "open"
+    },
     "comparative_evidence": {
       "blockers": [
         "Reviewed real-agent evidence has not satisfied the publication contract."
@@ -87,8 +105,10 @@
       "status": "closed"
     },
     "release_provenance": {
-      "blockers": [],
-      "status": "open"
+      "blockers": [
+        "No verified release provenance receipt exists for v0.6.0."
+      ],
+      "status": "pending"
     },
     "repository": {
       "blockers": [],
@@ -96,8 +116,8 @@
     }
   },
   "generated_by": "tools/build_release_status.py",
-  "package_version": "0.5.0",
-  "release": "v0.5.0",
+  "package_version": "0.6.0",
+  "release": "v0.6.0",
   "repository_capability_ready": true,
   "schema_version": "0.1.0"
 }

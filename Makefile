@@ -1,4 +1,4 @@
-.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check cli community-context community-evidence compatibility doctor health index intake mcp mcp-client-configs package-data receipt release-manifest release-status review-packet security site skill-context skill-quality skill-reviews test trust-policy validate clean
+.PHONY: agent-adapters agent-benchmarks artifact-contracts audit benchmarks check cli community-context community-evidence community-pilot compatibility doctor health index intake mcp mcp-client-configs package-data receipt release-manifest release-status review-packet security site skill-context skill-quality skill-reviews test trust-policy validate clean
 
 PYTHON ?= python3
 SITE_OUTPUT ?= /tmp/hpc-skill-hub-site/index.html
@@ -75,6 +75,9 @@ community-evidence:
 community-context:
 	$(PYTHON) tools/community_context_bundle.py --help
 
+community-pilot:
+	$(PYTHON) tools/community_pilot.py --check
+
 trust-policy:
 	$(PYTHON) -m unittest tests.test_skill_security
 
@@ -113,7 +116,7 @@ doctor:
 test:
 	$(PYTHON) -m unittest discover -s tests
 
-check: validate index health skill-quality skill-reviews skill-context compatibility mcp-client-configs agent-adapters benchmarks agent-benchmarks release-status package-data release-manifest review-packet artifact-contracts audit security intake receipt community-evidence community-context trust-policy test site cli mcp doctor
+check: validate index health skill-quality skill-reviews skill-context compatibility mcp-client-configs agent-adapters benchmarks agent-benchmarks community-pilot release-status package-data release-manifest review-packet artifact-contracts audit security intake receipt community-evidence community-context trust-policy test site cli mcp doctor
 
 clean:
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +

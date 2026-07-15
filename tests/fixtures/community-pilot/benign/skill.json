@@ -1,0 +1,14 @@
+{
+  "id": "community-pilot-benign",
+  "risk_level": "low",
+  "artifacts": [
+    "README.md",
+    "examples/plan.sh"
+  ],
+  "examples": [
+    {
+      "title": "Print a static plan",
+      "path": "examples/plan.sh"
+    }
+  ]
+}

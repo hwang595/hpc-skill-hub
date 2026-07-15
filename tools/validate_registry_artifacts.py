@@ -21,6 +21,10 @@ from hpc_skill_hub.context import (  # noqa: E402
     ContextBundleError,
     verify_context_bundle,
 )
+from hpc_skill_hub.community_pilot import (  # noqa: E402
+    CommunityPilotError,
+    validate_pilot_report,
+)
 from hpc_skill_hub.client_contract import (  # noqa: E402
     ClientContractError,
     validate_client_contract,
@@ -44,6 +48,7 @@ HEALTH_JSON = ROOT / "registry" / "health.json"
 QUALITY_JSON = ROOT / "registry" / "skill-quality.json"
 REVIEW_STATUS_JSON = ROOT / "registry" / "review-status.json"
 RELEASE_STATUS_JSON = ROOT / "registry" / "release-status.json"
+COMMUNITY_PILOT_JSON = ROOT / "registry" / "community-pilot-v0.6.0.json"
 RELEASE_PROVENANCE_JSON = ROOT / "registry" / "provenance" / "v0.5.0.json"
 CONTEXT_JSON = ROOT / "registry" / "skill-context.json"
 MCP_CLIENT_JSON = ROOT / "integrations" / "mcp-client.json"
@@ -62,6 +67,7 @@ SCHEMAS = {
     "benchmark": ROOT / "schemas" / "benchmark.schema.json",
     "community-skill-intake-report": ROOT / "schemas" / "community-skill-intake-report.schema.json",
     "community-skill-context-bundle": ROOT / "schemas" / "community-skill-context-bundle.schema.json",
+    "community-pilot-report": ROOT / "schemas" / "community-pilot-report.schema.json",
     "index": ROOT / "schemas" / "registry-index.schema.json",
     "health": ROOT / "schemas" / "registry-health.schema.json",
     "mcp-client-contract": ROOT / "schemas" / "mcp-client-contract.schema.json",
@@ -87,6 +93,7 @@ PUBLIC_BASELINE_DOCS = [
     ROOT / "docs" / "RELEASE_NOTES_v0.3.0.md",
     ROOT / "docs" / "RELEASE_NOTES_v0.4.0.md",
     ROOT / "docs" / "RELEASE_NOTES_v0.5.0.md",
+    ROOT / "docs" / "RELEASE_NOTES_v0.6.0.md",
     ROOT / "docs" / "REVIEW_PACKET_v0.2.0.md",
     ROOT / "docs" / "SKILL_CATALOG.md",
 ]
@@ -427,6 +434,20 @@ def validate_generated_release_status(
         errors.append(f"{context}: {exc}")
 
 
+def validate_community_pilot(report: Dict[str, Any], errors: List[str]) -> None:
+    context = relative(COMMUNITY_PILOT_JSON)
+    require_schema_pointer(
+        report,
+        "../schemas/community-pilot-report.schema.json",
+        errors,
+        context,
+    )
+    try:
+        validate_pilot_report(report)
+    except CommunityPilotError as exc:
+        errors.append(f"{context}: {exc}")
+
+
 def validate_release(path: Path, release: Dict[str, Any], errors: List[str]) -> None:
     context = relative(path)
     require_schema_pointer(
@@ -525,6 +546,7 @@ def validate_package_data(errors: List[str]) -> None:
     snapshots = {
         PACKAGE_DATA_DIR / "index.json": INDEX_JSON,
         PACKAGE_DATA_DIR / "health.json": HEALTH_JSON,
+        PACKAGE_DATA_DIR / "community-pilot-v0.6.0.json": COMMUNITY_PILOT_JSON,
         PACKAGE_DATA_DIR / "release-provenance.json": RELEASE_PROVENANCE_JSON,
         PACKAGE_DATA_DIR / "release-status.json": RELEASE_STATUS_JSON,
         PACKAGE_DATA_DIR / "review-status.json": REVIEW_STATUS_JSON,
@@ -590,6 +612,11 @@ def public_count_expectations(index: Dict[str, Any]) -> Dict[str, List[str]]:
             f"- Site adapters: {site_adapter_count},",
         ],
         "docs/RELEASE_NOTES_v0.5.0.md": [
+            f"- Skills: {skill_count}.",
+            f"- Collections: {collection_count}.",
+            f"- Site adapters: {site_adapter_count}.",
+        ],
+        "docs/RELEASE_NOTES_v0.6.0.md": [
             f"- Skills: {skill_count}.",
             f"- Collections: {collection_count}.",
             f"- Site adapters: {site_adapter_count}.",
@@ -668,7 +695,7 @@ def main() -> int:
             for error in errors:
                 print(f"ERROR: {error}", file=sys.stderr)
             return 1
-        print(f"Validated {len(releases)} immutable release snapshot(s).")
+        print(f"Validated {len(releases)} versioned release snapshot(s).")
         return 0
 
     index = load_json(INDEX_JSON)
@@ -676,6 +703,7 @@ def main() -> int:
     quality = load_json(QUALITY_JSON)
     review_status = load_json(REVIEW_STATUS_JSON)
     release_status = load_json(RELEASE_STATUS_JSON)
+    community_pilot = load_json(COMMUNITY_PILOT_JSON)
     release_provenance = load_json(RELEASE_PROVENANCE_JSON)
     context_bundle = load_json(CONTEXT_JSON)
     mcp_client_contract = load_json(MCP_CLIENT_JSON)
@@ -684,6 +712,7 @@ def main() -> int:
     validate_skill_quality(index, quality, errors)
     validate_review_status(index, review_status, errors)
     validate_generated_release_status(release_status, errors)
+    validate_community_pilot(community_pilot, errors)
     validate_release_provenance(release_provenance, errors)
     validate_context_bundle(index, context_bundle, errors)
     validate_mcp_client_contract(mcp_client_contract, errors)

@@ -1,0 +1,14 @@
+{
+  "id": "community-pilot-adversarial",
+  "risk_level": "high",
+  "artifacts": [
+    "README.md",
+    "examples/plan.sh"
+  ],
+  "examples": [
+    {
+      "title": "Blocked prompt-injection fixture",
+      "path": "examples/plan.sh"
+    }
+  ]
+}
