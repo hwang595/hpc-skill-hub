@@ -24,6 +24,7 @@ The stable seed-stage surfaces are:
 | `integrations/mcp-client.json` | Canonical local stdio, capability, provider, and safety contract for MCP clients. |
 | `security/policies/community-default.json` | Versioned fail-closed community-skill policy, packaged independently from scanner code. |
 | `schemas/community-skill-intake-*.schema.json` | Portable P1 report, P2 maintainer decision, and deterministic receipt contracts for untrusted community intake. |
+| `schemas/community-skill-{review-packet,independent-review,adoption-report,evidence-status}.schema.json` | Exact-bound P3 community review and public-safe adoption evidence contracts. |
 | `integrations/codex.config.toml` and `integrations/claude-code.mcp.json` | Generated, reviewable provider configuration examples. |
 | `python3 tools/hpc_skill.py ... --json` | Local CLI access for tools that prefer command output over direct file reads, including structured validation results. |
 | `hpc-skill ... --json` | Installed package access to the packaged registry snapshot for read-only discovery and site-policy resolution. |
@@ -97,6 +98,13 @@ verify the resulting receipt with `hpc-skill receipt verify`. Only an
 and verify every file against `accepted_context.accepted_digest`. The receipt is
 a drift-detection record, not a signature or domain review. See
 [Community Intake Receipts](INTAKE_RECEIPTS.md).
+
+Before P4 consumption, generate and verify the P3 packet with
+`hpc-skill evidence packet|check`. Keep intake, domain, safety, adoption, and
+maturity owners separate; require approved coverage for every declared domain;
+and preserve the aggregate `maturity_promotion: not-authorized` result. P3
+status is review routing evidence, not context-loading or execution authority.
+See [Community Review And Adoption Evidence](COMMUNITY_EVIDENCE.md).
 
 Minimal Python example:
 

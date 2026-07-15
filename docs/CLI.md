@@ -17,6 +17,7 @@ python3 tools/hpc_skill.py review status job-failure-triage
 python3 tools/hpc_skill.py validate
 python3 tools/hpc_skill.py intake ./community-skill.zip --json
 python3 tools/hpc_skill.py receipt create ./community-skill.zip --json
+python3 tools/hpc_skill.py evidence --help
 python3 tools/hpc_skill.py security skills/slurm-submit-job
 python3 tools/hpc_skill.py adapters
 python3 tools/hpc_skill.py adapter example-campus-cluster
@@ -32,6 +33,7 @@ hpc-skill collection core-hpc
 hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
 hpc-skill intake ./community-skill.zip --json
 hpc-skill receipt create ./community-skill.zip --json
+hpc-skill evidence --help
 hpc-skill security ./community-skill --format json
 ```
 
@@ -143,6 +145,39 @@ contribution. `accepted` is limited to exact maintainer intake disposition; it
 does not establish domain correctness or independent review. See
 [Community Intake Receipts](INTAKE_RECEIPTS.md).
 
+## Reviewing Community Evidence
+
+Generate a deterministic review packet from a fresh accepted receipt:
+
+```bash
+hpc-skill evidence packet ./review/community-skill.accepted.json \
+  --source ./community-skill.zip \
+  --id community-skill --version 0.1.0 --risk medium \
+  --domain scheduler --submitter contributor-a \
+  --artifact-url https://example.org/community-skill-0.1.0.zip \
+  --output ./review/community-skill.packet.json \
+  --summary-output ./review/community-skill.issue.md
+```
+
+After independent review and adoption records are authored outside the
+contribution, fresh-verify and aggregate them:
+
+```bash
+hpc-skill evidence digest ./review/domain.draft.json \
+  --output ./review/domain.json --json
+
+hpc-skill evidence check ./review/community-skill.packet.json \
+  --receipt ./review/community-skill.accepted.json \
+  --source ./community-skill.zip \
+  --review ./review/domain.json --review ./review/safety.json \
+  --adoption ./review/adoption.json --json
+```
+
+Pending and review-complete evidence exits `0`, changes-requested or rejected
+evidence exits `1`, and invalid or stale evidence exits `2`. The aggregate
+always keeps maturity promotion unauthorized. See
+[Community Review And Adoption Evidence](COMMUNITY_EVIDENCE.md).
+
 For source that is already expanded inside a reviewed boundary, run the static
 scanner directly:
 
@@ -159,6 +194,9 @@ The default threshold fails on `high` and `critical`; lower-severity findings
 produce a `review` verdict. See [Community Skill Security](SKILL_SECURITY.md).
 
 ## Reviewing Maturity Evidence
+
+This command group reviews skills already in the registry. It is separate from
+the source- and P2-receipt-bound community `evidence` workflow above.
 
 Inspect the bounded v0.4 review queue and one candidate:
 

@@ -27,7 +27,8 @@ Current generated registry snapshot:
   details.
 - Use `docs/INTEGRATION_GUIDE.md`, `docs/SAFETY_MODEL.md`,
   `docs/TRUST_POLICY_PACKS.md`, `docs/INTAKE_RECEIPTS.md`, and
-  `docs/SKILL_SPEC.md` when changing integration behavior.
+  `docs/COMMUNITY_EVIDENCE.md` when changing integration behavior. Use
+  `docs/SKILL_SPEC.md` for registry skill contracts.
 
 ## Useful Commands
 
@@ -42,6 +43,8 @@ Current generated registry snapshot:
   `python3 tools/hpc_skill.py intake <skill-path-or-archive> --json`
 - Create or verify a digest-bound external intake receipt:
   `python3 tools/hpc_skill.py receipt create <skill-path-or-archive> --json`
+- Create or verify exact-bound review and adoption evidence:
+  `python3 tools/hpc_skill.py evidence packet --help`
 - Scan already bounded source content directly:
   `python3 tools/hpc_skill.py security <skill-path> --json`
 - Apply an operator-reviewed external trust policy stored outside the package:
@@ -92,6 +95,9 @@ Current generated registry snapshot:
   the provenance receipt.
 - Treat P2 acceptance as maintainer intake disposition, not proof of reviewer
   identity, domain correctness, independent review, adoption, or maturity.
+- Before P4 community context consumption, fresh-verify the P3 packet and
+  supplied evidence with `hpc-skill evidence check`. Treat `review-complete` as
+  review routing state, never execution or automatic maturity authorization.
 
 ## Editing Guidance
 

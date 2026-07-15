@@ -20,6 +20,11 @@ skills keep their own `version` field in `skills/*/skill.json`.
 - Add v0.6 P2 deterministic community intake receipts with portable source,
   inventory, scanner, policy, finding, exception, maintainer-decision, and
   context-manifest bindings plus fresh stale-evidence verification.
+- Add v0.6 P3 deterministic community review packets, issue-ready summaries,
+  exact-bound independent domain and safety decisions, public-safe adoption
+  reports, declared-domain coverage, role separation, and aggregate status that
+  never authorizes automatic maturity promotion, plus bounded external evidence
+  loading and a canonical non-signature digest helper.
 
 ### Changed
 

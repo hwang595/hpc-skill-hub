@@ -47,11 +47,12 @@ order:
 2. **P1 quarantined intake (merged in PR #50):** inspect untrusted contribution
    bundles under strict path, archive, size, and no-execution limits before any
    instruction is loaded into agent context.
-3. **P2 intake receipts (implemented):** bind source digest, inventory, scanner
+3. **P2 intake receipts (merged in PR #51):** bind source digest, inventory, scanner
    and policy versions, findings, exceptions, reviewer disposition, and context
    manifest digest in a portable JSON contract with fresh stale-binding checks.
-4. **P3 operational evidence:** connect independent review and public-safe
-   adoption evidence to intake decisions without automatic maturity promotion.
+4. **P3 operational evidence (implemented):** connect exact-bound independent
+   domain and safety review plus public-safe adoption reports to intake
+   decisions without automatic maturity promotion.
 5. **P4 trusted agent consumption:** expose only accepted, digest-verified
    community context through CLI, MCP, Codex, and Claude Code surfaces.
 6. **P5 pilot and release:** exercise benign and adversarial fixture packages,

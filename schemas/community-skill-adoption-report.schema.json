@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/community-skill-adoption-report.schema.json",
+  "title": "HPC Skill Hub Community Adoption Report",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "report_id",
+    "contribution",
+    "adopter_id",
+    "reported_on",
+    "scope",
+    "outcome",
+    "environment",
+    "observations",
+    "evidence_url",
+    "bindings",
+    "independent_adopter_attestation",
+    "public_safe_attestation",
+    "no_maturity_claim",
+    "report_digest"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"const": "https://hpc-skill-hub.org/schemas/community-skill-adoption-report.schema.json"},
+    "schema_version": {"const": "0.1.0"},
+    "report_id": {"$ref": "#/$defs/publicId"},
+    "contribution": {"$ref": "#/$defs/contribution"},
+    "adopter_id": {"$ref": "#/$defs/publicId"},
+    "reported_on": {"type": "string", "format": "date"},
+    "scope": {"enum": ["documentation-review", "dry-run", "smoke-test", "workflow-pilot", "production-use"]},
+    "outcome": {"enum": ["successful", "partial", "blocked"]},
+    "environment": {
+      "type": "object",
+      "required": ["type", "scheduler", "site_adapter_id", "public_documentation_urls", "private_details_omitted"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"enum": ["campus-hpc", "training-cluster", "cloud-hpc", "lab-managed-cluster", "container-test", "other-public"]},
+        "scheduler": {"enum": ["slurm", "pbs", "lsf", "htcondor", "grid-engine", "none", "other"]},
+        "site_adapter_id": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/id"}]},
+        "public_documentation_urls": {"$ref": "#/$defs/urls"},
+        "private_details_omitted": {"const": true}
+      }
+    },
+    "observations": {
+      "type": "object",
+      "required": ["worked", "changes_required", "blockers", "follow_up_urls"],
+      "additionalProperties": false,
+      "properties": {
+        "worked": {"$ref": "#/$defs/observations"},
+        "changes_required": {"$ref": "#/$defs/observations"},
+        "blockers": {"$ref": "#/$defs/observations"},
+        "follow_up_urls": {"$ref": "#/$defs/urls"}
+      }
+    },
+    "evidence_url": {"$ref": "#/$defs/httpsUrl"},
+    "bindings": {"$ref": "#/$defs/bindings"},
+    "independent_adopter_attestation": {"const": true},
+    "public_safe_attestation": {"const": true},
+    "no_maturity_claim": {"const": true},
+    "report_digest": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "publicId": {"type": "string", "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9._-]{0,62}[A-Za-z0-9])?$"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "httpsUrl": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "urls": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/httpsUrl"}},
+    "observations": {"type": "array", "maxItems": 10, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 500}},
+    "contribution": {
+      "type": "object",
+      "required": ["id", "version"],
+      "additionalProperties": false,
+      "properties": {"id": {"$ref": "#/$defs/id"}, "version": {"$ref": "#/$defs/version"}}
+    },
+    "bindings": {
+      "type": "object",
+      "required": ["packet_digest", "receipt_digest", "source_digest", "inventory_digest", "context_digest", "contribution_record_digest", "review_basis_digest"],
+      "additionalProperties": false,
+      "properties": {
+        "packet_digest": {"$ref": "#/$defs/sha256"},
+        "receipt_digest": {"$ref": "#/$defs/sha256"},
+        "source_digest": {"$ref": "#/$defs/sha256"},
+        "inventory_digest": {"$ref": "#/$defs/sha256"},
+        "context_digest": {"$ref": "#/$defs/sha256"},
+        "contribution_record_digest": {"$ref": "#/$defs/sha256"},
+        "review_basis_digest": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

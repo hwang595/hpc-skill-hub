@@ -14,6 +14,20 @@ import textwrap
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
+from .community_evidence import (
+    REVIEW_SCHEMA_URL,
+    RISK_LEVELS,
+    CommunityEvidenceError,
+    add_artifact_digest,
+    build_evidence_status,
+    create_review_packet,
+    ensure_distinct_artifacts,
+    issue_summary as evidence_issue_summary,
+    load_evidence_artifact,
+    verify_review_packet,
+    write_json_artifact as write_evidence_json,
+    write_text_artifact as write_evidence_text,
+)
 from .intake import IntakeError, intake_package, text_report as intake_text_report
 from .intake_receipt import (
     IntakeReceiptError,
@@ -712,7 +726,7 @@ def cmd_receipt_verify(args: argparse.Namespace) -> int:
     receipt_path = Path(args.receipt).expanduser()
     try:
         ensure_external_artifact(source, receipt_path, "intake receipt")
-        receipt = load_json_artifact(receipt_path, "intake receipt")
+        receipt = load_evidence_artifact(receipt_path, "intake receipt")
         verification = verify_receipt(
             receipt,
             source,
@@ -735,6 +749,146 @@ def cmd_receipt_verify(args: argparse.Namespace) -> int:
             f"({verification['receipt_digest']})"
         )
     return 1 if verification["status"] == "blocked" else 0
+
+
+def cmd_evidence_packet(args: argparse.Namespace) -> int:
+    source = Path(args.source).expanduser()
+    receipt_path = Path(args.receipt).expanduser()
+    try:
+        artifacts = [(source, "contribution"), (receipt_path, "intake receipt")]
+        if args.policy:
+            artifacts.append((Path(args.policy).expanduser(), "external policy"))
+        if args.output:
+            artifacts.append((Path(args.output).expanduser(), "review packet output"))
+        if args.summary_output:
+            artifacts.append((Path(args.summary_output).expanduser(), "issue summary output"))
+        ensure_distinct_artifacts(artifacts)
+        ensure_external_artifact(source, receipt_path, "intake receipt")
+        receipt = load_json_artifact(receipt_path, "intake receipt")
+        packet = create_review_packet(
+            receipt,
+            source,
+            contribution_id=args.contribution_id,
+            version=args.version,
+            risk_level=args.risk,
+            domains=args.domain,
+            submitter_id=args.submitter,
+            artifact_url=args.artifact_url,
+            policy_path=Path(args.policy).expanduser() if args.policy else None,
+        )
+        if args.output:
+            output = Path(args.output).expanduser()
+            ensure_external_artifact(source, output, "review packet")
+            write_evidence_json(output, packet, "review packet")
+        summary = evidence_issue_summary(packet)
+        if args.summary_output:
+            summary_output = Path(args.summary_output).expanduser()
+            ensure_external_artifact(source, summary_output, "issue summary")
+            write_evidence_text(summary_output, summary, "issue summary")
+    except (
+        CommunityEvidenceError,
+        FileNotFoundError,
+        IntakeError,
+        IntakeReceiptError,
+        OSError,
+        SecurityPolicyError,
+    ) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    if args.json:
+        emit_json(packet)
+    else:
+        print(summary)
+    return 0
+
+
+def cmd_evidence_check(args: argparse.Namespace) -> int:
+    source = Path(args.source).expanduser()
+    packet_path = Path(args.packet).expanduser()
+    receipt_path = Path(args.receipt).expanduser()
+    review_paths = [Path(path).expanduser() for path in args.review]
+    adoption_paths = [Path(path).expanduser() for path in args.adoption]
+    try:
+        artifacts = [
+            (source, "contribution"),
+            (packet_path, "review packet"),
+            (receipt_path, "intake receipt"),
+        ]
+        artifacts.extend((path, "independent review") for path in review_paths)
+        artifacts.extend((path, "adoption report") for path in adoption_paths)
+        if args.policy:
+            artifacts.append((Path(args.policy).expanduser(), "external policy"))
+        if args.output:
+            artifacts.append((Path(args.output).expanduser(), "evidence status output"))
+        if args.summary_output:
+            artifacts.append((Path(args.summary_output).expanduser(), "issue summary output"))
+        ensure_distinct_artifacts(artifacts)
+        for path, label in artifacts[1:]:
+            if label.endswith("output") or label == "external policy":
+                continue
+            ensure_external_artifact(source, path, label)
+        packet = load_evidence_artifact(packet_path, "review packet")
+        receipt = load_evidence_artifact(receipt_path, "intake receipt")
+        verify_review_packet(
+            packet,
+            receipt,
+            source,
+            policy_path=Path(args.policy).expanduser() if args.policy else None,
+        )
+        reviews = [load_evidence_artifact(path, "independent review") for path in review_paths]
+        reports = [load_evidence_artifact(path, "adoption report") for path in adoption_paths]
+        status = build_evidence_status(packet, reviews, reports)
+        if args.output:
+            output = Path(args.output).expanduser()
+            ensure_external_artifact(source, output, "evidence status")
+            write_evidence_json(output, status, "evidence status")
+        summary = evidence_issue_summary(packet, status)
+        if args.summary_output:
+            summary_output = Path(args.summary_output).expanduser()
+            ensure_external_artifact(source, summary_output, "issue summary")
+            write_evidence_text(summary_output, summary, "issue summary")
+    except (
+        CommunityEvidenceError,
+        FileNotFoundError,
+        IntakeError,
+        IntakeReceiptError,
+        OSError,
+        SecurityPolicyError,
+    ) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    if args.json:
+        emit_json(status)
+    else:
+        print(summary)
+    return 1 if status["summary"]["status"] in {"changes-requested", "rejected"} else 0
+
+
+def cmd_evidence_digest(args: argparse.Namespace) -> int:
+    artifact_path = Path(args.artifact).expanduser()
+    try:
+        artifacts = [(artifact_path, "evidence artifact")]
+        if args.output:
+            artifacts.append((Path(args.output).expanduser(), "digested artifact output"))
+        ensure_distinct_artifacts(artifacts)
+        payload = add_artifact_digest(
+            load_evidence_artifact(artifact_path, "evidence artifact")
+        )
+        if args.output:
+            write_evidence_json(
+                Path(args.output).expanduser(), payload, "digested evidence artifact"
+            )
+    except (CommunityEvidenceError, FileNotFoundError, OSError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    if args.json:
+        emit_json(payload)
+    else:
+        digest_field = (
+            "review_digest" if payload["$schema"] == REVIEW_SCHEMA_URL else "report_digest"
+        )
+        print(f"{digest_field}: {payload[digest_field]}")
+    return 0
 
 
 def run_step(label: str, command: List[str], root: Path) -> int:
@@ -1342,6 +1496,62 @@ def build_parser() -> argparse.ArgumentParser:
     )
     receipt_verify.add_argument("--json", action="store_true", help="Emit JSON")
     receipt_verify.set_defaults(func=cmd_receipt_verify)
+
+    evidence_parser = subparsers.add_parser(
+        "evidence",
+        help="Create and verify independent community review evidence",
+    )
+    evidence_subparsers = evidence_parser.add_subparsers(
+        dest="evidence_command", required=True
+    )
+    evidence_packet = evidence_subparsers.add_parser(
+        "packet", help="Create a review packet from an accepted intake receipt"
+    )
+    evidence_packet.add_argument("receipt", help="Accepted P2 receipt JSON")
+    evidence_packet.add_argument(
+        "--source", required=True, help="Original directory, ZIP archive, or TAR archive"
+    )
+    evidence_packet.add_argument("--policy", help="External policy used by the receipt")
+    evidence_packet.add_argument("--id", dest="contribution_id", required=True)
+    evidence_packet.add_argument("--version", required=True)
+    evidence_packet.add_argument("--risk", required=True, choices=sorted(RISK_LEVELS))
+    evidence_packet.add_argument("--domain", action="append", required=True)
+    evidence_packet.add_argument("--submitter", required=True)
+    evidence_packet.add_argument("--artifact-url", required=True)
+    evidence_packet.add_argument("--output", help="Write packet JSON outside the contribution")
+    evidence_packet.add_argument(
+        "--summary-output", help="Write GitHub issue summary outside the contribution"
+    )
+    evidence_packet.add_argument("--json", action="store_true", help="Emit packet JSON")
+    evidence_packet.set_defaults(func=cmd_evidence_packet)
+
+    evidence_check = evidence_subparsers.add_parser(
+        "check", help="Fresh-verify a packet and aggregate exact-bound evidence"
+    )
+    evidence_check.add_argument("packet", help="P3 review packet JSON")
+    evidence_check.add_argument("--receipt", required=True, help="Accepted P2 receipt JSON")
+    evidence_check.add_argument(
+        "--source", required=True, help="Original directory, ZIP archive, or TAR archive"
+    )
+    evidence_check.add_argument("--policy", help="External policy used by the receipt")
+    evidence_check.add_argument(
+        "--review", action="append", default=[], help="Independent review JSON; repeatable"
+    )
+    evidence_check.add_argument(
+        "--adoption", action="append", default=[], help="Adoption report JSON; repeatable"
+    )
+    evidence_check.add_argument("--output", help="Write aggregate status JSON")
+    evidence_check.add_argument("--summary-output", help="Write updated issue summary")
+    evidence_check.add_argument("--json", action="store_true", help="Emit status JSON")
+    evidence_check.set_defaults(func=cmd_evidence_check)
+
+    evidence_digest = evidence_subparsers.add_parser(
+        "digest", help="Attach a canonical review or adoption self-digest"
+    )
+    evidence_digest.add_argument("artifact", help="Draft review or adoption JSON")
+    evidence_digest.add_argument("--output", help="Write a copy with its digest attached")
+    evidence_digest.add_argument("--json", action="store_true", help="Emit completed JSON")
+    evidence_digest.set_defaults(func=cmd_evidence_digest)
 
     security_parser = subparsers.add_parser(
         "security", help="Scan a community skill package for security risks"

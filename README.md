@@ -269,6 +269,7 @@ The repository is set up as a versioned registry, not just a documentation dump:
 | `hpc-skill security` | Community skill packages receive deterministic prompt-injection, command, persistence, credential, package, and risk-declaration checks before adoption. |
 | `hpc-skill intake` | Untrusted directories, ZIP files, and TAR files are bounded, quarantined, scanned, cleaned, and reported without execution or instruction loading. |
 | `hpc-skill receipt create\|verify` | Deterministic community-intake receipts bind fresh source, inventory, policy, findings, exceptions, maintainer disposition, and accepted context provenance. |
+| `hpc-skill evidence packet\|check` | Fresh accepted receipts produce instruction-free review packets; exact-bound independent reviews and public-safe adoption reports aggregate without authorizing maturity promotion. |
 | `security/policies/community-default.json` | Versioned 26-rule trust baseline with monotonic overrides, digest-bound reviewed exceptions, and policy/target/rule-catalog receipts. |
 | `registry/skill-context.json` | Bounded registry-declared README and artifact content is bound to the index with file, skill, bundle, and security-report SHA-256 provenance. |
 | `registry/release-status.json` | Packaged v0.5 capability and gate status distinguishes the verified release from pending comparative and maturity evidence. |
@@ -297,10 +298,10 @@ claiming measured agent lift or completed maturity promotion:
 6. A packaged release-status contract, operational registry explorer, immutable
    manifest, and verified release provenance in P5.
 
-v0.6 development now focuses on verified community intake: quarantining
-untrusted contributions before instruction loading, publishing digest-bound
-intake receipts, and connecting independent review and adoption evidence to the
-agent-facing trust boundary. See the v0.6 plan and completion matrix below.
+v0.6 development now has quarantined intake, digest-bound receipts, and P3
+independent review/adoption evidence implemented. The next phase is the P4
+agent-facing trust boundary, which may expose only accepted and freshly
+verified community context. See the v0.6 plan and completion matrix below.
 
 See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 
@@ -321,6 +322,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Trust policy packs](docs/TRUST_POLICY_PACKS.md)
 - [Quarantined community intake](docs/COMMUNITY_INTAKE.md)
 - [Community intake receipts](docs/INTAKE_RECEIPTS.md)
+- [Community review and adoption evidence](docs/COMMUNITY_EVIDENCE.md)
 - [v0.5 development plan](docs/V0_5_PLAN.md)
 - [v0.5 completion matrix](docs/V0_5_COMPLETION.md)
 - [v0.6 development plan](docs/V0_6_PLAN.md)

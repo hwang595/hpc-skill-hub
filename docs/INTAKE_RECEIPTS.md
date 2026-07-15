@@ -115,4 +115,5 @@ public-safe reviewer disposition covers the exact static evidence. Every P2
 receipt keeps `domain_review_complete` and `independent_review_complete` false.
 It does not prove domain correctness, operational usefulness, adoption,
 maturity, execution safety, or agent performance. P3 binds those separate
-review and adoption decisions without rewriting P2 evidence.
+review and adoption decisions without rewriting P2 evidence. See
+[Community Review And Adoption Evidence](COMMUNITY_EVIDENCE.md).

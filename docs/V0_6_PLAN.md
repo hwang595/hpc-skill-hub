@@ -1,9 +1,9 @@
 # v0.6 Development Plan
 
-Status: P0 release hygiene merged in PR #48 and P1 quarantined intake merged in
-PR #50. P2 intake receipts are implemented on the current release branch. P3
-through P5 remain planned and must preserve the external evidence boundaries
-below.
+Status: P0 release hygiene merged in PR #48, P1 quarantined intake merged in
+PR #50, and P2 intake receipts merged in PR #51. P3 review and adoption
+evidence is implemented on the current branch. P4 and P5 remain planned and
+must preserve the external evidence boundaries below.
 
 v0.6 focuses on verified community intake and evidence. The release should let
 maintainers inspect, quarantine, review, and selectively expose contributed
@@ -40,7 +40,7 @@ standard-library implementation and a schema-validated report contract.
 
 ## P2 Intake Receipts
 
-Implementation status: complete on the P2 branch. The installable
+Implementation status: merged in PR #51. The installable
 `hpc-skill receipt create|verify` commands and standalone repository wrapper
 share one deterministic, standard-library implementation and two public JSON
 schemas for receipts and external maintainer decisions.
@@ -55,11 +55,18 @@ schemas for receipts and external maintainer decisions.
 
 ## P3 Review And Adoption Evidence
 
+Implementation status: complete on the P3 branch. The installable
+`hpc-skill evidence packet|check` commands and standalone wrapper share one
+standard-library implementation and four strict public JSON contracts.
+
 - Generate maintainer packets and issue-ready summaries from intake receipts.
 - Bind independent review decisions and public-safe adoption reports to exact
   contribution digests and versions.
 - Keep safety acceptance, domain review, adoption evidence, and maturity
   promotion as separate decisions with explicit owners.
+- Require approved coverage for every declared domain, distinct safety owners
+  for submitted safety reviews, and adopters independent of intake and review
+  owners.
 
 ## P4 Trusted Agent Consumption
 
