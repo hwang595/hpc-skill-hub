@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/community-skill-review-packet.schema.json",
+  "title": "HPC Skill Hub Community Review Packet",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "generated_by",
+    "contribution",
+    "intake",
+    "bindings",
+    "requirements",
+    "owners",
+    "review_questions",
+    "summary",
+    "packet_digest"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"const": "https://hpc-skill-hub.org/schemas/community-skill-review-packet.schema.json"},
+    "schema_version": {"const": "0.1.0"},
+    "generated_by": {"const": "hpc-skill-community-evidence@0.1.0"},
+    "contribution": {
+      "type": "object",
+      "required": ["id", "version", "risk_level", "domains", "submitter_id", "artifact_url"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "version": {"$ref": "#/$defs/version"},
+        "risk_level": {"enum": ["low", "medium", "high"]},
+        "domains": {"$ref": "#/$defs/nonEmptyIds"},
+        "submitter_id": {"$ref": "#/$defs/publicId"},
+        "artifact_url": {"$ref": "#/$defs/httpsUrl"}
+      }
+    },
+    "intake": {
+      "type": "object",
+      "required": ["status", "receipt_digest", "maintainer_id", "reviewed_on", "policy_digest", "accepted_exception_ids"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"const": "accepted"},
+        "receipt_digest": {"$ref": "#/$defs/sha256"},
+        "maintainer_id": {"$ref": "#/$defs/publicId"},
+        "reviewed_on": {"type": "string", "format": "date"},
+        "policy_digest": {"$ref": "#/$defs/nullableSha256"},
+        "accepted_exception_ids": {"$ref": "#/$defs/ids"}
+      }
+    },
+    "bindings": {
+      "type": "object",
+      "required": ["receipt_digest", "source_digest", "inventory_digest", "policy_digest", "context_digest", "contribution_record_digest", "review_basis_digest"],
+      "additionalProperties": false,
+      "properties": {
+        "receipt_digest": {"$ref": "#/$defs/sha256"},
+        "source_digest": {"$ref": "#/$defs/sha256"},
+        "inventory_digest": {"$ref": "#/$defs/sha256"},
+        "policy_digest": {"$ref": "#/$defs/nullableSha256"},
+        "context_digest": {"$ref": "#/$defs/sha256"},
+        "contribution_record_digest": {"$ref": "#/$defs/sha256"},
+        "review_basis_digest": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "requirements": {
+      "type": "object",
+      "required": ["domain_review_required", "safety_review_required", "adoption_evidence_required_for_field_tested", "maturity_decision_required"],
+      "additionalProperties": false,
+      "properties": {
+        "domain_review_required": {"const": true},
+        "safety_review_required": {"type": "boolean"},
+        "adoption_evidence_required_for_field_tested": {"const": true},
+        "maturity_decision_required": {"const": true}
+      }
+    },
+    "owners": {
+      "const": {
+        "intake_acceptance": "maintainer-intake",
+        "domain_review": "independent-domain-reviewer",
+        "safety_review": "independent-safety-reviewer",
+        "adoption_evidence": "independent-adopter",
+        "maturity_promotion": "registry-maintainer"
+      }
+    },
+    "review_questions": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "summary": {
+      "const": {
+        "status": "awaiting-independent-review",
+        "domain_review_complete": false,
+        "safety_review_complete": false,
+        "adoption_evidence_recorded": false,
+        "maturity_promotion_authorized": false
+      }
+    },
+    "packet_digest": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "nullableSha256": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/sha256"}]},
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "publicId": {"type": "string", "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9._-]{0,62}[A-Za-z0-9])?$"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "httpsUrl": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+    "nonEmptyIds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}
+  }
+}

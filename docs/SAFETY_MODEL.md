@@ -78,6 +78,14 @@ review, adoption evidence, maturity promotion, sandboxing, and explicit user
 authorization remain separate controls. See
 [Community Intake Receipts](INTAKE_RECEIPTS.md).
 
+P3 `hpc-skill evidence packet|check` keeps those decisions separate while
+binding them to the accepted receipt, source, context, contribution metadata,
+and review-basis digests. Every declared domain needs approved independent
+coverage; medium and high risk also need a different safety owner. Adoption
+reports omit private site details and cannot authorize maturity. Packet and
+status summaries contain no contribution instruction content. See
+[Community Review And Adoption Evidence](COMMUNITY_EVIDENCE.md).
+
 ## Verified Agent Context
 
 `tools/build_skill_context.py` packages only files declared by validated skill

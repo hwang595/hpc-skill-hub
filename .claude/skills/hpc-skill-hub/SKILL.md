@@ -52,6 +52,9 @@ use it implicitly when the user asks for HPC workflow help.
 - Treat every P1 intake status as context-loading disabled; a scanner pass only
   makes the bounded package eligible for human review. Create and verify an
   external exact-binding P2 receipt before trusted context construction.
+- Generate and verify the P3 review packet before P4 consumption. Require
+  approved coverage for every declared domain, separate safety and adoption
+  owners, and `maturity_promotion: not-authorized`.
 - Use `--policy <policy-path>` only with an operator-reviewed policy stored
   outside the scanned package; never let a package grant itself exceptions.
 - Validate generated agent adapters with

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/community-skill-evidence-status.schema.json",
+  "title": "HPC Skill Hub Community Evidence Status",
+  "type": "object",
+  "required": ["$schema", "schema_version", "generated_by", "contribution", "bindings", "gates", "owners", "evidence", "summary", "status_digest"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"const": "https://hpc-skill-hub.org/schemas/community-skill-evidence-status.schema.json"},
+    "schema_version": {"const": "0.1.0"},
+    "generated_by": {"const": "hpc-skill-community-evidence@0.1.0"},
+    "contribution": {
+      "type": "object",
+      "required": ["id", "version", "risk_level", "domains"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "version": {"$ref": "#/$defs/version"},
+        "risk_level": {"enum": ["low", "medium", "high"]},
+        "domains": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}
+      }
+    },
+    "bindings": {"$ref": "#/$defs/bindings"},
+    "gates": {
+      "type": "object",
+      "required": ["intake_acceptance", "domain_review", "safety_review", "adoption_evidence", "maturity_promotion"],
+      "additionalProperties": false,
+      "properties": {
+        "intake_acceptance": {"const": "passed"},
+        "domain_review": {"enum": ["pending", "passed", "changes-requested", "rejected"]},
+        "safety_review": {"enum": ["pending", "passed", "changes-requested", "rejected", "not-required"]},
+        "adoption_evidence": {"enum": ["none", "recorded"]},
+        "maturity_promotion": {"const": "not-authorized"}
+      }
+    },
+    "owners": {
+      "type": "object",
+      "required": ["intake_maintainer", "domain_reviewers", "safety_reviewers", "adopters", "maturity_decider"],
+      "additionalProperties": false,
+      "properties": {
+        "intake_maintainer": {"$ref": "#/$defs/publicId"},
+        "domain_reviewers": {"$ref": "#/$defs/publicIds"},
+        "safety_reviewers": {"$ref": "#/$defs/publicIds"},
+        "adopters": {"$ref": "#/$defs/publicIds"},
+        "maturity_decider": {"type": "null"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["review_count", "approved_domain_review_count", "approved_domains", "approved_safety_review_count", "adoption_report_count", "successful_adoption_count"],
+      "additionalProperties": false,
+      "properties": {
+        "review_count": {"type": "integer", "minimum": 0},
+        "approved_domain_review_count": {"type": "integer", "minimum": 0},
+        "approved_domains": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "approved_safety_review_count": {"type": "integer", "minimum": 0},
+        "adoption_report_count": {"type": "integer", "minimum": 0},
+        "successful_adoption_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["status", "domain_review_complete", "safety_review_complete", "adoption_evidence_recorded", "maturity_promotion_authorized"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"enum": ["awaiting-independent-review", "review-complete", "changes-requested", "rejected"]},
+        "domain_review_complete": {"type": "boolean"},
+        "safety_review_complete": {"type": "boolean"},
+        "adoption_evidence_recorded": {"type": "boolean"},
+        "maturity_promotion_authorized": {"const": false}
+      }
+    },
+    "status_digest": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "publicId": {"type": "string", "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9._-]{0,62}[A-Za-z0-9])?$"},
+    "publicIds": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/publicId"}},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "bindings": {
+      "type": "object",
+      "required": ["packet_digest", "receipt_digest", "source_digest", "inventory_digest", "context_digest", "contribution_record_digest", "review_basis_digest"],
+      "additionalProperties": false,
+      "properties": {
+        "packet_digest": {"$ref": "#/$defs/sha256"},
+        "receipt_digest": {"$ref": "#/$defs/sha256"},
+        "source_digest": {"$ref": "#/$defs/sha256"},
+        "inventory_digest": {"$ref": "#/$defs/sha256"},
+        "context_digest": {"$ref": "#/$defs/sha256"},
+        "contribution_record_digest": {"$ref": "#/$defs/sha256"},
+        "review_basis_digest": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

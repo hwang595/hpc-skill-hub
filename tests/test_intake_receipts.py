@@ -359,12 +359,31 @@ class IntakeReceiptTests(unittest.TestCase):
                 stderr=subprocess.PIPE,
                 check=False,
             )
+            installed_verified = subprocess.run(
+                [
+                    "python3",
+                    "tools/hpc_skill.py",
+                    "receipt",
+                    "verify",
+                    str(receipt_path),
+                    "--source",
+                    str(package),
+                    "--json",
+                ],
+                cwd=str(ROOT),
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                check=False,
+            )
 
             self.assertEqual(created.returncode, 0, created.stderr)
             self.assertEqual(json.loads(created.stdout)["summary"]["status"], "accepted")
             self.assertTrue(receipt_path.is_file())
             self.assertEqual(verified.returncode, 0, verified.stderr)
             self.assertTrue(json.loads(verified.stdout)["ok"])
+            self.assertEqual(installed_verified.returncode, 0, installed_verified.stderr)
+            self.assertTrue(json.loads(installed_verified.stdout)["ok"])
 
     def test_cli_rejects_a_decision_stored_inside_the_contribution(self):
         with tempfile.TemporaryDirectory() as tmpdir:

@@ -62,7 +62,8 @@ Current generated registry snapshot:
   details.
 - Use `docs/INTEGRATION_GUIDE.md`, `docs/SAFETY_MODEL.md`,
   `docs/TRUST_POLICY_PACKS.md`, `docs/INTAKE_RECEIPTS.md`, and
-  `docs/SKILL_SPEC.md` when changing integration behavior.
+  `docs/COMMUNITY_EVIDENCE.md` when changing integration behavior. Use
+  `docs/SKILL_SPEC.md` for registry skill contracts.
 
 ## Useful Commands
 
@@ -77,6 +78,8 @@ Current generated registry snapshot:
   `python3 tools/hpc_skill.py intake <skill-path-or-archive> --json`
 - Create or verify a digest-bound external intake receipt:
   `python3 tools/hpc_skill.py receipt create <skill-path-or-archive> --json`
+- Create or verify exact-bound review and adoption evidence:
+  `python3 tools/hpc_skill.py evidence packet --help`
 - Scan already bounded source content directly:
   `python3 tools/hpc_skill.py security <skill-path> --json`
 - Apply an operator-reviewed external trust policy stored outside the package:
@@ -127,6 +130,9 @@ Current generated registry snapshot:
   the provenance receipt.
 - Treat P2 acceptance as maintainer intake disposition, not proof of reviewer
   identity, domain correctness, independent review, adoption, or maturity.
+- Before P4 community context consumption, fresh-verify the P3 packet and
+  supplied evidence with `hpc-skill evidence check`. Treat `review-complete` as
+  review routing state, never execution or automatic maturity authorization.
 
 ## Editing Guidance
 
@@ -219,6 +225,9 @@ use it implicitly when the user asks for HPC workflow help.
 - Treat every P1 intake status as context-loading disabled; a scanner pass only
   makes the bounded package eligible for human review. Create and verify an
   external exact-binding P2 receipt before trusted context construction.
+- Generate and verify the P3 review packet before P4 consumption. Require
+  approved coverage for every declared domain, separate safety and adoption
+  owners, and `maturity_promotion: not-authorized`.
 - Use `--policy <policy-path>` only with an operator-reviewed policy stored
   outside the scanned package; never let a package grant itself exceptions.
 - Validate generated agent adapters with
@@ -271,6 +280,7 @@ scraping prose or guessing cluster policy.
 | `.claude/skills/hpc-skill-hub/SKILL.md` | Claude Code | Router skill exposed as `/hpc-skill-hub`. |
 | `integrations/mcp-client.json` | MCP clients and package runtime | Canonical stdio, capability, provider, and safety contract. |
 | `security/policies/community-default.json` | CLI, agents, and package runtime | Versioned fail-closed community-skill policy and provenance identity. |
+| `schemas/community-skill-{{review-packet,independent-review,adoption-report,evidence-status}}.schema.json` | Maintainers and integrations | Exact-bound community review, adoption, and aggregate status contracts. |
 | `integrations/codex.config.toml` | Codex | Generated user/project configuration example. |
 | `integrations/claude-code.mcp.json` | Claude Code | Generated project-scoped `.mcp.json` example. |
 | `hpc-skill-mcp` | MCP clients | Optional local stdio server for six read-only registry queries plus verified skill-context resources. |
@@ -311,6 +321,13 @@ Agents may advance only a fresh `hpc-skill receipt verify` result with status
 `accepted` to the P4 context builder. That status is exact maintainer intake
 disposition, not proof of reviewer identity, domain correctness, independent
 review, adoption, maturity, execution safety, or measured agent performance.
+
+Before P4 consumes accepted community context, agents should run
+`hpc-skill evidence check` against the original source, accepted receipt,
+packet, and supplied external evidence. Every declared domain needs approved
+coverage, safety and adoption owners remain separate, and the generated status
+must keep maturity promotion unauthorized. P3 status never authorizes content
+execution.
 
 External policy packs must be operator-reviewed and stored outside the scan
 target. They can only strengthen the packaged baseline. Reviewed exceptions
