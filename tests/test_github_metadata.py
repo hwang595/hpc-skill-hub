@@ -651,6 +651,10 @@ class GitHubMetadataTests(unittest.TestCase):
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(
+            "docs/COMMUNITY_CONTEXT.md",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
             "schemas/community-skill-intake-report.schema.json",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
@@ -663,11 +667,19 @@ class GitHubMetadataTests(unittest.TestCase):
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(
+            "schemas/community-skill-context-bundle.schema.json",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
             "tools/quarantine_skill_intake.py",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(
             "tools/community_intake_receipt.py",
+            launch_readiness.REQUIRED_LAUNCH_FILES,
+        )
+        self.assertIn(
+            "tools/community_context_bundle.py",
             launch_readiness.REQUIRED_LAUNCH_FILES,
         )
         self.assertIn(

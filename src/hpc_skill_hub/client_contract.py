@@ -138,6 +138,10 @@ def validate_client_contract(payload: Dict[str, Any]) -> None:
         isinstance(resource_entries, list) and bool(resource_entries),
         "MCP resource list is invalid",
     )
+    expected_resources = {
+        "skill_context": "hpc-skill://skills/{skill_id}",
+        "community_context": "hpc-skill://community/{contribution_id}/{version}",
+    }
     resource_names = []
     for entry in resource_entries:
         _require(isinstance(entry, dict), "MCP resource entry must be an object")
@@ -151,7 +155,7 @@ def validate_client_contract(payload: Dict[str, Any]) -> None:
         )
         _require(
             isinstance(entry["uri_template"], str)
-            and "{skill_id}" in entry["uri_template"],
+            and expected_resources.get(entry["name"]) == entry["uri_template"],
             "MCP resource URI template is invalid",
         )
         _require(
@@ -160,8 +164,9 @@ def validate_client_contract(payload: Dict[str, Any]) -> None:
         )
         resource_names.append(entry["name"])
     _require(
-        len(resource_names) == len(set(resource_names)),
-        "MCP resource names must be unique",
+        len(resource_names) == len(set(resource_names))
+        and set(resource_names) == set(expected_resources),
+        "MCP resource names must exactly match the supported resources",
     )
 
     expected_safety = {

@@ -111,6 +111,9 @@ class DoctorTests(unittest.TestCase):
         self.assertGreater(
             checks["mcp-protocol"]["details"]["probe_file_count"], 0
         )
+        self.assertEqual(
+            checks["mcp-protocol"]["details"]["community_context_count"], 0
+        )
 
 
 if __name__ == "__main__":

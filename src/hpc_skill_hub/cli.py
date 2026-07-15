@@ -28,6 +28,13 @@ from .community_evidence import (
     write_json_artifact as write_evidence_json,
     write_text_artifact as write_evidence_text,
 )
+from .community_context import (
+    CommunityContextError,
+    build_community_context,
+    community_context_metadata,
+    load_community_context,
+    render_community_context,
+)
 from .intake import IntakeError, intake_package, text_report as intake_text_report
 from .intake_receipt import (
     IntakeReceiptError,
@@ -891,6 +898,123 @@ def cmd_evidence_digest(args: argparse.Namespace) -> int:
     return 0
 
 
+def _community_context_summary(bundle: Dict[str, Any]) -> str:
+    metadata = community_context_metadata(bundle)
+    contribution = metadata["contribution"]
+    provenance = metadata["provenance"]
+    manifest = metadata["content_manifest"]
+    return "\n".join(
+        [
+            f"Trusted community context: {contribution['id']}@{contribution['version']}",
+            f"Exposure gate: {provenance['review']['status']}",
+            f"Risk: {provenance['risk']['level']} ({', '.join(provenance['risk']['domains'])})",
+            f"Source digest: {provenance['source']['source_digest']}",
+            f"Policy digest: {provenance['policy']['policy_digest']}",
+            f"Receipt digest: {provenance['receipt']['receipt_digest']}",
+            f"Review status digest: {provenance['review']['status_digest']}",
+            "Maturity promotion: not-authorized",
+            f"Content: {manifest['file_count']} file(s), {manifest['total_bytes']} byte(s)",
+            f"Resource: {metadata['resource_uri']}",
+        ]
+    )
+
+
+def cmd_community_context_build(args: argparse.Namespace) -> int:
+    source = Path(args.source).expanduser()
+    receipt_path = Path(args.receipt).expanduser()
+    packet_path = Path(args.packet).expanduser()
+    review_paths = [Path(path).expanduser() for path in args.review]
+    adoption_paths = [Path(path).expanduser() for path in args.adoption]
+    try:
+        artifacts = [
+            (source, "contribution"),
+            (receipt_path, "intake receipt"),
+            (packet_path, "review packet"),
+        ]
+        artifacts.extend((path, "independent review") for path in review_paths)
+        artifacts.extend((path, "adoption report") for path in adoption_paths)
+        if args.policy:
+            artifacts.append((Path(args.policy).expanduser(), "external policy"))
+        if args.output:
+            artifacts.append((Path(args.output).expanduser(), "community context output"))
+        ensure_distinct_artifacts(artifacts)
+        for path, label in artifacts[1:]:
+            if label in {"external policy", "community context output"}:
+                continue
+            ensure_external_artifact(source, path, label)
+        receipt = load_evidence_artifact(receipt_path, "intake receipt")
+        packet = load_evidence_artifact(packet_path, "review packet")
+        reviews = [load_evidence_artifact(path, "independent review") for path in review_paths]
+        reports = [load_evidence_artifact(path, "adoption report") for path in adoption_paths]
+        bundle = build_community_context(
+            source,
+            receipt,
+            packet,
+            reviews,
+            reports,
+            policy_path=Path(args.policy).expanduser() if args.policy else None,
+        )
+        if args.output:
+            output = Path(args.output).expanduser()
+            ensure_external_artifact(source, output, "community context output")
+            write_evidence_json(output, bundle, "community context bundle")
+    except (
+        CommunityContextError,
+        CommunityEvidenceError,
+        FileNotFoundError,
+        IntakeError,
+        IntakeReceiptError,
+        OSError,
+        SecurityPolicyError,
+    ) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    if args.json:
+        print(json.dumps(bundle, indent=2, ensure_ascii=False))
+    else:
+        print(_community_context_summary(bundle))
+    return 0
+
+
+def cmd_community_context_check(args: argparse.Namespace) -> int:
+    try:
+        bundle = load_community_context(Path(args.bundle).expanduser())
+        metadata = community_context_metadata(bundle)
+    except (
+        CommunityContextError,
+        CommunityEvidenceError,
+        FileNotFoundError,
+        IntakeReceiptError,
+        OSError,
+    ) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    if args.json:
+        emit_json({"ok": True, "context": metadata})
+    else:
+        print(_community_context_summary(bundle))
+    return 0
+
+
+def cmd_community_context_show(args: argparse.Namespace) -> int:
+    try:
+        bundle = load_community_context(Path(args.bundle).expanduser())
+    except (
+        CommunityContextError,
+        CommunityEvidenceError,
+        FileNotFoundError,
+        IntakeReceiptError,
+        OSError,
+    ) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    if args.json:
+        print(json.dumps(bundle, indent=2, ensure_ascii=False))
+    else:
+        print(render_community_context(bundle))
+    return 0
+
+
 def run_step(label: str, command: List[str], root: Path) -> int:
     print(f"==> {label}", flush=True)
     result = subprocess.run(command, cwd=str(root))
@@ -1552,6 +1676,44 @@ def build_parser() -> argparse.ArgumentParser:
     evidence_digest.add_argument("--output", help="Write a copy with its digest attached")
     evidence_digest.add_argument("--json", action="store_true", help="Emit completed JSON")
     evidence_digest.set_defaults(func=cmd_evidence_digest)
+
+    context_parser = subparsers.add_parser(
+        "community-context",
+        help="Build and inspect review-gated community context bundles",
+    )
+    context_subparsers = context_parser.add_subparsers(
+        dest="community_context_command", required=True
+    )
+    context_build = context_subparsers.add_parser(
+        "build", help="Build context after fresh intake and independent review"
+    )
+    context_build.add_argument("--source", required=True, help="Original contribution")
+    context_build.add_argument("--receipt", required=True, help="Accepted P2 receipt JSON")
+    context_build.add_argument("--packet", required=True, help="P3 review packet JSON")
+    context_build.add_argument(
+        "--review", action="append", default=[], help="Independent review JSON; repeatable"
+    )
+    context_build.add_argument(
+        "--adoption", action="append", default=[], help="Adoption report JSON; repeatable"
+    )
+    context_build.add_argument("--policy", help="External policy used by intake")
+    context_build.add_argument("--output", help="Write the verified context bundle")
+    context_build.add_argument("--json", action="store_true", help="Emit full bundle JSON")
+    context_build.set_defaults(func=cmd_community_context_build)
+
+    context_check = context_subparsers.add_parser(
+        "check", help="Verify a bundle and emit provenance without instruction content"
+    )
+    context_check.add_argument("bundle", help="Community context bundle JSON")
+    context_check.add_argument("--json", action="store_true", help="Emit metadata JSON")
+    context_check.set_defaults(func=cmd_community_context_check)
+
+    context_show = context_subparsers.add_parser(
+        "show", help="Verify and explicitly return community instruction content"
+    )
+    context_show.add_argument("bundle", help="Community context bundle JSON")
+    context_show.add_argument("--json", action="store_true", help="Emit full bundle JSON")
+    context_show.set_defaults(func=cmd_community_context_show)
 
     security_parser = subparsers.add_parser(
         "security", help="Scan a community skill package for security risks"

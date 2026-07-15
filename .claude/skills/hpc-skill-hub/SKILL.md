@@ -55,6 +55,9 @@ use it implicitly when the user asks for HPC workflow help.
 - Generate and verify the P3 review packet before P4 consumption. Require
   approved coverage for every declared domain, separate safety and adoption
   owners, and `maturity_promotion: not-authorized`.
+- Build P4 context from the quarantine snapshot with
+  `python3 tools/hpc_skill.py community-context build`; inspect provenance with
+  `check` before using the explicit `show` content operation.
 - Use `--policy <policy-path>` only with an operator-reviewed policy stored
   outside the scanned package; never let a package grant itself exceptions.
 - Validate generated agent adapters with

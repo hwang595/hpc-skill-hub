@@ -18,6 +18,7 @@ python3 tools/hpc_skill.py validate
 python3 tools/hpc_skill.py intake ./community-skill.zip --json
 python3 tools/hpc_skill.py receipt create ./community-skill.zip --json
 python3 tools/hpc_skill.py evidence --help
+python3 tools/hpc_skill.py community-context --help
 python3 tools/hpc_skill.py security skills/slurm-submit-job
 python3 tools/hpc_skill.py adapters
 python3 tools/hpc_skill.py adapter example-campus-cluster
@@ -34,6 +35,7 @@ hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
 hpc-skill intake ./community-skill.zip --json
 hpc-skill receipt create ./community-skill.zip --json
 hpc-skill evidence --help
+hpc-skill community-context --help
 hpc-skill security ./community-skill --format json
 ```
 
@@ -177,6 +179,36 @@ Pending and review-complete evidence exits `0`, changes-requested or rejected
 evidence exits `1`, and invalid or stale evidence exits `2`. The aggregate
 always keeps maturity promotion unauthorized. See
 [Community Review And Adoption Evidence](COMMUNITY_EVIDENCE.md).
+
+## Building Trusted Community Context
+
+After P3 reports `review-complete`, reconstruct the exact accepted files from a
+fresh quarantine snapshot and build the portable P4 bundle:
+
+```bash
+hpc-skill community-context build \
+  --source ./community-skill.zip \
+  --receipt ./review/community-skill.accepted.json \
+  --packet ./review/community-skill.packet.json \
+  --review ./review/domain.json \
+  --review ./review/safety.json \
+  --adoption ./review/adoption.json \
+  --output ./review/community-skill.context.json
+```
+
+Verify provenance and the manifest without returning instruction content, then
+use the explicit content operation when needed:
+
+```bash
+hpc-skill community-context check ./review/community-skill.context.json --json
+hpc-skill community-context show ./review/community-skill.context.json
+```
+
+`build` and `check` exit `0` only for a complete, digest-consistent bundle;
+invalid, stale, review-incomplete, or tampered evidence exits `2`. Adoption is
+optional for context exposure. Maturity promotion remains `not-authorized` and
+content never grants execution authority. See
+[Trusted Community Context](COMMUNITY_CONTEXT.md).
 
 For source that is already expanded inside a reviewed boundary, run the static
 scanner directly:

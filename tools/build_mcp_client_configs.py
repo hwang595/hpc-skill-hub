@@ -63,7 +63,10 @@ def build_setup_doc(contract: Dict[str, Any]) -> str:
     codex = contract["providers"]["codex"]
     claude = contract["providers"]["claude-code"]
     tool_list = ", ".join(f"`{name}`" for name in server["tools"])
-    resource = server["resources"][0]
+    resource_list = "\n".join(
+        f"- `{item['name']}` at `{item['uri_template']}` ({item['mime_type']})"
+        for item in server["resources"]
+    )
     return f"""# MCP Client Setup
 
 <!-- {GENERATED_NOTICE} -->
@@ -122,9 +125,16 @@ Official client reference: [{claude['documentation_url']}]({claude['documentatio
 
 ## Capability Boundary
 
-The server exposes six tools: {tool_list}. It also exposes the
-`{resource['name']}` resource at `{resource['uri_template']}` with MIME type
-`{resource['mime_type']}`.
+The server exposes {len(server['tools'])} tools: {tool_list}. It also exposes
+these resource templates:
+
+{resource_list}
+
+Community resources are disabled by default. An operator may add one or more
+`--community-bundle /reviewed/path/context.json` arguments after building and
+checking each bundle with `hpc-skill community-context`. Server startup
+revalidates the embedded receipt, packet, independent reviews, aggregate
+status, and exact content digests before registering the resources.
 
 Every tool is read-only, non-destructive, idempotent, and closed-world. MCP
 annotations are client hints; the server enforces the boundary by registering

@@ -46,10 +46,10 @@
     "mcp": {
       "artifact": "integrations/mcp-client.json",
       "read_only": true,
-      "resource_count": 1,
-      "sha256": "3b0d8163fb137b18aad68095234c9746a4698b2111882ba6f5fe768d6014e1f6",
+      "resource_count": 2,
+      "sha256": "d337ed33bc228582b5392a503d0112ef5e03e41c74c9579e68d135cdab61e6cc",
       "status": "ready",
-      "tool_count": 6,
+      "tool_count": 7,
       "transport": "stdio"
     },
     "review": {

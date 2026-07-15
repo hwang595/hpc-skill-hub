@@ -446,6 +446,18 @@ async def _protocol_probe() -> Dict[str, Any]:
         if status["server"]["tools"] != list(TOOL_NAMES):
             raise RuntimeError("registry_status tool allowlist mismatch")
 
+        community_result = await session.call_tool("list_community_contexts", {})
+        if community_result.isError:
+            raise RuntimeError("list_community_contexts returned a protocol error")
+        community = community_result.structuredContent["result"]
+        if (
+            not community.get("ok")
+            or community.get("configured") is not False
+            or community.get("count") != 0
+            or community.get("contexts") != []
+        ):
+            raise RuntimeError("default MCP server exposed community context")
+
         resource = await session.read_resource(
             AnyUrl(skill_resource_uri(PROBE_SKILL_ID))
         )
@@ -465,6 +477,7 @@ async def _protocol_probe() -> Dict[str, Any]:
             "probe_skill_id": PROBE_SKILL_ID,
             "probe_file_count": context["file_count"],
             "probe_total_bytes": context["total_bytes"],
+            "community_context_count": community["count"],
         }
 
 

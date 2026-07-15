@@ -61,6 +61,7 @@ SCHEMAS = {
     "agent-benchmark-task": ROOT / "schemas" / "agent-benchmark-task.schema.json",
     "benchmark": ROOT / "schemas" / "benchmark.schema.json",
     "community-skill-intake-report": ROOT / "schemas" / "community-skill-intake-report.schema.json",
+    "community-skill-context-bundle": ROOT / "schemas" / "community-skill-context-bundle.schema.json",
     "index": ROOT / "schemas" / "registry-index.schema.json",
     "health": ROOT / "schemas" / "registry-health.schema.json",
     "mcp-client-contract": ROOT / "schemas" / "mcp-client-contract.schema.json",
