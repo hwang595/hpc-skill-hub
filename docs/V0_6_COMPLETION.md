@@ -1,10 +1,11 @@
 # v0.6 Completion Matrix
 
 Status: P0 release hygiene merged in PR #48, P1 quarantined intake merged in PR
-#50, P2 deterministic intake receipts merged in PR #51, and P3 review and
-adoption evidence merged in PR #52. P4 trusted agent consumption is complete on
-main after PR #53. P5 pilot and release readiness are complete on the current
-release-candidate branch; tag-time provenance remains pending by design.
+#50, P2 deterministic intake receipts merged in PR #51, P3 review and adoption
+evidence merged in PR #52, P4 trusted agent consumption merged in PR #53, and
+P5 pilot and release readiness merged in PR #54. `v0.6.0` was released from
+commit `af4419a` on 2026-07-15; its tag-triggered manifest, wheel, and source
+distribution attestations are verified.
 No real community bundle acceptance, independent review, adoption, maturity
 promotion, or measured agent-lift outcome is claimed.
 
@@ -15,7 +16,7 @@ promotion, or measured agent-lift outcome is claimed.
 | P2 intake receipts | Merged in PR #51 | Deterministic receipts and external maintainer decisions bind source, bounded inventory, scanner, policy, findings, exceptions, and candidate/accepted context digests; fresh verification rejects stale evidence and keeps domain and independent review explicitly incomplete; the 225-test full local gate passes. |
 | P3 review and adoption evidence | Merged in PR #52 | Deterministic packets and issue summaries fresh-verify accepted P2 receipts; independent domain and safety decisions plus public-safe adoption reports bind exact source, context, contribution, and review-basis digests; declared-domain coverage and distinct owners are enforced; aggregate status never authorizes maturity promotion; the 242-test full suite passes with 7 optional-dependency skips. |
 | P4 trusted agent consumption | Merged in PR #53 | CLI reconstructs content only from the bounded quarantine snapshot after `review-complete`; portable bundles embed exact receipt, packet, review, status, policy, risk, and maturity evidence; `check` returns no content; MCP is disabled for community content by default and accepts only startup-time prebuilt bundles through a seven-tool, two-resource closed-world surface; all 252 tests pass on Python 3.11 with schema and MCP dependencies, plus an isolated installed-wheel context/resource smoke test. |
-| P5 pilot and release | Complete on P5 branch | A deterministic 3-fixture by 3-transport matrix passes 9/9 cases; the accepted synthetic P2-P4 pipeline remains non-authorizing; reusable core and MCP wheel verifiers create isolated venvs, reject checkout imports, verify default-zero and explicit-one community MCP resources, and are required by Package CI; all 263 tests pass on Python 3.11 with MCP and schema dependencies; machine-readable status and public notes keep all external outcome claims closed; v0.6 version and manifest contracts are release-ready while tag attestations remain pending. |
+| P5 pilot and release | Released in v0.6.0 after PR #54 | A deterministic 3-fixture by 3-transport matrix passes 9/9 cases; the accepted synthetic P2-P4 pipeline remains non-authorizing; reusable core and MCP wheel verifiers create isolated venvs, reject checkout imports, verify default-zero and explicit-one community MCP resources, and are required by Package CI; all 263 tests pass on Python 3.11 with MCP and schema dependencies; the tag-triggered manifest, wheel, and source distribution passed attestation verification while every external outcome claim remains closed. |
 
 ## External Gates
 

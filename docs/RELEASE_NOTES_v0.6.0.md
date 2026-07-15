@@ -1,9 +1,7 @@
 # HPC Skill Hub v0.6.0
 
-Status: release candidate. The repository capability and release-candidate
-manifest are ready for review. The tag, GitHub release, tag-triggered Package
-run, and artifact attestations do not exist yet, so release provenance remains
-pending.
+Status: released on 2026-07-15 from commit `af4419a`; the tag-triggered
+manifest, wheel, and source-distribution attestations are verified.
 
 v0.6 adds a verified path for community-contributed skills: quarantine first,
 bind every decision to exact evidence, and expose instructions to agents only
@@ -80,11 +78,13 @@ This release does not claim:
 Those gates remain closed until exact public-safe external evidence satisfies
 their separate contracts.
 
-## Release Verification
+## Release Provenance
 
-Before creating `v0.6.0`, merge the reviewed release commit and require green
-Validate and Package workflows. After the tag-triggered Package and attestation
-jobs complete, download the manifest, wheel, and source distribution, verify
-each with `gh attestation verify`, and only then add
-`registry/provenance/v0.6.0.json`. The existing v0.5 provenance receipt remains
-the latest verified release record until that post-release step is complete.
+- `v0.6.0` points at reviewed commit
+  `af4419a9c4b8211150318c58b9f41328f3a9abb9`.
+- The tag-triggered Package workflow completed successfully in run
+  `29458968805`, including Core and MCP installed-wheel isolation checks.
+- The immutable manifest, wheel, and source distribution all passed
+  `gh attestation verify` against `hwang595/hpc-skill-hub`.
+- `registry/provenance/v0.6.0.json` records the exact verified subject digests
+  without modifying the published release manifest.

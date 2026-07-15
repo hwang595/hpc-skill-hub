@@ -208,22 +208,22 @@ class RegistryTests(unittest.TestCase):
             status["gates"]["comparative_evidence"]["status"], "closed"
         )
         self.assertEqual(status["gates"]["maturity_promotion"]["status"], "closed")
-        self.assertEqual(status["gates"]["release_provenance"]["status"], "pending")
-        self.assertTrue(status["gates"]["release_provenance"]["blockers"])
+        self.assertEqual(status["gates"]["release_provenance"]["status"], "open")
+        self.assertFalse(status["gates"]["release_provenance"]["blockers"])
 
     def test_release_provenance_receipt_is_bound_to_manifest(self):
         receipt = json.loads(
-            (ROOT / "registry" / "provenance" / "v0.5.0.json").read_text(
+            (ROOT / "registry" / "provenance" / "v0.6.0.json").read_text(
                 encoding="utf-8"
             )
         )
-        manifest_path = ROOT / "registry" / "releases" / "v0.5.0.json"
+        manifest_path = ROOT / "registry" / "releases" / "v0.6.0.json"
         artifacts = {item["kind"]: item for item in receipt["artifacts"]}
 
-        self.assertEqual(receipt["release"], "v0.5.0")
-        self.assertEqual(receipt["tag"], "v0.5.0")
+        self.assertEqual(receipt["release"], "v0.6.0")
+        self.assertEqual(receipt["tag"], "v0.6.0")
         self.assertEqual(
-            receipt["commit"], "22be6aef66bd07182ce0d0dd67be72d1c2d21522"
+            receipt["commit"], "af4419a9c4b8211150318c58b9f41328f3a9abb9"
         )
         self.assertEqual(receipt["workflow"]["conclusion"], "success")
         self.assertEqual(receipt["verification"]["status"], "verified")
@@ -400,15 +400,16 @@ class RegistryTests(unittest.TestCase):
         )
         self.assertEqual(manifest["registry"]["skill_count"], 97)
 
-    def test_current_release_manifest_summarizes_registry(self):
-        result = run_cmd(
-            "python3", "tools/build_release_manifest.py", "v0.6.0", "--check"
-        )
-        self.assertIn("Release manifest is current", result.stdout)
+    def test_v0_6_release_manifest_remains_immutable(self):
         manifest_path = ROOT / "registry" / "releases" / "v0.6.0.json"
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        data = manifest_path.read_bytes()
+        manifest = json.loads(data)
 
         self.assertEqual(manifest["version"], "v0.6.0")
+        self.assertEqual(
+            hashlib.sha256(data).hexdigest(),
+            "fd3641e64a57debb4aeda06ba2f3c3b9dcceb1999598329645372249bef8b8c9",
+        )
         self.assertEqual(manifest["registry"]["skill_count"], 97)
         self.assertEqual(manifest["registry"]["collection_count"], 12)
         self.assertEqual(manifest["registry"]["site_adapter_count"], 2)
@@ -454,7 +455,7 @@ class RegistryTests(unittest.TestCase):
         self.assertIn(f'version: "{version}"', citation)
         self.assertIn(f"version-{version}-", readme)
         self.assertNotIn(f"version-{version}--rc", readme)
-        self.assertIn("Status: release candidate", release_notes)
+        self.assertIn("Status: released", release_notes)
 
     def test_safety_audit_passes(self):
         result = run_cmd("python3", "tools/audit_safety.py")
@@ -799,8 +800,8 @@ class RegistryTests(unittest.TestCase):
             html = output.read_text(encoding="utf-8")
             self.assertIn("HPC Skill Hub Registry", html)
             self.assertIn("v0.6.0 Release Status", html)
-            self.assertIn("Repository ready", html)
-            self.assertIn("Awaiting the v0.6.0 tag and attestations", html)
+            self.assertIn("Released and verified", html)
+            self.assertIn("Manifest, wheel, and sdist attestations verified", html)
             self.assertIn("Community Pilot", html)
             self.assertIn("docs/COMMUNITY_PILOT_v0.6.0.md", html)
             self.assertIn("Registry Explorer", html)
@@ -838,7 +839,7 @@ class RegistryTests(unittest.TestCase):
             self.assertTrue((Path(tmpdir) / "registry/health.json").exists())
             self.assertTrue((Path(tmpdir) / "registry/release-status.json").exists())
             self.assertTrue(
-                (Path(tmpdir) / "registry/provenance/v0.5.0.json").exists()
+                (Path(tmpdir) / "registry/provenance/v0.6.0.json").exists()
             )
 
 

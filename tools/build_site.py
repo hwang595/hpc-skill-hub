@@ -896,7 +896,7 @@ def render(index: Dict[str, Any], release_status: Dict[str, Any]) -> str:
       <span>Generated from <code>registry/index.json</code> and <code>registry/release-status.json</code>.</span>
       <span class="footer-links">
         <a href="registry/release-status.json">Release status</a>
-        <a href="registry/provenance/v0.5.0.json">Latest verified provenance</a>
+        <a href="registry/provenance/v0.6.0.json">Latest verified provenance</a>
         <a href="registry/releases/v0.6.0.json">Release manifest</a>
         <a href="registry/community-pilot-v0.6.0.json">Community pilot</a>
         <a href="docs/RELEASE_NOTES_v0.6.0.md">Release notes</a>
