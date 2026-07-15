@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/community-skill-intake-decision.schema.json",
+  "title": "HPC Skill Hub Community Intake Maintainer Decision",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "reviewer_id",
+    "reviewer_role",
+    "reviewed_on",
+    "disposition",
+    "bindings",
+    "acknowledged_finding_digests",
+    "acknowledged_exception_ids",
+    "rationale"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://hpc-skill-hub.org/schemas/community-skill-intake-decision.schema.json"
+    },
+    "schema_version": {"const": "0.1.0"},
+    "reviewer_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9._-]{0,62}[A-Za-z0-9])?$"
+    },
+    "reviewer_role": {"const": "maintainer-intake"},
+    "reviewed_on": {"type": "string", "format": "date"},
+    "disposition": {"enum": ["accept", "request-changes", "reject"]},
+    "bindings": {"$ref": "#/$defs/bindings"},
+    "acknowledged_finding_digests": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/sha256"}
+    },
+    "acknowledged_exception_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "rationale": {"type": "string", "minLength": 1, "maxLength": 1000}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "nullableSha256": {
+      "oneOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/sha256"}
+      ]
+    },
+    "bindings": {
+      "type": "object",
+      "required": [
+        "source_digest",
+        "inventory_digest",
+        "policy_digest",
+        "findings_digest",
+        "exceptions_digest",
+        "context_digest",
+        "intake_digest",
+        "review_basis_digest"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "source_digest": {"$ref": "#/$defs/nullableSha256"},
+        "inventory_digest": {"$ref": "#/$defs/sha256"},
+        "policy_digest": {"$ref": "#/$defs/nullableSha256"},
+        "findings_digest": {"$ref": "#/$defs/sha256"},
+        "exceptions_digest": {"$ref": "#/$defs/sha256"},
+        "context_digest": {"$ref": "#/$defs/nullableSha256"},
+        "intake_digest": {"$ref": "#/$defs/sha256"},
+        "review_basis_digest": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

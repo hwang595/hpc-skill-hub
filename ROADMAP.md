@@ -44,12 +44,12 @@ order:
 1. **P0 release hygiene (merged):** record v0.5 provenance, correct public
    release status, freeze its manifest checks, refresh CI actions, and open the
    v0.6 tracking contracts.
-2. **P1 quarantined intake (implemented):** inspect untrusted contribution
+2. **P1 quarantined intake (merged in PR #50):** inspect untrusted contribution
    bundles under strict path, archive, size, and no-execution limits before any
    instruction is loaded into agent context.
-3. **P2 intake receipts:** bind source digest, inventory, scanner and policy
-   versions, findings, exceptions, and reviewer disposition in a portable JSON
-   contract.
+3. **P2 intake receipts (implemented):** bind source digest, inventory, scanner
+   and policy versions, findings, exceptions, reviewer disposition, and context
+   manifest digest in a portable JSON contract with fresh stale-binding checks.
 4. **P3 operational evidence:** connect independent review and public-safe
    adoption evidence to intake decisions without automatic maturity promotion.
 5. **P4 trusted agent consumption:** expose only accepted, digest-verified

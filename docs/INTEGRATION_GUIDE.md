@@ -23,6 +23,7 @@ The stable seed-stage surfaces are:
 | `registry/release-status.json` | Package-versioned capability status and explicit repository, comparative-evidence, maturity, and release-provenance gates. |
 | `integrations/mcp-client.json` | Canonical local stdio, capability, provider, and safety contract for MCP clients. |
 | `security/policies/community-default.json` | Versioned fail-closed community-skill policy, packaged independently from scanner code. |
+| `schemas/community-skill-intake-*.schema.json` | Portable P1 report, P2 maintainer decision, and deterministic receipt contracts for untrusted community intake. |
 | `integrations/codex.config.toml` and `integrations/claude-code.mcp.json` | Generated, reviewable provider configuration examples. |
 | `python3 tools/hpc_skill.py ... --json` | Local CLI access for tools that prefer command output over direct file reads, including structured validation results. |
 | `hpc-skill ... --json` | Installed package access to the packaged registry snapshot for read-only discovery and site-policy resolution. |
@@ -88,6 +89,14 @@ it opens no listener and executes no skill content.
 Apply only operator-reviewed external trust policies stored outside the scanned
 community package. See [Trust Policy Packs](TRUST_POLICY_PACKS.md) for the
 monotonic override, reviewed-exception, and provenance contract.
+
+Before an integration exposes community-contributed content, run
+`hpc-skill intake`, create an external exact-binding maintainer decision, and
+verify the resulting receipt with `hpc-skill receipt verify`. Only an
+`accepted` receipt may advance to the P4 context builder, which must reconstruct
+and verify every file against `accepted_context.accepted_digest`. The receipt is
+a drift-detection record, not a signature or domain review. See
+[Community Intake Receipts](INTAKE_RECEIPTS.md).
 
 Minimal Python example:
 

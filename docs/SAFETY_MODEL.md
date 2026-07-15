@@ -62,6 +62,22 @@ the threat model, verdicts, agent adoption protocol, and limitations. The
 monotonic severity overrides, digest-bound reviewed exceptions, and provenance
 separately from scanner code.
 
+## Quarantined Intake Receipts
+
+`hpc-skill intake` copies a bounded directory or archive into a temporary
+quarantine before scanning it, then removes that workspace without returning
+instruction content. `hpc-skill receipt create|verify` adds deterministic
+source, inventory, policy, finding, exception, reviewer-decision, and context
+manifest bindings. Decisions, receipts, and strengthening policies must remain
+outside a directory contribution so the package cannot approve itself.
+
+An `accepted` P2 receipt records exact maintainer intake disposition only. Its
+digest detects drift but is not a signature, scanner pass is not domain
+correctness, and the receipt grants no execution capability. Independent domain
+review, adoption evidence, maturity promotion, sandboxing, and explicit user
+authorization remain separate controls. See
+[Community Intake Receipts](INTAKE_RECEIPTS.md).
+
 ## Verified Agent Context
 
 `tools/build_skill_context.py` packages only files declared by validated skill

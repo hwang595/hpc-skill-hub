@@ -15,6 +15,15 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
 from .intake import IntakeError, intake_package, text_report as intake_text_report
+from .intake_receipt import (
+    IntakeReceiptError,
+    create_receipt,
+    ensure_external_artifact,
+    load_json_artifact,
+    text_report as receipt_text_report,
+    verify_receipt,
+    write_json_artifact,
+)
 from .reviews import (
     assess_bundle,
     candidates_text,
@@ -665,6 +674,69 @@ def cmd_intake(args: argparse.Namespace) -> int:
     return 1 if report["summary"]["status"] == "blocked" else 0
 
 
+def cmd_receipt_create(args: argparse.Namespace) -> int:
+    source = Path(args.source).expanduser()
+    try:
+        decision = None
+        if args.decision:
+            decision_path = Path(args.decision).expanduser()
+            ensure_external_artifact(source, decision_path, "reviewer decision")
+            decision = load_json_artifact(decision_path, "reviewer decision")
+        receipt = create_receipt(
+            source,
+            policy_path=Path(args.policy).expanduser() if args.policy else None,
+            decision=decision,
+        )
+        if args.output:
+            output = Path(args.output).expanduser()
+            ensure_external_artifact(source, output, "intake receipt")
+            write_json_artifact(output, receipt)
+    except (
+        FileNotFoundError,
+        IntakeError,
+        IntakeReceiptError,
+        OSError,
+        SecurityPolicyError,
+    ) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    if args.json:
+        emit_json(receipt)
+    else:
+        print(receipt_text_report(receipt))
+    return 1 if receipt["summary"]["status"] == "blocked" else 0
+
+
+def cmd_receipt_verify(args: argparse.Namespace) -> int:
+    source = Path(args.source).expanduser()
+    receipt_path = Path(args.receipt).expanduser()
+    try:
+        ensure_external_artifact(source, receipt_path, "intake receipt")
+        receipt = load_json_artifact(receipt_path, "intake receipt")
+        verification = verify_receipt(
+            receipt,
+            source,
+            policy_path=Path(args.policy).expanduser() if args.policy else None,
+        )
+    except (
+        FileNotFoundError,
+        IntakeError,
+        IntakeReceiptError,
+        OSError,
+        SecurityPolicyError,
+    ) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    if args.json:
+        emit_json(verification)
+    else:
+        print(
+            f"Intake receipt verified: {verification['status'].upper()} "
+            f"({verification['receipt_digest']})"
+        )
+    return 1 if verification["status"] == "blocked" else 0
+
+
 def run_step(label: str, command: List[str], root: Path) -> int:
     print(f"==> {label}", flush=True)
     result = subprocess.run(command, cwd=str(root))
@@ -1232,6 +1304,44 @@ def build_parser() -> argparse.ArgumentParser:
         help="Complete external policy pack stored outside the contribution",
     )
     intake_parser.set_defaults(func=cmd_intake)
+
+    receipt_parser = subparsers.add_parser(
+        "receipt",
+        help="Create and verify deterministic community intake receipts",
+    )
+    receipt_subparsers = receipt_parser.add_subparsers(
+        dest="receipt_command", required=True
+    )
+    receipt_create = receipt_subparsers.add_parser(
+        "create", help="Create a receipt from fresh quarantined intake"
+    )
+    receipt_create.add_argument(
+        "source", help="Directory, ZIP archive, or TAR archive to inspect"
+    )
+    receipt_create.add_argument(
+        "--policy", help="Complete external policy pack stored outside the contribution"
+    )
+    receipt_create.add_argument(
+        "--decision", help="External maintainer intake decision JSON"
+    )
+    receipt_create.add_argument(
+        "--output", help="Write the portable receipt to this external path"
+    )
+    receipt_create.add_argument("--json", action="store_true", help="Emit full JSON")
+    receipt_create.set_defaults(func=cmd_receipt_create)
+
+    receipt_verify = receipt_subparsers.add_parser(
+        "verify", help="Re-run intake and verify every receipt binding"
+    )
+    receipt_verify.add_argument("receipt", help="Receipt JSON to verify")
+    receipt_verify.add_argument(
+        "--source", required=True, help="Original directory, ZIP archive, or TAR archive"
+    )
+    receipt_verify.add_argument(
+        "--policy", help="External policy used when the receipt was created"
+    )
+    receipt_verify.add_argument("--json", action="store_true", help="Emit JSON")
+    receipt_verify.set_defaults(func=cmd_receipt_verify)
 
     security_parser = subparsers.add_parser(
         "security", help="Scan a community skill package for security risks"

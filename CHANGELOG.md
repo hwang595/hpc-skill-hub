@@ -17,6 +17,9 @@ skills keep their own `version` field in `skills/*/skill.json`.
   files with no-execution staging, bounded resources, portable path checks,
   binary and encoding rejection, cleanup, scanner integration, and a strict
   machine-readable report contract.
+- Add v0.6 P2 deterministic community intake receipts with portable source,
+  inventory, scanner, policy, finding, exception, maintainer-decision, and
+  context-manifest bindings plus fresh stale-evidence verification.
 
 ### Changed
 
