@@ -21,6 +21,7 @@
       "list_collections",
       "show_site_adapters",
       "resolve_site_policy",
+      "list_community_contexts",
       "registry_status"
     ],
     "tool_arguments": {
@@ -29,12 +30,18 @@
       "list_collections": ["collection_id"],
       "show_site_adapters": ["adapter_id"],
       "resolve_site_policy": ["skill_id", "adapter_id"],
+      "list_community_contexts": ["contribution_id", "version"],
       "registry_status": []
     },
     "resources": [
       {
         "name": "skill_context",
         "uri_template": "hpc-skill://skills/{skill_id}",
+        "mime_type": "application/json"
+      },
+      {
+        "name": "community_context",
+        "uri_template": "hpc-skill://community/{contribution_id}/{version}",
         "mime_type": "application/json"
       }
     ],

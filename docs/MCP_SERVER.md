@@ -25,6 +25,18 @@ python3 -m pip install '.[mcp]'
 hpc-skill-mcp --root /path/to/hpc-skill-hub
 ```
 
+To expose an operator-reviewed community bundle, keep it outside the submitted
+package and pass it explicitly:
+
+```bash
+hpc-skill community-context check /reviewed/community-demo-context.json
+hpc-skill-mcp --community-bundle /reviewed/community-demo-context.json
+```
+
+The server revalidates the embedded receipt, review packet, independent
+reviews, aggregate status, and exact content digests before startup. Repeat
+`--community-bundle` for additional reviewed versions.
+
 An MCP client should launch `hpc-skill-mcp` as a local stdio command. The
 server does not expose an HTTP listener.
 
@@ -54,6 +66,7 @@ hpc-skill doctor --require-mcp
 | `list_collections` | List collections or inspect one collection. |
 | `show_site_adapters` | List site adapters or inspect one adapter's public policy. |
 | `resolve_site_policy` | Resolve one skill through one public adapter without filling unknown local values. |
+| `list_community_contexts` | List provenance and manifests for explicitly configured, review-complete community bundles without returning instruction content. |
 | `registry_status` | Return registry health, release capability gates, review queue state, server capabilities, and the safety boundary. |
 
 Search results are capped at 50 records. `show_skill` returns validated metadata
@@ -67,6 +80,18 @@ The resource template is:
 ```text
 hpc-skill://skills/{skill_id}
 ```
+
+Explicitly configured community bundles use a separate template:
+
+```text
+hpc-skill://community/{contribution_id}/{version}
+```
+
+Call `list_community_contexts` first to inspect source, policy, receipt, review,
+maturity, and risk provenance plus the exact content manifest. Community
+resource JSON serializes that provenance and embedded evidence before the file
+content. Only `review-complete` bundles are loadable; adoption evidence remains
+optional and maturity promotion remains `not-authorized`.
 
 For example, after calling `show_skill("slurm-submit-job")`, a client can read
 `hpc-skill://skills/slurm-submit-job`. The JSON resource contains:
@@ -94,8 +119,8 @@ the selected repository or packaged bundle does not pass these checks.
 
 Every tool is annotated as read-only, non-destructive, idempotent, and
 closed-world. These annotations help clients describe the tools, but they are
-not the enforcement boundary. The server itself registers only the six named
-functions and one bounded resource template. It contains no tool that:
+not the enforcement boundary. The server itself registers only the seven named
+functions and two bounded resource templates. It contains no tool that:
 
 - executes commands or example scripts;
 - writes files or changes registry state;
@@ -104,10 +129,12 @@ functions and one bounded resource template. It contains no tool that:
 - opens tunnels, listeners, or remote network sessions; or
 - returns unreviewed community skill content.
 
-Only content already admitted to the generated public registry can enter the
-resource bundle. Arbitrary community paths cannot be passed to the MCP server.
-Security `review` findings and the versioned trust-policy receipt remain
-visible; `block` prevents generation.
+Registry content comes only from the generated package snapshot. Community
+content comes only from explicit prebuilt bundle paths; source packages,
+receipts, review records, policies, and arbitrary directories are not MCP tool
+arguments. Security `review` findings, the versioned trust-policy receipt, and
+independent review evidence remain visible; blocked, stale, incomplete, or
+tampered bundles prevent server startup.
 
 The server defines an exact argument allowlist for each tool and checks it
 against callable signatures before registration. The doctor and official SDK

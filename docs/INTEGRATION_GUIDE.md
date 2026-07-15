@@ -106,6 +106,28 @@ and preserve the aggregate `maturity_promotion: not-authorized` result. P3
 status is review routing evidence, not context-loading or execution authority.
 See [Community Review And Adoption Evidence](COMMUNITY_EVIDENCE.md).
 
+Build the immutable P4 bundle only after the aggregate status is
+`review-complete`:
+
+```bash
+hpc-skill community-context build \
+  --source <contribution> \
+  --receipt <accepted-receipt.json> \
+  --packet <review-packet.json> \
+  --review <domain-review.json> \
+  --review <safety-review.json> \
+  --output <community-context.json>
+hpc-skill community-context check <community-context.json> --json
+```
+
+The safety review argument is required by the evidence contract for medium- and
+high-risk contributions; adoption reports are optional for context exposure and
+remain separate evidence for later lifecycle decisions. `check` returns
+provenance and a manifest without instruction content. `show` is the explicit
+CLI content-reading operation. MCP servers expose no community content by
+default; operators opt in with `hpc-skill-mcp --community-bundle
+<community-context.json>`. See [Trusted Community Context](COMMUNITY_CONTEXT.md).
+
 Minimal Python example:
 
 ```python

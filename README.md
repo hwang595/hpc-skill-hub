@@ -298,10 +298,11 @@ claiming measured agent lift or completed maturity promotion:
 6. A packaged release-status contract, operational registry explorer, immutable
    manifest, and verified release provenance in P5.
 
-v0.6 development now has quarantined intake, digest-bound receipts, and P3
-independent review/adoption evidence implemented. The next phase is the P4
-agent-facing trust boundary, which may expose only accepted and freshly
-verified community context. See the v0.6 plan and completion matrix below.
+v0.6 development now has quarantined intake, digest-bound receipts, independent
+review/adoption evidence, and the P4 agent-facing trust boundary implemented.
+The installed CLI and optional MCP server expose community instructions only
+from `review-complete`, digest-verified bundles with visible provenance. P5
+pilot and release work remains. See the v0.6 plan and completion matrix below.
 
 See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 
@@ -323,6 +324,7 @@ See [ROADMAP.md](ROADMAP.md) for the technical roadmap.
 - [Quarantined community intake](docs/COMMUNITY_INTAKE.md)
 - [Community intake receipts](docs/INTAKE_RECEIPTS.md)
 - [Community review and adoption evidence](docs/COMMUNITY_EVIDENCE.md)
+- [Trusted community context](docs/COMMUNITY_CONTEXT.md)
 - [v0.5 development plan](docs/V0_5_PLAN.md)
 - [v0.5 completion matrix](docs/V0_5_COMPLETION.md)
 - [v0.6 development plan](docs/V0_6_PLAN.md)

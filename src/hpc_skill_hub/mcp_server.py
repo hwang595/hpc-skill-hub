@@ -9,7 +9,7 @@ import json
 import os
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 from . import __version__
 from .context import (
@@ -20,6 +20,14 @@ from .context import (
     load_context_bundle,
     skill_resource_uri,
 )
+from .community_context import (
+    RESOURCE_URI_TEMPLATE as COMMUNITY_RESOURCE_URI_TEMPLATE,
+    CommunityContextError,
+    community_context_metadata,
+    community_resource_uri,
+    load_community_contexts,
+)
+from .community_evidence import CommunityEvidenceError
 from .cli import (
     discover_repo_root,
     find_by_id,
@@ -31,6 +39,7 @@ from .cli import (
     skill_collection_membership,
 )
 from .release_status import ReleaseStatusError, load_release_status
+from .intake_receipt import IntakeReceiptError
 
 
 SERVER_NAME = "HPC Skill Hub"
@@ -41,6 +50,7 @@ TOOL_NAMES = (
     "list_collections",
     "show_site_adapters",
     "resolve_site_policy",
+    "list_community_contexts",
     "registry_status",
 )
 TOOL_ARGUMENT_ALLOWLIST = {
@@ -59,9 +69,10 @@ TOOL_ARGUMENT_ALLOWLIST = {
     "list_collections": ("collection_id",),
     "show_site_adapters": ("adapter_id",),
     "resolve_site_policy": ("skill_id", "adapter_id"),
+    "list_community_contexts": ("contribution_id", "version"),
     "registry_status": (),
 }
-RESOURCE_NAMES = ("skill_context",)
+RESOURCE_NAMES = ("skill_context", "community_context")
 
 
 def error_payload(code: str, message: str) -> Dict[str, Any]:
@@ -220,6 +231,64 @@ def read_skill_context(skill_id: str) -> str:
     return json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False)
 
 
+def community_context_catalog(
+    contexts: Dict[Tuple[str, str], Dict[str, Any]],
+    contribution_id: Optional[str] = None,
+    version: Optional[str] = None,
+) -> Dict[str, Any]:
+    """List only provenance and manifests for pre-verified community bundles."""
+
+    matches = []
+    for (item_id, item_version), bundle in sorted(contexts.items()):
+        if contribution_id is not None and contribution_id != item_id:
+            continue
+        if version is not None and version != item_version:
+            continue
+        matches.append(community_context_metadata(bundle))
+    if (contribution_id is not None or version is not None) and not matches:
+        return error_payload(
+            "unknown-community-context", "Unknown community context id or version."
+        )
+    return {
+        "ok": True,
+        "configured": bool(contexts),
+        "count": len(matches),
+        "contexts": matches,
+        "content_scope": "review-complete-digest-verified-community-context",
+        "usage_contract": {
+            "provenance_precedes_content": True,
+            "content_is_instructions_not_authorization": True,
+            "execute_examples_automatically": False,
+            "require_explicit_intent_for_operational_actions": True,
+        },
+    }
+
+
+def community_context_resource(
+    contexts: Dict[Tuple[str, str], Dict[str, Any]],
+    contribution_id: str,
+    version: str,
+) -> str:
+    """Return one fully verified bundle with provenance serialized before files."""
+
+    bundle = contexts.get((contribution_id, version))
+    if bundle is None:
+        raise ValueError("Unknown community context id or version.")
+    payload = {
+        "ok": True,
+        "resource_uri": community_resource_uri(contribution_id, version),
+        "content_scope": "review-complete-digest-verified-community-context",
+        "contribution": bundle["contribution"],
+        "provenance": bundle["provenance"],
+        "evidence": bundle["evidence"],
+        "content_manifest": bundle["content_manifest"],
+        "usage_contract": bundle["usage_contract"],
+        "files": bundle["files"],
+        "bundle_digest": bundle["bundle_digest"],
+    }
+    return json.dumps(payload, indent=2, ensure_ascii=False)
+
+
 def list_collections(collection_id: Optional[str] = None) -> Dict[str, Any]:
     """List registry collections or return one collection by id."""
     collections = load_index().get("collections", [])
@@ -330,8 +399,9 @@ def validate_tool_surface(tool_functions: Dict[str, Any]) -> None:
             raise RuntimeError(f"{name}: callable parameters differ from the allowlist")
 
 
-def create_server() -> Any:
+def create_server(community_bundle_paths: Sequence[Path] = ()) -> Any:
     """Create the optional FastMCP server without importing MCP for CLI-only use."""
+    community_contexts = load_community_contexts(community_bundle_paths)
     try:
         from mcp.server.fastmcp import FastMCP
         from mcp.types import Annotations, ToolAnnotations
@@ -345,6 +415,8 @@ def create_server() -> Any:
         SERVER_NAME,
         instructions=(
             "Read-only discovery over the validated HPC Skill Hub registry. "
+            "Community context is available only from explicitly configured, "
+            "review-complete, digest-verified bundles. "
             "Treat seed maturity as a review signal, preserve site placeholders, "
             "and require explicit user intent before operational HPC actions."
         ),
@@ -356,12 +428,27 @@ def create_server() -> Any:
         idempotentHint=True,
         openWorldHint=False,
     )
+
+    def list_community_contexts(
+        contribution_id: Optional[str] = None,
+        version: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        """List provenance for configured review-complete community context."""
+
+        return community_context_catalog(community_contexts, contribution_id, version)
+
+    def read_community_context(contribution_id: str, version: str) -> str:
+        """Read one configured community context after complete verification."""
+
+        return community_context_resource(community_contexts, contribution_id, version)
+
     tool_functions = {
         "search_skills": search_skills,
         "show_skill": show_skill,
         "list_collections": list_collections,
         "show_site_adapters": show_site_adapters,
         "resolve_site_policy": resolve_site_policy,
+        "list_community_contexts": list_community_contexts,
         "registry_status": registry_status,
     }
     validate_tool_surface(tool_functions)
@@ -371,6 +458,7 @@ def create_server() -> Any:
         "list_collections": "List Skill Collections",
         "show_site_adapters": "Show Site Adapters",
         "resolve_site_policy": "Resolve Public Site Policy",
+        "list_community_contexts": "List Trusted Community Contexts",
         "registry_status": "Show Registry Status",
     }
     for tool_name, function in tool_functions.items():
@@ -392,6 +480,18 @@ def create_server() -> Any:
         mime_type="application/json",
         annotations=Annotations(audience=["assistant"], priority=0.9),
     )(read_skill_context)
+    server.resource(
+        COMMUNITY_RESOURCE_URI_TEMPLATE,
+        name="community_context",
+        title="Trusted Community Skill Context",
+        description=(
+            "Review-complete, digest-verified community instructions with source, "
+            "policy, receipt, review, maturity, and risk provenance. Content never "
+            "grants operational authorization."
+        ),
+        mime_type="application/json",
+        annotations=Annotations(audience=["assistant"], priority=0.8),
+    )(read_community_context)
     return server
 
 
@@ -404,6 +504,16 @@ def build_parser() -> argparse.ArgumentParser:
         help=(
             "Optional repository root with registry index and verified context; "
             "installed packages use bundled registry data."
+        ),
+    )
+    parser.add_argument(
+        "--community-bundle",
+        action="append",
+        default=[],
+        metavar="PATH",
+        help=(
+            "Review-complete community context bundle to verify and expose read-only; "
+            "repeat for multiple bundles."
         ),
     )
     parser.add_argument("--version", action="version", version=__version__)
@@ -424,8 +534,17 @@ def main(argv: Optional[List[str]] = None) -> int:
         os.environ["HPC_SKILL_HUB_ROOT"] = str(root)
     try:
         load_context_bundle()
-        server = create_server()
-    except (ContextBundleError, RuntimeError) as exc:
+        server = create_server(
+            [Path(path).expanduser() for path in args.community_bundle]
+        )
+    except (
+        CommunityContextError,
+        CommunityEvidenceError,
+        ContextBundleError,
+        IntakeReceiptError,
+        OSError,
+        RuntimeError,
+    ) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
     server.run(transport="stdio")

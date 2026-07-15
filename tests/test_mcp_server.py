@@ -14,6 +14,7 @@ from hpc_skill_hub.mcp_server import (
     RESOURCE_NAMES,
     TOOL_NAMES,
     TOOL_ARGUMENT_ALLOWLIST,
+    community_context_catalog,
     create_server,
     list_collections,
     main,
@@ -138,6 +139,14 @@ class McpRegistryToolTests(unittest.TestCase):
             "closed",
         )
 
+    def test_community_catalog_is_empty_by_default_and_returns_no_content(self):
+        payload = community_context_catalog({})
+
+        self.assertTrue(payload["ok"])
+        self.assertFalse(payload["configured"])
+        self.assertEqual(payload["count"], 0)
+        self.assertNotIn("files", payload)
+
 
 try:
     from mcp.shared.memory import create_connected_server_and_client_session
@@ -211,6 +220,11 @@ class McpProtocolTests(unittest.IsolatedAsyncioTestCase):
                 "hpc-skill://skills/{skill_id}",
             )
             self.assertEqual(by_name["skill_context"].mimeType, "application/json")
+            self.assertEqual(
+                str(by_name["community_context"].uriTemplate),
+                "hpc-skill://community/{contribution_id}/{version}",
+            )
+            self.assertEqual(by_name["community_context"].mimeType, "application/json")
 
             resource = await session.read_resource(
                 AnyUrl("hpc-skill://skills/slurm-submit-job")

@@ -1,9 +1,10 @@
 # v0.6 Development Plan
 
 Status: P0 release hygiene merged in PR #48, P1 quarantined intake merged in
-PR #50, and P2 intake receipts merged in PR #51. P3 review and adoption
-evidence is implemented on the current branch. P4 and P5 remain planned and
-must preserve the external evidence boundaries below.
+PR #50, P2 intake receipts merged in PR #51, and P3 review and adoption
+evidence merged in PR #52. P4 trusted agent consumption is complete on the
+current branch. P5 remains planned and must preserve the external evidence
+boundaries below.
 
 v0.6 focuses on verified community intake and evidence. The release should let
 maintainers inspect, quarantine, review, and selectively expose contributed
@@ -55,7 +56,7 @@ schemas for receipts and external maintainer decisions.
 
 ## P3 Review And Adoption Evidence
 
-Implementation status: complete on the P3 branch. The installable
+Implementation status: merged in PR #52. The installable
 `hpc-skill evidence packet|check` commands and standalone wrapper share one
 standard-library implementation and four strict public JSON contracts.
 
@@ -69,6 +70,11 @@ standard-library implementation and four strict public JSON contracts.
   owners.
 
 ## P4 Trusted Agent Consumption
+
+Implementation status: complete on the P4 branch. The installable
+`hpc-skill community-context build|check|show` commands reconstruct accepted
+content from the quarantine snapshot, embed exact-bound P2/P3 evidence, and
+share the same validator used by the optional read-only MCP server.
 
 - Expose only accepted, digest-verified community context through installed CLI
   and read-only MCP discovery.

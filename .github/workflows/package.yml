@@ -45,6 +45,7 @@ jobs:
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill resolve slurm-submit-job --adapter example-campus-cluster --json
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill intake "${GITHUB_WORKSPACE}/tests/fixtures/intake/benign-skill" --json
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill evidence --help
+          /tmp/hpc-skill-hub-wheel/bin/hpc-skill community-context --help
           /tmp/hpc-skill-hub-wheel/bin/hpc-skill-mcp --help
           /tmp/hpc-skill-hub-wheel/bin/python -m hpc_skill_hub show slurm-submit-job --json
           /tmp/hpc-skill-hub-wheel/bin/python -c "from hpc_skill_hub.context import find_skill_context, load_context_bundle; b = load_context_bundle(); s = find_skill_context(b, 'slurm-submit-job'); assert s and any(f['role'] == 'readme' and f['content'] for f in s['files'])"

@@ -58,9 +58,17 @@ Official client reference: [https://code.claude.com/docs/en/mcp](https://code.cl
 
 ## Capability Boundary
 
-The server exposes six tools: `search_skills`, `show_skill`, `list_collections`, `show_site_adapters`, `resolve_site_policy`, `registry_status`. It also exposes the
-`skill_context` resource at `hpc-skill://skills/{skill_id}` with MIME type
-`application/json`.
+The server exposes 7 tools: `search_skills`, `show_skill`, `list_collections`, `show_site_adapters`, `resolve_site_policy`, `list_community_contexts`, `registry_status`. It also exposes
+these resource templates:
+
+- `skill_context` at `hpc-skill://skills/{skill_id}` (application/json)
+- `community_context` at `hpc-skill://community/{contribution_id}/{version}` (application/json)
+
+Community resources are disabled by default. An operator may add one or more
+`--community-bundle /reviewed/path/context.json` arguments after building and
+checking each bundle with `hpc-skill community-context`. Server startup
+revalidates the embedded receipt, packet, independent reviews, aggregate
+status, and exact content digests before registering the resources.
 
 Every tool is read-only, non-destructive, idempotent, and closed-world. MCP
 annotations are client hints; the server enforces the boundary by registering

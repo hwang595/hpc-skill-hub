@@ -1127,6 +1127,7 @@ def intake_package(
     policy_path: Optional[Path] = None,
     limits: IntakeLimits = DEFAULT_LIMITS,
     temp_parent: Optional[Path] = None,
+    _snapshot_output: Optional[List[Dict[str, Any]]] = None,
 ) -> Dict[str, Any]:
     """Quarantine, inventory, and statically scan one untrusted contribution."""
 
@@ -1203,6 +1204,33 @@ def intake_package(
                 fail_on="policy",
                 policy_path=policy_path.expanduser() if policy_path else None,
             )
+            if _snapshot_output is not None:
+                for record in stage["files"]:
+                    if record["type"] != "file" or record["content_type"] != "text":
+                        continue
+                    relative = PurePosixPath(record["path"])
+                    data = (payload / relative).read_bytes()
+                    if (
+                        len(data) != record["bytes"]
+                        or hashlib.sha256(data).hexdigest() != record["sha256"]
+                    ):
+                        raise IntakeError(
+                            f"quarantine snapshot changed before context reconstruction: {record['path']}"
+                        )
+                    try:
+                        content = data.decode("utf-8")
+                    except UnicodeDecodeError as exc:
+                        raise IntakeError(
+                            f"quarantine snapshot is no longer UTF-8 text: {record['path']}"
+                        ) from exc
+                    _snapshot_output.append(
+                        {
+                            "path": record["path"],
+                            "bytes": record["bytes"],
+                            "sha256": record["sha256"],
+                            "content": content,
+                        }
+                    )
 
     security_verdict = (
         security_report["summary"]["verdict"] if security_report else None

@@ -27,7 +27,8 @@ Current generated registry snapshot:
   details.
 - Use `docs/INTEGRATION_GUIDE.md`, `docs/SAFETY_MODEL.md`,
   `docs/TRUST_POLICY_PACKS.md`, `docs/INTAKE_RECEIPTS.md`, and
-  `docs/COMMUNITY_EVIDENCE.md` when changing integration behavior. Use
+  `docs/COMMUNITY_EVIDENCE.md`, and `docs/COMMUNITY_CONTEXT.md` when changing
+  integration behavior. Use
   `docs/SKILL_SPEC.md` for registry skill contracts.
 
 ## Useful Commands
@@ -45,6 +46,8 @@ Current generated registry snapshot:
   `python3 tools/hpc_skill.py receipt create <skill-path-or-archive> --json`
 - Create or verify exact-bound review and adoption evidence:
   `python3 tools/hpc_skill.py evidence packet --help`
+- Build or verify review-gated community context:
+  `python3 tools/hpc_skill.py community-context --help`
 - Scan already bounded source content directly:
   `python3 tools/hpc_skill.py security <skill-path> --json`
 - Apply an operator-reviewed external trust policy stored outside the package:
@@ -63,7 +66,8 @@ Current generated registry snapshot:
 - Claude Code should use `CLAUDE.md` plus `.claude/skills/hpc-skill-hub/SKILL.md`.
 - MCP-capable clients may use the optional local `hpc-skill-mcp` stdio server
   for read-only registry discovery and digest-verified full skill context at
-  `hpc-skill://skills/<skill-id>`.
+  `hpc-skill://skills/<skill-id>`. Explicitly configured, review-complete
+  community bundles use `hpc-skill://community/<contribution-id>/<version>`.
 - Keep provider-specific generated files synchronized with:
   `python3 tools/build_agent_adapters.py`.
 - Keep MCP client examples synchronized with:
@@ -96,8 +100,9 @@ Current generated registry snapshot:
 - Treat P2 acceptance as maintainer intake disposition, not proof of reviewer
   identity, domain correctness, independent review, adoption, or maturity.
 - Before P4 community context consumption, fresh-verify the P3 packet and
-  supplied evidence with `hpc-skill evidence check`. Treat `review-complete` as
-  review routing state, never execution or automatic maturity authorization.
+  supplied evidence with `hpc-skill evidence check`, then use
+  `hpc-skill community-context build|check`. Only `review-complete` context may
+  be returned; this state never grants execution or maturity authorization.
 
 ## Editing Guidance
 

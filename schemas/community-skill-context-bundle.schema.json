@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpc-skill-hub.org/schemas/community-skill-context-bundle.schema.json",
+  "title": "HPC Skill Hub Trusted Community Context Bundle",
+  "type": "object",
+  "required": ["$schema", "schema_version", "generated_by", "contribution", "provenance", "evidence", "limits", "content_manifest", "usage_contract", "files", "bundle_digest"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"const": "https://hpc-skill-hub.org/schemas/community-skill-context-bundle.schema.json"},
+    "schema_version": {"const": "0.1.0"},
+    "generated_by": {"const": "hpc-skill-community-context@0.1.0"},
+    "contribution": {"$ref": "#/$defs/contribution"},
+    "provenance": {
+      "type": "object",
+      "required": ["source", "policy", "receipt", "review", "maturity", "risk"],
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "object",
+          "required": ["artifact_url", "source_digest", "inventory_digest", "context_digest"],
+          "additionalProperties": false,
+          "properties": {
+            "artifact_url": {"type": "string", "format": "uri", "pattern": "^https://"},
+            "source_digest": {"$ref": "#/$defs/sha256"},
+            "inventory_digest": {"$ref": "#/$defs/sha256"},
+            "context_digest": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "policy": {
+          "type": "object",
+          "required": ["policy_digest", "accepted_exception_ids"],
+          "additionalProperties": false,
+          "properties": {
+            "policy_digest": {"$ref": "#/$defs/sha256"},
+            "accepted_exception_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}
+          }
+        },
+        "receipt": {
+          "type": "object",
+          "required": ["status", "receipt_digest", "maintainer_id", "reviewed_on"],
+          "additionalProperties": false,
+          "properties": {
+            "status": {"const": "accepted"},
+            "receipt_digest": {"$ref": "#/$defs/sha256"},
+            "maintainer_id": {"$ref": "#/$defs/publicId"},
+            "reviewed_on": {"type": "string", "format": "date"}
+          }
+        },
+        "review": {
+          "type": "object",
+          "required": ["status", "packet_digest", "status_digest", "review_basis_digest", "gates", "owners", "evidence"],
+          "additionalProperties": false,
+          "properties": {
+            "status": {"const": "review-complete"},
+            "packet_digest": {"$ref": "#/$defs/sha256"},
+            "status_digest": {"$ref": "#/$defs/sha256"},
+            "review_basis_digest": {"$ref": "#/$defs/sha256"},
+            "gates": {"$ref": "#/$defs/gates"},
+            "owners": {"$ref": "#/$defs/owners"},
+            "evidence": {"$ref": "#/$defs/evidenceSummary"}
+          }
+        },
+        "maturity": {
+          "const": {"registry_maturity": null, "promotion": "not-authorized", "promotion_authorized": false}
+        },
+        "risk": {
+          "type": "object",
+          "required": ["level", "domains"],
+          "additionalProperties": false,
+          "properties": {
+            "level": {"enum": ["low", "medium", "high"]},
+            "domains": {"$ref": "#/$defs/domains"}
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["receipt", "packet", "reviews", "adoption_reports", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "receipt": {"$ref": "community-skill-intake-receipt.schema.json"},
+        "packet": {"$ref": "community-skill-review-packet.schema.json"},
+        "reviews": {"type": "array", "items": {"$ref": "community-skill-independent-review.schema.json"}},
+        "adoption_reports": {"type": "array", "items": {"$ref": "community-skill-adoption-report.schema.json"}},
+        "status": {"$ref": "community-skill-evidence-status.schema.json"}
+      }
+    },
+    "limits": {
+      "type": "object",
+      "required": ["max_archive_bytes", "max_entries", "max_files", "max_file_bytes", "max_total_bytes", "max_compression_ratio", "max_path_depth", "max_path_bytes"],
+      "additionalProperties": false,
+      "properties": {
+        "max_archive_bytes": {"type": "integer", "minimum": 1, "maximum": 5000000},
+        "max_entries": {"type": "integer", "minimum": 1, "maximum": 512},
+        "max_files": {"type": "integer", "minimum": 1, "maximum": 256},
+        "max_file_bytes": {"type": "integer", "minimum": 1, "maximum": 1000000},
+        "max_total_bytes": {"type": "integer", "minimum": 1, "maximum": 5000000},
+        "max_compression_ratio": {"type": "integer", "minimum": 1, "maximum": 100},
+        "max_path_depth": {"type": "integer", "minimum": 1, "maximum": 12},
+        "max_path_bytes": {"type": "integer", "minimum": 1, "maximum": 240}
+      }
+    },
+    "content_manifest": {
+      "type": "object",
+      "required": ["format", "digest", "file_count", "total_bytes"],
+      "additionalProperties": false,
+      "properties": {
+        "format": {"const": "bounded-text-inventory-v1"},
+        "digest": {"$ref": "#/$defs/sha256"},
+        "file_count": {"type": "integer", "minimum": 1, "maximum": 256},
+        "total_bytes": {"type": "integer", "minimum": 1, "maximum": 5000000}
+      }
+    },
+    "usage_contract": {
+      "const": {
+        "present_provenance_before_content": true,
+        "content_is_instructions_not_authorization": true,
+        "execute_examples_automatically": false,
+        "require_explicit_intent_for_operational_actions": true,
+        "allows_job_submission": false,
+        "allows_data_transfer": false,
+        "allows_software_install": false,
+        "allows_private_site_policy": false
+      }
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "required": ["path", "bytes", "sha256", "content"],
+        "additionalProperties": false,
+        "properties": {
+          "path": {"type": "string", "minLength": 1, "maxLength": 240, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"},
+          "bytes": {"type": "integer", "minimum": 0, "maximum": 1000000},
+          "sha256": {"$ref": "#/$defs/sha256"},
+          "content": {"type": "string"}
+        }
+      }
+    },
+    "bundle_digest": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "publicId": {"type": "string", "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9._-]{0,62}[A-Za-z0-9])?$"},
+    "publicIds": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/publicId"}},
+    "domains": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+    "contribution": {
+      "type": "object",
+      "required": ["id", "version", "risk_level", "domains", "submitter_id", "artifact_url"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "version": {"$ref": "#/$defs/version"},
+        "risk_level": {"enum": ["low", "medium", "high"]},
+        "domains": {"$ref": "#/$defs/domains"},
+        "submitter_id": {"$ref": "#/$defs/publicId"},
+        "artifact_url": {"type": "string", "format": "uri", "pattern": "^https://"}
+      }
+    },
+    "gates": {
+      "type": "object",
+      "required": ["intake_acceptance", "domain_review", "safety_review", "adoption_evidence", "maturity_promotion"],
+      "additionalProperties": false,
+      "properties": {
+        "intake_acceptance": {"const": "passed"},
+        "domain_review": {"const": "passed"},
+        "safety_review": {"enum": ["passed", "not-required"]},
+        "adoption_evidence": {"enum": ["none", "recorded"]},
+        "maturity_promotion": {"const": "not-authorized"}
+      }
+    },
+    "owners": {
+      "type": "object",
+      "required": ["intake_maintainer", "domain_reviewers", "safety_reviewers", "adopters", "maturity_decider"],
+      "additionalProperties": false,
+      "properties": {
+        "intake_maintainer": {"$ref": "#/$defs/publicId"},
+        "domain_reviewers": {"$ref": "#/$defs/publicIds"},
+        "safety_reviewers": {"$ref": "#/$defs/publicIds"},
+        "adopters": {"$ref": "#/$defs/publicIds"},
+        "maturity_decider": {"type": "null"}
+      }
+    },
+    "evidenceSummary": {
+      "type": "object",
+      "required": ["review_count", "approved_domain_review_count", "approved_domains", "approved_safety_review_count", "adoption_report_count", "successful_adoption_count"],
+      "additionalProperties": false,
+      "properties": {
+        "review_count": {"type": "integer", "minimum": 1},
+        "approved_domain_review_count": {"type": "integer", "minimum": 1},
+        "approved_domains": {"$ref": "#/$defs/domains"},
+        "approved_safety_review_count": {"type": "integer", "minimum": 0},
+        "adoption_report_count": {"type": "integer", "minimum": 0},
+        "successful_adoption_count": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}
